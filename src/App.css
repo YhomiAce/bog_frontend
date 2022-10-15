@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
-}
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@1,500&family=Roboto+Mono&family=Rubik+Dirt&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@layer components {
+  .card {
+    border-radius: 150px 0px 150px 0px;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .fw-400{
+    font-weight: 400;
   }
-  to {
-    transform: rotate(360deg);
+  .fw-500{
+    font-weight: 500;
   }
+  .fw-600{
+    font-weight: 600;
+  }
+  .fw-700{
+    font-weight: 700;
+  }
+  .fw-800{
+    font-weight: 800;
+  }
+  .fw-900{
+    font-weight: 900;
+  }
+  .fs-400{
+    font-size:14px;
+  }
+  .fs-500{
+    font-size: 15px;
+  }
+  .fs-600{
+    font-size: 16px;
+  }
+  .btn{
+    border-radius:10px;
+    padding: 10px 30px;
+  }
+  .btn-default{
+    border:1px solid gray;
+  }
+  .shades{
+    box-shadow: rgba(0, 0, 0, 0.14) 0px 3px 8px;
+  }
+  .shades:hover{
+    box-shadow: rgba(224, 224, 224, 0.4) 0px 11px 38px, rgba(0, 0, 0, 0.22) 0px 11px 12px;
+  }
+  .logo-fix{
+    position:fixed;
+    top:30px;
+    left:27%;
+  }
+  .circle{
+    border-radius:50%;
+  }
+  .center-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .tags{
+    left:12%;
+  }
+  .mygrid{
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    justify-content: space-between;
+  }
+  .bg-primary{
+    background-color: #3F79AD;
+  }
+  .text-primary{
+    color: #3F79AD;
+}
+.text-secondary{
+  color: #EC8B20;
+}
+.bg-secondary{
+  color: #EC8B20;
+}
 }

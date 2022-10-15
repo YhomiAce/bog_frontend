@@ -27,9 +27,11 @@ export default function Forget() {
               </div>
 
               <div className="mt-6 w-full flex">
-                <button className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
+                  <Link to="/userauth" className="w-full text-lg text-white bg-primary rounded fw-600">
+                  <button className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
                   Get Link
                 </button>
+                  </Link>
               </div>
             </form>
             <div className="mt-8 text-center font-400">
