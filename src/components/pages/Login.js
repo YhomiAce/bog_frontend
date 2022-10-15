@@ -1,8 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserFromFakeApi } from '../../redux/actions/authAction'
 
 
 export default function Login() {
+    const profile = useSelector((state) => state.profile);
+    const dispatch = useDispatch();
+    const handlerLogin = (e) =>{
+        e.preventDefault();
+        dispatch(getUserFromFakeApi());
+    }
     
     return (
         <div className="bg-login min-h-screen bg-cover text-black font-primary" >
@@ -12,7 +20,11 @@ export default function Login() {
                 <img src={require('../assets/images/logo.png')} className="w-28 pb-5 lg:w-44" />
                 <div className="lg:px-12 bg-white py-8 px-5 shadow-lg ">
                     <div>
+                    {
+                            profile?.error !== null ? <p className="text-xl fw-700 text-red-600">{profile?.error}</p> : null
+                        }
                         <p className="text-xl fw-700">Log into your account</p>
+                        
                     </div>
                     <div className="mt-8">
                         <form>
@@ -36,7 +48,7 @@ export default function Login() {
                                 <p className="px-2">Remember me</p>
                             </div>
                             <div className="mt-6 w-full flex">
-                                <button className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
+                                <button type="submit" onClick={handlerLogin} className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
                                     Log in
                                 </button>
                             </div>
