@@ -2,38 +2,41 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSelector } from 'react-redux'; 
 
-export default function SignSupply() {
+const SignSupply = () => {
+  const user = useSelector((state) => state.auth.user);
   return (
     <div className="bg-login bg-fixed bg-cover text-black font-primary">
       <img
-          src={require("./images/logo.png")}
-          className="w-32 mt-2 ml-2 lg:hidden lg:36"
-        />
+        src={require("./images/logo.png")}
+        className="w-32 mt-2 ml-2 lg:hidden lg:36"
+        alt="Alnt"
+      />
       <div className="flex lg:py-24 py-12 relative  lg:ml-12 text-sm justify-end">
         {/* the list of services */}
         <div className="lg:w-4/12 tags fixed pr-10 pt-16 hidden lg:block">
-        <img src={require('./images/logo.png')} alt="logo" className="w-48 mb-10 relative "/>
+          <img src={require('./images/logo.png')} alt="logo" className="w-48 mb-10 relative " />
           <ul>
             <li className="flex">
-            <img src={require('./images/icon2.png')} className="w-7 h-7 mr-5"/>
+              <img src={require('./images/icon2.png')} className="w-7 h-7 mr-5" />
               <div>
-              <p className="fw-600 fs-600 mb-2">Get Started Easily</p>
-              <p>Sign up and start enjoying all your features tailored to suit you </p>
+                <p className="fw-600 fs-600 mb-2">Get Started Easily</p>
+                <p>Sign up and start enjoying all your features tailored to suit you </p>
               </div>
             </li>
             <li className="my-6 flex">
-            <img src={require('./images/icon2.png')} className="w-7 h-7 mr-5"/>
+              <img src={require('./images/icon2.png')} className="w-7 h-7 mr-5" />
               <div>
-              <p className="fw-600 fs-600 mb-2">All Access Control</p>
-              <p>Control all parts of your construction from start to finish all in one place</p>
+                <p className="fw-600 fs-600 mb-2">All Access Control</p>
+                <p>Control all parts of your construction from start to finish all in one place</p>
               </div>
             </li>
             <li className="flex">
-            <img src={require('./images/icon2.png')} className="w-7 h-7 mr-5"/>
+              <img src={require('./images/icon2.png')} className="w-7 h-7 mr-5" />
               <div>
-              <p className="fw-600 fs-600 mb-2">Sell Products & Services</p>
-              <p>Easily market your products and provide services to clients in need </p>
+                <p className="fw-600 fs-600 mb-2">Sell Products & Services</p>
+                <p>Easily market your products and provide services to clients in need </p>
               </div>
             </li>
           </ul>
@@ -41,7 +44,7 @@ export default function SignSupply() {
         {/* form section */}
         <div className="lg:w-5/12 fw-500 w-11/12 m-auto bg-white lg:mr-24 py-10 lg:px-10 px-5 shadow-lg">
           <div>
-            <p className="text-2xl fw-600">Sign Up as Supplier</p>
+            <p className="text-2xl fw-600">Sign Up as Supplier {user.name}</p>
             <p className="mt-1">Not a service provider ? <Link to="/signup" className="text-primary">Switch User type</Link></p>
           </div>
           <div className="mt-8">
@@ -109,3 +112,5 @@ export default function SignSupply() {
     </div>
   );
 }
+
+export default SignSupply;

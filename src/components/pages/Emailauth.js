@@ -2,8 +2,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelopeCircleCheck } from "@fortawesome/free-solid-svg-icons"
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux'; 
+  
 
 export default function Userauth() {
+  const profile = useSelector((state) => state.profile);
   return (
     <div className="bg-login min-h-screen bg-cover text-black font-primary">
       <div className="flex lg:pt-16 text-sm h-screen items-center justify-center">
@@ -25,7 +28,7 @@ export default function Userauth() {
               <div className="mt-6 w-full flex">
                 <Link to="/login" className="w-full text-md text-white bg-primary rounded fw-600">
                   <button className="w-full text-md text-white bg-primary py-2 rounded fw-600">
-                    LOGIN TO YOUR ACCOUNT
+                    LOGIN TO YOUR ACCOUNT {profile.profile.name}
                   </button>
                 </Link>
               </div>
