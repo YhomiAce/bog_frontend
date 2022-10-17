@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserFromFakeApi } from '../../redux/actions/authAction'
+import React, {useState} from "react";
 
 
 export default function Login() {
+
+    const initialValues = { email: "", password: "" };
+    const [formValues, setFormValues] = useState(initialValues);
+
+
+    
     const profile = useSelector((state) => state.profile);
-    const dispatch = useDispatch();
-    const handlerLogin = (e) =>{
-        e.preventDefault();
-        dispatch(getUserFromFakeApi());
-    }
+    // const dispatch = useDispatch();
+    // const handlerLogin = (e) =>{
+    //     e.preventDefault();
+    //     dispatch(getUserFromFakeApi());
+    // }
+
     
     return (
         <div className="bg-login min-h-screen bg-cover text-black font-primary" >
@@ -32,7 +41,13 @@ export default function Login() {
                                 <label className="block">
                                     Email
                                 </label>
-                                <input type="email" placeholder="enter your email" className="w-full mt-2 py-2 px-2 border-gray-400 rounded border"/>
+                                    <input
+                                        type="email"
+                                        placeholder="enter your email"
+                                        className="w-full mt-2 py-2 px-2 border-gray-400 rounded border"
+                                        value={formValues.email}
+                                        onChange={inputChange}
+                                    />
                             </div>
                             <div className="mt-6 w-full">
                                 <div className="flex justify-between">
@@ -41,7 +56,13 @@ export default function Login() {
                                     </label>
                                     <Link to="/forget"><p className="text-primary">Forgot Password?</p></Link>
                                 </div>
-                                <input type="password" placeholder="enter your password" className="w-full border-gray-400 mt-2 py-2 px-2 rounded border"/>
+                                    <input
+                                        type="password"
+                                        placeholder="enter your password"
+                                        className="w-full border-gray-400 mt-2 py-2 px-2 rounded border"
+                                        value={formValues.password}
+                                        onChange={inputChange}
+                                    />
                             </div>
                             <div className="mt-6 w-11/12 flex">
                                 <input type="checkbox" className="p-4 border-gray-400" />
