@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import 'react-tabs/style/react-tabs.css';
 import { Link } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -7,6 +7,32 @@ import { useSelector } from 'react-redux';
 
 export default function SignClient() {
   const auth = useSelector((state) => state.auth);
+
+
+  // client authentication
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
+  const [password, setPasword] = useState("")
+
+ async function Signup(e) {
+    e.preventDefault();
+    let userType = "private_client";
+    let item = {name, email, userType, password, phoneNumber}
+    console.log(item)
+
+    // fetch("https://bog-application.herokuapp.com/api/user/signup", {
+    //   method: 'POST',
+    //   body: JSON.stringify(item),
+    //   headers: {
+    //     "Content-Type": 'application/json',
+    //     "Accept": 'application/json'
+    //   }
+    // })
+    // const result = await result.json()
+    // console.log("result",result)
+  }
+
   return (
     <div>
       <div className="bg-login bg-fixed bg-cover text-black font-primary">
@@ -61,36 +87,48 @@ export default function SignClient() {
                       <label className="block">Full Name</label>
                       <input
                         type="text"
+                        value={name}
+                        onChange={(e)=>setName(e.target.value)}
                         placeholder="Enter your full name"
                         className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
+                        required
                       />
                     </div>
                     <div className="w-full mt-6">
                       <label className="block">Email</label>
                       <input
                         type="email"
+                        value={email}
+                        onChange={(e)=>setEmail(e.target.value)}
                         placeholder="Enter your email address"
                         className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
+                        required
                       />
                     </div>
                     <div className="w-full mt-6">
                       <label className="block">Phone Number</label>
                       <input
                         type="text"
+                        value={phoneNumber}
+                        onChange={(e)=>setPhoneNumber(e.target.value)}
                         placeholder="Enter your phone number"
                         className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
+                        required
                       />
                     </div>
                     <div className="w-full mt-6">
                       <label className="block">Password</label>
                       <input
                         type="password"
+                        value={password}
+                        onChange={(e)=>setPasword(e.target.value)}
                         placeholder="Enter your desired password"
                         className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
+                        required
                       />
                     </div>
                     <div className="mt-8 w-11/12 flex">
-                      <input type="checkbox" className="p-4 border-gray-400" />
+                      <input type="checkbox" className="p-4 border-gray-400" required/>
                       <p className="px-2">
                         I agree to the
                         <span className="text-primary pl-2">
@@ -99,7 +137,7 @@ export default function SignClient() {
                       </p>
                     </div>
                     <div className="mt-6 w-full flex">
-                      <button className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
+                      <button className="w-full text-lg text-white bg-primary py-2 rounded fw-600" onClick={Signup}>
                         Sign Up
                       </button>
                     </div>

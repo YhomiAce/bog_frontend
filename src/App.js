@@ -5,6 +5,7 @@ import SignupIndex from './components/pages/SignupIndex';
 import Homepage from './components/pages/Homepage';
 import Forget from './components/pages/Forget';
 import Userauth from './components/pages/Emailauth';
+import ClientDashboard from './components/Dashboard/clientDashboard';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup/*' element={<SignupIndex/>}/>
       <Route path='/forget' element={<Forget />} />
-      <Route path='/userauth' element={<Userauth/>}/>
+      <Route path='/userauth' element={<Userauth />} />
+      <Route path='/clientdashboard/*' element={<ClientDashboard /> } />
       </Routes>
   );
 }
