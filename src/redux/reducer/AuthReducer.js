@@ -2,10 +2,7 @@
 import * as actionType from '../type'
 
 const initialState = {
-    user: {
-        name: "WIllson",
-        email: "will@greenmouse.com"
-    },
+    user: null,
     token: null,
     isAuthenticated: false,
     error: null,
@@ -19,9 +16,24 @@ const AuthReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                isAuthenticated: false
             }
-        case actionType.REGISTER_FAIL:
+        case actionType.LOGIN_SUCCESS:
+            localStorage.setItem('auth_token', payload.token)
+            return {
+                ...state,
+                isLoading: false,
+                isAuthenticated: true,
+                user: payload.user,
+                token: payload.token
+            }
+        case actionType.USER_LOADED:
+            return {
+                ...state,
+                isLoading: false,
+                isAuthenticated: true,
+                user: payload.user,
+            }
+        case actionType.SET_ERROR:
             return {
                 ...state,
                 error: payload
