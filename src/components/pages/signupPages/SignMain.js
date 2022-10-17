@@ -1,4 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -11,6 +11,7 @@ export default function SignMain() {
             <img
               src={require("./images/logo.png")}
               className="w-36 m-auto lg:w-52"
+              alt="App Logo"
             />
           </div>
         </div>

@@ -1,12 +1,12 @@
 import * as ActionType from '../type';
-import axios from 'axios';
+import axios from '../../config/config';
 import Swal from "sweetalert2";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
-
+import setAuthToken from '../../config/setAuthHeader';
 import { setAlert } from './alert';
 
-const BASE_URL = process.env.REACT_APP_URL;
+// const BASE_URL = process.env.REACT_APP_URL;
 // const config = {
 //     headers: {
 //         "Content-Type": "application/json",
@@ -44,13 +44,17 @@ export const login = (payload) => {
 
 export const getMe = () => {
     return async (dispatch) => {
+        if (localStorage.auth_token) {
+            setAuthToken(localStorage.auth_token);
+        }
         try {
+
             const response = await axios.get('/user/me');
             console.log(response);
             dispatch(setUser(response))
         } catch (error) {
             console.log(error.message);
-            dispatch(setError(error.message));
+            // dispatch(setError(error.message));
             toaster.notify(
                 error.message,
                 {
@@ -62,30 +66,29 @@ export const getMe = () => {
     }
 }
 
-export const loginUser = (apiData, navigate) => {
+export const loginUser = (apiData, navigate, stopLoading) => {
     return async (dispatch) => {
         try {
-            const url = `${BASE_URL}/user/login`;
+            const url = `/user/login`;
             const response = await axios.post(url, apiData);
             console.log(response);
             dispatch(login(response));
+            stopLoading();
             Swal.fire({
                 title: "Success",
                 icon: "success",
                 text: "Login completed successfully"
             }).then(() => {
-                navigate("/dashboard");
+                navigate("/dashboard/home");
             })
         } catch (error) {
             console.log(error.message);
-            dispatch(setError(error.message));
-            const errors = error.response.data.errors;
-            console.log(errors);
-            if (errors) {
-                errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
-            }
+            const errors = error.response.data.message;
+            stopLoading();
+            dispatch(setError(errors));
+            dispatch(setAlert(errors, "danger"))
             toaster.notify(
-                error.message,
+                errors,
                 {
                     duration: "4000",
                     position: "bottom",
@@ -98,7 +101,7 @@ export const loginUser = (apiData, navigate) => {
 export const register = (apiData, navigate, stopLoading) => {
     return async (dispatch) => {
         try {
-            const url = `${BASE_URL}/user/signup`;
+            const url = `/user/signup`;
             const response = await axios.post(url, apiData);
             console.log(response);
             dispatch(registerSuccess(response));
@@ -117,7 +120,7 @@ export const register = (apiData, navigate, stopLoading) => {
             dispatch(setAlert(errors, "danger"))
             stopLoading();
             console.log(errors);
-            
+
             toaster.notify(
                 errors,
                 {
@@ -128,3 +131,8 @@ export const register = (apiData, navigate, stopLoading) => {
         }
     }
 }
+// Logout
+export const logout = () => (dispatch) => {
+    dispatch({ type: ActionType.LOGOUT });
+    window.location.href = "/login";
+};

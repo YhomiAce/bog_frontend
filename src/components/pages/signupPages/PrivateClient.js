@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import Spinner from '../../layouts/Spinner';
 import { useDispatch } from 'react-redux';
 import { register } from "../../../redux/actions/authAction";
-import { privateClientSchema } from './validationSchema'
+import { privateClientSchema } from '../../../services/validation';
 
 const PrivateClient = () => {
     const dispatch = useDispatch();

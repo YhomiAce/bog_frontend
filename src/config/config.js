@@ -1,11 +1,11 @@
 import axios from "axios";
-import handleResponseError from "./handleResponseError";
+// import handleResponseError from "./handleResponseError";
 
 const requestHeaders = { "Content-Type": "application/json" };
-const authToken = localStorage.getItem("chosen_token");
+const authToken = localStorage.getItem("auth_token");
 
 if (authToken && authToken !== "null") {
-  requestHeaders.Authorization = `Bearer ${authToken}`;
+  requestHeaders.Authorization = `${authToken}`;
 }
 
 const Axios = axios.create({
@@ -38,10 +38,10 @@ Axios.interceptors.response.use(
     // if (parseInt(error?.response?.status) === 406) {
     //   window.location.href = "/dashboard/account?section=plans";
     // }
-    if (parseInt(error?.response?.status) === 401) {
-      window.location.href = "/login";
-    }
-    handleResponseError(error.response);
+    // if (parseInt(error?.response?.status) === 401) {
+    //   window.location.href = "/login";
+    // }
+    // handleResponseError(error.response);
     return Promise.reject(error);
   }
 );
