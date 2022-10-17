@@ -30,7 +30,7 @@ export default function Userauth() {
         text: "Unable to Verify Email Address. Please open the link again from your email"
       }).then(() => {
         navigate("/login")
-      })
+      });
 
     })
   }, []);

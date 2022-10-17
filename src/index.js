@@ -4,13 +4,16 @@ import { BrowserRouter } from "react-router-dom";
 import App from './App';
 import { Provider } from 'react-redux';
 import store from './store';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 const app = (
   <Provider store={store}>
     <BrowserRouter>
-      <React.StrictMode>
-        <App tab="home" />
-      </React.StrictMode>
+      {/* <React.StrictMode> */}
+        <ErrorBoundary>
+          <App tab="home" />
+        </ErrorBoundary>
+      {/* </React.StrictMode> */}
     </BrowserRouter>
   </Provider>
 )

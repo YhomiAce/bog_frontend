@@ -7,12 +7,12 @@ import "toasted-notes/src/styles.css";
 import { setAlert } from './alert';
 
 const BASE_URL = process.env.REACT_APP_URL;
-const config = {
-    headers: {
-        "Content-Type": "application/json",
+// const config = {
+//     headers: {
+//         "Content-Type": "application/json",
 
-    }
-}
+//     }
+// }
 
 export const registerSuccess = (payload) => {
     return {
