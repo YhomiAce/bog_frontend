@@ -10,7 +10,7 @@ import Userauth from './components/pages/Emailauth';
 import { getMe } from './redux/actions/authAction';
 import store from './store';
 import setAuthToken from './config/setAuthHeader';
-import Dashboard from './components/Dashboard/Dashboard';
+// import Dashboard from './components/Dashboard/Dashboard';
 import ResetPassword from './components/pages/ResetPassword';
 
 import ClientDashboard from './components/Dashboard/clientDashboard';
@@ -34,9 +34,9 @@ function App() {
         <Route path='/forget' element={<Forget />} />
         <Route path='/verifyemail' element={<Userauth />} />
         <Route path='/resetpassword' element={<ResetPassword />} />
-        <Route path='/dashboard/*' element={<Dashboard />} />
+        {/* <Route path='/dashboard/*' element={<Dashboard />} /> */}
 
-        <Route path='/clientdashboard/*' element={<ClientDashboard />} />
+        <Route path='/dashboard/*' element={<ClientDashboard />} />
       </Routes>
     </section>
 

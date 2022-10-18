@@ -15,7 +15,8 @@ export const loginValidation = Yup.object({
 
 export const changePasswordValidation = Yup.object({
     password: Yup.string().required('Password is required'),
-    confirmPassword: Yup.string().required('Confirm Password is required'),
+    confirmPassword: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'Passwords must match'),
 })
 
 export const forgetPasswordValidation = Yup.object({

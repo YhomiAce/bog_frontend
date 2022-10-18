@@ -1,16 +1,19 @@
+/* eslint-disable no-unused-vars */
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { useSelector } from "react-redux";
 import ChartLine from "../../assets/SalesChart";
 import Chart from "../../assets/SalesChart";
 
 export default function Dashboard() {
+  const user = useSelector((state) => state.auth.user)
   return (
     <div>
       <div className="min-h-screen">
         <div className="w-full py-6 bg-white px-4 rounded-lg">
           <div className="text-2xl fw-600 flex items-center">
-            <p className="">Welcome, Greenmouse</p>
+            <p className="">Welcome, {user?.name}</p>
             <FontAwesomeIcon
               icon={faThumbsUp}
               className="pl-3 text-secondary"

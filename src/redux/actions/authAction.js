@@ -46,23 +46,24 @@ export const getMe = () => {
     return async (dispatch) => {
         if (localStorage.auth_token) {
             setAuthToken(localStorage.auth_token);
-        }
-        try {
+            try {
 
-            const response = await axios.get('/user/me');
-            console.log(response);
-            dispatch(setUser(response))
-        } catch (error) {
-            console.log(error.message);
-            // dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+                const response = await axios.get('/user/me');
+                console.log(response);
+                dispatch(setUser(response))
+            } catch (error) {
+                console.log(error.message);
+                // dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
+
     }
 }
 

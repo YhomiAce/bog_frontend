@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import ProtectedRoute from "../../Routes/ProtectedRoute";
 import Header from "./header";
 import Chat from "./pages/Chats";
 import Dashboard from "./pages/Dasboard";
@@ -17,8 +18,8 @@ export default function ClientDashboard() {
                 <Header />
                 <Sidebar />
                 <div className="lg:ml-52 pt-24 p-5 bg-gray-100">
-                    <Routes>
-                        <Route path="" element={<Dashboard />} />
+                    <Routes  element={<ProtectedRoute />}>
+                        <Route path="/home" element={<Dashboard />} />
                         <Route path="" element={<Orders />} />
                         <Route path="" element={<Products />} />
                         <Route path="" element={<Meetings />} />
