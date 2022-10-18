@@ -5,15 +5,19 @@ import App from './App';
 import { Provider } from 'react-redux';
 import store from './store';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+// @material-tailwind/react
+import { ThemeProvider } from "@material-tailwind/react";
 
 const app = (
   <Provider store={store}>
     <BrowserRouter>
-      {/* <React.StrictMode> */}
+      <React.StrictMode>
+        <ThemeProvider>
         <ErrorBoundary>
-          <App tab="home" />
+          <App />
         </ErrorBoundary>
-      {/* </React.StrictMode> */}
+        </ThemeProvider>
+      </React.StrictMode>
     </BrowserRouter>
   </Provider>
 )

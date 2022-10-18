@@ -9,39 +9,34 @@ import Userauth from './components/pages/Emailauth';
 // import Alert from './components/layouts/Alert';
 import { getMe } from './redux/actions/authAction';
 import store from './store';
-// import ProtectedRoute from './components/Routes/ProtectedRoute';
 import setAuthToken from './config/setAuthHeader';
 import Dashboard from './components/Dashboard/Dashboard';
 import ResetPassword from './components/pages/ResetPassword';
-// import UnAuthenticatedRoute from './components/Routes/UnAuthenticatedRoute';
+
+import ClientDashboard from './components/Dashboard/clientDashboard';
 
 if (localStorage.auth_token) {
   setAuthToken(localStorage.auth_token);
 }
 
-
 function App() {
   useEffect(() => {
     // console.log(store.getState().auth);
     store.dispatch(getMe());
-    // if (store.getState().auth.isAuthenticated === true) {
-    //   store.dispatch(getMe());
-    // }
   }, []);
   return (
     <section className="container">
       {/* <Alert /> */}
       <Routes>
         <Route path='/' element={<Homepage />} />
-        {/* <Route element={<UnAuthenticatedRoute />}> */}
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup/*' element={<SignupIndex />} />
-          <Route path='/forget' element={<Forget />} />
-          <Route path='/verifyemail' element={<Userauth />} />
-          <Route path='/resetpassword' element={<ResetPassword />} />
-        {/* </Route> */}
-
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup/*' element={<SignupIndex />} />
+        <Route path='/forget' element={<Forget />} />
+        <Route path='/verifyemail' element={<Userauth />} />
+        <Route path='/resetpassword' element={<ResetPassword />} />
         <Route path='/dashboard/*' element={<Dashboard />} />
+
+        <Route path='/clientdashboard/*' element={<ClientDashboard />} />
       </Routes>
     </section>
 

@@ -81,6 +81,13 @@
   color: #EC8B20;
 }
 .bg-secondary{
-  color: #EC8B20;
+  background: #EC8B20;
+}
+.grid-4{
+  display:grid;
+  grid-template-columns: 23% 23% 23% 23%;
+}
+.menu-btn{
+  left:33%;
 }
 }
