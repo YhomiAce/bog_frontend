@@ -11,7 +11,7 @@ const CorporateClient = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const stopLoading = () => setLoading(false);
-    const handleSubmit = (values, actions) => {
+    const handleSubmit = (values) => {
         setLoading(true)
         console.log(values);
         const paylaod = {
