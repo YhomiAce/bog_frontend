@@ -49,7 +49,7 @@ export default function Forget() {
     <div className="bg-login min-h-screen bg-cover text-black font-primary">
       <div className="flex lg:pt-16 text-sm h-screen items-center justify-center">
         <div className="lg:w-4/12 w-11/12 pt-5 pb-8">
-          <img src={require('../assets/images/logo.png')} alt="logomain" className="w-28 pb-5 lg:w-44" alt="forget" />
+          <img src={require('../assets/images/logo.png')} alt="logomain" className="w-28 pb-5 lg:w-44" />
           <div className="lg:px-12 bg-white py-8 px-5 shadow-lg ">
             <div>
               <p className="text-2xl fw-600">Reset your Password</p>

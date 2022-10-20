@@ -1,7 +1,7 @@
 import { faBagShopping, faMultiply, faPersonDigging, faRetweet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 export default function Settings() {
