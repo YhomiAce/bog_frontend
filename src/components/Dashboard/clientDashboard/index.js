@@ -9,6 +9,7 @@ import Notify from "./pages/Notify";
 import Orders from "./pages/Orders";
 import Products from "./pages/Products";
 import Sidebar from "./sidebar";
+import Settings from "./pages/Settings"
 
 export default function ClientDashboard() {
     
@@ -17,22 +18,32 @@ export default function ClientDashboard() {
             <div className="font-primary">
                 <Header />
                 <Sidebar />
-                <div className="lg:ml-52 pt-24 p-5 bg-gray-100">
-                    <Routes  element={<ProtectedRoute />}>
-                        <Route path="/home" element={<Dashboard />} />
-                        <Route path="" element={<Orders />} />
-                        <Route path="" element={<Products />} />
-                        <Route path="" element={<Meetings />} />
-                        <Route path="" element={<Notify />} />
-                        <Route path="" element={<Chat />} />
+                <div className="lg:main-p pt-21 bg-gray-100 pb-10">
+                    <Routes element={<ProtectedRoute />}>
                         <Route path="" element={<Dashboard />} />
+                        <Route path="orders" element={<Orders />} />
+                        <Route path="products" element={<Products />} />
+                        <Route path="meetings" element={<Meetings />} />
+                        <Route path="notify" element={<Notify />} />
+                        <Route path="chat" element={<Chat />} />
+                        <Route path="settings" element={<Settings />} />
                         <Route path="" element={<Dashboard />} />
                         <Route path="" element={<Dashboard />}  />
                     </Routes>
-                    <div>
-                        footer
-                    </div>
+                    
                 </div>
+                <div className="lg:flex bg-white lg:main-p px-5 py-5 text-primary fw-500 justify-between fs-400">
+                        <div className="flex">
+                            <ul className="flex">
+                                <li>Homepage</li>
+                                <li className="lg:px-6">Products</li>
+                                <li>Services</li>
+                            </ul>
+                        </div>
+                        <div>
+                            Copyright &copy; {new Date().getFullYear()}{' '} Build On The Go
+                        </div>
+                    </div>
             </div>
         </div>
         

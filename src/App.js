@@ -25,7 +25,7 @@ function App() {
     store.dispatch(getMe());
   }, []);
   return (
-    <section className="container">
+    <div className="">
       {/* <Alert /> */}
       <Routes>
         <Route path='/' element={<Homepage />} />
@@ -38,7 +38,7 @@ function App() {
 
         <Route path='/dashboard/*' element={<ClientDashboard />} />
       </Routes>
-    </section>
+    </div>
 
   );
 }

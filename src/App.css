@@ -90,4 +90,51 @@
 .menu-btn{
   left:33%;
 }
+.btn-primary{
+  background:#3F79AD;
+  color:#fff;
+  padding: 10px 15px;
+  border-radius:7px;
+  box-shadow: rgba(0, 0, 0, 0.14) 0px 3px 8px;
+}
+.modal-bg{
+  background:rgba(0, 0, 0, 0.6)
+}
+.modal-cancel{
+  left: 80%;
+  color: #fff;
+}
+.grid-83 {
+  display:grid;
+  grid-template-columns: 64% 33%;
+  justify-content:space-between;
+}
+.grid-74{
+  display:grid;
+  grid-template-columns: 57% 40%;
+  justify-content:space-between;
+}
+.head-grid{
+  display:grid;
+  grid-template-columns: 15% 85%;
+  justify-content:space-between;
+
+}
+.sidebar-w{
+  width:15%;
+}
+.main-p{
+  width:85%;
+  float:right;
+}
+.light-bg{
+  background: #EAF5FF;
+  border-right: 2px solid #3F79AD;
+}
+.text-xxl{
+  font-size: 26px;
+}
+.pt-21{
+  padding-top: 81px;
+}
 }
