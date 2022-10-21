@@ -18,7 +18,7 @@ export default function ClientDashboard() {
             <div className="font-primary">
                 <Header />
                 <Sidebar />
-                <div className="lg:main-p pt-21 bg-gray-100 pb-10">
+                <div className="lg:main-p pt-21 home-bg pb-10">
                     <Routes element={<ProtectedRoute />}>
                         <Route path="" element={<Dashboard />} />
                         <Route path="orders" element={<Orders />} />
@@ -36,7 +36,7 @@ export default function ClientDashboard() {
                         <div className="flex">
                             <ul className="flex">
                                 <li>Homepage</li>
-                                <li className="lg:px-6">Products</li>
+                                <li className="lg:px-6 px-3">Products</li>
                                 <li>Services</li>
                             </ul>
                         </div>

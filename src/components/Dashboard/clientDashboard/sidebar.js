@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import {  faBarsStaggered, faCartShopping, faBagShopping, faGear, faRightFromBracket, faComments, faHandshake,  faListOl,  faMailBulk,  faTableColumns, faVideoCamera } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { BsCameraVideo,BsFillGrid1X2Fill, BxBoxArrowRight, BsColumnsGap, BsBell, BsGear, BsReceiptCutoff, BsBag , BsArrowRightSquare, BsEnvelope, BsBoxArrowRight } from "react-icons/bs";
 import React, { useState, useEffect }  from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
@@ -48,53 +49,53 @@ export default function Sidebar() {
     return (
         <div>
             <div>
-                <FontAwesomeIcon icon={faBarsStaggered} className="text-primary text-2xl fixed top-6 menu-btn lg:hidden" onClick={() => {
+                <FontAwesomeIcon icon={faBarsStaggered} className="text-2xl fixed top-6 z-50 menu-btn lg:hidden" onClick={() => {
             setShowSideBar(current => !current);
           }} />
             </div>
             {showSideBar && (
-                <div className="fixed bg-white fs-500 top-20 grid items-between w-6/12 lg:sidebar-w shadow min-h-screen pt-2 px-2">
+                <div className="fixed z-20 bg-white fs-500 top-20 grid items-between w-6/12 lg:sidebar-w shadow min-h-screen pt-2 px-2">
                 <div>
                   <NavLink
                       to=""
-                      className="w-full flex items-center py-2 fw-600 my-4"
+                      className="w-full flex items-center pl-2 py-2 fw-600 my-4"
                       
                       onClick={unShow}
                     >
-                      <FontAwesomeIcon icon={faTableColumns} className="pr-3 pl-2 text-lg text-white" />
-                              Dashboard
+                      <BsFillGrid1X2Fill className="text-xl"/>
+                             <p className="pl-3"> Dashboard</p>
               </NavLink>
               <NavLink
                       to="orders"
-                      className="w-full flex items-center py-2 fw-600 my-4"
+                      className="w-full flex items-center pl-2 py-2 fw-600 my-4"
                       activeClassName="w-full flex items-center py-2 fw-600 my-4 light-bg text-primary"
                       onClick={unShow}
                     >
-                      <FontAwesomeIcon icon={faListOl} className="pr-3 pl-2 text-white text-lg" />
-                              projects
+                      <BsReceiptCutoff className="text-xl" />
+                              <p className="pl-3">Projects</p>
                     </NavLink>
                     <Link to="orders">
-                      <div className="w-full flex items-center my-4 py-2 fw-600 hover:bg-primary hover:text-white hover:rounded">
-                              <FontAwesomeIcon icon={faBagShopping} className="pr-3 pl-2 text-white text-lg" />
-                              Orders
+                      <div className="w-full flex items-center pl-2 my-4 py-2 fw-600 hover:bg-primary hover:text-white hover:rounded">
+                              <BsBag className="text-lg" />
+                              <p className="pl-3">Orders</p>
                       </div>
                     </Link>
                     <Link to="products">
-                      <div className="w-full flex items-center my-4 py-2 fw-600 hover:bg-primary hover:text-white hover:rounded">
-                              <FontAwesomeIcon icon={faEnvelope} className="pr-3 pl-2 text-lg" />
-                              Inbox
+                      <div className="w-full flex pl-2 items-center my-4 py-2 fw-600 hover:bg-primary hover:text-white hover:rounded">
+                              <BsEnvelope className="text-lg" />
+                              <p className="pl-3">Inbox</p>
                       </div>
                     </Link>
               <Link to="meetings">
-              <div className="w-full py-2 flex items-center my-4 fw-600 hover:bg-primary hover:text-white hover:rounded">
-                        <FontAwesomeIcon icon={faVideoCamera} className="pr-3 pl-2 text-white text-lg" />
-                        Meetings
+              <div className="w-full py-2 flex items-center my-4 fw-600 pl-2 hover:bg-primary hover:text-white hover:rounded">
+                        <BsCameraVideo className="text-xl "/>
+                        <p className="pl-3">Meetings</p>
                     </div>
               </Link>
               <Link to="notify">
-              <div className="w-full py-2 flex items-center my-4 fw-600 hover:bg-primary hover:text-white hover:rounded">
-                        <FontAwesomeIcon icon={faBell} className="pr-3 pl-2 text-lg" />
-                        Notification
+              <div className="w-full py-2 flex items-center pl-2 my-4 fw-600 hover:bg-primary hover:text-white hover:rounded">
+                        <BsBell className="text-xl"/>
+                        <p className="pl-3">Notification</p>
                     </div>
               </Link>
                 </div>
@@ -106,18 +107,18 @@ export default function Sidebar() {
                     </div>
               </Link>
               <Link to="settings">
-              <div className="w-full py-2 fw-600 flex items-center my-2 rounded-lg">
-                        <FontAwesomeIcon icon={faGear} className="pr-3 pl-2 text-lg" />
-                        Settings
+              <div className="w-full py-2 pl-2 fw-600 flex items-center my-2 rounded-lg">
+                        <BsGear className="text-xl"/>
+                        <p className="pl-3">Settings</p>
                     </div>
               </Link>
               <Link to="signOut">
                 <div 
                   style={sideBarStyle.cursorStyle}
                   onClick={()=>dispatch(logout())}
-              className="w-full py-2 fw-600 flex my-2  rounded-lg">
-                        <FontAwesomeIcon icon={faRightFromBracket} className="pr-3 pl-2 text-lg" />
-                        Sign Out
+              className="w-full py-2 fw-600 pl-2 flex my-2  rounded-lg">
+                        <BsBoxArrowRight className="text-xl" />
+                        <p className="pl-3">Sign Out</p>
                     </div>
               </Link>
                 </div>
