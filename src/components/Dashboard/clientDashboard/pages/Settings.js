@@ -1,7 +1,6 @@
 import { faBagShopping, faMultiply, faPersonDigging, faRetweet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, {useState} from "react";
-// import { Link } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 export default function Settings() {
@@ -16,7 +15,7 @@ export default function Settings() {
   }
 
   return (
-    <div>
+    <div className="p-5">
       <div className="min-h-screen fs-500 relative">
         <div className="w-full py-6 bg-white px-4 rounded-lg">
           <p className="fs-400 text-gray-500">Overview</p>

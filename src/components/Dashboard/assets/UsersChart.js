@@ -1,14 +1,14 @@
-// import React from "react";
-// import ReactApexChart from "react-apexcharts";
+import React from "react";
+import ReactApexChart from "react-apexcharts";
 
-// export default function UsersChart() {
+export default function UsersChart() {
     
-//     const options = { labels: ["Clients", "Vendors", "Service Providers"] };
-//     const series = [94, 25, 26,]; //our data
+    const options = { labels: ["Completed", "Ongoing", "Cancelled"] };
+const series = [20, 6, 3,]; //our data
 
-// return (
-//   <div className="donut">
-//     <ReactApexChart options={options} series={series} type="pie" width="380" />
-//   </div>
-// );
-//   }
+return (
+  <div className="">
+    <ReactApexChart options={options} series={series} type="donut" width="100%" />
+  </div>
+);
+  }

@@ -83,6 +83,9 @@
 .bg-secondary{
   background: #EC8B20;
 }
+.home-bg{
+  background: #F5F5F5;
+}
 .grid-4{
   display:grid;
   grid-template-columns: 23% 23% 23% 23%;
@@ -136,5 +139,8 @@
 }
 .pt-21{
   padding-top: 81px;
+}
+.profile-drop{
+  left:-100px;
 }
 }
