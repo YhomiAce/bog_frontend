@@ -16,6 +16,7 @@ module.exports = withMT(
           'profile': "linear-gradient(to right, rgba(105, 76, 87, 1),rgba(0, 0, 0, 0.2))",
           'login': "url('/src/components/assets/images/login.png')",
           'fantastic': "linear-gradient(to right bottom, rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.1)),url('/src/components/images/avatar.jpg')",
+          "hero": "linear-gradient(295.54deg, #AFC0FC 17.28%, #3F79AD 70.64%)"
         }
       },
       fontFamily: {
