@@ -6,7 +6,7 @@ export default function Notify() {
     return (
         <div>
             <div>
-                <img src="https://www.veryicon.com/download/png/miscellaneous/monochromatic-surface-icon-library/success-56?s=512" className="w-14" />
+                <img src="https://www.veryicon.com/download/png/miscellaneous/monochromatic-surface-icon-library/success-56?s=512" className="w-14" alt="notify" />
             </div>
         </div>
         )
