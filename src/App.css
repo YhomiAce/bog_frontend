@@ -10,6 +10,41 @@
   .card {
     border-radius: 150px 0px 150px 0px;
   }
+  .box{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  @media (min-width: 576px){
+    .box{
+      width: 540px;
+    }
+  }
+  @media (min-width: 768px){
+    .box{
+      width: 720px;
+    }
+  }
+  @media (min-width: 992px){
+    .box{
+      width: 960px;
+    }
+  }
+  @media (min-width: 1200px){
+    .box{
+      width: 1140px;
+    }
+  }
+  @media (min-width: 1400px){
+    .box{
+      width: 1320px;
+    }
+  }
+  .section{
+    padding: 80px 0px;
+  }
   .fw-400{
     font-weight: 400;
   }
@@ -82,6 +117,23 @@
 }
 .bg-secondary{
   background: #EC8B20;
+}
+.bg-light{
+  background: #F6FAFD;
+}
+.bg-ash{
+  background: #F6FAFDF2;
+}
+.bg-tertiary{
+  background: #2C2358;
+}
+.border-primary{
+  border: 2px solid #3F79AD;
+  box-shadow: 4px 4px 0px #3F79AD;
+}
+.border-secondary{
+  border: 2px solid #EC8B20;;
+  box-shadow: 4px 4px 0px #EC8B20;;
 }
 .home-bg{
   background: #F5F5F5;
