@@ -3,23 +3,18 @@ import { faBell } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import {
-    Avatar,
+    Avatar, Menu, MenuHandler, MenuItem, MenuList, Button
   } from "@material-tailwind/react";
 // import { useSelector, useDispatch } from 'react-redux';
 // import { logout } from '../../redux/actions/authAction';
 
 export default function Header() {
     
-    const [profileDown, setProfileDown] = useState(false)
     const [notifyDown, setNotifyDown] = useState(false)
     
-    function ShowProfile() {
-        setProfileDown(current => !current)
-        setNotifyDown(false)
-    }
+    
     function ShowNotify() {
         setNotifyDown(current => !current)
-        setProfileDown(false)
     }
 
     return (
@@ -99,29 +94,21 @@ export default function Header() {
                             )}
                         </div>
                         <div className="ml-5">
-                        {/* <Menu>
+                            <Menu placement="bottom-end"
+                            >
                             <MenuHandler>
-                                menu
+                                <Button className="p-0">
+                                    <Avatar src={require('./images/pic1.jpg')} alt="profilelogo"/>
+                                </Button>
                             </MenuHandler>
                             <MenuList>
-                                <MenuItem>Menu Item 1</MenuItem>
-                                <MenuItem>Menu Item 2</MenuItem>
-                                <MenuItem>Menu Item 3</MenuItem>
+                                <MenuItem>Sevices</MenuItem>
+                                <MenuItem>Chat</MenuItem>
+                                <MenuItem>Products</MenuItem>
+                                <MenuItem>Settings</MenuItem>
+                                <MenuItem>Sign Out</MenuItem>
                             </MenuList>
-                        </Menu> */}
-                        </div>
-                        <div className="pl-3 relative">
-                            <Avatar src={require('./images/profile.png')} alt="profilelogo" onClick={ShowProfile}/>
-                            {profileDown && (
-                                <div className="absolute bg-white rounded shadow w-40 px-4 py-5 text-end fs-400 profile-drop top-16">
-                                    <p className="mb-3">New Services</p>
-                                    <p className="my-3">Chats</p>
-                                    <p className="my-3">Profile</p>
-                                    <hr />
-                                    <p className="my-3">Settings</p>
-                                    <p className="my-3">Sign Out</p>
-                                </div>
-                            )}
+                        </Menu>
                         </div>
                     </div>
                 </div>

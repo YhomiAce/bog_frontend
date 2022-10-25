@@ -77,8 +77,12 @@ export const loginUser = (apiData, navigate, stopLoading) => {
             stopLoading();
             Swal.fire({
                 title: "Success",
-                icon: "success",
-                text: "Login completed successfully"
+                imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",
+                imageWidth: "75px",
+                text: "Login completed successfully",
+                buttonsStyling: "false",
+                confirmButtonText: "Continue",
+                confirmButtonColor: "#3F79AD",
             }).then(() => {
                 navigate("/dashboard/home");
             })
