@@ -14,6 +14,7 @@ import setAuthToken from './config/setAuthHeader';
 import ResetPassword from './components/pages/ResetPassword';
 
 import ClientDashboard from './components/Dashboard/clientDashboard';
+import AdminLogin from './components/pages/AdminLogin';
 
 if (localStorage.auth_token) {
   setAuthToken(localStorage.auth_token);
@@ -37,6 +38,7 @@ function App() {
         {/* <Route path='/dashboard/*' element={<Dashboard />} /> */}
 
         <Route path='/dashboard/*' element={<ClientDashboard />} />
+        <Route path='/admin' element={<AdminLogin />} />
       </Routes>
     </div>
 
