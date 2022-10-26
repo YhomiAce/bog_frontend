@@ -103,6 +103,42 @@ export const loginUser = (apiData, navigate, stopLoading) => {
     }
 }
 
+export const loginAdmin = (apiData, navigate, stopLoading) => {
+    return async (dispatch) => {
+        try {
+            const url = `/admin/login`;
+            const response = await axios.post(url, apiData);
+            console.log(response);
+            dispatch(login(response));
+            stopLoading();
+            Swal.fire({
+                title: "Success",
+                imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",
+                imageWidth: "75px",
+                text: "Login completed successfully",
+                buttonsStyling: "false",
+                confirmButtonText: "Continue",
+                confirmButtonColor: "#3F79AD",
+            }).then(() => {
+                navigate("/dashboard/home");
+            })
+        } catch (error) {
+            console.log(error.message);
+            const errors = error.response.data.message;
+            stopLoading();
+            dispatch(setError(errors));
+            dispatch(setAlert(errors, "danger"))
+            toaster.notify(
+                errors,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+    }
+}
+
 export const register = (apiData, navigate, stopLoading) => {
     return async (dispatch) => {
         try {
