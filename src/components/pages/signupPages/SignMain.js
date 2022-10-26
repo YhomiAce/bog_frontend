@@ -8,11 +8,13 @@ export default function SignMain() {
       <div className="lg:w-10/12 font-primary text-sm m-auto px-4 lg:px-0">
         <div className="lg:pt-36 pt-24 ">
           <div className="text-center">
+            <Link to="/">
             <img
               src={require("./images/logo.png")}
               className="w-36 m-auto lg:w-52"
               alt="App Logo"
             />
+            </Link>
           </div>
         </div>
         <div className="text-center fs-600 fw-500 my-10">
@@ -22,11 +24,13 @@ export default function SignMain() {
           <div className=" shades mt-6 lg:mt-0  text-center py-6 ">
             <Link to="profession" className="center-item px-4">
               <div>
-                <img
-                  src={require("./images/sign3.png")}
-                  alt="client"
-                  className="w-16"
-                />
+                <Link to="/">
+                  <img
+                    src={require("./images/sign3.png")}
+                    alt="client"
+                    className="w-16"
+                  />
+                </Link>
               </div>
               <div className="text-left pl-4">
                 <p className=" fs-500 ">Sign Up as <span className="fw-600">Service Provider</span></p>

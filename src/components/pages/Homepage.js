@@ -3,6 +3,9 @@ import Header from "./home-comp/Header";
 import {ImQuotesLeft, ImQuotesRight} from "react-icons/im"
 import { BsArrowRight, BsBag } from "react-icons/bs";
 import Faqs from "./home-comp/Faqs";
+import Footer from "./home-comp/Footer";
+import ProfSlides, { ProfSlidesSm } from "./home-comp/ProfSlides";
+import BlogSlides, { BlogSlidesSm } from "./home-comp/BlogSlide";
 
 export default function Homepage() {
     
@@ -12,7 +15,14 @@ export default function Homepage() {
             {/* hero banner */}
             <div className="bg-hero">
                 <div className="box">
-                    <div className="lg:flex items-center py-6">
+                    <div className="lg:flex flex-row-reverse items-center py-6">
+                        <div className="lg:w-6/12 relative">
+                            <img src={require("../assets/images/hero.png")} alt="hero" className="lg:w-9/12 m-auto animate-pulse"/>
+                            <img src={require("../assets/images/hero1.png")} alt="hero1" className="absolute lg:w-28 w-20 hero1" />
+                            <img src={require("../assets/images/hero2.png")} alt="hero2" className="absolute lg:w-28 w-20 hero2" />
+                            <img src={require("../assets/images/hero3.png")} alt="hero3" className="absolute lg:w-28 w-20 hero3" />
+                            <img src={require("../assets/images/hero4.png")} alt="hero4" className="absolute lg:w-28 w-20 hero4" />
+                        </div>
                         <div className="lg:w-6/12 text-white">
                             <p className="lg:text-4xl text-3xl fw-600">
                                 Providing products and services to intending structure owners accross borders.
@@ -22,9 +32,7 @@ export default function Homepage() {
                                 Get Started
                             </button>
                         </div>
-                        <div className="lg:w-6/12">
-                            <img src={require("../assets/images/hero.png")} alt="hero" className="w-9/12 m-auto"/>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -36,23 +44,23 @@ export default function Homepage() {
                     </div>
                     <div className="lg:flex justify-between mt-16">
                         <div className="text-center lg:w-2/12 px-4">
-                            <img src={require("../assets/images/calculator.png")} alt="calculator" className="w-20 m-auto mb-6"/>
+                            <img src={require("../assets/images/calculator.png")} alt="calculator" className="lg:w-20 w-16 m-auto mb-6"/>
                             <p>Price/Cost calculator</p>
                         </div>
                         <div className="text-center mt-6 lg:mt-0 lg:w-2/12 px-4">
-                            <img src={require("../assets/images/tv.png")} alt="tv" className="w-20 m-auto mb-6"/>
-                            <p className="">In app meetings and reviews</p>    
+                            <img src={require("../assets/images/tv.png")} alt="tv" className="lg:w-20 w-16 m-auto mb-6"/>
+                            <p className="w-6/12 lg:w-full m-auto">In app meetings and reviews</p>    
                         </div>
                         <div className="text-center mt-6 lg:mt-0 lg:w-2/12 px-4">
-                            <img src={require("../assets/images/prof.png")} alt="providers" className="w-20 m-auto mb-6"/>
-                            <p className="">Find expert construction workers</p>
+                            <img src={require("../assets/images/prof.png")} alt="providers" className="lg:w-20 w-16 m-auto mb-6"/>
+                            <p className="w-6/12 lg:w-full m-auto">Find expert construction workers</p>
                         </div>
                         <div className="text-center mt-6 lg:mt-0 lg:w-2/12 px-4">
-                        <img src={require("../assets/images/tractor.png")} alt="tractor" className="w-20 m-auto mb-6"/>
-                            <p>Shop for construction materials</p>
+                        <img src={require("../assets/images/tractor.png")} alt="tractor" className="lg:w-20 w-16 m-auto mb-6"/>
+                            <p className="w-6/12 lg:w-full m-auto">Shop for construction materials</p>
                         </div>
                         <div className="text-center mt-6 lg:mt-0 lg:w-2/12 px-4">
-                        <img src={require("../assets/images/call.png")} alt="call" className="w-20 m-auto mb-6"/>
+                        <img src={require("../assets/images/call.png")} alt="call" className="lg:w-20 w-16 m-auto mb-6"/>
                             <p>Quality customer care</p>
                         </div>
                     </div>
@@ -82,10 +90,10 @@ export default function Homepage() {
             <div className="section">
                 <div className="box">
                     <div className="text-center mb-6">
-                        <p className="text-4xl fw-600">How It Works</p>
+                        <p className="text-2xl lg:text-4xl fw-600">How It Works</p>
                     </div>
-                    <div className="w-9/12 m-auto">
-                        <img src={require("../assets/images/video.png")} alt="video" className=""/>
+                    <div className="lg:w-9/12 m-auto">
+                        <img src={require("../assets/images/video.png")} alt="video" className="w-full"/>
                     </div>
                 </div>
             </div>
@@ -138,6 +146,12 @@ export default function Homepage() {
                             <p className="text-center m-auto lg:w-6/12">Find the qualified construction workers you need from our global network of over 12 thousand experienced professionals.</p>
                         </div>
                     </div>
+                    <div className="mt-12 lg:block hidden">
+                        <ProfSlides/>
+                    </div>
+                    <div className="mt-12 lg:hidden">
+                        <ProfSlidesSm/>
+                    </div>
                 </div>
             </div>
             {/* provide service */}
@@ -145,19 +159,19 @@ export default function Homepage() {
                 <div className="box">
                     <div>
                         <div>
-                            <p className="text-xl lg:text-3xl m-auto text-center lg:w-6/12 w-10/12 fw-500 mb-4 ">Are your looking to provide Services or Goods on BOG?</p>
+                            <p className="text-xl lg:text-3xl m-auto text-center lg:w-6/12 w-10/12 fw-600 mb-4 ">Are your looking to provide Services or Goods on BOG?</p>
                             <p className="text-center m-auto lg:w-5/12 w-10/12">Sign up as a professional service provider or, a vendor today and get more jobs.</p>
                         </div>
                         <div className="mt-12 lg:flex justify-around">
                             <div className="lg:w-4/12 border-primary h-64 rounded-lg px-6 pt-8">
-                                <p className="text-lg fw-500">Sign up as a Vendor</p>
+                                <p className="text-lg fw-600">Sign up as a Vendor</p>
                                 <p className="mt-5 mb-7">Setup your account as a vendor and start selling your products fast and easy </p>
-                                <p className="text-secondary text-lg flex items-center fw-600"><span className="pr-3">sign Up</span> <BsArrowRight/></p>
+                                <p className="text-secondary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p>
                             </div>
                             <div className="lg:w-4/12 mt-6 lg:mt-0 border-secondary rounded-lg p-8">
-                                <p className="text-lg fw-500">Sign up as a Service Provider</p>
+                                <p className="text-lg fw-600">Sign up as a Service Provider</p>
                                 <p className="mt-5 mb-7">Setup your account as a vendor and start selling your products fast and easy </p>
-                                <p className="text-primary text-lg flex items-center fw-600"><span className="pr-3">sign Up</span> <BsArrowRight/></p>
+                                <p className="text-primary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p>
                             </div>
                         </div>
                     </div>
@@ -166,14 +180,20 @@ export default function Homepage() {
             {/* updated with blogs */}
             <div className="section bg-tertiary">
                 <div className="box">
-                    <div className="lg:flex w-10/12 m-auto text-white">
-                        <div className="lg:w-4/12 mt-6">
+                    <div className="hidden lg:flex">
+                        <div className="mt-6 w-4/12 text-white mt-24 pr-6">
                             <p className="lg:text-3xl ">Stay updated with our blog posts</p>
                             <p className="my-6">Stay engaged with the latest news and insights from BOG</p>
                             <button className="mt-6 px-6 py-2 btn-primary">
                                 See All Blog Post
                             </button>
                         </div>
+                        <div className="w-8/12">
+                            <BlogSlides/>
+                        </div>
+                    </div>
+                    <div className="lg:hidden">
+                        <BlogSlidesSm />
                     </div>
                 </div>
             </div>
@@ -207,6 +227,10 @@ export default function Homepage() {
                         </div>
                     </div>
                 </div>
+            </div>
+            {/* footer */}
+            <div>
+                <Footer/>
             </div>
         </div>
         )
