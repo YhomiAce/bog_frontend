@@ -166,12 +166,12 @@ export default function Homepage() {
                             <div className="lg:w-4/12 border-primary h-64 rounded-lg px-6 pt-8">
                                 <p className="text-lg fw-600">Sign up as a Vendor</p>
                                 <p className="mt-5 mb-7">Setup your account as a vendor and start selling your products fast and easy </p>
-                                <p className="text-secondary text-lg flex items-center fw-600"><span className="pr-3">sign Up</span> <BsArrowRight/></p>
+                                <p className="text-secondary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p>
                             </div>
                             <div className="lg:w-4/12 mt-6 lg:mt-0 border-secondary rounded-lg p-8">
                                 <p className="text-lg fw-600">Sign up as a Service Provider</p>
                                 <p className="mt-5 mb-7">Setup your account as a vendor and start selling your products fast and easy </p>
-                                <p className="text-primary text-lg flex items-center fw-600"><span className="pr-3">sign Up</span> <BsArrowRight/></p>
+                                <p className="text-primary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p>
                             </div>
                         </div>
                     </div>
