@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function AdminLogin() {
     
@@ -10,7 +11,7 @@ export default function AdminLogin() {
                     
                     <div  className="lg:px-8 bg-white py-8 px-5 shadow-lg ">
                         <div className="text-center">
-                            <img src={require("../assets/images/logo.png")} alt="adminlogo" className="w-28 m-auto pb-5 lg:w-36"/>
+                            <Link to="/"><img src={require("../assets/images/logo.png")} alt="adminlogo" className="w-28 m-auto pb-5 lg:w-36"/></Link>
                         </div>
                         <div className="text-center">
                             <p className="text-lg fw-600">ADMIN LOGIN</p>

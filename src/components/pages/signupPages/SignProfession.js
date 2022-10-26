@@ -36,15 +36,17 @@ export default function SignProfession() {
   const { name, email, password, phone, terms, company_name } = formik.values;
   return (
     <div className="bg-login bg-fixed bg-cover text-black font-primary">
-      <img
-        src={require("./images/logo.png")}
-        className="w-32 mt-2 ml-2 lg:hidden lg:36"
-        alt='App'
-      />
+      <Link to="/">
+        <img
+          src={require("./images/logo.png")}
+          className="w-32 mt-2 ml-2 lg:hidden lg:36"
+          alt='App'
+        />
+      </Link>
       <div className="flex lg:py-24 py-12 relative  lg:ml-12 text-sm justify-end">
         {/* the list of dervices */}
         <div className="lg:w-4/12 tags fixed pr-10 pt-16 hidden lg:block">
-          <img src={require('./images/logo.png')} alt="logo" className="w-48 mb-10 relative " />
+          <Link to="/"><img src={require('./images/logo.png')} alt="logo" className="w-48 mb-10 relative " /></Link>
           <ul>
             <li className="flex">
               <img src={require('./images/icon.png')} className="w-7 h-7 mr-5" alt='App' />

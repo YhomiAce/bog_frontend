@@ -44,7 +44,7 @@ export default function Login() {
                 loading ? <Spinner /> :
                     <div className="flex lg:pt-16 text-sm h-screen items-center justify-center">
                         <div className="lg:w-4/12 w-11/12 pt-5 pb-8">
-                            <img src={require('../assets/images/logo.png')} alt="App Logo" className="w-28 pb-5 lg:w-44" />
+                            <Link to="/"><img src={require('../assets/images/logo.png')} alt="App Logo" className="w-28 pb-5 lg:w-44" /></Link>
                             <div className="lg:px-12 bg-white py-8 px-5 shadow-lg ">
                                 <div>
 

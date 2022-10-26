@@ -45,6 +45,11 @@
   .section{
     padding: 80px 0px;
   }
+  @media (max-width: 1000px){
+    .section{
+      padding: 60px 0px;
+    }
+  }
   .fw-400{
     font-weight: 400;
   }
@@ -127,6 +132,9 @@
 .bg-tertiary{
   background: #2C2358;
 }
+.slider-bg{
+ background: #97ABC2E5;
+}
 .border-primary{
   border: 2px solid #3F79AD;
   box-shadow: 4px 4px 0px #3F79AD;
@@ -194,5 +202,24 @@
 }
 .profile-drop{
   left:-100px;
+}
+.hero1{
+  top:10%;
+  left: 50%;
+}
+.hero2{
+  top:26%;
+  left: 20%;
+}
+.hero3{
+  top:45%;
+  left: 60%;
+}
+.hero4{
+  top:73%;
+  left: 30%;
+}
+.bg-op{
+  background-color:rgba(131, 131, 131, 0.7);
 }
 }
