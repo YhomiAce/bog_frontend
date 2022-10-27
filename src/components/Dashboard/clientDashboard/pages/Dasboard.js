@@ -11,10 +11,12 @@ import ProjectChart from "../../assets/ProjectChart";
 export default function Dashboard() {
   const user = useSelector((state) => state.auth.user);
   let dashbaord = <h2>Welcome User</h2>
-  if(user.userType === "admin"){
+  if (user.userType === "admin") {
     dashbaord = <h3>Admin Dashboard</h3>
-  }else if(user.userType === "client"){
+  } else if (user.userType === "private_client") {
     dashbaord = <h3>Client Dashboard</h3>
+  } else if (user.userType === "vendor") {
+    dashbaord = <h3>Service Provider Dashboard</h3>
   }
   // return dashbaord;
   return (
