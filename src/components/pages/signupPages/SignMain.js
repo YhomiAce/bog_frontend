@@ -33,7 +33,7 @@ export default function SignMain() {
                 </Link>
               </div>
               <div className="text-left pl-4">
-                <p className=" fs-500 ">Sign Up as <span className="fw-600">Service Provider</span></p>
+                <p className=" fs-500 ">Sign Up as <span className="fw-600">Service Partner</span></p>
                 <p className="fs-400 mt-2 text-gray-500">Render services to clients</p>
               </div>
             </Link>
@@ -63,7 +63,7 @@ export default function SignMain() {
                 />
               </div>
               <div className="text-left pl-4">
-                <p className=" mb-2 fs-500">Sign Up as a <span className="fw-600">Supplier</span></p>
+                <p className=" mb-2 fs-500">Sign Up as a <span className="fw-600">Product Partner</span></p>
                 <p className="fs-400 text-gray-500">Sell and supply goods to clients</p>
               </div>
             </Link>

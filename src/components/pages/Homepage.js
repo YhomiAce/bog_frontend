@@ -164,12 +164,12 @@ export default function Homepage() {
                         </div>
                         <div className="mt-12 lg:flex justify-around">
                             <div className="lg:w-4/12 border-primary h-64 rounded-lg px-6 pt-8">
-                                <p className="text-lg fw-600">Sign up as a Vendor</p>
+                                <p className="text-lg fw-600">Sign Up as a Service Partner</p>
                                 <p className="mt-5 mb-7">Setup your account as a vendor and start selling your products fast and easy </p>
                                 <p className="text-secondary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p>
                             </div>
                             <div className="lg:w-4/12 mt-6 lg:mt-0 border-secondary rounded-lg p-8">
-                                <p className="text-lg fw-600">Sign up as a Service Provider</p>
+                                <p className="text-lg fw-600">Sign Up as a Product Partner</p>
                                 <p className="mt-5 mb-7">Setup your account as a vendor and start selling your products fast and easy </p>
                                 <p className="text-primary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p>
                             </div>
@@ -203,8 +203,8 @@ export default function Homepage() {
                     <div className="lg:flex justify-center items-center">
                         <div className="lg:w-5/12 ">
                             <p className="text-xl lg:text-3xl fw-500">
-                                Bringing together a community of service provider, vendors 
-                                and clients
+                                Bringing together a community of service partners, product partners
+                                and clients.
                             </p>
                             <p className="my-3">An online marketplace which intends to provide a platform for individuals interested in owning structures in Nigeria/Africa achieve their aim.</p>
                             <button className="btn-primary px-6 mt-6">Get Started</button>
