@@ -84,7 +84,7 @@ export const loginUser = (apiData, navigate, stopLoading) => {
                 confirmButtonText: "Continue",
                 confirmButtonColor: "#3F79AD",
             }).then(() => {
-                navigate("/dashboard/home");
+                navigate("/dashboard");
             })
         } catch (error) {
             console.log(error.message);
@@ -120,7 +120,7 @@ export const loginAdmin = (apiData, navigate, stopLoading) => {
                 confirmButtonText: "Continue",
                 confirmButtonColor: "#3F79AD",
             }).then(() => {
-                navigate("/dashboard/home");
+                navigate("/dashboard");
             })
         } catch (error) {
             console.log(error.message);

@@ -10,6 +10,13 @@ import ProjectChart from "../../assets/ProjectChart";
 
 export default function Dashboard() {
   const user = useSelector((state) => state.auth.user);
+  let dashbaord = <h2>Welcome User</h2>
+  if(user.userType === "admin"){
+    dashbaord = <h3>Admin Dashboard</h3>
+  }else if(user.userType === "client"){
+    dashbaord = <h3>Client Dashboard</h3>
+  }
+  // return dashbaord;
   return (
     <div className="min-h-screen">
       <div className="w-full py-10 lg:px-8 bg-white px-4">
