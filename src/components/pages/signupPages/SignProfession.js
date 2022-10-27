@@ -74,8 +74,8 @@ export default function SignProfession() {
         {/* form section */}
         <div className="lg:w-5/12 fw-500 w-11/12 m-auto bg-white lg:mr-24 py-10 lg:px-10 px-5 shadow-lg">
           <div>
-            <p className="text-2xl fw-600">Sign Up as Service Provider</p>
-            <p className="mt-1">Not a service provider ? <Link to="/signup" className="text-primary">Switch User type</Link></p>
+            <p className="text-2xl fw-600">Sign Up as Service Partner</p>
+            <p className="mt-1">Not a service partner ? <Link to="/signup" className="text-primary">Switch User type</Link></p>
           </div>
           <div className="mt-8">
             {loading ? <Spinner /> :
