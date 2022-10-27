@@ -1,3 +1,5 @@
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@material-tailwind/react";
 import React from "react";
 import { useState } from "react";
@@ -9,9 +11,13 @@ import { Link } from "react-router-dom";
 export default function Header() {
 
     const [menuShow, setMenuShow] = useState(false)
+    const [homeMenu, setHomeMenu] = useState(false)
 
     const CloseMenu = () => {
         setMenuShow(false);
+    }
+    const CloseHome = () => {
+        setHomeMenu(false);
     }
 
     return (
@@ -19,11 +25,11 @@ export default function Header() {
             <div className="box">
                 <div className="justify-between items-center flex py-2 pb-3">
                     <div className="w-4/12 hidden lg:flex">
-                        <ul className="flex w-full justify-between">
-                            <li><BsList className="text-2xl"/></li>
+                        <ul className="flex xl:font-600 text-sm w-full justify-between">
+                            <li><BsList className="xl:text-3xl text-2xl cursor-pointer transition hover:scale-110" onClick={() => setHomeMenu(true)}/></li>
                             <li>Home</li>
                             <li>Shop</li>
-                            <li>Find Service Provider</li>
+                            <li>Find Service Partner</li>
                         </ul>
                     </div>
                     <div className="w-4/12 flex justify-center">
@@ -45,7 +51,7 @@ export default function Header() {
             </div>
             {menuShow && (
                     <div className="w-full bg-op absolute lg:hidden z-40 top-0 min-h-screen">
-                        <div className="absolute lg:hidden w-10/12 bg-white px-6 z-40 top-0 min-h-screen">
+                        <div className="absolute menu lg:hidden w-10/12 bg-white px-6 z-40 top-0 min-h-screen">
                             <div className="flex justify-between pt-5">
                                 <img src={require("../../assets/images/logo.png")} alt="logo" className="w-36" />
                                 <MdOutlineCancel onClick={() => {setMenuShow(false)}}/>
@@ -65,6 +71,25 @@ export default function Header() {
                         </div>
                     </div>
                 )}
+            {homeMenu && (
+                <div className="w-full  bg-op fixed z-40 top-0 min-h-screen" onClick={CloseHome}>
+                    <div className="absolute menu  w-3/12 bg-primary text-white px-6 z-40 top-0 min-h-screen">
+                        <div className="text-end pt-4">
+                            <FontAwesomeIcon icon={faTimes} className="text-3xl cursor-pointer" onClick={CloseHome}/>
+                        </div>
+                        <div className="mt-8 text-xl fw-500">
+                            <ul>
+                                <li className="py-4">About Us</li>
+                                <li className="py-4">More for you</li>
+                                <li className="py-4">Contact Us</li>
+                                <li className="py-4">FAQs</li>
+                                <li className="py-4">Join the team</li>
+                                <li className="py-4"><Link to="/admin">Help</Link></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

@@ -10,7 +10,7 @@ export default function Footer(){
                 <div className="box">
                     <div className="lg:flex justify-between">
                         <div className="lg:w-3/12">
-                            <img src={require("../../assets/images/BOOG 1.png")} alt="whiteLogo" className="relative -top-6"/>
+                            <img src={require("../../assets/images/BOOG 1.png")} alt="whiteLogo" className="w-10/12 relative"/>
                         </div>
                         <div className="lg:w-2/12">
                             <p className="fw-600 mb-3">QUICK LINKS</p>
@@ -24,7 +24,7 @@ export default function Footer(){
                         <div className="lg:w-2/12 mt-8 lg:mt-0">
                             <p className="fw-600 mb-3">SERVICES</p>
                             <ul>
-                                <li className="py-1">Find A Service Provider</li>
+                                <li className="py-1">Find A Service Partner</li>
                                 <li className="py-1">Shop from Vendor</li>
                             </ul>
                         </div>

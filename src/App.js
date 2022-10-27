@@ -15,6 +15,9 @@ import ResetPassword from './components/pages/ResetPassword';
 
 import ClientDashboard from './components/Dashboard/clientDashboard';
 import AdminLogin from './components/pages/AdminLogin';
+import Contact from './components/pages/Contact';
+import Faqs from './components/pages/FAQs';
+import Blog from './components/pages/Blog';
 
 if (localStorage.auth_token) {
   setAuthToken(localStorage.auth_token);
@@ -30,6 +33,9 @@ function App() {
       {/* <Alert /> */}
       <Routes>
         <Route path='/' element={<Homepage />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/faqs' element={<Faqs />} />
+        <Route path='/blog' element={<Blog />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup/*' element={<SignupIndex />} />
         <Route path='/forget' element={<Forget />} />
