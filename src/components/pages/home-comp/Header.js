@@ -58,9 +58,12 @@ export default function Header() {
                             </div>
                             <div className="mt-16">
                                 <ul className="list-none">
-                                    <li className="py-4" onClick={CloseMenu}><Link to="/">Home</Link></li>
-                                    <li className="py-4" onClick={CloseMenu}><Link to="/">Shop</Link></li>
-                                    <li className="py-4" onClick={CloseMenu}><Link to="/">Service Provider</Link></li>
+                                    <li className="py-4"><Link to="/">Home</Link></li>
+                                    <li className="py-4"><Link to="/">Shop</Link></li>
+                                    <li className="py-4"><Link to="/">Service Partners</Link></li>
+                                    <li>Our Blog</li>
+                                    <li>Contact Us</li>
+                                    <li>FAQs</li>
                                     <li className="pt-8" onClick={CloseMenu}>
                                         <Link to="/">
                                             <Button className="px-10">Login</Button>
@@ -81,8 +84,9 @@ export default function Header() {
                             <ul>
                                 <li className="py-4">About Us</li>
                                 <li className="py-4">More for you</li>
-                                <li className="py-4">Contact Us</li>
-                                <li className="py-4">FAQs</li>
+                                <li className="py-4"><Link to="/contact">Contact Us</Link></li>
+                                <li className="py-4"><Link to="/faqs">FAQs</Link></li>
+                                <li className="py-4"><Link to="/blog">Our Blog</Link></li>
                                 <li className="py-4">Join the team</li>
                                 <li className="py-4"><Link to="/admin">Help</Link></li>
                             </ul>
