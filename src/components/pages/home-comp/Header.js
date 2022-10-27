@@ -23,7 +23,7 @@ export default function Header() {
                             <li><BsList className="text-2xl"/></li>
                             <li>Home</li>
                             <li>Shop</li>
-                            <li>Find Service Provider</li>
+                            <li>Find a Service Partner</li>
                         </ul>
                     </div>
                     <div className="w-4/12 flex justify-center">
@@ -44,7 +44,7 @@ export default function Header() {
                 </div>
             </div>
             {menuShow && (
-                    <div className="w-full bg-op absolute lg:hidden z-40 top-0 min-h-screen">
+                    <div className="w-full bg-op absolute lg:hidden z-40 top-0 min-h-screen"  onClick={CloseMenu}>
                         <div className="absolute lg:hidden w-10/12 bg-white px-6 z-40 top-0 min-h-screen">
                             <div className="flex justify-between pt-5">
                                 <img src={require("../../assets/images/logo.png")} alt="logo" className="w-36" />
@@ -52,9 +52,12 @@ export default function Header() {
                             </div>
                             <div className="mt-16">
                                 <ul className="list-none">
-                                    <li className="py-4" onClick={CloseMenu}><Link to="/">Home</Link></li>
-                                    <li className="py-4" onClick={CloseMenu}><Link to="/">Shop</Link></li>
-                                    <li className="py-4" onClick={CloseMenu}><Link to="/">Service Provider</Link></li>
+                                    <li className="py-4"><Link to="/">Home</Link></li>
+                                    <li className="py-4"><Link to="/">Shop</Link></li>
+                                    <li className="py-4"><Link to="/">Service Partners</Link></li>
+                                    <li>Our Blog</li>
+                                    <li>Contact Us</li>
+                                    <li>FAQs</li>
                                     <li className="pt-8" onClick={CloseMenu}>
                                         <Link to="/">
                                             <Button className="px-10">Login</Button>
