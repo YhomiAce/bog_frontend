@@ -247,11 +247,21 @@
   
 }
 .x-center{
-  left: 40%;
+  left: 37%;
 }
-@media (min-width: 380px) and (max-width: 960px) {
+@media (max-width: 996px) {
   .x-center{
-    left: 45%;
+    left: 44%;
+  }
+}
+@media (max-width: 432px) {
+  .x-center{
+    left: 40%;
+  }
+}
+@media (min-width: 433px) and (max-width: 762px) {
+  .x-center{
+    left: 42%;
   }
 }
 }

@@ -6,6 +6,7 @@ import {
     Avatar, Menu, MenuHandler, MenuItem, MenuList, Button
 } from "@material-tailwind/react";
 import { useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
 // import { logout } from '../../redux/actions/authAction';
 
 export default function Header() {
@@ -16,11 +17,10 @@ export default function Header() {
     function ShowNotify() {
         setNotifyDown(current => !current)
     }
-
     const getUserType = (type) => {
         switch (type) {
             case "admin":
-                return "Admin"
+                return "Super Admin"
             case "vendor":
                 return "Product Partner"
             case "private_client":
@@ -31,15 +31,16 @@ export default function Header() {
         }
     }
 
+
     return (
         <div className="fixed w-full z-50 bg-gray-100">
             <div className="flex w-full bg-white justify-between lg:head-grid">
                 <div className="bg-white py-3  text-center">
-                    <img src={require('./images/logo.png')} alt="boglogo" className="w-24 xl:w-32 ml-3 md:ml-6" />
+                    <Link to="/"><img src={require('./images/logo.png')} alt="boglogo" className="w-24 xl:w-32 ml-3 md:ml-6" /></Link>
                 </div>
                 <div className="lg:shadow bg-white py-4 px-5 flex lg:justify-between justify-end  items-center">
 
-                    <div className=" hidden lg:flex">
+                    <div className=" hidden lg:flex w-6/12">
                         <FontAwesomeIcon icon={faBarsStaggered} size="2x" className="text-2xl lg:ml-4" />
                         <p className="ml-5 fw-700 hidden lg:block">{ auth?.user ? getUserType(auth?.user?.userType) : ""} Dasboard</p>
                     </div>
