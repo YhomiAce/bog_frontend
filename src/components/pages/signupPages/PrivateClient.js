@@ -42,10 +42,26 @@ const PrivateClient = () => {
 
                     <form onSubmit={formik.handleSubmit}>
                         <div className="w-full">
-                            <label className="block">Full Name</label>
+                            <label className="block">First Name</label>
                             <input
                                 type="text"
-                                placeholder="Enter your full name"
+                                placeholder="Enter your first name"
+                                className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
+                                value={name}
+                                id="name"
+                                name="name"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            />
+                            {
+                                formik.touched.name && formik.errors.name ? <p className='text-red-500'>{formik.errors.name}</p> : null
+                            }
+                        </div>
+                        <div className="w-full mt-6">
+                            <label className="block">Last Name</label>
+                            <input
+                                type="text"
+                                placeholder="Enter your last name"
                                 className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
                                 value={name}
                                 id="name"

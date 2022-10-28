@@ -5,16 +5,30 @@ import React, { useState } from "react";
 import {
     Avatar, Menu, MenuHandler, MenuItem, MenuList, Button
   } from "@material-tailwind/react";
-// import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import { logout } from '../../redux/actions/authAction';
 
 export default function Header() {
     
+    const auth = useSelector((state) => state.auth);
     const [notifyDown, setNotifyDown] = useState(false)
     
     
     function ShowNotify() {
         setNotifyDown(current => !current)
+    }
+    const getUserType = (type) => {
+        switch (type) {
+            case "admin":
+                return "Super Admin"
+            case "vendor":
+                return "Product Partner"
+            case "private_client":
+                return "Private Client"
+            case "corporate_client":
+                return "Corporate Client"
+            default: return ""
+        }
     }
 
     return (
@@ -25,9 +39,9 @@ export default function Header() {
                 </div>
                 <div className="lg:shadow bg-white py-4 px-5 flex lg:justify-between justify-end  items-center">
                     
-                    <div className=" hidden lg:flex">
+                    <div className=" hidden lg:flex w-6/12">
                         <FontAwesomeIcon icon={faBarsStaggered} size="2x" className="text-2xl lg:ml-4"  />
-                        <p className="ml-5 fw-700 hidden lg:block">Dasboard</p>
+                        <p className="ml-5 fw-700 hidden lg:block flex">{auth.user ? getUserType(auth?.user?.userType) : ""}<span className="pl-1">Dasboard</span></p>
                     </div>
                     <div className="flex items-center w-full">
                         <div class="mr-6 relative mx-auto text-gray-600 hidden lg:block">

@@ -56,16 +56,16 @@ export default function Header() {
                                 <img src={require("../../assets/images/logo.png")} alt="logo" className="w-36" />
                                 <MdOutlineCancel onClick={() => {setMenuShow(false)}}/>
                             </div>
-                            <div className="mt-16">
+                            <div className="mt-10">
                                 <ul className="list-none">
                                     <li className="py-4"><Link to="/">Home</Link></li>
                                     <li className="py-4"><Link to="/">Shop</Link></li>
                                     <li className="py-4"><Link to="/">Service Partners</Link></li>
-                                    <li>Our Blog</li>
-                                    <li>Contact Us</li>
-                                    <li>FAQs</li>
+                                    <li className="py-4"><Link to="/blog">Our Blog</Link></li>
+                                    <li className="py-4"><Link to="/contact">Contact Us</Link></li>
+                                    <li className="py-4"><Link to="/faqs">FAQs</Link></li>
                                     <li className="pt-8" onClick={CloseMenu}>
-                                        <Link to="/">
+                                        <Link to="/login">
                                             <Button className="px-10">Login</Button>
                                         </Link>
                                     </li>
@@ -82,13 +82,21 @@ export default function Header() {
                         </div>
                         <div className="mt-8 text-xl fw-500">
                             <ul>
-                                <li className="py-4">About Us</li>
-                                <li className="py-4">More for you</li>
+                                <li className="py-4"><Link to="/login">About Us</Link></li>
+                                <li className="py-4"><Link to="/login">More for you</Link></li>
                                 <li className="py-4"><Link to="/contact">Contact Us</Link></li>
                                 <li className="py-4"><Link to="/faqs">FAQs</Link></li>
                                 <li className="py-4"><Link to="/blog">Our Blog</Link></li>
-                                <li className="py-4">Join the team</li>
+                                <li className="py-4"><Link to="/login">Join the team</Link></li>
                                 <li className="py-4"><Link to="/admin">Help</Link></li>
+                                <li>
+                                    <ul className="mt-4 flex">
+                                        <li><img src={require("../../assets/images/insta.png")} alt="insta" /></li>
+                                        <li className="pl-4"><img src={require("../../assets/images/twitter.png")} alt="twitter" /></li>
+                                        <li className="pl-4"><img src={require("../../assets/images/linkedn.png")} alt="linkedn" /></li>
+                                        <li className="pl-4"><img src={require("../../assets/images/facebook.png")} alt="facebook" /></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>

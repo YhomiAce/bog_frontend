@@ -1,6 +1,10 @@
 import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BsCameraVideo, BsFillGrid1X2Fill, BsBell, BsGear, BsReceiptCutoff, BsBag, BsEnvelope, BsBoxArrowRight } from "react-icons/bs";
+import { BsFillGrid1X2Fill, BsBell, BsGear, BsBag, BsEnvelope, BsBoxArrowRight, BsFillCaretDownFill } from "react-icons/bs";
+import { CiFloppyDisk } from "react-icons/ci";
+import { FiUsers, FiClock } from "react-icons/fi";
+import { GrUserWorker } from  "react-icons/gr";
+import { RiUserStarLine } from  "react-icons/ri";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
@@ -56,11 +60,11 @@ const AdminSidebar = () => {
                 }} />
             </div>
             {showSideBar && (
-                <div className="fixed z-20 bg-white fs-500 top-20 grid items-between w-6/12 lg:sidebar-w shadow min-h-screen pt-2 px-2">
+                <div className="fixed z-20 bg-white lg:fs-500 fs-400 top-20 lg:grid items-between w-6/12 lg:sidebar-w shadow min-h-screen pt-2 px-2 ">
                     <div>
                         <NavLink
                             to=""
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-4"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-1 hover:bg-primary hover:text-white hover:rounded"
 
                             onClick={unShow}
                         >
@@ -69,43 +73,76 @@ const AdminSidebar = () => {
                         </NavLink>
                         <NavLink
                             to="orders"
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-4"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2 hover:bg-primary hover:text-white hover:rounded"
                             activeClassName="w-full flex items-center py-2 fw-600 my-4 light-bg text-primary"
                             onClick={unShow}
                         >
-                            <BsReceiptCutoff className="text-xl" />
-                            <p className="pl-3">Users</p>
+                            <CiFloppyDisk className="text-xl" />
+                            <p className="pl-3 flex justify-between items-center">Products <span className="pl-5"><BsFillCaretDownFill/></span></p>
                         </NavLink>
-                        <Link to="orders">
-                            <div className="w-full flex items-center pl-2 my-4 py-2 fw-600 hover:bg-primary hover:text-white hover:rounded">
-                                <BsBag className="text-lg" />
-                                <p className="pl-3">Orders</p>
-                            </div>
-                        </Link>
-                        <Link to="orders">
-                            <div className="w-full flex items-center pl-2 my-4 py-2 fw-600 hover:bg-primary hover:text-white hover:rounded">
-                                <BsBag className="text-lg" />
-                                <p className="pl-3">Products</p>
-                            </div>
-                        </Link>
-                        <Link to="products">
-                            <div className="w-full flex pl-2 items-center my-4 py-2 fw-600 hover:bg-primary hover:text-white hover:rounded">
-                                <BsEnvelope className="text-lg" />
-                                <p className="pl-3">Inbox</p>
-                            </div>
-                        </Link>
-                        <Link to="meetings">
-                            <div className="w-full py-2 flex items-center my-4 fw-600 pl-2 hover:bg-primary hover:text-white hover:rounded">
-                                <BsCameraVideo className="text-xl " />
-                                <p className="pl-3">Meetings</p>
-                            </div>
-                        </Link>
-                        <Link to="notify">
-                            <div className="w-full py-2 flex items-center pl-2 my-4 fw-600 hover:bg-primary hover:text-white hover:rounded">
-                                <BsBell className="text-xl" />
-                                <p className="pl-3">Notification</p>
-                            </div>
-                        </Link>
+                        <NavLink
+                            to="orders"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2 hover:bg-primary hover:text-white hover:rounded"
+                            activeClassName="w-full flex items-center py-2 fw-600 my-1 light-bg text-primary"
+                            onClick={unShow}
+                        >
+                            <BsBag className="text-xl" />
+                            <p className="pl-3 flex justify-between items-center">Orders <span className="pl-5"><BsFillCaretDownFill/></span></p>
+                        </NavLink>
+                        <NavLink
+                            to="orders"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2 hover:bg-primary hover:text-white hover:rounded"
+                            activeClassName="w-full flex items-center py-2 fw-600 my-1 light-bg text-primary"
+                            onClick={unShow}
+                        >
+                            <BsEnvelope className="text-xl" />
+                            <p className="pl-3 flex justify-between items-center">Emails <span className="pl-5"><BsFillCaretDownFill/></span></p>
+                        </NavLink>
+                        <NavLink
+                            to="orders"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2 hover:bg-primary hover:text-white hover:rounded"
+                            activeClassName="w-full flex items-center py-2 fw-600 my-4 light-bg text-primary"
+                            onClick={unShow}
+                        >
+                            <FiUsers className="text-xl" />
+                            <p className="pl-3 flex justify-between items-center">Clients <span className="pl-5"><BsFillCaretDownFill/></span></p>
+                        </NavLink>
+                        <NavLink
+                            to="orders"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2 hover:bg-primary hover:text-white hover:rounded"
+                            activeClassName="w-full flex items-center py-2 fw-600 my-4 light-bg text-primary"
+                            onClick={unShow}
+                        >
+                            <RiUserStarLine className="text-xl" />
+                            <p className="pl-3 flex justify-between items-center">Product Partners<span className="pl-2"><BsFillCaretDownFill/></span></p>
+                        </NavLink>
+                        <NavLink
+                            to="orders"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2 hover:bg-primary hover:text-white hover:rounded"
+                            activeClassName="w-full flex items-center py-2 fw-600 my-4 light-bg text-primary"
+                            onClick={unShow}
+                        >
+                            <GrUserWorker className="text-xl" />
+                            <p className="pl-3 flex justify-between items-center">Service Partners <span className="pl-2"><BsFillCaretDownFill/></span></p>
+                        </NavLink>
+                        <NavLink
+                            to="orders"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2 hover:bg-primary hover:text-white hover:rounded"
+                            activeClassName="w-full flex items-center py-2 fw-600 my-4 light-bg text-primary"
+                            onClick={unShow}
+                        >
+                            <BsBell className="text-xl" />
+                            <p className="pl-3 flex justify-between items-center">Notifications</p>
+                        </NavLink>
+                        <NavLink
+                            to="orders"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2 hover:bg-primary hover:text-white hover:rounded"
+                            activeClassName="w-full flex items-center py-2 fw-600 my-4 light-bg text-primary"
+                            onClick={unShow}
+                        >
+                            <FiClock className="text-xl" />
+                            <p className="pl-3 flex justify-between items-center">History </p>
+                        </NavLink>
                     </div>
                     <div>
                         <Link to="settings">
