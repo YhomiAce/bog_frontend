@@ -146,6 +146,7 @@ export const register = (apiData, navigate, stopLoading) => {
             const response = await axios.post(url, apiData);
             console.log(response);
             dispatch(registerSuccess(response));
+            localStorage.removeItem("reference");
             stopLoading();
             Swal.fire({
                 title: "Registration Completed Successfully",
