@@ -213,10 +213,15 @@ const SignSupply = () => {
                             <label className='block'>Where did you hear about us?</label>
                             <select className='mt-2 py-2 px-2 border border-gray-500 rounded w-full'>
                                 <option disabled selected>Select an option</option>
-                                <option value="google">Search engine (Google, Yahoo, etc.)</option>
-                                <option value="social">Social media</option>
-                                <option value="blog">Blog or publication</option>
-                                <option value="others">Others</option>
+                                <option value="apple">Apple App Store</option>
+                                <option value="email">Email</option>
+                                <option value="facebook">Facebook</option>
+                                <option value="google">Google</option>
+                                <option value="playstore">Google Play Store</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="referral">Referral</option>
+                                <option value="twitter">Twitter</option>
+                                <option value="whatsapp">WhatsApp</option>
                             </select>
                         </div>
                   <div className="mt-8 w-11/12 flex">
