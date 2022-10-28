@@ -15,16 +15,16 @@ export default function Homepage() {
             {/* hero banner */}
             <div className="bg-hero">
                 <div className="box">
-                    <div className="lg:flex flex-row-reverse items-center py-6">
+                    <div className="lg:flex flex-row-reverse items-center py-1">
                         <div className="lg:w-6/12 relative">
-                            <img src={require("../assets/images/hero.png")} alt="hero" className="lg:w-9/12 m-auto animate-pulse"/>
+                            <img src={require("../assets/images/hero.png")} alt="hero" className="lg:w-11/12 m-auto animate-pulse"/>
                             <img src={require("../assets/images/hero1.png")} alt="hero1" className="absolute lg:w-28 w-20 hero1" />
                             <img src={require("../assets/images/hero2.png")} alt="hero2" className="absolute lg:w-28 w-20 hero2" />
                             <img src={require("../assets/images/hero3.png")} alt="hero3" className="absolute lg:w-28 w-20 hero3" />
                             <img src={require("../assets/images/hero4.png")} alt="hero4" className="absolute lg:w-28 w-20 hero4" />
                         </div>
                         <div className="lg:w-6/12 text-white">
-                            <p className="lg:text-4xl text-3xl fw-600">
+                            <p className="lg:text-4xl text-2xl fw-600">
                                 Providing products and services to intending structure owners accross borders.
                             </p>
                             <p className="my-7">A platform where people can monitor and manage their projects without being encumbered by time and distance.</p>

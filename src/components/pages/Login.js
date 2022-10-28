@@ -6,6 +6,7 @@ import { loginUser } from '../../redux/actions/authAction'
 import { useFormik } from 'formik';
 import { loginValidation } from '../../services/validation'
 import Spinner from "../layouts/Spinner";
+import { FaRegEyeSlash, FaRegEye }from 'react-icons/fa';
 
 export default function Login() {
     const dispatch = useDispatch();
@@ -19,6 +20,15 @@ export default function Login() {
         console.log(values);
         dispatch(loginUser(values, navigate, stopLoading));
     }
+    const [passwordType, setPasswordType] = useState("password");
+    const togglePassword =()=>{
+        if(passwordType==="password")
+        {
+         setPasswordType("text")
+         return;
+        }
+        setPasswordType("password")
+      }
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -75,16 +85,22 @@ export default function Login() {
                                         </label>
                                         <Link to="/forget"><p className="text-primary">Forgot Password?</p></Link>
                                     </div>
-                                    <input
-                                        type="password"
-                                        placeholder="enter your password"
-                                        className="w-full border-gray-400 mt-2 py-2 px-2 rounded border"
-                                        name="password"
-                                        value={password}
-                                        id="password"
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                    />
+                                    <div className="flex items-center bg-input border border-gray-400 mt-2 rounded">
+                                        <input
+                                            type={passwordType}
+                                            placeholder="enter your password"
+                                            className="w-full border-0 py-2 px-2 rounded"
+                                            name="password"
+                                            value={password}
+                                            id="password"
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                        />
+                                        <div onClick={togglePassword} className="px-3">
+                                            { passwordType==="password"? <FaRegEyeSlash className="text-xl" /> :<FaRegEye className="text-xl"/> }
+                                        </div>
+                                        
+                                    </div>
                                 </div>
                                 <div className="mt-6 w-11/12 flex">
                                     <input type="checkbox" className="p-4 border-gray-400" />

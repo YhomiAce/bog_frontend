@@ -146,6 +146,9 @@
 .slider-bg{
  background: #97ABC2E5;
 }
+.bg-input{
+  background-color:rgba(240, 240, 255, 0.8);
+}
 .border-primary{
   border: 2px solid #3F79AD;
   box-shadow: 4px 4px 0px #3F79AD;
