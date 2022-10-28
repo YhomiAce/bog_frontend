@@ -3,9 +3,9 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useSelector } from "react-redux";
-import { Avatar, CardBody, Progress } from "@material-tailwind/react";
+import { CardBody } from "@material-tailwind/react";
 import ChartLine from "../assets/UsersChart";
-import ProjectChart, { AdminChart } from "../assets/ProjectChart";
+import  { AdminChart } from "../assets/ProjectChart";
 
 export default function AdminDashboard() {
   const user = useSelector((state) => state.auth.user);
