@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 export const privateClientSchema = Yup.object({
-    name: Yup.string().required("Full name is required"),
+    name: Yup.string().required("Company name is required"),
     email: Yup.string().email("Enter a valid E-mail address").required("E-mail Address is required"),
     phone: Yup.string().required("Phone number is required"),
     password: Yup.string().required('Password is required').matches(
@@ -27,7 +27,8 @@ export const forgetPasswordValidation = Yup.object({
 })
 
 export const supplierValidationSchema = Yup.object({
-    name: Yup.string().required("Full name is required"),
+    fname: Yup.string().required("First name is required"),
+    lname: Yup.string().required("Last name is required"),
     company_name: Yup.string().required("Company name is required"),
     email: Yup.string().email("Enter a valid E-mail address").required("E-mail Address is required"),
     phone: Yup.string().required("Phone number is required"),
