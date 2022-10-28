@@ -24,10 +24,10 @@ export default function Header() {
         <div>
             <div className="box">
                 <div className="justify-between items-center flex py-2 pb-3">
-                    <div className="w-4/12 hidden lg:flex">
-                        <ul className="flex xl:font-600 text-sm w-full justify-between">
+                    <div className="w-4/12 hidden lg:flex items-center">
+                        <ul className="flex xl:font-600 fw-600 fw-600 w-full justify-between">
                             <li><BsList className="xl:text-3xl text-2xl cursor-pointer transition hover:scale-110" onClick={() => setHomeMenu(true)}/></li>
-                            <li>Home</li>
+                            <li className="">Home</li>
                             <li>Shop</li>
                             <li>Find Service Partner</li>
                         </ul>
@@ -35,7 +35,7 @@ export default function Header() {
                     <div className="w-4/12 flex justify-center">
                         <Link to="/"><img src={require("../../assets/images/logo.png")} alt="logo" className="lg:w-40 "/></Link>
                     </div>
-                    <div className="w-4/12 hidden lg:flex justify-end items-center">
+                    <div className="w-4/12 hidden fw-600 lg:flex justify-end items-center">
                         <Link to="/login" className="text-primary">
                             <button >Login</button>
                         </Link>

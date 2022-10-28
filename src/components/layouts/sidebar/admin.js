@@ -60,7 +60,7 @@ const AdminSidebar = () => {
                 }} />
             </div>
             {showSideBar && (
-                <div className="fixed z-20 bg-white lg:fs-500 fs-400 top-20 lg:grid items-between w-6/12 lg:sidebar-w shadow min-h-screen pt-2 px-2 ">
+                <div className="fixed z-20 bg-white fs-400 top-20 lg:grid items-between w-6/12 lg:sidebar-w shadow min-h-screen pt-2 px-2 ">
                     <div>
                         <NavLink
                             to=""
@@ -68,7 +68,7 @@ const AdminSidebar = () => {
 
                             onClick={unShow}
                         >
-                            <BsFillGrid1X2Fill className="text-xl" />
+                            <BsFillGrid1X2Fill className="text-lg" />
                             <p className="pl-3"> Dashboard</p>
                         </NavLink>
                         <NavLink
@@ -77,7 +77,7 @@ const AdminSidebar = () => {
                             activeClassName="w-full flex items-center py-2 fw-600 my-4 light-bg text-primary"
                             onClick={unShow}
                         >
-                            <CiFloppyDisk className="text-xl" />
+                            <CiFloppyDisk className="text-lg" />
                             <p className="pl-3 flex justify-between items-center">Products <span className="pl-5"><BsFillCaretDownFill/></span></p>
                         </NavLink>
                         <NavLink
@@ -86,7 +86,7 @@ const AdminSidebar = () => {
                             activeClassName="w-full flex items-center py-2 fw-600 my-1 light-bg text-primary"
                             onClick={unShow}
                         >
-                            <BsBag className="text-xl" />
+                            <BsBag className="text-lg" />
                             <p className="pl-3 flex justify-between items-center">Orders <span className="pl-5"><BsFillCaretDownFill/></span></p>
                         </NavLink>
                         <NavLink
@@ -95,7 +95,7 @@ const AdminSidebar = () => {
                             activeClassName="w-full flex items-center py-2 fw-600 my-1 light-bg text-primary"
                             onClick={unShow}
                         >
-                            <BsEnvelope className="text-xl" />
+                            <BsEnvelope className="text-lg" />
                             <p className="pl-3 flex justify-between items-center">Emails <span className="pl-5"><BsFillCaretDownFill/></span></p>
                         </NavLink>
                         <NavLink
@@ -104,7 +104,7 @@ const AdminSidebar = () => {
                             activeClassName="w-full flex items-center py-2 fw-600 my-4 light-bg text-primary"
                             onClick={unShow}
                         >
-                            <FiUsers className="text-xl" />
+                            <FiUsers className="text-lg" />
                             <p className="pl-3 flex justify-between items-center">Clients <span className="pl-5"><BsFillCaretDownFill/></span></p>
                         </NavLink>
                         <NavLink
@@ -113,7 +113,7 @@ const AdminSidebar = () => {
                             activeClassName="w-full flex items-center py-2 fw-600 my-4 light-bg text-primary"
                             onClick={unShow}
                         >
-                            <RiUserStarLine className="text-xl" />
+                            <RiUserStarLine className="text-lg" />
                             <p className="pl-3 flex justify-between items-center">Product Partners<span className="pl-2"><BsFillCaretDownFill/></span></p>
                         </NavLink>
                         <NavLink
@@ -122,7 +122,7 @@ const AdminSidebar = () => {
                             activeClassName="w-full flex items-center py-2 fw-600 my-4 light-bg text-primary"
                             onClick={unShow}
                         >
-                            <GrUserWorker className="text-xl" />
+                            <GrUserWorker className="text-lg" />
                             <p className="pl-3 flex justify-between items-center">Service Partners <span className="pl-2"><BsFillCaretDownFill/></span></p>
                         </NavLink>
                         <NavLink
@@ -131,7 +131,7 @@ const AdminSidebar = () => {
                             activeClassName="w-full flex items-center py-2 fw-600 my-4 light-bg text-primary"
                             onClick={unShow}
                         >
-                            <BsBell className="text-xl" />
+                            <BsBell className="text-lg" />
                             <p className="pl-3 flex justify-between items-center">Notifications</p>
                         </NavLink>
                         <NavLink
@@ -140,7 +140,7 @@ const AdminSidebar = () => {
                             activeClassName="w-full flex items-center py-2 fw-600 my-4 light-bg text-primary"
                             onClick={unShow}
                         >
-                            <FiClock className="text-xl" />
+                            <FiClock className="text-lg" />
                             <p className="pl-3 flex justify-between items-center">History </p>
                         </NavLink>
                     </div>
@@ -153,7 +153,7 @@ const AdminSidebar = () => {
                         </Link>
                         <Link to="settings">
                             <div className="w-full py-2 pl-2 fw-600 flex items-center my-2 rounded-lg">
-                                <BsGear className="text-xl" />
+                                <BsGear className="text-lg" />
                                 <p className="pl-3">Settings</p>
                             </div>
                         </Link>
@@ -162,7 +162,7 @@ const AdminSidebar = () => {
                                 style={sideBarStyle.cursorStyle}
                                 onClick={() => dispatch(logout())}
                                 className="w-full py-2 fw-600 pl-2 flex my-2  rounded-lg">
-                                <BsBoxArrowRight className="text-xl" />
+                                <BsBoxArrowRight className="text-lg" />
                                 <p className="pl-3">Sign Out</p>
                             </div>
                         </Link>

@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { register } from "../../../redux/actions/authAction";
 import { privateClientSchema } from '../../../services/validation';
 import ReCAPTCHA from "react-google-recaptcha";
+import { FaRegEyeSlash, FaRegEye }from 'react-icons/fa';
 
 const CorporateClient = () => {
     const dispatch = useDispatch();
@@ -25,6 +26,17 @@ const CorporateClient = () => {
         }
         dispatch(register(paylaod, navigate, stopLoading));
     }
+
+    const [passwordType, setPasswordType] = useState("password");
+    const togglePassword =()=>{
+        if(passwordType==="password")
+        {
+         setPasswordType("text")
+         return;
+        }
+        setPasswordType("password")
+      }
+
     const formik = useFormik({
         initialValues: {
             name: "",
@@ -92,16 +104,21 @@ const CorporateClient = () => {
                         </div>
                         <div className="w-full mt-6">
                             <label className="block">Password</label>
-                            <input
-                                type="password"
-                                placeholder="Enter your desired password"
-                                className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
-                                value={password}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                id="password"
-                                name="password"
-                            />
+                            <div className="flex items-center bg-input border border-gray-400 mt-1 rounded">
+                                <input
+                                    type={passwordType}
+                                    placeholder="Enter your desired password"
+                                    className="w-full border-0 py-2 px-2 rounded"
+                                    value={password}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    id="password"
+                                    name="password"
+                                />
+                                <div onClick={togglePassword} className="px-3">
+                                    { passwordType==="password"? <FaRegEyeSlash className="text-xl" /> :<FaRegEye className="text-xl"/> }
+                                </div>
+                            </div>
                             {
                                 formik.touched.password && formik.errors.password ? <p className='text-red-500'>{formik.errors.password}</p> : null
                             }
