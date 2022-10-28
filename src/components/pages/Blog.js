@@ -27,10 +27,10 @@ export default function Blog(){
                                 <div>
                                     <p className="lg:text-2xl text-lg fw-600 mb-8 ">Latest News</p>
                                     <div className="lg:flex">
-                                        <div className="lg:w-4/12">
+                                        <div className="lg:w-5/12">
                                         <img src={require("../assets/images/blog2.png")} alt="blog1" className="w-full"/>
                                         </div>
-                                        <div className="lg:w-8/12 px-5">
+                                        <div className="lg:w-7/12 px-5">
                                             <p className="text-xs text-gray-500 mt-6 lg:mt-0">23 OCT, 2022</p>
                                             <p className="fs-600 lg:text-lg fw-500 py-3">6 Ways to Improve Machine Operators’ Safety on Construction </p>
                                             <p>It should not be surprising that there needs to be an emphasis on machine operators, given...</p>
@@ -41,9 +41,9 @@ export default function Blog(){
                                 <div className="mt-16 lg:mt-24 lg:w-11/12">
                                     <p className="lg:text-2xl text-lg fw-600 mb-8 ">All News</p>
                                     <div className="lg:flex justify-between">
-                                        <div className="lg:w-5/12 shadow-lg">
+                                        <div className="lg:w-45 shadow-lg">
                                             <div>
-                                            <img src={require("../assets/images/blog2.png")} alt="blog1" className="w-full"/>
+                                            <img src={require("../assets/images/build.png")} alt="blog1" className="w-full h-48"/>
                                             </div>
                                             <div className="px-3 py-4">
                                                 <p className="fs-600 fw-600">Top 10 In Demand Construction Jobs </p>
@@ -51,31 +51,31 @@ export default function Blog(){
                                                 <p className="fs-400 flex items-center text-primary mt-4">Read More <span className="pl-2"><BsArrowRight/></span></p>
                                             </div>
                                         </div>
-                                        <div className="lg:w-5/12 mt-12 lg:mt-0 shadow-lg">
+                                        <div className="lg:w-45 mt-12 lg:mt-0 shadow-lg">
                                             <div>
-                                                <img src={require("../assets/images/blog2.png")} alt="blog1" className="w-full"/>
+                                                <img src={require("../assets/images/blog1.png")} alt="blog1" className="w-full h-48"/>
                                             </div>
                                             <div className="px-3 py-4">
-                                                <p className="fs-600 fw-600">Top 10 In Demand Construction Jobs </p>
+                                                <p className="fs-600 fw-600">Seven Traits of Profitable Specialty Contractors </p>
                                                 <p className="my-3">Construction, by nature, is a cyclical business, and the decade beginning with 2020 has... </p>
                                                 <p className="fs-400 flex items-center text-primary mt-4">Read More <span className="pl-2"><BsArrowRight/></span></p>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="lg:flex justify-between mt-12">
-                                        <div className="lg:w-5/12 shadow-lg">
+                                        <div className="lg:w-45 shadow-lg">
                                             <div>
-                                            <img src={require("../assets/images/blog2.png")} alt="blog1" className="w-full"/>
+                                            <img src={require("../assets/images/blog2.png")} alt="blog1" className="w-full h-48"/>
                                             </div>
                                             <div className="px-3 py-4">
-                                                <p className="fs-600 fw-600">Top 10 In Demand Construction Jobs </p>
+                                                <p className="fs-600 fw-600">Seven Traits of Profitable Specialty Contractors </p>
                                                 <p className="my-3">Construction, by nature, is a cyclical business, and the decade beginning with 2020 has... </p>
                                                 <p className="fs-400 flex items-center text-primary mt-4">Read More <span className="pl-2"><BsArrowRight/></span></p>
                                             </div>
                                         </div>
-                                        <div className="lg:w-5/12 mt-12 lg:mt-0 shadow-lg">
+                                        <div className="lg:w-45 mt-12 lg:mt-0 shadow-lg">
                                             <div>
-                                                <img src={require("../assets/images/blog2.png")} alt="blog1" className="w-full"/>
+                                                <img src={require("../assets/images/build.png")} alt="blog1" className="w-full h-48"/>
                                             </div>
                                             <div className="px-3 py-4">
                                                 <p className="fs-600 fw-600">Top 10 In Demand Construction Jobs </p>
