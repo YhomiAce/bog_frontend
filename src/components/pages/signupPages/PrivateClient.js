@@ -214,6 +214,7 @@ const PrivateClient = () => {
                         <div className="mt-6 w-full flex">
                             <button
                                 type='submit'
+                                onClick={formik.handleSubmit}
                                 className="w-full text-lg text-white bg-primary py-2 rounded fw-600"
                             >
                                 Sign Up
