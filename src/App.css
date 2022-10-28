@@ -191,6 +191,9 @@
   grid-template-columns: 57% 40%;
   justify-content:space-between;
 }
+.w-45{
+  width: 45%;
+}
 .head-grid{
   display:grid;
   grid-template-columns: 15% 85%;

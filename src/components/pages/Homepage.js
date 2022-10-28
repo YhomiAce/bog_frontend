@@ -15,9 +15,9 @@ export default function Homepage() {
             {/* hero banner */}
             <div className="bg-hero">
                 <div className="box">
-                    <div className="lg:flex flex-row-reverse items-center py-1">
+                    <div className="lg:flex flex-row-reverse items-center py-1 pb-6 lg:pb-1">
                         <div className="lg:w-6/12 relative">
-                            <img src={require("../assets/images/hero.png")} alt="hero" className="lg:w-10/12 m-auto animate-pulse"/>
+                            <img src={require("../assets/images/hero.png")} alt="hero" className="lg:w-10/12 lg:float-right animate-pulse"/>
                             <img src={require("../assets/images/hero1.png")} alt="hero1" className="absolute lg:w-28 w-20 hero1" />
                             <img src={require("../assets/images/hero2.png")} alt="hero2" className="absolute lg:w-28 w-20 hero2" />
                             <img src={require("../assets/images/hero3.png")} alt="hero3" className="absolute lg:w-28 w-20 hero3" />
@@ -159,7 +159,7 @@ export default function Homepage() {
                 <div className="box">
                     <div>
                         <div>
-                            <p className="text-xl lg:text-3xl m-auto text-center lg:w-6/12 w-10/12 fw-600 mb-4 ">Are your looking to provide Services or Goods on BOG?</p>
+                            <p className="text-xl lg:text-3xl m-auto text-center lg:w-6/12 w-10/12 fw-600 mb-4 ">Are you looking to provide Services or Goods on BOG?</p>
                             <p className="text-center m-auto lg:w-5/12 w-10/12">Sign up as a professional service provider or, a vendor today and get more jobs.</p>
                         </div>
                         <div className="mt-12 lg:flex justify-around">

@@ -33,7 +33,7 @@ export default function PclientDashboard() {
                 <img
                   src={require("../images/order.png")}
                   alt="project"
-                  className="-bottom-3 relative w-20"
+                  className=" relative w-16"
                 />
               </div>
             </div>
@@ -46,7 +46,7 @@ export default function PclientDashboard() {
                 <img
                   src={require("../images/pend.png")}
                   alt=""
-                  className="-bottom-4 relative w-20"
+                  className=" relative w-16 mt-2"
                 />
               </div>
             </div>
@@ -59,7 +59,7 @@ export default function PclientDashboard() {
                 <img
                   src={require("../images/project.png")}
                   alt="cart"
-                  className="-bottom-4 relative w-20"
+                  className=" relative w-16"
                 />
               </div>
             </div>
@@ -72,7 +72,7 @@ export default function PclientDashboard() {
                 <img
                   src={require("../images/ongoing.png")}
                   alt="ongoing"
-                  className="-bottom-3 left-2 relative w-24"
+                  className=" left-2 relative w-20"
                 />
               </div>
             </div>
