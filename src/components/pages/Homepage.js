@@ -15,7 +15,7 @@ export default function Homepage() {
             {/* hero banner */}
             <div className="bg-hero">
                 <div className="box">
-                    <div className="lg:flex flex-row-reverse items-center py-1">
+                    <div className="lg:flex flex-row-reverse items-center py-1 pb-6 lg:pb-1">
                         <div className="lg:w-6/12 relative">
                             <img src={require("../assets/images/hero.png")} alt="hero" className="lg:w-10/12 lg:float-right animate-pulse"/>
                             <img src={require("../assets/images/hero1.png")} alt="hero1" className="absolute lg:w-28 w-20 hero1" />
