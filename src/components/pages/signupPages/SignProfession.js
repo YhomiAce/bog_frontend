@@ -200,6 +200,26 @@ export default function SignProfession() {
                     formik.touched.password && formik.errors.password ? <p className='text-red-500'>{formik.errors.password}</p> : null
                   }
                 </div>
+                <div className="w-full mt-6">
+                            <label className='block'>Referral Code (Optional)</label>
+                            <input
+                                type="text"
+                                placeholder="Enter your referral code"
+                                className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
+                                id="phone"
+                                name="phone"
+                            />
+                        </div>
+                        <div className="w-full mt-6">
+                            <label className='block'>Where did you hear about us?</label>
+                            <select className='mt-2 py-2 px-2 border border-gray-500 rounded w-full'>
+                                <option disabled selected>Select an option</option>
+                                <option value="google">Search engine (Google, Yahoo, etc.)</option>
+                                <option value="social">Social media</option>
+                                <option value="blog">Blog or publication</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
                 <div className="mt-8 w-11/12 flex">
                   <input
                     type="checkbox"
