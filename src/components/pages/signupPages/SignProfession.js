@@ -213,7 +213,6 @@ export default function SignProfession() {
                     name="reference"
                     value={reference}
                     onChange={formik.handleChange}
-                    readOnly={referenceValue ? true : false}
                   />
                 </div>
                 <div className="w-full mt-6">
@@ -225,7 +224,7 @@ export default function SignProfession() {
                     value={aboutUs}
                     onChange={formik.handleChange}
                   >
-                    <option disabled selected>Select an option</option>
+                    <option disabled >Select an option</option>
                     <option value="apple">Apple App Store</option>
                     <option value="email">Email</option>
                     <option value="facebook">Facebook</option>
@@ -262,7 +261,7 @@ export default function SignProfession() {
                   />
                 </div>
                 <div className="mt-6 w-full flex">
-                  <button type='submit' className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
+                  <button type='submit' onClick={formik.handleSubmit} className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
                     Sign Up
                   </button>
                 </div>
