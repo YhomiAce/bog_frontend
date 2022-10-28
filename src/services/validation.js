@@ -4,7 +4,10 @@ export const privateClientSchema = Yup.object({
     name: Yup.string().required("Full name is required"),
     email: Yup.string().email("Enter a valid E-mail address").required("E-mail Address is required"),
     phone: Yup.string().required("Phone number is required"),
-    password: Yup.string().required('Password is required').min(6, "Password should be greater than 6 characters"),
+    password: Yup.string().required('Password is required').matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    ),
     terms: Yup.boolean().required("Please accept terms and conditions")
 })
 
@@ -28,6 +31,9 @@ export const supplierValidationSchema = Yup.object({
     company_name: Yup.string().required("Company name is required"),
     email: Yup.string().email("Enter a valid E-mail address").required("E-mail Address is required"),
     phone: Yup.string().required("Phone number is required"),
-    password: Yup.string().required('Password is required').min(6, "Password should be greater than 6 characters"),
+    password: Yup.string().required('Password is required').matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    ),
     terms: Yup.boolean().required("Please accept terms and conditions")
 })

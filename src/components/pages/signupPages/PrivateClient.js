@@ -1,22 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
+import ReCAPTCHA from "react-google-recaptcha";
 import Spinner from '../../layouts/Spinner';
 import { useDispatch } from 'react-redux';
 import { register } from "../../../redux/actions/authAction";
 import { privateClientSchema } from '../../../services/validation';
+
 
 const PrivateClient = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const stopLoading = () => setLoading(false);
+    const captchaRef = useRef(null)
+
     const handleSubmit = (values, actions) => {
         setLoading(true)
         console.log(values);
         const paylaod = {
             ...values,
-            userType: "private_client"
+            userType: "private_client",
+            captcha: captchaRef.current.getValue()
         }
         dispatch(register(paylaod, navigate, stopLoading));
     }
@@ -140,6 +145,12 @@ const PrivateClient = () => {
                                     terms & conditions
                                 </span>
                             </p>
+                        </div>
+                        <div className="mt-8">
+                            <ReCAPTCHA
+                                sitekey={process.env.REACT_APP_SITE_KEY}
+                                ref={captchaRef}
+                            />
                         </div>
                         <div className="mt-6 w-full flex">
                             <button
