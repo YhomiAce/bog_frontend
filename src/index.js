@@ -11,13 +11,13 @@ import { ThemeProvider } from "@material-tailwind/react";
 const app = (
   <Provider store={store}>
     <BrowserRouter>
-      <React.StrictMode>
+      {/* <React.StrictMode> */}
         <ThemeProvider>
         <ErrorBoundary>
           <App />
         </ErrorBoundary>
         </ThemeProvider>
-      </React.StrictMode>
+      {/* </React.StrictMode> */}
     </BrowserRouter>
   </Provider>
 )

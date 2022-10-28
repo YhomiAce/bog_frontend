@@ -45,7 +45,7 @@ const SignSupply = () => {
       password: "",
       terms: false,
       aboutUs: "",
-      reference: referenceValue ? referenceValue : null,
+      reference: referenceValue || "",
     },
     validationSchema: supplierValidationSchema,
     onSubmit: handleSubmit,
@@ -210,7 +210,6 @@ const SignSupply = () => {
                       name="reference"
                       value={reference}
                       onChange={formik.handleChange}
-                      readOnly={referenceValue ? true : false}
                     />
                   </div>
                   <div className="w-full mt-6">
@@ -219,10 +218,10 @@ const SignSupply = () => {
                       className='mt-2 py-2 px-2 border border-gray-500 rounded w-full'
                       id="aboutUs"
                       name="aboutUs"
-                      value={aboutUs}
+                      defaultValue={aboutUs}
                       onChange={formik.handleChange}
                     >
-                      <option disabled selected>Select an option</option>
+                      <option disabled >Select an option</option>
                       <option value="apple">Apple App Store</option>
                       <option value="email">Email</option>
                       <option value="facebook">Facebook</option>
@@ -259,7 +258,7 @@ const SignSupply = () => {
                     />
                   </div>
                   <div className="mt-6 w-full flex">
-                    <button type='submit' className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
+                    <button type='submit' onClick={formik.handleSubmit} className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
                       Sign Up
                     </button>
                   </div>

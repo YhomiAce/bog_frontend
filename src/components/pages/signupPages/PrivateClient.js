@@ -16,8 +16,9 @@ const PrivateClient = () => {
     const stopLoading = () => setLoading(false);
     const captchaRef = useRef(null)
 
-    const handleSubmit = (values, actions) => {
-        setLoading(true)
+    const handleSubmit = (values) => {
+        try {
+            setLoading(true)
         console.log(values);
         const paylaod = {
             ...values,
@@ -26,6 +27,10 @@ const PrivateClient = () => {
             name: `${values.fname} ${values.lname}`
         }
         dispatch(register(paylaod, navigate, stopLoading));
+        } catch (error) {
+            setLoading(false)
+            console.log(error);
+        }
     }
 
     const [passwordType, setPasswordType] = useState("password");
@@ -37,6 +42,7 @@ const PrivateClient = () => {
         setPasswordType("password")
     }
     const referenceValue = localStorage.getItem("reference");
+    console.log({referenceValue});
 
     const formik = useFormik({
 
@@ -47,13 +53,11 @@ const PrivateClient = () => {
             phone: "",
             password: "",
             aboutUs: "",
-            reference: referenceValue ? referenceValue : null,
-            terms: false
+            terms: false,
+            reference: referenceValue || "",
         },
         validationSchema: privateClientSchema,
         onSubmit: handleSubmit,
-
-
     });
     const { fname, lname, email, password, phone, terms, reference, aboutUs } = formik.values;
 
@@ -158,7 +162,6 @@ const PrivateClient = () => {
                                 name="reference"
                                 value={reference}
                                 onChange={formik.handleChange}
-                                readOnly={referenceValue ? true : false}
                             />
                         </div>
                         <div className="w-full mt-6">
@@ -167,10 +170,10 @@ const PrivateClient = () => {
                                 className='mt-2 py-2 px-2 border border-gray-500 rounded w-full'
                                 id="aboutUs"
                                 name="aboutUs"
-                                value={aboutUs}
+                                defaultValue={aboutUs}
                                 onChange={formik.handleChange}
                             >
-                                <option disabled selected>Select an option</option>
+                                <option disabled >Select an option</option>
                                 <option value="apple">Apple App Store</option>
                                 <option value="email">Email</option>
                                 <option value="facebook">Facebook</option>
