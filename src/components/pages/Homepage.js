@@ -17,7 +17,7 @@ export default function Homepage() {
                 <div className="box">
                     <div className="lg:flex flex-row-reverse items-center py-1">
                         <div className="lg:w-6/12 relative">
-                            <img src={require("../assets/images/hero.png")} alt="hero" className="lg:w-11/12 m-auto animate-pulse"/>
+                            <img src={require("../assets/images/hero.png")} alt="hero" className="lg:w-10/12 m-auto animate-pulse"/>
                             <img src={require("../assets/images/hero1.png")} alt="hero1" className="absolute lg:w-28 w-20 hero1" />
                             <img src={require("../assets/images/hero2.png")} alt="hero2" className="absolute lg:w-28 w-20 hero2" />
                             <img src={require("../assets/images/hero3.png")} alt="hero3" className="absolute lg:w-28 w-20 hero3" />
