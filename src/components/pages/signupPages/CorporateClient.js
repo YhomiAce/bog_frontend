@@ -21,7 +21,9 @@ const CorporateClient = () => {
             ...values,
             userType: "corporate_client",
             company_name: values.name,
-            captcha: captchaRef.current.getValue()
+            captcha: captchaRef.current.getValue(),
+            fname: name,
+            lname: name
         }
         dispatch(register(paylaod, navigate, stopLoading));
     }

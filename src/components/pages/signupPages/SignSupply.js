@@ -19,13 +19,15 @@ const SignSupply = () => {
     const paylaod = {
       ...values,
       userType: "vendor",
-      captcha: captchaRef.current.getValue()
+      captcha: captchaRef.current.getValue(),
+      name: `${values.fname} ${values.lname}`
     }
     dispatch(register(paylaod, navigate, stopLoading));
   }
   const formik = useFormik({
     initialValues: {
-      name: "",
+      fname: "",
+      lname: "",
       company_name: "",
       email: "",
       phone: "",
@@ -35,7 +37,7 @@ const SignSupply = () => {
     validationSchema: supplierValidationSchema,
     onSubmit: handleSubmit,
   });
-  const { name, email, password, phone, terms, company_name } = formik.values;
+  const { lname, fname, email, password, phone, terms, company_name } = formik.values;
   return (
     <div className="bg-login bg-fixed bg-cover text-black font-primary">
       <Link to="/">
@@ -90,14 +92,14 @@ const SignSupply = () => {
                       type="text"
                       placeholder="Enter your first name"
                       className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
-                      value={name}
-                      id="name"
-                      name="name"
+                      value={fname}
+                      id="fname"
+                      name="fname"
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
                     {
-                      formik.touched.name && formik.errors.name ? <p className='text-red-500'>{formik.errors.name}</p> : null
+                      formik.touched.fname && formik.errors.fname ? <p className='text-red-500'>{formik.errors.fname}</p> : null
                     }
                   </div>
                   <div className="w-full mt-6">
@@ -106,14 +108,14 @@ const SignSupply = () => {
                       type="text"
                       placeholder="Enter your last name"
                       className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
-                      value={name}
-                      id="name"
-                      name="name"
+                      value={lname}
+                      id="lname"
+                      name="lname"
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
                     {
-                      formik.touched.name && formik.errors.name ? <p className='text-red-500'>{formik.errors.name}</p> : null
+                      formik.touched.lname && formik.errors.lname ? <p className='text-red-500'>{formik.errors.lname}</p> : null
                     }
                   </div>
                   <div className="w-full mt-6">
