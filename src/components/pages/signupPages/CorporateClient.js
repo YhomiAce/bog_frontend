@@ -1,23 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import Spinner from '../../layouts/Spinner';
 import { useDispatch } from 'react-redux';
 import { register } from "../../../redux/actions/authAction";
 import { privateClientSchema } from '../../../services/validation';
+import ReCAPTCHA from "react-google-recaptcha";
 
 const CorporateClient = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const stopLoading = () => setLoading(false);
+    const captchaRef = useRef(null)
+
     const handleSubmit = (values) => {
         setLoading(true)
         console.log(values);
         const paylaod = {
             ...values,
             userType: "corporate_client",
-            company_name: values.name
+            company_name: values.name,
+            captcha: captchaRef.current.getValue()
         }
         dispatch(register(paylaod, navigate, stopLoading));
     }
@@ -118,6 +122,12 @@ const CorporateClient = () => {
                                     terms & conditions
                                 </span>
                             </p>
+                        </div>
+                        <div className="mt-8">
+                            <ReCAPTCHA
+                                sitekey={process.env.REACT_APP_SITE_KEY}
+                                ref={captchaRef}
+                            />
                         </div>
                         <div className="mt-6 w-full flex">
                             <button type='submit' className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
