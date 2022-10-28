@@ -1,8 +1,13 @@
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function SignMain() {
+  const { search } = useLocation();
+  const reference = new URLSearchParams(search).get("reference");
+  if (reference) {
+    localStorage.setItem("reference", reference)
+  }
   return (
     <div className="bg-login bg-fixed bg-cover min-h-screen">
       <div className="lg:w-10/12 font-primary text-sm m-auto px-4 lg:px-0">

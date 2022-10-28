@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { register } from "../../../redux/actions/authAction";
 import { privateClientSchema } from '../../../services/validation';
 import ReCAPTCHA from "react-google-recaptcha";
-import { FaRegEyeSlash, FaRegEye }from 'react-icons/fa';
+import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
 
 const CorporateClient = () => {
     const dispatch = useDispatch();
@@ -16,41 +16,47 @@ const CorporateClient = () => {
     const captchaRef = useRef(null)
 
     const handleSubmit = (values) => {
-        setLoading(true)
-        console.log(values);
-        const paylaod = {
-            ...values,
-            userType: "corporate_client",
-            company_name: values.name,
-            captcha: captchaRef.current.getValue(),
-            fname: name,
-            lname: name
+        try {
+            setLoading(true)
+            console.log(values);
+            const paylaod = {
+                ...values,
+                userType: "corporate_client",
+                company_name: values.name,
+                captcha: captchaRef.current.getValue(),
+                fname: name,
+                lname: name
+            }
+            dispatch(register(paylaod, navigate, stopLoading));
+        } catch (error) {
+            setLoading(false)
+            console.log({ error });
         }
-        dispatch(register(paylaod, navigate, stopLoading));
     }
 
     const [passwordType, setPasswordType] = useState("password");
-    const togglePassword =()=>{
-        if(passwordType==="password")
-        {
-         setPasswordType("text")
-         return;
+    const togglePassword = () => {
+        if (passwordType === "password") {
+            setPasswordType("text")
+            return;
         }
         setPasswordType("password")
-      }
-
+    }
+    const referenceValue = localStorage.getItem("reference");
     const formik = useFormik({
         initialValues: {
             name: "",
             email: "",
             phone: "",
             password: "",
-            terms: false
+            aboutUs: "",
+            terms: false,
+            reference: referenceValue || "",
         },
         validationSchema: privateClientSchema,
         onSubmit: handleSubmit,
     });
-    const { name, email, password, phone, terms } = formik.values;
+    const { name, email, password, phone, terms, aboutUs, reference } = formik.values;
     return (
         <div className="mt-8">
             {
@@ -118,7 +124,7 @@ const CorporateClient = () => {
                                     name="password"
                                 />
                                 <div onClick={togglePassword} className="px-3">
-                                    { passwordType==="password"? <FaRegEyeSlash className="text-xl" /> :<FaRegEye className="text-xl"/> }
+                                    {passwordType === "password" ? <FaRegEyeSlash className="text-xl" /> : <FaRegEye className="text-xl" />}
                                 </div>
                             </div>
                             {
@@ -131,14 +137,22 @@ const CorporateClient = () => {
                                 type="text"
                                 placeholder="Enter your referral code"
                                 className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
-                                id="phone"
-                                name="phone"
+                                id="reference"
+                                name="reference"
+                                value={reference}
+                                onChange={formik.handleChange}
                             />
                         </div>
                         <div className="w-full mt-6">
                             <label className='block'>Where did you hear about us?</label>
-                            <select className='mt-2 py-2 px-2 border border-gray-500 rounded w-full'>
-                                <option disabled selected>Select an option</option>
+                            <select
+                                className='mt-2 py-2 px-2 border border-gray-500 rounded w-full'
+                                id="aboutUs"
+                                name="aboutUs"
+                                defaultValue={aboutUs}
+                                onChange={formik.handleChange}
+                            >
+                                <option disabled >Select an option</option>
                                 <option value="apple">Apple App Store</option>
                                 <option value="email">Email</option>
                                 <option value="facebook">Facebook</option>
@@ -174,7 +188,7 @@ const CorporateClient = () => {
                             />
                         </div>
                         <div className="mt-6 w-full flex">
-                            <button type='submit' className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
+                            <button type='submit' onClick={formik.handleSubmit} className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
                                 Sign Up
                             </button>
                         </div>

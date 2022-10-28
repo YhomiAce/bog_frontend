@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { register } from "../../../redux/actions/authAction";
 import { supplierValidationSchema } from '../../../services/validation';
 import ReCAPTCHA from "react-google-recaptcha";
-import { FaRegEyeSlash, FaRegEye }from 'react-icons/fa';
+import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
 
 export default function SignProfession() {
   const dispatch = useDispatch();
@@ -16,14 +16,13 @@ export default function SignProfession() {
   const captchaRef = useRef(null)
 
   const [passwordType, setPasswordType] = useState("password");
-    const togglePassword =()=>{
-        if(passwordType==="password")
-        {
-         setPasswordType("text")
-         return;
-        }
-        setPasswordType("password")
-      }
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text")
+      return;
+    }
+    setPasswordType("password")
+  }
 
   const handleSubmit = (values, actions) => {
     setLoading(true)
@@ -36,6 +35,8 @@ export default function SignProfession() {
     }
     dispatch(register(paylaod, navigate, stopLoading));
   }
+  const referenceValue = localStorage.getItem("reference");
+
   const formik = useFormik({
     initialValues: {
       fname: "",
@@ -44,12 +45,14 @@ export default function SignProfession() {
       email: "",
       phone: "",
       password: "",
-      terms: false
+      terms: false,
+      aboutUs: "",
+      reference: referenceValue || "",
     },
     validationSchema: supplierValidationSchema,
     onSubmit: handleSubmit,
   });
-  const { fname, lname, email, password, phone, terms, company_name } = formik.values;
+  const { fname, lname, email, password, phone, terms, company_name, aboutUs, reference } = formik.values;
   return (
     <div className="bg-login bg-fixed bg-cover text-black font-primary">
       <Link to="/">
@@ -97,37 +100,37 @@ export default function SignProfession() {
             {loading ? <Spinner /> :
               <form onSubmit={formik.handleSubmit}>
                 <div className="w-full">
-                    <label className="block">First Name</label>
-                    <input
-                      type="text"
-                      placeholder="Enter your first name"
-                      className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
-                      value={fname}
-                      id="fname"
-                      name="fname"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                    />
-                    {
-                      formik.touched.fname && formik.errors.fname ? <p className='text-red-500'>{formik.errors.fname}</p> : null
-                    }
-                  </div>
-                  <div className="w-full mt-6">
-                    <label className="block">Last Name</label>
-                    <input
-                      type="text"
-                      placeholder="Enter your last name"
-                      className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
-                      value={lname}
-                      id="lname"
-                      name="lname"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                    />
-                    {
-                      formik.touched.lname && formik.errors.lname ? <p className='text-red-500'>{formik.errors.lname}</p> : null
-                    }
-                  </div>
+                  <label className="block">First Name</label>
+                  <input
+                    type="text"
+                    placeholder="Enter your first name"
+                    className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
+                    value={fname}
+                    id="fname"
+                    name="fname"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                  {
+                    formik.touched.fname && formik.errors.fname ? <p className='text-red-500'>{formik.errors.fname}</p> : null
+                  }
+                </div>
+                <div className="w-full mt-6">
+                  <label className="block">Last Name</label>
+                  <input
+                    type="text"
+                    placeholder="Enter your last name"
+                    className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
+                    value={lname}
+                    id="lname"
+                    name="lname"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                  {
+                    formik.touched.lname && formik.errors.lname ? <p className='text-red-500'>{formik.errors.lname}</p> : null
+                  }
+                </div>
                 <div className="w-full mt-6">
                   <label className="block">Email Address</label>
                   <input
@@ -193,7 +196,7 @@ export default function SignProfession() {
                       name="password"
                     />
                     <div onClick={togglePassword} className="px-3">
-                      { passwordType==="password"? <FaRegEyeSlash className="text-xl" /> :<FaRegEye className="text-xl"/> }
+                      {passwordType === "password" ? <FaRegEyeSlash className="text-xl" /> : <FaRegEye className="text-xl" />}
                     </div>
                   </div>
                   {
@@ -201,30 +204,38 @@ export default function SignProfession() {
                   }
                 </div>
                 <div className="w-full mt-6">
-                            <label className='block'>Referral Code (Optional)</label>
-                            <input
-                                type="text"
-                                placeholder="Enter your referral code"
-                                className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
-                                id="phone"
-                                name="phone"
-                            />
-                        </div>
-                        <div className="w-full mt-6">
-                            <label className='block'>Where did you hear about us?</label>
-                            <select className='mt-2 py-2 px-2 border border-gray-500 rounded w-full'>
-                                <option disabled selected>Select an option</option>
-                                <option value="apple">Apple App Store</option>
-                                <option value="email">Email</option>
-                                <option value="facebook">Facebook</option>
-                                <option value="google">Google</option>
-                                <option value="playstore">Google Play Store</option>
-                                <option value="instagram">Instagram</option>
-                                <option value="referral">Referral</option>
-                                <option value="twitter">Twitter</option>
-                                <option value="whatsapp">WhatsApp</option>
-                            </select>
-                        </div>
+                  <label className='block'>Referral Code (Optional)</label>
+                  <input
+                    type="text"
+                    placeholder="Enter your referral code"
+                    className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
+                    id="reference"
+                    name="reference"
+                    value={reference}
+                    onChange={formik.handleChange}
+                  />
+                </div>
+                <div className="w-full mt-6">
+                  <label className='block'>Where did you hear about us?</label>
+                  <select
+                    className='mt-2 py-2 px-2 border border-gray-500 rounded w-full'
+                    id="aboutUs"
+                    name="aboutUs"
+                    value={aboutUs}
+                    onChange={formik.handleChange}
+                  >
+                    <option disabled >Select an option</option>
+                    <option value="apple">Apple App Store</option>
+                    <option value="email">Email</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="google">Google</option>
+                    <option value="playstore">Google Play Store</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="referral">Referral</option>
+                    <option value="twitter">Twitter</option>
+                    <option value="whatsapp">WhatsApp</option>
+                  </select>
+                </div>
                 <div className="mt-8 w-11/12 flex">
                   <input
                     type="checkbox"
@@ -250,7 +261,7 @@ export default function SignProfession() {
                   />
                 </div>
                 <div className="mt-6 w-full flex">
-                  <button type='submit' className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
+                  <button type='submit' onClick={formik.handleSubmit} className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
                     Sign Up
                   </button>
                 </div>
