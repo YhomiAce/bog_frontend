@@ -37,7 +37,6 @@ const PrivateClient = () => {
         setPasswordType("password")
     }
     const referenceValue = localStorage.getItem("reference");
-    console.log({referenceValue});
 
     const formik = useFormik({
 
@@ -56,7 +55,7 @@ const PrivateClient = () => {
 
 
     });
-    const { fname, lname, email, password, phone, terms, reference } = formik.values;
+    const { fname, lname, email, password, phone, terms, reference, aboutUs } = formik.values;
 
     return (
         <div className="mt-8">
@@ -168,6 +167,7 @@ const PrivateClient = () => {
                                 className='mt-2 py-2 px-2 border border-gray-500 rounded w-full'
                                 id="aboutUs"
                                 name="aboutUs"
+                                value={aboutUs}
                                 onChange={formik.handleChange}
                             >
                                 <option disabled selected>Select an option</option>

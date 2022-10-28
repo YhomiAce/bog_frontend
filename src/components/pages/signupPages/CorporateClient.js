@@ -38,19 +38,21 @@ const CorporateClient = () => {
         }
         setPasswordType("password")
       }
-
+      const referenceValue = localStorage.getItem("reference");
     const formik = useFormik({
         initialValues: {
             name: "",
             email: "",
             phone: "",
             password: "",
+            aboutUs: "",
+            reference: referenceValue ? referenceValue : null,
             terms: false
         },
         validationSchema: privateClientSchema,
         onSubmit: handleSubmit,
     });
-    const { name, email, password, phone, terms } = formik.values;
+    const { name, email, password, phone, terms, aboutUs, reference } = formik.values;
     return (
         <div className="mt-8">
             {
@@ -131,13 +133,22 @@ const CorporateClient = () => {
                                 type="text"
                                 placeholder="Enter your referral code"
                                 className="mt-1 w-full py-2 px-2 border-gray-400 rounded border"
-                                id="phone"
-                                name="phone"
+                                id="reference"
+                                name="reference"
+                                value={reference}
+                                onChange={formik.handleChange}
+                                readOnly={referenceValue ? true : false}
                             />
                         </div>
                         <div className="w-full mt-6">
                             <label className='block'>Where did you hear about us?</label>
-                            <select className='mt-2 py-2 px-2 border border-gray-500 rounded w-full'>
+                            <select
+                                className='mt-2 py-2 px-2 border border-gray-500 rounded w-full'
+                                id="aboutUs"
+                                name="aboutUs"
+                                value={aboutUs}
+                                onChange={formik.handleChange}
+                            >
                                 <option disabled selected>Select an option</option>
                                 <option value="apple">Apple App Store</option>
                                 <option value="email">Email</option>
