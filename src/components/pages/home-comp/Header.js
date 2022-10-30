@@ -27,8 +27,8 @@ export default function Header() {
                     <div className="w-4/12 hidden lg:flex items-center">
                         <ul className="flex xl:font-600 fw-600 fw-600 w-full justify-between">
                             <li><BsList className="xl:text-3xl text-2xl cursor-pointer transition hover:scale-110" onClick={() => setHomeMenu(true)}/></li>
-                            <li className="">Home</li>
-                            <li>Shop</li>
+                            <li className="xl:block hidden">Home</li>
+                            <li>Products</li>
                             <li>Find Service Partner</li>
                         </ul>
                     </div>
@@ -59,7 +59,7 @@ export default function Header() {
                             <div className="mt-10">
                                 <ul className="list-none">
                                     <li className="py-4"><Link to="/">Home</Link></li>
-                                    <li className="py-4"><Link to="/">Shop</Link></li>
+                                    <li className="py-4"><Link to="/">Products</Link></li>
                                     <li className="py-4"><Link to="/">Service Partners</Link></li>
                                     <li className="py-4"><Link to="/blog">Our Blog</Link></li>
                                     <li className="py-4"><Link to="/contact">Contact Us</Link></li>
@@ -82,15 +82,16 @@ export default function Header() {
                         </div>
                         <div className="mt-8 text-xl fw-500">
                             <ul>
-                                <li className="py-4"><Link to="/login">About Us</Link></li>
-                                <li className="py-4"><Link to="/login">More for you</Link></li>
-                                <li className="py-4"><Link to="/contact">Contact Us</Link></li>
+                                <li className="py-4"><Link to="/">About Us</Link></li>
+                                
                                 <li className="py-4"><Link to="/faqs">FAQs</Link></li>
                                 <li className="py-4"><Link to="/blog">Our Blog</Link></li>
-                                <li className="py-4"><Link to="/login">Join the team</Link></li>
-                                <li className="py-4"><Link to="/admin">Help</Link></li>
+                                <li className="py-4"><Link to="/contact">Contact Us</Link></li>
+                                <li className="py-4"><Link to="/">Join our Team</Link></li>
+                                <li className="py-4"><Link to="/">Privacy Policy</Link></li>
+                                <li className="py-4"><Link to="/">Terms and Conditions</Link></li>
                                 <li>
-                                    <ul className="mt-4 flex">
+                                    <ul className="mt-24 flex">
                                         <li><img src={require("../../assets/images/insta.png")} alt="insta" /></li>
                                         <li className="pl-4"><img src={require("../../assets/images/twitter.png")} alt="twitter" /></li>
                                         <li className="pl-4"><img src={require("../../assets/images/linkedn.png")} alt="linkedn" /></li>
