@@ -76,6 +76,9 @@
   .fs-400{
     font-size:14px;
   }
+  .fs-300{
+    font-size:13px;
+  }
   .fs-500{
     font-size: 15px;
   }
@@ -191,6 +194,22 @@
   grid-template-columns: 57% 40%;
   justify-content:space-between;
 }
+.grid-2{
+  display:grid;
+  grid-template-columns: 46% 46%;
+}
+.grid-3{
+  display:grid;
+  grid-template-columns: 30% 30% 30%;
+}
+.grid-3s{
+  display:grid;
+  grid-template-columns: 28% 28% 28%;
+}
+.grid-2{
+  display:grid;
+  grid-template-columns: 47% 47%;
+}
 .w-45{
   width: 45%;
 }
@@ -217,27 +236,71 @@
 .pt-21{
   padding-top: 81px;
 }
+.w-200{
+  width: 250%;
+}
+.h-blog{
+  height: 480px;
+}
 .profile-drop{
   left:-100px;
 }
 .hero1{
   top:10%;
   left: 60%;
+  opacity: 0;
+  animation: hero1 8s ease 4s infinite alternate ;
+}
+@keyframes hero1 {
+  0%{
+    opacity: 0;
+    scale: 0;
+  }
+  20%{
+    opacity: 1;
+    scale: 1;
+  }
+  60%{
+    opacity: 1;
+    scale: 1;
+  }
+  100%{
+    opacity: 0;
+    scale: 0;
+  }
 }
 .hero2{
   top:26%;
   left: 20%;
+  opacity: 0;
+  animation: hero1 8s ease 5s infinite alternate ;
 }
 .hero3{
   top:55%;
   left: 60%;
+  opacity: 0;
+  animation: hero1 8s ease 5.5s infinite alternate ;
 }
 .hero4{
   top:73%;
   left: 20%;
+  opacity: 0;
+  animation: hero1 8s ease 6s infinite alternate ;
 }
 .bg-op{
   background-color:rgba(131, 131, 131, 0.7);
+}
+.scale-ani{
+  position: relative;
+  animation: pop .3s ease-in-out;
+}
+@keyframes pop {
+  from{
+    scale: 0;
+  }
+  to{
+    scale: 1;
+  }
 }
 .menu{
   position: absolute;

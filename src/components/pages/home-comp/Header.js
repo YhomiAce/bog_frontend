@@ -21,15 +21,14 @@ export default function Header() {
     }
 
     return (
-        <div>
+        <div className="relative z-10 bg-white">
             <div className="box">
                 <div className="justify-between items-center flex py-2 pb-3">
                     <div className="w-4/12 hidden lg:flex items-center">
                         <ul className="flex xl:font-600 fw-600 fw-600 w-full justify-between">
                             <li><BsList className="xl:text-3xl text-2xl cursor-pointer transition hover:scale-110" onClick={() => setHomeMenu(true)}/></li>
-                            <li className="xl:block hidden">Home</li>
-                            <li>Products</li>
-                            <li>Find Service Partner</li>
+                            <li><Link to="/shop">Products</Link></li>
+                            <li><Link to="/services">Find Service Partner</Link></li>
                         </ul>
                     </div>
                     <div className="w-4/12 flex justify-center">
@@ -59,8 +58,8 @@ export default function Header() {
                             <div className="mt-10">
                                 <ul className="list-none">
                                     <li className="py-4"><Link to="/">Home</Link></li>
-                                    <li className="py-4"><Link to="/">Products</Link></li>
-                                    <li className="py-4"><Link to="/">Service Partners</Link></li>
+                                    <li className="py-4"><Link to="/shop">Products</Link></li>
+                                    <li className="py-4"><Link to="/services">Service Partners</Link></li>
                                     <li className="py-4"><Link to="/blog">Our Blog</Link></li>
                                     <li className="py-4"><Link to="/contact">Contact Us</Link></li>
                                     <li className="py-4"><Link to="/faqs">FAQs</Link></li>
@@ -76,22 +75,23 @@ export default function Header() {
                 )}
             {homeMenu && (
                 <div className="w-full  bg-op fixed z-40 top-0 min-h-screen" onClick={CloseHome}>
-                    <div className="absolute menu  w-3/12 bg-primary text-white px-6 z-40 top-0 min-h-screen">
-                        <div className="text-end pt-4">
+                    <div className="absolute menu  w-3/12 bg-primary text-white pl-10 pr-6 z-40 top-0 min-h-screen">
+                        <div className="flex justify-between pt-4">
+                            <Link to="/"><img src={require("../../assets/images/BOOG 1.png")} alt="logo" className="w-36" /></Link>
                             <FontAwesomeIcon icon={faTimes} className="text-3xl cursor-pointer" onClick={CloseHome}/>
                         </div>
                         <div className="mt-8 text-xl fw-500">
                             <ul>
+                                <li className="py-4"><Link to="/">Home</Link></li>
                                 <li className="py-4"><Link to="/">About Us</Link></li>
-                                
                                 <li className="py-4"><Link to="/faqs">FAQs</Link></li>
                                 <li className="py-4"><Link to="/blog">Our Blog</Link></li>
                                 <li className="py-4"><Link to="/contact">Contact Us</Link></li>
                                 <li className="py-4"><Link to="/">Join our Team</Link></li>
-                                <li className="py-4"><Link to="/">Privacy Policy</Link></li>
-                                <li className="py-4"><Link to="/">Terms and Conditions</Link></li>
+                                <li className="py-4"><Link to="/privacy">Privacy Policy</Link></li>
+                                <li className="py-4"><Link to="/terms">Terms and Conditions</Link></li>
                                 <li>
-                                    <ul className="mt-24 flex">
+                                    <ul className="mt-6 flex">
                                         <li><img src={require("../../assets/images/insta.png")} alt="insta" /></li>
                                         <li className="pl-4"><img src={require("../../assets/images/twitter.png")} alt="twitter" /></li>
                                         <li className="pl-4"><img src={require("../../assets/images/linkedn.png")} alt="linkedn" /></li>

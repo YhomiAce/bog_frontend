@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useLayoutEffect, useRef} from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "./home-comp/Header";
 import {ImQuotesLeft, ImQuotesRight} from "react-icons/im"
 import { BsArrowRight, BsBag } from "react-icons/bs";
@@ -6,9 +8,67 @@ import Faqs from "./home-comp/Faqs";
 import Footer from "./home-comp/Footer";
 import ProfSlides, { ProfSlidesSm } from "./home-comp/ProfSlides";
 import BlogSlides, { BlogSlidesSm } from "./home-comp/BlogSlide";
+import { Link } from "react-router-dom";
+
+
+
+// const Text = ({children}) => {
+//     return <div className="text">{children}</div>;
+// }
 
 export default function Homepage() {
-    
+    gsap.registerPlugin(ScrollTrigger);
+    const intro = useRef();
+    const intro1 = useRef();
+    const hero = useRef();
+    const hazzle = useRef();
+    const blog = useRef();
+    const news = useRef();
+    // const into = useRef();
+    // const into = gsap.utils.selector(intro);
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+
+            // const element = ref.current;
+
+            const bl = gsap.timeline();
+            bl.to(news.current, {y: -520, duration: 5});
+
+            ScrollTrigger.create({
+                animation: bl,
+                trigger: blog.current,
+                toggleActions: "restart none none none",
+                start: "center center",
+                pin: true,
+                scrub: 1,
+                
+            })
+
+            gsap.from(hero.current, {y:-520, ease:"bounce",  duration:2, delay: 1.5, opacity:0})
+
+            gsap.from(hazzle.current, {
+                scale: .6,
+                duration: 2,
+                ease: "elastic",
+                delay: .1,
+                scrollTrigger: {
+                  trigger: hazzle.current,
+                  toggleActions: "restart none none none"
+                }
+              });
+
+            let tl = gsap.timeline();
+            // tl.from(into("text"), { y:10, opacity:0, duration:0.7, delay: .5, ease:"" ,stagger: 0.2,});
+            tl.from(intro1.current, {opacity:0, scale:0, ease: "back", duration: 0.5 , delay: 1,})
+        }, );
+            return () => ctx.revert();
+    }, []);
+
+
+
+
+
     return(
         <div className="font-primary">
             <Header/>
@@ -16,21 +76,25 @@ export default function Homepage() {
             <div className="bg-hero">
                 <div className="box">
                     <div className="lg:flex flex-row-reverse items-center py-1 pb-6 lg:pb-1">
-                        <div className="lg:w-6/12 relative">
-                            <img src={require("../assets/images/hero.png")} alt="hero" className="lg:w-10/12 lg:float-right animate-pulse"/>
+                        <div className="lg:w-6/12 relative z-0">
+                            <img src={require("../assets/images/hero.png")} alt="hero" className="lg:w-10/12 lg:float-right animate-pulse" ref={hero}/>
                             <img src={require("../assets/images/hero1.png")} alt="hero1" className="absolute lg:w-28 w-20 hero1" />
                             <img src={require("../assets/images/hero2.png")} alt="hero2" className="absolute lg:w-28 w-20 hero2" />
                             <img src={require("../assets/images/hero3.png")} alt="hero3" className="absolute lg:w-28 w-20 hero3" />
                             <img src={require("../assets/images/hero4.png")} alt="hero4" className="absolute lg:w-28 w-20 hero4" />
                         </div>
                         <div className="lg:w-6/12 text-white">
-                            <p className="lg:text-4xl text-2xl fw-600">
+                            <p className="lg:text-4xl relative lg:leading-snug text-2xl fw-600" ref={intro}>
                                 Providing products and services to intending structure owners accross borders.
                             </p>
-                            <p className="my-7">A platform where people can monitor and manage their projects without being encumbered by time and distance.</p>
-                            <button className="px-4 py-2 rounded bg-secondary">
-                                Get Started
-                            </button>
+                            <div ref={intro1}>
+                                <p className="my-7" >A platform where people can monitor and manage their projects without being encumbered by time and distance.</p>
+                                <Link to="/login">
+                                    <button className="px-4 py-2 rounded bg-secondary">
+                                        Get Started
+                                    </button>
+                                </Link>
+                            </div>
                         </div>
                         
                     </div>
@@ -42,7 +106,7 @@ export default function Homepage() {
                     <div>
                         <p className="lg:w-6/12 m-auto text-center lg:text-3xl text-2xl fw-600">Start, monitor and complete your project hazzle free in one app</p>
                     </div>
-                    <div className="lg:flex justify-between mt-16">
+                    <div className="lg:flex justify-between mt-16" id="hassle" ref={hazzle}>
                         <div className="text-center lg:w-2/12 px-4">
                             <img src={require("../assets/images/calculator.png")} alt="calculator" className="lg:w-20 w-16 m-auto mb-6"/>
                             <p>Price/Cost calculator</p>
@@ -180,7 +244,74 @@ export default function Homepage() {
             {/* updated with blogs */}
             <div className="section bg-tertiary">
                 <div className="box">
-                    <div className="hidden lg:flex">
+                    <div className="hidden lg:block h-blog overflow-hidden w-full" ref={blog}>
+                        <div className="flex" >
+                            <div className="mt-6 w-3/12 text-white mt-24 pr-6">
+                                <p className="lg:text-3xl ">Stay updated with our blog posts</p>
+                                <p className="my-6">Stay engaged with the latest news and insights from BOG</p>
+                                <Link to="/blog">
+                                <button className="mt-6 px-6 py-2 btn-primary">
+                                    See All Blog Post
+                                </button>
+                                </Link>
+                            </div>
+                            <div className="grid-2 w-9/12" ref={news}>
+                                <div className="mx-4 bg-white text-black relative">
+                                    <div>
+                                        <img src={require("../assets/images/blog1.png")} alt="blog1" className="w-full"/>
+                                    </div>
+                                    <div className="bg-primary w-28 text-white text-xs fw-500 py-3 relative -top-4 left-4 text-center">
+                                        22 OCT, 2022
+                                    </div>
+                                    <div className="py-6 pt-3 px-5">
+                                        <p className="fw-600 lg:text-xl">6 Ways to Improve Machine Operators’ Safety on Cons. . .</p>
+                                        <p className="pt-2 pb-3 ">It should not be surprising that there needs to be an emphasis on machine operators, given...</p>
+                                        <BsArrowRight className="text-lg text-primary"/>
+                                    </div>
+                                </div>
+                                <div className="mx-4 bg-white text-black relative">
+                                    <div>
+                                        <img src={require("../assets/images/blog1.png")} alt="blog1" className="w-full"/>
+                                    </div>
+                                    <div className="bg-primary w-28 text-white text-xs fw-500 py-3 relative -top-4 left-4 text-center">
+                                        22 OCT, 2022
+                                    </div>
+                                    <div className="py-6 pt-3 px-5">
+                                        <p className="fw-600 lg:text-xl">6 Ways to Improve Machine Operators’ Safety on Cons. . .</p>
+                                        <p className="pt-2 pb-3 ">It should not be surprising that there needs to be an emphasis on machine operators, given...</p>
+                                        <BsArrowRight className="text-lg text-primary"/>
+                                    </div>
+                                </div>
+                                <div className="mx-4 mt-12 bg-white text-black relative">
+                                    <div>
+                                        <img src={require("../assets/images/blog2.png")} alt="blog1" className="w-full"/>
+                                    </div>
+                                    <div className="bg-primary w-28 text-white text-xs fw-500 py-3 relative -top-4 left-4 text-center">
+                                        22 OCT, 2022
+                                    </div>
+                                    <div className="py-6 pt-3 px-5">
+                                        <p className="fw-600 lg:text-xl">6 Ways to Improve Machine Operators’ Safety on Cons. . .</p>
+                                        <p className="pt-2 pb-3 ">It should not be surprising that there needs to be an emphasis on machine operators, given...</p>
+                                        <BsArrowRight className="text-lg text-primary"/>
+                                    </div>
+                                </div>
+                                <div className="mx-4 mt-12 bg-white text-black relative">
+                                    <div>
+                                        <img src={require("../assets/images/blog2.png")} alt="blog1" className="w-full"/>
+                                    </div>
+                                    <div className="bg-primary w-28 text-white text-xs fw-500 py-3 relative -top-4 left-4 text-center">
+                                        22 OCT, 2022
+                                    </div>
+                                    <div className="py-6 pt-3 px-5">
+                                        <p className="fw-600 lg:text-xl">6 Ways to Improve Machine Operators’ Safety on Cons. . .</p>
+                                        <p className="pt-2 pb-3 ">It should not be surprising that there needs to be an emphasis on machine operators, given...</p>
+                                        <BsArrowRight className="text-lg text-primary"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="hidden lg:">
                         <div className="mt-6 w-4/12 text-white mt-24 pr-6">
                             <p className="lg:text-3xl ">Stay updated with our blog posts</p>
                             <p className="my-6">Stay engaged with the latest news and insights from BOG</p>
@@ -193,24 +324,36 @@ export default function Homepage() {
                         </div>
                     </div>
                     <div className="lg:hidden">
+                        <div className=" mb-6 text-white">
+                            <p className="lg:text-3xl text-xl fw-600">Stay updated with our blog posts</p>
+                            <p className="my-6">Stay engaged with the latest news and insights from BOG</p>
+                            
+                        </div>
                         <BlogSlidesSm />
+                        <div className="mt-6">
+                            <Link to="/blog">
+                                <button className="mt-3 px-6 py-2 btn-primary">
+                                    See All Blog Post
+                                </button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
             {/* bringing community together */}
             <div className="section">
                 <div className="box">
-                    <div className="lg:flex justify-center items-center">
-                        <div className="lg:w-5/12 ">
+                    <div className="lg:flex flex-row-reverse justify-center items-center">
+                        <div className="lg:w-6/12 ">
+                            <img src={require("../assets/images/build.png")} alt="build" className="lg:w-10/12 w-full m-auto"/>
+                        </div>
+                        <div className="lg:w-5/12 mt-6 lg:mt-0 ">
                             <p className="text-xl lg:text-3xl fw-500">
                                 Bringing together a community of service partners, product partners
                                 and clients.
                             </p>
                             <p className="my-3">An online marketplace which intends to provide a platform for individuals interested in owning structures in Nigeria/Africa achieve their aim.</p>
-                            <button className="btn-primary px-6 mt-6">Get Started</button>
-                        </div>
-                        <div className="lg:w-6/12 mt-6 lg:mt-0">
-                            <img src={require("../assets/images/build.png")} alt="build" className="lg:w-10/12 w-full m-auto"/>
+                            <Link to="/login"><button className="btn-primary px-6 mt-6">Get Started</button></Link>
                         </div>
                     </div>
                 </div>
@@ -224,6 +367,9 @@ export default function Homepage() {
                         </div>
                         <div className="lg:w-8/12 mt-12 m-auto">
                             <Faqs/>
+                        </div>
+                        <div className="text-end lg:w-8/12 mt-12 mx-auto ">
+                            <Link to="/faqs"><button className="border border-primary px-5 py-1 rounded fs-500">More FAQs</button></Link>
                         </div>
                     </div>
                 </div>
