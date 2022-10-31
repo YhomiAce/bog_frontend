@@ -96,15 +96,7 @@ export  function BlogSlidesSm() {
             pagination={true}
             modules={[ Autoplay, Pagination ]}
         >
-            <SwiperSlide>
-                <div className="mt-6 text-white mt-24">
-                    <p className="lg:text-3xl ">Stay updated with our blog posts</p>
-                    <p className="my-6">Stay engaged with the latest news and insights from BOG</p>
-                    <button className="mt-6 px-6 py-2 btn-primary">
-                        See All Blog Post
-                    </button>
-                </div>
-            </SwiperSlide>
+            
             <SwiperSlide>
                 <div className="lg:w- mx-2 bg-white text-black relative">
                     <div>

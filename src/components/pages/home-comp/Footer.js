@@ -51,8 +51,8 @@ export default function Footer(){
                         </div>
                         <div className="mt-4 lg:mt-0">
                             <ul className="flex justify-center lg:text-end">
-                                <li>Terms & Conditions</li>
-                                <li className="pl-2">Privacy Policy</li>
+                                <li className="pr-2"><Link to="/terms">Terms & Conditions</Link></li>
+                                <li className="pl-2 border-l"><Link to="/privacy">Privacy Policy</Link></li>
                             </ul>
                         </div>
                     </div>

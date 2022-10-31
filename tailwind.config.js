@@ -18,6 +18,10 @@ module.exports = withMT(
           'contact': "url('/src/components/assets/images/contact.png')",
           'faq': "url('/src/components/assets/images/faq.png')",
           'blog': "url('/src/components/assets/images/blog.png')",
+          'shop': "url('/src/components/assets/images/shop.png')",
+          'service': "url('/src/components/assets/images/service.png')",
+          'terms': "url('/src/components/assets/images/terms.png')",
+          'privacy': "url('/src/components/assets/images/privacy.png')",
           'fantastic': "linear-gradient(to right bottom, rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.1)),url('/src/components/images/avatar.jpg')",
           "hero": "linear-gradient(295.54deg, #AFC0FC 17.28%, #3F79AD 70.64%)"
         }

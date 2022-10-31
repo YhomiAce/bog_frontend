@@ -18,6 +18,11 @@ import AdminLogin from './components/pages/AdminLogin';
 import Contact from './components/pages/Contact';
 import Faqs from './components/pages/FAQs';
 import Blog from './components/pages/Blog';
+import Shop from './components/pages/Shop';
+import ProductDetail from './components/pages/ProductDetail';
+import Terms from './components/pages/Terms';
+import Privacy from './components/pages/Privacy';
+import Service from './components/pages/Service';
 
 if (localStorage.auth_token) {
   setAuthToken(localStorage.auth_token);
@@ -36,6 +41,11 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/faqs' element={<Faqs />} />
         <Route path='/blog' element={<Blog />} />
+        <Route path='/services' element={<Service />} />
+        <Route path='/shop' element={<Shop />} />
+        <Route path='/shop/:itemId' element={<ProductDetail />} />
+        <Route path='/terms' element={<Terms />} />
+        <Route path='/privacy' element={<Privacy />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup/*' element={<SignupIndex />} />
         <Route path='/forget' element={<Forget />} />
