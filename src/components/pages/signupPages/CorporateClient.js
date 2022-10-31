@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import Spinner from '../../layouts/Spinner';
 import { useDispatch } from 'react-redux';
 import { register } from "../../../redux/actions/authAction";
-import { privateClientSchema } from '../../../services/validation';
+import { corporateClientSchema } from '../../../services/validation';
 import ReCAPTCHA from "react-google-recaptcha";
 import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
 
@@ -53,7 +53,7 @@ const CorporateClient = () => {
             terms: false,
             reference: referenceValue || "",
         },
-        validationSchema: privateClientSchema,
+        validationSchema: corporateClientSchema,
         onSubmit: handleSubmit,
     });
     const { name, email, password, phone, terms, aboutUs, reference } = formik.values;

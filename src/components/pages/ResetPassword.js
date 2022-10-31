@@ -101,6 +101,9 @@ export default function ResetPassword() {
                                                 onChange={formik.handleChange}
                                                 onBlur={formik.handleBlur}
                                             />
+                                            {
+                                                formik.touched.password && formik.errors.password ? <p className='text-red-500'>{formik.errors.password}</p> : null
+                                            }
                                         </div>
                                         <div className="mt-6 w-full">
                                             <div className="flex justify-between">
@@ -118,6 +121,9 @@ export default function ResetPassword() {
                                                 onChange={formik.handleChange}
                                                 onBlur={formik.handleBlur}
                                             />
+                                            {
+                                                formik.touched.confirmPassword && formik.errors.confirmPassword ? <p className='text-red-500'>{formik.errors.confirmPassword}</p> : null
+                                            }
                                         </div>
                                         <div className="mt-6 w-full flex">
                                             <button type="submit" className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
