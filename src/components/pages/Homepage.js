@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useRef} from "react";
+import React, {useLayoutEffect, useRef, useEffect} from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "./home-comp/Header";
@@ -29,22 +29,37 @@ export default function Homepage() {
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
-
-            // const element = ref.current;
-
-            const bl = gsap.timeline();
-            bl.to(news.current, {y: -520, duration: 5});
-
-            ScrollTrigger.create({
-                animation: bl,
-                trigger: blog.current,
-                toggleActions: "restart none none none",
-                start: "center center",
-                pin: true,
-                scrub: 1,
-                
-            })
-
+            let tl = gsap.timeline();
+            // tl.from(into("text"), { y:10, opacity:0, duration:0.7, delay: .5, ease:"" ,stagger: 0.2,});
+            tl.from(intro1.current, {opacity:0, scale:0, ease: "back", duration: 0.5 , delay: 1,})
+        }, );
+            return () => ctx.revert();
+    }, []);
+    useEffect(() => {
+        
+        
+        ScrollTrigger.addEventListener("refresh", function() {
+            const ctx = gsap.context(() => {
+                const bl = gsap.timeline();
+                bl.to(news.current, {yPercent: -52, duration: 5});
+    
+                ScrollTrigger.create({
+                    animation: bl,
+                    trigger: blog.current,
+                    toggleActions: "restart none none none",
+                    start: "center center",
+                    markers:true,
+                    scrub: 1,
+                    pin:true,
+                    
+                })
+            }, );
+            
+            return () => ctx.revert();
+        });
+      }, []);
+      useEffect(() => {
+        const ctx = gsap.context(() => {
             gsap.from(hero.current, {y:-520, ease:"bounce",  duration:2, delay: 1.5, opacity:0})
 
             gsap.from(hazzle.current, {
@@ -56,15 +71,10 @@ export default function Homepage() {
                   trigger: hazzle.current,
                   toggleActions: "restart none none none"
                 }
-              });
-
-            let tl = gsap.timeline();
-            // tl.from(into("text"), { y:10, opacity:0, duration:0.7, delay: .5, ease:"" ,stagger: 0.2,});
-            tl.from(intro1.current, {opacity:0, scale:0, ease: "back", duration: 0.5 , delay: 1,})
-        }, );
-            return () => ctx.revert();
-    }, []);
-
+              },);
+        }, hero);
+        return () => ctx.revert();
+      }, []);
 
 
 
@@ -157,7 +167,10 @@ export default function Homepage() {
                         <p className="text-2xl lg:text-4xl fw-600">How It Works</p>
                     </div>
                     <div className="lg:w-9/12 m-auto">
-                        <img src={require("../assets/images/video.png")} alt="video" className="w-full"/>
+                        <video autoPlay controls>
+                            <source src={require("../assets/images/bog.mp4")} />
+                        </video>
+                        {/* <img src={require("../assets/images/video.png")} alt="video" className="w-full"/> */}
                     </div>
                 </div>
             </div>
