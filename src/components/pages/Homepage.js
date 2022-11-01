@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useRef, useEffect} from "react";
+import React, {useLayoutEffect, useRef} from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "./home-comp/Header";
@@ -22,8 +22,8 @@ export default function Homepage() {
     const intro1 = useRef();
     const hero = useRef();
     const hazzle = useRef();
-    const blog = useRef();
-    const news = useRef();
+    // const blog = useRef();
+    // const news = useRef();
     // const into = useRef();
     // const into = gsap.utils.selector(intro);
 
