@@ -7,19 +7,19 @@ import Header from "./home-comp/Header";
 export default function Service() {
 
     const [landSurvey, setLandSurvey] = useState(false);
-    const [soilTest, setSoilTest] = useState(false);
-    const [aDraw, setADraw] = useState(false);
-    const [sDraw, setSDraw] = useState(false);
-    const [mDraw, setMDraw] = useState(false);
-    const [eDraw, setEDraw] = useState(false);
+    const [gInvest, setGInvest] = useState(false);
+    const [cDraw, setCDraw] = useState(false);
+    const [bAppove, setBAppove] = useState(false);
+    const [sCalc, setSCalc] = useState(false);
+    const [bCorrect, setBCorrect] = useState(false);
 
     const CloseSurvey = () => {
         setLandSurvey(false)
-        setSoilTest(false)
-        setADraw(false)
-        setSDraw(false)
-        setMDraw(false)
-        setEDraw(false)
+        setGInvest(false)
+        setCDraw(false)
+        setBAppove(false)
+        setSCalc(false)
+        setBCorrect(false)
     }
 
   return (
@@ -50,28 +50,33 @@ export default function Service() {
                             </div>
                         </div>
                         <div className="shadow-md h-48 center-item lg:mt-0 mt-10">
-                            <div className="cursor-pointer" onClick={() => {setSoilTest(true)}}>
-                                <p className="fw-500">Soil Test</p>
+                            <div className="cursor-pointer" onClick={() => {setGInvest(true)}}>
+                            <img src={require("../assets/images/GI.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
+                                <p className="fw-500">Geotechnical Investigation</p>
                             </div>
                         </div>
                         <div className="shadow-md h-48 center-item lg:mt-0 mt-10">
-                            <div className="cursor-pointer" onClick={() => {setADraw(true)}}>
-                                <p className="fw-500">Architectural Drawing</p>
+                            <div className="cursor-pointer" onClick={() => {setCDraw(true)}}>
+                            <img src={require("../assets/images/CS.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
+                                <p className="fw-500">Construction Drawing</p>
                             </div>
                         </div>
                         <div className="shadow-md h-48 center-item mt-10">
-                            <div className="cursor-pointer" onClick={() => {setSDraw(true)}}>
-                                <p className="fw-500">Structural Drawing</p>
+                            <div className="cursor-pointer" onClick={() => {setBAppove(true)}}>
+                            <img src={require("../assets/images/BA.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
+                                <p className="fw-500">Building Approval</p>
                             </div>
                         </div>
                         <div className="shadow-md h-48 center-item mt-10">
-                            <div className="cursor-pointer" onClick={() => {setMDraw(true)}}>
-                                <p className="fw-500">Mechanical Drawing</p>
+                            <div className="cursor-pointer" onClick={() => {setSCalc(true)}}>
+                            <img src={require("../assets/images/SC.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
+                                <p className="fw-500">Smart Calculator</p>
                             </div>
                         </div>
                         <div className="shadow-md h-48 center-item mt-10">
-                            <div className="cursor-pointer" onClick={() => {setEDraw(true)}}>
-                                <p className="fw-500">Electrical Drawing</p>
+                            <div className="cursor-pointer" onClick={() => {setBCorrect(true)}}>
+                            <img src={require("../assets/images/BC.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
+                                <p className="fw-500">Building Contracting </p>
                             </div>
                         </div>
                     </div>
@@ -130,11 +135,11 @@ export default function Service() {
         </div>
       </div>
       )}
-      {soilTest && (
+      {gInvest && (
         <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40">
         <div className="bg-white lg:w-4/12 px-5 lg:px-12 w-11/12 py-12 shadow fw-500 scale-ani">
             <div className="flex justify-between">
-                <p className="text-lg lg:text-2xl fw-600">Request Soil Test</p>
+                <p className="text-lg lg:text-2xl fw-600">Request Geotechnical Investigation</p>
                 <FontAwesomeIcon icon={faTimes} className="text-2xl relative -top-3 cursor-pointer" onClick={CloseSurvey}/>
                 
             </div>
@@ -180,11 +185,11 @@ export default function Service() {
         </div>
       </div>
       )}
-      {aDraw && (
+      {cDraw && (
         <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40">
         <div className="bg-white lg:w-4/12 px-5 lg:px-12 w-11/12 py-12 shadow fw-500 scale-ani">
             <div className="flex justify-between">
-                <p className="text-lg lg:text-2xl fw-600">Request Architectural Drawing</p>
+                <p className="text-lg lg:text-2xl fw-600">Request Construction Drawing</p>
                 <FontAwesomeIcon icon={faTimes} className="text-2xl relative -top-3 cursor-pointer" onClick={CloseSurvey}/>
                 
             </div>
@@ -230,11 +235,11 @@ export default function Service() {
         </div>
       </div>
       )}
-      {sDraw && (
+      {bAppove && (
         <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40">
         <div className="bg-white lg:w-4/12 px-5 lg:px-12 w-11/12 py-12 shadow fw-500 scale-ani">
             <div className="flex justify-between">
-                <p className="text-lg lg:text-2xl fw-600">Request Structural Drawing</p>
+                <p className="text-lg lg:text-2xl fw-600">Request Building Approval</p>
                 <FontAwesomeIcon icon={faTimes} className="text-2xl relative -top-3 cursor-pointer" onClick={CloseSurvey}/>
                 
             </div>
@@ -280,11 +285,11 @@ export default function Service() {
         </div>
       </div>
       )}
-      {mDraw && (
+      {sCalc && (
         <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40">
         <div className="bg-white lg:w-4/12 px-5 lg:px-12 w-11/12 py-12 shadow fw-500 scale-ani">
             <div className="flex justify-between">
-                <p className="text-lg lg:text-2xl fw-600">Request Mechanical Drawing</p>
+                <p className="text-lg lg:text-2xl fw-600">Smart Calculator</p>
                 <FontAwesomeIcon icon={faTimes} className="text-2xl relative -top-3 cursor-pointer" onClick={CloseSurvey}/>
                 
             </div>
@@ -330,11 +335,11 @@ export default function Service() {
         </div>
       </div>
       )}
-      {eDraw && (
+      {bCorrect && (
         <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40">
         <div className="bg-white lg:w-4/12 px-5 lg:px-12 w-11/12 py-12 shadow fw-500 scale-ani">
             <div className="flex justify-between">
-                <p className="text-lg lg:text-2xl fw-600">Request Electrical Drawing</p>
+                <p className="text-lg lg:text-2xl fw-600">Request Building Contracting</p>
                 <FontAwesomeIcon icon={faTimes} className="text-2xl relative -top-3 cursor-pointer" onClick={CloseSurvey}/>
                 
             </div>

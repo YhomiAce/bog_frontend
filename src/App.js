@@ -23,6 +23,7 @@ import ProductDetail from './components/pages/ProductDetail';
 import Terms from './components/pages/Terms';
 import Privacy from './components/pages/Privacy';
 import Service from './components/pages/Service';
+import About from './components/pages/About';
 
 if (localStorage.auth_token) {
   setAuthToken(localStorage.auth_token);
@@ -42,6 +43,7 @@ function App() {
         <Route path='/faqs' element={<Faqs />} />
         <Route path='/blog' element={<Blog />} />
         <Route path='/services' element={<Service />} />
+        <Route path='/about' element={<About />} />
         <Route path='/shop' element={<Shop />} />
         <Route path='/shop/:itemId' element={<ProductDetail />} />
         <Route path='/terms' element={<Terms />} />

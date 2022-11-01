@@ -9,6 +9,9 @@ import Footer from "./home-comp/Footer";
 import ProfSlides, { ProfSlidesSm } from "./home-comp/ProfSlides";
 import BlogSlides, { BlogSlidesSm } from "./home-comp/BlogSlide";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeftLong, faPlay} from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 
 
@@ -17,13 +20,16 @@ import { Link } from "react-router-dom";
 // }
 
 export default function Homepage() {
+
+    const [showVideo, setShowVideo] = useState(false)
+
     gsap.registerPlugin(ScrollTrigger);
     const intro = useRef();
     const intro1 = useRef();
     const hero = useRef();
     const hazzle = useRef();
-    // const blog = useRef();
-    // const news = useRef();
+    const blog = useRef();
+    const news = useRef();
     // const into = useRef();
     // const into = gsap.utils.selector(intro);
 
@@ -32,9 +38,30 @@ export default function Homepage() {
             let tl = gsap.timeline();
             // tl.from(into("text"), { y:10, opacity:0, duration:0.7, delay: .5, ease:"" ,stagger: 0.2,});
             tl.from(intro1.current, {opacity:0, scale:0, ease: "back", duration: 0.5 , delay: 1,})
+        
+        
         }, );
+
+        
             return () => ctx.revert();
     }, []);
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.from(hero.current, {y:-520, ease:"bounce",  duration:2, delay: 1.5, opacity:0})
+
+            gsap.from(hazzle.current, {
+                scale: .6,
+                duration: 2,
+                ease: "elastic",
+                delay: .1,
+                scrollTrigger: {
+                  trigger: hazzle.current,
+                  toggleActions: "restart none none none"
+                }
+              },);
+        }, hero);
+        return () => ctx.revert();
+      }, []);
     
 
 
@@ -127,12 +154,34 @@ export default function Homepage() {
                     <div className="text-center mb-6">
                         <p className="text-2xl lg:text-4xl fw-600">How It Works</p>
                     </div>
-                    <div className="lg:w-9/12 m-auto">
-                        <video autoPlay controls>
+                    <div className="lg:w-10/12 m-auto relative h-video lg:my-16 xl:mb-24">
+                        <video autoPlay loop playsInline muted  className="absolute z-0 w-full h-full left-0 top-0">
                             <source src={require("../assets/images/bog.mp4")} />
+                            
                         </video>
+                        <div className="absolute rotate-90 lg:rotate-0 lg:-right-20 z-20 lg:bottom-auto lg:left-auto lg:top-50 md:-bottom-10 bottom-0 left-50 flex items-center">
+                            <div className="lg:w-20 w-10 h-1 bg-gray-400"></div>
+                            <div className="lg:w-20 lg:h-20 w-10 h-10 circle border border-black center-item rotate-12 lg:rotate-0" onClick={() => {setShowVideo(true)}}>
+                                <FontAwesomeIcon icon={faPlay} className="lg:text-3xl text-primary rotate-12 lg:rotate-0" />
+                            </div>
+                        </div>
+                        <div className="w-full h-full bg-video relative flex lg:items-end items-center">
+                            
+                        </div>
+                        
                         {/* <img src={require("../assets/images/video.png")} alt="video" className="w-full"/> */}
                     </div>
+                    {showVideo && (
+                        <div className="center-item scale-ani bg-op-white top-0 left-0 z-40 fixed h-screen w-full">
+                            <div className="box">
+                            <p className="lg:w-9/12 mx-auto" onClick={()=> {setShowVideo(false)}}><FontAwesomeIcon icon={faArrowLeftLong} className="text-2xl text-black" /></p>
+                                <video controls autoPlay className="lg:w-9/12 mx-auto">
+                                    <source src={require("../assets/images/bog.mp4")} />
+                                </video>
+                            </div>
+                            
+                        </div>
+                    )}
                 </div>
             </div>
             {/* shop on bog */}
@@ -218,8 +267,8 @@ export default function Homepage() {
             {/* updated with blogs */}
             <div className="section bg-tertiary">
                 <div className="box">
-                    <div className="hidden lg:block h-blog overflow-hidden w-full" >
-                        <div className="flex" >
+                    <div className="hidden lg:block h-blog overflow-hidden w-full"  >
+                        <div className="flex"  ref={blog}  >
                             <div className="mt-6 w-3/12 text-white mt-24 pr-6">
                                 <p className="lg:text-3xl ">Stay updated with our blog posts</p>
                                 <p className="my-6">Stay engaged with the latest news and insights from BOG</p>
@@ -229,7 +278,7 @@ export default function Homepage() {
                                 </button>
                                 </Link>
                             </div>
-                            <div className="grid-2 w-9/12">
+                            <div className="grid-2 w-9/12"  ref={news}>
                                 <div className="mx-4 bg-white text-black relative">
                                     <div>
                                         <img src={require("../assets/images/blog1.png")} alt="blog1" className="w-full"/>
@@ -333,7 +382,7 @@ export default function Homepage() {
                 </div>
             </div>
             {/* faqs */}
-            <div className="section">
+            <div className="section" >
                 <div className="box">
                     <div>
                         <div>
