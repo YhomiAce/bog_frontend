@@ -35,46 +35,7 @@ export default function Homepage() {
         }, );
             return () => ctx.revert();
     }, []);
-    useEffect(() => {
-        
-        
-        ScrollTrigger.addEventListener("refresh", function() {
-            const ctx = gsap.context(() => {
-                const bl = gsap.timeline();
-                bl.to(news.current, {yPercent: -52, duration: 5});
     
-                ScrollTrigger.create({
-                    animation: bl,
-                    trigger: blog.current,
-                    toggleActions: "restart none none none",
-                    start: "center center",
-                    markers:true,
-                    scrub: 1,
-                    pin:true,
-                    
-                })
-            }, );
-            
-            return () => ctx.revert();
-        });
-      }, []);
-      useEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.from(hero.current, {y:-520, ease:"bounce",  duration:2, delay: 1.5, opacity:0})
-
-            gsap.from(hazzle.current, {
-                scale: .6,
-                duration: 2,
-                ease: "elastic",
-                delay: .1,
-                scrollTrigger: {
-                  trigger: hazzle.current,
-                  toggleActions: "restart none none none"
-                }
-              },);
-        }, hero);
-        return () => ctx.revert();
-      }, []);
 
 
 
@@ -257,7 +218,7 @@ export default function Homepage() {
             {/* updated with blogs */}
             <div className="section bg-tertiary">
                 <div className="box">
-                    <div className="hidden lg:block h-blog overflow-hidden w-full" ref={blog}>
+                    <div className="hidden lg:block h-blog overflow-hidden w-full" >
                         <div className="flex" >
                             <div className="mt-6 w-3/12 text-white mt-24 pr-6">
                                 <p className="lg:text-3xl ">Stay updated with our blog posts</p>
@@ -268,7 +229,7 @@ export default function Homepage() {
                                 </button>
                                 </Link>
                             </div>
-                            <div className="grid-2 w-9/12" ref={news}>
+                            <div className="grid-2 w-9/12">
                                 <div className="mx-4 bg-white text-black relative">
                                     <div>
                                         <img src={require("../assets/images/blog1.png")} alt="blog1" className="w-full"/>
