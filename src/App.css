@@ -152,6 +152,9 @@
 .bg-input{
   background-color:rgba(240, 240, 255, 0.8);
 }
+.bg-video{
+  background-color:rgba(255, 255, 255, 0.5)
+}
 .border-primary{
   border: 2px solid #3F79AD;
   box-shadow: 4px 4px 0px #3F79AD;
@@ -242,6 +245,19 @@
 .h-blog{
   height: 480px;
 }
+.h-video{
+  height: 550px;
+}
+@media (min-width: 1600px) {
+  .h-video{
+    height: 650px;
+  }
+}
+@media (max-width: 996px) {
+  .h-video{
+    height: 300px;
+  }
+}
 .profile-drop{
   left:-100px;
 }
@@ -290,6 +306,9 @@
 .bg-op{
   background-color:rgba(131, 131, 131, 0.7);
 }
+.bg-op-white{
+  background-color: rgba(245, 245, 245, 0.8);
+}
 .scale-ani{
   position: relative;
   animation: pop .3s ease-in-out;
@@ -315,6 +334,7 @@
   }
   
 }
+
 .x-center{
   left: 37%;
 }
@@ -332,5 +352,11 @@
   .x-center{
     left: 42%;
   }
+}
+.left-50{
+  left: 43%
+}
+.top-50{
+  top: 43%
 }
 }

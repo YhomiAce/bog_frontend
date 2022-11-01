@@ -58,6 +58,7 @@ export default function Header() {
                             <div className="mt-10">
                                 <ul className="list-none">
                                     <li className="py-4"><Link to="/">Home</Link></li>
+                                    <li className="py-4"><Link to="/about">About</Link></li>
                                     <li className="py-4"><Link to="/shop">Products</Link></li>
                                     <li className="py-4"><Link to="/services">Service Partners</Link></li>
                                     <li className="py-4"><Link to="/blog">Our Blog</Link></li>
@@ -83,7 +84,7 @@ export default function Header() {
                         <div className="mt-8 text-xl fw-500">
                             <ul>
                                 <li className="py-4"><Link to="/">Home</Link></li>
-                                <li className="py-4"><Link to="/">About Us</Link></li>
+                                <li className="py-4"><Link to="/about">About Us</Link></li>
                                 <li className="py-4"><Link to="/faqs">FAQs</Link></li>
                                 <li className="py-4"><Link to="/blog">Our Blog</Link></li>
                                 <li className="py-4"><Link to="/contact">Contact Us</Link></li>
