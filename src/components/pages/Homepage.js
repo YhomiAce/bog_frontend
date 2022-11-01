@@ -155,17 +155,17 @@ export default function Homepage() {
                         <p className="text-2xl lg:text-4xl fw-600">How It Works</p>
                     </div>
                     <div className="lg:w-10/12 m-auto relative h-video lg:my-16 xl:mb-24">
-                        <video autoPlay loop playsInline muted  className="absolute z-0 w-full h-full left-0 top-0">
+                        <video autoPlay loop playsInline muted  className="absolute z-0 w-full h-full left-0 top-0 rounded-lg">
                             <source src={require("../assets/images/bog.mp4")} />
                             
                         </video>
-                        <div className="absolute rotate-90 lg:rotate-0 lg:-right-20 z-20 lg:bottom-auto lg:left-auto lg:top-50 md:-bottom-10 bottom-0 left-50 flex items-center">
+                        <div className="absolute rotate-90 lg:rotate-0 lg:-right-20 xl:-right-28 z-20 lg:bottom-auto lg:left-auto lg:top-50 md:-bottom-10 bottom-0 left-50 flex items-center">
                             <div className="lg:w-20 w-10 h-1 bg-gray-400"></div>
                             <div className="lg:w-20 lg:h-20 w-10 h-10 circle border border-black center-item rotate-12 lg:rotate-0" onClick={() => {setShowVideo(true)}}>
                                 <FontAwesomeIcon icon={faPlay} className="lg:text-3xl text-primary rotate-12 lg:rotate-0" />
                             </div>
                         </div>
-                        <div className="w-full h-full bg-video relative flex lg:items-end items-center">
+                        <div className="w-full h-full relative flex lg:items-end items-center">
                             
                         </div>
                         
