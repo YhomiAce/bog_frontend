@@ -2,10 +2,12 @@ import { faBagShopping, faMultiply, faPersonDigging, faRetweet } from "@fortawes
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, {useState} from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { useSelector } from "react-redux";
 
 export default function Settings() {
 
   const [editProfile, setEditProfile] = useState(false);
+  const user = useSelector((state)=> state.auth.user);
 
   function OpenEdit() {
     setEditProfile(true)
@@ -29,7 +31,7 @@ export default function Settings() {
                 alt="profifepic"
                 className="m-auto lg:w-32"
               />
-              <p className="fw-500 mt-4">Green Mouse</p>
+              <p className="fw-500 mt-4">{user?.name}</p>
               <p className="fw-500">Client</p>
             </div>
             <div className="mt-3 text-start px-6 border-t pt-3">
@@ -55,7 +57,7 @@ export default function Settings() {
               <label className="block mb-1">Full Name</label>
               <input
                 type="text"
-                value="Green Mouse"
+                value={user?.name}
                 disabled
                 className="w-10/12 py-2 px-3 rounded bg-gray-200 border border-gray-600"
               />
@@ -64,7 +66,7 @@ export default function Settings() {
               <label className="block mb-1">Email</label>
               <input
                 type="text"
-                value="greenmouse@gmail.com"
+                value={user?.email}
                 disabled
                 className="w-10/12 py-2 px-3 rounded bg-gray-200 border border-gray-600"
               />
@@ -73,7 +75,7 @@ export default function Settings() {
               <label className="block mb-1">Phone Number</label>
               <input
                 type="text"
-                value="+234 806 234 3341"
+                value={user?.phone}
                 disabled
                 className="w-10/12 py-2 px-3 rounded bg-gray-200 border border-gray-600"
               />
