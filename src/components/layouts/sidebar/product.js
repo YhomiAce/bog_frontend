@@ -1,6 +1,6 @@
 import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BsCameraVideo, BsFillGrid1X2Fill, BsBell, BsGear, BsReceiptCutoff, BsBag, BsBoxArrowRight } from "react-icons/bs";
+import { BsCameraVideo, BsFillGrid1X2Fill, BsBell, BsGear, BsReceiptCutoff, BsBoxArrowRight } from "react-icons/bs";
 import { VscHistory } from "react-icons/vsc"
 import { RiUserAddLine } from "react-icons/ri"
 import React, { useState, useEffect } from "react";

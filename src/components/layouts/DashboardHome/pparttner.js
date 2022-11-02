@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useSelector } from "react-redux";
 import {  CardBody } from "@material-tailwind/react";
-import ChartLine from "../assets/UsersChart";
-import ProjectChart from "../assets/ProjectChart";
+// import ChartLine from "../assets/UsersChart";
+// import ProjectChart from "../assets/ProjectChart";
 
 export default function ProductDashboard() {
   const user = useSelector((state) => state.auth.user);
