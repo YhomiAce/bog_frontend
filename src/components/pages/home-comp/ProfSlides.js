@@ -14,11 +14,11 @@ export default function ProfSlides() {
     return(
         <Swiper
                 spaceBetween={10}
-                autoplay={{ delay: 3000 }}
+                autoplay={{ delay: 5000 }}
                 effect="coverflow"
                 grabCursor={true}
                 centeredSlides={false}
-                slidesPerView={4}
+                slidesPerView={5}
                 coverflowEffect={{
                     rotate:40,
                     stretch:0,
@@ -31,82 +31,131 @@ export default function ProfSlides() {
             >
                 <SwiperSlide className="">
                     <div className="text-center slider-bg py-4 rounded-lg">
-                        <div>
-                            <img src={require("../../assets/images/image1.png")} alt="img1" className="w-28 m-auto"/>
+                        <div className=" w-4/12 mx-auto circle p-3 bg-white">
+                            <img src={require("../../assets/images/survey.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-500 pt-4 fw-600">John Adeleke</p>
-                        <p className="fs-400 fw-500 py-1">Lagos, Nigeria</p>
-                        <p className="fs-600 fw-600">Land Surveyor</p>
+                        <p className="fs-400 fw-500 py-1">Land Surveyor</p>
+                        <p className="fs-600 fw-600">Lagos, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
                     <div className="text-center slider-bg py-4 rounded-lg">
-                        <div>
-                            <img src={require("../../assets/images/img2.png")} alt="img2" className="w-28 m-auto"/>
+                        <div className=" w-4/12 mx-auto circle p-3 bg-white">
+                            <img src={require("../../assets/images/BC.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-500 pt-4 fw-600">Stamp Raskidat</p>
-                        <p className="fs-400 fw-500 py-1">Abia, Nigeria</p>
-                        <p className="fs-600 fw-600">Land Surveyor</p>
+                        
+                        <p className="fs-600 fw-600">Structural Engineer</p>
+                        <p className="fs-400 fw-500 py-1">Asaba, Nigeria</p>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide>
+                <SwiperSlide className="">
                     <div className="text-center slider-bg py-4 rounded-lg">
-                        <div>
-                            <img src={require("../../assets/images/img3.png")} alt="img3" className="w-28 m-auto"/>
+                        <div className=" w-4/12 mx-auto circle p-3 bg-white">
+                            <img src={require("../../assets/images/arch.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-500 pt-4 fw-600">Holland Stamp</p>
-                        <p className="fs-400 fw-500 py-1">Lagos, Nigeria</p>
-                        <p className="fs-600 fw-600">Land Surveyor</p>
+                        <p className="fs-600 fw-600">Architecture</p>
+                        <p className="fs-400 fw-500 py-1">Ogun, Nigeria</p>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide>
+                <SwiperSlide className="">
                     <div className="text-center slider-bg py-4 rounded-lg">
-                        <div>
-                            <img src={require("../../assets/images/img4.png")} alt="img4" className="w-28 m-auto"/>
+                        <div className=" w-4/12 mx-auto circle p-3 bg-white">
+                            <img src={require("../../assets/images/civil.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-500 pt-4 fw-600">Frank Monts</p>
-                        <p className="fs-400 fw-500 py-1">Accra, Ghana</p>
                         <p className="fs-600 fw-600">Civil Engineer</p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="text-center slider-bg py-4 rounded-lg">
-                        <div>
-                            <img src={require("../../assets/images/img5.png")} alt="img5" className="w-28 m-auto"/>
-                        </div>
-                        <p className="fs-500 pt-4 fw-600">John Adeleke</p>
-                        <p className="fs-400 fw-500 py-1">Nairobi, Kenya</p>
-                        <p className="fs-600 fw-600">Architech</p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="text-center slider-bg py-4 rounded-lg">
-                        <div>
-                            <img src={require("../../assets/images/img3.png")} alt="img6" className="w-28 m-auto"/>
-                        </div>
-                        <p className="fs-500 pt-4 fw-600">David Stamp</p>
-                        <p className="fs-400 fw-500 py-1">Kogi, Nigeria</p>
-                        <p className="fs-600 fw-600">Land Surveyor</p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="text-center slider-bg py-4 rounded-lg">
-                        <div>
-                            <img src={require("../../assets/images/img3.png")} alt="img3" className="w-28 m-auto"/>
-                        </div>
-                        <p className="fs-500 pt-4 fw-600">Holland Stamp</p>
                         <p className="fs-400 fw-500 py-1">Lagos, Nigeria</p>
-                        <p className="fs-600 fw-600">Land Surveyor</p>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide>
+                <SwiperSlide className="">
                     <div className="text-center slider-bg py-4 rounded-lg">
-                        <div>
-                            <img src={require("../../assets/images/img5.png")} alt="img5" className="w-28 m-auto"/>
+                        <div className=" w-4/12 mx-auto circle p-3 bg-white">
+                            <img src={require("../../assets/images/prof.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-500 pt-4 fw-600">John Adeleke</p>
-                        <p className="fs-400 fw-500 py-1">Nairobi, Kenya</p>
-                        <p className="fs-600 fw-600">Architech</p>
+                        <p className="fs-600 fw-600">Building Contractorr</p>
+                        <p className="fs-400 fw-500 py-1">Edo, Nigeria</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide className="">
+                    <div className="text-center slider-bg py-4 rounded-lg">
+                        <div className=" w-4/12 mx-auto circle p-3 bg-white">
+                            <img src={require("../../assets/images/survey.png")} alt="img1" className="w-full m-auto"/>
+                        </div>
+                        <p className="fs-600 fw-600">Land Surveyor</p>
+                        <p className="fs-400 fw-500 py-1">Lagos, Nigeria</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide className="">
+                    <div className="text-center slider-bg py-4 rounded-lg">
+                        <div className=" w-4/12 mx-auto circle p-3 bg-white">
+                            <img src={require("../../assets/images/BC.png")} alt="img1" className="w-full m-auto"/>
+                        </div>
+                        
+                        <p className="fs-600 fw-600">Structural Engineer</p>
+                        <p className="fs-400 fw-500 py-1">Asaba, Nigeria</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide className="">
+                    <div className="text-center slider-bg py-4 rounded-lg">
+                        <div className=" w-4/12 mx-auto circle p-3 bg-white">
+                            <img src={require("../../assets/images/arch.png")} alt="img1" className="w-full m-auto"/>
+                        </div>
+                        <p className="fs-600 fw-600">Architecture</p>
+                        <p className="fs-400 fw-500 py-1">Ogun, Nigeria</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide className="">
+                    <div className="text-center slider-bg py-4 rounded-lg">
+                        <div className=" w-4/12 mx-auto circle p-3 bg-white">
+                            <img src={require("../../assets/images/civil.png")} alt="img1" className="w-full m-auto"/>
+                        </div>
+                        <p className="fs-600 fw-600">Civil Engineer</p>
+                        <p className="fs-400 fw-500 py-1">Lagos, Nigeria</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide className="">
+                    <div className="text-center slider-bg py-4 rounded-lg">
+                        <div className=" w-4/12 mx-auto circle p-3 bg-white">
+                            <img src={require("../../assets/images/prof.png")} alt="img1" className="w-full m-auto"/>
+                        </div>
+                        <p className="fs-600 fw-600">Building Contractorr</p>
+                        <p className="fs-400 fw-500 py-1">Edo, Nigeria</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide className="">
+                    <div className="text-center slider-bg py-4 rounded-lg">
+                        <div className=" w-4/12 mx-auto circle p-3 bg-white">
+                            <img src={require("../../assets/images/BC.png")} alt="img1" className="w-full m-auto"/>
+                        </div>
+                        
+                        <p className="fs-600 fw-600">Structural Engineer</p>
+                        <p className="fs-400 fw-500 py-1">Asaba, Nigeria</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide className="">
+                    <div className="text-center slider-bg py-4 rounded-lg">
+                        <div className=" w-4/12 mx-auto circle p-3 bg-white">
+                            <img src={require("../../assets/images/CS.png")} alt="img1" className="w-full m-auto"/>
+                        </div>
+                        <p className="fs-600 fw-600">Construction Drawing</p>
+                        <p className="fs-400 fw-500 py-1">Ogun, Nigeria</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide className="">
+                    <div className="text-center slider-bg py-4 rounded-lg">
+                        <div className=" w-4/12 mx-auto circle p-3 bg-white">
+                            <img src={require("../../assets/images/BA.png")} alt="img1" className="w-full m-auto"/>
+                        </div>
+                        <p className="fs-600 fw-600">Building Approval</p>
+                        <p className="fs-400 fw-500 py-1">Oyo, Nigeria</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide className="">
+                    <div className="text-center slider-bg py-4 rounded-lg">
+                        <div className=" w-4/12 mx-auto circle p-3 bg-white">
+                            <img src={require("../../assets/images/prof.png")} alt="img1" className="w-full m-auto"/>
+                        </div>
+                        <p className="fs-600 fw-600">Building Contractorr</p>
+                        <p className="fs-400 fw-500 py-1">Edo, Nigeria</p>
                     </div>
                 </SwiperSlide>
             </Swiper>
@@ -127,63 +176,76 @@ export function ProfSlidesSm() {
                 autoplay={{ delay: 3000 }}
             >
                 <SwiperSlide className="mb-8">
-                <div className="text-center             slider-bg py-4 rounded-lg">
-                        <div>
-                            <img src={require("../../assets/images/image1.png")} alt="img1" className="w-28 m-auto"/>
+                    <div className="text-center slider-bg py-4 rounded-lg">
+                        <div className=" w-4/12 mx-auto circle p-6 bg-white">
+                            <img src={require("../../assets/images/survey.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-500 pt-4 fw-600">John Adeleke</p>
+                        <p className="fs-600 fw-600 mt-2 ">Land Surveyor</p>
                         <p className="fs-400 fw-500 py-1">Lagos, Nigeria</p>
-                        <p className="fs-600 fw-600">Land Surveyor</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
                     <div className="text-center slider-bg py-4 rounded-lg">
-                        <div>
-                            <img src={require("../../assets/images/img2.png")} alt="img2" className="w-28 m-auto"/>
+                        <div className=" w-4/12 mx-auto circle p-6 bg-white">
+                            <img src={require("../../assets/images/BC.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-500 pt-4 fw-600">Stamp Raskidat</p>
-                        <p className="fs-400 fw-500 py-1">Abia, Nigeria</p>
-                        <p className="fs-600 fw-600">Land Surveyor</p>
+                        
+                        <p className="fs-600 fw-600 mt-2">Structural Engineer</p>
+                        <p className="fs-400 fw-500 py-1">Asaba, Nigeria</p>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide>
+                <SwiperSlide className="">
                     <div className="text-center slider-bg py-4 rounded-lg">
-                        <div>
-                            <img src={require("../../assets/images/img3.png")} alt="img3" className="w-28 m-auto"/>
+                        <div className=" w-4/12 mx-auto circle p-6 bg-white">
+                            <img src={require("../../assets/images/arch.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-500 pt-4 fw-600">Holland Stamp</p>
+                        <p className="fs-600 fw-600 mt-2">Architecture</p>
+                        <p className="fs-400 fw-500 py-1">Ogun, Nigeria</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide className="">
+                    <div className="text-center slider-bg py-4 rounded-lg">
+                        <div className=" w-4/12 mx-auto circle p-6 bg-white">
+                            <img src={require("../../assets/images/civil.png")} alt="img1" className="w-full m-auto"/>
+                        </div>
+                        <p className="fs-600 fw-600 mt-2">Civil Engineer</p>
                         <p className="fs-400 fw-500 py-1">Lagos, Nigeria</p>
-                        <p className="fs-600 fw-600">Land Surveyor</p>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide>
+                <SwiperSlide className="">
                     <div className="text-center slider-bg py-4 rounded-lg">
-                        <div>
-                            <img src={require("../../assets/images/img4.png")} alt="img4" className="w-28 m-auto"/>
+                        <div className=" w-4/12 mx-auto circle p-6 bg-white">
+                            <img src={require("../../assets/images/prof.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-500 pt-4 fw-600">Frank Monts</p>
-                        <p className="fs-400 fw-500 py-1">Accra, Ghana</p>
-                        <p className="fs-600 fw-600">Civil Engineer</p>
+                        <p className="fs-600 fw-600 mt-2">Building Contractorr</p>
+                        <p className="fs-400 fw-500 py-1">Edo, Nigeria</p>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide>
+                <SwiperSlide className="">
                     <div className="text-center slider-bg py-4 rounded-lg">
-                        <div>
-                            <img src={require("../../assets/images/img5.png")} alt="img5" className="w-28 m-auto"/>
+                        <div className=" w-4/12 mx-auto circle p-6 bg-white">
+                            <img src={require("../../assets/images/CS.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-500 pt-4 fw-600">John Adeleke</p>
-                        <p className="fs-400 fw-500 py-1">Nairobi, Kenya</p>
-                        <p className="fs-600 fw-600">Architech</p>
+                        <p className="fs-600 fw-600 mt-2">Construction Drawing</p>
+                        <p className="fs-400 fw-500 py-1">Ogun, Nigeria</p>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide>
+                <SwiperSlide className="">
                     <div className="text-center slider-bg py-4 rounded-lg">
-                        <div>
-                            <img src={require("../../assets/images/img3.png")} alt="img6" className="w-28 m-auto"/>
+                        <div className=" w-4/12 mx-auto circle p-6 bg-white">
+                            <img src={require("../../assets/images/BA.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-500 pt-4 fw-600">David Stamp</p>
-                        <p className="fs-400 fw-500 py-1">Kogi, Nigeria</p>
-                        <p className="fs-600 fw-600">Land Surveyor</p>
+                        <p className="fs-600 fw-600 mt-2">Building Approval</p>
+                        <p className="fs-400 fw-500 py-1">Oyo, Nigeria</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide className="">
+                    <div className="text-center slider-bg py-4 rounded-lg">
+                        <div className=" w-4/12 mx-auto circle p-6 bg-white">
+                            <img src={require("../../assets/images/prof.png")} alt="img1" className="w-full m-auto"/>
+                        </div>
+                        <p className="fs-600 fw-600 mt-2">Building Contractorr</p>
+                        <p className="fs-400 fw-500 py-1">Edo, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 
