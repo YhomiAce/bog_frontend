@@ -9,6 +9,10 @@ import Footer from "./home-comp/Footer";
 import ProfSlides, { ProfSlidesSm } from "./home-comp/ProfSlides";
 import BlogSlides, { BlogSlidesSm } from "./home-comp/BlogSlide";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeftLong, faPlay} from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import { AboutSlides2, AboutSlides2Sm } from "./home-comp/AboutSlides";
 
 
 
@@ -17,13 +21,16 @@ import { Link } from "react-router-dom";
 // }
 
 export default function Homepage() {
+
+    const [showVideo, setShowVideo] = useState(false)
+
     gsap.registerPlugin(ScrollTrigger);
     const intro = useRef();
     const intro1 = useRef();
     const hero = useRef();
     const hazzle = useRef();
-    // const blog = useRef();
-    // const news = useRef();
+    const blog = useRef();
+    const news = useRef();
     // const into = useRef();
     // const into = gsap.utils.selector(intro);
 
@@ -32,9 +39,30 @@ export default function Homepage() {
             let tl = gsap.timeline();
             // tl.from(into("text"), { y:10, opacity:0, duration:0.7, delay: .5, ease:"" ,stagger: 0.2,});
             tl.from(intro1.current, {opacity:0, scale:0, ease: "back", duration: 0.5 , delay: 1,})
+        
+        
         }, );
+
+        
             return () => ctx.revert();
     }, []);
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.from(hero.current, {y:-520, ease:"bounce",  duration:2, delay: 1.5, opacity:0})
+
+            gsap.from(hazzle.current, {
+                scale: .6,
+                duration: 2,
+                ease: "elastic",
+                delay: .1,
+                scrollTrigger: {
+                  trigger: hazzle.current,
+                  toggleActions: "restart none none none"
+                }
+              },);
+        }, hero);
+        return () => ctx.revert();
+      }, []);
     
 
 
@@ -46,7 +74,7 @@ export default function Homepage() {
             {/* hero banner */}
             <div className="bg-hero">
                 <div className="box">
-                    <div className="lg:flex flex-row-reverse items-center py-1 pb-6 lg:pb-1">
+                    <div className="lg:flex flex-row-reverse items-center py-1 pb-6 lg:py-6">
                         <div className="lg:w-6/12 relative z-0">
                             <img src={require("../assets/images/hero.png")} alt="hero" className="lg:w-10/12 lg:float-right animate-pulse" ref={hero}/>
                             <img src={require("../assets/images/hero1.png")} alt="hero1" className="absolute lg:w-28 w-20 hero1" />
@@ -127,12 +155,29 @@ export default function Homepage() {
                     <div className="text-center mb-6">
                         <p className="text-2xl lg:text-4xl fw-600">How It Works</p>
                     </div>
-                    <div className="lg:w-9/12 m-auto">
-                        <video autoPlay controls>
+                    <div className="lg:w-10/12 m-auto relative h-video lg:my-16 xl:mb-24">
+                        <video loop playsInline muted  className="absolute z-0 w-full h-full left-0 top-0 rounded-lg">
                             <source src={require("../assets/images/bog.mp4")} />
+                            
                         </video>
-                        {/* <img src={require("../assets/images/video.png")} alt="video" className="w-full"/> */}
+                        <div className="absolute bg-white xl:left-50 lg:left-45 circle left-40 z-20 top-50 flex items-center">
+                            {/* <div className="lg:w-20 w-10 h-1 bg-gray-400"></div> */}
+                            <div className="lg:w-20 lg:h-20 w-10 h-10 circle center-item " onClick={() => {setShowVideo(true)}}>
+                                <FontAwesomeIcon icon={faPlay} className="lg:text-3xl text-primary" />
+                            </div>
+                        </div>
                     </div>
+                    {showVideo && (
+                        <div className="center-item scale-ani bg-op-white top-0 left-0 z-40 fixed h-screen w-full">
+                            <div className="box">
+                            <p className="lg:w-9/12 mx-auto" onClick={()=> {setShowVideo(false)}}><FontAwesomeIcon icon={faArrowLeftLong} className="text-2xl text-black" /></p>
+                                <video controls autoPlay className="lg:w-9/12 mx-auto">
+                                    <source src={require("../assets/images/bog.mp4")} />
+                                </video>
+                            </div>
+                            
+                        </div>
+                    )}
                 </div>
             </div>
             {/* shop on bog */}
@@ -170,7 +215,7 @@ export default function Homepage() {
                             </div>
                         </div>
                         <div className="text-center mt-12">
-                            <button className="px-8 lg:px-12 lg:py-3 py-2 rounded text-white bg-secondary">Shop Materials</button>
+                            <Link to="/shop"><button className="px-8 lg:px-12 lg:py-3 py-2 rounded text-white bg-secondary">Shop Materials</button></Link>
                         </div>
                     </div>
                 </div>
@@ -201,15 +246,15 @@ export default function Homepage() {
                             <p className="text-center m-auto lg:w-5/12 w-10/12">Sign up as a professional service provider or, a vendor today and get more jobs.</p>
                         </div>
                         <div className="mt-12 lg:flex justify-around">
-                            <div className="lg:w-4/12 border-primary h-64 rounded-lg px-6 pt-8">
+                            <div className="lg:w-4/12 border-primary bg-white h-64 rounded-lg px-6 pt-8">
                                 <p className="text-lg fw-600">Sign Up as a Service Partner</p>
-                                <p className="mt-5 mb-7">Setup your account as a vendor and start selling your products fast and easy </p>
-                                <p className="text-secondary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p>
+                                <p className="mt-5 mb-7">Setup your account as a service partner and start selling your products fast and easy </p>
+                                <Link to="/signup/profession"><p className="text-secondary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p></Link>
                             </div>
-                            <div className="lg:w-4/12 mt-6 lg:mt-0 border-secondary rounded-lg p-8">
+                            <div className="lg:w-4/12 mt-6 bg-white lg:mt-0 border-secondary rounded-lg p-8">
                                 <p className="text-lg fw-600">Sign Up as a Product Partner</p>
-                                <p className="mt-5 mb-7">Setup your account as a vendor and start selling your products fast and easy </p>
-                                <p className="text-primary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p>
+                                <p className="mt-5 mb-7">Setup your account as a product partner and start selling your products fast and easy </p>
+                                <Link to="/signup/supply"><p className="text-primary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p></Link>
                             </div>
                         </div>
                     </div>
@@ -218,8 +263,8 @@ export default function Homepage() {
             {/* updated with blogs */}
             <div className="section bg-tertiary">
                 <div className="box">
-                    <div className="hidden lg:block h-blog overflow-hidden w-full" >
-                        <div className="flex" >
+                    <div className="hidden lg:block h-blog overflow-hidden w-full"  >
+                        <div className="flex"  ref={blog}  >
                             <div className="mt-6 w-3/12 text-white mt-24 pr-6">
                                 <p className="lg:text-3xl ">Stay updated with our blog posts</p>
                                 <p className="my-6">Stay engaged with the latest news and insights from BOG</p>
@@ -229,7 +274,7 @@ export default function Homepage() {
                                 </button>
                                 </Link>
                             </div>
-                            <div className="grid-2 w-9/12">
+                            <div className="grid-2 w-9/12"  ref={news}>
                                 <div className="mx-4 bg-white text-black relative">
                                     <div>
                                         <img src={require("../assets/images/blog1.png")} alt="blog1" className="w-full"/>
@@ -314,6 +359,22 @@ export default function Homepage() {
                     </div>
                 </div>
             </div>
+            {/* what our client says */}
+            <div className="section bg-light">
+                <div className="box">
+                    <div>
+                        <div className="lg:text-2xl text-xl fw-600 lg:w-4/12">
+                            <p>See what our Clients and Patners have to say about us </p>
+                        </div>
+                        <div className="mt-12 hidden lg:block">
+                            <AboutSlides2/>
+                        </div>
+                        <div className="mt-12 lg:hidden">
+                            <AboutSlides2Sm/>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {/* bringing community together */}
             <div className="section">
                 <div className="box">
@@ -333,7 +394,7 @@ export default function Homepage() {
                 </div>
             </div>
             {/* faqs */}
-            <div className="section">
+            <div className="section" >
                 <div className="box">
                     <div>
                         <div>
@@ -342,8 +403,8 @@ export default function Homepage() {
                         <div className="lg:w-8/12 mt-12 m-auto">
                             <Faqs/>
                         </div>
-                        <div className="text-end lg:w-8/12 mt-12 mx-auto ">
-                            <Link to="/faqs"><button className="border border-primary px-5 py-1 rounded fs-500">More FAQs</button></Link>
+                        <div className="text-center lg:w-8/12 mt-12 mx-auto ">
+                            <Link to="/faqs"><button className="btn-primary lg:px-10 px-4 rounded fs-500">See All FAQs</button></Link>
                         </div>
                     </div>
                 </div>

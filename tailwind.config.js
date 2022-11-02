@@ -20,6 +20,8 @@ module.exports = withMT(
           'blog': "url('/src/components/assets/images/blog.png')",
           'shop': "url('/src/components/assets/images/shop.png')",
           'service': "url('/src/components/assets/images/service.png')",
+          'about': "url('/src/components/assets/images/about.png')",
+          'footer': "url('/src/components/assets/images/footer.png')",
           'terms': "url('/src/components/assets/images/terms.png')",
           'privacy': "url('/src/components/assets/images/privacy.png')",
           'fantastic': "linear-gradient(to right bottom, rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.1)),url('/src/components/images/avatar.jpg')",

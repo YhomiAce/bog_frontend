@@ -6,7 +6,7 @@ export default function Footer(){
 
     return (
         <div>
-            <div className="pt-24 pb-12 font-primary bg-primary text-white">
+            <div className="pt-24 pb-12 font-primary bg-footer bg-100 bg-bottom text-white">
                 <div className="box">
                     <div className="lg:flex justify-between">
                         <div className="lg:w-3/12">
@@ -16,16 +16,16 @@ export default function Footer(){
                             <p className="fw-600 mb-3">QUICK LINKS</p>
                             <ul>
                                 <li className="py-1"><Link to="/">Home</Link></li>
-                                <li className="py-1">About</li>
-                                <li className="py-1">FAQS</li>
-                                <li className="py-1">Contact Us</li>
+                                <li className="py-1"><Link to="/about" className="cursor-pointer">About</Link></li>
+                                <li className="py-1"><Link to="/faqs" className="cursor-pointer">FAQs</Link></li>
+                                <li className="py-1"><Link to="/contact" className="cursor-pointer">Contact Us</Link></li>
                             </ul>
                         </div>
                         <div className="lg:w-2/12 mt-10 lg:mt-0">
                             <p className="fw-600 mb-3">SERVICES</p>
                             <ul>
-                                <li className="py-1">Find A Service Partner</li>
-                                <li className="py-1">Shop from Vendor</li>
+                                <li className="py-1"><Link to="/services" className="cursor-pointer">Find A Service Partner</Link></li>
+                                <li className="py-1"><Link to="/shop" className="cursor-pointer">Shop for Products</Link></li>
                             </ul>
                         </div>
                         <div className="lg:w-3/12 mt-10 lg:mt-0">

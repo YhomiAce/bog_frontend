@@ -2,7 +2,8 @@ import React from "react";
 import Footer from "./home-comp/Footer";
 import Header from "./home-comp/Header";
 import { useParams } from "react-router-dom";
-import { products } from "./shop/AllProducts";
+import { products, SimilarProducts } from "./shop/AllProducts";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import ReactStars from "react-rating-stars-component";
 
@@ -23,24 +24,35 @@ export default function ProductDetail() {
                 </div>
                 <div className="section">
                     <div className="box">
-                        <div className="lg:flex pt-10">
-                            <div className="w-4/12">
+                        <div className="lg:flex lg:pt-10">
+                            <div className="lg:w-4/12 shadow-md p-4">
                                 <img src={thisItem.img} alt="product" className="w-full" />
                             </div>
-                            <div className="pl-8">
-                                <p className="text-3xl fw-600">{thisItem.tittle}</p>
-                                <p className="fw-600 py-4 text-gray-600"><span className="pr-2 ">Product Category :</span>{thisItem.category}</p>
-                                <ReactStars 
-                                    edit={false}
-                                    value={thisItem.rating}
-                                    size={35}
-                                />
-                                <p className="text-2xl fw-600 py-6">{thisItem.price}</p>
+                            <div className="lg:pl-8 mt-4 lg:mt-0">
+                                <p className="lg:text-3xl text-lg fw-600">{thisItem.tittle}</p>
+                                <p className="fw-600 lg:py-4 py-2 text-gray-600"><span className="pr-2 ">Product Category :</span>{thisItem.category}</p>
+                                <div>
+                                    <div className="hidden lg:block">
+                                        <ReactStars 
+                                            edit={false}
+                                            value={thisItem.rating}
+                                            size={35}
+                                        />
+                                    </div>
+                                    <div className="lg:hidden">
+                                        <ReactStars 
+                                            edit={false}
+                                            value={thisItem.rating}
+                                            size={25}
+                                        />
+                                    </div>
+                                </div>
+                                <p className="lg:text-2xl fs-700 fw-600 lg:py-6 py-2">{thisItem.price}</p>
                                 <div>
                                     <p className="fw-600 text-gray-600">Quantity</p>
-                                    <div className="mt-6">
-                                        <input type="number" value={1} className="w-16 px-2 rounded py-2 border border-black"/>
-                                        <button className="btn-primary ml-7 px-8">Add To Cart</button>
+                                    <div className="mt-6 fs-500 lg:fs-600">
+                                        <input type="number" className="w-16 px-1 lg:px-2 rounded py-1 lg:py-2 border border-black"/>
+                                        <button className="btn-primary ml-7 px-4 lg:px-8 ">Add To Cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -50,14 +62,36 @@ export default function ProductDetail() {
                 <div className="section">
                     <div className="box">
                         <div>
-                            <p>Description</p>
+                           <Tabs>
+                                <TabList className="flex fs-300 lg:fs-600">
+                                    <Tab>Product Details</Tab>
+                                    <Tab>Specification</Tab>
+                                    <Tab>Reviews</Tab>
+                                </TabList>
+                                <TabPanel>
+                                    <div className="mt-6 lg:px-6 fs-400 lg:fs-600">
+                                        <p className="text-lg mb-4 fw-600">Description</p>
+                                        {thisItem.tittle}
+                                    </div>
+                                </TabPanel>
+                                <TabPanel>
+                                    <div className="mt-6 lg:px-6 fs-400 lg:fs-600">
+                                        <p className="text-lg mb-4 fw-600">Description</p>
+                                        {thisItem.price}
+                                    </div>
+                                </TabPanel>
+                           </Tabs>
                         </div>
                     </div>
                 </div>
-                {/* <div className="py-24 box">
-                    <p><img src={thisTop.img} alt="product" /></p>
-                    <p>{thisTop.tittle}</p>
-                </div> */}
+                <div className="section">
+                    <div className="box">
+                        <div>
+                            <p className="fw-600 lg:text-2xl py-6">Similar Products</p>
+                            <SimilarProducts />
+                        </div>
+                    </div>
+                </div>
                 <Footer/>
             </div>
         </div>
