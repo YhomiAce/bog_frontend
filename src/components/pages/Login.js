@@ -6,7 +6,7 @@ import { loginUser } from '../../redux/actions/authAction'
 import { useFormik } from 'formik';
 import { loginValidation } from '../../services/validation'
 import Spinner from "../layouts/Spinner";
-import { FaRegEyeSlash, FaRegEye }from 'react-icons/fa';
+import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
 
 export default function Login() {
     const dispatch = useDispatch();
@@ -21,14 +21,13 @@ export default function Login() {
         dispatch(loginUser(values, navigate, stopLoading));
     }
     const [passwordType, setPasswordType] = useState("password");
-    const togglePassword =()=>{
-        if(passwordType==="password")
-        {
-         setPasswordType("text")
-         return;
+    const togglePassword = () => {
+        if (passwordType === "password") {
+            setPasswordType("text")
+            return;
         }
         setPasswordType("password")
-      }
+    }
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -77,6 +76,9 @@ export default function Login() {
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                     />
+                                    {
+                                        formik.touched.email && formik.errors.email ? <p className='text-red-500'>{formik.errors.email}</p> : null
+                                    }
                                 </div>
                                 <div className="mt-6 w-full">
                                     <div className="flex justify-between">
@@ -96,10 +98,13 @@ export default function Login() {
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                         />
+                                        {
+                                            formik.touched.password && formik.errors.password ? <p className='text-red-500'>{formik.errors.password}</p> : null
+                                        }
                                         <div onClick={togglePassword} className="px-3">
-                                            { passwordType==="password"? <FaRegEyeSlash className="text-xl" /> :<FaRegEye className="text-xl"/> }
+                                            {passwordType === "password" ? <FaRegEyeSlash className="text-xl" /> : <FaRegEye className="text-xl" />}
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                                 <div className="mt-6 w-11/12 flex">
