@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeftLong, faPlay} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { AboutSlides2, AboutSlides2Sm } from "./home-comp/AboutSlides";
 
 
 
@@ -359,6 +360,22 @@ export default function Homepage() {
                                     See All Blog Post
                                 </button>
                             </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* what our client says */}
+            <div className="section bg-light">
+                <div className="box">
+                    <div>
+                        <div className="lg:text-2xl text-xl fw-600 lg:w-4/12">
+                            <p>See what our Clients and Patners have to say about us </p>
+                        </div>
+                        <div className="mt-12 hidden lg:block">
+                            <AboutSlides2/>
+                        </div>
+                        <div className="mt-12 lg:hidden">
+                            <AboutSlides2Sm/>
                         </div>
                     </div>
                 </div>
