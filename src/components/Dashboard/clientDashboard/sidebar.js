@@ -10,6 +10,7 @@ import { logout } from '../../../redux/actions/authAction';
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import ClientSidebar from "../../layouts/sidebar/client";
 import AdminSidebar from "../../layouts/sidebar/admin";
+import ProductSidebar from "../../layouts/sidebar/product";
 
 export default function Sidebar() {
   const dispatch = useDispatch();
@@ -53,6 +54,8 @@ export default function Sidebar() {
 
   if (auth?.user?.userType === "private_client") {
     sidebar = <ClientSidebar />
+  }else if(auth?.user?.userType === "vendor"){
+    sidebar = <ProductSidebar />
   }else if(auth?.user?.userType === "admin"){
     sidebar = <AdminSidebar />
   }
