@@ -6,7 +6,7 @@ export default function Footer(){
 
     return (
         <div>
-            <div className="pt-24 pb-12 font-primary bg-primary text-white">
+            <div className="pt-24 pb-12 font-primary bg-footer bg-100 bg-bottom text-white">
                 <div className="box">
                     <div className="lg:flex justify-between">
                         <div className="lg:w-3/12">

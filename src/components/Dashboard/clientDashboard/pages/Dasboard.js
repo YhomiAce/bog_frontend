@@ -9,6 +9,7 @@ import ChartLine from "../../assets/UsersChart";
 import ProjectChart from "../../assets/ProjectChart";
 import PclientDashboard from "../../../layouts/DashboardHome/pclient";
 import AdminDashboard from "../../../layouts/DashboardHome/admin";
+import ProductDashboard from "../../../layouts/DashboardHome/pparttner";
 
 export default function Dashboard() {
 
@@ -18,6 +19,8 @@ export default function Dashboard() {
 
   if (auth?.user?.userType === "private_client") {
     dashboard = <PclientDashboard />
+  }else if(auth?.user?.userType === "vendor"){
+    dashboard = <ProductDashboard />
   }else if(auth?.user?.userType === "admin"){
     dashboard = <AdminDashboard />
   }

@@ -74,7 +74,7 @@ export default function Homepage() {
             {/* hero banner */}
             <div className="bg-hero">
                 <div className="box">
-                    <div className="lg:flex flex-row-reverse items-center py-1 pb-6 lg:pb-1">
+                    <div className="lg:flex flex-row-reverse items-center py-1 pb-6 lg:py-6">
                         <div className="lg:w-6/12 relative z-0">
                             <img src={require("../assets/images/hero.png")} alt="hero" className="lg:w-10/12 lg:float-right animate-pulse" ref={hero}/>
                             <img src={require("../assets/images/hero1.png")} alt="hero1" className="absolute lg:w-28 w-20 hero1" />
@@ -156,21 +156,16 @@ export default function Homepage() {
                         <p className="text-2xl lg:text-4xl fw-600">How It Works</p>
                     </div>
                     <div className="lg:w-10/12 m-auto relative h-video lg:my-16 xl:mb-24">
-                        <video autoPlay loop playsInline muted  className="absolute z-0 w-full h-full left-0 top-0 rounded-lg">
+                        <video loop playsInline muted  className="absolute z-0 w-full h-full left-0 top-0 rounded-lg">
                             <source src={require("../assets/images/bog.mp4")} />
                             
                         </video>
-                        <div className="absolute rotate-90 lg:rotate-0 lg:-right-20 xl:-right-28 z-20 lg:bottom-auto lg:left-auto lg:top-50 md:-bottom-10 bottom-0 left-50 flex items-center">
-                            <div className="lg:w-20 w-10 h-1 bg-gray-400"></div>
-                            <div className="lg:w-20 lg:h-20 w-10 h-10 circle border border-black center-item rotate-12 lg:rotate-0" onClick={() => {setShowVideo(true)}}>
-                                <FontAwesomeIcon icon={faPlay} className="lg:text-3xl text-primary rotate-12 lg:rotate-0" />
+                        <div className="absolute bg-white xl:left-50 lg:left-45 circle left-40 z-20 top-50 flex items-center">
+                            {/* <div className="lg:w-20 w-10 h-1 bg-gray-400"></div> */}
+                            <div className="lg:w-20 lg:h-20 w-10 h-10 circle center-item " onClick={() => {setShowVideo(true)}}>
+                                <FontAwesomeIcon icon={faPlay} className="lg:text-3xl text-primary" />
                             </div>
                         </div>
-                        <div className="w-full h-full relative flex lg:items-end items-center">
-                            
-                        </div>
-                        
-                        {/* <img src={require("../assets/images/video.png")} alt="video" className="w-full"/> */}
                     </div>
                     {showVideo && (
                         <div className="center-item scale-ani bg-op-white top-0 left-0 z-40 fixed h-screen w-full">
@@ -220,7 +215,7 @@ export default function Homepage() {
                             </div>
                         </div>
                         <div className="text-center mt-12">
-                            <button className="px-8 lg:px-12 lg:py-3 py-2 rounded text-white bg-secondary">Shop Materials</button>
+                            <Link to="/shop"><button className="px-8 lg:px-12 lg:py-3 py-2 rounded text-white bg-secondary">Shop Materials</button></Link>
                         </div>
                     </div>
                 </div>
@@ -251,15 +246,15 @@ export default function Homepage() {
                             <p className="text-center m-auto lg:w-5/12 w-10/12">Sign up as a professional service provider or, a vendor today and get more jobs.</p>
                         </div>
                         <div className="mt-12 lg:flex justify-around">
-                            <div className="lg:w-4/12 border-primary h-64 rounded-lg px-6 pt-8">
+                            <div className="lg:w-4/12 border-primary bg-white h-64 rounded-lg px-6 pt-8">
                                 <p className="text-lg fw-600">Sign Up as a Service Partner</p>
-                                <p className="mt-5 mb-7">Setup your account as a vendor and start selling your products fast and easy </p>
-                                <p className="text-secondary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p>
+                                <p className="mt-5 mb-7">Setup your account as a service partner and start selling your products fast and easy </p>
+                                <Link to="/signup/profession"><p className="text-secondary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p></Link>
                             </div>
-                            <div className="lg:w-4/12 mt-6 lg:mt-0 border-secondary rounded-lg p-8">
+                            <div className="lg:w-4/12 mt-6 bg-white lg:mt-0 border-secondary rounded-lg p-8">
                                 <p className="text-lg fw-600">Sign Up as a Product Partner</p>
-                                <p className="mt-5 mb-7">Setup your account as a vendor and start selling your products fast and easy </p>
-                                <p className="text-primary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p>
+                                <p className="mt-5 mb-7">Setup your account as a product partner and start selling your products fast and easy </p>
+                                <Link to="/signup/supply"><p className="text-primary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p></Link>
                             </div>
                         </div>
                     </div>
@@ -408,8 +403,8 @@ export default function Homepage() {
                         <div className="lg:w-8/12 mt-12 m-auto">
                             <Faqs/>
                         </div>
-                        <div className="text-end lg:w-8/12 mt-12 mx-auto ">
-                            <Link to="/faqs"><button className="border border-primary px-5 py-1 rounded fs-500">More FAQs</button></Link>
+                        <div className="text-center lg:w-8/12 mt-12 mx-auto ">
+                            <Link to="/faqs"><button className="btn-primary lg:px-10 px-4 rounded fs-500">See All FAQs</button></Link>
                         </div>
                     </div>
                 </div>
