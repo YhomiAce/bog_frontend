@@ -7,15 +7,17 @@ import "toasted-notes/src/styles.css";
 import SelectableItem from '../../../widgets/SelectableItem';
 import Spinner from '../../../layouts/Spinner';
 import Axios from '../../../../config/config';
-
+import { useSelector } from 'react-redux';
 
 const BankDetail = () => {
+    const user = useSelector((state) => state.auth.user);
     const [banks, setBanks] = useState([]);
     const [selectedBank, setSelectedBank] = useState();
     const [loading, setLoading] = useState(false);
+    const [edit, setEdit] = useState(true);
     const [bankData, setBankData] = useState({
-        account_name: "",
-        account_number: "",
+        account_name: user?.bank_detail?.account_name ? user?.bank_detail?.account_name : "",
+        account_number: user?.bank_detail?.account_number ? user?.bank_detail?.account_number : "",
     });
     const [show, setShow] = useState(false);
 
@@ -66,7 +68,7 @@ const BankDetail = () => {
         setBankData({ ...bankData, [name]: value });
     }
 
-    const submitHandler = async() => {
+    const submitHandler = async () => {
         try {
             setLoading(true)
             if (!account_name || !account_number) {
@@ -99,6 +101,7 @@ const BankDetail = () => {
             await Axios.post("/bank/save-bank", payload);
             setLoading(false);
             setShow(true);  //"1381417409"
+            setEdit(false);
             SuccessAlert("Bank Account data updated successfully!");
         } catch (error) {
             setLoading(false);
@@ -121,6 +124,8 @@ const BankDetail = () => {
             );
         }
     }
+    
+    const editBankDetails = () => setEdit(false);
 
     const options = banks.length > 0 ? banks.map(bank => {
         return {
@@ -135,53 +140,85 @@ const BankDetail = () => {
 
     return (
         <div className="lg:w-11/12 lg:mt-6 mx-auto">
-            <div className="mt-3">
-                <label className="block mb-1 fw-500">Select Bank</label>
-                <SelectableItem
-                    placeholder="Select Podio App"
-                    options={options}
-                    handleChange={handleBankChange}
-                />
-            </div>
-            {/* <div className="pt-5">
-                <label className="block mb-1 fw-500">Bank Name</label>
-                <input
-                    type="text"
-                    className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
-                    name='bank_name'
-                    value={bank_name}
-                    onChange={changeHandler}
-                />
-            </div> */}
-            <div className="mt-3">
-                <label className="block mb-1 fw-500">Bank Account Name</label>
-                <input
-                    type="text"
-                    className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
-                    name='account_name'
-                    value={account_name}
-                    onChange={changeHandler}
-                />
-            </div>
-            <div className="mt-3">
-                <label className="block mb-1 fw-500">Bank Account Number</label>
-                <input
-                    type="number"
-                    className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
-                    name='account_number'
-                    value={account_number}
-                    onChange={changeHandler}
-                />
-            </div>
+            {
+                edit ? <div className="mt-3">
+                    <label className="block mb-1 fw-500">Bank Name</label>
+                    <input
+                        type="text"
+                        className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
+                        value={user?.bank_detail?.bank_name}
+                        readOnly
+                    />
+                </div> : <div className="mt-3">
+                    <label className="block mb-1 fw-500">Select Bank</label>
+                    <SelectableItem
+                        placeholder="Select Podio App"
+                        options={options}
+                        handleChange={handleBankChange}
+                    />
+                </div>
+            }
+
+            {
+                edit ? <div className="mt-3">
+                    <label className="block mb-1 fw-500">Bank Account Name</label>
+                    <input
+                        type="text"
+                        className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
+                        name='account_name'
+                        value={user?.bank_detail?.account_name}
+                        readOnly
+                    />
+                </div> : <div className="mt-3">
+                    <label className="block mb-1 fw-500">Bank Account Name</label>
+                    <input
+                        type="text"
+                        className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
+                        name='account_name'
+                        value={account_name}
+                        onChange={changeHandler}
+                    />
+                </div>
+            }
+
+            {
+                edit ? <div className="mt-3">
+                    <label className="block mb-1 fw-500">Bank Account Number</label>
+                    <input
+                        type="number"
+                        className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
+                        value={user?.bank_detail?.account_number}
+                    />
+                </div> : <div className="mt-3">
+                    <label className="block mb-1 fw-500">Bank Account Number</label>
+                    <input
+                        type="number"
+                        className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
+                        name='account_number'
+                        value={account_number}
+                        onChange={changeHandler}
+                    />
+                </div>
+            }
+
+
 
             <div className="mt-10 lg:w-11/12 lg:flex justify-between items-center">
                 {
-                    loading ? <Spinner /> :
-                        <button
-                            type='button'
-                            className="btn-primary"
-                            onClick={submitHandler}
-                        >Update Bank Details</button>
+                    edit ? <button
+                        type='button'
+                        className="btn-primary"
+                        onClick={editBankDetails}
+                    >Edit Bank Details</button> : <>
+                        {
+                            loading ? <Spinner /> :
+                                <button
+                                    type='button'
+                                    className="btn-primary"
+                                    onClick={submitHandler}
+                                >Update Bank Details</button>
+                        }
+                    </>
                 }
                 {
                     show ? <p className="flex items-center fw-500 text-primary mt-4 lg:mt-0"><BiCheckCircle /><span className="pl-1">All Changes are saved</span></p> : null
