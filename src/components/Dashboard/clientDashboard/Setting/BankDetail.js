@@ -141,7 +141,7 @@ const BankDetail = () => {
     return (
         <div className="lg:w-11/12 lg:mt-6 mx-auto">
             {
-                edit ? <div className="mt-3">
+                edit && user?.bank_detail != null ? <div className="mt-3">
                     <label className="block mb-1 fw-500">Bank Name</label>
                     <input
                         type="text"
@@ -160,7 +160,7 @@ const BankDetail = () => {
             }
 
             {
-                edit ? <div className="mt-3">
+                edit && user?.bank_detail != null ? <div className="mt-3">
                     <label className="block mb-1 fw-500">Bank Account Name</label>
                     <input
                         type="text"
@@ -205,7 +205,7 @@ const BankDetail = () => {
 
             <div className="mt-10 lg:w-11/12 lg:flex justify-between items-center">
                 {
-                    edit ? <button
+                    edit && user?.bank_detail != null ? <button
                         type='button'
                         className="btn-primary"
                         onClick={editBankDetails}
