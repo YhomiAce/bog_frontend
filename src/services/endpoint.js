@@ -19,6 +19,23 @@ export const updateAccount = async (payload, headers) => {
     }
 }
 
+export const updatePassword = async (payload) => {
+    try {
+        const url = "/user/change-password";
+        const res = await Axios.patch(url, payload);
+        return res;
+    } catch (error) {
+        const errors = error.response.data.message;
+        toaster.notify(
+            errors,
+            {
+                duration: "4000",
+                position: "bottom",
+            }
+        );
+    }
+}
+
 export const SuccessAlert = (message) => {
     Swal.fire({
         title: "Success",
@@ -29,4 +46,21 @@ export const SuccessAlert = (message) => {
         confirmButtonText: "Continue",
         confirmButtonColor: "#3F79AD",
     })
+}
+
+export const getBanks = async () => {
+    try {
+        const url = "/bank/allbanks";
+        const res = await Axios.get(url);
+        return res;
+    } catch (error) {
+        const errors = error.response.data.message;
+        toaster.notify(
+            errors,
+            {
+                duration: "4000",
+                position: "bottom",
+            }
+        );
+    }
 }

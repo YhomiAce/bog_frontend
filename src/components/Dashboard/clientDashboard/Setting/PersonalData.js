@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { BiCheckCircle } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
-// import { useFormik } from 'formik';
 import { updateAccount, SuccessAlert } from '../../../../services/endpoint';
 import Spinner from '../../../layouts/Spinner';
 
@@ -11,6 +10,7 @@ const PersonalData = () => {
     const user = useSelector((state) => state.auth.user);
     const [photo, setPhoto] = useState('');
     const [loading, setLoading] = useState(false);
+    const [show, setShow] = useState(false);
     const [userData, setUserData] = useState({
         fname: user?.fname ? user?.fname : "",
         lname: user?.lname ? user?.lname : "",
@@ -47,6 +47,7 @@ const PersonalData = () => {
             }
             const result = await updateAccount(fd, config);
             if (result.success === true) {
+                setShow(true);
                 SuccessAlert("Account data update successfully!");
             }
             setLoading(false)
@@ -152,7 +153,9 @@ const PersonalData = () => {
                                     className="btn-primary lg:w-4/12"
                                 >Update Profile</button>
                         }
-                        <p className="flex items-center fw-500 mt-4 lg:mt-0 text-primary"><BiCheckCircle /><span className="pl-1">All Changes are saved</span></p>
+                        {
+                            show ? <p className="flex items-center fw-500 mt-4 lg:mt-0 text-primary"><BiCheckCircle /><span className="pl-1">All Changes are saved</span></p> : null
+                        }
                     </div>
                 </div>
             </div>
