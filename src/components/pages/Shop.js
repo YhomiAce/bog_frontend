@@ -111,6 +111,7 @@ export default function Shop() {
                                 <p className="fw-600 lg:text-xl fs-300 md:fs-400 pt-4">Categories</p>
                                 <p className="border-2 border-black w-4/12 mb-4 bg-black"></p>
                                 <ul className="md:fs-400 fw-500 fs-300 lg:fs-600">
+                                    <li className="py-2 cursor-pointer" onClick={ShowAll} >All Products</li>
                                     <li className="py-2 cursor-pointer" onClick={ShowGranite} >Granite  (150)</li>
                                     <li className="py-2 cursor-pointer" onClick={ShowCement}>Cement  (150)</li>
                                     <li className="py-2 cursor-pointer" onClick={ShowSteel}>Steel  (150)</li>

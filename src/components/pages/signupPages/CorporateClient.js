@@ -7,6 +7,7 @@ import { register } from "../../../redux/actions/authAction";
 import { corporateClientSchema } from '../../../services/validation';
 import ReCAPTCHA from "react-google-recaptcha";
 import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
+import {AiOutlineInfoCircle}  from 'react-icons/ai';
 
 const CorporateClient = () => {
     const dispatch = useDispatch();
@@ -42,6 +43,9 @@ const CorporateClient = () => {
         }
         setPasswordType("password")
     }
+    const [refTooltip, setRefTooltip] = useState(false)
+    const [passTooltip, setPassTooltip] = useState(false)
+
     const referenceValue = localStorage.getItem("reference");
     const formik = useFormik({
         initialValues: {
@@ -112,6 +116,12 @@ const CorporateClient = () => {
                         </div>
                         <div className="w-full mt-6">
                             <label className="block">Password</label>
+                            {passTooltip && (
+                                <div className='flex scale-ani py-2 px-2 my-2 bg-tool rounded fs-300' onClick={() => setPassTooltip((prev) => !prev)}>
+                                    <AiOutlineInfoCircle className="text-lg text-gray-700"/>
+                                    <p className='pl-2'>The password must contain minimum of 8 characters, uppercase character and a unique character</p>
+                                </div>
+                            )}
                             <div className="flex items-center bg-input border border-gray-400 mt-1 rounded">
                                 <input
                                     type={passwordType}
@@ -120,6 +130,7 @@ const CorporateClient = () => {
                                     value={password}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
+                                    onFocus={() => setPassTooltip(true)}
                                     id="password"
                                     name="password"
                                 />
@@ -132,7 +143,16 @@ const CorporateClient = () => {
                             }
                         </div>
                         <div className="w-full mt-6">
-                            <label className='block'>Referral Code (Optional)</label>
+                            <div className='flex justify-between pr-2'>
+                                <label className='block'>Referral Code (Optional)</label>
+                                <AiOutlineInfoCircle className="text-lg text-gray-700" onClick={() => setRefTooltip((prev) => !prev)}/>
+                            </div>
+                            {refTooltip && (
+                                <div className='flex scale-ani py-2 px-2 my-2 bg-tool rounded fs-300'>
+                                    <AiOutlineInfoCircle className="text-lg text-gray-700"/>
+                                    <p className='pl-2'>Please, only enter the referral. Leave empty if you dont have a referral code.</p>
+                                </div>
+                            )}
                             <input
                                 type="text"
                                 placeholder="Enter your referral code"
@@ -146,7 +166,7 @@ const CorporateClient = () => {
                         <div className="w-full mt-6">
                             <label className='block'>Where did you hear about us?</label>
                             <select
-                                className='mt-2 py-2 px-2 border border-gray-500 rounded w-full'
+                                className='mt-2 py-2 px-2 bg-white border border-gray-500 rounded w-full'
                                 id="aboutUs"
                                 name="aboutUs"
                                 defaultValue={aboutUs}

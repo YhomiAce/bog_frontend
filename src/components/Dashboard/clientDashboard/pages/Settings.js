@@ -35,7 +35,13 @@ export default function Settings() {
                         </div>
                         <div className="lg:fs-400 text-xs pl-2 lg:pl-6 w-6/12">
                           <p className="mb-2">Update Profile Picture</p>
-                          <input type="file" accept="image" />
+                          <input type="file" accept="image" class="block w-full text-sm text-slate-500
+                              file:mr-4 file:py-2 file:px-4
+                              file:rounded-full file:border-0
+                              file:text-sm file:font-semibold
+                              file:bg-violet-50 file:text-violet-700
+                              hover:file:bg-violet-100
+                            " />
                         </div>
                       </div>
                       <div className="lg:grid-2 justify-between">

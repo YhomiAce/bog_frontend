@@ -157,7 +157,7 @@ export default function Homepage() {
                     </div>
                     <div className="lg:w-10/12 m-auto relative h-video lg:my-16 xl:mb-24">
                         <video loop playsInline muted  className="absolute z-0 w-full h-full left-0 top-0 rounded-lg">
-                            <source src={require("../assets/images/bog.mp4")} />
+                            <source src="https://res.cloudinary.com/greenmouse-tech/video/upload/v1667473196/BOG/bog-intro_gjdiyx.mp4" />
                             
                         </video>
                         <div className="absolute bg-white xl:left-50 lg:left-45 circle left-40 z-20 top-50 flex items-center">
@@ -172,7 +172,7 @@ export default function Homepage() {
                             <div className="box">
                             <p className="lg:w-9/12 mx-auto" onClick={()=> {setShowVideo(false)}}><FontAwesomeIcon icon={faArrowLeftLong} className="text-2xl text-black" /></p>
                                 <video controls autoPlay className="lg:w-9/12 mx-auto">
-                                    <source src={require("../assets/images/bog.mp4")} />
+                                    <source src="https://res.cloudinary.com/greenmouse-tech/video/upload/v1667473196/BOG/bog-intro_gjdiyx.mp4" />
                                 </video>
                             </div>
                             
