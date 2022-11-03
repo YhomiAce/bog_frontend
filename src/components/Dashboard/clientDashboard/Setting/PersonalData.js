@@ -133,7 +133,7 @@ const PersonalData = () => {
                             />
                         </div>
                     </div>
-                    <div className="lg:grid-2 justify-between lg:mt-4">
+                    {/* <div className="lg:grid-2 justify-between lg:mt-4">
                         <div className="mt-3">
                             <label className="block mb-1 fw-500">Date of Birth</label>
                             <input
@@ -149,7 +149,7 @@ const PersonalData = () => {
                                 <option>Female</option>
                             </select>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="mt-10 lg:flex justify-between items-center">
                         {
                             loading ? <Spinner /> :
