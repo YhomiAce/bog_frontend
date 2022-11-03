@@ -143,6 +143,9 @@
 .bg-ash{
   background: #F6FAFDF2;
 }
+.bg-tool{
+  background: rgba(234, 243, 251, 1);
+}
 .bg-tertiary{
   background: #2C2358;
 }
