@@ -143,6 +143,9 @@
 .bg-ash{
   background: #F6FAFDF2;
 }
+.bg-tool{
+  background: rgba(234, 243, 251, 1);
+}
 .bg-tertiary{
   background: #2C2358;
 }
@@ -368,5 +371,14 @@
 }
 .bg-100{
   background-size: 100% 100%;
+}
+.h-800{
+  height: 80vh;
+}
+.h-700{
+  height: 70vh;
+}
+.h-600{
+  height: 60vh;
 }
 }
