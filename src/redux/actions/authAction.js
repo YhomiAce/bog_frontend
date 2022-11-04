@@ -44,7 +44,6 @@ export const login = (payload) => {
 
 export const getMe = () => {
     return async (dispatch) => {
-        if (localStorage.auth_token) {
             setAuthToken(localStorage.auth_token);
             try {
 
@@ -62,7 +61,6 @@ export const getMe = () => {
                     }
                 );
             }
-        }
 
     }
 }

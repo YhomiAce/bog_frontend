@@ -1,7 +1,8 @@
 import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { BiCheckCircle } from 'react-icons/bi';
-import { BsInfoCircleFill } from "react-icons/bs";
+import PersonalData from "../Setting/PersonalData";
+import ChangePassword from "../Setting/ChangePassword";
+import BankDetail from "../Setting/BankDetail";
 
 export default function Settings() {
 
@@ -22,165 +23,13 @@ export default function Settings() {
                 <Tab>Bank Details</Tab>
               </TabList>
               <TabPanel>
-                <div>
-                  <div className="fs-400 lg:fs-600">
-                    <div className="mt-6 lg:mt-0 py-6 px-2 lg:px-8 rounded-lg">
-                      <div className="flex items-center lg:my-6">
-                        <div>
-                            <img
-                              src={require("../images/profile.png")}
-                              alt="profifepic"
-                              className="lg:w-20 w-16"
-                            />
-                        </div>
-                        <div className="lg:fs-400 text-xs pl-2 lg:pl-6 w-6/12">
-                          <p className="mb-2">Update Profile Picture</p>
-                          <input type="file" accept="image" class="block w-full text-sm text-slate-500
-                              file:mr-4 file:py-2 file:px-4
-                              file:rounded-full file:border-0
-                              file:text-sm file:font-semibold
-                              file:bg-violet-50 file:text-violet-700
-                              hover:file:bg-violet-100
-                            " />
-                        </div>
-                      </div>
-                      <div className="lg:grid-2 justify-between">
-                        <div className="pt-5">
-                          <label className="block mb-1 fw-500">First Name</label>
-                          <input
-                            type="text"
-                            placeholder="Green"
-                            className="w-10/12 lg:w-full placeholder-black py-2 px-3 rounded-lg bg-light border border-gray-600"
-                          />
-                        </div>
-                        <div className=" pt-5">
-                          <label className="block mb-1 fw-500">Last Name</label>
-                          <input
-                            type="text"
-                            placeholder="Green Mouse"
-                            className="w-10/12 lg:w-full placeholder-black py-2 px-3 rounded-lg bg-light border border-gray-600"
-                          />
-                        </div>
-                      </div>
-                      <div className="lg:grid-2 justify-between lg:mt-4">
-                        <div className="mt-3 ">
-                          <label className="block mb-1 fw-500">Email</label>
-                          <input
-                            type="text"
-                            placeholder="greenmouse@gmail.com"
-                            className="w-10/12 lg:w-full py-2 placeholder-black px-3 rounded-lg bg-light border border-gray-600"
-                          />
-                        </div>
-                        <div className="mt-3">
-                          <label className="block mb-1 fw-500">Phone Number</label>
-                          <input
-                            type="text"
-                            placeholder="+234 801 234 4567"
-                            className="w-10/12 lg:w-full py-2 px-3 placeholder-black rounded-lg bg-light border border-gray-600"
-                          />
-                        </div>
-                      </div>
-                      <div className="lg:grid-2 justify-between lg:mt-4">
-                        <div className="mt-3">
-                          <label className="block mb-1 fw-500">Date of Birth</label>
-                          <input
-                            type="date"
-                            className="w-10/12 lg:w-full py-2 px-3 rounded-lg bg-light border border-gray-600"
-                          />
-                        </div>
-                        <div className="mt-3">
-                          <label className="block mb-1 fw-500">Gender</label>
-                          <select className="w-10/12 lg:w-full py-2 px-3 rounded-lg bg-light border border-gray-600">
-                            <option></option>
-                            <option>Male</option>
-                            <option>Female</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div className="mt-10 lg:flex justify-between items-center">
-                        <button className="btn-primary lg:w-4/12">Update Profile</button>
-                        <p className="flex items-center fw-500 mt-4 lg:mt-0 text-primary"><BiCheckCircle/><span className="pl-1">All Changes are saved</span></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <PersonalData />
               </TabPanel>
               <TabPanel>
-                <div className="lg:w-11/12 lg:mt-6 mt-6 mx-auto">
-                  <div className="pt-5">
-                    <label className="block mb-1 fw-500">Old Password</label>
-                    <input
-                      type="password"
-                      className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
-                    />
-                  </div>
-                  <div className="mt-3">
-                    <label className="block mb-1 fw-500">New Password</label>
-                    <input
-                      type="password"
-                      className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
-                    />
-                  </div>
-                  <div className="mt-3">
-                    <label className="block mb-1 fw-500">Confirm New Password</label>
-                    <input
-                      type="password"
-                      className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
-                    />
-                  </div>
-                  <div className="my-6 fs-400 lg:w-11/12 flex justify-between items-center">
-                    <p className="flex items-center fw-500 text-primary"><BsInfoCircleFill className="text-xl text-primary"/><span className="pl-3 text-primary">Password should be minmum 8 letter and include lower and uppercase letter.</span></p>
-                  </div>
-                  <div className="mt-10 lg:w-11/12 lg:flex justify-between items-center">
-                    <button className="btn-primary">Update Password</button>
-                    <p className="flex items-center fw-500 text-primary mt-4 lg:mt-0"><BiCheckCircle/><span className="pl-1">All Changes are saved</span></p>
-                  </div>
-                  <div className="mt-8 bg-light lg:px-5 px-3 py-4 rounded-lg">
-                    <p className="fw-600 fs-700 lg:text-lg">Two-Factor Verification</p>
-                    <p className="fs-400 pt-5">Two-factor authentication is a method for protection your web account. When it is activated you need to enter not only your password, but also a special code. You can receive this code by in mobile app. Even if third person will find your password, then can't access with that code.</p>
-                    <div className="mt-10 lg:w-11/12 lg:flex justify-between items-center">
-                      <button className="btn border border-blue-600 fs-500">Enable 2FA</button>
-                      <p className="flex items-center fs-300 fw-500 text-gray-500 mt-4 lg:mt-0">CURRENT STATUS: <p>DISABLED</p></p>
-                    </div>
-                  </div>
-                </div>
+                <ChangePassword />
               </TabPanel>
               <TabPanel>
-                <div className="lg:w-11/12 lg:mt-6 mx-auto">
-                  <div className="pt-5">
-                    <label className="block mb-1 fw-500">Bank Name</label>
-                    <input
-                      type="text"
-                      className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
-                    />
-                  </div>
-                  <div className="mt-3">
-                    <label className="block mb-1 fw-500">Bank Account Name</label>
-                    <input
-                      type="text"
-                      className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
-                    />
-                  </div>
-                  <div className="mt-3">
-                    <label className="block mb-1 fw-500">Bank Account Number</label>
-                    <input
-                      type="number"
-                      className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
-                    />
-                  </div>
-                  <div className="mt-3">
-                    <label className="block mb-1 fw-500">Account Type</label>
-                    <select className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400">
-                      <option>Savings</option>
-                      <option>Current</option>
-                      <option>Others</option>
-                    </select>
-                  </div>
-                  <div className="mt-10 lg:w-11/12 lg:flex justify-between items-center">
-                    <button className="btn-primary">Update Bank Details</button>
-                    <p className="flex items-center fw-500 text-primary mt-4 lg:mt-0"><BiCheckCircle/><span className="pl-1">All Changes are saved</span></p>
-                  </div>
-                </div>
+                <BankDetail />
               </TabPanel>
             </Tabs>
           </div>

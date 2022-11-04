@@ -32,9 +32,10 @@ if (localStorage.auth_token) {
 
 function App() {
   useEffect(() => {
-    // console.log(store.getState().auth);
+    console.log(store.getState().auth);
+    // if (store.getState().auth.isAuthenticated) store.dispatch(getMe());
     store.dispatch(getMe());
-  }, []);
+  });
   return (
     <div className="">
       {/* <Alert /> */}

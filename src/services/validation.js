@@ -24,7 +24,18 @@ export const changePasswordValidation = Yup.object({
     ),
     confirmPassword: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match'),
-})
+});
+
+export const updatePasswordValidation = Yup.object({
+    oldPassword: Yup.string().required('Old Password is required'),
+    newPassword: Yup.string().required('New Password is required').matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    ),
+    confirmPassword: Yup.string()
+        .required('Please retype your password.')
+        .oneOf([Yup.ref('newPassword')], 'Your passwords do not match.'),
+});
 
 export const forgetPasswordValidation = Yup.object({
     email: Yup.string().email("Enter a valid E-mail address").required("E-mail Address is required")
