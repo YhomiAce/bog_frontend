@@ -14,7 +14,7 @@ export default function About() {
     <div>
       <div className="font-primary">
         <Header />
-        <div className="bg-privacy bg-cover bg-center text-white lg:h-80 h-40 flex items-center">
+        <div className="bg-about-bg bg-cover bg-center text-white lg:h-80 h-40 flex items-center">
           <div className="box">
             <div>
               <p className="lg:text-4xl text-2xl fw-700 mb-2">
