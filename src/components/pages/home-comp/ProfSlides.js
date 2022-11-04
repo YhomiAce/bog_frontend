@@ -35,7 +35,6 @@ export default function ProfSlides() {
                             <img src={require("../../assets/images/survey.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-400 fw-500 py-1">Land Surveyor</p>
-                        <p className="fs-600 fw-600">Lagos, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -45,7 +44,6 @@ export default function ProfSlides() {
                         </div>
                         
                         <p className="fs-600 fw-600">Structural Engineer</p>
-                        <p className="fs-400 fw-500 py-1">Asaba, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -54,7 +52,6 @@ export default function ProfSlides() {
                             <img src={require("../../assets/images/arch.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600">Architecture</p>
-                        <p className="fs-400 fw-500 py-1">Ogun, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -63,7 +60,6 @@ export default function ProfSlides() {
                             <img src={require("../../assets/images/civil.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600">Civil Engineer</p>
-                        <p className="fs-400 fw-500 py-1">Lagos, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -72,7 +68,6 @@ export default function ProfSlides() {
                             <img src={require("../../assets/images/prof.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600">Building Contractorr</p>
-                        <p className="fs-400 fw-500 py-1">Edo, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -81,7 +76,6 @@ export default function ProfSlides() {
                             <img src={require("../../assets/images/survey.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600">Land Surveyor</p>
-                        <p className="fs-400 fw-500 py-1">Lagos, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -91,7 +85,6 @@ export default function ProfSlides() {
                         </div>
                         
                         <p className="fs-600 fw-600">Structural Engineer</p>
-                        <p className="fs-400 fw-500 py-1">Asaba, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -100,7 +93,6 @@ export default function ProfSlides() {
                             <img src={require("../../assets/images/arch.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600">Architecture</p>
-                        <p className="fs-400 fw-500 py-1">Ogun, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -109,7 +101,6 @@ export default function ProfSlides() {
                             <img src={require("../../assets/images/civil.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600">Civil Engineer</p>
-                        <p className="fs-400 fw-500 py-1">Lagos, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -118,7 +109,6 @@ export default function ProfSlides() {
                             <img src={require("../../assets/images/prof.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600">Building Contractorr</p>
-                        <p className="fs-400 fw-500 py-1">Edo, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -128,7 +118,6 @@ export default function ProfSlides() {
                         </div>
                         
                         <p className="fs-600 fw-600">Structural Engineer</p>
-                        <p className="fs-400 fw-500 py-1">Asaba, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -137,7 +126,6 @@ export default function ProfSlides() {
                             <img src={require("../../assets/images/CS.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600">Construction Drawing</p>
-                        <p className="fs-400 fw-500 py-1">Ogun, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -146,7 +134,6 @@ export default function ProfSlides() {
                             <img src={require("../../assets/images/BA.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600">Building Approval</p>
-                        <p className="fs-400 fw-500 py-1">Oyo, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -155,7 +142,6 @@ export default function ProfSlides() {
                             <img src={require("../../assets/images/prof.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600">Building Contractorr</p>
-                        <p className="fs-400 fw-500 py-1">Edo, Nigeria</p>
                     </div>
                 </SwiperSlide>
             </Swiper>
@@ -181,7 +167,6 @@ export function ProfSlidesSm() {
                             <img src={require("../../assets/images/survey.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600 mt-2 ">Land Surveyor</p>
-                        <p className="fs-400 fw-500 py-1">Lagos, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -191,7 +176,6 @@ export function ProfSlidesSm() {
                         </div>
                         
                         <p className="fs-600 fw-600 mt-2">Structural Engineer</p>
-                        <p className="fs-400 fw-500 py-1">Asaba, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -200,7 +184,6 @@ export function ProfSlidesSm() {
                             <img src={require("../../assets/images/arch.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600 mt-2">Architecture</p>
-                        <p className="fs-400 fw-500 py-1">Ogun, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -209,7 +192,6 @@ export function ProfSlidesSm() {
                             <img src={require("../../assets/images/civil.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600 mt-2">Civil Engineer</p>
-                        <p className="fs-400 fw-500 py-1">Lagos, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -218,7 +200,6 @@ export function ProfSlidesSm() {
                             <img src={require("../../assets/images/prof.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600 mt-2">Building Contractorr</p>
-                        <p className="fs-400 fw-500 py-1">Edo, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -227,7 +208,6 @@ export function ProfSlidesSm() {
                             <img src={require("../../assets/images/CS.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600 mt-2">Construction Drawing</p>
-                        <p className="fs-400 fw-500 py-1">Ogun, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -236,7 +216,6 @@ export function ProfSlidesSm() {
                             <img src={require("../../assets/images/BA.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600 mt-2">Building Approval</p>
-                        <p className="fs-400 fw-500 py-1">Oyo, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -245,7 +224,6 @@ export function ProfSlidesSm() {
                             <img src={require("../../assets/images/prof.png")} alt="img1" className="w-full m-auto"/>
                         </div>
                         <p className="fs-600 fw-600 mt-2">Building Contractorr</p>
-                        <p className="fs-400 fw-500 py-1">Edo, Nigeria</p>
                     </div>
                 </SwiperSlide>
                 
