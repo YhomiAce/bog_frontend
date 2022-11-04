@@ -8,7 +8,7 @@ export default function JoinTeam(){
         <div>
             <div className="font-primary">
                 <Header/>
-                <div className="bg-contact bg-cover bg-center text-white lg:h-80 h-40 flex items-center">
+                <div className="bg-jot bg-cover bg-center text-white lg:h-80 h-40 flex items-center">
                     <div className="box">
                         <p className="lg:text-4xl text-2xl fw-700 mb-2">Join Our Team</p>
                     </div>
@@ -17,7 +17,7 @@ export default function JoinTeam(){
                     <div className="box">
                         <div className="lg:flex lg:py-6 justify-between items-center">
                             <div className="lg:w-5/12 ">
-                                <img src={require("../assets/images/jot.png")} alt="join" className=" w-full m-auto"/>
+                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667570080/BOG/jot-img_hvat0f.png" alt="join" className=" w-full m-auto"/>
                             </div>
                             <div className="lg:w-6/12 mt-6 lg:mt-0 ">
                                 <p className="text-xl lg:text-3xl fw-600">

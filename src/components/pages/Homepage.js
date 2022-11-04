@@ -197,7 +197,7 @@ export default function Homepage() {
                             </div>
                             <div className="mt-6 lg:mt-0 w-11/12 lg:w-full m-auto bg-white">
                                 <div className="">
-                                    <img src={require("../assets/images/steel.png")} alt="steel" className="w-full h-72"/>
+                                    <img src={require("../assets/images/steels.png")} alt="steel" className="w-full h-72"/>
                                 </div>
                                 <div className="flex items-center py-4 pl-4"><BsBag/><p className="pl-2">Shop for Steel</p></div>
                             </div>
