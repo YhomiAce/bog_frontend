@@ -302,7 +302,7 @@ export default function Service() {
                             <div className="mt-3 fs-500">
                                 <div className="py-1">
                                     <input type="radio" name="p-type" />
-                                    <label className="pl-1">Perimeter Suurvey</label>
+                                    <label className="pl-1">Perimeter Survey</label>
                                 </div>
                                 <div className="py-1">
                                     <input type="radio" name="p-type" />

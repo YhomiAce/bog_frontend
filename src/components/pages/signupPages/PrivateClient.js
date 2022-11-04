@@ -221,9 +221,9 @@ const PrivateClient = () => {
                             }
                             <p className="px-2">
                                 I agree to the
-                                <span className="text-primary pl-2">
-                                    terms & conditions
-                                </span>
+                                <Link to="/terms"><span className=" pl-2 text-primary hover:text-red-600 cursor-pointer  ">
+                                    Terms & Conditions
+                                </span></Link>.
                             </p>
                         </div>
                         <div className="mt-8">
