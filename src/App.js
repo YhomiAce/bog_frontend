@@ -25,6 +25,7 @@ import Privacy from './components/pages/Privacy';
 import Service from './components/pages/Service';
 import About from './components/pages/About';
 import JoinTeam from './components/pages/JoinOurTeam';
+import ScrollToTop from './components/layouts/Scroll';
 
 if (localStorage.auth_token) {
   setAuthToken(localStorage.auth_token);
@@ -39,6 +40,7 @@ function App() {
   return (
     <div className="">
       {/* <Alert /> */}
+      <ScrollToTop/>
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/contact' element={<Contact />} />

@@ -64,7 +64,7 @@ export default function JoinTeam(){
                                     <div>
                                         <div className="lg:flex justify-start fs-500">
                                             <div className="cursor-pointer text-center lg:w-8/12" >
-                                                <img src={require("../assets/images/SC.png")} alt="survey" className="lg:w-16 w-16 mx-auto mb-5" />
+                                                <img src={require("../assets/images/cb.png")} alt="survey" className="lg:w-16 w-16 mx-auto mb-5" />
                                                 <p className="fw-500">Competitive Benefits</p>
                                                 <p className="mt-1">We take care and value our staffs and that's why we full range of benefits.</p>
                                             </div>
@@ -73,7 +73,7 @@ export default function JoinTeam(){
                                     <div>
                                         <div className="lg:flex justify-end fs-500 mt-8 lg:mt-0">
                                             <div className="cursor-pointer text-center lg:w-8/12" >
-                                                <img src={require("../assets/images/SC.png")} alt="survey" className="lg:w-16 w-16 mx-auto mb-5" />
+                                                <img src={require("../assets/images/go.png")} alt="survey" className="lg:w-16 w-16 mx-auto mb-5" />
                                                 <p className="fw-500">Growth Oppurtunity</p>
                                                 <p className="mt-1">We offer opportunities for our team members to develop their skills  relevant to their career goals</p>
                                             </div>
@@ -87,7 +87,7 @@ export default function JoinTeam(){
                                     <div>
                                         <div className="lg:flex justify-end fs-500">
                                             <div className="cursor-pointer text-center mt-8 lg:mt-0 lg:w-8/12" >
-                                                <img src={require("../assets/images/SC.png")} alt="survey" className="lg:w-16 w-16 mx-auto mb-5" />
+                                                <img src={require("../assets/images/toa.png")} alt="survey" className="lg:w-16 w-16 mx-auto mb-5" />
                                                 <p className="fw-500">Team-oriented atmosphere</p>
                                                 <p className="mt-1">You get the oppurtunity to work with the best team members to complete tasks . </p>
                                             </div>
@@ -96,7 +96,7 @@ export default function JoinTeam(){
                                     <div>
                                         <div className="lg:flex justify-start mt-8 lg:mt-0 fs-500">
                                             <div className="cursor-pointer text-center lg:w-8/12" >
-                                                <img src={require("../assets/images/SC.png")} alt="survey" className="lg:w-16 w-16 mx-auto mb-5" />
+                                                <img src={require("../assets/images/vo.png")} alt="survey" className="lg:w-16 w-16 mx-auto mb-5" />
                                                 <p className="fw-500">Vacation Oppurtunities</p>
                                                 <p className="mt-1">We sometimes need to recharge. That's why we offer paid vacation plans to cover your holidays.</p>
                                             </div>

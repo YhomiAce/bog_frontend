@@ -17,6 +17,7 @@ export default function ProfSlides() {
                 autoplay={{ delay: 5000 }}
                 effect="coverflow"
                 grabCursor={true}
+                loop={true}
                 centeredSlides={false}
                 slidesPerView={5}
                 coverflowEffect={{
@@ -67,7 +68,7 @@ export default function ProfSlides() {
                         <div className=" w-4/12 mx-auto circle p-3 bg-white">
                             <img src={require("../../assets/images/prof.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-600 fw-600">Building Contractorr</p>
+                        <p className="fs-600 fw-600">Building Contractor</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -108,7 +109,7 @@ export default function ProfSlides() {
                         <div className=" w-4/12 mx-auto circle p-3 bg-white">
                             <img src={require("../../assets/images/prof.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-600 fw-600">Building Contractorr</p>
+                        <p className="fs-600 fw-600">Building Contractor</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -141,7 +142,7 @@ export default function ProfSlides() {
                         <div className=" w-4/12 mx-auto circle p-3 bg-white">
                             <img src={require("../../assets/images/prof.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-600 fw-600">Building Contractorr</p>
+                        <p className="fs-600 fw-600">Building Contractor</p>
                     </div>
                 </SwiperSlide>
             </Swiper>
@@ -155,6 +156,7 @@ export function ProfSlidesSm() {
             <Swiper
                 slidesPerView={1}
                 spaceBetween={30}
+                loop={true}
                 pagination={{
                 clickable: true,
                 }}
@@ -199,7 +201,7 @@ export function ProfSlidesSm() {
                         <div className=" w-4/12 mx-auto circle p-6 bg-white">
                             <img src={require("../../assets/images/prof.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-600 fw-600 mt-2">Building Contractorr</p>
+                        <p className="fs-600 fw-600 mt-2">Building Contractor</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -223,7 +225,7 @@ export function ProfSlidesSm() {
                         <div className=" w-4/12 mx-auto circle p-6 bg-white">
                             <img src={require("../../assets/images/prof.png")} alt="img1" className="w-full m-auto"/>
                         </div>
-                        <p className="fs-600 fw-600 mt-2">Building Contractorr</p>
+                        <p className="fs-600 fw-600 mt-2">Building Contractor</p>
                     </div>
                 </SwiperSlide>
                 

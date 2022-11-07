@@ -197,7 +197,7 @@ const AllProducts = () => {
                                 value={item.rating}
                                 size={20}
                             />
-                            <p className="fw-600 fs-400 lg:fs-600">{item.price}</p>
+                            <p className="fw-600 fs-300 lg:fs-600">{item.price}</p>
                         </Link>
                     </div>
                     )
@@ -220,7 +220,7 @@ export const SimilarProducts = () => {
                         <div className="shadow-md px-3 pb-6 pt-3 lg:mt-12 mt-6 rounded-md" key={item.id}>
                         
                         <Link to={`/shop/${item.id}`}>
-                            <img src={item.img} alt="products" className="w-full h-20 lg:h-40 mx-auto"/>
+                            <img src={item.img} alt="products" className="w-full h-24 lg:h-44 mx-auto"/>
                             <p className="lg:fs-600 fs-300 fw-500  lg:pt-6 pt-2">{item.tittle}</p>
                             <ReactStars 
                                 edit={false}

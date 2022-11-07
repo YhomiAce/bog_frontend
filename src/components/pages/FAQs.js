@@ -26,6 +26,16 @@ export default function Faqs() {
     setSafety(true)
   };
 
+//   const activeState = {
+//     color: general ? "white" : "black",
+//     backgroundColor: general ? "blue" : "transparent",
+//   }
+    const activeState = {
+        color: "white",
+        backgroundColor: "#3F79AD",
+      }
+  
+
     return (
         <div>
             <div>
@@ -46,18 +56,36 @@ export default function Faqs() {
                     <div className="box">
                         <div className="lg:flex items-center">
                             <div className="lg:w-3/12">
-                                <div className="bg-light py-5">
+                                <div className="bg-light py-5 w-10/12">
                                     <div className="px-4">
                                         <p className="fw-600 text-lg">Categories</p>
                                         <hr className="bg-black w-3/12 h-1"/>
                                     </div>
                                     <div className="mt-6">
-                                        <ul className="text-gray-500">
-                                            <li className="hover:bg-primary  rounded py-2 px-4 hover:text-white " onClick={OpenGeneral}>General</li>
-                                            <li className="hover:bg-primary hover:text-white rounded py-2 px-4" onClick={OpenMobile}>Using the Mobile App</li>
-                                            <li className="hover:bg-primary hover:text-white  rounded py-2 px-4" onClick={OpenSafety}>Safety & Security</li>
+                                        <ul className="text-gray-600">
+                                            <li 
+                                                className="hover:bg-primary  rounded py-2 px-4 hover:text-white" 
+                                                style={general ? activeState : undefined}
+                                                onClick={OpenGeneral}
+                                                >
+                                                    General
+                                            </li>
+                                            <li 
+                                                className="hover:bg-primary hover:text-white rounded py-2 px-4"
+                                                onClick={OpenMobile}
+                                                style={mobile ? activeState : undefined}
+                                                >
+                                                    Using the Mobile App
+                                            </li>
+                                            <li 
+                                                className="hover:bg-primary hover:text-white  rounded py-2 px-4" 
+                                                onClick={OpenSafety}
+                                                style={safety ? activeState : undefined}
+                                                >
+                                                    Safety & Security
+                                            </li>
                                             <li className="hover:bg-primary hover:text-white  rounded py-2 px-4">Become a service patner</li>
-                                            <li className="hover:bg-primary hover:text-white  rounded py-2 px-4">Become a service provider</li>
+                                            <li className="hover:bg-primary hover:text-white  rounded py-2 px-4">Become a product provider</li>
                                             <li className="hover:bg-primary hover:text-white  rounded py-2 px-4">Terms & Conditions </li>
                                         </ul>
                                     </div>

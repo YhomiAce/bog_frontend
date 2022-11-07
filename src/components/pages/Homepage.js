@@ -48,7 +48,9 @@ export default function Homepage() {
     }, []);
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
-            gsap.from(hero.current, {y:-520, ease:"bounce",  duration:2, delay: 1.5, opacity:0})
+            gsap.from(hero.current, {y:-520, ease:"bounce",  duration:2, delay: 1.5, opacity:0,onComplete() {
+                ScrollTrigger.refresh(true);
+              }})
 
             gsap.from(hazzle.current, {
                 scale: .6,
@@ -60,7 +62,22 @@ export default function Homepage() {
                   toggleActions: "restart none none none"
                 }
               },);
+            const bl = gsap.timeline();
+            bl.to(news.current, {yPercent: -52,});
+  
+              ScrollTrigger.create({
+                  animation: bl,
+                  trigger: blog.current,
+                  pin: true,
+                  pinSpacing: true,
+                  toggleActions: "restart none none none",
+                  start: "center center",
+                  scrub: true,
+                  invalidateOnRefresh: true,
+                  
+                })
         }, hero);
+        ScrollTrigger.refresh(true)
         return () => ctx.revert();
       }, []);
     
@@ -261,10 +278,10 @@ export default function Homepage() {
                 </div>
             </div>
             {/* updated with blogs */}
-            <div className="section bg-tertiary">
+            <div className="section bg-tertiary " ref={blog} >
                 <div className="box">
                     <div className="hidden lg:block h-blog overflow-hidden w-full"  >
-                        <div className="flex"  ref={blog}  >
+                        <div className="flex"   >
                             <div className="mt-6 w-3/12 text-white mt-24 pr-6">
                                 <p className="lg:text-3xl ">Stay updated with our blog posts</p>
                                 <p className="my-6">Stay engaged with the latest news and insights from BOG</p>

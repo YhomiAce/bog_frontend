@@ -55,6 +55,13 @@ export default function Shop() {
         setCement(false)
         setSteel(true)
     }
+
+    const activeState = {
+        color: "white",
+        backgroundColor: "#3F79AD",
+        borderRadius: "5px",
+        paddingLeft: "5px",
+      }
     
 
     return (
@@ -93,9 +100,9 @@ export default function Shop() {
                                                 <Button variant="outlined" className="border-0 bg-light rounded text-black flex items-center">Filter <span className="pl-6"><RiEqualizerLine/></span> </Button>
                                             </MenuHandler>
                                             <MenuList>
-                                                <MenuItem>Menu Item 1</MenuItem>
-                                                <MenuItem>Menu Item 2</MenuItem>
-                                                <MenuItem>Menu Item 3</MenuItem>
+                                                <MenuItem>Newest Arrivals</MenuItem>
+                                                <MenuItem>Customer Rating</MenuItem>
+                                                <MenuItem>Popularity</MenuItem>
                                             </MenuList>
                                         </Menu>
                                     </div>
@@ -111,11 +118,11 @@ export default function Shop() {
                                 <p className="fw-600 lg:text-xl fs-300 md:fs-400 pt-4">Categories</p>
                                 <p className="border-2 border-black w-4/12 mb-4 bg-black"></p>
                                 <ul className="md:fs-400 fw-500 fs-300 lg:fs-600">
-                                    <li className="py-2 cursor-pointer" onClick={ShowAll} >All Products</li>
-                                    <li className="py-2 cursor-pointer" onClick={ShowGranite} >Granite  (150)</li>
-                                    <li className="py-2 cursor-pointer" onClick={ShowCement}>Cement  (150)</li>
-                                    <li className="py-2 cursor-pointer" onClick={ShowSteel}>Steel  (150)</li>
-                                    <li className="py-2 cursor-pointer" onClick={ShowSand}>Sand  (150)</li>
+                                    <li className="py-2 cursor-pointer" style={all ? activeState : undefined} onClick={ShowAll} >All Products</li>
+                                    <li className="py-2 cursor-pointer" style={granite ? activeState : undefined} onClick={ShowGranite} >Granite  (150)</li>
+                                    <li className="py-2 cursor-pointer" style={cement ? activeState : undefined} onClick={ShowCement}>Cement  (150)</li>
+                                    <li className="py-2 cursor-pointer" style={steel ? activeState : undefined} onClick={ShowSteel}>Steel  (150)</li>
+                                    <li className="py-2 cursor-pointer" style={sand ? activeState : undefined} onClick={ShowSand}>Sand  (150)</li>
                                 </ul>
                             </div>
                             <div className="w-9/12 pl-3 lg:pl-0 lg:w-8/12">
