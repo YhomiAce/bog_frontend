@@ -82,8 +82,8 @@ export default function Service() {
         <Footer />
       </div>
       {landSurvey && (
-        <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40">
-            <div className="bg-white lg:w-4/12 px-5 h-800 overflow-y-auto overscroll-none lg:px-12 w-11/12 py-12 shadow fw-500 scale-ani">
+        <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40" onClick={CloseSurvey}>
+            <div className="bg-white lg:w-5/12 px-5 h-800 overflow-y-auto overscroll-none lg:px-12 w-11/12 py-12 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
                 <div className="flex justify-between">
                     <p className="text-lg lg:text-2xl fw-600">Request Land Survey</p>
                     <FontAwesomeIcon icon={faTimes} className="text-2xl relative -top-3 cursor-pointer" onClick={CloseSurvey}/>
@@ -340,8 +340,8 @@ export default function Service() {
         </div>
       )}
       {gInvest && (
-        <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40">
-        <div className="bg-white lg:w-4/12 px-5 lg:px-12 w-11/12 py-12 shadow fw-500 scale-ani">
+        <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40" onClick={CloseSurvey}>
+        <div className="bg-white lg:w-5/12 px-5 lg:px-12 w-11/12 py-12 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
             <div className="flex justify-between">
                 <p className="text-lg lg:text-2xl fw-600">Request Geotechnical Investigation</p>
                 <FontAwesomeIcon icon={faTimes} className="text-2xl relative -top-3 cursor-pointer" onClick={CloseSurvey}/>
@@ -390,8 +390,8 @@ export default function Service() {
       </div>
       )}
       {cDraw && (
-        <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40">
-            <div className="bg-white lg:w-4/12 px-5 lg:px-12 h-800 overflow-y-auto overscroll-none  w-11/12 py-12 shadow fw-500 scale-ani">
+        <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40" onClick={CloseSurvey}>
+            <div className="bg-white lg:w-5/12 px-5 lg:px-12 h-800 overflow-y-auto overscroll-none  w-11/12 py-12 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
                 <div className="flex justify-between">
                     <div>
                         <p className="text-lg lg:text-2xl fw-600">Request For Drawing</p>
@@ -656,8 +656,8 @@ export default function Service() {
       </div>
       )}
       {bAppove && (
-        <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40">
-            <div className="bg-white lg:w-4/12 px-5 lg:px-12 w-11/12 py-12 h-800 overflow-y-auto overscroll-none shadow fw-500 scale-ani">
+        <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40" onClick={CloseSurvey}>
+            <div className="bg-white lg:w-5/12 px-5 lg:px-12 w-11/12 py-12 h-800 overflow-y-auto overscroll-none shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
                 <div className="flex justify-between">
                     <p className="text-lg lg:text-2xl fw-600">Request Building Approval</p>
                     <FontAwesomeIcon icon={faTimes} className="text-2xl relative -top-3 cursor-pointer" onClick={CloseSurvey}/>
@@ -878,8 +878,8 @@ export default function Service() {
       </div>
       )}
       {sCalc && (
-        <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40">
-            <div className="bg-white lg:w-4/12 px-5 lg:px-12 h-800 overflow-y-auto overscroll-none  w-11/12 py-12 shadow fw-500 scale-ani">
+        <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40" onClick={CloseSurvey}>
+            <div className="bg-white lg:w-5/12 px-5 lg:px-12 h-800 overflow-y-auto overscroll-none  w-11/12 py-12 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
                 <div className="flex justify-between">
                     <div>
                         <p className="text-lg lg:text-2xl fw-600">Request for Contractor or Smart Calculator</p>

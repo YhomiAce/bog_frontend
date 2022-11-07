@@ -16,28 +16,40 @@ export  function AboutSlides() {
                 spaceBetween={30}
                 autoplay={{ delay: 6000 }}
                 grabCursor={true}
-                centeredSlides={false}
+                loop={true}
+                centeredSlides={true}
                 slidesPerView={3}
                 pagination={true}
                 modules={[Autoplay, Pagination ]}
                 className=""
             >
                 <SwiperSlide className=" mb-12">
-                    <div className="text-center py-4 shadow lg:w-10/12 mx-auto">
+                    <div 
+                        className="text-center py-4 shadow lg:w-10/12 mx-auto"
+                        >
                         <div>
-                            <img src={require("../../assets/images/tv.png")} alt="img1" className="w-20 m-auto"/>
+                            <img src={require("../../assets/images/call.png")} alt="img1" className="w-20 m-auto"/>
                         </div>
                         <p className="fs-500 fw-500 mt-4">Execellent Customer Care</p>
-                        <p className="mt-4 px-4 fs-400">Amet minim mollit non deserunt ullamco est sit aliqua dolor do.</p>
+                        <p className="mt-2 px-4 fs-400">Amet minim mollit non deserunt ullamco est sit aliqua dolor do.</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
                     <div className="text-center py-4 shadow lg:w-10/12 mx-auto">
                         <div>
-                            <img src={require("../../assets/images/tv.png")} alt="img1" className="w-20 m-auto"/>
+                            <img src={require("../../assets/images/safe.png")} alt="img1" className="w-20 m-auto"/>
                         </div>
-                        <p className="fs-500 fw-500 mt-4">Execellent Customer Care</p>
-                        <p className="mt-4 px-4 fs-400">Amet minim mollit non deserunt ullamco est sit aliqua dolor do.</p>
+                        <p className="fs-500 fw-500 w-6/12 mx-auto  mt-4">Safe, Secure & Reliable </p>
+                        <p className="mt-2 px-4 fs-400">BOG is a reliable platform known to be very safe and secure  . </p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div className="text-center py-4 shadow lg:w-10/12 mx-auto">
+                        <div>
+                            <img src={require("../../assets/images/rely.png")} alt="img1" className="w-20 m-auto"/>
+                        </div>
+                        <p className="fs-500 fw-500 w-6/12 mx-auto mt-4">On time product and service delivery</p>
+                        <p className="mt-2 px-4 fs-400">Amet minim mollit non deserunt ullamco est sit aliqua dolor do.</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -46,16 +58,8 @@ export  function AboutSlides() {
                             <img src={require("../../assets/images/tv.png")} alt="img1" className="w-20 m-auto"/>
                         </div>
                         <p className="fs-500 fw-500 mt-4">Execellent Customer Care</p>
-                        <p className="mt-4 px-4 fs-400">Amet minim mollit non deserunt ullamco est sit aliqua dolor do.</p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="text-center py-4 shadow lg:w-10/12 mx-auto">
-                        <div>
-                            <img src={require("../../assets/images/tv.png")} alt="img1" className="w-20 m-auto"/>
-                        </div>
-                        <p className="fs-500 fw-500 mt-4">Execellent Customer Care</p>
-                        <p className="mt-4 px-4 fs-400">Amet minim mollit non deserunt ullamco est sit aliqua dolor do.</p>
+                        <p className="mt-4 px-4 fs-400">Amet minim mollit non deserunt ullamco est sit aliqua dolor do. 22</p>
+                        
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -97,6 +101,7 @@ export  function AboutSlidesSm() {
                 spaceBetween={30}
                 autoplay={{ delay: 6000 }}
                 grabCursor={true}
+                loop={true}
                 centeredSlides={false}
                 slidesPerView={1}
                 pagination={true}

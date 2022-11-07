@@ -106,7 +106,7 @@ const Granite = () => {
                                 value={item.rating}
                                 size={20}
                             />
-                            <p className="fw-600 fs-400 lg:fs-600">{item.price}</p>
+                            <p className="fw-600 fs-300 lg:fs-600">{item.price}</p>
                         </Link>
                     </div>
                     )

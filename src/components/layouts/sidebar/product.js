@@ -1,10 +1,9 @@
 import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BsCameraVideo, BsFillGrid1X2Fill, BsBell, BsGear, BsReceiptCutoff, BsBoxArrowRight } from "react-icons/bs";
-import { VscHistory } from "react-icons/vsc"
+import { VscHistory } from "react-icons/vsc";
 import { RiUserAddLine } from "react-icons/ri"
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../redux/actions/authAction';
@@ -17,7 +16,11 @@ const ProductSidebar = () => {
     const auth = useSelector((state) => state.auth);
     console.log(auth.user);
 
-
+    const activeStyle = {
+        backgroundColor: "#3F79AD",
+        borderRadius: "5px",
+        color: "white"
+    };
     useEffect(() => {
 
         function handleResize() {
@@ -62,61 +65,81 @@ const ProductSidebar = () => {
                     <div>
                         <NavLink
                             to=""
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-4"
-
+                            className="w-full flex items-center pl-2 py-2 fw-600"
+                            
                             onClick={unShow}
                         >
                             <BsFillGrid1X2Fill className="text-xl" />
                             <p className="pl-3"> Dashboard</p>
                         </NavLink>
                         <NavLink
-                            to="orders"
+                            to="order"
                             className="w-full flex items-center pl-2 py-2 fw-600 my-4"
-                            activeClassName="w-full flex items-center py-2 fw-600 my-4 light-bg text-primary"
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             onClick={unShow}
                         >
                             <BsReceiptCutoff className="text-xl" />
                             <p className="pl-3">Products</p>
                         </NavLink>
-                        <Link to="orders">
+                        <NavLink 
+                            to="orders"
+                            onClick={unShow}
+                            className={(navData) => navData.isActive ? 'bg-primary text-primary' : 'text-black' }
+                            >
                             <div className="w-full flex items-center pl-2 my-4 py-2 fw-600 hover:bg-primary hover:text-white hover:rounded">
                                 <RiUserAddLine className="text-lg" />
                                 <p className="pl-3">Orders Requests</p>
                             </div>
-                        </Link>
-                        <Link to="meetings">
-                            <div className="w-full py-2 flex items-center my-4 fw-600 pl-2 hover:bg-primary hover:text-white hover:rounded">
-                                <BsCameraVideo className="text-xl " />
-                                <p className="pl-3">Meetings</p>
-                            </div>
-                        </Link>
-                        <Link to="notify">
-                            <div className="w-full py-2 flex items-center pl-2 my-4 fw-600 hover:bg-primary hover:text-white hover:rounded">
-                                <BsBell className="text-xl" />
-                                <p className="pl-3">Notification</p>
-                            </div>
-                        </Link>
-                        <Link to="notify">
-                            <div className="w-full py-2 flex items-center pl-2 my-4 fw-600 hover:bg-primary hover:text-white hover:rounded">
-                                <VscHistory className="text-xl" />
-                                <p className="pl-3">History</p>
-                            </div>
-                        </Link>
+                        </NavLink>
+                        <NavLink 
+                            to="meetings"
+                            onClick={unShow}
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-4"
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            >
+                            <BsCameraVideo className="text-xl " />
+                            <p className="pl-3">Meetings</p>
+                        </NavLink>
+                        <NavLink 
+                            to="notify"
+                            onClick={unShow}
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-4"
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            >
+                            <BsBell className="text-xl" />
+                            <p className="pl-3">Notification</p>
+                            
+                        </NavLink>
+                        <NavLink 
+                            to="history"
+                            onClick={unShow}
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-4"
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            >
+                            <VscHistory className="text-xl" />
+                            <p className="pl-3">History</p>
+                        </NavLink>
                     </div>
                     <div>
-                        <Link to="settings">
-                            <div className="w-full py-2 fw-600 flex items-center my-2 rounded-lg">
-                                <FontAwesomeIcon icon={faQuestionCircle} className="pr-3 pl-2 text-lg" />
+                        <NavLink 
+                            to="help"
+                            onClick={unShow}
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-4"
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            >
+                            <FontAwesomeIcon icon={faQuestionCircle} className="pr-3 pl-1 text-lg" />
                                 Help
-                            </div>
-                        </Link>
-                        <Link to="settings">
-                            <div className="w-full py-2 pl-2 fw-600 flex items-center my-2 rounded-lg">
-                                <BsGear className="text-xl" />
-                                <p className="pl-3">Settings</p>
-                            </div>
-                        </Link>
-                        <Link>
+                        </NavLink>
+                        <NavLink 
+                            to="settings"
+                            onClick={unShow}
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-4"
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            >
+                            <BsGear className="text-xl" />
+                            <p className="pl-3">Settings</p>
+                        </NavLink>
+                        <NavLink>
                             <div
                                 style={sideBarStyle.cursorStyle}
                                 onClick={() => dispatch(logout())}
@@ -124,7 +147,7 @@ const ProductSidebar = () => {
                                 <BsBoxArrowRight className="text-xl" />
                                 <p className="pl-3">Sign Out</p>
                             </div>
-                        </Link>
+                        </NavLink>
                     </div>
                 </div>
             )}
