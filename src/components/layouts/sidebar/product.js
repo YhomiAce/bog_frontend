@@ -73,7 +73,7 @@ const ProductSidebar = () => {
                             <p className="pl-3"> Dashboard</p>
                         </NavLink>
                         <NavLink
-                            to="order"
+                            to="products"
                             className="w-full flex items-center pl-2 py-2 fw-600 my-4"
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             onClick={unShow}
