@@ -17,9 +17,9 @@ const ProductSidebar = () => {
     console.log(auth.user);
 
     const activeStyle = {
-        backgroundColor: "#3F79AD",
-        borderRadius: "5px",
-        color: "white"
+        backgroundColor: "rgba(234, 245, 255, 1)",
+        color: "rgba(63, 121, 173, 1)",
+        borderRight: "6px solid rgba(63, 121, 173, 1)"
     };
     useEffect(() => {
 
@@ -83,13 +83,12 @@ const ProductSidebar = () => {
                         </NavLink>
                         <NavLink 
                             to="orders"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-4"
                             onClick={unShow}
-                            className={(navData) => navData.isActive ? 'bg-primary text-primary' : 'text-black' }
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             >
-                            <div className="w-full flex items-center pl-2 my-4 py-2 fw-600 hover:bg-primary hover:text-white hover:rounded">
                                 <RiUserAddLine className="text-lg" />
-                                <p className="pl-3">Orders Requests</p>
-                            </div>
+                                <p className="pl-3">Orders</p>
                         </NavLink>
                         <NavLink 
                             to="meetings"
