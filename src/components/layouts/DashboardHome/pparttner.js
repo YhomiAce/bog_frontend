@@ -3,8 +3,9 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useSelector } from "react-redux";
-import {  CardBody } from "@material-tailwind/react";
-// import ChartLine from "../assets/UsersChart";
+import {BsCheckSquare,BsCheckCircle} from 'react-icons/bs';
+import {  CardBody, Progress } from "@material-tailwind/react";
+import ChartLine from "../assets/UsersChart";
 // import ProjectChart from "../assets/ProjectChart";
 
 export default function ProductDashboard() {
@@ -125,6 +126,9 @@ export default function ProductDashboard() {
                                 Delivery Status
                             </th>
                             <th className="px-2 align-middle fw-500 py-3 text-sm whitespace-nowrap text-left">
+                                Status
+                            </th>
+                            <th className="px-2 align-middle fw-500 py-3 text-sm whitespace-nowrap text-left">
                                 Profile
                             </th>
                             </tr>
@@ -219,7 +223,76 @@ export default function ProductDashboard() {
         </div>
         </div>
         {/* project analysis and ongoing project*/}
-        
+        <div className="grid-3 justify-between">
+          {/* overview */}
+          <div className="bg-white mt-6 rounded-lg px-4 py-6">
+            <p className="fw-600 fs-700">Overview</p>
+            <div className="mt-5 fs-400">
+              <div className="mb-3">
+                <div className="flex justify-between">
+                  <p className="mb-2">Revenue</p>
+                  <p className="text-green-600">1,400</p>
+                </div>
+                <Progress color="green" value="95"/>
+              </div>
+              <div className="mb-3">
+                <div className="flex justify-between">
+                  <p className="mb-2">Expenses</p>
+                  <p className="text-red-600">1,100</p>
+                </div>
+                <Progress color="red" value="65"/>
+              </div>
+              <div className="mb-3">
+                <div className="flex justify-between">
+                  <p className="mb-2">Profit</p>
+                  <p className="text-green-600">300</p>
+                </div>
+                <Progress color="green" value="35"/>
+              </div>
+            </div>
+          </div>
+          {/* request analysis */}
+          <div className="bg-white mt-6 rounded-lg px-4 py-6">
+            <div><p className="fw-600 fs-700">Request Analysis</p></div>
+            <div className="mt-4">
+              <ChartLine/>
+            </div>
+          </div>
+          {/* ivoices */}
+          <div className="bg-white mt-6 rounded-lg px-4 py-6">
+            <div className="flex justify-between">
+              <p className="fw-600 fs-700">Invoices</p>
+              <p className="border border-gray-700 fs-500 cursor-pointer rounded-md px-3">New</p>
+            </div>
+            <div className="border-t border-b border-gray-400 py-4 mt-4">
+              <div className="grid-3 fs-400 justify-between">
+                <div>
+                  <div className="flex items-center"><p className="p-2 py-1 fw-600 circle bg-red-200 text-red-800">4</p><p className="text-red-600 pl-2">Overdue</p></div>
+                  <p className="fw-500 mt-1 fs-300">NGN 265,480</p>
+                </div>
+                <div>
+                  <div className="flex items-center"><p className="p-2 py-1 fw-600 circle bg-yellow-200 text-yellow-800">2</p><p className="text-yellow-600 pl-2">Unpaid</p></div>
+                  <p className="fw-500 mt-1 fs-300">NGN 265,480</p>
+                </div>
+                <div>
+                  <div className="flex items-center"><p className="p-2 py-1 fw-600 circle bg-blue-200 text-blue-800">5</p><p className="text-blue-600 pl-2">Draft</p></div>
+                  <p className="fw-500 mt-1 fs-300">NGN 265,480</p>
+                </div>
+              </div>
+            </div>
+            <div className="mt-4">
+              <p className="fw-600 fs-700 border-b border-gray-400 pb-2">Approved Requests</p>
+              <div className="flex justify-between fs-400 mt-3">
+                <div className="flex items-center">
+                  <BsCheckSquare className="bg-primary text-white"/><p className="pl-1">Chukka</p>
+                </div>
+                <div className="text-green-600 flex items-center">
+                  <BsCheckCircle/><p className="pl-1">Approved order</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

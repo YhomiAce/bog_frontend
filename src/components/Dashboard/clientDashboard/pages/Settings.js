@@ -13,6 +13,7 @@ export default function Settings() {
         <div className="w-full py-6 bg-white px-4 rounded-lg">
           <p className="fs-400 text-gray-500">Overview</p>
           <p className="text-2xl fw-600">User Profile</p>
+          <p className="fs-400 text-gray-600 mt-2">Update/edit your account and profile settings </p>
         </div>
         <div className="lg:grid-74">
           <div className="mt-6 py-6 bg-white px-4 rounded-lg">

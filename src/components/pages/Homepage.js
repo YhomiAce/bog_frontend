@@ -101,7 +101,7 @@ export default function Homepage() {
                         </div>
                         <div className="lg:w-6/12 text-white">
                             <p className="lg:text-4xl relative lg:leading-snug text-2xl fw-600" ref={intro}>
-                                Providing products and services to intending structure owners accross borders.
+                                Providing products and services to intending structure owners across borders.
                             </p>
                             <div ref={intro1}>
                                 <p className="my-7" >A platform where people can monitor and manage their projects without being encumbered by time and distance.</p>
