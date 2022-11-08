@@ -59,7 +59,7 @@ export default function Header() {
                                 <p className="absolute -top-2 left-3/4 border circle px-1 text-white text-xs bg-primary">6</p>
                             </div>
                             {notifyDown && (
-                                <div className="absolute bg-white rounded shadow pb-5 w-68 lg:w-72 text-start fs-400 lg:-left-64 -left-56 top-12">
+                                <div className="absolute bg-white rounded shadow pb-5 w-68 lg:w-72 text-start fs-400 lg:-left-64 -left-56 top-12" onClick={ShowNotify}>
                                     <p className="mb-3 text-white bg-primary py-2 pl-3 text-lg fw-600">Notifications</p>
                                     <p className="my-3 flex">
                                         <div>
@@ -88,24 +88,7 @@ export default function Header() {
                                             <p className="text-gray-500 text-xs">just now</p>
                                         </div>
                                     </p>
-                                    <p className="my-5 flex">
-                                        <div>
-                                            <img src={require("./images/profile.png")} className="mx-3 w-9" alt="Notify" />
-                                        </div>
-                                        <div>
-                                            <p>A new dealer for sharp sand</p>
-                                            <p className="text-gray-500 text-xs">just now</p>
-                                        </div>
-                                    </p>
-                                    <p className="my-5 flex">
-                                        <div>
-                                            <img src={require("./images/profile.png")} className="mx-3 w-9" alt="Notify" />
-                                        </div>
-                                        <div>
-                                            <p>House wiring designs available</p>
-                                            <p className="text-gray-500 text-xs">just now</p>
-                                        </div>
-                                    </p>
+                                    <Link to="notify"><p className="text-center hover:text-orange-500">View All</p></Link>
                                 </div>
                             )}
                         </div>
