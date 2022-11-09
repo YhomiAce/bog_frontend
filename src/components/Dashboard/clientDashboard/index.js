@@ -10,6 +10,8 @@ import Orders from "./pages/Orders";
 import Products from "./pages/Products";
 import Sidebar from "./sidebar";
 import Settings from "./pages/Settings"
+import Transactions from "./pages/Transactions";
+import Projects from "./pages/Project";
 
 export default function ClientDashboard() {
     
@@ -23,7 +25,9 @@ export default function ClientDashboard() {
                         <Route path="" element={<Dashboard />} />
                         <Route path="orders" element={<Orders />} />
                         <Route path="products" element={<Products />} />
+                        <Route path="projects" element={<Projects />} />
                         <Route path="meetings" element={<Meetings />} />
+                        <Route path="transact" element={<Transactions />} />
                         <Route path="notify" element={<Notify />} />
                         <Route path="chat" element={<Chat />} />
                         <Route path="settings" element={<Settings />} />

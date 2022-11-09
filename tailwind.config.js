@@ -22,6 +22,7 @@ module.exports = withMT(
           'shop': "url('/src/components/assets/images/shop.png')",
           'service': "url('/src/components/assets/images/service.png')",
           'about': "url('/src/components/assets/images/about.png')",
+          'order': "url('https://res.cloudinary.com/greenmouse-tech/image/upload/v1667989518/BOG/order-bg_mmwm28.png')",
           'jot': "url('https://res.cloudinary.com/greenmouse-tech/image/upload/v1667570082/BOG/jot-bg_v8ihxs.png')",
           'footer': "url('/src/components/assets/images/footer.png')",
           'terms': "url('/src/components/assets/images/terms.png')",

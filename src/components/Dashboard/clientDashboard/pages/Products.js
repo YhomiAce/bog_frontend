@@ -11,9 +11,11 @@ import { Button } from "@material-tailwind/react";
 export default function Products() {
 
     const [productDelete, setProductDelete] = useState(false)
+    const [productEdit, setProductEdit] = useState(false)
 
     function CloseDelete() {
         setProductDelete(false)
+        setProductEdit(false)
     }
     
 
@@ -51,7 +53,7 @@ export default function Products() {
                                                             <p className="mt-1 text-green-600 fw-500">Approved</p>
                                                         </div>
                                                         <div className="flex items-center mt-1">
-                                                            <span className="text-2xl pr-3 cursor-pointer"><BiEdit/></span> 
+                                                            <span className="text-2xl pr-3 cursor-pointer" onClick={() => {setProductEdit(true)}}><BiEdit/></span> 
                                                             <span className="text-2xl pl-3 text-red-600 cursor-pointer"><RiDeleteBinLine onClick={() => {setProductDelete(true)}}/></span>
                                                         </div>
                                                     </div>
@@ -74,7 +76,7 @@ export default function Products() {
                                                 <input type="text" className="w-full lg:w-10/12 border border-gray-400 rounded mt-2 py-2 px-2" required/>
                                             </div>
                                             <div className="mt-5">
-                                                <label className="block">Product Price</label>
+                                                <label className="block">Product Image</label>
                                                 <input type="file" className="w-full lg:w-10/12 border border-gray-400 rounded mt-2 py-2 px-2" required/>
                                             </div>
                                             <div className="mt-5">
@@ -150,7 +152,7 @@ export default function Products() {
                 </div>
                 {/* modals */}
                 {productDelete && (
-                    <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40" onClick={CloseDelete}>
+                    <div className="fixed font-primary left-0 top-0 w-full h-screen bg-op center-item z-40" onClick={CloseDelete}>
                         <div className="bg-white lg:w-5/12 rounded-md  overscroll-none  w-11/12 pt-8 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
                             <div className="flex lg:px-6 px-5">
                                 <div className="text-2xl pr-3 text-yellow-600">
@@ -165,6 +167,35 @@ export default function Products() {
                                 <Button color="black" variant="outlined" ripple={true} onClick={CloseDelete}>Cancel</Button>
                                 <Button color="red" className="ml-4" ripple={true}>Delete</Button>
                             </div>
+                        </div> 
+                    </div>
+                )}
+                {productEdit && (
+                    <div className="fixed font-primary top-0 left-0 w-full h-screen bg-op center-item z-40" onClick={CloseDelete}>
+                        <div className="bg-white lg:w-5/12 rounded-md h-700 overflow-y-auto overscroll-none  w-11/12 pt-8 pb-8 lg:px-10 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
+                            <form>
+                                <p className="lg:fs-700 fw-600">Edit this Product</p>
+                                <div className="mt-5">
+                                    <label className="block">New Product Tittle</label>
+                                    <input type="text" className="w-full lg:w-10/12 border border-gray-400 rounded mt-2 py-2 px-2" required/>
+                                </div>
+                                <div className="mt-5">
+                                    <label className="block">New Product Price</label>
+                                    <input type="text" className="w-full lg:w-10/12 border border-gray-400 rounded mt-2 py-2 px-2" required/>
+                                </div>
+                                <div className="mt-5">
+                                    <label className="block">New Product Image</label>
+                                    <input type="file" className="w-full lg:w-10/12 border border-gray-400 rounded mt-2 py-2 px-2" required/>
+                                </div>
+                                <div className="mt-5">
+                                    <label className="block">New Product Description</label>
+                                    <textarea className="w-full lg:w-10/12 h-24 border border-gray-400 rounded mt-2 p-2" required></textarea>
+                                </div>
+                                <div className="mt-8 flex lg:w-10/12 justify-between">
+                                    <Button color="red" onClick={CloseDelete}>Cancel</Button>
+                                    <Button color="green">Save Edit</Button>
+                                </div>
+                            </form>
                         </div> 
                     </div>
                 )}
