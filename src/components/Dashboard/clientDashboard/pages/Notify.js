@@ -31,7 +31,7 @@ export default function Notify() {
                                             <p className="fs-400 text-gray-500">1 hour ago</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center mt-5">
+                                    <div className="flex items-center mt-7 lg:mt-12">
                                         <div className="w-3/12 lg:w-auto">
                                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
                                         </div>
@@ -40,7 +40,7 @@ export default function Notify() {
                                             <p className="fs-400 text-gray-500">6 hours ago</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center mt-5">
+                                    <div className="flex items-center mt-7 lg:mt-12">
                                         <div className="w-3/12 lg:w-auto">
                                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
                                         </div>
@@ -49,7 +49,7 @@ export default function Notify() {
                                             <p className="fs-400 text-gray-500">15 hours ago</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center mt-5">
+                                    <div className="flex items-center mt-7 lg:mt-12">
                                         <div className="w-3/12 lg:w-auto">
                                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
                                         </div>
@@ -58,7 +58,7 @@ export default function Notify() {
                                             <p className="fs-400 text-gray-500">16 hours ago</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center mt-5">
+                                    <div className="flex items-center mt-7 lg:mt-12">
                                         <div className="w-2/12 lg:w-auto">
                                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
                                         </div>
@@ -80,7 +80,7 @@ export default function Notify() {
                                             <p className="fs-400 text-gray-500">1 hour ago</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center mt-5">
+                                    <div className="flex items-center mt-7 lg:mt-12">
                                         <div className="w-3/12 lg:w-auto">
                                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
                                         </div>
@@ -89,7 +89,7 @@ export default function Notify() {
                                             <p className="fs-400 text-gray-500">6 hours ago</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center mt-5">
+                                    <div className="flex items-center mt-7 lg:mt-12">
                                         <div className="w-3/12 lg:w-auto">
                                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
                                         </div>
@@ -98,7 +98,7 @@ export default function Notify() {
                                             <p className="fs-400 text-gray-500">15 hours ago</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center mt-5">
+                                    <div className="flex items-center mt-7 lg:mt-12">
                                         <div className="w-3/12 lg:w-auto">
                                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
                                         </div>
@@ -107,7 +107,7 @@ export default function Notify() {
                                             <p className="fs-400 text-gray-500">16 hours ago</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center mt-5">
+                                    <div className="flex items-center mt-7 lg:mt-12">
                                         <div className="w-2/12 lg:w-auto">
                                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
                                         </div>
@@ -116,7 +116,7 @@ export default function Notify() {
                                             <p className="fs-400 text-gray-500">20 hours ago</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center mt-5">
+                                    <div className="flex items-center mt-7 lg:mt-12">
                                         <div className="w-3/12 lg:w-auto">
                                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
                                         </div>
@@ -125,7 +125,7 @@ export default function Notify() {
                                             <p className="fs-400 text-gray-500">21 hours ago</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center mt-5">
+                                    <div className="flex items-center mt-7 lg:mt-12">
                                         <div className="w-3/12 lg:w-auto">
                                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
                                         </div>
@@ -134,7 +134,7 @@ export default function Notify() {
                                             <p className="fs-400 text-gray-500">23 hours ago</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center mt-5">
+                                    <div className="flex items-center mt-7 lg:mt-12">
                                         <div className="w-3/12 lg:w-auto">
                                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
                                         </div>
@@ -147,7 +147,7 @@ export default function Notify() {
                             </TabPanel>
                             <TabPanel>
                                 <div className="mt-10 pb-8 px-3">
-                                    <div className="flex items-center mt-5">
+                                    <div className="flex items-center mt-7 lg:mt-12">
                                         <div className="w-3/12 lg:w-auto">
                                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
                                         </div>
@@ -156,7 +156,7 @@ export default function Notify() {
                                             <p className="fs-400 text-gray-500">15 hours ago</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center mt-5">
+                                    <div className="flex items-center mt-7 lg:mt-12">
                                         <div className="w-2/12 lg:w-auto">
                                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
                                         </div>
@@ -165,7 +165,7 @@ export default function Notify() {
                                             <p className="fs-400 text-gray-500">20 hours ago</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center mt-5">
+                                    <div className="flex items-center mt-7 lg:mt-12">
                                         <div className="w-3/12 lg:w-auto">
                                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
                                         </div>
@@ -174,7 +174,7 @@ export default function Notify() {
                                             <p className="fs-400 text-gray-500">21 hours ago</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center mt-5">
+                                    <div className="flex items-center mt-7 lg:mt-12">
                                         <div className="w-3/12 lg:w-auto">
                                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
                                         </div>

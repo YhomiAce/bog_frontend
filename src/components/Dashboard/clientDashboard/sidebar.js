@@ -1,13 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BsCameraVideo, BsFillGrid1X2Fill, BsBell, BsGear, BsReceiptCutoff, BsBag, BsEnvelope, BsBoxArrowRight } from "react-icons/bs";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../../redux/actions/authAction';
-import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import ClientSidebar from "../../layouts/sidebar/client";
 import AdminSidebar from "../../layouts/sidebar/admin";
 import ProductSidebar from "../../layouts/sidebar/product";

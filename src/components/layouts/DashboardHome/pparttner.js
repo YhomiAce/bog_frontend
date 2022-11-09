@@ -1,5 +1,4 @@
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
-// import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -28,56 +27,64 @@ export default function ProductDashboard() {
         <div className="mt-3">
           <div className="lg:grid-4 justify-between fs-500 fw-600">
             <div className="bg-white px-4 py-3 rounded flex justify-between items-center shades">
-              <div>
-                <p className="text-xxl fw-600 pb-2 text-xl">180 </p>
-                <p className="text-gray-600">Total Request</p>
-              </div>
-              <div className="">
-                <img
-                  src={require("../images/request.png")}
-                  alt="project"
-                  className=" relative w-16"
-                />
-              </div>
+              <Link to="orders" className="flex justify-between items-center w-full">
+                <div>
+                  <p className="text-xxl fw-600 pb-2 text-xl">180 </p>
+                  <p className="text-gray-600">Total Request</p>
+                </div>
+                <div className="">
+                  <img
+                    src={require("../images/request.png")}
+                    alt="project"
+                    className=" relative w-16"
+                  />
+                </div>
+              </Link>
             </div>
             <div className="bg-white mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
-              <div>
-                <p className="text-xxl pb-2 fw-600">23</p>
-                <p className="text-gray-600">Pending Orders</p>
-              </div>
-              <div className="">
-                <img
-                  src={require("../images/pending.png")}
-                  alt=""
-                  className=" relative w-16 mt-2"
-                />
-              </div>
+              <Link to="orders" className="flex justify-between items-center w-full">
+                <div>
+                  <p className="text-xxl pb-2 fw-600">23</p>
+                  <p className="text-gray-600">Pending Orders</p>
+                </div>
+                <div className="">
+                  <img
+                    src={require("../images/pending.png")}
+                    alt=""
+                    className=" relative w-16 mt-2"
+                  />
+                </div>
+              </Link>
             </div>
             <div className="bg-white  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
-              <div>
-                <p className="fw-600 text-xxl pb-2">25</p>
-                <p className="text-gray-600">Active Deliveries</p>
-              </div>
-              <div className="relative">
-                <img
-                  src={require("../images/deliver.png")}
-                  alt="cart"
-                  className=" relative w-16"
-                />
-              </div>
+              <Link to="orders" className="flex justify-between items-center w-full">
+                <div>
+                  <p className="fw-600 text-xxl pb-2">25</p>
+                  <p className="text-gray-600">Active Deliveries</p>
+                </div>
+                <div className="relative">
+                  <img
+                    src={require("../images/deliver.png")}
+                    alt="cart"
+                    className=" relative w-16"
+                  />
+                </div>
+              </Link>
             </div>
             <div className="bg-white  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
-              <div>
-                <p className="text-xxl fw-600 pb-2">12</p>
-                <p className="text-gray-600">Completed Deliveries</p>
-              </div>
-              <div className="">
-                <img
-                  src={require("../images/complete.png")}
-                  alt="ongoing"
-                  className=" left-2 relative w-20"
-                />
-              </div>
+              <Link to="orders" className="flex justify-between items-center w-full">
+                <div>
+                  <p className="text-xxl fw-600 pb-2">12</p>
+                  <p className="text-gray-600">Completed Deliveries</p>
+                </div>
+                <div className="">
+                  <img
+                    src={require("../images/complete.png")}
+                    alt="ongoing"
+                    className=" left-2 relative w-20"
+                  />
+                </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -90,20 +97,6 @@ export default function ProductDashboard() {
                         <p className="fw-600 text-lg mb-6 lg:mb-0">Product Request</p>
                     </div>
                     <div>
-                        {/* <div class="mr-6 relative mx-auto text-gray-600">
-                            <input
-                            class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-                            type="search"
-                            name="search order by name"
-                            placeholder="Search"
-                            />
-                            <button
-                            type="submit"
-                            class="absolute bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
-                            >
-                            <FontAwesomeIcon icon={faSearch} className="text-white" />
-                            </button>
-                        </div> */}
                         <Link to="orders"><p className="px-6 py-1 border border-orange-800 text-secondary rounded-lg fs-400">All Items</p></Link>
                     </div>
                 </div>
