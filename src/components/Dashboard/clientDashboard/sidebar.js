@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ClientSidebar from "../../layouts/sidebar/client";
 import AdminSidebar from "../../layouts/sidebar/admin";
 import ProductSidebar from "../../layouts/sidebar/product";
+import ServiceSidebar from "../../layouts/sidebar/service";
 
 export default function Sidebar() {
   const dispatch = useDispatch();
@@ -49,6 +50,8 @@ export default function Sidebar() {
     sidebar = <ClientSidebar />
   }else if(auth?.user?.userType === "vendor"){
     sidebar = <ProductSidebar />
+  }else if(auth?.user?.userType === "professional"){
+    sidebar = <ServiceSidebar />
   }else if(auth?.user?.userType === "admin"){
     sidebar = <AdminSidebar />
   }

@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { Avatar, CardBody, Progress } from "@material-tailwind/react";
 import ChartLine from "../assets/UsersChart";
 import ProjectChart from "../assets/ProjectChart";
+import { Link } from "react-router-dom";
 
 export default function PclientDashboard() {
   const user = useSelector((state) => state.auth.user);
@@ -25,56 +26,64 @@ export default function PclientDashboard() {
         <div className="mt-3">
           <div className="lg:grid-4 justify-between fs-500 fw-600">
             <div className="bg-white px-4 py-3 rounded flex justify-between items-center shades">
-              <div>
-                <p className="text-xxl fw-600 pb-2 text-xl">180 </p>
-                <p className="text-gray-600">Total Order</p>
-              </div>
-              <div className="">
-                <img
-                  src={require("../images/order.png")}
-                  alt="project"
-                  className=" relative w-16"
-                />
-              </div>
+              <Link to="orders" className="flex justify-between items-center w-full">
+                <div>
+                  <p className="text-xxl fw-600 pb-2 text-xl">180 </p>
+                  <p className="text-gray-600">Total Order</p>
+                </div>
+                <div className="">
+                  <img
+                    src={require("../images/order.png")}
+                    alt="project"
+                    className=" relative w-16"
+                  />
+                </div>
+              </Link>
             </div>
             <div className="bg-white mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
-              <div>
-                <p className="text-xxl pb-2 fw-600">10</p>
-                <p className="text-gray-600">Pending Orders</p>
-              </div>
-              <div className="">
-                <img
-                  src={require("../images/pend.png")}
-                  alt=""
-                  className=" relative w-16 mt-2"
-                />
-              </div>
+              <Link to="orders" className="flex justify-between items-center w-full">
+                <div>
+                  <p className="text-xxl pb-2 fw-600">10</p>
+                  <p className="text-gray-600">Pending Orders</p>
+                </div>
+                <div className="">
+                  <img
+                    src={require("../images/pend.png")}
+                    alt=""
+                    className=" relative w-16 mt-2"
+                  />
+                </div>
+              </Link>
             </div>
             <div className="bg-white  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
-              <div>
-                <p className="fw-600 text-xxl pb-2">25</p>
-                <p className="text-gray-600">Total Projects</p>
-              </div>
-              <div className="relative">
-                <img
-                  src={require("../images/project.png")}
-                  alt="cart"
-                  className=" relative w-16"
-                />
-              </div>
+              <Link to="orders" className="flex justify-between items-center w-full">
+                <div>
+                  <p className="fw-600 text-xxl pb-2">25</p>
+                  <p className="text-gray-600">Total Projects</p>
+                </div>
+                <div className="relative">
+                  <img
+                    src={require("../images/project.png")}
+                    alt="cart"
+                    className=" relative w-16"
+                  />
+                </div>
+              </Link>
             </div>
             <div className="bg-white  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
-              <div>
-                <p className="text-xxl fw-600 pb-2">12</p>
-                <p className="text-gray-600">Ongoing Projects</p>
-              </div>
-              <div className="">
-                <img
-                  src={require("../images/ongoing.png")}
-                  alt="ongoing"
-                  className=" left-2 relative w-20"
-                />
-              </div>
+              <Link to="orders" className="flex justify-between items-center w-full">
+                <div>
+                  <p className="text-xxl fw-600 pb-2">12</p>
+                  <p className="text-gray-600">Ongoing Projects</p>
+                </div>
+                <div className="">
+                  <img
+                    src={require("../images/ongoing.png")}
+                    alt="ongoing"
+                    className=" left-2 relative w-20"
+                  />
+                </div>
+              </Link>
             </div>
           </div>
         </div>

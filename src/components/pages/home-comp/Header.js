@@ -4,7 +4,7 @@ import { Button } from "@material-tailwind/react";
 import React from "react";
 import { useState } from "react";
 import { BsList } from "react-icons/bs";
-import { HiMenuAlt3 } from "react-icons/hi";
+import { HiMenuAlt3, HiOutlineShoppingBag } from "react-icons/hi";
 import { MdOutlineCancel } from "react-icons/md";
 import { Link } from "react-router-dom";
 
@@ -35,6 +35,9 @@ export default function Header() {
                         <Link to="/"><img src={require("../../assets/images/logo.png")} alt="logo" className="lg:w-40 "/></Link>
                     </div>
                     <div className="w-4/12 hidden fw-600 lg:flex justify-end items-center">
+                        <div className="text-xl mx-6 px-2 py-2 circle bg-light">
+                            <HiOutlineShoppingBag/>
+                        </div>
                         <Link to="/login" className="text-primary">
                             <button >Login</button>
                         </Link>

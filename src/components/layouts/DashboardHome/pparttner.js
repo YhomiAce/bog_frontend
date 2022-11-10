@@ -92,12 +92,12 @@ export default function ProductDashboard() {
         <div>
         <div className="mt-7">
             <div className=" fw-600 fs-500 bg-white pt-6 rounded">
-                <div className="lg:flex px-5 justify-between">
+                <div className="flex px-5 justify-between">
                     <div>
-                        <p className="fw-600 text-lg mb-6 lg:mb-0">Product Request</p>
+                        <p className="fw-600 fs-600 lg:text-lg mb-6 lg:mb-0">Product Request</p>
                     </div>
                     <div>
-                        <Link to="orders"><p className="px-6 py-1 border border-orange-800 text-secondary rounded-lg fs-400">All Items</p></Link>
+                        <Link to="orders"><p className="lg:px-6 px-2 fs-400 lg:fs-600py-1 border border-orange-800 text-secondary rounded-lg fs-400">All Items</p></Link>
                     </div>
                 </div>
                 <div>
