@@ -10,6 +10,7 @@ import ProjectChart from "../../assets/ProjectChart";
 import PclientDashboard from "../../../layouts/DashboardHome/pclient";
 import AdminDashboard from "../../../layouts/DashboardHome/admin";
 import ProductDashboard from "../../../layouts/DashboardHome/pparttner";
+import ServiceDashboard from "../../../layouts/DashboardHome/spartner";
 
 export default function Dashboard() {
 
@@ -21,6 +22,8 @@ export default function Dashboard() {
     dashboard = <PclientDashboard />
   }else if(auth?.user?.userType === "vendor"){
     dashboard = <ProductDashboard />
+  }else if(auth?.user?.userType === "professional"){
+    dashboard = <ServiceDashboard />
   }else if(auth?.user?.userType === "admin"){
     dashboard = <AdminDashboard />
   }

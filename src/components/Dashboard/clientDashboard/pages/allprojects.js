@@ -1,140 +1,24 @@
 import React from "react";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import { Progress, Avatar } from "@material-tailwind/react";
-import ProjectChart from "../../assets/ProjectChart";
-import { useSelector } from 'react-redux';
-import { FaRegEye } from "react-icons/fa";
+import { FaCheck, FaRegEye, FaTimes } from "react-icons/fa";
 
-export default function Projects() {
-    
-    const auth = useSelector((state) => state.auth);
-
-  let projects = <ClientProject/>;
-
-    if (auth?.user?.userType === "private_client") {
-      projects = <ClientProject/>
-    }else if(auth?.user?.userType === "vendor"){
-      projects = <ServiceProject/>
-    }else if(auth?.user?.userType === "professional"){
-        projects = <ServiceProject />
-      }else if(auth?.user?.userType === "admin"){
-      projects = <ServiceProject/>
-    }
-  return projects;
-
-    
-}
-
-export function ClientProject() {
+export function AllProject() {
 
     return (
         <div>
             <div className="min-h-screen fs-500 relative">
                 {/* header */}
                 <div className="w-full py-8 bg-white px-4">
-                    <p className="text-2xl fw-600">My Projects</p>
-                    <p className="fs-400 text-gray-600 mt-2">Monitor your project progress</p>
+                    <p className="text-2xl fw-600">All Projects</p>
+                    <p className="fs-400 text-gray-600 mt-2">Projects available on BOG</p>
                 </div> 
                 {/* content */}
                 <div className="lg:p-5 px-3 py-5 mt-6">
-                    {/* project analysis and calendar*/}
-                    <div className="lg:grid-74">
-                        <div className="lg:p-5 px-2 py-5 bg-white rounded-md">
-                            <p className="lg:text-lg fw-600 fs-600">My Projects</p>
-                            <div className="mt-4 lg:mt-10">
-                                <Tabs>
-                                    <TabList className="flex fs-300 lg:fs-600">
-                                        <Tab>Ongoing</Tab>
-                                        <Tab>Pending</Tab>
-                                        <Tab>Declined</Tab>
-                                        <Tab>Completed</Tab>
-                                    </TabList>
-                                    <TabPanel>
-                                        <div className="bg-white mt-1 lg:mt-0 lg:px-6 px-1 py-6 rounded">
-                                            
-                                            <div className="text-sm fw-600">
-                                            <div className="flex justify-between items-center">
-                                                <Avatar src={require("../images/profile.png")} />
-                                                <div className="lg:w-7/12 xl:w-9/12 w-6/12">
-                                                    <p className="fs-500 pb-2">Land Survey</p>
-                                                    <Progress color="yellow" value="20" />
-                                                </div>
-                                                <div>
-                                                <p className="text-yellow-600 mt-4">20% Done</p>
-                                                </div>
-                                            </div>
-                                            <div className="flex mt-4 justify-between items-center">
-                                                <Avatar src={require("../images/profile.png")} />
-                                                <div className="lg:w-7/12 xl:w-9/12 w-6/12">
-                                                <p className="fs-500 pb-2">Electric Drawing</p>
-                                                <Progress color="blue" value="70" />
-                                                </div>
-                                                <div>
-                                                <p className="text-blue-600 mt-4">70% Done</p>
-                                                </div>
-                                            </div>
-                                            <div className="flex mt-4 justify-between items-center">
-                                                <Avatar src={require("../images/profile.png")} />
-                                                <div className="lg:w-7/12 xl:w-9/12 w-6/12">
-                                                <p className="fs-500 pb-2">Building Drawing</p>
-                                                <Progress color="purple" value="40" />
-                                                </div>
-                                                <div>
-                                                <p className="text-purple-600 mt-4">40% Done</p>
-                                                </div>
-                                            </div>
-                                            <div className="flex mt-4 justify-between items-center">
-                                                <Avatar src={require("../images/profile.png")} />
-                                                <div className="lg:w-7/12 xl:w-9/12 w-6/12">
-                                                <p className="fs-500 pb-2">Soil Test</p>
-                                                <Progress color="green" value="90" />
-                                                </div>
-                                                <div>
-                                                <p className="text-green-600 mt-4">90% Done</p>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </TabPanel>
-                                </Tabs>
-                            </div>
-                        </div>
-                        <div className="bg-white rounded-md mt-6 lg:mt-0">
-                            <div className="bg-primary text-white rounded-t-md">
-                                <p className="py-6 fw-600 ml-7 lg:text-lg">Calender</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="mt-6 lg:mt-10 bg-white lg:p-6 p-3 lg:w-8/12 rounded-md">
-                        <div className="mb-5">
-                            <p className="text-lg fw-600">Project Analysis</p>
-                        </div>
-                        <ProjectChart/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        )
-}
-
-export function ServiceProject() {
-
-    return (
-        <div>
-            <div className="min-h-screen fs-500 relative">
-                {/* header */}
-                <div className="w-full py-8 bg-white px-4">
-                    <p className="text-2xl fw-600">My Projects</p>
-                    <p className="fs-400 text-gray-600 mt-2">Monitor your project progress</p>
-                </div> 
-                {/* content */}
-                <div className="lg:p-5 px-3 py-5 mt-6">
-                    {/* project analysis for my projects*/}
+                    {/* all projects table*/}
                     <div className="mt-2">
                         <div className=" fw-600 fs-500 bg-white pt-6 rounded">
                             <div className="flex px-5 justify-between">
                                 <div>
-                                    <p className="fw-600 fs-600 lg:text-lg mb-6 lg:mb-0">My Projects</p>
+                                    <p className="fw-600 fs-600 lg:text-lg mb-6 lg:mb-0">Available Projects</p>
                                 </div>
                             </div>
                             <div className="px-5 mt-6">
@@ -183,11 +67,14 @@ export function ServiceProject() {
                                                 20-04-2022
                                             </td>
                                             <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Ongoing
+                                                Pending
                                             </td>
                                             <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 <div className="flex text-xl">
                                                     <p><FaRegEye/></p>
+                                                    <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
+                                                    <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
+                                                    
                                                 </div>
                                             </td>
                                             </tr>
@@ -208,11 +95,13 @@ export function ServiceProject() {
                                                     10/10/2022
                                                 </td>
                                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Ongoing
+                                                    Pending
                                                 </td>
                                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                                     <div className="flex text-xl">
-                                                        <p><FaRegEye/></p>
+                                                    <p><FaRegEye/></p>
+                                                    <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
+                                                    <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -233,11 +122,13 @@ export function ServiceProject() {
                                                 19/11/2022
                                             </td>
                                             <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Completed
+                                                Pending
                                             </td>
                                             <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 <div className="flex text-xl">
-                                                <p><FaRegEye/></p>
+                                                    <p><FaRegEye/></p>
+                                                    <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
+                                                    <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
                                                 </div>
                                             </td>
                                             </tr>
@@ -258,11 +149,13 @@ export function ServiceProject() {
                                                 17/10/2022
                                             </td>
                                             <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Ongoing
+                                                Pending
                                             </td>
                                             <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 <div className="flex text-xl">
                                                     <p><FaRegEye/></p>
+                                                    <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
+                                                    <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
                                                 </div>
                                             </td>
                                             </tr>
@@ -283,11 +176,13 @@ export function ServiceProject() {
                                                     19/11/2022
                                                 </td>
                                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Completed
+                                                    Pending
                                                 </td>
                                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                                     <div className="flex text-xl">
-                                                    <p><FaRegEye/></p>
+                                                        <p><FaRegEye/></p>
+                                                        <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
+                                                        <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -308,11 +203,13 @@ export function ServiceProject() {
                                                     19/11/2022
                                                 </td>
                                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Completed
+                                                    Pending
                                                 </td>
                                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                                     <div className="flex text-xl">
-                                                    <p><FaRegEye/></p>
+                                                        <p><FaRegEye/></p>
+                                                        <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
+                                                        <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -333,11 +230,13 @@ export function ServiceProject() {
                                                     19/11/2022
                                                 </td>
                                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Completed
+                                                    Pending
                                                 </td>
                                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                                     <div className="flex text-xl">
-                                                    <p><FaRegEye/></p>
+                                                        <p><FaRegEye/></p>
+                                                        <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
+                                                        <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
                                                     </div>
                                                 </td>
                                             </tr>

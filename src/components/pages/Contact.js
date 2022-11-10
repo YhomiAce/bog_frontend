@@ -1,9 +1,12 @@
-import React from "react";
+import React,  {useRef } from "react";
 import Footer from "./home-comp/Footer";
 import Header from "./home-comp/Header";
-// import MyMap from "./home-comp/Map";
+import ReCAPTCHA from "react-google-recaptcha";
+import SimpleMap from "./home-comp/Map";
 
 export default function Contact(){
+
+    const captchaRef = useRef(null)
 
     return(
         <div>
@@ -67,6 +70,12 @@ export default function Contact(){
                                             <label>Message</label>
                                             <textarea className="w-full border rounded border-gray-500 mt-2 px-2 py-2" rows={5}/>
                                         </div>
+                                        <div className="mt-8">
+                                            <ReCAPTCHA
+                                                sitekey={process.env.REACT_APP_SITE_KEY}
+                                                ref={captchaRef}
+                                            />
+                                        </div>
                                         <div className="mt-10">
                                             <button className="btn-primary w-full">Submit</button>
                                         </div>
@@ -75,9 +84,8 @@ export default function Contact(){
                             </div>
                             <div className="lg:w-4/12 mt-16 lg:mt-0">
                                 <p className="mb-8 fs-800 fw-600">Office Location</p>
-                                <div>
-                                    {/* <MyMap/> */}
-                                    <img src={require("../assets/images/map.png")} alt="map" className="w-full" />
+                                <div className="h-96 rounded overflow-hidden">
+                                    <SimpleMap/>
                                 </div>
                             </div>
                         </div>
