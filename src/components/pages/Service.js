@@ -415,7 +415,7 @@ export default function Service() {
                         </div>
                         <div className="mt-3 lg:mt-6 w-full">
                             <label className="block fw-600">
-                                1. Name for client<span className="text-red-600 pl-2">*</span>
+                                1. Name of client<span className="text-red-600 pl-2">*</span>
                             </label>
                             <input
                                     type="text"
