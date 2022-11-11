@@ -19,13 +19,12 @@ export default function Transactions() {
                 {/* content */}
                 <div className="lg:p-5 px-3 py-5">
                     {/* transaction table */}
-                    <div className="bg-white lg:p-5 lg:mt-12 mt-6 rounded-lg">
+                    <div className="bg-white lg:p-5 lg:mt-6 mt-6 rounded-lg">
                         <Tabs className="px-2 lg:px-0 py-5 lg:py-0">
                         <TabList className="">
                             <Tab>All Transactions</Tab>
-                            <Tab>Completed</Tab>
-                            <Tab>Active</Tab>
-                            <Tab>Cancelled</Tab>
+                            <Tab>Successful</Tab>
+                            <Tab>Failed</Tab>
                         </TabList>
                         <TabPanel>
                             <div className="mt-10">
@@ -53,171 +52,121 @@ export default function Transactions() {
                                         S/N
                                     </th>
                                     <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Order ID
+                                        Transaction ID
                                     </th>
                                     <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Product Category
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Quantity
+                                        Transaction Type
                                     </th>
                                     <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
                                         Delivery Date
                                     </th>
                                     <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Order Status
+                                        Price
+                                    </th>
+                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                        Status
                                     </th>
                                     <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
-                                        Actions
+                                        Action
                                     </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                         1
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                         Granite-VAC-20E42 
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Granite
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        Products
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        2
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                         12/11/2022
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Request
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        NGN 150,000
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b text-green-600 border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        Delivered
+                                    </td>
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                         <div className="flex text-xl">
-                                        <p><FaRegEye/></p>
+                                            <p><FaRegEye/></p>
                                         </div>
                                     </td>
                                     </tr>
                                     <tr>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                         2
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Sand- DCL-20E42
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        SURVEY-DCL-20E42
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Sand
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        Services
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        3
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        31/11/2022
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        10/10/2022
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        NGN 200,000
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Active
+                                    <td className="border-b border-gray-200 text-green-600 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        Delivered
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                         <div className="flex text-xl">
-                                        <p><FaRegEye/></p>
+                                            <p><FaRegEye/></p>
                                         </div>
                                     </td>
                                     </tr>
                                     <tr>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                         3
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Cement- PDL-18L40
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        Cement-PDL-18L40
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Cement
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        Product
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        182 Bags of Cement
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                         19/11/2022
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Completed
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        NGN 60,000
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 text-yellow-600 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        Awaiting Delivery
+                                    </td>
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         <div className="flex text-xl">
                                         <p><FaRegEye/></p>
                                         </div>
                                     </td>
                                     </tr>
                                     <tr>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         4
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Sand- DCL-20E42
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        DRAW-PCL-20E42
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Sand
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        Services
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        2
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        25-12-22
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        17/10/2022
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        NGN 325,000
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        pending
+                                    <td className="border-b text-red-500 border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        Cancelled
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        <div className="flex text-xl">
-                                        <p><FaRegEye/></p>
-                                        </div>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        5
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Steel- XBL-12L88
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Steel
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        755 Kgs 
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        25/10/2022
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Completed
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        <div className="flex text-xl">
-                                        <p><FaRegEye/></p>
-                                        </div>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                    <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        6
-                                    </th>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Cement- PDL-18L40
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Cement
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        50 bags
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        10/11/2022
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Request
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         <div className="flex text-xl">
                                         <p><FaRegEye/></p>
                                         </div>
@@ -259,50 +208,50 @@ export default function Transactions() {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         1
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         Granite-VAC-20E42 
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         Granite
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         2
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         12/11/2022
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         Completed
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         <div className="flex text-xl">
                                         <p><FaRegEye/></p>
                                         </div>
                                     </td>
                                     </tr>
                                     <tr>
-                                    <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <th className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         2
                                     </th>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         Cement- PDL-18L40
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         Cement
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         50 bags
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         10/11/2022
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         Completed
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                         <div className="flex text-xl">
                                         <p><FaRegEye/></p>
                                         </div>
@@ -344,25 +293,25 @@ export default function Transactions() {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                         2
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                         Sand- DCL-20E42
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                         Sand
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                         3
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                         10/10/2022
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                         Active
                                     </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                         <div className="flex text-xl">
                                         <p><FaRegEye/></p>
                                         </div>

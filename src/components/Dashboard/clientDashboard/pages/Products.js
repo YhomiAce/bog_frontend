@@ -172,7 +172,7 @@ export default function Products() {
                 )}
                 {productEdit && (
                     <div className="fixed font-primary top-0 left-0 w-full h-screen bg-op center-item z-40" onClick={CloseDelete}>
-                        <div className="bg-white lg:w-5/12 rounded-md h-700 overflow-y-auto overscroll-none  w-11/12 pt-8 pb-8 lg:px-10 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
+                        <div className="bg-white px-4 lg:w-5/12 rounded-md h-700 overflow-y-auto overscroll-none  w-11/12 pt-8 pb-8 lg:px-10 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
                             <form>
                                 <p className="lg:fs-700 fw-600">Edit this Product</p>
                                 <div className="mt-5">
@@ -193,7 +193,7 @@ export default function Products() {
                                 </div>
                                 <div className="mt-8 flex lg:w-10/12 justify-between">
                                     <Button color="red" onClick={CloseDelete}>Cancel</Button>
-                                    <Button color="green">Save Edit</Button>
+                                    <Button className="bg-primary">Save Edit</Button>
                                 </div>
                             </form>
                         </div> 

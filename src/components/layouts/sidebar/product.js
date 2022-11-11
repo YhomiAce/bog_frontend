@@ -1,6 +1,6 @@
 import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BsCameraVideo, BsFillGrid1X2Fill, BsBell, BsGear, BsReceiptCutoff, BsBoxArrowRight } from "react-icons/bs";
+import { BsCameraVideo, BsFillGrid1X2Fill, BsBell, BsGear, BsReceiptCutoff, BsBoxArrowRight, BsEnvelope } from "react-icons/bs";
 import { VscHistory } from "react-icons/vsc";
 import { RiUserAddLine } from "react-icons/ri"
 import React, { useState, useEffect } from "react";
@@ -91,6 +91,15 @@ const ProductSidebar = () => {
                                 <p className="pl-3">Orders</p>
                         </NavLink>
                         <NavLink 
+                            to="inbox"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-3"
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            onClick={unShow}
+                            >
+                                <BsEnvelope className="text-lg" />
+                                <p className="pl-3">Inbox</p>
+                        </NavLink>
+                        <NavLink 
                             to="meetings"
                             onClick={unShow}
                             className="w-full flex items-center pl-2 py-2 fw-600 my-4"
@@ -110,7 +119,7 @@ const ProductSidebar = () => {
                             
                         </NavLink>
                         <NavLink 
-                            to="history"
+                            to="transact"
                             onClick={unShow}
                             className="w-full flex items-center pl-2 py-2 fw-600 my-4"
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}

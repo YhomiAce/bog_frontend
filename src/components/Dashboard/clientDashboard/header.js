@@ -21,6 +21,8 @@ export default function Header() {
         switch (type) {
             case "admin":
                 return "Super Admin"
+            case "professional":
+                return "Service Partner"
             case "vendor":
                 return "Product Partner"
             case "private_client":
