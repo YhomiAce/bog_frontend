@@ -17,7 +17,7 @@ export default function JoinTeam(){
                     <div className="box">
                         <div className="lg:flex lg:py-6 justify-between items-center">
                             <div className="lg:w-5/12 ">
-                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667570080/BOG/jot-img_hvat0f.png" alt="join" className=" w-full m-auto"/>
+                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1668169449/BOG/jot-img_1_vvvk6m.png" alt="join" className=" w-full m-auto"/>
                             </div>
                             <div className="lg:w-6/12 mt-6 lg:mt-0 ">
                                 <p className="text-xl lg:text-3xl fw-600">
