@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useLayoutEffect, useRef} from "react";
+import gsap from "gsap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from 'swiper';
 import 'swiper/css';
@@ -6,6 +7,69 @@ import 'swiper/css/effect-coverflow'
 import 'swiper/css/autoplay'
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import img1 from "../../assets/images/img2.png";
+import img2 from "../../assets/images/img4.png";
+import img3 from "../../assets/images/img3.png";
+import img4 from "../../assets/images/image1.png";
+
+const Reviews = [
+    {
+        id: 1,
+        img: img1,
+        name: "Green Mouse",
+        job: "Project Owner",
+        review: "I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible"
+    },
+    {
+        id: 2,
+        img: img2,
+        name: "Chukka Uzo",
+        job: "Construction",
+        review: "Thanks to BOG, I now handle the whole construction process hazzlefree. I’m glad that I’m part of the BOG service providers."
+    },
+    {
+        id: 3,
+        img: img3,
+        name: "Frank Jnr",
+        job: "Product Partner",
+        review: "I sell my gravel as a product partner on BOG and ever since i started, I’ve not had any issue. Its awesome."
+    },
+    {
+        id: 4,
+        img: img4,
+        name: "Promise Afolabi",
+        job: "Civil Engineer",
+        review: "I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible."
+    },
+    {
+        id: 5,
+        img: img1,
+        name: "Frank Jnr",
+        job: "Product Partner",
+        review: "I sell my gravel as a product partner on BOG and ever since i started, I’ve not had any issue. Its awesome."
+    },
+    {
+        id: 6,
+        img: img2,
+        name: "Chukka Uzo",
+        job: "Construction",
+        review: "Thanks to BOG, I now handle the whole construction process hazzlefree. I’m glad that I’m part of the BOG service providers."
+    },
+    {
+        id: 7,
+        img: img1,
+        name: "Green Mouse",
+        job: "Project Owner",
+        review: "I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible"
+    },
+    {
+        id: 8,
+        img: img4,
+        name: "Promise Afolabi",
+        job: "Civil Engineer",
+        review: "I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible."
+    },
+];
 
 
 export  function AboutSlides() {
@@ -376,5 +440,53 @@ export  function AboutSlides2Sm() {
                     </div>
                 </SwiperSlide>
             </Swiper>
+    )
+}
+
+export function  ReviewSlide() {
+
+    const review = useRef();
+    
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            let tl = gsap.timeline();
+
+           
+            tl.to(review.current, {xPercent:-60, duration: 32,repeat: -1, ease:"none"})
+        
+            review.current.addEventListener("mouseenter", function () {
+                tl.pause();
+              });
+              review.current.addEventListener("mouseleave", function () {
+                tl.play();
+              });
+        }, );
+        
+        
+            return () => ctx.revert();
+    }, []);
+
+    return (
+        <div className="w-full overflow-hidden " >
+            <div className="flex w-200" ref={review}>
+                {Reviews.map(item => {
+                        return (
+                            <div className="py-4 mr-10 hover:bg-primary hover:text-white border border-pri px-5 mx-auto bg-white rounded">
+                                <div className="flex items-center">
+                                    <img src={item.img} alt="img1" className="w-16"/>
+                                    <div className="pl-4">
+                                        <p className="fw-600">{item.name}</p>
+                                        <p className="fs-300">{item.job}</p>
+                                    </div>
+                                </div>
+                                <p className="mt-4 fs-500">{item.review}</p>
+                            </div>
+                        )
+                    } 
+                        
+                    )}
+            </div>
+        </div>
     )
 }

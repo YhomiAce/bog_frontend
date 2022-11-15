@@ -1,16 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import Footer from "./home-comp/Footer";
 import Header from "./home-comp/Header";
 import { useParams } from "react-router-dom";
 import { products, SimilarProducts } from "./shop/AllProducts";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-
+import { useDispatch } from 'react-redux';
+import {addToCart} from '../../redux/actions/cartAction';
 import ReactStars from "react-rating-stars-component";
 
 export default function ProductDetail() {
-
+    const [cartNum, setCartNum] = useState(1)
+    const dispatch = useDispatch()
     const {itemId} = useParams()
-    const thisItem = products.find( prod => prod.id === itemId);
+    const item = products.find( prod => prod.id === itemId);
+
 
     return (
         <div>
@@ -26,33 +29,35 @@ export default function ProductDetail() {
                     <div className="box">
                         <div className="lg:flex lg:pt-10">
                             <div className="lg:w-4/12 shadow-md p-4">
-                                <img src={thisItem.img} alt="product" className="w-full" />
+                                <img src={item.img} alt="product" className="w-full" />
                             </div>
                             <div className="lg:pl-8 mt-4 lg:mt-0">
-                                <p className="lg:text-3xl text-lg fw-600">{thisItem.tittle}</p>
-                                <p className="fw-600 lg:py-4 py-2 text-gray-600"><span className="pr-2 ">Product Category :</span>{thisItem.category}</p>
+                                <p className="lg:text-3xl text-lg fw-600">{item.tittle}</p>
+                                <p className="fw-600 lg:py-4 py-2 text-gray-600"><span className="pr-2 ">Product Category :</span>{item.category}</p>
                                 <div>
                                     <div className="hidden lg:block">
                                         <ReactStars 
                                             edit={false}
-                                            value={thisItem.rating}
+                                            value={item.rating}
                                             size={35}
                                         />
                                     </div>
                                     <div className="lg:hidden">
                                         <ReactStars 
                                             edit={false}
-                                            value={thisItem.rating}
+                                            value={item.rating}
                                             size={25}
                                         />
                                     </div>
                                 </div>
-                                <p className="lg:text-2xl fs-700 fw-600 lg:py-6 py-2">{thisItem.price}</p>
+                                <p className="lg:text-2xl fs-700 fw-600 lg:py-6 py-2">{item.price}</p>
                                 <div>
                                     <p className="fw-600 text-gray-600">Quantity</p>
                                     <div className="mt-6 fs-500 lg:fs-600">
-                                        <input type="number" className="w-16 px-1 lg:px-2 rounded py-1 lg:py-2 border border-black"/>
-                                        <button className="btn-primary ml-7 px-4 lg:px-8 ">Add To Cart</button>
+                                        <input type="number" min={0} max={10} value={cartNum} onChange={(e) => setCartNum(e.target.value)}  className="w-16 px-1 lg:px-2 rounded py-1 lg:py-2 border border-black"/>
+                                        <button className="btn-primary ml-7 px-4 lg:px-8 "  onClick={() => 
+                                            dispatch(addToCart(item))
+                                        }>Add To Cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -71,13 +76,13 @@ export default function ProductDetail() {
                                 <TabPanel>
                                     <div className="mt-6 lg:px-6 fs-400 lg:fs-600">
                                         <p className="text-lg mb-4 fw-600">Description</p>
-                                        {thisItem.tittle}
+                                        {item.tittle}
                                     </div>
                                 </TabPanel>
                                 <TabPanel>
                                     <div className="mt-6 lg:px-6 fs-400 lg:fs-600">
                                         <p className="text-lg mb-4 fw-600">Description</p>
-                                        {thisItem.price}
+                                        {item.price}
                                     </div>
                                 </TabPanel>
                            </Tabs>

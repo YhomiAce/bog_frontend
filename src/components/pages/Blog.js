@@ -5,6 +5,7 @@ import React from "react";
 import { BsArrowRight } from "react-icons/bs";
 import Footer from "./home-comp/Footer";
 import Header from "./home-comp/Header";
+import { Link } from "react-router-dom";
 
 export default function Blog(){
 
@@ -12,7 +13,7 @@ export default function Blog(){
         <div>
             <div className="font-primary">
                 <Header/>
-                <div className="bg-blog bg-cover bg-center text-white h-80 flex items-center">
+                <div className="bg-blog bg-cover bg-center text-white lg:h-80 h-52 flex items-center">
                     <div className="box">
                         <div>
                             <p className="lg:text-4xl text-2xl fw-700 mb-2">Our Blog</p>
@@ -34,7 +35,7 @@ export default function Blog(){
                                             <p className="text-xs text-gray-500 mt-6 lg:mt-0">23 OCT, 2022</p>
                                             <p className="fs-600 lg:text-lg fw-600 py-3">6 Ways to Improve Machine Operators’ Safety on Construction </p>
                                             <p>It should not be surprising that there needs to be an emphasis on machine operators, given...</p>
-                                            <p className="fs-400 flex items-center text-primary fw-500 mt-4">Read More <span className="pl-2"><BsArrowRight/></span></p>
+                                            <Link to="/blognews"><p className="fs-400 flex items-center text-primary mt-4">Read More <span className="pl-2"><BsArrowRight/></span></p></Link>
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +49,7 @@ export default function Blog(){
                                             <div className="px-3 lg:px-6 lg:py-8 py-4">
                                                 <p className="fs-600 fw-600">Top 10 In Demand Construction Jobs </p>
                                                 <p className="my-3">Construction, by nature, is a cyclical business, and the decade beginning with 2020 has... </p>
-                                                <p className="fs-400 flex items-center text-primary mt-4">Read More <span className="pl-2"><BsArrowRight/></span></p>
+                                                <Link to="/blognews"><p className="fs-400 flex items-center text-primary mt-4">Read More <span className="pl-2"><BsArrowRight/></span></p></Link>
                                             </div>
                                         </div>
                                         <div className="lg:w-45 mt-12 lg:mt-0 shadow-md rounded-md">

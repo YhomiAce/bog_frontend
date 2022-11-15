@@ -14,3 +14,6 @@ export const CLEAR_PROFILE = "CLEAR_PROFILE";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
 export const GET_USER_FROM_FAKE_API = "GET_USER_FROM_FAKE_API";
+export const ADD_TO_CART = "ADD_CART";
+export const GET_CART = "GET_CART";
+export const DELETE_FROM_CART = "DELETE_CART";

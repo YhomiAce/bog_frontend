@@ -1,9 +1,10 @@
 import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { FaRegEye} from "react-icons/fa";
-import { CardBody } from "@material-tailwind/react";
+import { Breadcrumbs, CardBody } from "@material-tailwind/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 export default function Transactions() {
     
@@ -15,6 +16,24 @@ export default function Transactions() {
                 <div className="w-full py-8 bg-white px-4">
                     <p className="text-2xl fw-600">Transactions</p>
                     <p className="fs-400 text-gray-600 mt-2">Manage and view your transaction history</p>
+                    <Breadcrumbs className="bg-white pl-0 mt-4">
+                        <Link to="/" className="opacity-60">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            >
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                            </svg>
+                        </Link>
+                        <Link to="/dashboard" className="opacity-60">
+                            <span>Dashboard</span>
+                        </Link>
+                        <Link to="" className="">
+                            <span>Transactions</span>
+                        </Link>
+                    </Breadcrumbs>
                 </div> 
                 {/* content */}
                 <div className="lg:p-5 px-3 py-5">
