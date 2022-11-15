@@ -9,7 +9,7 @@ export default function Privacy() {
         <div>
             <div className="font-primary">
                 <Header/>
-                <div className="bg-privacy bg-cover bg-center text-white h-80 flex items-center">
+                <div className="bg-privacy bg-cover bg-center text-white lg:h-80 h-52 flex items-center">
                     <div className="box">
                         <div>
                             <p className="lg:text-4xl text-2xl fw-700 mb-2">Privacy Policy</p>

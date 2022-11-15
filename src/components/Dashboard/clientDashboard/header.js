@@ -1,12 +1,13 @@
-import { faBarsStaggered, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import {
-    Avatar, Menu, MenuHandler, MenuItem, MenuList, Button
+    Avatar, Menu, MenuHandler, MenuItem, MenuList, Button, Tooltip
 } from "@material-tailwind/react";
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
+import { AiOutlineUserSwitch } from "react-icons/ai"
 // import { logout } from '../../redux/actions/authAction';
 
 export default function Header() {
@@ -32,7 +33,6 @@ export default function Header() {
             default: return ""
         }
     }
-    
 
 
     return (
@@ -43,9 +43,13 @@ export default function Header() {
                 </div>
                 <div className="lg:shadow bg-white py-4 px-5 flex lg:justify-between justify-end  items-center">
 
-                    <div className=" hidden lg:flex w-6/12">
-                        <FontAwesomeIcon icon={faBarsStaggered} size="2x" className="text-2xl lg:ml-4" />
+                    <div className="ml-10 hidden lg:flex items-center w-6/12">
+                        {/* <FontAwesomeIcon icon={faBarsStaggered} size="2x" className="text-2xl lg:ml-4 cursor-pointer" onClick={sidebarReduce}/> */}
                         <p className="ml-5 fw-700 hidden lg:block">{ auth?.user ? getUserType(auth?.user?.userType) : ""} Dasboard</p>
+                        
+                        <Tooltip content="Switch Account">
+                            <Button className="bg-transparent border-0 shadow-none hover:shadow-none  text-black px-1 ml-2"><Link to="switch"><p className="text-lg"><AiOutlineUserSwitch/></p></Link></Button>
+                        </Tooltip>
                     </div>
                     <div className="flex items-center w-full">
                         <div class="mr-6 relative mx-auto text-gray-600 hidden lg:block">

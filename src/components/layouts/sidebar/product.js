@@ -61,7 +61,9 @@ const ProductSidebar = () => {
                 }} />
             </div>
             {showSideBar && (
-                <div className="fixed z-20 bg-white fs-500 top-20 grid items-between w-6/12 lg:sidebar-w shadow min-h-screen pt-2 px-2">
+                <div 
+                    id="sidebar"
+                    className="fixed z-20 bg-white fs-500 top-20 grid items-between w-6/12 lg:sidebar-w shadow min-h-screen pt-2 px-2">
                     <div>
                         <NavLink
                             to=""
@@ -70,7 +72,7 @@ const ProductSidebar = () => {
                             onClick={unShow}
                         >
                             <BsFillGrid1X2Fill className="text-xl" />
-                            <p className="pl-3"> Dashboard</p>
+                            <p className="pl-3" id="sideText"> Dashboard</p>
                         </NavLink>
                         <NavLink
                             to="products"
@@ -79,7 +81,7 @@ const ProductSidebar = () => {
                             onClick={unShow}
                         >
                             <BsReceiptCutoff className="text-xl" />
-                            <p className="pl-3">Products</p>
+                            <p className="pl-3" id="sideText">Products</p>
                         </NavLink>
                         <NavLink 
                             to="orders"
@@ -88,7 +90,7 @@ const ProductSidebar = () => {
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             >
                                 <RiUserAddLine  className="text-lg" />
-                                <p className="pl-3">Orders</p>
+                                <p className="pl-3" id="sideText">Orders</p>
                         </NavLink>
                         <NavLink 
                             to="inbox"
@@ -97,7 +99,7 @@ const ProductSidebar = () => {
                             onClick={unShow}
                             >
                                 <BsEnvelope className="text-lg" />
-                                <p className="pl-3">Inbox</p>
+                                <p className="pl-3" id="sideText">Inbox</p>
                         </NavLink>
                         <NavLink 
                             to="meetings"
@@ -106,7 +108,7 @@ const ProductSidebar = () => {
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             >
                             <BsCameraVideo className="text-xl " />
-                            <p className="pl-3">Meetings</p>
+                            <p className="pl-3" id="sideText">Meetings</p>
                         </NavLink>
                         <NavLink 
                             to="notify"
@@ -115,7 +117,7 @@ const ProductSidebar = () => {
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             >
                             <BsBell className="text-xl" />
-                            <p className="pl-3">Notifications</p>
+                            <p className="pl-3" id="sideText">Notifications</p>
                             
                         </NavLink>
                         <NavLink 
@@ -125,7 +127,7 @@ const ProductSidebar = () => {
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             >
                             <VscHistory className="text-xl" />
-                            <p className="pl-3">Transactions</p>
+                            <p className="pl-3" id="sideText">Transactions</p>
                         </NavLink>
                     </div>
                     <div>
@@ -136,7 +138,7 @@ const ProductSidebar = () => {
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             >
                             <BsGear className="text-xl" />
-                            <p className="pl-3">Settings</p>
+                            <p className="pl-3" id="sideText">Settings</p>
                         </NavLink>
                         <NavLink>
                             <div
@@ -144,7 +146,7 @@ const ProductSidebar = () => {
                                 onClick={() => dispatch(logout())}
                                 className="w-full py-2 fw-600 pl-2 flex my-2  rounded-lg">
                                 <BsBoxArrowRight className="text-xl" />
-                                <p className="pl-3">Sign Out</p>
+                                <p className="pl-3" id="sideText">Sign Out</p>
                             </div>
                         </NavLink>
                     </div>

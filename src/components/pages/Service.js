@@ -72,7 +72,7 @@ export default function Service() {
                         <div className="shadow-md lg:w-4/12 h-48 center-item lg:mt-3 mt-10">
                             <div className="cursor-pointer" onClick={() => {setSCalc(true)}}>
                             <img src={require("../assets/images/SC.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
-                                <p className="fw-500">Contractor or Smart Calculator</p>
+                                <p className="fw-500">Building Contractor</p>
                             </div>
                         </div>
                     </div>

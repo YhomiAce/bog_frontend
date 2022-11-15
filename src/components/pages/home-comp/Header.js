@@ -2,13 +2,26 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@material-tailwind/react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { BsList } from "react-icons/bs";
 import { HiMenuAlt3, HiOutlineShoppingBag } from "react-icons/hi";
 import { MdOutlineCancel } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 export default function Header() {
+
+    const navigate = useNavigate()
+
+    const cart = useSelector((state) => state.cart.cart)
+        const getTotalQuantity = () => {
+        let total = 0
+        cart.forEach(item => {
+            total += item.quantity
+        })
+        return total
+        }
 
     const [menuShow, setMenuShow] = useState(false)
     const [homeMenu, setHomeMenu] = useState(false)
@@ -35,8 +48,9 @@ export default function Header() {
                         <Link to="/"><img src={require("../../assets/images/logo.png")} alt="logo" className="lg:w-40 "/></Link>
                     </div>
                     <div className="w-4/12 hidden fw-600 lg:flex justify-end items-center">
-                        <div className="text-xl mx-6 px-2 py-2 circle bg-light">
+                        <div className="text-xl mx-6 relative px-2 py-2 circle bg-light" onClick={() => navigate('/carts')}>
                             <HiOutlineShoppingBag/>
+                            <p className="absolute -top-2 right-0 fs-500 text-red-500">{getTotalQuantity() || 0}</p>
                         </div>
                         <Link to="/login" className="text-primary">
                             <button >Login</button>

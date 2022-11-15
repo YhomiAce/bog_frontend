@@ -15,16 +15,29 @@ import Projects from "./pages/Project";
 import Cart from "./pages/Cart";
 import { AllProject } from "./pages/allprojects";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { faBarsStaggered, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import { Switch } from "./pages/SwitchAccount";
 
 export default function ClientDashboard() {
     
+    const [sidebarReduce, setSidebarReduce] = useState(false)
+
+
     return (
         <div>
             <div className="font-primary">
                 <Header />
-                <Sidebar />
-                <div className="lg:main-p pt-21 home-bg pb-10">
+                <div className="" style={{width: sidebarReduce? "100px" : "200px" }}>
+                    <Sidebar />
+                </div>
+                <div className="fixed top-0 hidden lg:block sub-menu z-50">
+                    <FontAwesomeIcon icon={faBarsStaggered} size="2x" className="text-2xl lg:ml-4 cursor-pointer" onClick={() => setSidebarReduce(!sidebarReduce)}/>
+                </div>
+                <div 
+                    style={{width: sidebarReduce? "calc(100% - 45px)" : "" ,
+                            zIndex: sidebarReduce? "45" : "" }}
+                    className="lg:main-p pt-21 home-bg pb-10 relative">
                     <Routes element={<ProtectedRoute />}>
                         <Route path="" element={<Dashboard />} />
                         <Route path="orders" element={<Orders />} />
@@ -35,6 +48,7 @@ export default function ClientDashboard() {
                         <Route path="meetings" element={<Meetings />} />
                         <Route path="transact" element={<Transactions />} />
                         <Route path="notify" element={<Notify />} />
+                        <Route path="switch" element={<Switch />} />
                         <Route path="chat" element={<Chat />} />
                         <Route path="settings" element={<Settings />} />
                         <Route path="" element={<Dashboard />} />
@@ -42,7 +56,10 @@ export default function ClientDashboard() {
                     </Routes>
                     
                 </div>
-                <div className="lg:flex bg-white text-center lg:main-p px-5 py-5 text-primary fw-500 justify-between fs-400">
+                <div 
+                    style={{width: sidebarReduce? "calc(100% - 45px)" : "" ,
+                    zIndex: sidebarReduce? "45" : "" }}
+                    className="lg:flex relative bg-white text-center lg:main-p px-5 py-5 text-primary fw-500 justify-between fs-400">
                     <div className="flex mb-5 lg:mb-0">
                         <ul className="flex w-full justify-evenly lg:justify-start">
                             <li>Homepage</li>

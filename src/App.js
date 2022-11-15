@@ -26,6 +26,8 @@ import Service from './components/pages/Service';
 import About from './components/pages/About';
 import JoinTeam from './components/pages/JoinOurTeam';
 import ScrollToTop from './components/layouts/Scroll';
+import { Cart } from './components/pages/Cart';
+import BlogPage from './components/pages/BlogPage';
 
 if (localStorage.auth_token) {
   setAuthToken(localStorage.auth_token);
@@ -46,6 +48,8 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/faqs' element={<Faqs />} />
         <Route path='/blog' element={<Blog />} />
+        <Route path='/blognews' element={<BlogPage />} />
+        <Route path='/carts' element={<Cart />} />
         <Route path='/services' element={<Service />} />
         <Route path='/about' element={<About />} />
         <Route path='/jointeam' element={<JoinTeam />} />

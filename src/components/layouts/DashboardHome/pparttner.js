@@ -4,7 +4,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import {FaCheck, FaRegEye, FaTimes} from "react-icons/fa";
 import {BsCheckSquare,BsCheckCircle} from 'react-icons/bs';
-import {  CardBody, Progress } from "@material-tailwind/react";
+import {  Breadcrumbs, CardBody, Progress } from "@material-tailwind/react";
 import ChartLine from "../assets/UsersChart";
 import { Link } from "react-router-dom";
 // import ProjectChart from "../assets/ProjectChart";
@@ -14,7 +14,7 @@ export default function ProductDashboard() {
   
   return (
     <div className="min-h-screen">
-      <div className="w-full py-10 lg:px-8 bg-white px-4">
+      <div className="w-full py-10 pb-8 lg:px-8 bg-white px-4">
         <div className="text-2xl fw-600 flex items-center">
           <p className="">Welcome, {user?.name}</p>
           <FontAwesomeIcon icon={faThumbsUp} className="pl-3 text-secondary" />
@@ -22,6 +22,21 @@ export default function ProductDashboard() {
         <p className="mt-3 fs-500">
           Enjoy full control of your construction projects
         </p>
+        <Breadcrumbs className="bg-white pl-0 mt-5">
+          <Link to="/" className="opacity-60">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+            </svg>
+          </Link>
+          <Link to="">
+            <span>Dashboard</span>
+          </Link>
+        </Breadcrumbs>
       </div>
       <div className=" p-5">
         <div className="mt-3">
