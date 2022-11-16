@@ -178,7 +178,7 @@ export const products = [
     },
 ]
 
-const AllProducts = () => {
+const AllProducts = ({products}) => {
 
     
 
@@ -210,7 +210,7 @@ const AllProducts = () => {
 }
 export default AllProducts;
 
-export const SimilarProducts = () => {
+export const SimilarProducts = ({products}) => {
 
     return (
             <div>

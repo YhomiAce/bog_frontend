@@ -1,0 +1,73 @@
+import * as ActionType from '../type'; 
+
+const initialState = {
+    products: [],
+    categories: [],
+    isLoading: false,
+    error: null,
+    userProducts: [],
+}
+
+const ProductReducer = (state = initialState, action) => {
+    const { type, payload } = action
+    switch (type) {
+        case ActionType.FETCH_PRODUCTS:
+            return {
+                ...state,
+                isLoading: false,
+                products: payload,
+                error: null,
+            }
+        case ActionType.FETCH_CATEGORIES:
+            return {
+                ...state,
+                isLoading: false,
+                categories: payload,
+                error: null,
+            }
+        case ActionType.FETCH_USER_PRODUCTS:
+            return {
+                ...state,
+                isLoading: false,
+                userProducts: payload,
+                error: null,
+            }
+        case ActionType.CREATE_PRODUCT:
+            return {
+                ...state,
+                isLoading: false,
+                userProducts: state.userProducts.concat(payload),
+                error: null,
+            }
+        case ActionType.UPDATE_PRODUCT_STATUS:
+            console.log(payload);
+            const oldProducts = [...state.userProducts];
+            const product = oldProducts.find(where => where.id === payload.productId);
+            const index = oldProducts.findIndex(where => where.id === payload.productId);
+            console.log({index, product});
+            product.status = payload.status;
+            console.log(product);
+            oldProducts[index] = product;
+            return {
+                ...state,
+                isLoading: false,
+                userProducts: oldProducts,
+                error: null,
+            }
+        case ActionType.DELETE_PRODUCT:
+            return {
+                ...state,
+                isLoading: false,
+                error: null,
+                userProducts: state.userProducts.filter(where => where.id !== payload)
+            }
+        case ActionType.PRODUCT_ERROR:
+            return {
+                ...state,
+                error: payload
+            }
+
+        default: return state;
+    }
+}
+export default ProductReducer;
