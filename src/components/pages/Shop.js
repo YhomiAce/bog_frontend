@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
@@ -6,19 +7,22 @@ import Header from "./home-comp/Header";
 import { Menu, MenuHandler, MenuList, MenuItem, Button} from "@material-tailwind/react";
 import {RiEqualizerLine} from 'react-icons/ri';
 import AllProducts from "./shop/AllProducts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Granite from "./shop/Granite";
 import Sand from "./shop/Sand";
 import Cement from "./shop/Cement";
 import Steel from "./shop/Steel";
+import { useSelector, useDispatch } from "react-redux";
+import { getCategories, getProducts } from '../../redux/actions/ProductAction';
 
 export default function Shop() {
-
+    const dispatch = useDispatch();
     const [all, setAll] = useState(true)
     const [granite, setGranite] = useState(false)
     const [sand, setSand] = useState(false)
     const [cement, setCement] = useState(false)
-    const [steel, setSteel] = useState(false)
+    const [steel, setSteel] = useState(false);
+    const products = useSelector((state) => state.products.products); 
 
     function ShowAll() {
         setAll(true)
@@ -63,6 +67,10 @@ export default function Shop() {
         paddingLeft: "5px",
       }
     
+      useEffect(() => {
+        dispatch(getCategories());
+        dispatch(getProducts());
+    }, []);
 
     return (
         <div>
@@ -127,7 +135,7 @@ export default function Shop() {
                             </div>
                             <div className="w-9/12 pl-3 lg:pl-0 lg:w-8/12">
                                 {all && (
-                                    <AllProducts/>
+                                    <AllProducts products={products}/>
                                 )}
                                 {granite && (
                                     <Granite/>
