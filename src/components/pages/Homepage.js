@@ -129,15 +129,15 @@ export default function Homepage() {
                         </div>
                         <div className="text-center mt-6 lg:mt-0 lg:w-2/12 px-4">
                             <img src={require("../assets/images/tv.png")} alt="tv" className="lg:w-20 w-16 m-auto mb-6"/>
-                            <p className="w-6/12 lg:w-full m-auto">In app meetings and reviews</p>    
+                            <p className="w-8/12 lg:w-full m-auto">In app meetings and reviews</p>    
                         </div>
                         <div className="text-center mt-6 lg:mt-0 lg:w-2/12 px-4">
                             <img src={require("../assets/images/prof.png")} alt="providers" className="lg:w-20 w-16 m-auto mb-6"/>
-                            <p className="w-6/12 lg:w-full m-auto">Find expert construction workers</p>
+                            <p className="w-8/12 lg:w-full m-auto">Find expert construction workers</p>
                         </div>
                         <div className="text-center mt-6 lg:mt-0 lg:w-2/12 px-4">
                         <img src={require("../assets/images/tractor.png")} alt="tractor" className="lg:w-20 w-16 m-auto mb-6"/>
-                            <p className="w-6/12 lg:w-full m-auto">Shop for construction materials</p>
+                            <p className="w-8/12 lg:w-full m-auto">Shop for construction materials</p>
                         </div>
                         <div className="text-center mt-6 lg:mt-0 lg:w-2/12 px-4">
                         <img src={require("../assets/images/call.png")} alt="call" className="lg:w-20 w-16 m-auto mb-6"/>
@@ -151,15 +151,15 @@ export default function Homepage() {
                 <div className="box">
                     <div className="section">
                         <div className="flex">
-                            <div className="w-2/12 flex justify-center">
+                            <div className="lg:w-2/12 w-1/12 flex justify-center">
                                 <ImQuotesLeft className="text-primary lg:text-6xl text-3xl" />
                             </div>
-                            <div className="w-8/12">
+                            <div className="lg:w-8/12 w-10/12 ">
                                 <p className="lg:text-3xl text-lg fw-400 py-8 text-center">
                                     BOG is an online marketplace which intends to provide a platform for individuals interested in owning structures in Nigeria/Africa achieve their aim.
                                 </p>
                             </div>
-                            <div className="w-2/12 flex justify-center self-end">
+                            <div className="lg:w-2/12 w-1/12 flex justify-center self-end">
                             <ImQuotesRight className="text-primary lg:text-6xl text-3xl" />
                             </div>
                         </div>

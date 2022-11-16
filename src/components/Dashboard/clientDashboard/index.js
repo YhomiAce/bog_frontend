@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "../../Routes/ProtectedRoute";
 import Header from "./header";
-import Chat from "./pages/Chats";
 import Dashboard from "./pages/Dasboard";
 import Meetings from "./pages/Meetings";
 import Notify from "./pages/Notify";
@@ -18,6 +17,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBarsStaggered, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Switch } from "./pages/SwitchAccount";
+import Inbox from "./pages/inbox";
+import Ppartners from "./pages/Ppartners";
+import Spartners from "./pages/Spartner";
+import Clients from "./pages/Clients";
+import ProductsAdmin from "./pages/ProductsAdmin";
+import ProductDetailsAdmin from "./pages/ProductDetails";
 
 export default function ClientDashboard() {
     
@@ -44,12 +49,17 @@ export default function ClientDashboard() {
                         <Route path="products" element={<Products />} />
                         <Route path="projects" element={<Projects />} />
                         <Route path="cart" element={<Cart />} />
+                        <Route path="client" element={<Clients />} />
+                        <Route path="productsadmin" element={<ProductsAdmin />} />
+                        <Route path="productdetailadmin" element={<ProductDetailsAdmin/>} />
+                        <Route path="productpartner" element={<Ppartners />} />
+                        <Route path="servicepartner" element={<Spartners />} />
                         <Route path="allprojects" element={<AllProject />} />
                         <Route path="meetings" element={<Meetings />} />
                         <Route path="transact" element={<Transactions />} />
                         <Route path="notify" element={<Notify />} />
                         <Route path="switch" element={<Switch />} />
-                        <Route path="chat" element={<Chat />} />
+                        <Route path="inbox" element={<Inbox />} />
                         <Route path="settings" element={<Settings />} />
                         <Route path="" element={<Dashboard />} />
                         <Route path="" element={<Dashboard />}  />
