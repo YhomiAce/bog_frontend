@@ -82,7 +82,7 @@ export const Switch = () => {
                                     </div>
                                 </div>
                                 <div className="mt-4 lg:mt-0">
-                                    <Button className="bg-primary">Switch</Button>
+                                    <Button className="bg-primary py-2 lg:py-auto">Switch</Button>
                                 </div>
                             </div>
                             <div className="md:flex items-center justify-between lg:mt-10 mt-6">
@@ -98,7 +98,7 @@ export const Switch = () => {
                                     </div>
                                 </div>
                                 <div className="mt-4 lg:mt-0">
-                                    <Button className="bg-primary">Switch</Button>
+                                    <Button className="bg-primary py-2 lg:py-auto">Switch</Button>
                                 </div>
                             </div>
                         </div>
