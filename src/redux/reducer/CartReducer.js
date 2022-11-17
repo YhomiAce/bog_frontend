@@ -6,6 +6,7 @@ import * as actionType from '../type'
     
   }
 
+
 const CartReducer = (state = initialState, action) => {
     const { type, payload } = action
     switch (type) {
@@ -23,7 +24,10 @@ const CartReducer = (state = initialState, action) => {
                 const neededElement = {
                     id: payload.id,
                     name: payload.name,
+<<<<<<< HEAD
                     price: payload.price,
+=======
+>>>>>>> 4ca164a8e438c731fb05cb2bdc2af7eb7f6e7c85
                     description: payload.description,
                     image: payload.image,
                     unit: payload.unit,
@@ -36,12 +40,15 @@ const CartReducer = (state = initialState, action) => {
                 // ...state,
                 // cart: state.cart.concat({ ...action.payload,  quantity: 1 })
                 cart: cartElement
+<<<<<<< HEAD
             }
         case actionType.INCREMENT_QUANTITY:
             const item = oldArr.find(item => item.id === payload.id);
             const increment = item.quantity +=1;
             return {
                 cart: increment
+=======
+>>>>>>> 4ca164a8e438c731fb05cb2bdc2af7eb7f6e7c85
             }
 
         default: return state;

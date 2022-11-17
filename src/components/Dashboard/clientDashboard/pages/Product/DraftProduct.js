@@ -7,10 +7,11 @@ import "toasted-notes/src/styles.css";
 import Spinner from '../../../../layouts/Spinner';
 import { useDispatch } from 'react-redux';
 import { addProductToStore } from '../../../../../redux/actions/ProductAction';
+import { BiEdit } from "react-icons/bi";
 
 const baseURL = process.env.REACT_APP_IMAGE_URL;
 
-const DraftProduct = ({ item, setProductDelete }) => {
+const DraftProduct = ({ item, setProductDelete, setProductEdit }) => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const formatNumber = (number) => {
@@ -65,11 +66,22 @@ const DraftProduct = ({ item, setProductDelete }) => {
                 <div className="flex items-center mt-1">
                     {
                         loading ? <Spinner /> :
+                        <>
+                           {
+                            item.status === "in_review" ? 
+                            null :
                             <button onClick={addProductToStoreV2} className="btn-primary py-1 mr-4">Add to Shop</button>
+                            
+                        }
+                        </>
                     }
+                    <span className="text-2xl pr-3 cursor-pointer" onClick={() => { setProductEdit(item) }}><BiEdit /></span>
                     <span className="text-2xl pl-3 text-red-600 cursor-pointer">
                         <RiDeleteBinLine onClick={() => { setProductDelete(item) }} />
                     </span>
+                    <div className="flex items-center mt-1">
+                    
+                </div>
                 </div>
             </div>
         </div>

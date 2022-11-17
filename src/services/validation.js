@@ -63,4 +63,12 @@ export const corporateClientSchema = Yup.object({
         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
     ),
     terms: Yup.boolean().required("Please accept terms and conditions")
-})
+});
+
+export const productSchema = Yup.object({
+    name: Yup.string().required("Product title is required"),
+    quantity: Yup.number().required("Available quantity is required").min(1, "Quantity should be more than 0"),
+    price: Yup.number().required("Product title is required").moreThan(0, "Price cannot be 0"),
+    unit: Yup.string().required("Product unit of measurement is required"),
+    description: Yup.string().required("Product description is required"),
+});
