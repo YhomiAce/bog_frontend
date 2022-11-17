@@ -252,7 +252,7 @@ export const createProduct = (payload, saveLoading) => {
                     error?.response?.data?.message || error.message,
                     {
                         duration: "4000",
-                        position: "bottm",
+                        position: "bottom",
                     }
                 );
             }
@@ -334,3 +334,33 @@ export const addProductToStore = (productId, saveLoading) => {
     }
 }
 
+export const ApproveProduct = (payload, saveLoading) => {
+    return async (dispatch) => {
+        try {
+            const url = `product/admin/approve-product`;
+            const response = await axios.post(url, payload);
+            console.log(response);
+            saveLoading();
+            dispatch(UpdateAdminProductStatus(payload));
+            Swal.fire({
+                title: "Success",
+                imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",
+                imageWidth: "75px",
+                text: response.message,
+                buttonsStyling: "false",
+                confirmButtonText: "Continue",
+                confirmButtonColor: "#3F79AD",
+            });
+        } catch (error) {
+            saveLoading();
+            dispatch(setError(error.message));
+            toaster.notify(
+                error?.response?.data?.message || error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+    }
+}
