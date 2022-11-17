@@ -4,13 +4,14 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { Breadcrumbs } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getAdminProducts } from '../../../../redux/actions/ProductAction';
+import { getAdminProducts, getCategories } from '../../../../redux/actions/ProductAction';
 import AdminCreateProduct from "./Product/Modals/AdminCreateProduct";
 import AdminProductLists from "./Product/AdminProductLists";
 
 export default function ProductsAdmin() {
     useEffect(() => {
         dispatch(getAdminProducts());
+        dispatch(getCategories());
     }, [])
 
     const [adminAdd, setAdminAdd] = useState(false);
