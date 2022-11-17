@@ -2,13 +2,17 @@ import React, {useState} from "react";
 import Footer from "./home-comp/Footer";
 import Header from "./home-comp/Header";
 import { useParams } from "react-router-dom";
-import { products, SimilarProducts } from "./shop/AllProducts";
+import { SimilarProducts } from "./shop/AllProducts";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { useDispatch } from 'react-redux';
 import {addToCart} from '../../redux/actions/cartAction';
 import ReactStars from "react-rating-stars-component";
+import { useSelector } from "react-redux";
+import steel from "../assets/images/steels.png";
 
 export default function ProductDetail() {
+
+    const products = useSelector((state) => state.products.products); 
     const [cartNum, setCartNum] = useState(1)
     const dispatch = useDispatch()
     const {itemId} = useParams()
@@ -29,23 +33,23 @@ export default function ProductDetail() {
                     <div className="box">
                         <div className="lg:flex lg:pt-10">
                             <div className="lg:w-4/12 shadow-md p-4">
-                                <img src={item.img} alt="product" className="w-full" />
+                                <img src={steel} alt="product" className="w-full" />
                             </div>
                             <div className="lg:pl-8 mt-4 lg:mt-0">
-                                <p className="lg:text-3xl text-lg fw-600">{item.tittle}</p>
-                                <p className="fw-600 lg:py-4 py-2 text-gray-600"><span className="pr-2 ">Product Category :</span>{item.category}</p>
+                                <p className="lg:text-3xl text-lg fw-600">{item.name}</p>
+                                <p className="fw-600 lg:py-4 py-2 text-gray-600"><span className="pr-2 ">Product Category :</span>{item.category.name}</p>
                                 <div>
                                     <div className="hidden lg:block">
                                         <ReactStars 
                                             edit={false}
-                                            value={item.rating}
+                                            value={4}
                                             size={35}
                                         />
                                     </div>
                                     <div className="lg:hidden">
                                         <ReactStars 
                                             edit={false}
-                                            value={item.rating}
+                                            value={4}
                                             size={25}
                                         />
                                     </div>
@@ -76,13 +80,13 @@ export default function ProductDetail() {
                                 <TabPanel>
                                     <div className="mt-6 lg:px-6 fs-400 lg:fs-600">
                                         <p className="text-lg mb-4 fw-600">Description</p>
-                                        {item.tittle}
+                                        {item.description}
                                     </div>
                                 </TabPanel>
                                 <TabPanel>
                                     <div className="mt-6 lg:px-6 fs-400 lg:fs-600">
                                         <p className="text-lg mb-4 fw-600">Description</p>
-                                        {item.price}
+                                        {item.description}
                                     </div>
                                 </TabPanel>
                            </Tabs>

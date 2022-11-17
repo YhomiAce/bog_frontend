@@ -53,6 +53,7 @@ const AdminSidebar = () => {
     const [orderDrop, setOrderDrop] = useState(false);
     const [emailDrop, setEmailDrop] = useState(false);
     const [userDrop, setUserDrop] = useState(false);
+    const [productDrop, setProductDrop] = useState(false);
 
     function CloseAll() {
         setOrderDrop(false)
@@ -89,15 +90,35 @@ const AdminSidebar = () => {
                             <BsFillGrid1X2Fill className="text-lg" />
                             <p className="pl-3"> Dashboard</p>
                         </NavLink>
-                        <NavLink
-                            to="productsadmin"
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
-                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                        <div
+                            
+                            className="w-full items-center pl-2 py-2 fw-600 my-2"
                             onClick={unShow}
                         >
-                            <BsReceiptCutoff className="text-xl" />
-                            <p className="pl-3" id="sideText">Products</p>
-                        </NavLink>
+                            <div className="flex" onClick={e => e.stopPropagation()}>
+                                <BsReceiptCutoff className="text-xl" />
+                                <div className="flex items-center cursor-pointer" onClick={() => {setProductDrop(!productDrop);setOrderDrop(false); setEmailDrop(false);setUserDrop(false)}}>
+                                    <p className="pl-3 pr-5">Products</p>
+                                    <BsFillCaretDownFill className="text-black"/>
+                                </div>
+                            </div>
+                            {productDrop && (
+                                <div className="lg:ml-9 ml-4 fs-400 pt-2">
+                                    <NavLink
+                                        to="productsadmin"
+                                        // style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                                        >
+                                        <p className="py-2">All Products</p>
+                                    </NavLink>
+                                    <NavLink
+                                        to="productscategory"
+                                        // style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                                        >
+                                        <p className="pt-2">Categories</p>
+                                    </NavLink>
+                                </div>
+                            )}
+                        </div>
                         <div
                             
                             className="w-full items-center pl-2 py-2 fw-600 my-2"
@@ -105,7 +126,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <BsBag className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setOrderDrop(!orderDrop); setEmailDrop(false);setUserDrop(false)}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setOrderDrop(!orderDrop);setProductDrop(false); setEmailDrop(false);setUserDrop(false)}}>
                                     <p className="pl-3 pr-5">Orders</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>
@@ -113,10 +134,10 @@ const AdminSidebar = () => {
                             {orderDrop && (
                                 <div className="lg:ml-9 ml-4 fs-400 pt-2">
                                     <NavLink
-                                        to="projects"
+                                        to="ordersadmin"
                                         // style={({ isActive }) => (isActive ? activeStyle : undefined)}
                                         >
-                                        <p className="py-2">My Projects</p>
+                                        <p className="py-2">All Orders</p>
                                     </NavLink>
                                     <NavLink
                                         to="allprojects"
@@ -134,7 +155,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <BsEnvelope className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setEmailDrop(!emailDrop);setOrderDrop(false);setUserDrop(false)}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setEmailDrop(!emailDrop);setProductDrop(false);setOrderDrop(false);setUserDrop(false)}}>
                                     <p className="pl-3 pr-5">Email</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>
@@ -163,7 +184,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <FiUsers className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setUserDrop(!userDrop);setOrderDrop(false); setEmailDrop(false);}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setUserDrop(!userDrop);setProductDrop(false);setOrderDrop(false); setEmailDrop(false);}}>
                                     <p className="pl-3 pr-5">Users</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>

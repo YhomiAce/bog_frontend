@@ -24,6 +24,7 @@ const CartReducer = (state = initialState, action) => {
                 const neededElement = {
                     id: payload.id,
                     name: payload.name,
+                    price: payload.price,
                     description: payload.description,
                     image: payload.image,
                     unit: payload.unit,
@@ -36,6 +37,12 @@ const CartReducer = (state = initialState, action) => {
                 // ...state,
                 // cart: state.cart.concat({ ...action.payload,  quantity: 1 })
                 cart: cartElement
+            }
+        case actionType.INCREMENT_QUANTITY:
+            const item = oldArr.find(item => item.id === payload.id);
+            const increment = item.quantity +=1;
+            return {
+                cart: increment
             }
 
         default: return state;
