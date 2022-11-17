@@ -17,3 +17,10 @@ export const addToCart = (payload) => {
     }
 }
 
+export const incrementQuantity = (payload) => {
+    return {
+        type: ActionType.INCREMENT_QUANTITY,
+        payload
+    }
+}
+

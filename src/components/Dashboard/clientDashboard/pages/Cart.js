@@ -1,7 +1,7 @@
 import { Breadcrumbs } from "@material-tailwind/react";
 import React from "react";
 import { Link } from "react-router-dom";
-import { products } from "../../../pages/shop/AllProducts";
+import { products } from "../../../pages/shop/ProductList";
 import CartItems from "./CartItems";
 
 export default function Cart() {

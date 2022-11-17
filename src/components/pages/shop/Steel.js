@@ -1,5 +1,5 @@
 import React from "react";
-import { products } from "./AllProducts";
+import { products } from "./ProductList";
 import ReactStars from "react-rating-stars-component";
 import { Link} from "react-router-dom";
 

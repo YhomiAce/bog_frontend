@@ -5,9 +5,11 @@ import ChangePassword from "../Setting/ChangePassword";
 import BankDetail from "../Setting/BankDetail";
 import { Breadcrumbs } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Settings() {
 
+  const navigate = useNavigate()
 
   return (
     <div className="p-5">
@@ -66,7 +68,7 @@ export default function Settings() {
               <p className="fs-700 fw-600">Identity Verification - KYC</p>
               <p className="mt-4">To comply with regulation, participant will have to go through indentity verification.</p>
               <p className="mb-6 mt-3">You have not submitted your KYC application to verify your indentity.</p>
-              <button className="btn-primary">Click to Proceed</button>
+              <button className="btn-primary" onClick={() => {navigate("/dashboard/kyc")}}>Click to Proceed</button>
               <p className="mt-7 text-red-600">* KYC verification required for verification badge</p>
             </div>
           </div>

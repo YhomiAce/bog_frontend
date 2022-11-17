@@ -23,6 +23,9 @@ import Spartners from "./pages/Spartner";
 import Clients from "./pages/Clients";
 import ProductsAdmin from "./pages/ProductsAdmin";
 import ProductDetailsAdmin from "./pages/ProductDetails";
+import ProductsCategory from "./pages/ProductCat";
+import OrdersAdmin from "./pages/OrdersAdmin";
+import KycForm from "./pages/KycForm";
 
 export default function ClientDashboard() {
     
@@ -50,8 +53,10 @@ export default function ClientDashboard() {
                         <Route path="projects" element={<Projects />} />
                         <Route path="cart" element={<Cart />} />
                         <Route path="client" element={<Clients />} />
+                        <Route path="productscategory" element={<ProductsCategory />} />
                         <Route path="productsadmin" element={<ProductsAdmin />} />
                         <Route path="productdetailadmin" element={<ProductDetailsAdmin/>} />
+                        <Route path="ordersadmin" element={<OrdersAdmin/>} />
                         <Route path="productpartner" element={<Ppartners />} />
                         <Route path="servicepartner" element={<Spartners />} />
                         <Route path="allprojects" element={<AllProject />} />
@@ -60,6 +65,7 @@ export default function ClientDashboard() {
                         <Route path="notify" element={<Notify />} />
                         <Route path="switch" element={<Switch />} />
                         <Route path="inbox" element={<Inbox />} />
+                        <Route path="kyc" element={<KycForm />} />
                         <Route path="settings" element={<Settings />} />
                         <Route path="" element={<Dashboard />} />
                         <Route path="" element={<Dashboard />}  />
