@@ -252,7 +252,7 @@ export const createProduct = (payload, saveLoading) => {
                     error?.response?.data?.message || error.message,
                     {
                         duration: "4000",
-                        position: "bottom",
+                        position: "bottm",
                     }
                 );
             }
