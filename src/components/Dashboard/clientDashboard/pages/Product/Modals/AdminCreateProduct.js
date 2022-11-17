@@ -35,6 +35,7 @@ const AdminCreateProduct = ({ CloseModal }) => {
         fd.append("unit", value.unit);
         fd.append("description", value.description);
         fd.append("categoryId", category);
+        fd.append("status", "in_review");
         dispatch(createProduct(fd, stopLoading));
         action.resetForm();
     }
