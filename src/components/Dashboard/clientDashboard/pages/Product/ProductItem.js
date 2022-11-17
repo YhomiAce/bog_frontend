@@ -1,6 +1,6 @@
 import React from 'react';
-import { RiDeleteBinLine } from "react-icons/ri";
-import { BiEdit } from "react-icons/bi";
+// import { RiDeleteBinLine } from "react-icons/ri";
+// import { BiEdit } from "react-icons/bi";
 
 
 const baseURL = process.env.REACT_APP_IMAGE_URL;
@@ -22,10 +22,10 @@ const ProductItem = ({ item, setProductEdit, setProductDelete }) => {
                     <p className="mt-1 h-10 fs-300 overflow-hidden">{item.description}</p>
                     <p className="mt-1 text-green-600 fw-500">Approved</p>
                 </div>
-                <div className="flex items-center mt-1">
+                {/* <div className="flex items-center mt-1">
                     <span className="text-2xl pr-3 cursor-pointer" onClick={() => { setProductEdit(item) }}><BiEdit /></span>
                     <span className="text-2xl pl-3 text-red-600 cursor-pointer"><RiDeleteBinLine onClick={() => { setProductDelete(item) }} /></span>
-                </div>
+                </div> */}
             </div>
         </div>
     )

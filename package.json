@@ -17,6 +17,7 @@
     "apexcharts": "^3.36.0",
     "axios": "^1.1.2",
     "chart.js": "^3.9.1",
+    "dayjs": "^1.11.6",
     "formik": "^2.2.9",
     "google-map-react": "^2.2.0",
     "gsap": "^3.11.3",

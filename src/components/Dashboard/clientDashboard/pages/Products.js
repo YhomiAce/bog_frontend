@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import AddProduct from "./Product/AddProduct";
 import ProductItem from "./Product/ProductItem";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserProducts } from '../../../../redux/actions/ProductAction';
+import { getUserProducts, getCategories } from '../../../../redux/actions/ProductAction';
 import Spinner from "../../../layouts/Spinner";
 import DraftProduct from "./Product/DraftProduct";
 import EditProduct from "./Product/EditProduct";
@@ -27,7 +27,7 @@ export default function Products() {
     const products = useSelector((state) => state.products.userProducts);
     const isLoading = useSelector((state) => state.products.isLoading);
 
-    const draftProducts = products.length > 0 ? products.filter(where => where.status === "draft") : [];
+    const draftProducts = products.length > 0 ? products.filter(where => where.status === "pending") : [];
     const reviewProducts = products.length > 0 ? products.filter(where => where.status === "in_review") : [];
     const approvedProducts = products.length > 0 ? products.filter(where => where.status === "approved") : [];
 
@@ -49,6 +49,7 @@ export default function Products() {
 
     useEffect(() => {
         dispatch(getUserProducts());
+        dispatch(getCategories());
     }, []);
 
     if (isLoading) {
@@ -116,6 +117,7 @@ export default function Products() {
                                                 key={item.id}
                                                 item={item}
                                                 setProductDelete={changeDeleteProduct}
+                                                setProductEdit={changeEditProduct}
                                             />
                                         ))
                                         }
@@ -128,6 +130,7 @@ export default function Products() {
                                                 key={item.id}
                                                 item={item}
                                                 setProductDelete={changeDeleteProduct}
+                                                setProductEdit={changeEditProduct}
                                             />
                                         ))
                                         }
@@ -154,7 +157,7 @@ export default function Products() {
                     <DeleteModal product={selectedProduct} CloseDelete={CloseDelete} />
                 )}
                 {productEdit && (
-                    <EditProduct CloseEditModal={CloseEditModal} />
+                    <EditProduct CloseEditModal={CloseEditModal} product={selectedProduct} />
                 )}
             </div>
         </div>

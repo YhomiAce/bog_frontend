@@ -6,6 +6,7 @@ const initialState = {
     isLoading: false,
     error: null,
     userProducts: [],
+    adminProducts: [],
 }
 
 const ProductReducer = (state = initialState, action) => {
@@ -32,6 +33,13 @@ const ProductReducer = (state = initialState, action) => {
                 userProducts: payload,
                 error: null,
             }
+        case ActionType.FETCH_ADMIN_PRODUCTS:
+            return {
+                ...state,
+                isLoading: false,
+                adminProducts: payload,
+                error: null,
+            }
         case ActionType.CREATE_PRODUCT:
             return {
                 ...state,
@@ -52,6 +60,33 @@ const ProductReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 userProducts: oldProducts,
+                error: null,
+            }
+        case ActionType.UPDATE_ADMIN_PRODUCT_STATUS:
+            console.log(payload);
+            const oldProds = [...state.adminProducts];
+            const prod = oldProds.find(where => where.id === payload.productId);
+            const prodInd = oldProds.findIndex(where => where.id === payload.productId);
+            console.log({prodInd, prod});
+            prod.status = payload.status;
+            console.log(prod);
+            oldProds[prodInd] = prod;
+            return {
+                ...state,
+                isLoading: false,
+                adminProducts: oldProds,
+                error: null,
+            }
+        case ActionType.UPDATE_PRODUCT:
+            console.log(payload);
+            const oldArr = [...state.userProducts];
+            // const productElem = oldArr.find(where => where.id === payload.id);
+            const prodIndex = oldArr.findIndex(where => where.id === payload.id);            
+            oldArr[prodIndex] = payload;
+            return {
+                ...state,
+                isLoading: false,
+                userProducts: oldArr,
                 error: null,
             }
         case ActionType.DELETE_PRODUCT:
