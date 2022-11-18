@@ -28,7 +28,7 @@ export default function BlogPage() {
                   </p>
                   <div className="lg:flex my-5">
                     <p>Green Mouse</p>
-                    <p>@greenmouse | 10:45 PM March 8,2022</p>
+                    <p>@greenmouse | 10:45 PM March 8,2023</p>
                   </div>
                   <div>
                     <img
