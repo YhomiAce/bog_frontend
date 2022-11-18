@@ -10,11 +10,11 @@ import AllProducts from "./shop/AllProducts";
 import { useState, useEffect } from "react";
 import Granite from "./shop/Granite";
 import Sand from "./shop/Sand";
-import Cement from "./shop/Cement";
+import { Cements } from "./shop/Cement";
 import Steel from "./shop/Steel";
 import { useSelector, useDispatch } from "react-redux";
 import { getCategories, getProducts } from '../../redux/actions/ProductAction';
-import CategoryList from "./shop/CategoryList";
+// import CategoryList from "./shop/CategoryList";
 
 export default function Shop() {
     const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export default function Shop() {
     const [cement, setCement] = useState(false)
     const [steel, setSteel] = useState(false);
     const products = useSelector((state) => state.products.products); 
-    const category = useSelector((state) => state.products.categories); 
+    // const category = useSelector((state) => state.products.categories); 
 
     function ShowAll() {
         setAll(true)
@@ -130,11 +130,11 @@ export default function Shop() {
                                 <ul className="md:fs-400 fw-500 fs-300 lg:fs-600">
                                     <li className="py-2 cursor-pointer" style={all ? activeState : undefined} onClick={ShowAll} >All Products</li>
                                     <div>
-                                    {category.map( (category, index) => {
+                                    {/* {category.map( (category, index) => {
                                                 return (
                                                     <CategoryList key={category.id} category={ category } />
                                                 )
-                                        })}
+                                        })} */}
                                     </div>
                                     <li className="py-2 cursor-pointer" style={granite ? activeState : undefined} onClick={ShowGranite} >Granite  (150)</li>
                                     <li className="py-2 cursor-pointer" style={cement ? activeState : undefined} onClick={ShowCement}>Cement  (150)</li>
@@ -153,7 +153,7 @@ export default function Shop() {
                                     <Sand/>
                                 )}
                                 {cement && (
-                                    <Cement/>
+                                    <Cements/>
                                 )}
                                 {steel && (
                                     <Steel/>

@@ -26,6 +26,7 @@ import ProductDetailsAdmin from "./pages/ProductDetails";
 import ProductsCategory from "./pages/ProductCat";
 import OrdersAdmin from "./pages/OrdersAdmin";
 import KycForm from "./pages/KycForm";
+import OrderDetails from "./pages/OrderDetails";
 
 export default function ClientDashboard() {
     
@@ -57,6 +58,7 @@ export default function ClientDashboard() {
                         <Route path="productsadmin" element={<ProductsAdmin />} />
                         <Route path="productdetailadmin" element={<ProductDetailsAdmin/>} />
                         <Route path="ordersadmin" element={<OrdersAdmin/>} />
+                        <Route path="orderadmindetail" element={<OrderDetails/>} />
                         <Route path="productpartner" element={<Ppartners />} />
                         <Route path="servicepartner" element={<Spartners />} />
                         <Route path="allprojects" element={<AllProject />} />

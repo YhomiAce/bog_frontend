@@ -1,10 +1,16 @@
-import { Avatar, Breadcrumbs, Button } from "@material-tailwind/react";
-import React from "react";
+import { Avatar, Breadcrumbs } from "@material-tailwind/react";
+import React, {useState, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getMe } from "../../../../redux/actions/authAction";
+import Axios from "../../../../config/config";
+import { AccountType } from "./AccountType";
+
 
 export const Switch = () => {
+
+    const [accounts, setAccounts] = useState([])
+    // const [loading, setLoading] = useState(false)
     const dispatch = useDispatch();
     const BASE_URL = process.env.REACT_APP_IMAGE_URL;
     const auth = useSelector((state) => state.auth);
@@ -26,6 +32,22 @@ export const Switch = () => {
             default: return ""
         }
     }
+
+    const fetchUserAccounts = async() => {
+                try {
+                    // setLoading(true)
+                    const response = await Axios.get("/user/get-accounts")
+                    const data = response.accounts
+                    setAccounts(data)
+                    // setLoading(false)
+                    console.log(data)
+                } catch (error) {
+                    // setLoading(false)
+                }
+    }
+    useEffect (() => {
+        fetchUserAccounts();
+    }, [])
 
     const switchAccount = (type) => {
         localStorage.setItem("userType", type)
@@ -78,36 +100,9 @@ export const Switch = () => {
                         <div className="mt-8">
                             <p className="fw-600">Other Accounts</p>
                             <div className="md:flex items-center justify-between lg:mt-10 mt-6">
-                                <div className="flex">
-                                    <Avatar
-                                        src={user?.photo ? `${BASE_URL}/${user?.photo}` : "https://i.stack.imgur.com/l60Hf.png"}
-                                        alt="profifepic"
-                                        className="lg:w-20 w-16"
-                                    />
-                                    <div className="pl-3">
-                                        <p className="fw-600">Sevice Partner</p>
-                                        <p >{user?.name}</p>
-                                    </div>
-                                </div>
-                                <div className="mt-4 lg:mt-0">
-                                    <Button onClick={() => switchAccount("professional")} className="bg-primary py-2 lg:py-auto">Switch</Button>
-                                </div>
-                            </div>
-                            <div className="md:flex items-center justify-between lg:mt-10 mt-6">
-                                <div className="flex">
-                                    <Avatar
-                                        src={user?.photo ? `${BASE_URL}/${user?.photo}` : "https://i.stack.imgur.com/l60Hf.png"}
-                                        alt="profifepic"
-                                        className="lg:w-20 w-16"
-                                    />
-                                    <div className="pl-3">
-                                        <p className="fw-600">Corporate Client</p>
-                                        <p >{user?.name}</p>
-                                    </div>
-                                </div>
-                                <div className="mt-4 lg:mt-0">
-                                    <Button onClick={() => switchAccount("corporate_client")} className="bg-primary py-2 lg:py-auto">Switch</Button>
-                                </div>
+                                {accounts.length > 0 ? accounts.map(acct => {
+                                    return <AccountType key={acct.id} account= {acct} switchAccount={switchAccount} />
+                                }) : "No Other Accounts"}
                             </div>
                         </div>
                     </div>

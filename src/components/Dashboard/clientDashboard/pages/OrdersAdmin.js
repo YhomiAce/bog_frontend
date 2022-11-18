@@ -55,339 +55,436 @@ export default function OrdersAdmin() {
                 <div className="lg:p-5 px-2 py-4">
                     <div className="bg-white lg:p-5 lg:mt-6 mt-6 rounded-lg">
                         <Tabs className="px-2 lg:px-0 py-5 lg:py-0">
-                        <TabList className="">
-                            <Tab>All Orders</Tab>
-                            <Tab>In Review</Tab>
-                            <Tab>Approved</Tab>
-                            <Tab>Disapproved</Tab>
-                        </TabList>
-                        <TabPanel>
-                            <div className="mt-10">
-                                <div className="flex items-center">
-                                    <div class="flex text-gray-600">
-                                        <input
-                                        className="border-2 border-gray-300 bg-white h-10 px-5 lg:pr-5 rounded-l-lg text-sm focus:outline-none"
-                                        type="search"
-                                        name="search order by name"
-                                        placeholder="Search"
-                                        />
-                                        <button
-                                        type="submit"
-                                        className=" bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
+                            <TabList className="">
+                                <Tab>All Orders</Tab>
+                                <Tab>Completed</Tab>
+                                <Tab>Ongoing</Tab>
+                                <Tab>Cancelled</Tab>
+                            </TabList>
+                            <TabPanel>
+                                <div className="mt-10">
+                                    <div className="flex items-center">
+                                        <div class="flex text-gray-600">
+                                            <input
+                                            className="border-2 border-gray-300 bg-white h-10 px-5 lg:pr-5 rounded-l-lg text-sm focus:outline-none"
+                                            type="search"
+                                            name="search order by name"
+                                            placeholder="Search"
+                                            />
+                                            <button
+                                            type="submit"
+                                            className=" bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
+                                            >
+                                            <FontAwesomeIcon icon={faSearch} className="text-white" />
+                                            </button>
+                                        </div>
+                                        <DownloadTableExcel
+                                            filename="All product partners"
+                                            sheet="users"
+                                            currentTableRef={products.current}
                                         >
-                                        <FontAwesomeIcon icon={faSearch} className="text-white" />
-                                        </button>
+                                            <button className="bg-light mx-4 p-2 text-2xl text-primary"><HiOutlineDocumentDownload className="text-primary"/> </button>
+                                        </DownloadTableExcel>
                                     </div>
-                                    <DownloadTableExcel
-                                        filename="All product partners"
-                                        sheet="users"
-                                        currentTableRef={products.current}
-                                    >
-                                        <button className="bg-light mx-4 p-2 text-2xl text-primary"><HiOutlineDocumentDownload className="text-primary"/> </button>
-                                    </DownloadTableExcel>
                                 </div>
-                            </div>
-                            <div className="overflow-x-auto mt-6">
-                                <table className="items-center w-full bg-transparent border-collapse" ref={products}>
-                                    <tbody>
-                                        <tr className="thead-light bg-light">
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                S/N
-                                            </th>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                Product Name
-                                            </th>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                Product Partner Name
-                                            </th>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                Category
-                                            </th>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                Price
-                                            </th>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                Status
-                                            </th>
-                                            <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
-                                                Action
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            1
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            30 Tons of Sharp Sand
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Chukka Uzo
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Sand
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            NGN 650,000
-                                        </td>
-                                        <td className="border-b text-blue-600 border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            In Review
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            <div className="flex text-xl">
-                                                <p className="bg-orange-100" onClick={() => navigate("/dashboard/productdetailadmin")}><BsThreeDotsVertical/></p>
-                                            </div>
-                                        </td>
-                                        </tr>
-                                        <tr>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            2
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            10 Tons of Gravel stones 
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Chukka Uzodinma
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Granite
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            NGN 410,000
-                                        </td>
-                                        <td className="border-b border-gray-200 text-green-600 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Approved
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            <div className="flex text-xl">
+                                <div className="overflow-x-auto mt-6">
+                                    <table className="items-center w-full bg-transparent border-collapse" ref={products}>
+                                        <tbody>
+                                            <tr className="thead-light bg-light">
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    S/N
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Order ID
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Product Category
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Date
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Price
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Status
+                                                </th>
+                                                <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
+                                                    Action
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                1
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                SAN - WEDG -13 
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                Sand
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                20-11-2022
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                NGN 150,000
+                                            </td>
+                                            <td className="border-b text-blue-600 border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                Ongoing
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                <div className="flex text-xl">
+                                                    <p className="bg-orange-100" onClick={() => navigate("/dashboard/orderadmindetail")}><BsThreeDotsVertical/></p>
+                                                </div>
+                                            </td>
+                                            </tr>
+                                            <tr>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                2
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                CEM-FRTG-73 
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                Cement
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                25-11-2022
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                NGN 60,000
+                                            </td>
+                                            <td className="border-b border-gray-200 text-green-600 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                Completed
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                <div className="flex text-xl">
+                                                    <p className="bg-orange-100"><BsThreeDotsVertical/></p>
+                                                </div>
+                                            </td>
+                                            </tr>
+                                            <tr>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                3
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                STL-TRTG-226 
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                Steel
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                28-11-2022
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                NGN 60,000
+                                            </td>
+                                            <td className="border-b border-gray-200 text-green-600 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                Completed
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                <div className="flex text-xl">
                                                 <p className="bg-orange-100"><BsThreeDotsVertical/></p>
-                                            </div>
-                                        </td>
-                                        </tr>
-                                        <tr>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            3
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Steel Re-enforcemnt 
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Afo Promise  
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Steel
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            NGN 60,000
-                                        </td>
-                                        <td className="border-b border-gray-200 text-green-600 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Approved
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            <div className="flex text-xl">
-                                            <p className="bg-orange-100"><BsThreeDotsVertical/></p>
-                                            </div>
-                                        </td>
-                                        </tr>
-                                        <tr>
-                                        <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            4
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Truck Load of Cement 
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Green Mouse
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Cement
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            NGN 325,000
-                                        </td>
-                                        <td className="border-b text-yellow-500 border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Disapproved
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            <div className="flex text-xl">
-                                            <p className="bg-orange-100"><BsThreeDotsVertical/></p>
-                                            </div>
-                                        </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </TabPanel>
-                        {/* <TabPanel>
-                            <CardBody>
-                            <div className="overflow-x-auto">
-                                <table className="items-center w-full bg-transparent border-collapse">
-                                <thead className="thead-light bg-light">
-                                    <tr>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        S/N
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Full Name
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Email
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        No of Product
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Total Sales
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Status
-                                    </th>
-                                    <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
-                                        Action
-                                    </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            1
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Chukka Uzo 
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            email@gmail.com
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            120
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            NGN 3,150,000
-                                        </td>
-                                        <td className="border-b text-green-600 border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Active
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            <div className="flex text-xl">
+                                                </div>
+                                            </td>
+                                            </tr>
+                                            <tr>
+                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                4
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                GRA-HRTC-15
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                Granite
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                21-11-2022
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                NGN 340,000
+                                            </td>
+                                            <td className="border-b text-yellow-500 border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                Cancelled
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                <div className="flex text-xl">
                                                 <p className="bg-orange-100"><BsThreeDotsVertical/></p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        2
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Chukka Uzodinma
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        email@gmail.com
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        31
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        NGN 4,200,000
-                                    </td>
-                                    <td className="border-b border-gray-200 text-green-600 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Active
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        <div className="flex text-xl">
-                                            <p className="bg-orange-100"><BsThreeDotsVertical/></p>
+                                                </div>
+                                            </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </TabPanel>
+                            <TabPanel>
+                                <div className="mt-10">
+                                    <div className="flex items-center">
+                                        <div class="flex text-gray-600">
+                                            <input
+                                            className="border-2 border-gray-300 bg-white h-10 px-5 lg:pr-5 rounded-l-lg text-sm focus:outline-none"
+                                            type="search"
+                                            name="search order by name"
+                                            placeholder="Search"
+                                            />
+                                            <button
+                                            type="submit"
+                                            className=" bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
+                                            >
+                                            <FontAwesomeIcon icon={faSearch} className="text-white" />
+                                            </button>
                                         </div>
-                                    </td>
-                                    </tr>
-                                </tbody>
-                                </table>
-                            </div>
-                            </CardBody>
-                        </TabPanel>
-                        <TabPanel>
-                            <CardBody>
-                            <div className="overflow-x-auto">
-                                <table className="items-center w-full bg-transparent border-collapse">
-                                <thead className="thead-light bg-light">
-                                    <tr>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        S/N
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Full Name
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Email
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        No of Product
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Total Sales
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Status
-                                    </th>
-                                    <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
-                                        Action
-                                    </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        1
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Afo Promise  
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        email@gmail.com
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        19
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        NGN 760,000
-                                    </td>
-                                    <td className="border-b border-gray-200 text-yellow-600 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Inactive
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        <div className="flex text-xl">
-                                        <p className="bg-orange-100"><BsThreeDotsVertical/></p>
+                                        <DownloadTableExcel
+                                            filename="All product partners"
+                                            sheet="users"
+                                            currentTableRef={products.current}
+                                        >
+                                            <button className="bg-light mx-4 p-2 text-2xl text-primary"><HiOutlineDocumentDownload className="text-primary"/> </button>
+                                        </DownloadTableExcel>
+                                    </div>
+                                </div>
+                                <div className="overflow-x-auto mt-6">
+                                    <table className="items-center w-full bg-transparent border-collapse" ref={products}>
+                                        <tbody>
+                                            <tr className="thead-light bg-light">
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    S/N
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Order ID
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Product Category
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Date
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Price
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Status
+                                                </th>
+                                                <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
+                                                    Action
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                1
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                CEM-FRTG-73 
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                Cement
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                25-11-2022
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                NGN 60,000
+                                            </td>
+                                            <td className="border-b border-gray-200 text-green-600 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                Completed
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                <div className="flex text-xl">
+                                                    <p className="bg-orange-100"><BsThreeDotsVertical/></p>
+                                                </div>
+                                            </td>
+                                            </tr>
+                                            <tr>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                2
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                STL-TRTG-226 
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                Steel
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                28-11-2022
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                NGN 60,000
+                                            </td>
+                                            <td className="border-b border-gray-200 text-green-600 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                Completed
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                <div className="flex text-xl">
+                                                <p className="bg-orange-100"><BsThreeDotsVertical/></p>
+                                                </div>
+                                            </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </TabPanel>
+                            <TabPanel>
+                                <div className="mt-10">
+                                    <div className="flex items-center">
+                                        <div class="flex text-gray-600">
+                                            <input
+                                            className="border-2 border-gray-300 bg-white h-10 px-5 lg:pr-5 rounded-l-lg text-sm focus:outline-none"
+                                            type="search"
+                                            name="search order by name"
+                                            placeholder="Search"
+                                            />
+                                            <button
+                                            type="submit"
+                                            className=" bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
+                                            >
+                                            <FontAwesomeIcon icon={faSearch} className="text-white" />
+                                            </button>
                                         </div>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        2
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Green Mouse
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        email@yahoomail.com
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        25
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        NGN 925,000
-                                    </td>
-                                    <td className="border-b text-yellow-500 border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Inactive
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        <div className="flex text-xl">
-                                        <p className="bg-orange-100"><BsThreeDotsVertical/></p>
+                                        <DownloadTableExcel
+                                            filename="All product partners"
+                                            sheet="users"
+                                            currentTableRef={products.current}
+                                        >
+                                            <button className="bg-light mx-4 p-2 text-2xl text-primary"><HiOutlineDocumentDownload className="text-primary"/> </button>
+                                        </DownloadTableExcel>
+                                    </div>
+                                </div>
+                                <div className="overflow-x-auto mt-6">
+                                    <table className="items-center w-full bg-transparent border-collapse" ref={products}>
+                                        <tbody>
+                                            <tr className="thead-light bg-light">
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    S/N
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Order ID
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Product Category
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Date
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Price
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Status
+                                                </th>
+                                                <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
+                                                    Action
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                1
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                SAN - WEDG -13 
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                Sand
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                20-11-2022
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                NGN 150,000
+                                            </td>
+                                            <td className="border-b text-blue-600 border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                Ongoing
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                <div className="flex text-xl">
+                                                    <p className="bg-orange-100" onClick={() => navigate("/dashboard/orderadmindetail")}><BsThreeDotsVertical/></p>
+                                                </div>
+                                            </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </TabPanel>
+                            <TabPanel>
+                                <div className="mt-10">
+                                    <div className="flex items-center">
+                                        <div class="flex text-gray-600">
+                                            <input
+                                            className="border-2 border-gray-300 bg-white h-10 px-5 lg:pr-5 rounded-l-lg text-sm focus:outline-none"
+                                            type="search"
+                                            name="search order by name"
+                                            placeholder="Search"
+                                            />
+                                            <button
+                                            type="submit"
+                                            className=" bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
+                                            >
+                                            <FontAwesomeIcon icon={faSearch} className="text-white" />
+                                            </button>
                                         </div>
-                                    </td>
-                                    </tr>
-                                </tbody>
-                                </table>
-                            </div>
-                            </CardBody>
-                        </TabPanel>
-                        <TabPanel></TabPanel> */}
+                                        <DownloadTableExcel
+                                            filename="All product partners"
+                                            sheet="users"
+                                            currentTableRef={products.current}
+                                        >
+                                            <button className="bg-light mx-4 p-2 text-2xl text-primary"><HiOutlineDocumentDownload className="text-primary"/> </button>
+                                        </DownloadTableExcel>
+                                    </div>
+                                </div>
+                                <div className="overflow-x-auto mt-6">
+                                    <table className="items-center w-full bg-transparent border-collapse" ref={products}>
+                                        <tbody>
+                                            <tr className="thead-light bg-light">
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    S/N
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Order ID
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Product Category
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Date
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Price
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Status
+                                                </th>
+                                                <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
+                                                    Action
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                    1
+                                                </td>
+                                                <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                    GRA-HRTC-15
+                                                </td>
+                                                <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                    Granite
+                                                </td>
+                                                <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                    21-11-2022
+                                                </td>
+                                                <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                    NGN 340,000
+                                                </td>
+                                                <td className="border-b text-yellow-500 border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                    Cancelled
+                                                </td>
+                                                <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                    <div className="flex text-xl">
+                                                    <p className="bg-orange-100"><BsThreeDotsVertical/></p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </TabPanel>
                         </Tabs>
                     </div>
                 </div>
