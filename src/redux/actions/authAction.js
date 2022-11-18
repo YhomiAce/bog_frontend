@@ -46,8 +46,12 @@ export const getMe = () => {
     return async (dispatch) => {
             setAuthToken(localStorage.auth_token);
             try {
-
-                const response = await axios.get('/user/me');
+                const type = localStorage.getItem("userType")
+                let url = `/user/me`;
+                if (type) {
+                   url = `/user/me?userType=${type}` 
+                }
+                const response = await axios.get(url);
                 console.log(response);
                 dispatch(setUser(response))
             } catch (error) {
