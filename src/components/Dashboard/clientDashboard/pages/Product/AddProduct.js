@@ -60,12 +60,13 @@ const AddProduct = () => {
         <div className="mt-12 px-5">
             <form onSubmit={formik.handleSubmit} >
                 <p className="fs-600 fw-600">Add a new Product to the Shop</p>
-                <div className="w-48.5 mt-6">
-                    <label className='block'>Product Category</label>
+                <div className="w-48.5 mt-6 lg:w-10/12">
+                    <label className='block mb-2'>Product Category</label>
                     <SelectableItem
                         options={options}
                         handleChange={changeCategory}
                         placeholder="Select category"
+                        className=""
                     />
                 </div>
                 <div className="mt-5">

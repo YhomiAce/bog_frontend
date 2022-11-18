@@ -66,8 +66,8 @@ const AdminCreateProduct = ({ CloseModal }) => {
             <div className="bg-white px-4 lg:w-5/12 rounded-md h-700 overflow-y-auto overscroll-none  w-11/12 pt-8 pb-8 lg:px-10 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
             <form onSubmit={formik.handleSubmit}>
                     <p className="lg:fs-700 fw-600">Edit this Product</p>
-                    <div className="w-48.5 mt-6">
-                        <label className='block'>Product Category</label>
+                    <div className="w-48.5 mt-6 lg:w-10/12">
+                        <label className='block mb-2'>Product Category</label>
                         <SelectableItem
                         options={options}
                         handleChange={changeCategory}
