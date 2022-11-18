@@ -1,13 +1,15 @@
 import { Avatar, Breadcrumbs, Button } from "@material-tailwind/react";
 import React from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { getMe } from "../../../../redux/actions/authAction";
 
 export const Switch = () => {
-
+    const dispatch = useDispatch();
     const BASE_URL = process.env.REACT_APP_IMAGE_URL;
     const auth = useSelector((state) => state.auth);
     const user = useSelector((state) => state.auth.user);
+    const navigate = useNavigate()
 
     const getUserType = (type) => {
         switch (type) {
@@ -23,6 +25,12 @@ export const Switch = () => {
                 return "Corporate Client"
             default: return ""
         }
+    }
+
+    const switchAccount = (type) => {
+        localStorage.setItem("userType", type)
+        dispatch(getMe());
+        navigate("/dashboard");
     }
 
     return (
@@ -82,7 +90,7 @@ export const Switch = () => {
                                     </div>
                                 </div>
                                 <div className="mt-4 lg:mt-0">
-                                    <Button className="bg-primary py-2 lg:py-auto">Switch</Button>
+                                    <Button onClick={() => switchAccount("professional")} className="bg-primary py-2 lg:py-auto">Switch</Button>
                                 </div>
                             </div>
                             <div className="md:flex items-center justify-between lg:mt-10 mt-6">
@@ -98,7 +106,7 @@ export const Switch = () => {
                                     </div>
                                 </div>
                                 <div className="mt-4 lg:mt-0">
-                                    <Button className="bg-primary py-2 lg:py-auto">Switch</Button>
+                                    <Button onClick={() => switchAccount("corporate_client")} className="bg-primary py-2 lg:py-auto">Switch</Button>
                                 </div>
                             </div>
                         </div>
