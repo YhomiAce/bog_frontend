@@ -1,245 +1,220 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React from "react";
 import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, usePagination } from "react-table";
-// import { useNavigate } from "react-router-dom";
-// import { BsThreeDotsVertical } from "react-icons/bs";
-import { useMemo } from "react";
 
-// const ProductData = () => [
-//     {
-//         id:2341,
-//         orderId: "Granite-VAC-2048",
-//         category: "Granite",
-//         quantity: "100kg",
-//         dateOd: "20-03-2022",
-//         dateDe: "30-03-2022",
-//         status: "pending",
-//         price: "NGN 345,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2331,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2241,
-//         orderId: "Granite-VAC-2048",
-//         category: "Granite",
-//         quantity: "100kg",
-//         dateOd: "20-03-2022",
-//         dateDe: "30-03-2022",
-//         status: "pending",
-//         price: "NGN 345,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2541,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2351,
-//         orderId: "Granite-VAC-2048",
-//         category: "Granite",
-//         quantity: "100kg",
-//         dateOd: "20-03-2022",
-//         dateDe: "30-03-2022",
-//         status: "pending",
-//         price: "NGN 345,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:23891,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2391,
-//         orderId: "Granite-VAC-2048",
-//         category: "Granite",
-//         quantity: "100kg",
-//         dateOd: "20-03-2022",
-//         dateDe: "30-03-2022",
-//         status: "pending",
-//         price: "NGN 345,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2141,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2141,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2141,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2141,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2141,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2141,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-// ]
+const ProductData = () => [
+    {
+        id:2341,
+        orderId: "Granite-VAC-2048",
+        category: "Granite",
+        quantity: "100kg",
+        dateOd: "20-03-2022",
+        dateDe: "30-03-2022",
+        status: "pending",
+        price: "NGN 345,000",
+        image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
+        rating: 4,
+        description: "nothing yet",
+    },
+    {
+        id:2331,
+        orderId: "SAND-DCL-2048",
+        category: "SAND",
+        quantity: "100kg",
+        dateOd: "23-03-2022",
+        dateDe: "31-03-2022",
+        status: "active",
+        price: "NGN 185,000",
+        image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
+        rating: 4,
+        description: "nothing yet",
+    },
+    {
+        id:2241,
+        orderId: "Granite-VAC-2048",
+        category: "Granite",
+        quantity: "100kg",
+        dateOd: "20-03-2022",
+        dateDe: "30-03-2022",
+        status: "pending",
+        price: "NGN 345,000",
+        image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
+        rating: 4,
+        description: "nothing yet",
+    },
+    {
+        id:2541,
+        orderId: "SAND-DCL-2048",
+        category: "SAND",
+        quantity: "100kg",
+        dateOd: "23-03-2022",
+        dateDe: "31-03-2022",
+        status: "active",
+        price: "NGN 185,000",
+        image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
+        rating: 4,
+        description: "nothing yet",
+    },
+    {
+        id:2351,
+        orderId: "Granite-VAC-2048",
+        category: "Granite",
+        quantity: "100kg",
+        dateOd: "20-03-2022",
+        dateDe: "30-03-2022",
+        status: "pending",
+        price: "NGN 345,000",
+        image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
+        rating: 4,
+        description: "nothing yet",
+    },
+    {
+        id:23891,
+        orderId: "SAND-DCL-2048",
+        category: "SAND",
+        quantity: "100kg",
+        dateOd: "23-03-2022",
+        dateDe: "31-03-2022",
+        status: "active",
+        price: "NGN 185,000",
+        image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
+        rating: 4,
+        description: "nothing yet",
+    },
+    {
+        id:2391,
+        orderId: "Granite-VAC-2048",
+        category: "Granite",
+        quantity: "100kg",
+        dateOd: "20-03-2022",
+        dateDe: "30-03-2022",
+        status: "pending",
+        price: "NGN 345,000",
+        image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
+        rating: 4,
+        description: "nothing yet",
+    },
+    {
+        id:2141,
+        orderId: "SAND-DCL-2048",
+        category: "SAND",
+        quantity: "100kg",
+        dateOd: "23-03-2022",
+        dateDe: "31-03-2022",
+        status: "active",
+        price: "NGN 185,000",
+        image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
+        rating: 4,
+        description: "nothing yet",
+    },
+    {
+        id:2141,
+        orderId: "SAND-DCL-2048",
+        category: "SAND",
+        quantity: "100kg",
+        dateOd: "23-03-2022",
+        dateDe: "31-03-2022",
+        status: "active",
+        price: "NGN 185,000",
+        image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
+        rating: 4,
+        description: "nothing yet",
+    },
+    {
+        id:2141,
+        orderId: "SAND-DCL-2048",
+        category: "SAND",
+        quantity: "100kg",
+        dateOd: "23-03-2022",
+        dateDe: "31-03-2022",
+        status: "active",
+        price: "NGN 185,000",
+        image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
+        rating: 4,
+        description: "nothing yet",
+    },
+    {
+        id:2141,
+        orderId: "SAND-DCL-2048",
+        category: "SAND",
+        quantity: "100kg",
+        dateOd: "23-03-2022",
+        dateDe: "31-03-2022",
+        status: "active",
+        price: "NGN 185,000",
+        image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
+        rating: 4,
+        description: "nothing yet",
+    },
+    {
+        id:2141,
+        orderId: "SAND-DCL-2048",
+        category: "SAND",
+        quantity: "100kg",
+        dateOd: "23-03-2022",
+        dateDe: "31-03-2022",
+        status: "active",
+        price: "NGN 185,000",
+        image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
+        rating: 4,
+        description: "nothing yet",
+    },
+    {
+        id:2141,
+        orderId: "SAND-DCL-2048",
+        category: "SAND",
+        quantity: "100kg",
+        dateOd: "23-03-2022",
+        dateDe: "31-03-2022",
+        status: "active",
+        price: "NGN 185,000",
+        image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
+        rating: 4,
+        description: "nothing yet",
+    },
+]
     
 
-export default function ProductTable({status}){
+export default function ProductTable(){
 
-  let adminProducts = useSelector((state) => state.products.adminProducts);
-    if (status) {
-        adminProducts = adminProducts.filter(where => where.status === status)
-    }
-    const formatNumber = (number) => {
-      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-  // const navigate = useNavigate()
-  //   const gotoDetailsPage = (id) => {
-  //       navigate(`/dashboard/productdetailadmin?productId=${id}`)
-  //   }
-
-    const columns = useMemo(
+    const columns = React.useMemo(
         () => [
           {
-            Header: 'S/N',
-            accessor: ( row, index) => index + 1  //RDT provides index by default
-          },
-          {
-            Header: "Product Name",
-            accessor: "name",
-          },
-          {
-            Header: "Created By",
-            accessor: "creator.name",
-            
+            Header: "OrderID",
+            accessor: "orderId",
           },
           {
             Header: "Category",
-            accessor: "category.name",
+            accessor: "category",
             Filter: SelectColumnFilter, 
             filter: 'includes',
           },
           {
-            Header: "Price",
-            accessor:  (formatNumber('price')),
+            Header: "Quantity",
+            accessor: "quantity",
+          },
+          {
+            Header: "Date",
+            accessor: "dateOd",
           },
           {
             Header: "Status",
             accessor: "status",
-          },
-          {
-            Header: 'Action',
-            accessor: 'id',
-            // Cell: (row) => <button className="btn1" onClick={() => gotoDetailsPage(row.value)}><BsThreeDotsVertical /></button>,
           },
         ],
         []
       );
 
     
-      const data = useMemo(() => adminProducts, [adminProducts]);
+      const data = React.useMemo(() => ProductData(), []);
     
       return (
         <>
-          <div className="overflow-hidden px-4 bg-white py-8 rounded-md mt-8">
-            <Table columns={columns} data={data}  className=""/>
+          <h1 className="text-lg fw-600 mb-6">My Orders</h1>
+          <div>
+            <Table columns={columns} data={data} className=""/>
           </div>
         </>
       );

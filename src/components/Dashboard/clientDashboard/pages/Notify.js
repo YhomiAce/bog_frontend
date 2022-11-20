@@ -2,6 +2,7 @@ import { Breadcrumbs } from "@material-tailwind/react";
 import React from "react";
 import { Link } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import ProductTable from "../../assets/Tables/ProductTable";
 
 export default function Notify() {
     
@@ -206,6 +207,9 @@ export default function Notify() {
                                 </div>
                             </TabPanel>
                         </Tabs>
+                    </div>
+                    <div>
+                        <ProductTable/>
                     </div>
                 </div>
             </div>
