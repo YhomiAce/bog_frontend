@@ -5,7 +5,8 @@ import React from 'react';
 
 // const baseURL = process.env.REACT_APP_IMAGE_URL;
 
-const ProductItem = ({ item, setProductEdit, setProductDelete }) => {
+
+const ProductItem = ({ item }) => {
     const formatNumber = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }

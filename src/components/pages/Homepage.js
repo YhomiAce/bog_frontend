@@ -185,7 +185,7 @@ export default function Homepage() {
                         </div>
                     </div>
                     {showVideo && (
-                        <div className="center-item scale-ani bg-op-white top-0 left-0 z-40 fixed h-screen w-full">
+                        <div className="center-item scale-ani bg-op top-0 left-0 z-40 fixed h-screen w-full">
                             <div className="box">
                             <p className="lg:w-9/12 mx-auto" onClick={()=> {setShowVideo(false)}}><FontAwesomeIcon icon={faArrowLeftLong} className="text-2xl text-black" /></p>
                                 <video controls autoPlay className="lg:w-9/12 mx-auto">
