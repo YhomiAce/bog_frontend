@@ -3,7 +3,7 @@ import { faBell } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import {
-    Avatar, Menu, MenuHandler, MenuItem, MenuList, Button, Tooltip
+    Avatar, Menu, MenuHandler, MenuItem, MenuList, Button,
 } from "@material-tailwind/react";
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
@@ -34,6 +34,8 @@ export default function Header() {
         }
     }
 
+    
+
 
     return (
         <div className="fixed w-full z-50 bg-gray-100">
@@ -47,9 +49,6 @@ export default function Header() {
                         {/* <FontAwesomeIcon icon={faBarsStaggered} size="2x" className="text-2xl lg:ml-4 cursor-pointer" onClick={sidebarReduce}/> */}
                         <p className="ml-5 fw-700 hidden lg:block">{ auth?.user ? getUserType(auth?.user?.userType) : ""} Dasboard</p>
                         
-                        <Tooltip content="Switch Account">
-                            <Button className="bg-transparent border-0 shadow-none hover:shadow-none  text-black px-1 ml-2"><Link to="switch"><p className="text-lg"><AiOutlineUserSwitch/></p></Link></Button>
-                        </Tooltip>
                     </div>
                     <div className="flex items-center w-full">
                         <div class="mr-6 relative mx-auto text-gray-600 hidden lg:block">
@@ -58,6 +57,9 @@ export default function Header() {
                             <button type="submit" class="absolute bg-primary right-0 top-0 py-2 px-4 rounded-r-lg">
                                 <FontAwesomeIcon icon={faSearch} className="text-white" />
                             </button>
+                        </div>
+                        <div>
+                            <p className="bg-transparent border-0 shadow-none hover:shadow-none  text-black px-1 ml-2"><Link to="switch" className="flex text-center"><p className="fs-500 text-center"><p className="text-primary"><AiOutlineUserSwitch/></p><p className="fw-500 text-primary">Switch</p></p></Link></p>
                         </div>
                         <div className="relative mx-3">
                             <div onClick={ShowNotify} className="bg-gray-100 px-2 rounded-sm py-1">

@@ -11,6 +11,7 @@ export default function Service() {
     const [gInvest, setGInvest] = useState(false);
     const [cDraw, setCDraw] = useState(false);
     const [bAppove, setBAppove] = useState(false);
+    const [bCon, setBCon] = useState(false);
     const [sCalc, setSCalc] = useState(false);
 
     const CloseSurvey = () => {
@@ -19,6 +20,7 @@ export default function Service() {
         setCDraw(false)
         setBAppove(false)
         setSCalc(false)
+        setBCon(false)
     }
 
   return (
@@ -41,7 +43,7 @@ export default function Service() {
                     <div className="text-center py-4">
                         <p className="text-xl lg:text-3xl fw-600">What service do you need a service provider for  ?</p>
                     </div>
-                    <div className="lg:grid-3 justify-between lg:mt-24 my-12">
+                    <div className="lg:grid-3 justify-between lg:mt-24 my-12 mb-24">
                         <div className="shadow-md h-48 center-item">
                             <div className="cursor-pointer" onClick={() => {setLandSurvey(true)}}>
                                 <img src={require("../assets/images/survey.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
@@ -60,21 +62,25 @@ export default function Service() {
                                 <p className="fw-500">Construction Drawing</p>
                             </div>
                         </div>
-                        
-                    </div>
-                    <div className="lg:flex justify-evenly lg:mb-24">
-                        <div className="shadow-md lg:w-4/12 h-48 center-item lg:mt-3 mt-10">
+                        <div className="shadow-md h-48 center-item mt-10">
                             <div className="cursor-pointer" onClick={() => {setBAppove(true)}}>
                             <img src={require("../assets/images/BA.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
                                 <p className="fw-500">Building Approval</p>
                             </div>
                         </div>
-                        <div className="shadow-md lg:w-4/12 h-48 center-item lg:mt-3 mt-10">
-                            <div className="cursor-pointer" onClick={() => {setSCalc(true)}}>
+                        <div className="shadow-md h-48 center-item  mt-10">
+                            <div className="cursor-pointer" onClick={() => {setBCon(true)}}>
                             <img src={require("../assets/images/SC.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
                                 <p className="fw-500">Building Contractor</p>
                             </div>
                         </div>
+                        <div className="shadow-md h-48 center-item  mt-10">
+                            <div className="cursor-pointer" onClick={() => {setSCalc(true)}}>
+                            <img src={require("../assets/images/SC.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
+                                <p className="fw-500">Smart Calculator</p>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -877,12 +883,12 @@ export default function Service() {
             </div>
       </div>
       )}
-      {sCalc && (
+      {bCon && (
         <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40" onClick={CloseSurvey}>
             <div className="bg-white lg:w-5/12 px-5 lg:px-12 h-800 overflow-y-auto overscroll-none  w-11/12 py-12 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
                 <div className="flex justify-between">
                     <div>
-                        <p className="text-lg lg:text-2xl fw-600">Request for Contractor or Smart Calculator</p>
+                        <p className="text-lg lg:text-2xl fw-600">Request for Contractor</p>
                         <p className="mt-2 fs-500">Architectural, Structural, Electrical and Mechanical Drawings.</p>
                     </div>
                     <FontAwesomeIcon icon={faTimes} className="text-2xl relative -top-3 cursor-pointer" onClick={CloseSurvey}/>
@@ -903,7 +909,246 @@ export default function Service() {
                         </div>
                         <div className="mt-3 lg:mt-6 w-full">
                             <label className="block fw-600">
-                                1. Name for client<span className="text-red-600 pl-2">*</span>
+                                1. Name of client<span className="text-red-600 pl-2">*</span>
+                            </label>
+                            <input
+                                    type="text"
+                                    placeholder=""
+                                    className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
+                                />
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                2. Upload Survey Plan<span className="text-red-600 pl-2">*</span>
+                            </label>
+                            <div class="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
+                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
+                                <input class="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file"  multiple />
+                            </div>
+                            <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
+                                Audio
+                            </p>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                3. Upload Architectural plan<span className="text-red-600 pl-2">*</span>
+                            </label>
+                            <div class="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
+                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
+                                <input class="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file"  multiple />
+                            </div>
+                            <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
+                                Audio
+                            </p>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                4. Upload Structural plan, if avaliable
+                            </label>
+                            <div class="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
+                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
+                                <input class="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file"  multiple />
+                            </div>
+                            <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
+                                Audio
+                            </p>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                5. Upload Mechanical plan, if avaliable
+                            </label>
+                            <div class="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
+                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
+                                <input class="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file"  multiple />
+                            </div>
+                            <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
+                                Audio
+                            </p>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                6. Upload Electrical plan, if avaliable
+                            </label>
+                            <div class="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
+                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
+                                <input class="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file"  multiple />
+                            </div>
+                            <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
+                                Audio
+                            </p>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block">
+                               7. Location of Project<span className="text-red-600 pl-2">*</span>
+                            </label>
+                            <input
+                                    type="text"
+                                    placeholder="Enter location address"
+                                    className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
+                                />
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                8. Type of project<span className="text-red-600 pl-2">*</span>
+                            </label>
+                            <div className="mt-3 fs-500">
+                                <div className="py-1">
+                                    <input type="radio" name="p-type" />
+                                    <label className="pl-1">Residential</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="p-type" />
+                                    <label className="pl-1">Commercial</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="p-type" />
+                                    <label className="pl-1">Industrial</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="p-type" />
+                                    <label className="pl-1">Educational</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="p-type" />
+                                    <label className="pl-1">Religious</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                9. If Residential, select type of building *<span className="text-red-600 pl-2">*</span>
+                            </label>
+                            <div className="mt-3 fs-500">
+                                <div className="py-1">
+                                    <input type="radio" name="r-type" />
+                                    <label className="pl-1">Bungalow</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="r-type" />
+                                    <label className="pl-1">Duplex</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="r-type" />
+                                    <label className="pl-1">Multi-storey</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="r-type" />
+                                    <label className="pl-1">Terraced building</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="r-type" />
+                                    <label className="pl-1">High rise building</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                10. If Commercial, select type of building *<span className="text-red-600 pl-2">*</span>
+                            </label>
+                            <div className="mt-3 fs-500">
+                                <div className="py-1">
+                                    <input type="radio" name="c-type" />
+                                    <label className="pl-1">Bank</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="c-type" />
+                                    <label className="pl-1">Shopping mall</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="c-type" />
+                                    <label className="pl-1">Supermarket</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="c-type" />
+                                    <label className="pl-1">Office suites</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="c-type" />
+                                    <label className="pl-1">Others</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                11. If Religious, select type of building *<span className="text-red-600 pl-2">*</span>
+                            </label>
+                            <div className="mt-3 fs-500">
+                                <div className="py-1">
+                                    <input type="radio" name="m-type" />
+                                    <label className="pl-1">Church</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="m-type" />
+                                    <label className="pl-1">Mosque</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="c-type" />
+                                    <label className="pl-1">Others</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                12. If Educational, select type of building<span className="text-red-600 pl-2">*</span>
+                            </label>
+                            <div className="mt-3 fs-500">
+                                <div className="py-1">
+                                    <input type="radio" name="e-type" />
+                                    <label className="pl-1">Primary</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="e-type" />
+                                    <label className="pl-1">Secondary</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="e-type" />
+                                    <label className="pl-1">Tertiary</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="e-type" />
+                                    <label className="pl-1">Postgraduate</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="e-type" />
+                                    <label className="pl-1">Others</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-8">
+                            <button className="btn-primary w-full">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+      </div>
+      )}
+      {sCalc && (
+        <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40" onClick={CloseSurvey}>
+            <div className="bg-white lg:w-5/12 px-5 lg:px-12 h-800 overflow-y-auto overscroll-none  w-11/12 py-12 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
+                <div className="flex justify-between">
+                    <div>
+                        <p className="text-lg lg:text-2xl fw-600">Request for Smart Calc</p>
+                        <p className="mt-2 fs-500">Architectural, Structural, Electrical and Mechanical Drawings.</p>
+                    </div>
+                    <FontAwesomeIcon icon={faTimes} className="text-2xl relative -top-3 cursor-pointer" onClick={CloseSurvey}/>
+                    
+                </div>
+                <div className="mt-6">
+                    <p><span className="text-red-600 pr-2">*</span>Required</p>
+                </div>
+                <div className="mt-5">
+                    <form>
+                        <div className="fs-500">
+                            <p><span className="text-red-600  pr-2">*</span>This form will record your name, please fill your name.</p>
+                            <input
+                                        type="text"
+                                        placeholder="Enter your name"
+                                        className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
+                                    />
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                1. Name of client<span className="text-red-600 pl-2">*</span>
                             </label>
                             <input
                                     type="text"

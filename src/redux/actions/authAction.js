@@ -3,7 +3,7 @@ import axios from '../../config/config';
 import Swal from "sweetalert2";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
-import setAuthToken from '../../config/setAuthHeader';
+// import setAuthToken from '../../config/setAuthHeader';
 import { setAlert } from './alert';
 
 // const BASE_URL = process.env.REACT_APP_URL;
@@ -44,14 +44,20 @@ export const login = (payload) => {
 
 export const getMe = () => {
     return async (dispatch) => {
-            setAuthToken(localStorage.auth_token);
+            // setAuthToken(localStorage.auth_token);
             try {
                 const type = localStorage.getItem("userType")
+                const token = localStorage.getItem("auth_token")
                 let url = `/user/me`;
+                const config = {
+                    header: {
+                        Authorization: token
+                    }
+                }
                 if (type) {
                    url = `/user/me?userType=${type}` 
                 }
-                const response = await axios.get(url);
+                const response = await axios.get(url, config);
                 console.log(response);
                 dispatch(setUser(response))
             } catch (error) {

@@ -2,12 +2,13 @@ import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BsFillGrid1X2Fill, BsBell, BsGear, BsBag, BsEnvelope, BsBoxArrowRight, BsFillCaretDownFill, BsCameraVideo, BsReceiptCutoff } from "react-icons/bs";
 import { FiUsers } from "react-icons/fi";
+import { GrBlog } from "react-icons/gr";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../redux/actions/authAction';
-import { MdOutlineEmail } from "react-icons/md";
+import { MdOutlineEmail, MdOutlineReviews } from "react-icons/md";
 import { VscHistory } from "react-icons/vsc";
 
 
@@ -143,7 +144,7 @@ const AdminSidebar = () => {
                                         to="allprojects"
                                         // style={({ isActive }) => (isActive ? activeStyle : undefined)}
                                         >
-                                        <p className="py-2">Available Projects</p>
+                                        <p className="py-2">Manage Orders</p>
                                     </NavLink>
                                 </div>
                             )}
@@ -216,6 +217,24 @@ const AdminSidebar = () => {
                                 </div>
                             )}
                         </div>
+                        <NavLink 
+                            to="blog"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
+                            onClick={unShow}
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            >
+                                <GrBlog className="text-lg" />
+                                <p className="pl-3">Blog</p>
+                        </NavLink>
+                        <NavLink 
+                            to="review"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
+                            onClick={unShow}
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            >
+                                <MdOutlineReviews className="text-lg" />
+                                <p className="pl-3">Testimonials</p>
+                        </NavLink>
                         <NavLink 
                             to="inbox"
                             className="w-full flex items-center pl-2 py-2 fw-600 my-2"
