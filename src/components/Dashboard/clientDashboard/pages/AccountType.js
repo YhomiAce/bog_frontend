@@ -1,15 +1,32 @@
 import { Avatar, Button } from "@material-tailwind/react";
 import React from "react";
-import { useSelector, useDispatch } from 'react-redux';
-
+import { useSelector } from 'react-redux';
 
 
 export const AccountType = ({ account, switchAccount }) => {
 
     const BASE_URL = process.env.REACT_APP_IMAGE_URL;
     const user = useSelector((state) => state.auth.user);
+    const getUserType = (type) => {
+      switch (type) {
+          case "admin":
+              return "Super Admin"
+          case "professional":
+              return "Service Partner"
+          case "vendor":
+              return "Product Partner"
+          case "private_client":
+              return "Private Client"
+          case "product_partner":
+              return "Product Partner"
+          case "corporate_client":
+              return "Corporate Client"
+          default: return ""
+      }
+  }
 
   return (
+    <div className="md:flex items-center justify-between lg:mt-10 mt-6">
     <div className="flex w-full justify-between">
       <div className="flex">
         <Avatar
@@ -22,7 +39,7 @@ export const AccountType = ({ account, switchAccount }) => {
           className="lg:w-20 w-16"
         />
         <div className="pl-3">
-          <p className="fw-600">Corporate Client</p>
+          <p className="fw-600">{getUserType(account.userType)}</p>
           <p>{user?.name}</p>
         </div>
       </div>
@@ -34,6 +51,7 @@ export const AccountType = ({ account, switchAccount }) => {
           Switch
         </Button>
       </div>
+    </div>
     </div>
   );
 };

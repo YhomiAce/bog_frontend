@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar, Breadcrumbs } from "@material-tailwind/react";
 import React, {useState, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -37,8 +38,9 @@ export const Switch = () => {
                 try {
                     // setLoading(true)
                     const response = await Axios.get("/user/get-accounts")
-                    const data = response.accounts
-                    setAccounts(data)
+                    const data = response.accounts;
+                    const removeCurrent = data.filter(where => where.userType !== user.userType)
+                    setAccounts(removeCurrent)
                     // setLoading(false)
                     console.log(data)
                 } catch (error) {
@@ -99,11 +101,11 @@ export const Switch = () => {
                         </div>
                         <div className="mt-8">
                             <p className="fw-600">Other Accounts</p>
-                            <div className="md:flex items-center justify-between lg:mt-10 mt-6">
+                            
                                 {accounts.length > 0 ? accounts.map(acct => {
                                     return <AccountType key={acct.id} account= {acct} switchAccount={switchAccount} />
-                                }) : "No Other Accounts"}
-                            </div>
+                                }) : <h5>No Other Accounts</h5>
+                                }
                         </div>
                     </div>
                 </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactStars from "react-rating-stars-component";
 
 
-const baseURL = process.env.REACT_APP_IMAGE_URL;
+// const baseURL = process.env.REACT_APP_IMAGE_URL;
 
 const RecentProducts = ({ item }) => {
     const formatNumber = (number) => {

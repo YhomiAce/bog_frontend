@@ -3,7 +3,7 @@ import axios from '../../config/config';
 import Swal from "sweetalert2";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
-import setAuthToken from '../../config/setAuthHeader';
+// import setAuthToken from '../../config/setAuthHeader';
 import { setAlert } from './alert';
 
 // const BASE_URL = process.env.REACT_APP_URL;
