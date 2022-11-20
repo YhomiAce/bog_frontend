@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { addProductToStore } from '../../../../../redux/actions/ProductAction';
 import { BiEdit } from "react-icons/bi";
 
-const baseURL = process.env.REACT_APP_IMAGE_URL;
+// const baseURL = process.env.REACT_APP_IMAGE_URL;
 
 const DraftProduct = ({ item, setProductDelete, setProductEdit }) => {
     const dispatch = useDispatch();

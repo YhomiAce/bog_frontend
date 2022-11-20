@@ -3,9 +3,11 @@ import React from 'react';
 // import { BiEdit } from "react-icons/bi";
 
 
-const baseURL = process.env.REACT_APP_IMAGE_URL;
+// const baseURL = process.env.REACT_APP_IMAGE_URL;
+// setProductEdit, setProductDelete 
 
-const ProductItem = ({ item, setProductEdit, setProductDelete }) => {
+
+const ProductItem = ({ item }) => {
     const formatNumber = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }

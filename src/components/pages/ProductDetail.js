@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import {addToCart} from '../../redux/actions/cartAction';
 import ReactStars from "react-rating-stars-component";
 import { useSelector } from "react-redux";
-import steel from "../assets/images/steels.png";
+// import steel from "../assets/images/steels.png";
 
 export default function ProductDetail() {
 
