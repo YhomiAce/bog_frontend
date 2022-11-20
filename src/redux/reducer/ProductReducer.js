@@ -47,6 +47,13 @@ const ProductReducer = (state = initialState, action) => {
                 userProducts: state.userProducts.concat(payload),
                 error: null,
             }
+        case ActionType.ADD_CATEGORY:
+            return {
+                ...state,
+                isLoading: false,
+                categories: state.categories.concat(payload),
+                error: null,
+            }
         case ActionType.UPDATE_PRODUCT_STATUS:
             console.log(payload);
             const oldProducts = [...state.userProducts];
@@ -95,6 +102,13 @@ const ProductReducer = (state = initialState, action) => {
                 isLoading: false,
                 error: null,
                 userProducts: state.userProducts.filter(where => where.id !== payload)
+            }
+        case ActionType.DELETE_CATEGORY:
+            return {
+                ...state,
+                isLoading: false,
+                error: null,
+                categories: state.categories.filter(where => where.id !== payload)
             }
         case ActionType.PRODUCT_ERROR:
             return {

@@ -72,3 +72,7 @@ export const productSchema = Yup.object({
     unit: Yup.string().required("Product unit of measurement is required"),
     description: Yup.string().required("Product description is required"),
 });
+export const categorySchema = Yup.object({
+    name: Yup.string().required("Product title is required"),
+    description: Yup.string().required("Product description is required"),
+});

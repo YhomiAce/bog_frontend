@@ -7,7 +7,6 @@ import ProductSidebar from "../../layouts/sidebar/product";
 import ServiceSidebar from "../../layouts/sidebar/service";
 
 export default function Sidebar() {
-  const dispatch = useDispatch();
   const [showSideBar, setShowSideBar] = useState(true);
   const auth = useSelector((state) => state.auth);
   console.log(auth.user);
