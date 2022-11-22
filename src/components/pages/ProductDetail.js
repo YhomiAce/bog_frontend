@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import {addToCart} from '../../redux/actions/cartAction';
 import ReactStars from "react-rating-stars-component";
 import { useSelector } from "react-redux";
+import { ProductImage } from "./shop/ProductImg";
 // import steel from "../assets/images/steels.png";
 
 export default function ProductDetail() {
@@ -33,7 +34,8 @@ export default function ProductDetail() {
                     <div className="box">
                         <div className="lg:flex lg:pt-10">
                             <div className="lg:w-4/12 shadow-md p-4">
-                                <img src="https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png" alt="product" className="w-full lg:h-72" />
+                                {/* <img src="https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png" alt="product" className="w-full lg:h-72" /> */}
+                                <ProductImage/>
                             </div>
                             <div className="lg:pl-8 mt-4 lg:mt-0">
                                 <p className="lg:text-3xl text-lg fw-600">{item.name}</p>

@@ -110,7 +110,7 @@ export default function Header() {
                                 </MenuHandler>
                                 <MenuList>
                                     <MenuItem>Sevices</MenuItem>
-                                    <MenuItem>Chat</MenuItem>
+                                    <MenuItem>Inbox</MenuItem>
                                     <MenuItem>Products</MenuItem>
                                     <MenuItem>Settings</MenuItem>
                                     <MenuItem>Sign Out</MenuItem>

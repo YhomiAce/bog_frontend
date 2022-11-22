@@ -175,7 +175,7 @@ export function ServiceProject() {
                                 </div>
                             </div>
                             <div className="px-5 mt-6">
-                            <div className="overflow-x-auto">
+                                <div className="overflow-x-auto">
                                     <table className="items-center w-full bg-transparent border-collapse">
                                         <thead className="thead-light bg-light">
                                             <tr>

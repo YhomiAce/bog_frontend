@@ -3,12 +3,14 @@ import AuthReducer from "./AuthReducer";
 import ProductReducer from "./ProductReducer";
 import AlertReducer from "./AlertReducer";
 import  CartReducer  from "./CartReducer";
+import UserReducer from "./UsersReducer";
 
 const rootReducer = combineReducers({
     alert: AlertReducer,
     auth: AuthReducer,
     products: ProductReducer,
     cart: CartReducer,
+    users: UserReducer,
 });
 
 export default rootReducer;
