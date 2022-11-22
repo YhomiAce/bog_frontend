@@ -16,7 +16,7 @@ export default function Dashboard() {
 
   const auth = useSelector((state) => state.auth);
 
-  let dashboard = <PclientDashboard />;
+  let dashboard = null;
 
   if (auth?.user?.userType === "private_client") {
     dashboard = <PclientDashboard />

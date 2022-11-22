@@ -43,7 +43,7 @@ export default function Sidebar() {
       cursor: "pointer"
     }
   }
-  let sidebar = <ClientSidebar />;
+  let sidebar = <AdminSidebar />;
 
   if (auth?.user?.userType === "private_client") {
     sidebar = <ClientSidebar />
