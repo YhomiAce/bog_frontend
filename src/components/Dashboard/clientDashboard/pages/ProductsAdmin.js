@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAdminProducts, getCategories } from '../../../../redux/actions/ProductAction';
 import AdminCreateProduct from "./Product/Modals/AdminCreateProduct";
-import AdminProductLists from "./Product/AdminProductLists";
+// import AdminProductLists from "./Product/AdminProductLists";
+import ProductTable from "../../assets/Tables/ProductTable";
 
 export default function ProductsAdmin() {
     useEffect(() => {
@@ -63,16 +64,16 @@ export default function ProductsAdmin() {
                             </TabList>
                             <TabPanel>
                                 
-                                <AdminProductLists />
+                                <ProductTable />
                             </TabPanel>
                             <TabPanel>
-                                <AdminProductLists status={"in_review"} />
+                                <ProductTable status={"in_review"} />
                             </TabPanel>
                             <TabPanel>
-                                <AdminProductLists status={"approved"} />
+                                <ProductTable status={"approved"} />
                             </TabPanel>
                             <TabPanel>
-                                <AdminProductLists status={"disapproved"} />
+                                <ProductTable status={"disapproved"} />
                             </TabPanel>
                         </Tabs>
                     </div>

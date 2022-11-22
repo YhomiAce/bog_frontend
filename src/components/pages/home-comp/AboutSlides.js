@@ -12,7 +12,7 @@ import img2 from "../../assets/images/img4.png";
 import img3 from "../../assets/images/img3.png";
 import img4 from "../../assets/images/image1.png";
 
-const Reviews = [
+export const Reviews = [
     {
         id: 1,
         img: img1,

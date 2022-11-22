@@ -1,218 +1,62 @@
+import React, {  useEffect } from 'react'
+// import { BsThreeDotsVertical } from 'react-icons/bs';
+import { useSelector, useDispatch } from 'react-redux';
+// import Spinner from '../../../layouts/Spinner';
+import { getUsers } from '../../../../redux/actions/UserAction';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from 'react'
-import { useSelector } from 'react-redux';
 import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, usePagination } from "react-table";
-import { useNavigate } from "react-router-dom";
-import { BsThreeDotsVertical } from "react-icons/bs";
+// import { useNavigate } from "react-router-dom";
 import { useMemo, useRef } from "react";
 import { useDownloadExcel } from "react-export-table-to-excel";
 
-// const ProductData = () => [
-//     {
-//         id:2341,
-//         orderId: "Granite-VAC-2048",
-//         category: "Granite",
-//         quantity: "100kg",
-//         dateOd: "20-03-2022",
-//         dateDe: "30-03-2022",
-//         status: "pending",
-//         price: "NGN 345,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2331,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2241,
-//         orderId: "Granite-VAC-2048",
-//         category: "Granite",
-//         quantity: "100kg",
-//         dateOd: "20-03-2022",
-//         dateDe: "30-03-2022",
-//         status: "pending",
-//         price: "NGN 345,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2541,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2351,
-//         orderId: "Granite-VAC-2048",
-//         category: "Granite",
-//         quantity: "100kg",
-//         dateOd: "20-03-2022",
-//         dateDe: "30-03-2022",
-//         status: "pending",
-//         price: "NGN 345,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:23891,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2391,
-//         orderId: "Granite-VAC-2048",
-//         category: "Granite",
-//         quantity: "100kg",
-//         dateOd: "20-03-2022",
-//         dateDe: "30-03-2022",
-//         status: "pending",
-//         price: "NGN 345,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2141,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2141,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2141,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2141,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2141,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-//     {
-//         id:2141,
-//         orderId: "SAND-DCL-2048",
-//         category: "SAND",
-//         quantity: "100kg",
-//         dateOd: "23-03-2022",
-//         dateDe: "31-03-2022",
-//         status: "active",
-//         price: "NGN 185,000",
-//         image: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899789/BOG/granites_mjmhcj.png",
-//         rating: 4,
-//         description: "nothing yet",
-//     },
-// ]
-    
 
-export default function ProductTable({status}){
+export function UsersTable({status, userType}){
 
-  let adminProducts = useSelector((state) => state.products.adminProducts);
-    if (status) {
-        adminProducts = adminProducts.filter(where => where.status === status)
-    }
-    const formatNumber = (number) => {
-      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-  const navigate = useNavigate()
-    const gotoDetailsPage = (id) => {
-        navigate(`/dashboard/productdetailadmin?productId=${id}`)
-    }
+  const dispatch = useDispatch()
+  // const isLoading = useSelector((state) => state.users.isLoading);
+
+  useEffect (() => {
+
+    dispatch(getUsers())
+      
+  }, [dispatch]) 
+
+  let users = useSelector((state) => state.users.users);
+
+  if (userType) {
+    users = users.filter(where => where.userType === userType)
+}
+if (status) {
+  users = users.filter(where => where.status === status)
+}
 
     const formatStatus = (status) => {
       switch (status) {
-          case "in_review":
-              return <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">In Review</p>
-          case "approved":
-              return <p className="px-2 py-1 text-green-700 bg-green-100 w-24 rounded-md fw-600">Approved</p>
-          case "disapproved":
-            return <p className="px-2 py-1 text-red-700 bg-red-100 w-28 rounded-md fw-600">Disapproved</p>
-          case "pending":
-              return <p className="px-2 py-1 text-yellow-700 bg-yellow-100 w-24 rounded-md fw-600">Pending</p>
-          case "draft":
-              return "Draft"
+          case "isAcive":
+              return <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">Active</p>
+          
 
-          default: return status
+          default: return <p className="px-2 py-1 text-orange-700 bg-orange-100 w-24 rounded-md fw-600">Inactive</p>
       }
 
   }
+  const formatType = (userType) => {
+    switch (userType) {
+        case "private_client":
+            return <p>Private Client</p>
+        case "corporate_client":
+          return <p>Corporate Client</p>
+        case "vendor":
+          return <p>Product Partner</p>
+        case "professional":
+          return <p>Service Partner</p>
+
+        default: return userType
+    }
+
+}
 
 
     const columns = useMemo(
@@ -222,41 +66,42 @@ export default function ProductTable({status}){
             accessor: ( row, index) => index + 1  //RDT provides index by default
           },
           {
-            Header: "Product Name",
+            Header: "Full Name",
             accessor: "name",
           },
           {
-            Header: "Created By",
-            accessor: "creator.name",
+            Header: "Email",
+            accessor: "email",
             
           },
           {
-            Header: "Category",
-            accessor: "category.name",
-            Filter: SelectColumnFilter, 
-            filter: 'includes',
+            Header: "Phone Number",
+            accessor: "phone",
           },
           {
-            Header: "Price",
-            accessor:  'price',
-            Cell: (props) => `"NGN" + " " + ${formatNumber(props.value)} `
+            Header: "Client Type",
+            accessor:  'userType',
+            Filter: SelectColumnFilter, 
+            filter: 'includes',
+            Cell: (props) => formatType(props.value)
+            
           },
           {
             Header: "Status",
-            accessor: "status",
+            accessor: "isActive",
             Cell: (props) => formatStatus(props.value)
           },
           {
             Header: 'Action',
             accessor: 'id',
-            Cell: (row) => <button className="btn1" onClick={() => gotoDetailsPage(row.value)}><BsThreeDotsVertical /></button>,
+            // Cell: (row) => <button className="btn1" onClick={() => gotoDetailsPage(row.value)}><BsThreeDotsVertical /></button>,
           },
         ],
-        [] // eslint-disable-line react-hooks/exhaustive-deps
+        []
       );
 
     
-      const data = useMemo(() => adminProducts, [adminProducts]);
+      const data = useMemo(() => users, [users]);
     
       return (
         <>
@@ -318,7 +163,7 @@ const Table = ({columns, data}) => {
       data,
     }, 
     useFilters,
-    useGlobalFilter, usePagination, );
+    useGlobalFilter, usePagination );
 
     
 
@@ -371,7 +216,7 @@ const Table = ({columns, data}) => {
                                     <tr 
                                         {...row.getRowProps()}>
                                     {row.cells.map((cell) => {
-                                        return <td className="border-b border-gray-200 align-middle font-light fs-500 whitespace-nowrap px-2 py-4 text-left" {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                                        return <td className="border-b border-gray-200 align-middle fs-500 whitespace-nowrap px-2 py-4 text-left" {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                                     })}
                                     </tr>
                                 );
