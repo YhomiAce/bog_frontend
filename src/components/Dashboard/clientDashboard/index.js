@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import ProtectedRoute from "../../Routes/ProtectedRoute";
 import Header from "./header";
 import Dashboard from "./pages/Dasboard";
@@ -29,9 +29,16 @@ import KycForm from "./pages/KycForm";
 import OrderDetails from "./pages/OrderDetails";
 import UserDetails from "./pages/UserDetail";
 import Review from "./pages/Reviews";
+import ProjectsAdmin from "./pages/ProjectsAdmin";
+import ProjectDetails from "./pages/ProjectDetailsAdmin";
+import ProjectRequest from "./pages/ProjectRequest";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/Blog/CreatePost";
+import EditPost from "./pages/Blog/EditPost";
 
 export default function ClientDashboard() {
     
+    const navigate = useNavigate()
     const [sidebarReduce, setSidebarReduce] = useState(false)
 
 
@@ -56,12 +63,18 @@ export default function ClientDashboard() {
                         <Route path="projects" element={<Projects />} />
                         <Route path="cart" element={<Cart />} />
                         <Route path="client" element={<Clients />} />
+                        <Route path="blog" element={<Blog />} />
+                        <Route path="createpost" element={<BlogPost />} />
+                        <Route path="editpost" element={<EditPost />} />
                         <Route path="userdetails" element={<UserDetails />} />
                         <Route path="productscategory" element={<ProductsCategory />} />
                         <Route path="productsadmin" element={<ProductsAdmin />} />
                         <Route path="productdetailadmin" element={<ProductDetailsAdmin/>} />
                         <Route path="ordersadmin" element={<OrdersAdmin/>} />
                         <Route path="orderadmindetail" element={<OrderDetails/>} />
+                        <Route path="projectsadmin" element={<ProjectsAdmin/>} />
+                        <Route path="projectadmindetail" element={<ProjectDetails/>} />
+                        <Route path="projectrequest" element={<ProjectRequest/>} />
                         <Route path="productpartner" element={<Ppartners />} />
                         <Route path="servicepartner" element={<Spartners />} />
                         <Route path="allprojects" element={<AllProject />} />
@@ -84,9 +97,9 @@ export default function ClientDashboard() {
                     className="lg:flex relative bg-white text-center lg:main-p px-5 py-5 text-primary fw-500 justify-between fs-400">
                     <div className="flex mb-5 lg:mb-0">
                         <ul className="flex w-full justify-evenly lg:justify-start">
-                            <li>Homepage</li>
-                            <li className="lg:px-6 px-3">Products</li>
-                            <li>Services</li>
+                            <li onClick={() => navigate("/")} className="cursor-pointer">Homepage</li>
+                            <li className="lg:px-6 px-3 cursor-pointer" onClick={() => navigate("/shop")} >Products</li>
+                            <li onClick={() => navigate("/services")} className="cursor-pointer">Services</li>
                         </ul>
                     </div>
                     <div>
