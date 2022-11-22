@@ -16,7 +16,7 @@ import { AllProject } from "./pages/allprojects";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBarsStaggered, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { Switch } from "./pages/SwitchAccount";
+import { SwitchAccount } from "./pages/SwitchAccount";
 import Inbox from "./pages/inbox";
 import Ppartners from "./pages/Ppartners";
 import Spartners from "./pages/Spartner";
@@ -81,8 +81,8 @@ export default function ClientDashboard() {
                         <Route path="meetings" element={<Meetings />} />
                         <Route path="transact" element={<Transactions />} />
                         <Route path="notify" element={<Notify />} />
+                        <Route path="switch" element={<SwitchAccount />} />
                         <Route path="review" element={<Review />} />
-                        <Route path="switch" element={<Switch />} />
                         <Route path="inbox" element={<Inbox />} />
                         <Route path="kyc" element={<KycForm />} />
                         <Route path="settings" element={<Settings />} />

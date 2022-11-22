@@ -9,13 +9,12 @@ import { AccountType } from "./AccountType";
 import Spinner from "../../../layouts/Spinner";
 
 
-export const Switch = () => {
+export const SwitchAccount = () => {
 
     const [accounts, setAccounts] = useState([])
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const BASE_URL = process.env.REACT_APP_IMAGE_URL;
-    const auth = useSelector((state) => state.auth);
     const user = useSelector((state) => state.auth.user);
     const navigate = useNavigate()
 
@@ -40,11 +39,11 @@ export const Switch = () => {
             setLoading(true);
             const response = await Axios.get("/user/get-accounts")
             const data = response.accounts;
-            const removeCurrent = data.filter(where => where.userType !== user.userType)
-            setAccounts(removeCurrent)
+            setAccounts(data)
             setLoading(false);
             console.log(data)
         } catch (error) {
+            console.log(error);
             setLoading(false);
         }
     }
@@ -101,7 +100,7 @@ export const Switch = () => {
                                     className="lg:w-20 w-16"
                                 />
                                 <div className="pl-3">
-                                    <p className="fw-600">{auth?.user ? getUserType(auth?.user?.userType) : ""}</p>
+                                    <p className="fw-600">{user ? getUserType(user?.userType) : ""}</p>
                                     <p >{user?.name}</p>
                                 </div>
                             </div>
@@ -109,7 +108,7 @@ export const Switch = () => {
                         <div className="mt-8">
                             <p className="fw-600">Other Accounts</p>
 
-                            {accounts.length > 0 ? accounts.map(acct => {
+                            {accounts.length > 0 ? accounts.filter(where => where.userType !== user?.userType).map(acct => {
                                 return <AccountType key={acct.id} account={acct} switchAccount={switchAccount} />
                             }) : <h5>No Other Accounts</h5>
                             }
