@@ -5,12 +5,13 @@ import React, { useState } from "react";
 import {
     Avatar, Menu, MenuHandler, MenuItem, MenuList, Button,
 } from "@material-tailwind/react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import { AiOutlineUserSwitch } from "react-icons/ai"
-// import { logout } from '../../redux/actions/authAction';
+import { logout } from '../../../redux/actions/authAction';
 
 export default function Header() {
+    const dispatch = useDispatch()
     const auth = useSelector((state) => state.auth);
     const [notifyDown, setNotifyDown] = useState(false)
 
@@ -113,7 +114,7 @@ export default function Header() {
                                     <MenuItem>Inbox</MenuItem>
                                     <MenuItem>Products</MenuItem>
                                     <MenuItem>Settings</MenuItem>
-                                    <MenuItem>Sign Out</MenuItem>
+                                    <MenuItem  onClick={()=> dispatch(logout())}>Sign Out</MenuItem>
                                 </MenuList>
                             </Menu>
                         </div>

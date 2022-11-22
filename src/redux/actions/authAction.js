@@ -119,6 +119,7 @@ export const loginAdmin = (apiData, navigate, stopLoading) => {
             console.log(response);
             dispatch(login(response));
             stopLoading();
+            localStorage.removeItem("userType")
             Swal.fire({
                 title: "Success",
                 imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",

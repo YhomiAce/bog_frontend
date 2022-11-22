@@ -4,7 +4,6 @@ import React from 'react';
 
 
 // const baseURL = process.env.REACT_APP_IMAGE_URL;
-// setProductEdit, setProductDelete 
 
 
 const ProductItem = ({ item }) => {
