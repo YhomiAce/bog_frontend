@@ -180,14 +180,14 @@ export default function OrderDetails() {
                                     <p className="text-primary"><BiEdit/></p>
                                 </div>
                                 <div className="flex mt-6">
-                                            <div>
-                                                <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" variant="circular" alt="order"  />
-                                            </div>
-                                            <div className="grid fs-400 content-between pl-4 fw-500">
-                                                <p>Frank Diamond</p>
-                                                <p className="text-gray-600">Product Partner</p>
-                                            </div>
-                                        </div>
+                                    <div>
+                                        <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" variant="circular" alt="order"  />
+                                    </div>
+                                    <div className="grid fs-400 content-between pl-4 fw-500">
+                                        <p>Frank Diamond</p>
+                                        <p className="text-gray-600">Product Partner</p>
+                                    </div>
+                                </div>
                                 <div className="fs-400 fw-500 mt-4">
                                     <div className="flex">
                                         <p className="text-gray-600">Phone:</p>

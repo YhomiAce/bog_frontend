@@ -32,3 +32,5 @@ export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const ADD_CATEGORY = "ADD_CATEGORY";
 export const EDIT_CATEGORY = "EDIT_CATEGORY";
+export const FETCH_USERS = "FETCH_USERS";
+export const USER_ERROR = "USER_ERROR";
