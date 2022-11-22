@@ -33,7 +33,7 @@ export default function SignProfession() {
     console.log(values);
     const paylaod = {
       ...values,
-      userType: "vendor",
+      userType: "professional",
       captcha: captchaRef.current.getValue(),
       name: `${values.fname} ${values.lname}`
     }
