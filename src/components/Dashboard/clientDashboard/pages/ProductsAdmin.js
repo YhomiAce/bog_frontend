@@ -10,13 +10,14 @@ import AdminCreateProduct from "./Product/Modals/AdminCreateProduct";
 import ProductTable from "../../assets/Tables/ProductTable";
 
 export default function ProductsAdmin() {
+    const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAdminProducts());
         dispatch(getCategories());
-    }, [])
+    }, [dispatch])
 
     const [adminAdd, setAdminAdd] = useState(false);
-    const dispatch = useDispatch();
+    
 
     function CloseModal() {
         setAdminAdd(false)
