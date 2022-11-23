@@ -6,14 +6,20 @@ import {
     Avatar, Menu, MenuHandler, MenuItem, MenuList, Button,
 } from "@material-tailwind/react";
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineUserSwitch } from "react-icons/ai"
 import { logout } from '../../../redux/actions/authAction';
+
 
 export default function Header() {
     const dispatch = useDispatch()
     const auth = useSelector((state) => state.auth);
     const [notifyDown, setNotifyDown] = useState(false)
+
+    const navigate = useNavigate()
+
+    const BASE_URL = process.env.REACT_APP_IMAGE_URL;
+    const user = useSelector((state) => state.auth.user);
 
 
     function ShowNotify() {
@@ -106,14 +112,15 @@ export default function Header() {
                             >
                                 <MenuHandler>
                                     <Button className="p-0">
-                                        <Avatar src={require('./images/pic1.jpg')} alt="profilelogo" />
+                                        <Avatar src={user?.photo ? `${BASE_URL}/${user?.photo}` : "https://i.stack.imgur.com/l60Hf.png"}
+                                    alt="profifepic" />
                                     </Button>
                                 </MenuHandler>
                                 <MenuList>
-                                    <MenuItem>Sevices</MenuItem>
-                                    <MenuItem>Inbox</MenuItem>
-                                    <MenuItem>Products</MenuItem>
-                                    <MenuItem>Settings</MenuItem>
+                                    <MenuItem onClick={() => navigate("/dashboard/transact")}>Transactions</MenuItem>
+                                    <MenuItem onClick={() => navigate("/dashboard/inbox")}>Inbox</MenuItem>
+                                    <MenuItem onClick={() => navigate("/dashboard/meetings")}>Meetings</MenuItem>
+                                    <MenuItem onClick={() => navigate("/dashboard/settings")}>Settings</MenuItem>
                                     <MenuItem  onClick={()=> dispatch(logout())}>Sign Out</MenuItem>
                                 </MenuList>
                             </Menu>
