@@ -115,6 +115,11 @@ const ProductReducer = (state = initialState, action) => {
                 ...state,
                 error: payload
             }
+        case ActionType.LOADING:
+            return {
+                ...state,
+                isLoading: true
+            }
 
         default: return state;
     }
