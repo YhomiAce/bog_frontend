@@ -28,15 +28,21 @@ import JoinTeam from './components/pages/JoinOurTeam';
 import ScrollToTop from './components/layouts/Scroll';
 import { Cart } from './components/pages/Cart';
 import BlogPage from './components/pages/BlogPage';
+import { updateCart } from './redux/actions/cartAction';
+import { useDispatch } from 'react-redux';
 
 if (localStorage.auth_token) {
   setAuthToken(localStorage.auth_token);
 }
 
 function App() {
+  const dispatch = useDispatch();
   useEffect(() => {
-    console.log(store.getState().auth);
     // if (store.getState().auth.isAuthenticated) store.dispatch(getMe());
+    if(localStorage.carts){
+      console.log(localStorage.carts);
+      dispatch(updateCart())
+    }
     store.dispatch(getMe());
   });
   return (

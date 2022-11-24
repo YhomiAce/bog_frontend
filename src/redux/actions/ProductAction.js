@@ -5,6 +5,12 @@ import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
 
 
+export const loading = () => {
+    return {
+        type: ActionType.LOADING
+    }
+}
+
 export const fetchProducts = (payload) => {
     return {
         type: ActionType.FETCH_PRODUCTS,
@@ -105,6 +111,7 @@ export const setError = (payload) => {
 export const getProducts = () => {
     return async (dispatch) => {
         try {
+            dispatch(loading());
             const response = await axios.get('/products/all');
             console.log(response);
             dispatch(fetchProducts(response.data))
@@ -126,6 +133,7 @@ export const getProducts = () => {
 export const getCategories = () => {
     return async (dispatch) => {
         try {
+            dispatch(loading());
             const response = await axios.get('/product/category');
             console.log(response);
             dispatch(fetchCategory(response.data))
@@ -147,6 +155,7 @@ export const getCategories = () => {
 export const getSimilarProduct = (category) => {
     return async (dispatch) => {
         try {
+            dispatch(loading());
             const url = `/products/similar-products?categoryId=${category}`
             const response = await axios.get(url);
             console.log(response);
@@ -169,6 +178,7 @@ export const getSimilarProduct = (category) => {
 export const getUserProducts = (category) => {
     return async (dispatch) => {
         try {
+            dispatch(loading());
             const response = await axios.get('/products');
             console.log(response);
             dispatch(fetchUserProduct(response.data))
@@ -190,6 +200,7 @@ export const getUserProducts = (category) => {
 export const getAdminProducts = (category) => {
     return async (dispatch) => {
         try {
+            dispatch(loading());
             const response = await axios.get('/product/admin/get-products');
             console.log(response);
             dispatch(fetchAdminProduct(response.data))
@@ -211,6 +222,7 @@ export const getAdminProducts = (category) => {
 export const removeProduct = (productId, saveLoading) => {
     return async (dispatch) => {
         try {
+            dispatch(loading());
             const url = `/product/${productId}`
             const response = await axios.delete(url);
             console.log(response);
@@ -244,6 +256,7 @@ export const removeProduct = (productId, saveLoading) => {
 export const createProduct = (payload, saveLoading) => {
     return async (dispatch) => {
         try {
+            dispatch(loading());
             const url = `/products`;
             const config = {
                 headers: {
@@ -283,6 +296,7 @@ export const createProduct = (payload, saveLoading) => {
 export const removeCategory = (categoryId, saveLoading) => {
     return async (dispatch) => {
         try {
+            dispatch(loading());
             const url = `/product/category/${categoryId}`
             const response = await axios.delete(url);
             console.log(response);
@@ -316,6 +330,7 @@ export const removeCategory = (categoryId, saveLoading) => {
 export const updateCategory = (categoryId, saveLoading) => {
     return async (dispatch) => {
         try {
+            dispatch(loading());
             const url = `/product/category/${categoryId}`
             const response = await axios.delete(url);
             console.log(response);
@@ -349,6 +364,7 @@ export const updateCategory = (categoryId, saveLoading) => {
 export const createCategory = (payload, saveLoading) => {
     return async (dispatch) => {
         try {
+            dispatch(loading());
             const url = `/product/category`;
           
             const response = await axios.post(url, payload);
@@ -383,6 +399,7 @@ export const createCategory = (payload, saveLoading) => {
 export const updateProduct = (payload, productId, saveLoading) => {
     return async (dispatch) => {
         try {
+            dispatch(loading());
             const url = `/product/${productId}`;
             const config = {
                 headers: {
@@ -422,6 +439,7 @@ export const updateProduct = (payload, productId, saveLoading) => {
 export const addProductToStore = (productId, saveLoading) => {
     return async (dispatch) => {
         try {
+            dispatch(loading());
             const url = `/product/add-to-shop/${productId}`;
             const response = await axios.patch(url);
             console.log(response);
@@ -457,6 +475,7 @@ export const addProductToStore = (productId, saveLoading) => {
 export const ApproveProduct = (payload, saveLoading) => {
     return async (dispatch) => {
         try {
+            dispatch(loading());
             const url = `product/admin/approve-product`;
             const response = await axios.post(url, payload);
             console.log(response);

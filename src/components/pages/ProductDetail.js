@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Footer from "./home-comp/Footer";
 import Header from "./home-comp/Header";
 import { useParams } from "react-router-dom";
-import { SimilarProducts } from "./shop/AllProducts";
+import { SimilarProducts } from "./shop/SimilarProduct";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { useDispatch } from 'react-redux';
 import {addToCart} from '../../redux/actions/cartAction';
@@ -18,6 +18,7 @@ export default function ProductDetail() {
     const dispatch = useDispatch()
     const {itemId} = useParams()
     const item = products.find( prod => prod.id === itemId);
+    const similarProducts = products.filter(where => where.category.id === item.category.id);
 
 
     return (
@@ -62,7 +63,7 @@ export default function ProductDetail() {
                                     <div className="mt-6 fs-500 lg:fs-600">
                                         <input type="number" min={0} max={10} value={cartNum} onChange={(e) => setCartNum(e.target.value)}  className="w-16 px-1 lg:px-2 rounded py-1 lg:py-2 border border-black"/>
                                         <button className="btn-primary ml-7 px-4 lg:px-8 "  onClick={() => 
-                                            dispatch(addToCart(item))
+                                            dispatch(addToCart(item, cartNum))
                                         }>Add To Cart</button>
                                     </div>
                                 </div>
@@ -99,7 +100,7 @@ export default function ProductDetail() {
                     <div className="box">
                         <div>
                             <p className="fw-600 lg:text-2xl py-6">Similar Products</p>
-                            <SimilarProducts />
+                            <SimilarProducts products={similarProducts} />
                         </div>
                     </div>
                 </div>

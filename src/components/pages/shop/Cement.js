@@ -51,7 +51,7 @@ export const Cements = () => {
 }
     useEffect (() => {
         fetchCement()
-    })
+    },[])
   return (
     <div>
         <div className="lg:grid-3 xl:grid-3s grid-2 justify-between relative lg:-top-12 -top-6">

@@ -24,6 +24,7 @@ export function UsersTable({status, userType}){
   }, [dispatch]) 
 
   let users = useSelector((state) => state.users.users);
+  // let users = clients.filter().filter()
 
   if (userType) {
     users = users.filter(where => where.userType === userType)

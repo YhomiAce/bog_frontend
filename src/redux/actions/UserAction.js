@@ -20,21 +20,21 @@ export const setError = (payload) => {
 
 export const getUsers = () => {
     return async (dispatch) => {
-            try {
-                const response = await axios.get('/all/users');
-                console.log(response);
-                dispatch(fetchUsers(response.users))
-            } catch (error) {
-                console.log(error.message);
-                dispatch(setError(error.message));
-                toaster.notify(
-                    error.message,
-                    {
-                        duration: "4000",
-                        position: "bottom",
-                    }
-                );
-            }
+        try {
+            const response = await axios.get('/all/users');
+            console.log(response);
+            dispatch(fetchUsers(response.users))
+        } catch (error) {
+            console.log(error.message);
+            dispatch(setError(error.message));
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
 
     }
 }

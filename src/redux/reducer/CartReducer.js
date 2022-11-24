@@ -19,7 +19,7 @@ const CartReducer = (state = initialState, action) => {
                 const index = oldArr.findIndex(where => where.id === payload.id)
                 oldArr[index].quantity +=1;
                 cartElement = oldArr
-
+                localStorage.setItem("carts", JSON.stringify(cartElement))
             }else{
                 const neededElement = {
                     id: payload.id,
@@ -27,11 +27,13 @@ const CartReducer = (state = initialState, action) => {
                     price: payload.price,
                     description: payload.description,
                     image: payload.image,
+                    product_image: payload.product_image,
                     unit: payload.unit,
-                    quantity: 1,
+                    quantity: Number(payload.qty),
                 }
 
-                cartElement = oldArr.concat(neededElement)
+                cartElement = oldArr.concat(neededElement);
+                localStorage.setItem("carts", JSON.stringify(cartElement))
             }
             return {
                 // ...state,
@@ -39,10 +41,39 @@ const CartReducer = (state = initialState, action) => {
                 cart: cartElement
             }
         case actionType.INCREMENT_QUANTITY:
-            const item = oldArr.find(item => item.id === payload.id);
-            const increment = item.quantity +=1;
+            const oldData = [...state.cart]
+            const item = oldData.findIndex(item => item.id === payload.id);
+            oldData[item].quantity +=1;
+            localStorage.setItem("carts", JSON.stringify(oldData))
             return {
-                cart: increment
+                cart: oldData
+            }
+        case actionType.CLEAR_CART:
+            localStorage.removeItem("carts")
+            return {
+                cart: []
+            }
+        case actionType.UPDATE_CART:
+            const items = JSON.parse(localStorage.getItem("carts"))
+            return {
+                cart: items
+            }
+        case actionType.DECREMENT_QUANTITY:
+            const oldCarts = [...state.cart];
+            const cartItem = oldCarts.find(item => item.id === payload.id);
+            let newCart;
+            if (cartItem.quantity === 1 ) {
+                newCart = oldCarts.filter(where => where.id === payload.id);
+                localStorage.setItem("carts", JSON.stringify(newCart))
+            }else{
+                const i = oldCarts.findIndex(where => where.id === payload.id)
+                oldCarts[i].quantity -=1;
+                newCart = oldCarts;
+                localStorage.setItem("carts", JSON.stringify(newCart));
+            }
+            
+            return {
+                cart: newCart
             }
 
         default: return state;
