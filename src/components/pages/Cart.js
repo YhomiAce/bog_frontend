@@ -1,13 +1,15 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { decrementQuantity, incrementQuantity } from '../../redux/actions/cartAction';
+import { decrementQuantity, incrementQuantity, clearCart } from '../../redux/actions/cartAction';
 // import CartItem from './CartItem';
 import Footer from './home-comp/Footer';
 import Header from './home-comp/Header';
 import { PaystackButton } from "react-paystack"
+import { useNavigate } from 'react-router-dom';
 
 export const Cart = () => {
-
+    const navigate = useNavigate();
     const carts = useSelector((state) => state.cart.cart);
+    const auth = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const formatNumber = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -20,6 +22,7 @@ export const Cart = () => {
     const handlePaystackSuccessAction = (reference) => {
         alert("Payment successful")
         console.log(reference);
+        dispatch(clearCart())
     }
     const handlePaystackCloseAction = () => {
         console.log('incorrect transaction');
@@ -27,7 +30,7 @@ export const Cart = () => {
 
     const config = {
         reference: "TR-"+ (new Date()).getTime().toString(),
-        email: "user@example.com",
+        email: auth?.user?.email,
         amount: totalAmount,
         publicKey: 'pk_test_0c79398dba746ce329d163885dd3fe5bc7e1f243',
       };
@@ -95,7 +98,11 @@ export const Cart = () => {
                                                 <p>TOTAL COST</p>
                                                 <p>NGN {formatNumber(totalAmount)}</p>
                                             </div>
-                                            <PaystackButton text='CHECKOUT' label='CHECKOUT' className='w-full btn bg-primary text-white' {...componentProps}  />
+                                            {
+                                                auth.isAuthenticated ? <PaystackButton text='CHECKOUT' label='CHECKOUT' className='w-full btn bg-primary text-white' {...componentProps}  /> :
+                                                <button onClick={() => navigate("/login")} className='w-full btn bg-primary text-white'>LoGIN</button>
+                                            }
+                                            
                                         </div>
                                     </div>
                                 </div>

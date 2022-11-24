@@ -50,7 +50,7 @@ export default function Products() {
     useEffect(() => {
         dispatch(getUserProducts());
         dispatch(getCategories());
-    }, []);
+    }, [dispatch]);
 
     if (isLoading) {
         return <center><Spinner /></center>

@@ -278,9 +278,10 @@ export const createProduct = (payload, saveLoading) => {
                 confirmButtonColor: "#3F79AD",
             })
         } catch (error) {
+            saveLoading();
             console.log(error?.response?.data?.message);
             dispatch(setError(error.message));
-            saveLoading();
+            
             toaster.notify(
                 error?.response?.data?.message || error.message,
                 {

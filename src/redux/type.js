@@ -37,3 +37,4 @@ export const EDIT_CATEGORY = "EDIT_CATEGORY";
 export const FETCH_USERS = "FETCH_USERS";
 export const USER_ERROR = "USER_ERROR";
 export const LOADING = "LOADING";
+export const DELETE_CART_ITEM = "DELETE_CART_ITEM";

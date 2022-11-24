@@ -282,7 +282,7 @@ export default function Homepage() {
                 <div className="box">
                     <div className="hidden lg:block h-blog overflow-hidden w-full"  >
                         <div className="flex"   >
-                            <div className="mt-6 w-3/12 text-white mt-24 pr-6">
+                            <div className="mt-6 w-3/12 text-white pr-6">
                                 <p className="lg:text-3xl ">Stay updated with our blog posts</p>
                                 <p className="my-6">Stay engaged with the latest news and insights from BOG</p>
                                 <Link to="/blog">

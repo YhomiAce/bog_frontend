@@ -48,6 +48,13 @@ const CartReducer = (state = initialState, action) => {
             return {
                 cart: oldData
             }
+        case actionType.DELETE_CART_ITEM:
+            const oldItems = [...state.cart]
+            const newItens = oldItems.filter(item => item.id !== payload);
+            localStorage.setItem("carts", JSON.stringify(newItens))
+            return {
+                cart: newItens
+            }
         case actionType.CLEAR_CART:
             localStorage.removeItem("carts")
             return {
