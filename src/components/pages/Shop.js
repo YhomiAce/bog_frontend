@@ -49,11 +49,11 @@ export default function Shop() {
         dispatch(getProducts());
     }, []);
 
-    if (loading) {
-        return <center>
-            <Spinner />
-        </center>
-    }
+    // if (loading) {
+    //     return <center>
+    //         <Spinner />
+    //     </center>
+    // }
 
     return (
         <div>
@@ -128,7 +128,10 @@ export default function Shop() {
                             </div>
                             <div className="w-9/12 pl-3 lg:pl-0 lg:w-8/12">
 
-                                <AllProducts products={show ? productCategory : products} />
+                                  {
+                                    loading ? <Spinner /> : <AllProducts products={show ? productCategory : products} />
+                                  }      
+                                
 
                             </div>
                         </div>

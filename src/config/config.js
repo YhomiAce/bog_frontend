@@ -3,14 +3,15 @@ import axios from "axios";
 
 const requestHeaders = { "Content-Type": "application/json" };
 const authToken = localStorage.getItem("auth_token");
+console.log({authToken});
 
-if (authToken && authToken !== "null") {
+if (authToken) {
   requestHeaders.Authorization = `${authToken}`;
 }
 
 const Axios = axios.create({
   //you can change this when running locally with your local backend server
-  baseURL: process.env.REACT_APP_URL,
+  baseURL: process.env.REACT_APP_LOCAL_URL,
   headers: requestHeaders,
 });
 

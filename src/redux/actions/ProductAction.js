@@ -5,6 +5,7 @@ import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
 
 
+
 const authToken = localStorage.getItem("auth_token");
 const config = {
     headers:

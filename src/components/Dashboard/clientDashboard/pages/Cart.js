@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { clearCart } from "../../../../redux/actions/cartAction";
 import CartItems from "./CartItems";
 
+
 export default function Cart() {
     const dispatch = useDispatch();
     const carts = useSelector((state) => state.cart.cart);
@@ -18,7 +19,6 @@ export default function Cart() {
     });
 
     const handlePaystackSuccessAction = (reference) => {
-        alert("Payment successful")
         console.log(reference);
         dispatch(clearCart())
     }

@@ -44,7 +44,7 @@ const ProductReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                userProducts: state.userProducts.concat(payload),
+                userProducts: [payload, ...state.userProducts],
                 error: null,
             }
         case ActionType.ADD_CATEGORY:
@@ -113,7 +113,8 @@ const ProductReducer = (state = initialState, action) => {
         case ActionType.PRODUCT_ERROR:
             return {
                 ...state,
-                error: payload
+                error: payload,
+                isLoading: false
             }
         case ActionType.LOADING:
             return {

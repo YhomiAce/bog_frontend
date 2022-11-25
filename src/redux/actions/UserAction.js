@@ -14,6 +14,7 @@ const config = {
 
 }
 
+
 export const fetchUsers = (payload) => {
     return {
         type: ActionType.FETCH_USERS,
@@ -32,7 +33,8 @@ export const getUsers = () => {
     return async (dispatch) => {
         try {
             const response = await axios.get('/all/users', config);
-            console.log(response);
+            // const data = response.users.map(item => item.user)
+            // console.log(data);
             dispatch(fetchUsers(response.users))
         } catch (error) {
             console.log(error.message);

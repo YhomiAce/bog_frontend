@@ -7,6 +7,8 @@ import { PaystackButton } from "react-paystack"
 import { MdDeleteOutline } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
+const baseURL = process.env.REACT_APP_IMAGE_URL;
+
 export const Cart = () => {
     const navigate = useNavigate();
     const carts = useSelector((state) => state.cart.cart);
@@ -56,7 +58,8 @@ export const Cart = () => {
                                             <div>
                                                 <div className='lg:flex items-center relative'>
                                                     <div className='lg:w-3/12'>
-                                                        <img src="https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png" alt="products" className="w-40 rounded-md h-20 lg:h-40" />
+                                                        {/* <img src="https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png" alt="products" className="w-40 rounded-md h-20 lg:h-40" /> */}
+                                                        <img src={`${baseURL}/${item.image}`}  alt="products" className="w-40 rounded-md h-20 lg:h-40" />
                                                     </div>
                                                     <div className='lg:w-6/12'>
                                                         <p className='fw-500'>{item.name}</p>
