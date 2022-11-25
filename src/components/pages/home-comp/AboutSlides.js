@@ -25,14 +25,14 @@ export const Reviews = [
         img: img2,
         name: "Chukka Uzo",
         job: "Construction",
-        review: "Thanks to BOG, I now handle the whole construction process hazzlefree. I’m glad that I’m part of the BOG service providers."
+        review: "Thanks to BOG, I now handle the whole construction process hazzle free. I’m glad that I’m part of the BOG service providers."
     },
     {
         id: 3,
         img: img3,
         name: "Frank Jnr",
         job: "Product Partner",
-        review: "I sell my gravel as a product partner on BOG and ever since i started, I’ve not had any issue. Its awesome."
+        review: "I sell my gravel as a product partner on BOG and ever since I started, I’ve not had any issue. Its awesome."
     },
     {
         id: 4,
@@ -46,14 +46,14 @@ export const Reviews = [
         img: img1,
         name: "Frank Jnr",
         job: "Product Partner",
-        review: "I sell my gravel as a product partner on BOG and ever since i started, I’ve not had any issue. Its awesome."
+        review: "I sell my gravel as a product partner on BOG and ever since I started, I’ve not had any issue. Its awesome."
     },
     {
         id: 6,
         img: img2,
         name: "Chukka Uzo",
         job: "Construction",
-        review: "Thanks to BOG, I now handle the whole construction process hazzlefree. I’m glad that I’m part of the BOG service providers."
+        review: "Thanks to BOG, I now handle the whole construction process hazzle free. I’m glad that I’m part of the BOG service providers."
     },
     {
         id: 7,

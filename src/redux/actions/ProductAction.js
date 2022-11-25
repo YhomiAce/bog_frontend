@@ -5,6 +5,16 @@ import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
 
 
+const authToken = localStorage.getItem("auth_token");
+const config = {
+    headers:
+    {
+        "Content-Type": "application/json",
+        'Authorization': authToken
+    }
+
+}
+
 export const loading = () => {
     return {
         type: ActionType.LOADING
@@ -112,7 +122,7 @@ export const getProducts = () => {
     return async (dispatch) => {
         try {
             dispatch(loading());
-            const response = await axios.get('/products/all');
+            const response = await axios.get('/products/all', config);
             console.log(response);
             dispatch(fetchProducts(response.data))
         } catch (error) {
@@ -134,7 +144,7 @@ export const getCategories = () => {
     return async (dispatch) => {
         try {
             dispatch(loading());
-            const response = await axios.get('/product/category');
+            const response = await axios.get('/product/category', config);
             console.log(response);
             dispatch(fetchCategory(response.data))
         } catch (error) {
@@ -157,7 +167,7 @@ export const getSimilarProduct = (category) => {
         try {
             dispatch(loading());
             const url = `/products/similar-products?categoryId=${category}`
-            const response = await axios.get(url);
+            const response = await axios.get(url, config);
             console.log(response);
             dispatch(fetchSimilarProduct(response.data))
         } catch (error) {
@@ -179,7 +189,7 @@ export const getUserProducts = (category) => {
     return async (dispatch) => {
         try {
             dispatch(loading());
-            const response = await axios.get('/products');
+            const response = await axios.get('/products', config);
             console.log(response);
             dispatch(fetchUserProduct(response.data))
         } catch (error) {
@@ -201,7 +211,7 @@ export const getAdminProducts = (category) => {
     return async (dispatch) => {
         try {
             dispatch(loading());
-            const response = await axios.get('/product/admin/get-products');
+            const response = await axios.get('/product/admin/get-products', config);
             console.log(response);
             dispatch(fetchAdminProduct(response.data))
         } catch (error) {
