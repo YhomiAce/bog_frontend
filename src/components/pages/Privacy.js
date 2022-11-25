@@ -19,106 +19,92 @@ export default function Privacy() {
                 <div className="section">
           <div className="box">
             <div>
-              <p className="py-6">
-                Occaecat et in labore do ipsum dolor sunt dolore pariatur. Duis
-                velit elit esse duis proident sit eu esse commodo minim labore
-                nisi. Aliqua est ullamco reprehenderit aute labore amet anim
-                voluptate qui in. Quis aliqua occaecat laboris veniam ad. In
-                mollit commodo cillum aliqua officia ipsum enim ut. Id sint
-                deserunt labore anim in deserunt consectetur non.
-              </p>
+              <p className="lg:py-6 pb-6 fw-600 fs-700">Privacy Policy for BOG</p>
+              <p className="">At BOG, accessible from www.xxxxxxxxxxx one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by BOG and how we use it.</p>
+              <p className="mt-4">If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
               <div className="mt-4">
-                <p className="fw-600 fs-700">Header 1</p>
-              <p className="py-3">
-                Ut sit nisi enim anim ut dolore ullamco. Laboris ea excepteur
-                elit nulla exercitation nostrud quis. Excepteur labore commodo
-                non tempor occaecat est culpa amet deserunt non.
-              </p>
-              </div>
-              <div className="mt-4">
-              <p className="fw-600 fs-700">Header 2</p>
-              <p className="py-3">
-                In exercitation excepteur nulla aliquip nisi. Adipisicing dolore
-                veniam aliqua voluptate consectetur ullamco velit Lorem laboris
-                sint sint aute. Aliquip eiusmod sunt in dolore elit dolore
-                labore in deserunt enim incididunt aute labore. Voluptate
-                deserunt ullamco exercitation et aliqua irure in irure cillum
-                ipsum anim. Irure pariatur consectetur aliqua sit tempor nostrud
-                elit deserunt do do occaecat duis. Fugiat dolor eiusmod amet
-                Lorem commodo quis consectetur nostrud Lorem nostrud eu ipsum
-                do. Amet labore et et aute incididunt esse ut irure occaecat
-                aliquip sint ex. Est duis esse consequat pariatur. Quis ad
-                dolore aliqua pariatur pariatur sunt quis aliquip occaecat aute
-                elit. Ea minim consectetur eiusmod irure cupidatat adipisicing
-                eiusmod. Nostrud eu aliqua dolore non eiusmod ex ad ipsum.
-                Labore ullamco aliqua mollit esse. Lorem quis ullamco
-                exercitation dolor ea ipsum magna incididunt. Culpa ut esse
-                labore reprehenderit voluptate esse consequat non do esse. Sint
-                aliquip aliqua voluptate nostrud eiusmod in id excepteur.
-                Officia do ipsum esse et. Exercitation aliquip cillum voluptate
-                qui proident voluptate magna cupidatat exercitation fugiat.
-                Minim anim laboris sit sit velit id Lorem sit fugiat enim culpa.
-                Sint esse velit voluptate consequat velit magna exercitation
-                aute labore aliquip et consectetur qui. In non dolore mollit sit
-                officia exercitation laborum cillum proident ipsum et et.
-                Incididunt ad minim labore dolore. Qui adipisicing eu velit
-                proident voluptate voluptate tempor cupidatat occaecat proident
-                excepteur. Labore aliquip aliqua voluptate fugiat commodo quis
-                irure eiusmod labore cillum excepteur. Anim ex dolore incididunt
-                elit ex aliquip labore cupidatat aliquip consequat sunt
-                proident. Labore excepteur reprehenderit deserunt laboris
-                consequat quis nulla eiusmod eu enim sit tempor. Deserunt fugiat
-                ad ullamco adipisicing aliqua. Officia aliquip voluptate quis
-                excepteur sunt. Proident consequat esse elit voluptate culpa
-                dolor laboris duis esse commodo quis. Consequat sit nisi
-                consequat Lorem nisi nisi esse magna nostrud nostrud incididunt
-                voluptate in ut. Non tempor qui dolor est tempor do sint. Aute
-                id nulla ea eu reprehenderit consectetur tempor ullamco aute
-                ullamco duis voluptate ad. Cillum consequat fugiat veniam
-                consequat officia enim et cillum laborum Lorem cillum ad
-                eiusmod. Et adipisicing mollit veniam ea aliquip eu in fugiat et
-                reprehenderit reprehenderit eiusmod do in. Minim non nostrud
-                elit consectetur labore occaecat ut reprehenderit in. Incididunt
-                consectetur anim anim nulla. Nulla in incididunt cillum magna
-                incididunt incididunt. Qui Lorem pariatur elit sit sint labore
-                et aliqua ut sunt mollit culpa anim.
-              </p>
-              </div>
-              <div className="mt-4">
-                <p className="fw-600 fs-700">Header 3</p>
+                <p className="fw-600 fs-700">Log Files</p>
                 <p className="py-3">
-                Enim ullamco aliquip ad quis aliqua. Veniam ex adipisicing
-                ullamco dolor incididunt. Magna sit cupidatat sint ex laboris
-                nostrud qui esse dolore sint. Anim dolore consequat ad est aute.
-                Ea id excepteur exercitation pariatur qui eiusmod ut eu esse
-                cupidatat aute deserunt. Occaecat dolor eu consectetur non
-                tempor ea. Amet sint magna nostrud occaecat anim eiusmod ad enim
-                eu dolor nisi. Lorem aliquip consectetur Lorem quis nostrud
-                reprehenderit. Do laborum ut laborum cupidatat proident ullamco
-                eu amet dolor. Magna ullamco sit ea proident ullamco elit.
-              </p>
+                  BOG follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information. Our Privacy Policy was created with the help of the BOG Legal Services Department. 
+                </p>
               </div>
               <div className="mt-4">
-                <p className="fw-600 fs-700">Header 4</p>
-              <p className="py-3">
-                Ut sit nisi enim anim ut dolore ullamco. Laboris ea excepteur
-                elit nulla exercitation nostrud quis. Excepteur labore commodo
-                non tempor occaecat est culpa amet deserunt non.
-              </p>
-              </div>
-              <div className="mt-4">
-                <p className="fw-600 fs-700">Header 5</p>
+                <p className="fw-600 fs-700">Cookies and Web Beacons</p>
                 <p className="py-3">
-                Enim ullamco aliquip ad quis aliqua. Veniam ex adipisicing
-                ullamco dolor incididunt. Magna sit cupidatat sint ex laboris
-                nostrud qui esse dolore sint. Anim dolore consequat ad est aute.
-                Ea id excepteur exercitation pariatur qui eiusmod ut eu esse
-                cupidatat aute deserunt. Occaecat dolor eu consectetur non
-                tempor ea. Amet sint magna nostrud occaecat anim eiusmod ad enim
-                eu dolor nisi. Lorem aliquip consectetur Lorem quis nostrud
-                reprehenderit. Do laborum ut laborum cupidatat proident ullamco
-                eu amet dolor. Magna ullamco sit ea proident ullamco elit.
+                  Like any other website, BOG uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.
+                </p>
+              </div>
+              <div className="mt-4">
+                <p className="fw-600 fs-700">What User Data We Collect</p>
+                <p className="py-3">
+                  When you visit the website, we may collect the following data:
+                </p>
+                <ul className="pb-2 list-disc pl-5 lg:pl-10 lg:w-8/12">
+                  <li>Your IP address.</li>
+                  <li className="mt-1">Your contact information and email address.</li>
+                  <li className="mt-1">Other information such as interests and preferences.</li>
+                  <li className="mt-1">Data profile regarding your online behavior on our website.</li>
+                </ul>
+              </div>
+              <div className="mt-4">
+                <p className="fw-600 fs-700">Why We Collect Your Data</p>
+                <p className="py-3 pb-2">
+                  We are collecting your data for several reasons:
+                </p>
+                <ul className="pb-2 list-disc pl-5 lg:pl-10 lg:w-8/12">
+                  <li>To better understand your needs.</li>
+                  <li className="mt-1">To improve our services and products.</li>
+                  <li className="mt-1">To send you promotional emails containing the information we think you will find interesting.</li>
+                  <li className="mt-1">To contact you to fill out surveys and participate in other types of market research.</li>
+                  <li className="mt-1">To customize our website according to your online behavior and personal preferences.</li>
+                </ul>
+              </div>
+              <div className="mt-4">
+                <p className="fw-600 fs-700">Safeguarding and Securing the Data</p>
+                <p className="py-3">
+                  BOG is committed to securing your data and keeping it confidential. BOG has done all in its power to prevent data theft, unauthorized access, and disclosure by implementing the latest technologies and software, which help us safeguard all the information we collect online.
+                </p>
+              </div>
+              <div className="mt-4">
+              <p className="fw-600 fs-700">Our Advertising Partners</p>
+              <p className="py-3">
+              Some of advertisers on our site may use cookies and web beacons. Our advertising partners may change from time to time. Each of our advertising partners has their own Privacy Policy for their policies on user data.
               </p>
+              </div>
+              <div className="mt-4">
+                <p className="fw-600 fs-700">Privacy Policies</p>
+                <p className="py-3 pb-2">
+                    Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on BOG, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.
+                </p>
+                <p className="pb-3">
+                  Note that BOG has no access to or control over these cookies that are used by third-party advertisers.
+                </p>
+              </div>
+              <div className="mt-4">
+                <p className="fw-600 fs-700">Third Party Privacy Policies</p>
+                <p className="py-3 pb-2">
+                  BOG's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.
+                </p>
+                <p>You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers' respective websites. What Are Cookies?</p>
+              </div>
+              <div className="mt-4">
+                <p className="fw-600 fs-700">Children's Information</p>
+                <p className="py-3 pb-2">
+                  Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.
+                </p>
+                <p className="pb-3">BOG does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
+              </div>
+              <div className="mt-4">
+                <p className="fw-600 fs-700">Online Privacy Policy Only</p>
+                <p className="py-3">
+                  This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in BOG. This policy is not applicable to any information collected offline or via channels other than this website.
+                </p>
+              </div>
+              <div className="mt-4">
+                <p className="fw-600 fs-700">Consent</p>
+                <p className="py-3">
+                  By using our website, you hereby consent to our Privacy Policy and agree to its Terms and Conditions.
+                </p>
               </div>
               
             </div>

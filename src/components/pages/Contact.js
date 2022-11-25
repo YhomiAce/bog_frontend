@@ -82,8 +82,8 @@ export default function Contact(){
                                     </form>
                                 </div>
                             </div>
-                            <div className="lg:w-4/12 mt-16 lg:mt-0">
-                                <p className="mb-8 fs-800 fw-600">Office Location</p>
+                            <div className="lg:w-5/12 mt-16 lg:mt-0">
+                                <p className="mb-8 fs-800 fw-600">Location Map</p>
                                 <div className="h-96 rounded overflow-hidden">
                                     <SimpleMap/>
                                 </div>

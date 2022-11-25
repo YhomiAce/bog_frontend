@@ -4,6 +4,7 @@ import { decrementQuantity, incrementQuantity, clearCart } from '../../redux/act
 import Footer from './home-comp/Footer';
 import Header from './home-comp/Header';
 import { PaystackButton } from "react-paystack"
+import { MdDeleteOutline } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
 export const Cart = () => {
@@ -54,13 +55,13 @@ export const Cart = () => {
                                     {carts?.map(item => {
                                         return (
                                             <div>
-                                                <div className='lg:flex items-center'>
+                                                <div className='lg:flex items-center relative'>
                                                     <div className='lg:w-3/12'>
                                                         <img src="https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png" alt="products" className="w-40 rounded-md h-20 lg:h-40" />
                                                     </div>
                                                     <div className='lg:w-6/12'>
                                                         <p className='fw-500'>{item.name}</p>
-                                                        <p>{item.description}</p>
+                                                        <p className='h-12 overflow-y-scroll'>{item.description}</p>
                                                     </div>
                                                     <div className='lg:w-3/12 lg:ml-3'>
                                                         <p>NGN {item.price}</p>
@@ -69,6 +70,9 @@ export const Cart = () => {
                                                             <p>{item.quantity}</p>
                                                             <button className='border border-gray-300 rounded px-2 ml-2' onClick={() => dispatch(incrementQuantity(item))}>+</button>
                                                         </div>
+                                                    </div>
+                                                    <div className='absolute top-0 right-12 text-red-500 cursor-pointer text-xl'>
+                                                        <MdDeleteOutline/>
                                                     </div>
                                                 </div>
                                             </div>

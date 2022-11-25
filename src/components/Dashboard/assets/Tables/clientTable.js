@@ -1,4 +1,5 @@
 import React, {  useEffect } from 'react'
+// import { BsThreeDotsVertical } from 'react-icons/bs';
 import { useSelector, useDispatch } from 'react-redux';
 // import Spinner from '../../../layouts/Spinner';
 import { getUsers } from '../../../../redux/actions/UserAction';
@@ -6,7 +7,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, usePagination } from "react-table";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useMemo, useRef } from "react";
 import { useDownloadExcel } from "react-export-table-to-excel";
 import {
@@ -19,7 +20,7 @@ import {
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
 
-export function UsersTable({status, userType}){
+export function ClientTable({status, userType}) {
 
   const dispatch = useDispatch()
   // const isLoading = useSelector((state) => state.users.isLoading);
@@ -30,19 +31,17 @@ export function UsersTable({status, userType}){
       
   }, [dispatch]) 
 
-  let userDatas = useSelector((state) => state.users.users);
-  let users = userDatas?.map(data => data.user)
+  let users = useSelector((state) => state.users.users);
+  const client = users.filter(user => {
+    return (user.userType === "corporate_client" || user.userType === "private_client");
+  });
 
-    if (userType) {
-        users = users.filter(where => where.userType === userType)
-    }
-    if (status) {
-      users = users.filter(where => where.status === status)
-    }
-    const navigate = useNavigate()
-    const gotoDetailsPage = (id) => {
-        navigate(`/dashboard/userdetails?userId=${id}`)
-    }
+  if (userType) {
+    users = users.filter(where => where.userType === userType)
+}
+if (status) {
+  users = users.filter(where => where.status === status)
+}
 
     const formatStatus = (status) => {
       switch (status) {
@@ -106,23 +105,23 @@ export function UsersTable({status, userType}){
           {
             Header: 'Action',
             accessor: 'id',
-            Cell: (row) => <Menu placement="left-start" className="w-16">
-                              <MenuHandler>
-                                <Button className="border-none bg-transparent shadow-none hover:shadow-none text-black"><button className="lg:text-xl"><BsThreeDotsVertical /></button></Button>
-                              </MenuHandler>
-                              <MenuList className="w-16 bg-gray-100 fw-600 text-black">
-                                <MenuItem onClick={() => gotoDetailsPage(row.value)}>View Details</MenuItem>
-                                <MenuItem></MenuItem>
-                                <MenuItem className="bg-red-600 text-white">Block User</MenuItem>
-                              </MenuList>
-                            </Menu>,
+            Cell: <Menu placement="left-start" className="w-16">
+                    <MenuHandler>
+                      <Button className="border-none bg-transparent shadow-none hover:shadow-none text-black"><button className="lg:text-xl"><BsThreeDotsVertical /></button></Button>
+                    </MenuHandler>
+                    <MenuList className="w-16 bg-gray-100 fw-600 text-black">
+                      <MenuItem>View Details</MenuItem>
+                      <MenuItem>Edit Product</MenuItem>
+                      <MenuItem className="bg-red-600 text-white">Delete</MenuItem>
+                    </MenuList>
+                  </Menu>,
           },
-        ], // eslint-disable-next-line 
-        [] 
+        ],  // eslint-disable-next-line 
+        []
       );
 
     
-      const data = useMemo(() => users, [users]);
+      const data = useMemo(() => client, [client]);
     
       return (
         <>

@@ -41,19 +41,19 @@ export default function BlogPost() {
                     <div className="lg:grid-83 mb-8">
                         <div>
                             {/* blog post tittle */}
-                            <div className="lg:p-6 rounded-md bg-white">
+                            <div className="lg:p-6 p-3 pb-4 rounded-md bg-white">
                                 <p className="fw-600 lg:text-lg mb-3">Blog Post Tittle</p>
                                 <input type="text" placeholder="Enter the blog tittle" className="w-full px-3 rounded-md py-2 border border-gray-400" />
                             </div>
                             {/* blog post*/}
-                            <div className="lg:p-6 rounded-md bg-white mt-6">
+                            <div className="lg:p-6 p-3 pb-4  rounded-md bg-white mt-6">
                                 <p className="fw-600 lg:text-lg mb-3">Blog Post</p>
                                 <textarea placeholder="Type your post here" className="lg:h-56 h-28 w-full border border-gray-400 rounded-md px-2 py-4"></textarea>
                             </div>
-                            <div className="lg:p-6 rounded-md mt-6 bg-white">
+                            <div className="lg:p-6 p-3 pb-4  rounded-md mt-6 bg-white">
                                 <p className="fw-600 lg:text-lg pb-3 border-b border-gray-300">Add Photo(s)</p>
                                 <div className="lg:flex mt-4">
-                                    <div className="lg:w-3/12 border py-8 rounded-lg">
+                                    <div className="w-4/12 lg:w-3/12 border py-8 rounded-lg">
                                         <input type="file" className="w-10/12 ml-2 text-sm" />
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@ export default function BlogPost() {
                         </div>
                         <div>
                             {/* blog post category*/}
-                            <div className="lg:p-6 rounded-md bg-white">
+                            <div className="lg:p-6 p-3 pb-4 mt-6 lg:mt-0 rounded-md bg-white">
                                 <p className="fw-600 lg:text-lg pb-3 border-b border-gray-300">Add Photo(s)</p>
                                 <div className="mt-4">
                                     <div className="flex">
@@ -87,7 +87,7 @@ export default function BlogPost() {
                                 </div>
                             </div>
                             {/* blog post category*/}
-                            <div className="lg:p-6 rounded-md mt-6 bg-white">
+                            <div className="lg:p-6 p-3 pb-4  rounded-md mt-6 bg-white">
                                 <p className="fw-600 lg:text-lg pb-3 border-b border-gray-300">Comments</p>
                                 <div className="mt-4">
                                     <div className="flex">
@@ -103,8 +103,8 @@ export default function BlogPost() {
                         </div>
                     </div>  
                     <div className="border-t py-6 border-gray-400 text-end">
-                        <button className="lg:px-8 fw-500 py-2 border-pri text-primary mr-6 rounded-lg">Save To Draft</button>
-                        <button className="lg:px-8 fw-500 py-2 bg-primary text-white rounded-lg">Approve Product</button>
+                        <button className="lg:px-8 px-4 fw-500 py-2 border-pri text-primary mr-6 rounded-lg">Save To Draft</button>
+                        <button className="lg:px-8 px-4 fw-500 py-2 bg-primary text-white rounded-lg">Approve Product</button>
                     </div>                
                 </div>
             </div>
