@@ -41,8 +41,8 @@ export default function Blog() {
                             </Link>
                         </Breadcrumbs>
                     </div>
-                    <div>
-                        <button className="btn border-pri text-primary" onClick={() => navigate("/dashboard/createpost")} >Create Post</button>
+                    <div className="text-end">
+                        <button className="btn py-1 lg:py-2 mt-2 lg:mt-0 border-pri text-primary" onClick={() => navigate("/dashboard/createpost")} >Create Post</button>
                     </div>
                 </div> 
                 {/* content */}

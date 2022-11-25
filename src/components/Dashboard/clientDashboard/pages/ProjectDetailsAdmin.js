@@ -10,7 +10,7 @@ export default function ProjectDetails() {
         <div>
             <div className="min-h-screen fs-500 relative">
                 <div className="w-full py-8 bg-white px-4">
-                    <p className="text-2xl fw-600 flex items-center">Project ID: <span className="text-primary px-3">LAN-234-SUR</span> <span className="text-xs text-blue-500 bg-light px-2">Ongoing</span></p>
+                    <p className="text-2xl fw-600 lg:flex items-center">Project ID: <span className="text-primary px-3">LAN-234-SUR</span> <span className="text-xs text-blue-500 bg-light px-2">Ongoing</span></p>
                     <p className="fs-400 text-gray-600 mt-2">View project details</p>
                     <Breadcrumbs className="bg-white pl-0 mt-4">
                         <Link to="/" className="opacity-60">
@@ -44,7 +44,7 @@ export default function ProjectDetails() {
                                     <p className="text-primary"><BiEdit/></p>
                                 </div>
                                 <div className="py-6 border-gray-300 border-dashed">
-                                    <div className="flex justify-between items-center">
+                                    <div className="lg:flex justify-between items-center">
                                         <div className="flex">
                                             <div>
                                                 <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899753/BOG/sands_cy9q3x.png" alt="order" className="w-16 h-16 lg:h-20 lg:w-20 rounded-lg" />
@@ -55,7 +55,7 @@ export default function ProjectDetails() {
                                                 <p><span className="text-gray-600 fs-400">Start Date:</span> 18-11-22</p>
                                             </div>
                                         </div>
-                                        <div className="fw-500 text-end">
+                                        <div className="fw-500 mt-2 lg:mt-0 lg:text-end">
                                             <p><span className="text-gray-600 fs-400">Project Cost:</span> NGN 320,000</p>
                                             <p><span className="text-gray-600 fs-400">Due Date:</span> 18-11-23</p>
                                         </div>
@@ -84,7 +84,7 @@ export default function ProjectDetails() {
                                 <div className="flex justify-between border-b border-gray-300 pb-4">
                                     <p className="fw-600">Transaction</p>
                                 </div>
-                                <div className="flex fw-500 justify-between pt-6">
+                                <div className="lg:flex fw-500 justify-between pt-6">
                                     <div>
                                         <p>1st Installment Payment</p>
                                         <p className="text-gray-600">Via Paypal</p>
@@ -92,7 +92,7 @@ export default function ProjectDetails() {
                                     <div>
                                         <p>20-11-2022</p>
                                     </div>
-                                    <div>
+                                    <div className="mt-2 lg:mt-0">
                                         <p>NGN 1,320, 000</p>
                                     </div>
                                 </div>

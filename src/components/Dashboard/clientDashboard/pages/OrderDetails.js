@@ -10,7 +10,7 @@ export default function OrderDetails() {
         <div>
             <div className="min-h-screen fs-500 relative">
                 <div className="w-full py-8 bg-white px-4">
-                    <p className="text-2xl fw-600 flex items-center">Order ID: <span className="text-primary px-3">SAN-WEDO-33</span> <span className="text-xs text-blue-500 bg-light px-2">Ongoing</span></p>
+                    <p className="text-2xl fw-600 lg:flex items-center">Order ID: <span className="text-primary px-3">SAN-WEDO-33</span> <span className="text-xs text-blue-500 bg-light px-2">Ongoing</span></p>
                     <p className="fs-400 text-gray-600 mt-2">View order details</p>
                     <Breadcrumbs className="bg-white pl-0 mt-4">
                         <Link to="/" className="opacity-60">
@@ -116,7 +116,7 @@ export default function OrderDetails() {
                                 <div className="flex justify-between border-b border-gray-300 pb-4">
                                     <p className="fw-600">Transaction</p>
                                 </div>
-                                <div className="flex fw-500 justify-between pt-6">
+                                <div className="lg:flex grid-2 fw-500 justify-between pt-6">
                                     <div>
                                         <p>Payment</p>
                                         <p className="text-gray-600">Via Paypal</p>
@@ -124,7 +124,7 @@ export default function OrderDetails() {
                                     <div>
                                         <p>20-11-2022</p>
                                     </div>
-                                    <div>
+                                    <div className="mt-2 lg:mt-0">
                                         <p>NGN 320, 000</p>
                                     </div>
                                 </div>

@@ -1,16 +1,54 @@
 import { Avatar, Breadcrumbs } from "@material-tailwind/react";
-import React from "react";
+import React, {useEffect} from "react";
 import { FaRegEye } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { getUsers } from '../../../../redux/actions/UserAction';
+import { useSelector, useDispatch } from "react-redux";
+
+// const baseURL = process.env.REACT_APP_IMAGE_URL;
 
 export default function UserDetails() {
+
+    const dispatch = useDispatch()
+  // const isLoading = useSelector((state) => state.users.isLoading);
+
+  useEffect (() => {
+
+    dispatch(getUsers())
+      
+  }, [dispatch]) 
+
+    let users = useSelector((state) => state.users.users);
+    const { search } = useLocation();
+    const userId = new URLSearchParams(search).get("userId");
+    const client = users.filter(user => {
+        return (user.id === userId );
+      });
+    console.log(client)
+    console.log(userId)
+    console.log(users)
+
+    const formatType = (userType) => {
+        switch (userType) {
+            case "private_client":
+                return <p>Private Client</p>
+            case "corporate_client":
+              return <p>Corporate Client</p>
+            case "vendor":
+              return <p>Product Partner</p>
+            case "professional":
+              return <p>Service Partner</p>
     
+            default: return userType
+        }
+    }
+
 
     return (
         <div>
             <div className="min-h-screen fs-500 relative">
                 <div className="w-full py-8 bg-white px-4">
-                    <p className="text-2xl fw-600 flex items-center">View Client: <span className="text-primary px-3">Chukka Uzo</span></p>
+                    <p className="text-2xl fw-600 flex items-center">View Client: <span className="text-primary px-3">{client[0].name}</span></p>
                     <p className="fs-400 text-gray-600 mt-2">Manage and review all clients</p>
                     <Breadcrumbs className="bg-white pl-0 mt-4">
                         <Link to="/" className="opacity-60">
@@ -44,18 +82,20 @@ export default function UserDetails() {
                                         <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" variant="circular" alt="order"  />
                                     </div>
                                     <div className="grid fs-400 content-between pl-4 py-2 fw-500">
-                                        <p>Chukka Uzo</p>
-                                        <p className="text-gray-600">Private Client</p>
+                                        <p>{client[0].name}</p>
+                                        <p className="text-gray-600">{client.map( item => (
+                                            <p>{formatType(item.userType)} </p>
+                                        ))}</p>
                                     </div>
                                 </div>
                                 <div className="fs-400 fw-500 mt-5">
                                     <div className="flex">
                                         <p className="text-gray-600">Email:</p>
-                                        <p className="pl-3">email@test.com</p>
+                                        <p className="pl-3">{client[0].email}</p>
                                     </div>
                                     <div className="flex mt-2">
                                         <p className="text-gray-600">Phone:</p>
-                                        <p className="pl-3">0800 000 0000</p>
+                                        <p className="pl-3">{client[0].phone}</p>
                                     </div>
                                     <div className="flex mt-2">
                                         <p className="text-gray-600">Total Product Orders:</p>
@@ -72,7 +112,6 @@ export default function UserDetails() {
                                     <div className="flex justify-between mt-6">
                                         <button className="bg-green-500 px-4 py-1 text-white rounded-md">Verify</button>
                                         <button className="bg-orange-500 px-4 py-1 text-white rounded-md">Suspend</button>
-                                        <button className="bg-red-500 px-4 py-1 text-white rounded-md">Delete</button>
                                     </div>
                                 </div>
                             </div>

@@ -8,6 +8,13 @@ import { useNavigate } from "react-router-dom";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useMemo, useRef } from "react";
 import { useDownloadExcel } from "react-export-table-to-excel";
+import {
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Button,
+} from "@material-tailwind/react";
 
 // const ProductData = () => [
 //     {
@@ -239,7 +246,7 @@ export default function ProductTable({status}){
           {
             Header: "Price",
             accessor:  'price',
-            Cell: (props) => `"NGN" + " " + ${formatNumber(props.value)} `
+            Cell: (props) => `NGN ${formatNumber(props.value)} `
           },
           {
             Header: "Status",
@@ -249,7 +256,16 @@ export default function ProductTable({status}){
           {
             Header: 'Action',
             accessor: 'id',
-            Cell: (row) => <button className="btn1" onClick={() => gotoDetailsPage(row.value)}><BsThreeDotsVertical /></button>,
+            Cell: (row) => <Menu placement="left-start" className="w-16">
+                            <MenuHandler>
+                              <Button className="border-none bg-transparent shadow-none hover:shadow-none text-black"><button className="lg:text-xl"><BsThreeDotsVertical /></button></Button>
+                            </MenuHandler>
+                            <MenuList className="w-16 bg-gray-100 fw-600 text-black">
+                              <MenuItem onClick={() => gotoDetailsPage(row.value)}>View Details</MenuItem>
+                              <MenuItem>Edit Product</MenuItem>
+                              <MenuItem className="bg-red-600 text-white">Delete</MenuItem>
+                            </MenuList>
+                          </Menu> ,
           },
         ],
         [] // eslint-disable-line react-hooks/exhaustive-deps

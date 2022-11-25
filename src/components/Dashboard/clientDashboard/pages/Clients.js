@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Link } from "react-router-dom";
 import {  UsersTable } from "../../assets/Tables/UserTable";
 import { Breadcrumbs } from "@material-tailwind/react";
+import { ClientTable } from "../../assets/Tables/clientTable";
 
 export default function Clients() {
 
@@ -44,7 +45,7 @@ export default function Clients() {
                             <Tab>Corporate</Tab>
                         </TabList>
                         <TabPanel>
-                            <UsersTable  />
+                            <ClientTable />
                         </TabPanel>
                         <TabPanel>
                             <UsersTable userType={"private_client"}/>
