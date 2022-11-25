@@ -7,9 +7,15 @@ import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../redux/actions/authAction';
+import { HiOutlineLogout } from "react-icons/hi";
 
 
 const ClientSidebar = () => {
+
+    const [signOut, setSignOut] = useState(false);
+    function CloseModal() {
+        setSignOut(false)
+    }
     const dispatch = useDispatch();
     const [showSideBar, setShowSideBar] = useState(true);
     const auth = useSelector((state) => state.auth);
@@ -158,12 +164,29 @@ const ClientSidebar = () => {
                         <Link>
                             <div
                                 style={sideBarStyle.cursorStyle}
-                                onClick={() => dispatch(logout())}
+                                onClick={ () => setSignOut(true)}
                                 className="w-full py-2 fw-600 pl-2 flex my-2  rounded-lg">
-                                <BsBoxArrowRight className="text-xl" />
+                                <BsBoxArrowRight className="text-lg" />
                                 <p className="pl-3">Sign Out</p>
                             </div>
                         </Link>
+                    </div>
+                </div>
+            )}
+            {signOut && (
+                <div className="fixed font-primary left-0 top-0 w-full h-screen bg-op center-item z-40" onClick={CloseModal}>
+                    <div className="bg-white lg:w-5/12 rounded-md  overscroll-none  w-11/12 pt-8 shadow fw-500 scale-ani px-5" onClick={e => e.stopPropagation()}>
+                        <div className="lg:px-6">
+                            <div className="flex text-xl fw-600">
+                                <p className="pr-4 text-red-600"><HiOutlineLogout/></p>
+                                <p>Sign Out ?</p>
+                            </div>
+                            <p>Are you sure you want to sign out ?</p>
+                        </div>
+                        <div className="text-end px-4 my-5">
+                            <button className="btn py-1 border-pri text-primary" onClick={CloseModal}>No</button>
+                            <button className="btn py-1 ml-5 border border-red-600 text-red-600" onClick={() => dispatch(logout())}>Yes</button>
+                        </div>
                     </div>
                 </div>
             )}

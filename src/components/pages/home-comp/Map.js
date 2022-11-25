@@ -23,7 +23,6 @@ export default function SimpleMap(){
         <AnyReactComponent
           lat={6.458985}
           lng={3.601521}
-          text="My Marker"
         />
       </GoogleMapReact>
     </div>

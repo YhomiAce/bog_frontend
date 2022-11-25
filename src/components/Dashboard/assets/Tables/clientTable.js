@@ -18,6 +18,7 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
 
 export function ClientTable({status, userType}) {
@@ -54,6 +55,10 @@ if (status) {
       }
 
   }
+  const navigate = useNavigate()
+    const gotoDetailsPage = (id) => {
+        navigate(`/dashboard/userdetails?userId=${id}`)
+    }
   const formatType = (userType) => {
     switch (userType) {
         case "private_client":
@@ -106,13 +111,13 @@ if (status) {
           {
             Header: 'Action',
             accessor: 'id',
-            Cell: <Menu placement="left-start" className="w-16">
+            Cell: (row) => <Menu placement="left-start" className="w-16">
                     <MenuHandler>
                       <Button className="border-none bg-transparent shadow-none hover:shadow-none text-black"><button className="lg:text-xl"><BsThreeDotsVertical /></button></Button>
                     </MenuHandler>
                     <MenuList className="w-16 bg-gray-100 fw-600 text-black">
-                      <MenuItem>View Details</MenuItem>
-                      <MenuItem>Edit Product</MenuItem>
+                      <MenuItem onClick={() => gotoDetailsPage(row.value)}>View Details</MenuItem>
+                      <MenuItem></MenuItem>
                       <MenuItem className="bg-red-600 text-white">Delete</MenuItem>
                     </MenuList>
                   </Menu>,

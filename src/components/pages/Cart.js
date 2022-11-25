@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { decrementQuantity, incrementQuantity, clearCart } from '../../redux/actions/cartAction';
+import { decrementQuantity, incrementQuantity, clearCart, deleteItem } from '../../redux/actions/cartAction';
 // import CartItem from './CartItem';
 import Footer from './home-comp/Footer';
 import Header from './home-comp/Header';
@@ -21,7 +21,6 @@ export const Cart = () => {
     });
 
     const handlePaystackSuccessAction = (reference) => {
-        alert("Payment successful")
         console.log(reference);
         dispatch(clearCart())
     }
@@ -72,7 +71,7 @@ export const Cart = () => {
                                                         </div>
                                                     </div>
                                                     <div className='absolute top-0 right-12 text-red-500 cursor-pointer text-xl'>
-                                                        <MdDeleteOutline/>
+                                                        <MdDeleteOutline onClick={() => dispatch(deleteItem(item.id))}/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -88,14 +87,14 @@ export const Cart = () => {
                                                 <p>ITEMS <span className='px-2'></span></p>
                                                 <p>{carts.length}</p>
                                             </div>
-                                            <div className='mt-4'>
+                                            {/* <div className='mt-4'>
                                                 <label className='fw-600'>SHIPPING</label>
                                                 <select className='w-full py-2 px-2 border border-gray-300 rounded-md mt-3'></select>
-                                            </div>
-                                            <div className='mt-4'>
+                                            </div> */}
+                                            {/* <div className='mt-4'>
                                                 <label className='fw-600'>REFERRAL CODE</label>
                                                 <input className='w-full py-2 px-2 border border-gray-300 rounded-md mt-3' type="text" placeholder='Enter your code' />
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div className='fw-600 my-4'>
                                             <div className='flex justify-between my-4'>
