@@ -1,43 +1,56 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar, Breadcrumbs } from "@material-tailwind/react";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { FaRegEye } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import { getUsers } from '../../../../redux/actions/UserAction';
-import { useSelector, useDispatch } from "react-redux";
+import Axios from "../../../../config/config";
+import Spinner from "../../../layouts/Spinner";
 
 // const baseURL = process.env.REACT_APP_IMAGE_URL;
 
 export default function UserDetails() {
-
-    const dispatch = useDispatch()
-  // const isLoading = useSelector((state) => state.users.isLoading);
-
-  useEffect (() => {
-
-    dispatch(getUsers())
-      
-  }, [dispatch]) 
-
-    let users = useSelector((state) => state.users.users);
     const { search } = useLocation();
     const userId = new URLSearchParams(search).get("userId");
-    const client = users.filter(user => {
-        return (user.id === userId );
-      });
-    console.log(client)
-    console.log(userId)
-    console.log(users)
+    const [client, setClient] = useState(null);
+    const [accounts, setAccounts] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const fetchUserDetails = async (userId) =>{
+        try {
+            setLoading(true);
+            const url = `/users/get-user/${userId}`
+            const res = await Axios.get(url);
+            setClient(res.data.user);
+            setAccounts(res.data.accounts);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+        }
+    }
+   
+  useEffect (() => {
+      fetchUserDetails(userId)
+  }, []) 
+
+  if(loading){
+    return <center><Spinner /></center>
+  }   
+    
 
     const formatType = (userType) => {
         switch (userType) {
             case "private_client":
-                return <p>Private Client</p>
+                return "Private Client"
             case "corporate_client":
-              return <p>Corporate Client</p>
+              return "Corporate Client"
             case "vendor":
-              return <p>Product Partner</p>
+              return "Product Partner"
+            case "product_partner":
+              return "Product Partner"
+            case "service_partner":
+              return "Service Partner"
             case "professional":
-              return <p>Service Partner</p>
+              return "Service Partner"
     
             default: return userType
         }
@@ -48,7 +61,7 @@ export default function UserDetails() {
         <div>
             <div className="min-h-screen fs-500 relative">
                 <div className="w-full py-8 bg-white px-4">
-                    <p className="text-2xl fw-600 flex items-center">View Client: <span className="text-primary px-3">{client[0].name}</span></p>
+                    <p className="text-2xl fw-600 flex items-center">View Client: <span className="text-primary px-3">{client?.name}</span></p>
                     <p className="fs-400 text-gray-600 mt-2">Manage and review all clients</p>
                     <Breadcrumbs className="bg-white pl-0 mt-4">
                         <Link to="/" className="opacity-60">
@@ -82,20 +95,20 @@ export default function UserDetails() {
                                         <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" variant="circular" alt="order"  />
                                     </div>
                                     <div className="grid fs-400 content-between pl-4 py-2 fw-500">
-                                        <p>{client[0].name}</p>
-                                        <p className="text-gray-600">{client.map( item => (
-                                            <p>{formatType(item.userType)} </p>
+                                        <p>{client?.name}</p>
+                                        <p className="text-gray-600">{accounts.map( item => (
+                                            <p>{formatType(item?.userType)} </p>
                                         ))}</p>
                                     </div>
                                 </div>
                                 <div className="fs-400 fw-500 mt-5">
                                     <div className="flex">
                                         <p className="text-gray-600">Email:</p>
-                                        <p className="pl-3">{client[0].email}</p>
+                                        <p className="pl-3">{client?.email}</p>
                                     </div>
                                     <div className="flex mt-2">
                                         <p className="text-gray-600">Phone:</p>
-                                        <p className="pl-3">{client[0].phone}</p>
+                                        <p className="pl-3">{client?.phone}</p>
                                     </div>
                                     <div className="flex mt-2">
                                         <p className="text-gray-600">Total Product Orders:</p>

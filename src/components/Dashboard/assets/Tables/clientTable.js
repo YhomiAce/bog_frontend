@@ -31,7 +31,8 @@ export function ClientTable({status, userType}) {
       
   }, [dispatch]) 
 
-  let users = useSelector((state) => state.users.users);
+  let userDatas = useSelector((state) => state.users.users);
+  let users = userDatas?.map(data => data.user)
   const client = users.filter(user => {
     return (user.userType === "corporate_client" || user.userType === "private_client");
   });
