@@ -145,7 +145,7 @@ export const getCategories = () => {
     return async (dispatch) => {
         try {
             dispatch(loading());
-            const response = await axios.get('/product/category');
+            const response = await axios.get('/product/category', config);
             console.log(response);
             dispatch(fetchCategory(response.data))
         } catch (error) {

@@ -12,7 +12,7 @@ export default function Contact(){
         <div>
             <div>
                 <Header/>
-                <div className="bg-contact bg-cover bg-center text-white h-80 flex items-center">
+                <div className="bg-contact bg-cover bg-center text-white h-44 lg:h-80 flex items-center">
                     <div className="box">
                         <p className="lg:text-4xl text-2xl fw-700 mb-2">Contact Us</p>
                         <p>Reach out to us to concerning informations, feedbacks and inquiry</p>
@@ -70,7 +70,7 @@ export default function Contact(){
                                             <label>Message</label>
                                             <textarea className="w-full border rounded border-gray-500 mt-2 px-2 py-2" rows={5}/>
                                         </div>
-                                        <div className="mt-8">
+                                        <div className="mt-8 w-full overflow-hidden">
                                             <ReCAPTCHA
                                                 sitekey={process.env.REACT_APP_SITE_KEY}
                                                 ref={captchaRef}
@@ -83,8 +83,8 @@ export default function Contact(){
                                 </div>
                             </div>
                             <div className="lg:w-5/12 mt-16 lg:mt-0">
-                                <p className="mb-8 fs-800 fw-600 text-end">Location Map</p>
-                                <div className="h-3/4 rounded overflow-hidden">
+                                <p className="mb-8 fs-800 fw-600 lg:text-end">Location Map</p>
+                                <div className="lg:h-3/4 h-96 rounded overflow-hidden">
                                     <SimpleMap/>
                                 </div>
                             </div>

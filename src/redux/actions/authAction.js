@@ -14,6 +14,7 @@ import { setAlert } from './alert';
 //     }
 // }
 
+
 export const registerSuccess = (payload) => {
     return {
         type: ActionType.REGISTER_SUCCESS,
