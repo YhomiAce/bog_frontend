@@ -208,6 +208,10 @@
   display:grid;
   grid-template-columns: 46% 46%;
 }
+.grid-23{
+  display:grid;
+  grid-template-columns: 30% 30%;
+}
 .grid-3{
   display:grid;
   grid-template-columns: 30% 30% 30%;

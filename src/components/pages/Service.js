@@ -43,7 +43,7 @@ export default function Service() {
                     <div className="text-center py-4">
                         <p className="text-xl lg:text-3xl fw-600">What service do you need a service provider for  ?</p>
                     </div>
-                    <div className="lg:grid-3 justify-between lg:mt-24 my-12 mb-24">
+                    <div className="lg:grid-3 justify-between lg:mt-24 mt-12">
                         <div className="shadow-md h-48 center-item">
                             <div className="cursor-pointer" onClick={() => {setLandSurvey(true)}}>
                                 <img src={require("../assets/images/survey.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
@@ -62,6 +62,8 @@ export default function Service() {
                                 <p className="fw-500">Construction Drawing</p>
                             </div>
                         </div>
+                    </div>
+                    <div  className="lg:grid-23 justify-evenly mb-24">
                         <div className="shadow-md h-48 center-item mt-10">
                             <div className="cursor-pointer" onClick={() => {setBAppove(true)}}>
                             <img src={require("../assets/images/BA.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
@@ -74,13 +76,6 @@ export default function Service() {
                                 <p className="fw-500">Building Contractor</p>
                             </div>
                         </div>
-                        <div className="shadow-md h-48 center-item  mt-10">
-                            <div className="cursor-pointer" onClick={() => {setSCalc(true)}}>
-                            <img src={require("../assets/images/SC.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
-                                <p className="fw-500">Smart Calculator</p>
-                            </div>
-                        </div>
-                        
                     </div>
                 </div>
             </div>
