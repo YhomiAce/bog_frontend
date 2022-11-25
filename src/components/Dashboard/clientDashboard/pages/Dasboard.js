@@ -20,6 +20,8 @@ export default function Dashboard() {
 
   if (auth?.user?.userType === "private_client") {
     dashboard = <PclientDashboard />
+  }else if(auth?.user?.userType === "corporate_client"){
+    dashboard = <PclientDashboard />
   }else if(auth?.user?.userType === "vendor"){
     dashboard = <ProductDashboard />
   }else if(auth?.user?.userType === "professional"){

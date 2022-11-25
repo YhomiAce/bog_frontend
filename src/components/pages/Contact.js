@@ -83,8 +83,8 @@ export default function Contact(){
                                 </div>
                             </div>
                             <div className="lg:w-5/12 mt-16 lg:mt-0">
-                                <p className="mb-8 fs-800 fw-600">Location Map</p>
-                                <div className="h-96 rounded overflow-hidden">
+                                <p className="mb-8 fs-800 fw-600 text-end">Location Map</p>
+                                <div className="h-3/4 rounded overflow-hidden">
                                     <SimpleMap/>
                                 </div>
                             </div>

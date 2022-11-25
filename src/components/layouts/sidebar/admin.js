@@ -63,6 +63,7 @@ const AdminSidebar = () => {
         setOrderDrop(false)
         setEmailDrop(false)
         setUserDrop(false)
+        setProjectDrop(false)
     }
     function CloseModal() {
         setSignOut(false)
@@ -104,7 +105,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <BsReceiptCutoff className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setProductDrop(!productDrop);setOrderDrop(false); setEmailDrop(false);setUserDrop(false)}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setProductDrop(!productDrop);setProjectDrop(false);setOrderDrop(false); setEmailDrop(false);setUserDrop(false)}}>
                                     <p className="pl-3 pr-5">Products</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>
@@ -133,7 +134,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <BsBag className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setOrderDrop(!orderDrop);setProductDrop(false); setEmailDrop(false);setUserDrop(false)}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setOrderDrop(!orderDrop);setProjectDrop(false);setProductDrop(false); setEmailDrop(false);setUserDrop(false)}}>
                                     <p className="pl-3 pr-5">Orders</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>
@@ -191,7 +192,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <BsEnvelope className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setEmailDrop(!emailDrop);setProductDrop(false);setOrderDrop(false);setUserDrop(false)}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setEmailDrop(!emailDrop);setProjectDrop(false);setProductDrop(false);setOrderDrop(false);setUserDrop(false)}}>
                                     <p className="pl-3 pr-5">Email</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>
@@ -220,7 +221,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <FiUsers className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setUserDrop(!userDrop);setProductDrop(false);setOrderDrop(false); setEmailDrop(false);}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setUserDrop(!userDrop);setProjectDrop(false);setProductDrop(false);setOrderDrop(false); setEmailDrop(false);}}>
                                     <p className="pl-3 pr-5">Users</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>

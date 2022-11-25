@@ -1,7 +1,7 @@
 import React, {useLayoutEffect, useRef} from "react";
 import gsap from "gsap";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from 'swiper';
+import { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow'
 import 'swiper/css/autoplay'
@@ -94,7 +94,7 @@ export  function AboutSlides() {
                         <div>
                             <img src={require("../../assets/images/call.png")} alt="img1" className="w-20 m-auto"/>
                         </div>
-                        <p className="fs-500 fw-500 mt-4">Execellent Customer Care</p>
+                        <p className="fs-500 fw-500 mt-4 w-6/12 m-auto">Execellent Customer Care</p>
                         <p className="mt-2 px-4 fs-400">Amet minim mollit non deserunt ullamco est sit aliqua dolor do.</p>
                     </div>
                 </SwiperSlide>
@@ -116,7 +116,7 @@ export  function AboutSlides() {
                         <p className="mt-2 px-4 fs-400">Amet minim mollit non deserunt ullamco est sit aliqua dolor do.</p>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide>
+                {/* <SwiperSlide>
                     <div className="text-center py-4 shadow lg:w-10/12 mx-auto">
                         <div>
                             <img src={require("../../assets/images/tv.png")} alt="img1" className="w-20 m-auto"/>
@@ -125,34 +125,7 @@ export  function AboutSlides() {
                         <p className="mt-4 px-4 fs-400">Amet minim mollit non deserunt ullamco est sit aliqua dolor do. 22</p>
                         
                     </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="text-center py-4 shadow lg:w-10/12 mx-auto">
-                        <div>
-                            <img src={require("../../assets/images/tv.png")} alt="img1" className="w-20 m-auto"/>
-                        </div>
-                        <p className="fs-500 fw-500 mt-4">Execellent Customer Care</p>
-                        <p className="mt-4 px-4 fs-400">Amet minim mollit non deserunt ullamco est sit aliqua dolor do.</p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="text-center py-4 shadow lg:w-10/12 mx-auto">
-                        <div>
-                            <img src={require("../../assets/images/tv.png")} alt="img1" className="w-20 m-auto"/>
-                        </div>
-                        <p className="fs-500 fw-500 mt-4">Execellent Customer Care</p>
-                        <p className="mt-4 px-4 fs-400">Amet minim mollit non deserunt ullamco est sit aliqua dolor do.</p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="text-center py-4 shadow lg:w-10/12 mx-auto">
-                        <div>
-                            <img src={require("../../assets/images/tv.png")} alt="img1" className="w-20 m-auto"/>
-                        </div>
-                        <p className="fs-500 fw-500 mt-4">Execellent Customer Care</p>
-                        <p className="mt-4 px-4 fs-400">Amet minim mollit non deserunt ullamco est sit aliqua dolor do.</p>
-                    </div>
-                </SwiperSlide>
+                </SwiperSlide> */}
             </Swiper>
     )
 }
@@ -249,8 +222,8 @@ export  function AboutSlides2() {
                 grabCursor={true}
                 centeredSlides={false}
                 slidesPerView={3}
-                pagination={true}
-                modules={[Autoplay, Pagination ]}
+                pagination= {{clickable: true}}
+                modules={[Pagination, Autoplay, Navigation ]}
                 className=""
             >
                 <SwiperSlide className=" mb-12">
@@ -262,7 +235,7 @@ export  function AboutSlides2() {
                                 <p className="fs-300">Project Owner</p>
                             </div>
                         </div>
-                        <p className="mt-4 fs-500">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
+                        <p className="mt-4 fs-500 h-16">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className="">
@@ -274,7 +247,7 @@ export  function AboutSlides2() {
                                 <p className="fs-300">Construction</p>
                             </div>
                         </div>
-                        <p className="mt-4 fs-500">Thanks to BOG, I now handle the whole construction process hazzlefree. I’m glad that I’m part of the BOG service providers.</p>
+                        <p className="mt-4 fs-500 h-16 overflow-hidden">Thanks to BOG, I now handle the whole construction process hazzlefree. I’m glad that I’m part of the BOG service providers.</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -286,7 +259,7 @@ export  function AboutSlides2() {
                                 <p className="fs-300">Service Partner</p>
                             </div>
                         </div>
-                        <p className="mt-4 fs-500">I sell my gravel as a product partner on BOG and ever since i started, I’ve not had any issue. Its awesome.</p>
+                        <p className="mt-4 fs-500 h-16 overflow-hidden">I sell my gravel as a product partner on BOG and ever since i started, I’ve not had any issue with the platform. Its awesome.</p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -298,7 +271,7 @@ export  function AboutSlides2() {
                                 <p className="fs-300">Civil Engineer</p>
                             </div>
                         </div>
-                        <p className="mt-4 fs-500">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
+                        <p className="mt-4 fs-500 h-16 overflow-hidden">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -310,7 +283,7 @@ export  function AboutSlides2() {
                                 <p className="fs-300">Project Owner</p>
                             </div>
                         </div>
-                        <p className="mt-4 fs-500">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
+                        <p className="mt-4 fs-500 h-16 overflow-hidden">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -322,7 +295,7 @@ export  function AboutSlides2() {
                                 <p className="fs-300">Project Owner</p>
                             </div>
                         </div>
-                        <p className="mt-4 fs-500">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
+                        <p className="mt-4 fs-500 h-16 overflow-hidden">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -334,7 +307,7 @@ export  function AboutSlides2() {
                                 <p className="fs-300">Project Owner</p>
                             </div>
                         </div>
-                        <p className="mt-4 fs-500">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
+                        <p className="mt-4 fs-500 h-16 overflow-hidden">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
                     </div>
                 </SwiperSlide>
             </Swiper>

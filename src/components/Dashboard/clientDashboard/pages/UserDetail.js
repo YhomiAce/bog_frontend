@@ -74,8 +74,8 @@ export default function UserDetails() {
                 </div> 
                 {/* order details */}
                 <div className="lg:p-5 px-2 py-4">
-                    <div className="lg:flex">
-                        <div className="lg:w-3/12 mt-8">
+                    <div className="">
+                        <div className="mt-8">
                             <div className="p-5 bg-white rounded-md">
                                 <div className="flex">
                                     <div>

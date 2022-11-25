@@ -43,9 +43,11 @@ export default function Sidebar() {
       cursor: "pointer"
     }
   }
-  let sidebar = <AdminSidebar />;
+  let sidebar = null;
 
   if (auth?.user?.userType === "private_client") {
+    sidebar = <ClientSidebar />
+  }else if(auth?.user?.userType === "corporate_client"){
     sidebar = <ClientSidebar />
   }else if(auth?.user?.userType === "vendor"){
     sidebar = <ProductSidebar />
