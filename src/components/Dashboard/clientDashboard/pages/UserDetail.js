@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar, Breadcrumbs } from "@material-tailwind/react";
 import React, {useEffect, useState} from "react";
@@ -87,8 +88,8 @@ export default function UserDetails() {
                 </div> 
                 {/* order details */}
                 <div className="lg:p-5 px-2 py-4">
-                    <div className="">
-                        <div className="mt-8">
+                    <div className="lg:flex">
+                        <div className="mt-8 lg:w-3/12">
                             <div className="p-5 bg-white rounded-md">
                                 <div className="flex">
                                     <div>
@@ -96,9 +97,7 @@ export default function UserDetails() {
                                     </div>
                                     <div className="grid fs-400 content-between pl-4 py-2 fw-500">
                                         <p>{client?.name}</p>
-                                        <p className="text-gray-600">{accounts.map( item => (
-                                            <p>{formatType(item?.userType)} </p>
-                                        ))}</p>
+                                       
                                     </div>
                                 </div>
                                 <div className="fs-400 fw-500 mt-5">
@@ -118,6 +117,11 @@ export default function UserDetails() {
                                         <p className="text-gray-600">Total Service Orders:</p>
                                         <p className="pl-3">NGN 15,000,000</p>
                                     </div>
+                                    <div className="flex mt-2">
+                                        <p className="text-gray-600">Accounts:</p>
+                                        <p className="pl-3">{accounts.length}</p>
+                                    </div>
+                                    
                                     <div className="flex mt-2">
                                         <p className="text-gray-600">Registered On:</p>
                                         <p className="pl-3">20-10-2022</p>

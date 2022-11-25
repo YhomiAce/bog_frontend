@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,6 +16,7 @@ import { FreeMode, Navigation, Thumbs } from "swiper";
 import cement from "../../assets/images/cements.png";
 import steel from "../../assets/images/steels.png";
 import stones from "../../assets/images/granites.png";
+const baseURL = process.env.REACT_APP_IMAGE_URL;
 
 const Images = [
     {
@@ -31,7 +33,7 @@ const Images = [
     },
 ]
 
-export  const ProductImage = () => {
+export  const ProductImage = ({item}) => {
 
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
@@ -48,8 +50,8 @@ export  const ProductImage = () => {
               modules={[FreeMode, Navigation, Thumbs]}
               className=""
         >
-            {Images.map((i, el) => {
-                return <SwiperSlide><img src={i.img} alt="product" className="w-full h-60"/></SwiperSlide>;
+            {item.product_image.map((i,) => {
+                return <SwiperSlide><img src={`${baseURL}/${i.image}`} alt="product" className="w-full h-60"/></SwiperSlide>;
             })}
         </Swiper>
         <Swiper 
@@ -61,8 +63,8 @@ export  const ProductImage = () => {
            modules={[FreeMode, Navigation, Thumbs]}
            className="mt-1"
         >
-            {Images.map((i, el) => {
-                return <SwiperSlide><img src={i.img} alt="product" className="h-12"/></SwiperSlide>;
+            {item.product_image.map((i, ) => {
+                return <SwiperSlide><img src={`${baseURL}/${i.image}`} alt="product" className="h-12"/></SwiperSlide>;
             })}
         </Swiper>
     </div>

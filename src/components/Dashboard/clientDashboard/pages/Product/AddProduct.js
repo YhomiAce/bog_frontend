@@ -31,6 +31,7 @@ const AddProduct = () => {
         fd.append("unit", value.unit);
         fd.append("description", value.description);
         fd.append("categoryId", category);
+        fd.append("status", "draft");
         dispatch(createProduct(fd, stopLoading));
         action.resetForm();
     }
