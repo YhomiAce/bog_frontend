@@ -2,7 +2,6 @@ import * as ActionType from '../type';
 import axios from '../../config/config';
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
-import { MdAccountBalance } from 'react-icons/md';
 
 
 export const fetchUsers = (payload) => {
