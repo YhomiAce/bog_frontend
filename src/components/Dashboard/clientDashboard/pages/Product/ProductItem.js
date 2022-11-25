@@ -10,11 +10,12 @@ const ProductItem = ({ item }) => {
     const formatNumber = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
+    const imgUrl = "https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png";
 
     return (
         <div className="mt-12 flex border-b pb-4">
             <div className="lg:w-3/12">
-                <img src="https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png" alt="productId" className="w-40 h-36" />
+                <img src={item.image || imgUrl} alt="productId" className="w-40 h-36" />
             </div>
             <div className="w-9/12 lg:pl-6 pl-3 grid content-between">
                 <div className="lg:fs-500">
