@@ -23,8 +23,8 @@ export function UsersTable({status, userType}){
       
   }, [dispatch]) 
 
-  let users = useSelector((state) => state.users.users);
-  // let users = clients.filter().filter()
+  let userDatas = useSelector((state) => state.users.users);
+  let users = userDatas?.map(data => data.user)
 
   if (userType) {
     users = users.filter(where => where.userType === userType)

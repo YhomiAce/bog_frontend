@@ -4,6 +4,17 @@ import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
 
 
+const authToken = localStorage.getItem("auth_token");
+const config = {
+    headers:
+    {
+        "Content-Type": "application/json",
+        'Authorization': authToken
+    }
+
+}
+
+
 export const fetchUsers = (payload) => {
     return {
         type: ActionType.FETCH_USERS,
@@ -21,8 +32,9 @@ export const setError = (payload) => {
 export const getUsers = () => {
     return async (dispatch) => {
         try {
-            const response = await axios.get('/all/users');
-            console.log(response);
+            const response = await axios.get('/all/users', config);
+            // const data = response.users.map(item => item.user)
+            // console.log(data);
             dispatch(fetchUsers(response.users))
         } catch (error) {
             console.log(error.message);
