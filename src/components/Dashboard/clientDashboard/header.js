@@ -48,7 +48,7 @@ export default function Header() {
         <div className="fixed w-full z-50 bg-gray-100">
             <div className="flex w-full bg-white justify-between lg:head-grid">
                 <div className="bg-white py-3  text-center">
-                    <Link to="/"><img src={require('./images/logo.png')} alt="boglogo" className="w-24 xl:w-32 ml-3 md:ml-6" /></Link>
+                    <Link to="/"><img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669563824/BOG/logo_1_1_ubgtnr.png" alt="boglogo" className="w-24 xl:w-32 ml-3 md:ml-6" /></Link>
                 </div>
                 <div className="lg:shadow bg-white py-4 px-5 flex lg:justify-between justify-end  items-center">
 
