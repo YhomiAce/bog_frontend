@@ -11,7 +11,7 @@ if (authToken) {
 
 const Axios = axios.create({
   //you can change this when running locally with your local backend server
-  baseURL: process.env.REACT_APP_LOCAL_URL,
+  baseURL: process.env.REACT_APP_URL,
   headers: requestHeaders,
 });
 

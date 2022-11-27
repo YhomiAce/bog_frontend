@@ -43,7 +43,7 @@ export default function Header() {
                         </ul>
                     </div>
                     <div className="w-4/12 flex justify-center">
-                        <Link to="/"><img src={require("../../assets/images/logo.png")} alt="logo" className="lg:w-40 " /></Link>
+                        <Link to="/"><img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669563824/BOG/logo_1_1_ubgtnr.png" alt="logo" className="lg:w-40 " /></Link>
                     </div>
                     <div className="w-4/12 hidden fw-600 lg:flex justify-end items-center">
                         <Link to='/carts'>
@@ -78,7 +78,7 @@ export default function Header() {
                 <div className="w-full bg-op absolute lg:hidden z-40 top-0 min-h-screen">
                     <div className="absolute menu lg:hidden w-10/12 bg-white px-6 z-40 top-0 min-h-screen">
                         <div className="flex justify-between pt-5">
-                            <img src={require("../../assets/images/logo.png")} alt="logo" className="w-36" />
+                            <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669563824/BOG/logo_1_1_ubgtnr.png" alt="logo" className="w-36" />
                             <MdOutlineCancel onClick={() => { setMenuShow(false) }} />
                         </div>
                         <div className="mt-10">

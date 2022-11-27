@@ -93,7 +93,7 @@ export default function Homepage() {
                 <div className="box">
                     <div className="lg:flex flex-row-reverse items-center py-1 pb-6 lg:py-6">
                         <div className="lg:w-6/12 relative z-0">
-                            <img src={require("../assets/images/hero.png")} alt="hero" className="lg:w-10/12 lg:float-right animate-pulse" ref={hero}/>
+                            <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669564220/BOG/hero_1_1_hcpq4u.png" alt="hero" className="lg:w-10/12 lg:float-right animate-pulse" ref={hero}/>
                             <img src={require("../assets/images/hero1.png")} alt="hero1" className="absolute lg:w-28 w-20 hero1" />
                             <img src={require("../assets/images/hero2.png")} alt="hero2" className="absolute lg:w-28 w-20 hero2" />
                             <img src={require("../assets/images/hero3.png")} alt="hero3" className="absolute lg:w-28 w-20 hero3" />
@@ -208,7 +208,7 @@ export default function Homepage() {
                         <div className="lg:grid-4 justify-between mt-12">
                             <div className="bg-white w-11/12 lg:w-full m-auto">
                                 <div className="">
-                                    <img src={require("../assets/images/sand.png")} alt="sand" className="w-full h-72"/>
+                                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669565021/BOG/sand_1_qhuy8e.png" alt="sand" className="w-full h-72"/>
                                 </div>
                                 <div className="flex items-center py-4 pl-4"><BsBag/><p className="pl-2">Shop for Sand</p></div>
                             </div>
@@ -220,13 +220,13 @@ export default function Homepage() {
                             </div>
                             <div className=" mt-6 lg:mt-0 w-11/12 lg:w-full m-auto bg-white">
                                 <div className="">
-                                    <img src={require("../assets/images/granite.png")} alt="steel" className="w-full h-72"/>
+                                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669565034/BOG/granite_1_ml5wb2.png" alt="steel" className="w-full h-72"/>
                                 </div>
                                 <div className="flex items-center py-4 pl-4"><BsBag/><p className="pl-2">Shop for Granite</p></div>
                             </div>
                             <div className=" mt-6 lg:mt-0 w-11/12 lg:w-full m-auto bg-white">
                                 <div className="">
-                                    <img src={require("../assets/images/cement.png")} alt="steel" className="w-full h-72"/>
+                                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669565035/BOG/cement_1_mvstfy.png" alt="steel" className="w-full h-72"/>
                                 </div>
                                 <div className="flex items-center py-4 pl-4"><BsBag/><p className="pl-2">Shop for Cement</p></div>
                             </div>
