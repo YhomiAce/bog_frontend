@@ -53,7 +53,7 @@ const AdminSidebar = () => {
     }
 
     const [orderDrop, setOrderDrop] = useState(false);
-    const [emailDrop, setEmailDrop] = useState(false);
+    // const [emailDrop, setEmailDrop] = useState(false);
     const [userDrop, setUserDrop] = useState(false);
     const [productDrop, setProductDrop] = useState(false);
     const [projectDrop, setProjectDrop] = useState(false);
@@ -61,7 +61,7 @@ const AdminSidebar = () => {
 
     function CloseAll() {
         setOrderDrop(false)
-        setEmailDrop(false)
+        // setEmailDrop(false)
         setUserDrop(false)
         setProjectDrop(false)
     }
@@ -105,7 +105,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <BsReceiptCutoff className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setProductDrop(!productDrop);setProjectDrop(false);setOrderDrop(false); setEmailDrop(false);setUserDrop(false)}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setProductDrop(!productDrop);setProjectDrop(false);setOrderDrop(false);setUserDrop(false)}}>
                                     <p className="pl-3 pr-5">Products</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>
@@ -134,7 +134,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <BsBag className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setOrderDrop(!orderDrop);setProjectDrop(false);setProductDrop(false); setEmailDrop(false);setUserDrop(false)}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setOrderDrop(!orderDrop);setProjectDrop(false);setProductDrop(false);setUserDrop(false)}}>
                                     <p className="pl-3 pr-5">Orders</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>
@@ -163,7 +163,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <GrUserWorker className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setProjectDrop(!projectDrop);setProductDrop(false); setEmailDrop(false);setUserDrop(false)}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setProjectDrop(!projectDrop);setProductDrop(false);setUserDrop(false)}}>
                                     <p className="pl-3 pr-5">Projects</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>
@@ -185,7 +185,7 @@ const AdminSidebar = () => {
                                 </div>
                             )}
                         </div>
-                        <div
+                        {/* <div
                             
                             className="w-full items-center pl-2 py-2 fw-600 my-2"
                             onClick={unShow}
@@ -213,7 +213,7 @@ const AdminSidebar = () => {
                                     </NavLink>
                                 </div>
                             )}
-                        </div>
+                        </div> */}
                         <div
                             
                             className="w-full items-center pl-2 py-2 fw-600 my-2"
@@ -221,7 +221,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <FiUsers className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setUserDrop(!userDrop);setProjectDrop(false);setProductDrop(false);setOrderDrop(false); setEmailDrop(false);}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setUserDrop(!userDrop);setProjectDrop(false);setProductDrop(false);setOrderDrop(false);}}>
                                     <p className="pl-3 pr-5">Users</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>
@@ -253,6 +253,15 @@ const AdminSidebar = () => {
                                 </div>
                             )}
                         </div>
+                        <NavLink 
+                            to="email"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
+                            onClick={unShow}
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            >
+                                <BsEnvelope className="text-xl" />
+                                <p className="pl-3">Email</p>
+                        </NavLink>
                         <NavLink 
                             to="blog"
                             className="w-full flex items-center pl-2 py-2 fw-600 my-2"

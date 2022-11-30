@@ -42,7 +42,7 @@ export default function BlogPost() {
                         <div>
                             {/* blog post tittle */}
                             <div className="lg:p-6 p-3 pb-4 rounded-md bg-white">
-                                <p className="fw-600 lg:text-lg mb-3">Blog Post Tittle</p>
+                                <p className="fw-600 lg:text-lg mb-3">Blog Post Title</p>
                                 <input type="text" placeholder="Enter the blog tittle" className="w-full px-3 rounded-md py-2 border border-gray-400" />
                             </div>
                             {/* blog post*/}
@@ -104,7 +104,7 @@ export default function BlogPost() {
                     </div>  
                     <div className="border-t py-6 border-gray-400 text-end">
                         <button className="lg:px-8 px-4 fw-500 py-2 border-pri text-primary mr-6 rounded-lg">Save To Draft</button>
-                        <button className="lg:px-8 px-4 fw-500 py-2 bg-primary text-white rounded-lg">Approve Product</button>
+                        <button className="lg:px-8 px-4 fw-500 py-2 bg-primary text-white rounded-lg">Approve Post</button>
                     </div>                
                 </div>
             </div>

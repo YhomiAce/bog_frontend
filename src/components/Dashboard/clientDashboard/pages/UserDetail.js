@@ -4,6 +4,7 @@ import { Avatar, Breadcrumbs } from "@material-tailwind/react";
 import React, {useEffect, useState} from "react";
 import { FaRegEye } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Axios from "../../../../config/config";
 import Spinner from "../../../layouts/Spinner";
 
@@ -15,25 +16,32 @@ export default function UserDetails() {
     const [client, setClient] = useState(null);
     const [accounts, setAccounts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [moreDetails, setMoreDetails] = useState(false)
 
     const fetchUserDetails = async (userId) =>{
         try {
             setLoading(true);
             const url = `/users/get-user/${userId}`
+            await Axios.get(url)
             const res = await Axios.get(url);
+            const datas = res.data
+            console.log(datas)
             setClient(res.data.user);
             setAccounts(res.data.accounts);
             setLoading(false);
+            setMoreDetails(true)
+            return datas;
         } catch (error) {
             setLoading(false);
         }
-    }
-   
-  useEffect (() => {
-      fetchUserDetails(userId)
-  }, []) 
+    };
 
-  if(loading){
+    useEffect (() => {
+        fetchUserDetails(userId)
+    }, []) ;
+
+
+  if (loading){
     return <center><Spinner /></center>
   }   
     
@@ -41,17 +49,13 @@ export default function UserDetails() {
     const formatType = (userType) => {
         switch (userType) {
             case "private_client":
-                return "Private Client"
+                return <p className="fw-500 fs-300 mt-1 mx-2 px-2 py-1 rounded-md bg-gray-100">Private Client</p>
             case "corporate_client":
-              return "Corporate Client"
+              return <p className="fw-500 fs-300 mt-1 mx-2 px-2 py-1 rounded-md bg-blue-100">Corporate Client</p>
             case "vendor":
-              return "Product Partner"
-            case "product_partner":
-              return "Product Partner"
-            case "service_partner":
-              return "Service Partner"
+              return <p className="fw-500 fs-300 mt-1 mx-2 px-2 py-1 rounded-md bg-yellow-100">Product Partner</p>
             case "professional":
-              return "Service Partner"
+              return <p className="fw-500 fs-300 mt-1 mx-2 px-2 py-1 rounded-md bg-orange-100">Service Partner</p>
     
             default: return userType
         }
@@ -62,7 +66,7 @@ export default function UserDetails() {
         <div>
             <div className="min-h-screen fs-500 relative">
                 <div className="w-full py-8 bg-white px-4">
-                    <p className="text-2xl fw-600 flex items-center">View Client: <span className="text-primary px-3">{client?.name}</span></p>
+                    <p className="fs-700 lg:text-2xl fw-600 flex items-top">View Client: <span className="text-primary lg:fs px-3 lg:w-auto w-6/12">{client?.name}</span></p>
                     <p className="fs-400 text-gray-600 mt-2">Manage and review all clients</p>
                     <Breadcrumbs className="bg-white pl-0 mt-4">
                         <Link to="/" className="opacity-60">
@@ -78,32 +82,38 @@ export default function UserDetails() {
                         <Link to="/dashboard" className="opacity-60">
                             <span>Dashboard</span>
                         </Link>
-                        <Link to="" className="opacity-60">
-                            <span>Clients</span>
+                        <Link to="/dashboard/client" className="opacity-60">
+                            <span>Users</span>
                         </Link>
                         <Link to="" className="">
-                            <span>Client Details</span>
+                            <span>Users Details</span>
                         </Link>
                     </Breadcrumbs>
                 </div> 
                 {/* order details */}
                 <div className="lg:p-5 px-2 py-4">
-                    <div className="lg:flex">
-                        <div className="mt-8 lg:w-3/12">
-                            <div className="p-5 bg-white rounded-md">
-                                <div className="flex">
-                                    <div>
-                                        <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" variant="circular" alt="order"  />
-                                    </div>
-                                    <div className="grid fs-400 content-between pl-4 py-2 fw-500">
-                                        <p>{client?.name}</p>
-                                       
+                    <div className="">
+                        <div className="lg:flex lg:w-full p-5 bg-white rounded-md">
+                            <div className="lg:w-7/12 flex items-top lg:items-center">
+                                <div className="">
+                                    <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="profile" className="lg:w-36 lg:h-36 w-16 h-16" />
+                                </div>
+                                <div className="lg:pl-10 pl-6">
+                                    <p className="lg:text-xl fw-600">{client?.name}</p>
+                                    <p className="lg:grid-2 w-full">{accounts.map( item => {
+                                        return <p className="lg:w-36">{formatType(item.userType)}</p>
+                                    })}</p>
+                                    <div className="flex mt-3">
+                                        <button className="bg-green-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-2 py-1 text-white">Verify</button>
+                                        <button className="bg-orange-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-2 py-1 ml-5 text-white">Suspend</button>
                                     </div>
                                 </div>
-                                <div className="fs-400 fw-500 mt-5">
+                            </div>
+                            <div className="lg:w-5/12 mt-6 lg:mt-0 lg:border-l-2 lg:pl-8">
+                                <div className="fs-400 fw-500">
                                     <div className="flex">
                                         <p className="text-gray-600">Email:</p>
-                                        <p className="pl-3">{client?.email}</p>
+                                        <p className="pl-3">{client?.email? client.email : "null"}</p>
                                     </div>
                                     <div className="flex mt-2">
                                         <p className="text-gray-600">Phone:</p>
@@ -124,16 +134,103 @@ export default function UserDetails() {
                                     
                                     <div className="flex mt-2">
                                         <p className="text-gray-600">Registered On:</p>
-                                        <p className="pl-3">20-10-2022</p>
-                                    </div>
-                                    <div className="flex justify-between mt-6">
-                                        <button className="bg-green-500 px-4 py-1 text-white rounded-md">Verify</button>
-                                        <button className="bg-orange-500 px-4 py-1 text-white rounded-md">Suspend</button>
+                                        <p className="pl-3">{client?.createdAt}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="lg:w-9/12 lg:px-6 mt-8">
+                        {moreDetails && (
+                            <div className="mt-6 p-5 rounded bg-white">
+                                <Tabs>
+                                    <TabList>
+                                        <Tab>Bank Details</Tab>
+                                        <Tab>KYC Details</Tab>
+                                        <Tab>Other Details</Tab>
+                                    </TabList>
+                                    <TabPanel>
+                                        <div className="mt-8">
+                                            <div className="flex">
+                                                <p className="fw-500">Bank Name:</p>
+                                                <p className="pl-5">{client?.bank_detail ? client.bank_detail : "null"}</p>
+                                            </div>
+                                            <div className="flex lg:mt-6 mt-3">
+                                                <p className="fw-500">Bank Account Name:</p>
+                                                <p className="pl-5">{client?.bank_detail ? client.bank_detail : "null"}</p>
+                                            </div>
+                                            <div className="flex lg:mt-6 mt-3">
+                                                <p className="fw-500">Bank Account Name:</p>
+                                                <p className="pl-5">{client?.bank_detail ? client.bank_detail : "null"}</p>
+                                            </div>
+                                        </div>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <div className="mt-8">
+                                            <div className="flex">
+                                                <p className="fw-500">CAC Number:</p>
+                                                <p className="pl-6">{client?.profile?.cac_number? client.profile.cac_number: "null"}</p>
+                                            </div>
+                                            <div className="flex mt-3 lg:mt-6">
+                                                <p className="fw-500">CAC Number:</p>
+                                                <p className="pl-6">{client?.profile?.cac_number? client.profile.cac_number: "null"}</p>
+                                            </div>
+                                            <div className="flex mt-3 lg:mt-6">
+                                                <p className="fw-500">Certificate Of Operation:</p>
+                                                <p className="pl-6">{client?.profile?.certificate_of_operation? <img src={client.profile.certificate_of_operation} alt="certificate" className="w-24 h-24 rounded"/>: "null"}</p>
+                                            </div>
+                                            <div className="flex mt-3 lg:mt-6">
+                                                <p className="fw-500">Company Address:</p>
+                                                <p className="pl-6">{client?.profile?.company_address? client.profile.company_address: "null"}</p>
+                                            </div>
+                                            <div className="flex mt-3 lg:mt-6">
+                                                <p className="fw-500">Company Name:</p>
+                                                <p className="pl-6">{client?.profile?.company_name? client.profile.company_name: "null"}</p>
+                                            </div>
+                                            <div className="flex mt-3 lg:mt-6">
+                                                <p className="fw-500">Professional Certificate:</p>
+                                                <p className="pl-6">{client?.profile?.professional_certificate? <img src={client.profile.professional_certificate} alt="certificate" className="w-24 h-24 rounded"/>: "null"}</p>
+                                            </div>
+                                            <div className="flex mt-3 lg:mt-6">
+                                                <p className="fw-500">Tin:</p>
+                                                <p className="pl-6">{client.profile?.tin? client.profile.tin: "null"}</p>
+                                            </div>
+                                            <div className="flex mt-3 lg:mt-6">
+                                                <p className="fw-500">Years Of Experience:</p>
+                                                <p className="pl-6">{client.years_of_experience? client.years_of_experience: "null"}</p>
+                                            </div>
+                                        </div>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <div className="mt-8">
+                                            <div className="flex">
+                                                <p className="fw-500">User Address:</p>
+                                                <p className="pl-5">{client.address? client.address : "null"}</p>
+                                            </div>
+                                            <div className="flex lg:mt-6 mt-3">
+                                                <p className="fw-500 w-3/12 lg:w-auto">User Id:</p>
+                                                <p className="pl-5">{client.id? client.id : "null"}</p>
+                                            </div>
+                                            <div className="flex lg:mt-6 mt-3">
+                                                <p className="fw-500">Level:</p>
+                                                <p className="pl-5">{client.level? client.level : "null"}</p>
+                                            </div>
+                                            <div className="flex lg:mt-6 mt-3">
+                                                <p className="fw-500">Last Updated:</p>
+                                                <p className="pl-5">{client.updatedAt? client.updatedAt : "null"}</p>
+                                            </div>
+                                            <div className="flex lg:mt-6 mt-3">
+                                                <p className="fw-500">Referral ID:</p>
+                                                <p className="pl-5">{client.referralId? client.referralId : "null"}</p>
+                                            </div>
+                                            <div className="flex lg:mt-6 mt-3">
+                                                <p className="fw-500">About Us:</p>
+                                                <p className="pl-5">{client.aboutUs? client.aboutUs : "null"}</p>
+                                            </div>
+                                        </div>
+                                    </TabPanel>
+                                </Tabs>
+                            </div>
+                        )}
+                        {/* <div className="lg:w-9/12 lg:px-6 mt-8">
                             <div className="bg-white px-5 py-6 rounded-md">
                                 <p className="fw-600 text-primary px-5">Total Product Orders (4)</p>
                                 <div className="overflow-x-auto bg-white py-5 rounded-md px-5">
@@ -402,7 +499,7 @@ export default function UserDetails() {
                                     </table>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

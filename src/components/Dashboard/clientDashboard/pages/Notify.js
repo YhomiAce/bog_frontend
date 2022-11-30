@@ -208,9 +208,6 @@ export default function Notify() {
                             </TabPanel>
                         </Tabs>
                     </div>
-                    <div>
-                        <ProductTable/>
-                    </div>
                 </div>
             </div>
         </div>

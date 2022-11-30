@@ -41,7 +41,7 @@ export default function Review() {
                             </Link>
                         </Breadcrumbs>
                     </div> 
-                    <div>
+                    <div className="mt-4 text-end">
                         <button className="border-pri text-primary fw-500 btn" onClick={() => setReviews(true)}>Add New Review</button>
                     </div>
                 </div>
@@ -49,7 +49,7 @@ export default function Review() {
                 <div className="lg:p-5 px-2 py-4">
                     {Reviews.map( item => {
                         return (
-                            <div className="flex lg:w-11/12 mx-auto py-6 px-4 bg-white shadow rounded-lg mt-6 items-center justify-between">
+                            <div className="lg:flex lg:w-11/12 mx-auto py-6 px-4 bg-white shadow rounded-lg mt-6 items-center justify-between">
                                 <div className="flex items-center">
                                     <div>
                                         <Avatar variant="circular" src={item.img} alt="review" className="w-24 h-24" />
@@ -69,9 +69,9 @@ export default function Review() {
                                         <p className="lg:text-xl text-red-500"><MdDeleteOutline/></p>
                                     </div>
                                     <div className="pt-2 pb-4"><p>{item.review}</p></div>
-                                    <div className="flex justify-evenly">
-                                        <button className="btn py-2 bg-light text-primary fw-600">Add to Homepage</button>
-                                        <button className="btn py-2 bg-orange-100 text-secondary fw-600">Add to Homepage</button>
+                                    <div className="lg:flex justify-evenly">
+                                        <button className="btn py-2 bg-light text-primary fw-600 ">Add to Homepage</button>
+                                        <button className="btn py-2 bg-orange-100 text-secondary fw-600 block my-4 lg:my-0">Add to Homepage</button>
                                         <button className="btn py-2 bg-green-100 text-green-600 fw-600">Reply</button>
                                     </div>
                                 </div>
