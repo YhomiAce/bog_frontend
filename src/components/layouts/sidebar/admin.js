@@ -163,7 +163,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <GrUserWorker className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setProjectDrop(!projectDrop);setProductDrop(false);setUserDrop(false)}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setProjectDrop(!projectDrop);setProductDrop(false);setOrderDrop(false);setUserDrop(false)}}>
                                     <p className="pl-3 pr-5">Projects</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>
