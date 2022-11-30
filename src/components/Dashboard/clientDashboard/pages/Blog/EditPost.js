@@ -128,7 +128,7 @@ export default function EditPost() {
                     </div>  
                     <div className="border-t py-6 border-gray-400 text-end">
                         <button className="lg:px-8 px-4 fw-500 py-2 border-pri text-primary mr-6 rounded-lg">Save To Draft</button>
-                        <button className="lg:px-8 px-4 fw-500 py-2 bg-primary text-white rounded-lg">Approve Product</button>
+                        <button className="lg:px-8 px-4 fw-500 py-2 bg-primary text-white rounded-lg">Update Blog</button>
                     </div>                
                 </div>
             </div>

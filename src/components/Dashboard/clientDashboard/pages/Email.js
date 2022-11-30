@@ -9,9 +9,9 @@ import { Link } from "react-router-dom";
 import { HiOutlineDocumentDownload } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
-export default function Blog() {
+export default function Email() {
     
-    const blog = useRef(null);
+    const email = useRef(null);
     const navigate = useNavigate()
 
     return (
@@ -20,8 +20,8 @@ export default function Blog() {
                 {/* header */}
                 <div className="w-full py-8 bg-white px-4 lg:flex justify-between items-center">
                     <div>
-                        <p className="text-2xl fw-600">Blog Posts</p>
-                        <p className="fs-400 text-gray-600 mt-2">Vew and manage all blog posts</p>
+                        <p className="text-2xl fw-600">Emails</p>
+                        <p className="fs-400 text-gray-600 mt-2">Vew and manage all emails</p>
                         <Breadcrumbs className="bg-white pl-0 mt-4">
                             <Link to="/" className="opacity-60">
                                 <svg
@@ -37,12 +37,12 @@ export default function Blog() {
                                 <span>Dashboard</span>
                             </Link>
                             <Link to="" className="">
-                                <span>Blog</span>
+                                <span>Email</span>
                             </Link>
                         </Breadcrumbs>
                     </div>
                     <div className="text-end">
-                        <button className="btn py-1 lg:py-2 mt-2 lg:mt-0 border-pri text-primary" onClick={() => navigate("/dashboard/createpost")} >Create Post</button>
+                        <button className="btn py-1 lg:py-2 mt-2 lg:mt-0 border-pri text-primary" onClick={() => navigate("/dashboard/createmail")} >Create Email</button>
                     </div>
                 </div> 
                 {/* content */}
@@ -50,8 +50,8 @@ export default function Blog() {
                 <div className="bg-white lg:p-5  rounded-lg">
                         <Tabs className="px-2 lg:px-0 py-5 lg:py-0">
                             <TabList className="">
-                                <Tab>All Blog Posts</Tab>
-                                <Tab>Published</Tab>
+                                <Tab>All Emails</Tab>
+                                <Tab>Sent</Tab>
                                 <Tab>Draft</Tab>
                             </TabList>
                             <TabPanel>
@@ -74,24 +74,24 @@ export default function Blog() {
                                         <DownloadTableExcel
                                             filename="All product partners"
                                             sheet="users"
-                                            currentTableRef={blog.current}
+                                            currentTableRef={email.current}
                                         >
                                             <button className="bg-light mx-4 p-2 text-2xl text-primary"><HiOutlineDocumentDownload className="text-primary"/> </button>
                                         </DownloadTableExcel>
                                     </div>
                                 </div>
                                 <div className="overflow-x-auto mt-6">
-                                    <table className="items-center w-full bg-transparent border-collapse" ref={blog}>
+                                    <table className="items-center w-full bg-transparent border-collapse" ref={email}>
                                         <tbody>
                                             <tr className="thead-light bg-light">
                                                 <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
                                                     S/N
                                                 </th>
                                                 <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                    Blog Tittle
+                                                    Email Tittle
                                                 </th>
                                                 <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                    Category
+                                                    Recipient(s) 
                                                 </th>
                                                 <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
                                                     Date
@@ -108,20 +108,20 @@ export default function Blog() {
                                                 1
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Six reasons to use BOG
+                                                BOG Weekly
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                General
+                                                All Users
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 20-11-12
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Published
+                                                Sent
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 <div className="flex text-xl">
-                                                    <p className="bg-orange-100" onClick={() => navigate("/dashboard/editpost")}><BsThreeDotsVertical/></p>
+                                                    <p className="bg-orange-100" onClick={() => navigate("/dashboard")}><BsThreeDotsVertical/></p>
                                                 </div>
                                             </td>
                                             </tr>
@@ -130,16 +130,16 @@ export default function Blog() {
                                                 2
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                               Pros and Cons of construction... 
+                                               Onboarding Update
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Soil Test
+                                                All Land Surveyors 
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 21-11-22
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Published
+                                                Sent
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 <div className="flex text-xl">
@@ -152,10 +152,10 @@ export default function Blog() {
                                                 3
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Top 5 building sketches
+                                                BOG Black Friday
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Construction Drawing 
+                                                All Service Partners
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 21-11-2022
@@ -174,10 +174,10 @@ export default function Blog() {
                                                 4
                                             </td>
                                             <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Building approval in 3 steps
+                                                Product approval in 3 steps
                                             </td>
                                             <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Building Approval
+                                                All Product Partners
                                             </td>
                                             <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 24-11-22
@@ -215,24 +215,24 @@ export default function Blog() {
                                         <DownloadTableExcel
                                             filename="All product partners"
                                             sheet="users"
-                                            currentTableRef={blog.current}
+                                            currentTableRef={email.current}
                                         >
                                             <button className="bg-light mx-4 p-2 text-2xl text-primary"><HiOutlineDocumentDownload className="text-primary"/> </button>
                                         </DownloadTableExcel>
                                     </div>
                                 </div>
                                 <div className="overflow-x-auto mt-6">
-                                    <table className="items-center w-full bg-transparent border-collapse" ref={blog}>
+                                    <table className="items-center w-full bg-transparent border-collapse" ref={email}>
                                         <tbody>
                                             <tr className="thead-light bg-light">
                                                 <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
                                                     S/N
                                                 </th>
                                                 <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                    Blog Tittle
+                                                    Email Title
                                                 </th>
                                                 <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                    Category
+                                                    Recipient(s) 
                                                 </th>
                                                 <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
                                                     Date
@@ -249,20 +249,20 @@ export default function Blog() {
                                                 1
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Six reasons to use BOG
+                                                BOG Weekly
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                General
+                                                All Users
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 20-11-12
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Published
+                                                Sent
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 <div className="flex text-xl">
-                                                    <p className="bg-orange-100" onClick={() => navigate("/dashboard/projectadmindetail")}><BsThreeDotsVertical/></p>
+                                                    <p className="bg-orange-100" onClick={() => navigate("/dashboard/")}><BsThreeDotsVertical/></p>
                                                 </div>
                                             </td>
                                             </tr>
@@ -271,16 +271,16 @@ export default function Blog() {
                                                 2
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                               Pros and Cons of construction... 
+                                               Onboarding Update 
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Soil Test
+                                                All Land Surveyors 
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 21-11-22
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Published
+                                                Sent
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 <div className="flex text-xl">
@@ -312,24 +312,24 @@ export default function Blog() {
                                         <DownloadTableExcel
                                             filename="All product partners"
                                             sheet="users"
-                                            currentTableRef={blog.current}
+                                            currentTableRef={email.current}
                                         >
                                             <button className="bg-light mx-4 p-2 text-2xl text-primary"><HiOutlineDocumentDownload className="text-primary"/> </button>
                                         </DownloadTableExcel>
                                     </div>
                                 </div>
                                 <div className="overflow-x-auto mt-6">
-                                    <table className="items-center w-full bg-transparent border-collapse" ref={blog}>
+                                    <table className="items-center w-full bg-transparent border-collapse" ref={email}>
                                         <tbody>
                                             <tr className="thead-light bg-light">
                                                 <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
                                                     S/N
                                                 </th>
                                                 <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                    Blog Tittle
+                                                    Email Tittle
                                                 </th>
                                                 <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                    Category
+                                                    Recipient(s) 
                                                 </th>
                                                 <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
                                                     Date
@@ -346,10 +346,10 @@ export default function Blog() {
                                                 1
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Top 5 building sketches
+                                                BOG Black Friday
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Construction Drawing 
+                                                All Service Partners
                                             </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 21-11-2022
@@ -368,10 +368,10 @@ export default function Blog() {
                                                 2
                                             </td>
                                             <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Building approval in 3 steps
+                                                Product approval in 3 steps
                                             </td>
                                             <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Building Approval
+                                                All Product Partners
                                             </td>
                                             <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 24-11-22

@@ -68,8 +68,14 @@ export default function Header() {
 
 
                     </div>
-                    <div className="text-black lg:hidden">
-                        <HiMenuAlt3 className="text-5xl fw-700" onClick={() => { setMenuShow(true) }} />
+                    <div className="text-black lg:hidden flex items-center">
+                        <Link to='/carts'>
+                            <div className="text-xl mx-6 relative px-2 py-2 circle bg-light">
+                                <HiOutlineShoppingBag />
+                                <p className="absolute -top-2 right-0 fs-500 text-red-500">{getTotalQuantity || 0}</p>
+                            </div>
+                        </Link>
+                        <HiMenuAlt3 className="text-3xl fw-700" onClick={() => { setMenuShow(true) }} />
                     </div>
 
                 </div>

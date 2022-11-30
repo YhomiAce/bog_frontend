@@ -55,43 +55,49 @@ export default function AdminDashboard() {
               </div>
             </div>
             <div className="bg-white mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
-              <div>
-                <p className="text-xxl pb-2 fw-600">23</p>
-                <p className="text-gray-600">Clients</p>
-              </div>
-              <div className="">
-                <img
-                  src={require("../images/client.png")}
-                  alt="orders"
-                  className="w-16 lg:mt-2"
-                />
-              </div>
+              <Link to="client" className="flex justify-between items-center w-full">
+                <div>
+                    <p className="text-xxl pb-2 fw-600">23</p>
+                    <p className="text-gray-600">Clients</p>
+                </div>
+                <div className="">
+                    <img
+                    src={require("../images/client.png")}
+                    alt="orders"
+                    className="w-16 lg:mt-2"
+                    />
+                </div>
+              </Link>
             </div>
             <div className="bg-white  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
-              <div>
-                <p className="fw-600 text-xxl pb-2">35</p>
-                <p className="text-gray-600">Service Partners</p>
-              </div>
-              <div className="relative">
-                <img
-                  src={require("../images/sp.png")}
-                  alt="cart"
-                  className="w-16 lg:mt-3"
-                />
-              </div>
+              <Link to="servicepartner" className="flex justify-between items-center w-full">
+                <div>
+                    <p className="fw-600 text-xxl pb-2">35</p>
+                    <p className="text-gray-600">Service Partners</p>
+                </div>
+                <div className="relative">
+                    <img
+                    src={require("../images/sp.png")}
+                    alt="cart"
+                    className="w-16 lg:mt-3"
+                    />
+                </div>
+              </Link>
             </div>
             <div className="bg-white  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
-              <div>
-                <p className="text-xxl fw-600 pb-2">12</p>
-                <p className="text-gray-600">Product Partners</p>
-              </div>
-              <div className="">
-                <img
-                  src={require("../images/pp.png")}
-                  alt="ongoing"
-                  className=" w-16"
-                />
-              </div>
+              <Link to="productpartner" className="flex justify-between items-center w-full">
+                <div>
+                    <p className="text-xxl fw-600 pb-2">12</p>
+                    <p className="text-gray-600">Product Partners</p>
+                </div>
+                <div className="">
+                    <img
+                    src={require("../images/pp.png")}
+                    alt="ongoing"
+                    className=" w-16"
+                    />
+                </div>
+              </Link>
             </div>
           </div>
         </div>
