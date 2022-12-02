@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux';
+ import { useSelector, useDispatch } from 'react-redux';
 import { decrementQuantity, incrementQuantity, clearCart, deleteItem } from '../../redux/actions/cartAction';
 // import CartItem from './CartItem';
 import Footer from './home-comp/Footer';
@@ -6,10 +6,17 @@ import Header from './home-comp/Header';
 import { PaystackButton } from "react-paystack"
 import { MdDeleteOutline } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import { SuccessAlert } from '../../../src/services/endpoint';
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
+import Spinner from '../../../src/components/layouts/Spinner';
+import Axios from '../../../src/config/config';
+import React, { useState } from 'react';
 
 const baseURL = process.env.REACT_APP_IMAGE_URL;
 
 export const Cart = () => {
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const carts = useSelector((state) => state.cart.cart);
     const auth = useSelector((state) => state.auth);
@@ -22,8 +29,67 @@ export const Cart = () => {
         totalAmount += cart.price * cart.quantity
     });
 
+    const sendOrder = async () => {
+        console.log(carts)
+        try {
+            setLoading(true)
+           
+            const payload = {
+                    products: [
+                        {
+                            productId: "661004d7-d9a7-4c18-9620-93834f90888f",
+                            quantity: 10
+                        },
+                        {
+                            productId: "0b0ba6b4-3d99-4709-9d29-723bb56c958d",
+                            quantity: 5
+                        }
+                    ],
+                    shippingAddress: {
+                        city: "Ikeja",
+                        state: "Lagos",
+                        country: 'Nigeria',
+                        postal_code: "2018871"
+                    },
+                    paymentInfo: {
+                        reference: "TR-1727334",
+                        amount: 28389400
+                    },
+                    discount: 5,
+                    deliveryFee: 500,
+                    totalAmount: 200000
+
+            }
+            console.log(payload);
+            await Axios.post("/orders/submit-order", payload);
+            setLoading(false);
+            SuccessAlert("Bank Account data updated successfully!");
+
+        } catch (error) {
+            setLoading(false);
+            if (error.response.data.message) {
+                toaster.notify(
+                    error.response.data.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+                return;
+            }
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+    }
+
     const handlePaystackSuccessAction = (reference) => {
         console.log(reference);
+        sendOrder()
         dispatch(clearCart())
     }
     const handlePaystackCloseAction = () => {
@@ -42,7 +108,9 @@ export const Cart = () => {
         onSuccess: (reference) => handlePaystackSuccessAction(reference),
         onClose: handlePaystackCloseAction,
     };
-
+ if (loading) {
+        return <center><Spinner /></center>
+    }
     return (
         <div className="cart__left">
             <div>
