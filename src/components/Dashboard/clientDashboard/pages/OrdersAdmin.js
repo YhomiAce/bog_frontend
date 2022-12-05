@@ -1,17 +1,18 @@
 import React, { useRef, useState,useEffect } from "react";
-import { DownloadTableExcel } from "react-export-table-to-excel";
+// import { DownloadTableExcel } from "react-export-table-to-excel";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import  { Button } from "@material-tailwind/react";
-import {BsThreeDotsVertical} from "react-icons/bs";
+// import {BsThreeDotsVertical} from "react-icons/bs";
 import { Breadcrumbs} from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-import { HiOutlineDocumentDownload } from "react-icons/hi";
+// import { HiOutlineDocumentDownload } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getAdminOrders } from '../../../../redux/actions/OrderAction';
 import { useDispatch } from "react-redux";
+import OrderTable from "../../assets/Tables/OrderTable";
 
 export default function OrdersAdmin() {
     //   const formatNumber = (number) => {
@@ -41,6 +42,10 @@ export default function OrdersAdmin() {
     console.log(adminOrders);
     // console.log(`====== ${adminOrders}`);
     //   const dispatch = useDispatch();
+
+    // const draftOrders = adminOrders.length > 0 ? adminOrders.filter(where => where.status === "pending") : [];
+    // const reviewOrders = adminOrders.length > 0 ? adminOrders.filter(where => where.status === "in_review") : [];
+    // const approvedOrders = adminOrders.length > 0 ? adminOrders.filter(where => where.status === "approved") : [];
 
     const products = useRef(null);
     const navigate = useNavigate()
@@ -96,7 +101,8 @@ export default function OrdersAdmin() {
                                 <Tab>Cancelled</Tab>
                             </TabList>
                             <TabPanel>
-                                <div className="mt-10">
+                                 <OrderTable />
+                                {/* <div className="mt-10">
                                     <div className="flex items-center">
                                         <div class="flex text-gray-600">
                                             <input
@@ -249,9 +255,18 @@ export default function OrdersAdmin() {
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
+                                </div> */}
+                            </TabPanel>
+                             <TabPanel>
+                                <OrderTable status={"in_review"} />
                             </TabPanel>
                             <TabPanel>
+                                <OrderTable status={"approved"} />
+                            </TabPanel>
+                            <TabPanel>
+                                <OrderTable status={"disapproved"} />
+                            </TabPanel>
+                            {/* <TabPanel>
                                 <div className="mt-10">
                                     <div className="flex items-center">
                                         <div class="flex text-gray-600">
@@ -518,7 +533,7 @@ export default function OrdersAdmin() {
                                         </tbody>
                                     </table>
                                 </div>
-                            </TabPanel>
+                            </TabPanel> */}
                         </Tabs>
                     </div>
                 </div>
