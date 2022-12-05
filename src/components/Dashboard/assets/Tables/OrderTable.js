@@ -37,13 +37,13 @@ export default function OrderTable({status}){
     const formatStatus = (status) => {
       switch (status) {
           case "in_review":
-              return <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">In Review</p>
+              return <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">Ongoing</p>
           case "approved":
-              return <p className="px-2 py-1 text-green-700 bg-green-100 w-24 rounded-md fw-600">Approved</p>
+              return <p className="px-2 py-1 text-green-700 bg-green-100 w-24 rounded-md fw-600">Completed</p>
           case "disapproved":
-            return <p className="px-2 py-1 text-red-700 bg-red-100 w-28 rounded-md fw-600">Disapproved</p>
+            return <p className="px-2 py-1 text-red-700 bg-red-100 w-28 rounded-md fw-600">Cancelled</p>
           case "pending":
-              return <p className="px-2 py-1 text-yellow-700 bg-yellow-100 w-24 rounded-md fw-600">Pending</p>
+              return <p className="px-2 py-1 text-yellow-700 bg-yellow-100 w-24 rounded-md fw-600">processing</p>
           case "draft":
               return "Draft"
           default: return status

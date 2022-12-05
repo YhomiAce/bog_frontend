@@ -1,4 +1,4 @@
-import React, { useRef, useState,useEffect } from "react";
+import React, { useState,useEffect } from "react";
 // import { DownloadTableExcel } from "react-export-table-to-excel";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,7 +8,7 @@ import  { Button } from "@material-tailwind/react";
 import { Breadcrumbs} from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 // import { HiOutlineDocumentDownload } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getAdminOrders } from '../../../../redux/actions/OrderAction';
 import { useDispatch } from "react-redux";
@@ -47,8 +47,8 @@ export default function OrdersAdmin() {
     // const reviewOrders = adminOrders.length > 0 ? adminOrders.filter(where => where.status === "in_review") : [];
     // const approvedOrders = adminOrders.length > 0 ? adminOrders.filter(where => where.status === "approved") : [];
 
-    const products = useRef(null);
-    const navigate = useNavigate()
+    // const products = useRef(null);
+    // const navigate = useNavigate()
     const [adminAdd, setAdminAdd] = useState(false)
     function CloseModal() {
         setAdminAdd(false)
