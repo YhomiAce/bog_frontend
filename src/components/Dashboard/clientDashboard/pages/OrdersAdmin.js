@@ -14,26 +14,26 @@ import { getAdminOrders } from '../../../../redux/actions/OrderAction';
 import { useDispatch } from "react-redux";
 
 export default function OrdersAdmin() {
-      const formatNumber = (number) => {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    const formatStatus = (status) => {
-        switch (status) {
-            case "in_review":
-                return "In Review"
-            case "approved":
-                return "Approved"
-            case "disapproved":
-                return "Disapproved"
-            case "pending":
-                return "Pending"
-            case "draft":
-                return "Draft"
+    //   const formatNumber = (number) => {
+    //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // }
+    // const formatStatus = (status) => {
+    //     switch (status) {
+    //         case "in_review":
+    //             return "In Review"
+    //         case "approved":
+    //             return "Approved"
+    //         case "disapproved":
+    //             return "Disapproved"
+    //         case "pending":
+    //             return "Pending"
+    //         case "draft":
+    //             return "Draft"
 
-            default: return status
-        }
+    //         default: return status
+    //     }
 
-    }
+    // }
     let adminOrders = useSelector((state) => state.orders.adminOrders);
     //  if (status) {
     //     adminOrders = adminOrders.filter(where => where.status === status)

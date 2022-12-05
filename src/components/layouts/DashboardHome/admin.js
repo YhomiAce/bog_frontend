@@ -8,7 +8,7 @@ import ChartLine from "../assets/UsersChart";
 import  { AdminChart } from "../assets/ProjectChart";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { getAdminOrders } from '../../../redux/actions/OrderAction';
 // import { format } from 'date-fns';
 // import Moment from 'react-moment';
@@ -18,9 +18,9 @@ import * as moment from 'moment'
 
 export default function AdminDashboard(status) {
     const user = useSelector((state) => state.auth.user);
-     const formatNumber = (number) => {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+    //  const formatNumber = (number) => {
+    //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // }
     const formatStatus = (status) => {
         switch (status) {
             case "in_review":
