@@ -147,12 +147,7 @@ const AdminSidebar = () => {
                                         >
                                         <p className="py-2">All Orders</p>
                                     </NavLink>
-                                    <NavLink
-                                        to="allprojects"
-                                        // style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                                        >
-                                        <p className="py-2">Manage Orders</p>
-                                    </NavLink>
+                                     
                                 </div>
                             )}
                         </div>

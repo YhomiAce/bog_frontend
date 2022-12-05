@@ -1,16 +1,20 @@
 import { Avatar, Breadcrumbs } from "@material-tailwind/react";
 import React from "react";
 import { BiEdit } from "react-icons/bi";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 
 export default function OrderDetails() {
-    
+        const { search } = useLocation();
+     const productId = new URLSearchParams(search).get("productId");
 
+    
     return (
         <div>
             <div className="min-h-screen fs-500 relative">
                 <div className="w-full py-8 bg-white px-4">
-                    <p className="text-2xl fw-600 lg:flex items-center">Order ID: <span className="text-primary px-3">SAN-WEDO-33</span> <span className="text-xs text-blue-500 bg-light px-2">Ongoing</span></p>
+                    <p className="text-2xl fw-600 lg:flex items-center">Order ID: <span className="text-primary px-3">{productId}</span> <span className="text-xs text-blue-500 bg-light px-2">Ongoing</span></p>
                     <p className="fs-400 text-gray-600 mt-2">View order details</p>
                     <Breadcrumbs className="bg-white pl-0 mt-4">
                         <Link to="/" className="opacity-60">
