@@ -37,6 +37,7 @@ export default function Login() {
         onSubmit: handleSubmit,
     });
     const { email, password } = formik.values;
+    
     useEffect(() => {
         if (isAuthenticated === true) {
             navigate("/dashboard");

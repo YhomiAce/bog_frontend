@@ -53,7 +53,7 @@ export  const ProductImage = ({item}) => {
             {item.product_image.map((i,) => {
                 return <SwiperSlide><img src={`${baseURL}/${i.image}`} alt="product" className="w-full h-60"/></SwiperSlide>;
             })}
-        </Swiper>
+        </Swiper>   
         <Swiper 
            onSwiper={setThumbsSwiper}
            spaceBetween={5}

@@ -16,6 +16,8 @@ import {
   Button,
 } from "@material-tailwind/react";
 
+
+
 // const ProductData = () => [
 //     {
 //         id:2341,
@@ -190,7 +192,6 @@ import {
     
 
 export default function ProductTable({status}){
-
   let adminProducts = useSelector((state) => state.products.adminProducts);
     if (status) {
         adminProducts = adminProducts.filter(where => where.status === status)
@@ -202,7 +203,6 @@ export default function ProductTable({status}){
     const gotoDetailsPage = (id) => {
         navigate(`/dashboard/productdetailadmin?productId=${id}`)
     }
-
     const formatStatus = (status) => {
       switch (status) {
           case "in_review":
@@ -215,7 +215,6 @@ export default function ProductTable({status}){
               return <p className="px-2 py-1 text-yellow-700 bg-yellow-100 w-24 rounded-md fw-600">Pending</p>
           case "draft":
               return "Draft"
-
           default: return status
       }
 
