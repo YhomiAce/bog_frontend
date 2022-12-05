@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 import { DownloadTableExcel } from "react-export-table-to-excel";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,17 +9,51 @@ import { Breadcrumbs} from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { HiOutlineDocumentDownload } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getAdminOrders } from '../../../../redux/actions/OrderAction';
+import { useDispatch } from "react-redux";
 
 export default function OrdersAdmin() {
-    
+      const formatNumber = (number) => {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    const formatStatus = (status) => {
+        switch (status) {
+            case "in_review":
+                return "In Review"
+            case "approved":
+                return "Approved"
+            case "disapproved":
+                return "Disapproved"
+            case "pending":
+                return "Pending"
+            case "draft":
+                return "Draft"
+
+            default: return status
+        }
+
+    }
+    let adminOrders = useSelector((state) => state.orders.adminOrders);
+    //  if (status) {
+    //     adminOrders = adminOrders.filter(where => where.status === status)
+    //  }
+    console.log(adminOrders);
+    // console.log(`====== ${adminOrders}`);
+    //   const dispatch = useDispatch();
+
     const products = useRef(null);
     const navigate = useNavigate()
-
     const [adminAdd, setAdminAdd] = useState(false)
-
     function CloseModal() {
         setAdminAdd(false)
     }
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getAdminOrders());
+        // dispatch(getCategories());
+    }, [dispatch])
+  
 
     return (
         <div className="">

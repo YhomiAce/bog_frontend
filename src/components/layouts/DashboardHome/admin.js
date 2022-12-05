@@ -1,16 +1,55 @@
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+// import React from "react";
 import { useSelector } from "react-redux";
 import { Breadcrumbs, CardBody } from "@material-tailwind/react";
 import ChartLine from "../assets/UsersChart";
 import  { AdminChart } from "../assets/ProjectChart";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { getAdminOrders } from '../../../redux/actions/OrderAction';
+// import { format } from 'date-fns';
+// import Moment from 'react-moment';
+import * as moment from 'moment'
+// import Moment from 'react-moment';
 
-export default function AdminDashboard() {
-  const user = useSelector((state) => state.auth.user);
-  
+
+export default function AdminDashboard(status) {
+    const user = useSelector((state) => state.auth.user);
+     const formatNumber = (number) => {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    const formatStatus = (status) => {
+        switch (status) {
+            case "in_review":
+                return "In Review"
+            case "approved":
+                return "Approved"
+            case "disapproved":
+                return "Disapproved"
+            case "pending":
+                return "Pending"
+            case "draft":
+                return "Draft"
+
+            default: return status
+        }
+
+    }
+    let adminOrders = useSelector((state) => state.orders.adminOrders);
+    //  if (status) {
+    //     adminOrders = adminOrders.filter(where => where.status === status)
+    //  }
+    console.log(adminOrders);
+    // console.log(`====== ${adminOrders}`);
+
+  const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getAdminOrders());
+        // dispatch(getCategories());
+    }, [dispatch])
   
   return (
     <div className="min-h-screen">
@@ -271,7 +310,7 @@ export default function AdminDashboard() {
                             <FontAwesomeIcon icon={faSearch} className="text-white" />
                             </button>
                         </div>
-                    </div>
+                    </div> .
                 </div>
                 <div>
                     <CardBody>
@@ -295,10 +334,47 @@ export default function AdminDashboard() {
                                 Order Status
                             </th>
                             </tr>
-                        </thead>
+                                      </thead>
+                                      
                         <tbody className="fw-400">
-                            <tr>
-                            <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                           {
+                                              adminOrders.length > 0 ? adminOrders.map((item, index) => {
+                                return (<tr>
+            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        {/* {sn} */}
+                                        {index + 1}
+                                        
+            </td>
+            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                {item.orderSlug}
+            </td>
+            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                {item.order_items[0].product.name}
+            </td>
+            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        {/* {item.order_items.category.name} */}
+                                        {/* {item.createdAt}    */}
+                                        {/* {moment} */}
+                                        {moment(item.createdAt).format("MMMM Do YYYY , h:mm:ss a")}{" "}
+             </td>
+            {/* <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                NGN {formatNumber(item.totalAmount)}
+            </td> */}
+            <td className="border-b text-blue-600 border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                {formatStatus(item.status)}
+            </td>
+            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                <div className="flex text-xl">
+                    {/* <p className="bg-orange-100" onClick={() => gotoDetailsPage(item.id)}><BsThreeDotsVertical /></p> */}
+                </div>
+            </td>
+        </tr>)
+                                // return <AdminProductListItem key={product.id} item={product} sn={index + 1} />
+                            }) : null
+                                          }
+                                          
+                            {/* <tr> */}
+                            {/* <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                 1
                             </th>
                             <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
@@ -313,9 +389,9 @@ export default function AdminDashboard() {
                             <td className=" text-green-600 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                 Delivered
                             </td>
-                            </tr>
+                            </tr> */}
                             <tr>
-                            <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                            {/* <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                 2
                             </th>
                             <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
@@ -331,8 +407,8 @@ export default function AdminDashboard() {
                                 Awaiting Delivery
                             </td>
                             </tr>
-                            <tr>
-                            <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                            <tr> */}
+                            {/* <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                 3
                             </th>
                             <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
@@ -348,8 +424,8 @@ export default function AdminDashboard() {
                                 Canceled
                             </td>
                             </tr>
-                            <tr>
-                            <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                            <tr> */}
+                            {/* <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                 4
                             </th>
                             <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
@@ -363,7 +439,7 @@ export default function AdminDashboard() {
                             </td>
                             <td className=" text-green-600 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                 Delivered
-                            </td>
+                            </td> */}
                             </tr>
                         </tbody>
                         </table>

@@ -56,7 +56,7 @@ export const fetchAdminProduct = (payload) => {
         payload
     }
 }
-
+ 
 export const DeleteProduct = (payload) => {
     return {
         type: ActionType.DELETE_PRODUCT,
@@ -229,6 +229,7 @@ export const getAdminProducts = (category) => {
 
     }
 }
+ 
 
 export const removeProduct = (productId, saveLoading) => {
     return async (dispatch) => {

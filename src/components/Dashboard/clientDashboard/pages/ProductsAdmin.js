@@ -66,7 +66,7 @@ export default function ProductsAdmin() {
                             <TabPanel>
                                 
                                 <ProductTable />
-                            </TabPanel>
+                            </TabPanel> 
                             <TabPanel>
                                 <ProductTable status={"in_review"} />
                             </TabPanel>
