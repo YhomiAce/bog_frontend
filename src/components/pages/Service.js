@@ -342,52 +342,223 @@ export default function Service() {
       )}
       {gInvest && (
         <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40" onClick={CloseSurvey}>
-        <div className="bg-white lg:w-5/12 px-5 lg:px-12 w-11/12 py-12 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
-            <div className="flex justify-between">
-                <p className="text-lg lg:text-2xl fw-600">Request Geotechnical Investigation</p>
-                <FontAwesomeIcon icon={faTimes} className="text-2xl relative -top-3 cursor-pointer" onClick={CloseSurvey}/>
-                
-            </div>
-            <div className="mt-12">
-                <form>
-                    <div className="lg:flex justify-between">
-                        <div className="lg:w-6/12 lg:pr-4">
-                            <label className="block">
-                                First Name
+            <div className="bg-white lg:w-5/12 px-5 lg:px-12 h-800 overflow-y-auto overscroll-none  w-11/12 py-12 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
+                <div className="flex justify-between">
+                    <div>
+                        <p className="text-lg lg:text-2xl fw-600">REQUEST FOR GEOTECHNICAL AND GEOPHYSICAL INFORMATION</p>
+                        <p className="mt-2 fs-500">The survey will take approximately 5 minutes to complete.</p>
+                    </div>
+                    <FontAwesomeIcon icon={faTimes} className="text-2xl relative -top-3 cursor-pointer" onClick={CloseSurvey}/>
+                    
+                </div>
+                <div className="mt-6">
+                    <p><span className="text-red-600 pr-2">*</span>Required</p>
+                </div>
+                <div className="mt-5">
+                    <form>
+                        <div className="fs-500">
+                            <p><span className="text-red-600  pr-2">*</span>This form will record your name, please fill your name.</p>
+                            <input
+                                        type="text"
+                                        placeholder="Enter your name"
+                                        className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
+                                    />
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                1. Name of client<span className="text-red-600 pl-2">*</span>
                             </label>
                             <input
                                     type="text"
-                                    placeholder="Enter your first name"
+                                    placeholder=""
                                     className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
                                 />
                         </div>
-                        <div className="lg:w-6/12 lg:pl-4 lg:mt-0 mt-3">
-                            <label className="block">
-                                Last Name
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                2. Location of site<span className="text-red-600 pl-2">*</span>
                             </label>
                             <input
                                     type="text"
-                                    placeholder="Enter your last name"
+                                    placeholder=""
                                     className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
                                 />
                         </div>
-                    </div>
-                    <div className="mt-3 lg:mt-6 w-full">
-                        <label className="block">
-                            Email
-                        </label>
-                        <input
-                                type="email"
-                                placeholder="Enter your email address"
-                                className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
-                            />
-                    </div>
-                    <div className="mt-8">
-                        <button className="btn-primary w-full">Submit</button>
-                    </div>
-                </form>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                3. Size of Land<span className="text-red-600 pl-2">*</span>
+                            </label>
+                            <input
+                                    type="text"
+                                    placeholder=""
+                                    className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
+                                />
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                4. Intended project<span className="text-red-600 pl-2">*</span>
+                            </label>
+                            <div className="mt-3 fs-500">
+                                <div className="py-1">
+                                    <input type="radio" name="i-project" />
+                                    <label className="pl-1">Residential Building</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="i-project" />
+                                    <label className="pl-1">Industrial Building</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="i-project" />
+                                    <label className="pl-1">High Rise Building</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="i-project" />
+                                    <label className="pl-1">Road</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="i-project" />
+                                    <label className="pl-1">Estate</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="i-project" />
+                                    <label className="pl-1">Dumping Site</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="i-project" />
+                                    <label className="pl-1">Water Borehole</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="i-project" />
+                                    <label className="pl-1">Others</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                5. Is there a building on the site<span className="text-red-600 pl-2">*</span>
+                            </label>
+                            <div className="mt-3 fs-500">
+                                <div className="py-1">
+                                    <input type="radio" name="b-site" />
+                                    <label className="pl-1">Yes</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="b-site" />
+                                    <label className="pl-1">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                6. Upload available picture of the land or property
+                            </label>
+                            <div class="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
+                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
+                                <input class="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file"  multiple />
+                            </div>
+                            <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
+                                Audio
+                            </p>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                7. Number of intended geotechnical borehole
+                            </label>
+                            <input
+                                    type="number"
+                                    placeholder=""
+                                    className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
+                                />
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                8. Depth of borehole
+                            </label>
+                            <input
+                                    type="number"
+                                    placeholder=""
+                                    className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
+                                />
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                9. Number of CPT
+                            </label>
+                            <input
+                                    type="number"
+                                    placeholder=""
+                                    className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
+                                />
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                10. Tonnage of CPT
+                            </label>
+                            <div className="mt-3 fs-500">
+                                <div className="py-1">
+                                    <input type="radio" name="cpt" />
+                                    <label className="pl-1">2.5 Tons</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="cpt" />
+                                    <label className="pl-1">10 Tons</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="cpt" />
+                                    <label className="pl-1">20 Tons</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                11. Type of CPT
+                            </label>
+                            <div className="mt-3 fs-500">
+                                <div className="py-1">
+                                    <input type="radio" name="c-type" />
+                                    <label className="pl-1">Mechanical</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="c-type" />
+                                    <label className="pl-1">Electrical</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="c-type" />
+                                    <label className="pl-1">Dynamic</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                12. Apart from borehole and CPT, are there any special test or investigation you intend to run?
+                            </label>
+                            <div className="mt-3 fs-500">
+                                <div className="py-1">
+                                    <input type="radio" name="special" />
+                                    <label className="pl-1">Yes</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" name="special" />
+                                    <label className="pl-1">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                                13. If yes, kindly specify
+                            </label>
+                            <input
+                                    type="text"
+                                    placeholder=""
+                                    className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
+                                />
+                        </div>
+                        <div className="mt-8">
+                            <button className="btn-primary w-full">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
       </div>
       )}
       {cDraw && (
@@ -550,7 +721,7 @@ export default function Service() {
                         </div>
                         <div className="mt-3 lg:mt-6 w-full">
                             <label className="block fw-600">
-                                10. If Residential, select type of building *<span className="text-red-600 pl-2">*</span>
+                                10. If Residential, select type of building <span className="text-red-600 pl-2">*</span>
                             </label>
                             <div className="mt-3 fs-500">
                                 <div className="py-1">
@@ -577,7 +748,7 @@ export default function Service() {
                         </div>
                         <div className="mt-3 lg:mt-6 w-full">
                             <label className="block fw-600">
-                                11. If Commercial, select type of building *<span className="text-red-600 pl-2">*</span>
+                                11. If Commercial, select type of building <span className="text-red-600 pl-2">*</span>
                             </label>
                             <div className="mt-3 fs-500">
                                 <div className="py-1">
@@ -604,7 +775,7 @@ export default function Service() {
                         </div>
                         <div className="mt-3 lg:mt-6 w-full">
                             <label className="block fw-600">
-                                12. If Religious, select type of building *<span className="text-red-600 pl-2">*</span>
+                                12. If Religious, select type of building <span className="text-red-600 pl-2">*</span>
                             </label>
                             <div className="mt-3 fs-500">
                                 <div className="py-1">
@@ -1011,7 +1182,7 @@ export default function Service() {
                         </div>
                         <div className="mt-3 lg:mt-6 w-full">
                             <label className="block fw-600">
-                                9. If Residential, select type of building *<span className="text-red-600 pl-2">*</span>
+                                9. If Residential, select type of building <span className="text-red-600 pl-2">*</span>
                             </label>
                             <div className="mt-3 fs-500">
                                 <div className="py-1">
@@ -1038,7 +1209,7 @@ export default function Service() {
                         </div>
                         <div className="mt-3 lg:mt-6 w-full">
                             <label className="block fw-600">
-                                10. If Commercial, select type of building *<span className="text-red-600 pl-2">*</span>
+                                10. If Commercial, select type of building <span className="text-red-600 pl-2">*</span>
                             </label>
                             <div className="mt-3 fs-500">
                                 <div className="py-1">
@@ -1065,7 +1236,7 @@ export default function Service() {
                         </div>
                         <div className="mt-3 lg:mt-6 w-full">
                             <label className="block fw-600">
-                                11. If Religious, select type of building *<span className="text-red-600 pl-2">*</span>
+                                11. If Religious, select type of building <span className="text-red-600 pl-2">*</span>
                             </label>
                             <div className="mt-3 fs-500">
                                 <div className="py-1">

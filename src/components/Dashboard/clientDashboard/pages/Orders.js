@@ -1,23 +1,30 @@
 import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import {FaCheck, FaRegEye, FaTimes} from "react-icons/fa";
+import {FaCheck, FaFileDownload, FaRegEye, FaTimes} from "react-icons/fa";
 import { Breadcrumbs, CardBody } from "@material-tailwind/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
+import {
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Button,
+} from "@material-tailwind/react";
  
 
 export default function Orders() {
   const auth = useSelector((state) => state.auth);
 
-  let orders = <POrders/>;
+  let orders = null;
 
     if (auth?.user?.userType === "private_client") {
       orders = <POrders/>
     }else if(auth?.user?.userType === "vendor"){
       orders = <PPOrders/>
-    }else if(auth?.user?.userType === "admin"){
+    }else if(auth?.user?.userType === "corporate_client"){
       orders = <POrders/>
     }
   return orders;
@@ -50,9 +57,6 @@ export  function PPOrders() {
                   <span>Orders</span>
               </Link>
             </Breadcrumbs>
-          </div>
-          <div>
-            <button className="btn-primary">Setup Details</button>
           </div>
         </div>
         <div className="p-5">
@@ -597,20 +601,40 @@ export function POrders() {
               </TabList>
               <TabPanel>
                 <div className="mt-10">
+                <div className="mt-10 flex justify-between">
                   <div class="flex text-gray-600">
-                    <input
+                      <input
                       class="border-2 border-gray-300 bg-white  px-5 pr-4 rounded-l-lg text-sm focus:outline-none"
                       type="search"
                       name="search order by name"
                       placeholder="Search"
-                    />
-                    <button
+                      />
+                      <button
                       type="submit"
                       class=" bg-primary  right-0 top-0 py-2 px-4 rounded-r-lg"
                       >
                       <FontAwesomeIcon icon={faSearch} className="text-white" />
-                    </button>
+                      </button>
                   </div>
+                  <div>
+                      <Menu>
+                          <MenuHandler>
+                              <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none"><FaFileDownload className="text-2xl"/></Button>
+                          </MenuHandler>
+                          <MenuList>
+                              <MenuItem>
+                                  Export as CSV
+                              </MenuItem>
+                              <MenuItem >
+                                  Export as Excel
+                              </MenuItem>
+                              <MenuItem>
+                                  Export as PDF 
+                              </MenuItem>
+                          </MenuList>
+                      </Menu>
+                  </div>
+              </div>
                 </div>
                 <CardBody>
                   <div className="overflow-x-auto">
