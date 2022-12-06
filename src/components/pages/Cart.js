@@ -23,6 +23,7 @@ export const Cart = () => {
     const carts = useSelector((state) => state.cart.cart);
     const auth = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+    
     const formatNumber = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
