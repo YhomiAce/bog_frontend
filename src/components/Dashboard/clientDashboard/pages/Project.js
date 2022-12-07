@@ -151,7 +151,7 @@ export function ClientProject() {
                                                     Pending
                                                 </td>
                                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    
+
                                                 </td>
                                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                                     <Menu placement="left">
@@ -215,7 +215,7 @@ export function ClientProject() {
                                                     Declined
                                                 </td>
                                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    
+
                                                 </td>
                                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                                     <Menu placement="left">
@@ -306,12 +306,13 @@ export function ClientProject() {
                         </div>
                     </div>
                     <div className="lg:grid-74 mt-6 lg:mt-10">
-                        <div className=" bg-white lg:p-6 p-3 rounded-md">
+                        <div className="bg-white lg:p-6 p-3 rounded-md">
                             <div className="mb-5">
                                 <p className="text-lg fw-600">Project Analysis</p>
                             </div>
                             <ProjectChart/>
                         </div>
+                        
                         <div className="bg-white rounded-md mt-6 lg:mt-0">
                             <div className="bg-primary text-white rounded-t-md">
                                 <p className="py-6 fw-600 ml-7 lg:text-lg">Calender</p>
