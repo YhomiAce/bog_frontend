@@ -1,6 +1,6 @@
 import React from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import { Progress, Avatar, Breadcrumbs } from "@material-tailwind/react";
+import { Progress, Breadcrumbs } from "@material-tailwind/react";
 import ProjectChart from "../../assets/ProjectChart";
 import { useSelector } from 'react-redux';
 import { FaFileDownload, FaRegEye } from "react-icons/fa";

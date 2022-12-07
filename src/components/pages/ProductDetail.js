@@ -35,7 +35,7 @@ export default function ProductDetail() {
         if (itemAdded) {
             setTimeout(function () {
             setItemAdded(false);
-          }, 4000);}
+          }, 4000);} // eslint-disable-next-line
     }, [addItemToCart])
 
 

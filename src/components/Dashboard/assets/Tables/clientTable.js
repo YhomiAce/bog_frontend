@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight, FaFileDownload } from "react-icons/fa";
 import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, usePagination } from "react-table";
 // import { useNavigate } from "react-router-dom";
-import {useRef, useMemo } from "react";
+import {useMemo } from "react";
 import {
   Menu,
   MenuHandler,
