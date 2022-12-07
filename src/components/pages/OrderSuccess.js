@@ -18,8 +18,39 @@ export const OrderSuccess = () => {
                             <p className='mt-3 fs-500'>Order Date - {new Date().toLocaleDateString()}</p>
                         </div>
                     </div>
-                    <div className='grid-3 mt-10'>
-                        <div></div>
+                    <div className='lg:grid-3 justify-between lg:mt-10'>
+                        <div>
+                            <p className='bg-primary fw-600 py-2 pl-3 text-white w-full'>Shipping Address</p>
+                            <div className='px-3 bg-light py-4'>
+                                <p className='fw-500'>Ikeja Lagos</p>
+                                <p className='my-3'>17 street, local government area, state, country</p>
+                                <p>+234 800 000 0000</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p className='bg-primary fw-600 pl-3 py-2 text-white w-full'>Shipping Method</p>
+                            <div className='px-3 bg-light py-4'>
+                                <p>Flat Rate - Fixed</p>
+                            </div>
+                        </div>
+                        <div className='bg-light text-end pb-3'>
+                            <p className='bg-primary fw-600 px-3 py-2 text-white w-full'>Payment</p>
+                            <div className='px-3 bg-light py-4 border-b-2'>
+                                <p className=''>Subtotal - <span className='fw-500'>NGN 200,000</span></p>
+                                <p className='my-2'>Shipping & Handling - <span className='fw-500'>NGN 14,000</span></p>
+                                <p className='mb-2'>Tax - <span className='fw-500'>NGN 2,000</span></p>
+                                <p className='fw-600'>Total - <span className='fw-500'>NGN 200,000</span></p>
+                            </div>
+                            <div className='py-2 pr-3'>
+                                <button className='bg-primary px-5 py-1 text-white'>Print Invoice</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='text-end lg:mt-10'>
+                        <div>
+                            <button className='btn-primary'>Continue Shopping</button>
+                            <button className='border-pri text-primary fw-500 px-4 py-2 rounded-lg ml-6'>View Orders</button>
+                        </div>
                     </div>
                 </div>
             </div>

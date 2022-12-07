@@ -153,7 +153,7 @@ export const Cart = () => {
                                 <img
                                   src={`${item.image}`}
                                   alt="products"
-                                  className="w-40 border rounded-md h-20 lg:h-40"
+                                  className="w-32 lg:w-40 border rounded-md h-32 lg:h-40"
                                 />
                               </div>
                               <div className="lg:w-6/12">
@@ -314,7 +314,7 @@ export const Cart = () => {
                             onClick={() => navigate("/login")}
                             className="w-full btn bg-primary text-white"
                             >
-                            LoGIN
+                            LOGIN
                             </button>
                         )}
                         </div>
