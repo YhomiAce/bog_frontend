@@ -4,11 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUsers } from '../../../../redux/actions/UserAction';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight, FaFileDownload } from "react-icons/fa";
 import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, usePagination } from "react-table";
 import { useNavigate } from "react-router-dom";
-import { useMemo, useRef } from "react";
-import { useDownloadExcel } from "react-export-table-to-excel";
+import { useMemo } from "react";
 import {
   Menu,
   MenuHandler,
@@ -17,6 +16,71 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import { useExportData } from "react-table-plugins";
+import Papa from "papaparse";
+import * as XLSX from 'xlsx'
+
+
+// export table files
+
+function getExportFileBlob({ columns, data, fileType, fileName }) {
+  if (fileType === "csv") {
+    // CSV example
+    const headerNames = columns // eslint-disable-next-line
+      .filter((c) => c.Header != "Action")
+      .map((col) => col.exportValue);
+    const csvString = Papa.unparse({ fields: headerNames, data });
+    return new Blob([csvString], { type: "text/csv" });
+  } else if (fileType === "xlsx") {
+    // XLSX example
+
+    const header = columns // eslint-disable-next-line
+      .filter((c) => c.Header != "Action")
+      .map((c) => c.exportValue);
+    const compatibleData = data.map((row) => {
+      const obj = {};
+      header.forEach((col, index) => {
+        obj[col] = row[index];
+      });
+      return obj;
+    });
+
+    let wb = XLSX.utils.book_new();
+    let ws1 = XLSX.utils.json_to_sheet(compatibleData, {
+      header
+    });
+    XLSX.utils.book_append_sheet(wb, ws1, "React Table Data");
+    XLSX.writeFile(wb, `${fileName}.xlsx`);
+
+    // Returning false as downloading of file is already taken care of
+    return false;
+  }
+  //PDF example
+  if (fileType === "pdf") {
+    const headerNames = columns // eslint-disable-next-line
+      .filter((c) => c.Header != "Action")
+      .map((column) => column.exportValue);
+    const doc = new jsPDF();
+    doc.autoTable({
+      head: [headerNames],
+      body: data,
+      styles: {
+        minCellHeight: 9,
+        halign: "left",
+        valign: "center",
+        fontSize: 11
+      }
+    });
+    doc.save(`${fileName}.pdf`);
+
+    return false;
+  }
+
+  // Other formats goes here
+  return false;
+}
 
 
 export function UsersTable({status, userType}){
@@ -163,14 +227,6 @@ function GlobalFilter({
 
 const Table = ({columns, data}) => {
 
-    const tableRef = useRef(null);
-
-                const { onDownload } = useDownloadExcel({
-                    currentTableRef: tableRef.current,
-                    filename: 'Users table',
-                    sheet: 'Users'
-                })
-
     const { getTableProps, getTableBodyProps, headerGroups, prepareRow, state, preGlobalFilteredRows, setGlobalFilter, page, canPreviousPage,
         canNextPage,
         pageOptions,
@@ -178,13 +234,14 @@ const Table = ({columns, data}) => {
         gotoPage,
         nextPage,
         previousPage,
-        setPageSize, } =
+        setPageSize, exportData } =
     useTable({
       columns,
       data,
+      getExportFileBlob
     }, 
     useFilters,
-    useGlobalFilter, usePagination );
+    useGlobalFilter, usePagination, useExportData );
 
     
 
@@ -197,7 +254,30 @@ const Table = ({columns, data}) => {
                     setGlobalFilter={setGlobalFilter}
                 />
                 <div className="flex">
-                  <button onClick={onDownload} className="pr-3"> Export excel </button>
+                <Menu>
+                    <MenuHandler>
+                      <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none"><FaFileDownload className="text-2xl"/></Button>
+                    </MenuHandler>
+                    <MenuList>
+                      <MenuItem onClick={() => {
+                          exportData("csv", true);
+                        }}>
+                          Export as CSV
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          exportData("xlsx", true);
+                        }}>
+                          Export as Excel
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          exportData("pdf", true);
+                        }}>
+                          Export as PDF 
+                      </MenuItem>
+                    </MenuList>
+                  </Menu>
                   {headerGroups.map((headerGroup) =>
                       headerGroup.headers.map((column) =>
                       column.Filter ? (
@@ -215,7 +295,7 @@ const Table = ({columns, data}) => {
             <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
                 <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <div className="overflow-hidden border-gray-200 sm:rounded-lg">
-                        <table {...getTableProps()} className="items-center w-full bg-transparent border-collapse" ref={tableRef}>
+                        <table {...getTableProps()} className="items-center w-full bg-transparent border-collapse">
                             <thead className="thead-light bg-light">
                                 {headerGroups.map((headerGroup) => (
                                 <tr {...headerGroup.getHeaderGroupProps()}>

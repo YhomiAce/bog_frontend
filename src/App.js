@@ -30,6 +30,7 @@ import { Cart } from './components/pages/Cart';
 import BlogPage from './components/pages/BlogPage';
 import { updateCart } from './redux/actions/cartAction';
 import { useDispatch } from 'react-redux';
+import { OrderSuccess } from './components/pages/OrderSuccess';
 
 if (localStorage.auth_token) {
   setAuthToken(localStorage.auth_token);
@@ -61,6 +62,7 @@ function App() {
         <Route path='/jointeam' element={<JoinTeam />} />
         <Route path='/shop' element={<Shop />} />
         <Route path='/shop/:itemId' element={<ProductDetail />} />
+        <Route path='/ordersuccess' element={<OrderSuccess />} />
         <Route path='/terms' element={<Terms />} />
         <Route path='/privacy' element={<Privacy />} />
         <Route path='/login' element={<Login />} />
