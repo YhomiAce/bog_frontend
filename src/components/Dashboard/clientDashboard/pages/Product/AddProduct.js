@@ -33,7 +33,7 @@ const AddProduct = () => {
         fd.append("categoryId", category);
         fd.append("status", "draft");
         dispatch(createProduct(fd, stopLoading));
-        action.resetForm();
+        action.resetForm(); 
     }
     const formik = useFormik({
         initialValues: {
