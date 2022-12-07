@@ -22,7 +22,7 @@ export default function ProductDetail() {
     const { itemId } = useParams()
     const item = products.find(prod => prod.id === itemId);
     const similarProducts = products.filter(where => where.category.id === item.category.id);
-    console.log(item)
+
     const addItemToCart = (item, cartNum) => {
         dispatch(addToCart(item, cartNum));
         toaster.notify(
