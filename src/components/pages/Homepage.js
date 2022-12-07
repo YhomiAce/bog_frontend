@@ -410,6 +410,32 @@ export default function Homepage() {
                     </div>
                 </div>
             </div>
+            {/* why bog */}
+            <div className="section hidden">
+                <div className="box">
+                   <div>
+                        <div className="text-center">
+                            <p className="lg:text-2xl text-xl fw-700">Why BOG? Because we deliver the best.</p>
+                            <p className="mt-2 lg:w-10/12 mx-auto">No more compromising or missed opportunities with BOG by your side. With our hassle-free application, this time tomorrow you could have access to the products and services you need. It’s just what we do.</p>
+                        </div>
+                        <div className="lg:grid-3 justify-between mt-12">
+                            <div className="text-center">
+                                <p className="fw-700 text-xl">Flexibility</p>
+                                <p>Fast application and navigation, and delivery is possible within 24 hours of order.</p>
+                            </div>
+                            <div className="text-center">
+                                <img src="https://as1.ftcdn.net/v2/jpg/02/28/29/12/1000_F_228291267_os5HEL8EApenUIuQFpBmHZfT79HXh1wM.jpg" alt="support" className="w-36 mx-auto mb-4" />
+                                <p className="fw-700 text-xl">Support</p>
+                                <p>A dedicated Customer Care Service will get to know you and your service need and provide a personalised solution.</p>
+                            </div>
+                            <div className="text-center">
+                                <p className="fw-700 text-xl">Confidence</p>
+                                <p>Join thousands of individuals who patronizes BOG and experience smooth and standard services.</p>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+            </div>
             {/* faqs */}
             <div className="section" >
                 <div className="box">

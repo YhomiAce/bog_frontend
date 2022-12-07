@@ -14,6 +14,7 @@ import {
     MenuItem,
     Button,
   } from "@material-tailwind/react";
+  import { useNavigate } from "react-router-dom";
 
 export default function Projects() {
     
@@ -36,6 +37,8 @@ export default function Projects() {
 }
 
 export function ClientProject() {
+
+    const navigate = useNavigate();
 
     return (
         <div>
@@ -96,7 +99,7 @@ export function ClientProject() {
                                             <div>
                                                 <Menu>
                                                     <MenuHandler>
-                                                        <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none"><FaFileDownload className="text-2xl"/></Button>
+                                                        <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none flex items-center">Export<FaFileDownload className="text-2xl"/></Button>
                                                     </MenuHandler>
                                                     <MenuList>
                                                         <MenuItem>
@@ -159,7 +162,7 @@ export function ClientProject() {
                                                             <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none"><FaRegEye className="text-2xl"/></Button>
                                                         </MenuHandler>
                                                         <MenuList>
-                                                            <MenuItem>
+                                                            <MenuItem onClick={() => {navigate("/dashboard/myprojectdetails")}}>
                                                                 View Details
                                                             </MenuItem>
                                                             <MenuItem>

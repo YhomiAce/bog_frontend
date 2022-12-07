@@ -52,13 +52,13 @@ export default function ProductDetail() {
                 <div className="section">
                     <div className="box">
                         <div className="lg:flex justify-center w-full">
-                            <div className="lg:flex lg:pt-10">
-                                <div className="lg:w-7/12 shadow-md p-4">
+                            <div className="lg:flex lg:w-9/12 justify-between lg:pt-10">
+                                <div className="lg:w-5/12 shadow-md p-4">
                                     {/* <img src="https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png" alt="product" className="w-full lg:h-72" /> */}
                                         
                                     <ProductImage item={item} />
                                 </div>
-                                <div className="lg:pl-8 mt-4 lg:mt-0 relative">
+                                <div className="lg:pl-8 mt-4 lg:w-5/12 lg:mt-0 relative">
                                     <p className="lg:text-3xl text-lg fw-600">{item.name}</p>
                                     <p className="fw-600 lg:py-4 py-2 text-gray-600"><span className="pr-2 ">Product Category :</span>{item.category.name}</p>
                                     <div>
@@ -85,8 +85,8 @@ export default function ProductDetail() {
                                             <div className="">
                                                 <button className="btn-primary ml-7 px-4 lg:px-8 " onClick={() => addItemToCart(item, cartNum)}>Add To Cart</button>
                                                 {itemAdded && (
-                                                    <div className="absolute lg:fs-400 fs-300 fw-600 px-2 text-center w-40 border lg:-right-3/4 lg:bottom-0 -bottom-3/4 py-1 bg-green-600 rounded text-gray-100 scale-ani">
-                                                        <p>added to cart</p>
+                                                    <div className="absolute lg:fs-400 fs-300 fw-600 px-2 text-center w-40 border lg:-right-1/4 lg:bottom-0 -bottom-3/4 py-1 bg-green-600 rounded text-gray-100 scale-ani">
+                                                        <p>Added to Cart</p>
                                                         <p onClick={() => {navigate("/carts")}} className="underline cursor-pointer">Click to view</p>
                                                     </div>
                                                 )}

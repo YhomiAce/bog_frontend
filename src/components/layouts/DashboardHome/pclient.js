@@ -71,7 +71,7 @@ export default function PclientDashboard() {
               </Link>
             </div>
             <div className="bg-white  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
-              <Link to="orders" className="flex justify-between items-center w-full">
+              <Link to="projects" className="flex justify-between items-center w-full">
                 <div>
                   <p className="fw-600 text-xxl pb-2">25</p>
                   <p className="text-gray-600">Total Projects</p>
@@ -86,7 +86,7 @@ export default function PclientDashboard() {
               </Link>
             </div>
             <div className="bg-white  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
-              <Link to="orders" className="flex justify-between items-center w-full">
+              <Link to="projects" className="flex justify-between items-center w-full">
                 <div>
                   <p className="text-xxl fw-600 pb-2">12</p>
                   <p className="text-gray-600">Ongoing Projects</p>

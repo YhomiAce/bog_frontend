@@ -13,6 +13,7 @@ import {
   MenuItem,
   Button,
 } from "@material-tailwind/react";
+import { useNavigate } from "react-router-dom";
  
 
 export default function Orders() {
@@ -58,22 +59,19 @@ export  function PPOrders() {
               </Link>
             </Breadcrumbs>
           </div>
-          <div>
-            <button className="btn-primary">Setup Details</button>
-          </div>
         </div>
         <div className="p-5">
           <div className="bg-white lg:p-5 mt-6 rounded-lg">
             <Tabs className="px-2 lg:px-0 py-5 lg:py-0">
               <TabList className="">
                 <Tab>All Orders</Tab>
-                <Tab>Requests</Tab>
-                <Tab>Active</Tab>
                 <Tab>Pending</Tab>
-                <Tab>Completed</Tab>
+                <Tab>Delivered</Tab>
+                <Tab>Cancelled</Tab>
+                {/* <Tab>Completed</Tab> */}
               </TabList>
               <TabPanel>
-                <div className="mt-10">
+                <div className="mt-10 flex justify-between">
                   <div class="flex text-gray-600">
                     <input
                       class="border-2 border-gray-300 bg-white h-10 px-5 pr-4 rounded-l-lg text-sm focus:outline-none"
@@ -87,6 +85,24 @@ export  function PPOrders() {
                       >
                       <FontAwesomeIcon icon={faSearch} className="text-white" />
                     </button>
+                  </div>
+                  <div>
+                    <Menu>
+                        <MenuHandler>
+                            <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none flex items-center">Export<FaFileDownload className="text-2xl"/></Button>
+                        </MenuHandler>
+                        <MenuList>
+                            <MenuItem>
+                                Export as CSV
+                            </MenuItem>
+                            <MenuItem >
+                                Export as Excel
+                            </MenuItem>
+                            <MenuItem>
+                                Export as PDF 
+                            </MenuItem>
+                        </MenuList>
+                    </Menu>
                   </div>
                 </div>
                 <CardBody>
@@ -135,7 +151,7 @@ export  function PPOrders() {
                             12/11/2022
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Request
+                            Pending
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                             <div className="flex text-xl">
@@ -162,7 +178,7 @@ export  function PPOrders() {
                             10/10/2022
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Active
+                            Cancelled
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                             <div className="flex text-xl">
@@ -187,7 +203,7 @@ export  function PPOrders() {
                             19/11/2022
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Completed
+                            Delivered
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                             <div className="flex text-xl">
@@ -212,7 +228,7 @@ export  function PPOrders() {
                             17/10/2022
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            pending
+                            Delivered
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                             <div className="flex text-xl">
@@ -237,7 +253,7 @@ export  function PPOrders() {
                             25/10/2022
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Completed
+                            Delivered
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                             <div className="flex text-xl">
@@ -262,7 +278,7 @@ export  function PPOrders() {
                             10/11/2022
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Request
+                            Pending
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                             <div className="flex text-xl">
@@ -555,6 +571,9 @@ export  function PPOrders() {
 }
 
 export function POrders() {
+
+  const navigate = useNavigate();
+
   return(
     <div>
       <div className="fs-500 min-h-screen">
@@ -589,7 +608,7 @@ export function POrders() {
           <div className="bg-order rounded-lg h-44 border-2 w-full flex items-center">
             <div className="text-white ml-3 lg:ml-8">
               <p className="lg:text-xl w-8/12 fs-600 fw-600">Shop for quality construction materials today </p>
-              <button className="mt-4 fs-400 fw-600 bg-secondary py-1 lg:py-2 px-4 rounded-md">Go to Shop</button>
+              <button className="mt-4 fs-400 fw-600 bg-secondary py-1 lg:py-2 px-4 rounded-md" onClick={() => navigate("/shop")}>Go to Shop</button>
             </div>
           </div>
           {/* client order table */}
@@ -621,7 +640,7 @@ export function POrders() {
                     <div>
                       <Menu>
                           <MenuHandler>
-                              <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none"><FaFileDownload className="text-2xl"/></Button>
+                              <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none flex items-center">Export <FaFileDownload className="text-2xl"/></Button>
                           </MenuHandler>
                           <MenuList>
                               <MenuItem>
@@ -686,9 +705,15 @@ export function POrders() {
                             Request
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            <div className="flex text-xl">
-                              <p><FaRegEye/></p>
-                            </div>
+                            <Menu placement="left">
+                              <MenuHandler>
+                                <Button  className="p-0 m-0 bg-transparent shadow-none hover:shadow-none text-black"> <FaRegEye className="text-xl"/></Button>
+                              </MenuHandler>
+                              <MenuList>
+                                <MenuItem onClick={() => {navigate("/dashboard/myorderdetails")}}>View Details</MenuItem>
+                                <MenuItem>...</MenuItem>
+                              </MenuList>
+                            </Menu>
                           </td>
                         </tr>
                         <tr>
@@ -711,9 +736,15 @@ export function POrders() {
                             Active
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            <div className="flex text-xl">
-                              <p><FaRegEye/></p>
-                            </div>
+                            <Menu placement="left">
+                              <MenuHandler>
+                                <Button  className="p-0 m-0 bg-transparent shadow-none hover:shadow-none text-black"> <FaRegEye className="text-xl"/></Button>
+                              </MenuHandler>
+                              <MenuList>
+                                <MenuItem>View Details</MenuItem>
+                                <MenuItem>...</MenuItem>
+                              </MenuList>
+                            </Menu>
                           </td>
                         </tr>
                         <tr>
@@ -736,9 +767,15 @@ export function POrders() {
                             Completed
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            <div className="flex text-xl">
-                              <p><FaRegEye/></p>
-                            </div>
+                            <Menu placement="left">
+                              <MenuHandler>
+                                <Button  className="p-0 m-0 bg-transparent shadow-none hover:shadow-none text-black"> <FaRegEye className="text-xl"/></Button>
+                              </MenuHandler>
+                              <MenuList>
+                                <MenuItem>View Details</MenuItem>
+                                <MenuItem>...</MenuItem>
+                              </MenuList>
+                            </Menu>
                           </td>
                         </tr>
                         <tr>
@@ -761,9 +798,15 @@ export function POrders() {
                             pending
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            <div className="flex text-xl">
-                              <p><FaRegEye/></p>
-                            </div>
+                            <Menu placement="left">
+                              <MenuHandler>
+                                <Button  className="p-0 m-0 bg-transparent shadow-none hover:shadow-none text-black"> <FaRegEye className="text-xl"/></Button>
+                              </MenuHandler>
+                              <MenuList>
+                                <MenuItem>View Details</MenuItem>
+                                <MenuItem>...</MenuItem>
+                              </MenuList>
+                            </Menu>
                           </td>
                         </tr>
                         <tr>

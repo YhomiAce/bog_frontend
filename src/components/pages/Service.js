@@ -594,6 +594,18 @@ export default function Service() {
         </div>
         <div className="section">
             <div className="box">
+                <div className="text-center py-4">
+                    <p className="text-xl lg:text-3xl fw-600">What service do you need a service provider for  ?</p>
+                </div>
+                <div className="lg:grid-3 justify-between mt-12">
+                    <div className="service-box"></div>
+                    <div className="service-box"></div>
+                    <div className="service-box"></div>
+                </div>
+            </div>
+        </div>
+        <div className="section">
+            <div className="box">
                 <div>
                     <div className="text-center py-4">
                         <p className="text-xl lg:text-3xl fw-600">What service do you need a service provider for  ?</p>
