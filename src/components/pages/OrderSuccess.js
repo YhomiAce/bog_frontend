@@ -6,7 +6,7 @@ export const OrderSuccess = () => {
   return (
     <div>
         <div className='font-primary'>
-            <Header/>
+            <Header/> 
             <div className='section'>
                 <div className='box'>
                     <div className='flex justify-center items-center'>
@@ -25,6 +25,6 @@ export const OrderSuccess = () => {
             </div>
             <Footer/>
         </div>
-    </div>
+    </div> 
   )
 }

@@ -217,6 +217,7 @@ export const Cart = () => {
                             placeholder="enter your city"
                             className="w-full mt-1 py-2 px-2 border-gray-400 rounded border"
                             name="city"
+                            required
                             id="city"
                             value={city}
                             onChange={form.handleChange}
@@ -233,6 +234,7 @@ export const Cart = () => {
                             placeholder="enter your state"
                             className="w-full mt-1 py-2 px-2 border-gray-400 rounded border"
                             name="state"
+                            required
                             id="state"
                             value={state}
                             onChange={form.handleChange}
@@ -249,6 +251,7 @@ export const Cart = () => {
                             placeholder="enter your country"
                             className="w-full mt-1 py-2 px-2 border-gray-400 rounded border"
                             name="country"
+                            required
                             id="country"
                             value={country}
                             onChange={form.handleChange}
@@ -267,6 +270,7 @@ export const Cart = () => {
                             placeholder="enter your city"
                             className="w-full mt-1 py-2 px-2 border-gray-400 rounded border"
                             name="postal_code"
+                            required
                             id="postal_code"
                             value={postal_code}
                             onChange={form.handleChange}
@@ -278,12 +282,14 @@ export const Cart = () => {
                               {form.errors.postal_code}
                             </p>
                           ) : null}
+                          <label className="block">Address</label>
 
                           <input
                             type="text"
                             placeholder="enter your address"
                             className="w-full mt-2 py-2 px-2 border-gray-400 rounded border"
                             name="address"
+                            required
                             id="address"
                             value={address}
                             onChange={form.handleChange}
@@ -295,21 +301,30 @@ export const Cart = () => {
                             </p>
                           ) : null}
                         </div>
-                      </form>
-                      
                         <div className="fw-600 my-4">
                         <div className="flex justify-between my-4">
                             <p>TOTAL COST</p>
                             <p>NGN {formatNumber(totalAmount)}</p>
-                        </div>
-                        {auth.isAuthenticated ? (
+                                                  </div>
+                                                  
+                        {auth.isAuthenticated ? 
+                                                 ( value.address  !== null && value.address !== '') ?  (
+                                                          
+                            
                             <PaystackButton
+                            
                             text="CHECKOUT"
                             label="CHECKOUT"
                             className="w-full btn bg-primary text-white"
                             {...componentProps}
                             />
-                        ) : (
+                        ):<button
+                            // onClick={() => navigate("/login")}
+                            className="w-full btn bg-primary text-white"
+                            >
+                            CHECKOUT
+                            </button> 
+                            : (
                             <button
                             onClick={() => navigate("/login")}
                             className="w-full btn bg-primary text-white"
@@ -318,6 +333,8 @@ export const Cart = () => {
                             </button>
                         )}
                         </div>
+                      </form>
+                      
                     </div>
                   </div>
                 </div>
