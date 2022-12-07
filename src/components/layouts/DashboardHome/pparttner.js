@@ -162,7 +162,7 @@ export default function ProductDashboard() {
                             12/11/2022
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Request
+                            Pending
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                             <div className="flex text-xl">
@@ -189,7 +189,7 @@ export default function ProductDashboard() {
                             10/10/2022
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Active
+                            Cancelled
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                             <div className="flex text-xl">
@@ -208,13 +208,13 @@ export default function ProductDashboard() {
                             Cement
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            182 Bags
+                            182 Bags of Cement
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                             19/11/2022
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Completed
+                            Delivered
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                             <div className="flex text-xl">
@@ -239,7 +239,7 @@ export default function ProductDashboard() {
                             17/10/2022
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            pending
+                            Delivered
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                             <div className="flex text-xl">
@@ -264,7 +264,7 @@ export default function ProductDashboard() {
                             25/10/2022
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Completed
+                            Delivered
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                             <div className="flex text-xl">
@@ -283,13 +283,13 @@ export default function ProductDashboard() {
                             Cement
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            50 Bags
+                            50 bags
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                             10/11/2022
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Request
+                            Pending
                           </td>
                           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                             <div className="flex text-xl">

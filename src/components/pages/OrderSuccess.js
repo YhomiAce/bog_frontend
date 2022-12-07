@@ -18,7 +18,7 @@ export const OrderSuccess = () => {
                             <p className='mt-3 fs-500'>Order Date - {new Date().toLocaleDateString()}</p>
                         </div>
                     </div>
-                    <div className='lg:grid-3 justify-between lg:mt-10'>
+                    <div className='lg:grid-2 lg:w-11/12 mx-auto justify-between lg:mt-10'>
                         <div>
                             <p className='bg-primary fw-600 py-2 pl-3 text-white w-full'>Shipping Address</p>
                             <div className='px-3 bg-light py-4'>
@@ -27,12 +27,12 @@ export const OrderSuccess = () => {
                                 <p>+234 800 000 0000</p>
                             </div>
                         </div>
-                        <div>
+                        {/* <div>
                             <p className='bg-primary fw-600 pl-3 py-2 text-white w-full'>Shipping Method</p>
                             <div className='px-3 bg-light py-4'>
                                 <p>Flat Rate - Fixed</p>
                             </div>
-                        </div>
+                        </div> */}
                         <div className='bg-light text-end pb-3'>
                             <p className='bg-primary fw-600 px-3 py-2 text-white w-full'>Payment</p>
                             <div className='px-3 bg-light py-4 border-b-2'>
@@ -46,7 +46,7 @@ export const OrderSuccess = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='text-end lg:mt-10'>
+                    <div className='text-end lg:mt-10 mx-auto lg:w-11/12'>
                         <div>
                             <button className='btn-primary'>Continue Shopping</button>
                             <button className='border-pri text-primary fw-500 px-4 py-2 rounded-lg ml-6'>View Orders</button>
