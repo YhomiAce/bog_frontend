@@ -62,7 +62,7 @@ export default function BlogPost() {
                         <div>
                             {/* blog post category*/}
                             <div className="lg:p-6 p-3 pb-4 mt-6 lg:mt-0 rounded-md bg-white">
-                                <p className="fw-600 lg:text-lg pb-3 border-b border-gray-300">Add Photo(s)</p>
+                                <p className="fw-600 lg:text-lg pb-3 border-b border-gray-300">Add Category</p>
                                 <div className="mt-4">
                                     <div className="flex">
                                         <input type="checkbox" />
