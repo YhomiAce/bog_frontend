@@ -9,10 +9,10 @@ import { useNavigate } from "react-router-dom";
 // import { BsThreeDotsVertical } from "react-icons/bs";
 import { useMemo } from "react";
 import * as moment from 'moment'
-import { SuccessAlert } from "../../../../../src/services/endpoint";
+import { SuccessAlert } from "../../../../services/endpoint";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
-import Axios from "../../../../../src/config/config";
+import Axios from "../../../../config/config";
 import {
   Menu,
   MenuHandler,
@@ -87,23 +87,31 @@ function getExportFileBlob({ columns, data, fileType, fileName }) {
   return false;
 }
 
-export default function ProjectTable({status}){
-  const [loading, setLoading] = useState(false);
-  // let  myProjects = useSelector((state) => state.orders. myProjects);
-      let  myProjects = useSelector((state) => state.projects.projects);
-  // console.log(myProjects);
+export default function ProjectsTable({status}){
+  // let   allProjects = useSelector((state) => state.orders.  allProjects);
+      let   allProjects = useSelector((state) => state.allprojects.projects);
+  console.log( allProjects);
     if (status) {
-         myProjects =  myProjects.filter(where => where.status === status)
+          allProjects =   allProjects.filter(where => where.status === status)
     }
   //   const formatNumber = (number) => {
   //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   // }
+    const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate()
     const gotoDetailsPage = (id) => {
-        navigate(`/dashboard/myprojectdetails?projectId=${id}`)
+        navigate(`/dashboard/projectadmindetails?projectId=${id}`)
     }
+  
   const deleteProject = async (id) => {
+ if (loading) {
+    return (
+      <center>
+        {/* <Spinner /> */}
+      </center>
+    );
+  }
        try {
       setLoading(true);
       const config = {
@@ -131,6 +139,7 @@ export default function ProjectTable({status}){
         position: "bottom",
       });
     }
+      
     }
     const formatStatus = (status) => {
       switch (status) {
@@ -166,10 +175,8 @@ export default function ProjectTable({status}){
       }
 
   }
-  // const projectTypes = () => {
-    
-  // }
-
+  
+ 
     const columns = useMemo(
         () => [
           {
@@ -181,7 +188,7 @@ export default function ProjectTable({status}){
             accessor:( row, index) => index +'PRO-234-SUR' + 1 ,
           },
           {
-            Header: "Project Type",
+            Header: " Service Type",
             accessor: "projectTypes",
             Cell: (props) =>formatProductType(props.value)
             
@@ -224,14 +231,8 @@ export default function ProjectTable({status}){
       );
 
     
-      const data = useMemo(() =>  myProjects, [ myProjects]);
-     if (loading) {
-    return (
-      <center>
-        {/* <Spinner /> */}
-      </center>
-    );
-  }
+      const data = useMemo(() =>   allProjects, [  allProjects]);
+    
       return (
         <>
           <div className="overflow-hidden px-4 bg-white py-8 rounded-md">

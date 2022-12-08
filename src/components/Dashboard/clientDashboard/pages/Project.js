@@ -22,7 +22,6 @@ import { useDispatch } from "react-redux";
 //   import { useNavigate } from "react-router-dom";
 
 export default function Projects() {
-    
     const auth = useSelector((state) => state.auth);
     // let adminOrders = useSelector((state) => state.orders.adminOrders);
  const dispatch = useDispatch();
@@ -409,10 +408,10 @@ export function ServiceProject() {
                                             <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
                                                 Status
                                             </th>
-                                            <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
+                                        <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
                                                 Actions
-                                            </th>
-                                            </tr>
+                                        </th>
+                                     </tr>
                                         </thead>
                                         <tbody>
                                             <tr>

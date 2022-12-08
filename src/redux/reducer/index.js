@@ -6,6 +6,7 @@ import  CartReducer  from "./CartReducer";
 import UserReducer from "./UsersReducer";
 import OrderReducer from "./OrderReducer";
 import ProjectReducer from "./ProjectReducer";
+import ProjectsReducer from "./ProjectsReducer";
 
 const rootReducer = combineReducers({
     alert: AlertReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     users: UserReducer,
     orders: OrderReducer,
     projects: ProjectReducer,
+    allprojects: ProjectsReducer,
 });
 
 export default rootReducer;
