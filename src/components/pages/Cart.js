@@ -58,7 +58,7 @@ export const Cart = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const sendOrder = async () => {
+  const sendOrder = async (reference) => {
     try {
       setLoading(true);
       const payload = {
@@ -71,7 +71,7 @@ export const Cart = () => {
           address: value.address,
         },
         paymentInfo: {
-          reference: "TR-" + new Date().getTime().toString(),
+          reference,
           amount: totalAmount,
         },
         discount: 0,
@@ -105,7 +105,7 @@ export const Cart = () => {
   };
   const handlePaystackSuccessAction = (reference) => {
     console.log(reference);
-    sendOrder();
+    sendOrder(reference);
     dispatch(clearCart());
   };
   const handlePaystackCloseAction = () => {

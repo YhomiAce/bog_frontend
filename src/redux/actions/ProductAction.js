@@ -5,17 +5,6 @@ import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
 
 
-
-const authToken = localStorage.getItem("auth_token");
-const config = {
-    headers:
-    {
-        "Content-Type": "application/json",
-        'Authorization': authToken
-    }
-
-}
-
 export const loading = () => {
     return {
         type: ActionType.LOADING
@@ -56,7 +45,7 @@ export const fetchAdminProduct = (payload) => {
         payload
     }
 }
- 
+
 export const DeleteProduct = (payload) => {
     return {
         type: ActionType.DELETE_PRODUCT,
@@ -122,6 +111,15 @@ export const setError = (payload) => {
 export const getProducts = () => {
     return async (dispatch) => {
         try {
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    "Content-Type": "application/json",
+                    'Authorization': authToken
+                }
+
+            }
             dispatch(loading());
             const response = await axios.get('/products/all', config);
             console.log(response);
@@ -144,6 +142,15 @@ export const getProducts = () => {
 export const getCategories = () => {
     return async (dispatch) => {
         try {
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    "Content-Type": "application/json",
+                    'Authorization': authToken
+                }
+
+            }
             dispatch(loading());
             const response = await axios.get('/product/category', config);
             console.log(response);
@@ -166,6 +173,15 @@ export const getCategories = () => {
 export const getSimilarProduct = (category) => {
     return async (dispatch) => {
         try {
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    "Content-Type": "application/json",
+                    'Authorization': authToken
+                }
+
+            }
             dispatch(loading());
             const url = `/products/similar-products?categoryId=${category}`
             const response = await axios.get(url, config);
@@ -189,7 +205,17 @@ export const getSimilarProduct = (category) => {
 export const getUserProducts = (category) => {
     return async (dispatch) => {
         try {
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    "Content-Type": "application/json",
+                    'Authorization': authToken
+                }
+
+            }
             dispatch(loading());
+            console.log({ authToken });
             const response = await axios.get('/products', config);
             console.log(response);
             dispatch(fetchUserProduct(response.data))
@@ -211,6 +237,15 @@ export const getUserProducts = (category) => {
 export const getAdminProducts = (category) => {
     return async (dispatch) => {
         try {
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    "Content-Type": "application/json",
+                    'Authorization': authToken
+                }
+
+            }
             dispatch(loading());
             const response = await axios.get('/product/admin/get-products', config);
             console.log(response);
@@ -229,7 +264,7 @@ export const getAdminProducts = (category) => {
 
     }
 }
- 
+
 
 export const removeProduct = (productId, saveLoading) => {
     return async (dispatch) => {
@@ -293,7 +328,7 @@ export const createProduct = (payload, saveLoading) => {
             saveLoading();
             console.log(error?.response?.data?.message);
             dispatch(setError(error.message));
-            
+
             toaster.notify(
                 error?.response?.data?.message || error.message,
                 {
@@ -379,7 +414,7 @@ export const createCategory = (payload, saveLoading) => {
         try {
             dispatch(loading());
             const url = `/product/category`;
-          
+
             const response = await axios.post(url, payload);
             console.log(response);
             dispatch(addCategory(response.data));

@@ -39,6 +39,8 @@ import Email from "./pages/Email";
 import CreateEmail from "./pages/Email/CreateEmail";
 import OrderDetailsClient from "./pages/OrderDetails Client";
 import ProjectDetailsClient from "./pages/ProjectDetailsClient";
+import OrderRequest from "./pages/OrderRequest";
+import UserOrderDetail from "./pages/UserOrderDetail";
 
 export default function ClientDashboard() {
     
@@ -63,6 +65,7 @@ export default function ClientDashboard() {
                     <Routes element={<ProtectedRoute />}>
                         <Route path="" element={<Dashboard />} />
                         <Route path="orders" element={<Orders />} />
+                        <Route path="order-request" element={<OrderRequest />} />
                         <Route path="products" element={<Products />} />
                         <Route path="projects" element={<Projects />} />
                         <Route path="cart" element={<Cart />} />
@@ -79,6 +82,7 @@ export default function ClientDashboard() {
                         <Route path="ordersadmin" element={<OrdersAdmin/>} />
                         <Route path="myorderdetails" element={<OrderDetailsClient/>} />
                         <Route path="orderadmindetail" element={<OrderDetails/>} />
+                        <Route path="order-detail/:orderId" element={<UserOrderDetail/>} />
                         <Route path="projectsadmin" element={<ProjectsAdmin/>} />
                         <Route path="projectadmindetail" element={<ProjectDetails/>} />
                         <Route path="myprojectdetails" element={<ProjectDetailsClient/>} />
