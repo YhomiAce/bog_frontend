@@ -40,3 +40,4 @@ export const FETCH_ORDERS = "FETCH_ORDERS";
 export const USER_ERROR = "USER_ERROR";
 export const LOADING = "LOADING";
 export const DELETE_CART_ITEM = "DELETE_CART_ITEM";
+export const FETCH_MY_PROJECTS = "FETCH_MY_PROJECTS";
