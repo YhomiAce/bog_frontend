@@ -437,7 +437,7 @@ export default function Homepage() {
                                 <p>A dedicated Customer Care Service will get to know you and your service need and provide a personalised solution.</p>
                             </div>
                             <div className="text-center mt-7 lg:mt-0">
-                            <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670510807/BOG/it-department_1_1_km7eu8.png" alt="support" className="w-36 mx-auto mb-4" />
+                            <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670515982/BOG/flexibility_1_1_ivqqdd.png" alt="support" className="w-36 mx-auto mb-4" />
                                 <p className="fw-700 text-xl">Confidence</p>
                                 <p>Join thousands of individuals who patronizes BOG and experience smooth and standard services.</p>
                             </div>
