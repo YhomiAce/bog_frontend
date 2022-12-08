@@ -41,6 +41,7 @@ import OrderDetailsClient from "./pages/OrderDetails Client";
 import ProjectDetailsClient from "./pages/ProjectDetailsClient";
 import OrderRequest from "./pages/OrderRequest";
 import UserOrderDetail from "./pages/UserOrderDetail";
+import KycAlert from "../assets/KycAlert";
 
 export default function ClientDashboard() {
     
@@ -62,6 +63,7 @@ export default function ClientDashboard() {
                     style={{width: sidebarReduce? "calc(100% - 45px)" : "" ,
                             zIndex: sidebarReduce? "45" : "" }}
                     className="lg:main-p pt-21 home-bg pb-10 relative">
+                    <KycAlert/>
                     <Routes element={<ProtectedRoute />}>
                         <Route path="" element={<Dashboard />} />
                         <Route path="orders" element={<Orders />} />

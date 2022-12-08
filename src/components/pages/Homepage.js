@@ -105,11 +105,18 @@ export default function Homepage() {
                             </p>
                             <div ref={intro1}>
                                 <p className="my-7" >A platform where people can monitor and manage their projects without being encumbered by time and distance.</p>
-                                <Link to="/login">
-                                    <button className="px-4 py-2 rounded bg-secondary">
-                                        Get Started
-                                    </button>
-                                </Link>
+                                <div>
+                                    <Link to="/">
+                                        <button className="rounded-xl bg-secondary">
+                                            <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670504238/BOG/appstore_dvsria.png" alt="appstore" className="w-24 lg:w-32" />
+                                        </button>
+                                    </Link>
+                                    <Link to="/">
+                                        <button className="rounded-xl bg-secondary ml-6">
+                                            <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670504241/BOG/playstore_twyw75.png" alt="appstore" className="w-24 lg:w-32" />
+                                        </button>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                         
@@ -262,16 +269,16 @@ export default function Homepage() {
                             <p className="text-xl lg:text-3xl m-auto text-center lg:w-6/12 w-10/12 fw-600 mb-4 ">Are you looking to provide Services or Goods on BOG?</p>
                             <p className="text-center m-auto lg:w-5/12 w-10/12">Sign up as a professional service provider or, a vendor today and get more jobs.</p>
                         </div>
-                        <div className="mt-12 lg:flex justify-around">
-                            <div className="lg:w-4/12 border-primary bg-white h-64 rounded-lg px-6 pt-8">
+                        <div className="mt-12 lg:grid-2 justify-around">
+                            <div className="bg-secondary-op h-64 rounded-lg px-6 pt-8">
                                 <p className="text-lg fw-600">Sign Up as a Service Partner</p>
                                 <p className="mt-5 mb-7">Setup your account as a service partner and start selling your products fast and easy </p>
-                                <Link to="/signup/profession"><p className="text-secondary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p></Link>
+                                <Link to="/signup/profession"><button className="text-white px-4 py-2 rounded-lg flex items-center fw-600 bg-secondary"><span className="pr-3">Sign Up</span> <BsArrowRight/></button></Link>
                             </div>
-                            <div className="lg:w-4/12 mt-6 bg-white lg:mt-0 border-secondary rounded-lg p-8">
+                            <div className="mt-6 bg-primary-op lg:mt-0 rounded-lg p-8">
                                 <p className="text-lg fw-600">Sign Up as a Product Partner</p>
                                 <p className="mt-5 mb-7">Setup your account as a product partner and start selling your products fast and easy </p>
-                                <Link to="/signup/supply"><p className="text-primary text-lg flex items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></p></Link>
+                                <Link to="/signup/supply"><button className="text-white px-4 py-2 rounded-lg  flex bg-primary items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></button></Link>
                             </div>
                         </div>
                     </div>
@@ -449,6 +456,31 @@ export default function Homepage() {
                         <div className="text-center lg:w-8/12 mt-12 mx-auto ">
                             <Link to="/faqs"><button className="btn-primary lg:px-10 px-4 rounded fs-500">See All FAQs</button></Link>
                         </div>
+                    </div>
+                </div>
+            </div>
+            {/* promote app */}
+            <div className="section">
+                <div className="box">
+                    <div className="bg-primary lg:flex justify-center rounded-xl text-white px-6">
+                        <div className="lg:w-4/12 py-10">
+                            <p className="lg:text-2xl fw-700 text-lg">Let's Build On The Go</p>
+                            <p className="fw-500 fs-500 pt-12">BOG is available on iOS, Andriod and Web.</p>
+                            <p className="fw-500 fs-500 pt-2">Open an account today</p>
+                            <div className="mt-6 lg:mt-12">
+                                <Link to="/">
+                                    <button className="rounded-xl bg-secondary">
+                                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670504238/BOG/appstore_dvsria.png" alt="appstore" className="w-24 lg:w-32" />
+                                    </button>
+                                </Link>
+                                <Link to="/">
+                                    <button className="rounded-xl bg-secondary ml-6">
+                                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670504241/BOG/playstore_twyw75.png" alt="appstore" className="w-24 lg:w-32" />
+                                    </button>
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="lg:w-4/12"></div>
                     </div>
                 </div>
             </div>

@@ -236,7 +236,7 @@ const Table = ({columns, data}) => {
                 <div className="flex">
                 <Menu>
                     <MenuHandler>
-                      <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none"><FaFileDownload className="text-2xl"/></Button>
+                      <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none flex items-center">Export <FaFileDownload className="text-2xl"/></Button>
                     </MenuHandler>
                     <MenuList>
                       <MenuItem onClick={() => {
