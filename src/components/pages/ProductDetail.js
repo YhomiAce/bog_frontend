@@ -25,7 +25,7 @@ export default function ProductDetail() {
     const navigate = useNavigate()
 
     const [itemAdded, setItemAdded] = useState(false)
-    console.log(item)
+    // console.log(item)
     const addItemToCart = (item, cartNum) => {
         dispatch(addToCart(item, cartNum));
         setItemAdded(true);
