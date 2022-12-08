@@ -3,7 +3,6 @@ import axios from "axios";
 
 const requestHeaders = { "Content-Type": "application/json" };
 const authToken = localStorage.getItem("auth_token");
-console.log({authToken});
 
 if (authToken) {
   requestHeaders.Authorization = `${authToken}`;

@@ -36,8 +36,14 @@ export const SwitchAccount = () => {
 
     const fetchUserAccounts = async () => {
         try {
+            const config = {
+                headers: {
+                  "Content-Type": "Application/json",
+                  authorization: localStorage.getItem("auth_token"),
+                },
+              };
             setLoading(true);
-            const response = await Axios.get("/user/get-accounts")
+            const response = await Axios.get("/user/get-accounts",config)
             const data = response.accounts;
             setAccounts(data)
             setLoading(false);
