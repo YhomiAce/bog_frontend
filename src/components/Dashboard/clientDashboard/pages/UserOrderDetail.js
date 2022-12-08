@@ -95,7 +95,7 @@ export default function UserOrderDetail() {
                             <div>
                                 <div className="bg-white lg:p-6 p-3 mt-8 rounded-md">
                                     <div className="flex justify-between border-b border-gray-300 pb-4">
-                                        <p className="fw-600">Items (3)</p>
+                                        <p className="fw-600">Items ({order.order_items.length})</p>
                                         <p className="text-primary"><BiEdit /></p>
                                     </div>
                                     <div className="py-6 border-b border-gray-300 border-dashed">
