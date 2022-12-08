@@ -42,7 +42,7 @@ export default function ProductDashboard() {
         <div className="mt-3">
           <div className="lg:grid-4 justify-between fs-500 fw-600">
             <div className="bg-white px-4 py-3 rounded flex justify-between items-center shades">
-              <Link to="orders" className="flex justify-between items-center w-full">
+              <Link to="order-request" className="flex justify-between items-center w-full">
                 <div>
                   <p className="text-xxl fw-600 pb-2 text-xl">180 </p>
                   <p className="text-gray-600">Total Request</p>
@@ -112,7 +112,7 @@ export default function ProductDashboard() {
                         <p className="fw-600 fs-600 lg:text-lg mb-6 lg:mb-0">Product Request</p>
                     </div>
                     <div>
-                        <Link to="orders"><p className="lg:px-6 px-2 fs-400 lg:fs-600py-1 border border-orange-800 text-secondary rounded-lg fs-400">All Items</p></Link>
+                        <Link to="order-request"><p className="lg:px-6 px-2 fs-400 lg:fs-600py-1 border border-orange-800 text-secondary rounded-lg fs-400">All Items</p></Link>
                     </div>
                 </div>
                 <div>

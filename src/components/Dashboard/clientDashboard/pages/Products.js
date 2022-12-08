@@ -8,7 +8,7 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 // import ReactStars from "react-rating-stars-component";
 import { useState, useEffect } from "react";
 import { Breadcrumbs } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AddProduct from "./Product/AddProduct";
 import ProductItem from "./Product/ProductItem";
 import { useSelector, useDispatch } from "react-redux";
@@ -21,6 +21,7 @@ import RecentProducts from "./Product/RecentProducts";
 
 export default function Products() {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const [productDelete, setProductDelete] = useState(false)
     const [productEdit, setProductEdit] = useState(false)
     const [selectedProduct, setSelectedProduct] = useState(null)
@@ -148,7 +149,7 @@ export default function Products() {
                                 })
                                 }
                             </div>
-                            <p className="px-3 py-1 border border-orange-500 text-center w-8/12 lg:w-6/12 rounded mt-10 mx-auto cursor-pointer">View More Products</p>
+                            <p className="px-3 py-1 border border-orange-500 text-center w-8/12 lg:w-6/12 rounded mt-10 mx-auto cursor-pointer" onClick={() => {navigate("/shop")}}>View More Products</p>
                         </div>
                     </div>
                 </div>
