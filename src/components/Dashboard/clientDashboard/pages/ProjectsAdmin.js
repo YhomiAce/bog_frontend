@@ -1,26 +1,34 @@
-import React, { useRef, useState } from "react";
-import { DownloadTableExcel } from "react-export-table-to-excel";
+import React, { useState, useEffect } from "react";
+// import { DownloadTableExcel } from "react-export-table-to-excel";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import  { Button } from "@material-tailwind/react";
-import {BsThreeDotsVertical} from "react-icons/bs";
+// import {BsThreeDotsVertical} from "react-icons/bs";
 import { Breadcrumbs} from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-import { HiOutlineDocumentDownload } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
+// import { HiOutlineDocumentDownload } from "react-icons/hi";
+// import { useNavigate } from "react-router-dom";
+import ProjectsTable from "../../assets/Tables/ProjectAdminTable";
+import { getProjects } from '../../../../redux/actions/ProjectAction';
+import { useDispatch } from "react-redux";
 
 export default function ProjectsAdmin() {
     
-    const products = useRef(null);
-    const navigate = useNavigate()
+    // const products = useRef(null);
+    // const navigate = useNavigate()
 
     const [adminAdd, setAdminAdd] = useState(false)
 
     function CloseModal() {
         setAdminAdd(false)
     }
-
+     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getProjects());
+        // dispatch(getCategories());
+    }, [dispatch])
+  
     return (
         <div className="">
             <div className="min-h-screen fs-500 relative">
@@ -51,7 +59,8 @@ export default function ProjectsAdmin() {
                         <button className="px-4 lg:py-2 py-1 rounded border-pri text-primary" onClick={() => setAdminAdd(!adminAdd)}>Assign New Order</button>
                     </div>
                 </div>  
-                {/* service contents */}
+                
+                {/* service contents */} 
                 <div className="lg:p-5 px-2 py-4">
                     <div className="bg-white lg:p-5 lg:mt-6 mt-6 rounded-lg">
                         <Tabs className="px-2 lg:px-0 py-5 lg:py-0">
@@ -62,7 +71,9 @@ export default function ProjectsAdmin() {
                                 <Tab>Overdue</Tab>
                             </TabList>
                             <TabPanel>
-                                <div className="mt-10">
+                                <ProjectsTable />
+
+                                {/* <div className="mt-10">
                                     <div className="flex items-center">
                                         <div class="flex text-gray-600">
                                             <input
@@ -215,9 +226,18 @@ export default function ProjectsAdmin() {
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
+                                </div> */}
+                                </TabPanel>
+                                      <TabPanel>
+                                <ProjectsTable status={"pending"} />
                             </TabPanel>
                             <TabPanel>
+                                <ProjectsTable status={"approved"} />
+                            </TabPanel>
+                            <TabPanel>
+                                <ProjectsTable status={"completed"} />
+                            </TabPanel>
+                            {/* <TabPanel>
                                 <div className="mt-10">
                                     <div className="flex items-center">
                                         <div class="flex text-gray-600">
@@ -484,7 +504,7 @@ export default function ProjectsAdmin() {
                                         </tbody>
                                     </table>
                                 </div>
-                            </TabPanel>
+                            </TabPanel> */}
                         </Tabs>
                     </div>
                 </div>

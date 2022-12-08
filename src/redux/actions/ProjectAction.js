@@ -32,9 +32,9 @@ export const setError = (payload) => {
     }
 }
 
-export const  fetchProject = (payload) => {
+export const  fetchProjects = (payload) => {
     return {
-        type: ActionType.FETCH_MY_PROJECTS,
+        type: ActionType.FETCH_ALL_PROJECTS,
         payload
     }
 }
@@ -54,6 +54,30 @@ export const  getMyProject = () => {
             // console.log(`====BY === OLAS==`);
             // console.log(response);
             dispatch( fetchMyProject(response.data))
+        } catch (error) {
+            console.log(error.message);
+            dispatch(setError(error.message));
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+
+    }
+}
+
+export const getProjects = () => {
+    return async (dispatch) => {
+        try {
+            dispatch(loading());
+            const response = await axios.get('/projects/all', config);
+
+            console.log(`====BY === OLAS==`);
+            console.log(response);
+            dispatch( fetchProjects(response.data))
         } catch (error) {
             console.log(error.message);
             dispatch(setError(error.message));
