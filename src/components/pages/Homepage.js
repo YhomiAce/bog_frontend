@@ -412,13 +412,13 @@ export default function Homepage() {
                                 and clients.
                             </p>
                             <p className="my-3">An online marketplace which intends to provide a platform for individuals interested in owning structures in Nigeria/Africa achieve their aim.</p>
-                            <Link to="/login"><button className="btn-primary px-6 mt-6">Get Started</button></Link>
+                            <Link to="/login"><button className="btn-primary px-6 mt-6">Become A Partner</button></Link>
                         </div>
                     </div>
                 </div>
             </div>
             {/* why bog */}
-            <div className="section hidden">
+            <div className="section bg-light">
                 <div className="box">
                    <div>
                         <div className="text-center">
@@ -427,15 +427,17 @@ export default function Homepage() {
                         </div>
                         <div className="lg:grid-3 justify-between mt-12">
                             <div className="text-center">
+                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670510807/BOG/development-plan_1_fyoa8d.png" alt="support" className="w-36 mx-auto mb-4" />
                                 <p className="fw-700 text-xl">Flexibility</p>
                                 <p>Fast application and navigation, and delivery is possible within 24 hours of order.</p>
                             </div>
-                            <div className="text-center">
-                                <img src="https://as1.ftcdn.net/v2/jpg/02/28/29/12/1000_F_228291267_os5HEL8EApenUIuQFpBmHZfT79HXh1wM.jpg" alt="support" className="w-36 mx-auto mb-4" />
+                            <div className="text-center lg:mt-0 mt-7">
+                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670510807/BOG/it-department_1_1_km7eu8.png" alt="support" className="w-36 mx-auto mb-4" />
                                 <p className="fw-700 text-xl">Support</p>
                                 <p>A dedicated Customer Care Service will get to know you and your service need and provide a personalised solution.</p>
                             </div>
-                            <div className="text-center">
+                            <div className="text-center mt-7 lg:mt-0">
+                            <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670510807/BOG/it-department_1_1_km7eu8.png" alt="support" className="w-36 mx-auto mb-4" />
                                 <p className="fw-700 text-xl">Confidence</p>
                                 <p>Join thousands of individuals who patronizes BOG and experience smooth and standard services.</p>
                             </div>
@@ -462,9 +464,9 @@ export default function Homepage() {
             {/* promote app */}
             <div className="section">
                 <div className="box">
-                    <div className="bg-primary lg:flex justify-center rounded-xl text-white px-6">
-                        <div className="lg:w-4/12 py-10">
-                            <p className="lg:text-2xl fw-700 text-lg">Let's Build On The Go</p>
+                    <div className="bg-app bg-cover lg:flex items-center justify-center rounded-xl text-white px-6">
+                        <div className="lg:w-5/12 py-10">
+                            <p className="lg:text-3xl fw-700 text-lg">Let's Build On The Go</p>
                             <p className="fw-500 fs-500 pt-12">BOG is available on iOS, Andriod and Web.</p>
                             <p className="fw-500 fs-500 pt-2">Open an account today</p>
                             <div className="mt-6 lg:mt-12">
@@ -480,7 +482,9 @@ export default function Homepage() {
                                 </Link>
                             </div>
                         </div>
-                        <div className="lg:w-4/12"></div>
+                        <div className="lg:w-5/12 lg:pt-10">
+                            <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670510070/BOG/Group_47450_vy1lst.png" alt="app" className="" />
+                        </div>
                     </div>
                 </div>
             </div>
