@@ -1,25 +1,66 @@
 import { Avatar, Breadcrumbs } from "@material-tailwind/react";
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import Axios from "../../../../config/config";
+import Spinner from "../../../layouts/Spinner";
+import React, { useState, useEffect } from "react";
 
 export default function ProjectDetailsClient() {
-    
+    const { search } = useLocation();
+    const projectId = new URLSearchParams(search).get("projectId");
+    const [project, setProjects] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    const getProjectDetail = async () => {
+        try {
+            const config = {
+                headers: {
+                    "Content-Type": "Application/json",
+                    authorization: localStorage.getItem("auth_token"),
+                },
+            };
+            setLoading(true);
+            const url = `/projects/view-project/${projectId}`
+            const response = await Axios.get(url, config);
+            const { data } = response;
+            setProjects(data)
+            setLoading(false);
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
+    }
+    //  const formatNumber = (number) => {
+    //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // }
+
+    useEffect(() => {
+        getProjectDetail();
+        // eslint-disable-next-line 
+    }, [])
+
+    if (loading || !project) {
+        return <center>
+            <Spinner />
+        </center>
+    }
 
     return (
         <div>
+        {
+            project &&
             <div className="min-h-screen fs-500 relative">
                 <div className="w-full py-8 bg-white px-4">
-                    <p className="text-2xl fw-600 lg:flex items-center">Project ID: <span className="text-primary px-3">LAN-234-SUR</span> <span className="text-xs text-blue-500 bg-light px-2">Ongoing</span></p>
+                    <p className="text-2xl fw-600 lg:flex items-center">Project ID: <span className="text-primary px-3">{project?.projectSlug}</span> <span className="text-xs text-blue-500 bg-light px-2">Ongoing</span></p>
                     <p className="fs-400 text-gray-600 mt-2">View project details</p>
                     <Breadcrumbs className="bg-white pl-0 mt-4">
                         <Link to="/" className="opacity-60">
                             <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-4 w-4"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
                             >
-                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                             </svg>
                         </Link>
                         <Link to="/dashboard" className="opacity-60">
@@ -32,7 +73,7 @@ export default function ProjectDetailsClient() {
                             <span>Project Details</span>
                         </Link>
                     </Breadcrumbs>
-                </div> 
+                </div>
                 {/* order details */}
                 <div className="lg:p-5 px-2 py-4">
                     <div className="lg:grid-83">
@@ -66,7 +107,7 @@ export default function ProjectDetailsClient() {
                                 </div>
                                 <div className="flex fw-500 justify-between pt-6">
                                     <p>
-                                    Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
+                                        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
                                     </p>
                                 </div>
                             </div>
@@ -111,7 +152,7 @@ export default function ProjectDetailsClient() {
                                 </div>
                                 <div className="flex mt-6">
                                     <div>
-                                        <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" variant="circular" alt="order"  />
+                                        <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" variant="circular" alt="order" />
                                     </div>
                                     <div className="grid fs-400 content-between pl-4 fw-500">
                                         <p>BOG Surveyor</p>
@@ -121,7 +162,7 @@ export default function ProjectDetailsClient() {
                                 </div>
                                 <div className="flex mt-3">
                                     <div>
-                                        <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" variant="circular" alt="order"  />
+                                        <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" variant="circular" alt="order" />
                                     </div>
                                     <div className="grid fs-400 content-between pl-4 fw-500">
                                         <p>BOG Surveyor</p>
@@ -148,14 +189,14 @@ export default function ProjectDetailsClient() {
                                     <p className="fw-600">My Info</p>
                                 </div>
                                 <div className="flex mt-6">
-                                            <div>
-                                                <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" variant="circular" alt="order"  />
-                                            </div>
-                                            <div className="grid fs-400 content-between pl-4 fw-500">
-                                                <p>Chukka Uzo</p>
-                                                <p className="text-gray-600">Private Client</p>
-                                            </div>
-                                        </div>
+                                    <div>
+                                        <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" variant="circular" alt="order" />
+                                    </div>
+                                    <div className="grid fs-400 content-between pl-4 fw-500">
+                                        <p>Chukka Uzo</p>
+                                        <p className="text-gray-600">Private Client</p>
+                                    </div>
+                                </div>
                                 <div className="fs-400 fw-500 mt-4">
                                     <div className="flex">
                                         <p className="text-gray-600">Phone:</p>
@@ -171,6 +212,7 @@ export default function ProjectDetailsClient() {
                     </div>
                 </div>
             </div>
+        }
         </div>
         )
 }
