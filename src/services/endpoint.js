@@ -2,6 +2,14 @@ import Axios from "../config/config";
 import Swal from "sweetalert2";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
+// import { useNavigate } from 'react-router-dom';
+import  { Navigate } from 'react-router-dom'
+
+export const Login = () => {
+    // console.log("Login")
+    // const navigate = useNavigate();
+    // navigate("/login")
+}
 
 export const updateAccount = async (payload, headers) => {
     try {
@@ -47,6 +55,34 @@ export const SuccessAlert = (message) => {
         confirmButtonColor: "#3F79AD",
     })
 }
+export const WarningAlert = (message) => {
+     try {
+        Swal.fire({
+            title: "Warning",
+            imageUrl: "https://media.istockphoto.com/id/894875516/vector/exclamation-point-sign-in-red-triangle-vector-icon.jpg?s=612x612&w=0&k=20&c=AYMHwOnNCaWz8j3ubjC24cBrlk_ei_oCB3kS-UwvZtU=",
+            imageWidth: "75px",
+            text: message,
+            buttonsStyling: "false",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#3F79AD",
+            // allowOutsideClick: true
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                    return <Navigate to='/login' replace={true}  />
+
+                // Login()
+                // n("/login");
+                // Swal.fire('Saved!', '', 'success')
+
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        });
+    }catch (error) {
+
+    }
+  }
 
 export const SuccessAlertWithRedirection = (message, goto) => {
     Swal.fire({

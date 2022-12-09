@@ -9,9 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import Axios from '../../../src/config/config';
 import { SuccessAlert } from '../../../src/services/endpoint';
+import { WarningAlert } from '../../../src/services/endpoint';
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
  import Spinner from '../layouts/Spinner';
+import Swal from "sweetalert2";
 
 export default function Service() {
     const navigate = useNavigate();
@@ -79,7 +81,24 @@ export default function Service() {
         setBCon(false)
     }
       
- 
+    const AuhtCheck = () => {
+           Swal.fire({
+            title: "Warning",
+            imageUrl: "https://media.istockphoto.com/id/894875516/vector/exclamation-point-sign-in-red-triangle-vector-icon.jpg?s=612x612&w=0&k=20&c=AYMHwOnNCaWz8j3ubjC24cBrlk_ei_oCB3kS-UwvZtU=",
+            imageWidth: "75px",
+            text: 'Please Login First!',
+            buttonsStyling: "false",
+            confirmButtonText: "Login Now",
+            confirmButtonColor: "#3F79AD",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                 navigate("/login");
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        });
+    }
+    
     const makeRequest = async () => {
       console.log('makeRequest')
         try {
@@ -197,7 +216,8 @@ export default function Service() {
             }
         );
     }
-  }
+    }
+    const MAX_LENGTH = 5;
     const [surveyPlan, setSurveyPlan] = useState([]);
     const [landandproperty, setLandandProerty] = useState([]);
     const [atitechturePlan, setAtitechturePlan] = useState([]);
@@ -212,61 +232,245 @@ export default function Service() {
     const [taxClearance, setTaxClearance] = useState([]);
     const [letterofsupervision, setLetterofSupervision] = useState([]);
     const [stampandseal, seStampandSeal] = useState([]);
+    const [selectedpro, setproperties] = useState([]);
+    const [selectedsp, setSp] = useState([]);
+    const [selectedap, setAp] = useState([]);
+    const [selectedstp, setStp] = useState([]);
+    const [selectedsmc, setSmc] = useState([]);
+    const [selectedelp, setElp] = useState([]);
+    const [selectedsoi, setSoi] = useState([]);
+    const [selectedcos, setSoc] = useState([]);
+    const [selectedcusp, setSusp] = useState([]);
+    const [selectedcusap, setSusap] = useState([]);
+    const [selectedcusep, setSusep] = useState([]);
+    const [selectedcustp, setSustp] = useState([]);
+    const [selectedculs, setSuls] = useState([]);
+    const [selectedculsss, setSulsss] = useState([]);
+
     const handleFileChangesp = (e) => {
+          const tergetfile = Array.from(e.target.files);
+         if (tergetfile.length > MAX_LENGTH) {
+            e.preventDefault();
+              WarningAlert(`Cannot upload files more than ${MAX_LENGTH}`);
+            return;
+        }
+          let pArray = tergetfile.map((option) => {
+            let p = {};
+             p.name = option.name;
+            return p;
+          });
+        setSp(pArray)
         // console.log(Array.from(e.target.files));
         setSurveyPlan(Array.from(e.target.files));
     }
     const handleFileChangeatp = (e) => {
+          const tergetfile = Array.from(e.target.files);
+         if (tergetfile.length > MAX_LENGTH) {
+            e.preventDefault();
+              WarningAlert(`Cannot upload files more than ${MAX_LENGTH}`);
+            return;
+        }
+          let pArray = tergetfile.map((option) => {
+            let p = {};
+             p.name = option.name;
+            return p;
+          });
+        setAp(pArray)
         // console.log(Array.from(e.target.files));
         setAtitechturePlan(Array.from(e.target.files));
     }
     const handleFileChangespstp = (e) => {
+         const tergetfile = Array.from(e.target.files);
+         if (tergetfile.length > MAX_LENGTH) {
+            e.preventDefault();
+              WarningAlert(`Cannot upload files more than ${MAX_LENGTH}`);
+            return;
+        }
+          let pArray = tergetfile.map((option) => {
+            let p = {};
+             p.name = option.name;
+            return p;
+          });
+        setStp(pArray)
         // console.log(Array.from(e.target.files));
         setStructuralPlan(Array.from(e.target.files));
     }
     const handleFileChangemp = (e) => {
+         const tergetfile = Array.from(e.target.files);
+         if (tergetfile.length > MAX_LENGTH) {
+            e.preventDefault();
+              WarningAlert(`Cannot upload files more than ${MAX_LENGTH}`);
+            return;
+        }
+          let pArray = tergetfile.map((option) => {
+            let p = {};
+             p.name = option.name;
+            return p;
+          });
+        setSmc(pArray)
         // console.log(Array.from(e.target.files));
         setMecanicalPlan(Array.from(e.target.files));
     }
     const handleFileChangeep = (e) => {
+         const tergetfile = Array.from(e.target.files);
+         if (tergetfile.length > MAX_LENGTH) {
+            e.preventDefault();
+              WarningAlert(`Cannot upload files more than ${MAX_LENGTH}`);
+            return;
+        }
+          let pArray = tergetfile.map((option) => {
+            let p = {};
+             p.name = option.name;
+            return p;
+          });
+        setElp(pArray)
         // console.log(Array.from(e.target.files));
         setElectricPlan(Array.from(e.target.files));
     }
 
-     const handleFileChangestp = (e) => {
+    const handleFileChangestp = (e) => {
+           const tergetfile = Array.from(e.target.files);
+         if (tergetfile.length > MAX_LENGTH) {
+            e.preventDefault();
+              WarningAlert(`Cannot upload files more than ${MAX_LENGTH}`);
+            return;
+        }
+          let pArray = tergetfile.map((option) => {
+            let p = {};
+             p.name = option.name;
+            return p;
+          });
+        setSoi(pArray)
         // console.log(Array.from(e.target.files));
         setSoilTestReport(Array.from(e.target.files));
      }
-     const handleFileChangecfo = (e) => {
+    const handleFileChangecfo = (e) => {
+          const tergetfile = Array.from(e.target.files);
+         if (tergetfile.length > MAX_LENGTH) {
+            e.preventDefault();
+              WarningAlert(`Cannot upload files more than ${MAX_LENGTH}`);
+            return;
+        }
+          let pArray = tergetfile.map((option) => {
+            let p = {};
+             p.name = option.name;
+            return p;
+          });
+        setSoc(pArray)
+         
         // console.log(Array.from(e.target.files));
         setCofOorRofO(Array.from(e.target.files));
     }
     const handleFileChangeusp = (e) => {
+        const tergetfile = Array.from(e.target.files);
+         if (tergetfile.length > MAX_LENGTH) {
+            e.preventDefault();
+              WarningAlert(`Cannot upload files more than ${MAX_LENGTH}`);
+            return;
+        }
+          let pArray = tergetfile.map((option) => {
+            let p = {};
+             p.name = option.name;
+            return p;
+          });
+        setSusp(pArray)
         // console.log(Array.from(e.target.files));
         setSitePlan(Array.from(e.target.files));
     }
     const handleFileChangeusap = (e) => {
+         const tergetfile = Array.from(e.target.files);
+         if (tergetfile.length > MAX_LENGTH) {
+            e.preventDefault();
+              WarningAlert(`Cannot upload files more than ${MAX_LENGTH}`);
+            return;
+        }
+          let pArray = tergetfile.map((option) => {
+            let p = {};
+             p.name = option.name;
+            return p;
+          });
+        setSusap(pArray)
         // console.log(Array.from(e.target.files));
         setSiteAnalysisReport(Array.from(e.target.files));
     }
     const handleFileChangeuei = (e) => {
+         const tergetfile = Array.from(e.target.files);
+         if (tergetfile.length > MAX_LENGTH) {
+            e.preventDefault();
+              WarningAlert(`Cannot upload files more than ${MAX_LENGTH}`);
+            return;
+        }
+          let pArray = tergetfile.map((option) => {
+            let p = {};
+             p.name = option.name;
+            return p;
+          });
+        setSusep(pArray)
         // console.log(Array.from(e.target.files));
         setEnviromentImpactReport(Array.from(e.target.files));
     }
     const handleFileChangeutc = (e) => {
+         const tergetfile = Array.from(e.target.files);
+         if (tergetfile.length > MAX_LENGTH) {
+            e.preventDefault();
+              WarningAlert(`Cannot upload files more than ${MAX_LENGTH}`);
+            return;
+        }
+          let pArray = tergetfile.map((option) => {
+            let p = {};
+             p.name = option.name;
+            return p;
+          });
+        setSustp(pArray)
         // console.log(Array.from(e.target.files));
         setTaxClearance(Array.from(e.target.files));
     }
     const handleFileChangeuls = (e) => {
+          const tergetfile = Array.from(e.target.files);
+         if (tergetfile.length > MAX_LENGTH) {
+            e.preventDefault();
+              WarningAlert(`Cannot upload files more than ${MAX_LENGTH}`);
+            return;
+        }
+          let pArray = tergetfile.map((option) => {
+            let p = {};
+             p.name = option.name;
+            return p;
+          });
+        setSuls(pArray)
         // console.log(Array.from(e.target.files));
         setLetterofSupervision(Array.from(e.target.files));
     }
     const handleFileChangeusss = (e) => {
+        const tergetfile = Array.from(e.target.files);
+         if (tergetfile.length > MAX_LENGTH) {
+            e.preventDefault();
+              WarningAlert(`Cannot upload files more than ${MAX_LENGTH}`);
+            return;
+        }
+          let pArray = tergetfile.map((option) => {
+            let p = {};
+             p.name = option.name;
+            return p;
+          });
+        setSulsss(pArray)
         // console.log(Array.from(e.target.files));
         seStampandSeal(Array.from(e.target.files));
     }
+    
     const handleLandandProperties = (e) => {
-        // console.log(Array.from(e.target.files));
+        const tergetfile = Array.from(e.target.files);
+         if (tergetfile.length > MAX_LENGTH) {
+            e.preventDefault();
+              WarningAlert(`Cannot upload files more than ${MAX_LENGTH}`);
+            return;
+        }
+          let pArray = tergetfile.map((option) => {
+            let p = {};
+             p.name = option.name;
+            return p;
+          });
+        setproperties(pArray)
         setLandandProerty(Array.from(e.target.files));
     }
 
@@ -590,7 +794,7 @@ export default function Service() {
                 </div>
                 <div className="lg:grid-3 justify-between mt-12">
                     <div className="service-box"></div>
-                    <div className="service-box"></div>
+                    <div className="service-box"></div> 
                     <div className="service-box"></div>
                 </div>
             </div>
@@ -602,20 +806,45 @@ export default function Service() {
                         <p className="text-xl lg:text-3xl fw-600">What service do you need a service provider for  ?</p>
                     </div>
                     <div className="lg:grid-3 justify-between lg:mt-24 mt-12">
-                        <div className="shadow-md h-48 center-item">
-                            <div className="cursor-pointer" onClick={() => {setLandSurvey(true)}}>
+                              <div className="shadow-md h-48 center-item">
+                                  <div className="cursor-pointer" onClick={() => {
+                                          // eslint-disable-next-line
+                                      {
+                                                  // eslint-disable-next-line
+                                          auth.isAuthenticated ?
+                                              setLandSurvey(true) :
+                                              AuhtCheck()
+                                      }
+                                  }}>
                                 <img src={require("../assets/images/survey.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
                                 <p className="fw-500">Land Survey</p>
                             </div>
                         </div>
                         <div className="shadow-md h-48 center-item lg:mt-0 mt-10">
-                            <div className="cursor-pointer" onClick={() => {setGInvest(true)}}>
+                                  <div className="cursor-pointer" onClick={() => {
+                                          // eslint-disable-next-line
+                                      {
+                                                  // eslint-disable-next-line
+                                          auth.isAuthenticated ?
+                                             setGInvest(true):
+                                              AuhtCheck()
+                                      }
+                                  }}>
                             <img src={require("../assets/images/GI.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
                                 <p className="fw-500">Geotechnical Investigation</p>
                             </div>
                         </div>
                         <div className="shadow-md h-48 center-item lg:mt-0 mt-10">
-                            <div className="cursor-pointer" onClick={() => {setCDraw(true)}}>
+                                  <div className="cursor-pointer" onClick={() => {
+                                         // eslint-disable-next-line
+                                      {
+                                                  // eslint-disable-next-line
+                                          auth.isAuthenticated ?
+                                             setCDraw(true):
+                                              AuhtCheck()
+                                      }
+                                      
+                                  }}>
                             <img src={require("../assets/images/CS.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
                                 <p className="fw-500">Construction Drawing</p>
                             </div>
@@ -623,13 +852,29 @@ export default function Service() {
                     </div>
                     <div  className="lg:grid-23 justify-evenly mb-24">
                         <div className="shadow-md h-48 center-item mt-10">
-                            <div className="cursor-pointer" onClick={() => {setBAppove(true)}}>
+                                  <div className="cursor-pointer" onClick={() => {
+                                        // eslint-disable-next-line
+                                      {
+                                                  // eslint-disable-next-line
+                                          auth.isAuthenticated ?
+                                             setBAppove(true):
+                                              AuhtCheck()
+                                      }
+                                   }}>
                             <img src={require("../assets/images/BA.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
                                 <p className="fw-500">Building Approval</p>
                             </div>
                         </div>
                         <div className="shadow-md h-48 center-item  mt-10">
-                            <div className="cursor-pointer" onClick={() => {setBCon(true)}}>
+                                  <div className="cursor-pointer" onClick={() => {
+                                       // eslint-disable-next-line
+                                      {
+                                                  // eslint-disable-next-line
+                                          auth.isAuthenticated ?
+                                             setBCon(true):
+                                              AuhtCheck()
+                                      }
+                                   }}>
                             <img src={require("../assets/images/SC.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
                                 <p className="fw-500">Building Contractor</p>
                             </div>
@@ -1076,7 +1321,11 @@ export default function Service() {
                             <div class="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
                                 <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
                                 <input class="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleLandandProperties} multiple  />
-                            </div>
+                                  </div>
+                                  {selectedpro?.map((item) => { 
+                                      return (<p>{item.name}</p>)
+                                  })}
+                                
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
                             </p>
@@ -1311,7 +1560,10 @@ export default function Service() {
                                 <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
                                 <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" name='photosuveyplan'
                                 onChange={handleFileChangesp}  multiple />
-                            </div>
+                                  </div>
+                                    {selectedsp?.map((item) => { 
+                                      return (<p>{item.name}</p>)
+                                  })}
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
                             </p>
@@ -1325,6 +1577,9 @@ export default function Service() {
                                           <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
                                           <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeatp} multiple />
                                       </div>
+                                        {selectedap?.map((item) => { 
+                                            return (<p>{item.name}</p>)
+                                        })}
                                       <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                           Audio
                                       </p>
@@ -1339,6 +1594,10 @@ export default function Service() {
                                           <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
                                           <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangespstp} multiple />
                                       </div>
+                                       {selectedstp?.map((item) => { 
+                                            return (<p>{item.name}</p>)
+                                        })}
+                                      
                                       <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                           Audio
                                       </p>
@@ -1353,6 +1612,10 @@ export default function Service() {
                                           <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
                                           <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangemp} multiple />
                                       </div>
+                                      {selectedsmc?.map((item) => { 
+                                            return (<p>{item.name}</p>)
+                                        })}
+                                      
                                       <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                           Audio
                                       </p>
@@ -1367,6 +1630,10 @@ export default function Service() {
                                           <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
                                           <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeep} multiple />
                                       </div>
+                                         {selectedelp?.map((item) => { 
+                                            return (<p>{item.name}</p>)
+                                        })}
+                                      
                                       <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                           Audio
                                       </p>
@@ -1627,7 +1894,10 @@ export default function Service() {
                                 <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
                                 <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" name='photosuveyplan'
                                 onChange={handleFileChangesp}  multiple />
-                            </div>
+                                  </div>
+                                    {selectedsp?.map((item) => { 
+                                      return (<p>{item.name}</p>)
+                                  })}
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
                             </p>
@@ -1640,7 +1910,10 @@ export default function Service() {
                                       <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
                                           <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
                                           <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeatp} multiple />
-                                      </div>
+                                  </div>
+                                   {selectedap?.map((item) => { 
+                                            return (<p>{item.name}</p>)
+                                        })}
                                       <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                           Audio
                                       </p>
@@ -1653,7 +1926,10 @@ export default function Service() {
                                       <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
                                           <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
                                           <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangespstp} multiple />
-                                      </div>
+                                  </div>
+                                      {selectedstp?.map((item) => { 
+                                            return (<p>{item.name}</p>)
+                                        })}
                                       <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                           Audio
                                       </p>
@@ -1666,7 +1942,10 @@ export default function Service() {
                                       <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
                                           <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
                                           <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangemp} multiple />
-                                      </div>
+                                  </div>
+                                     {selectedsmc?.map((item) => { 
+                                            return (<p>{item.name}</p>)
+                                        })}
                                       <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                           Audio
                                       </p>
@@ -1678,8 +1957,11 @@ export default function Service() {
                                       </label>
                                       <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
                                           <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
-                                          <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeep} multiple />
+                                      <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeep} multiple />
                                       </div>
+                                        {selectedelp?.map((item) => { 
+                                            return (<p>{item.name}</p>)
+                                        })}
                                       <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                           Audio
                                       </p>
@@ -1692,7 +1974,10 @@ export default function Service() {
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
                                 <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
                                 <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangestp}  multiple />
-                            </div>
+                                  </div>
+                                   {selectedsoi?.map((item) => { 
+                                            return (<p>{item.name}</p>)
+                                  })}
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
                             </p>
@@ -1704,7 +1989,10 @@ export default function Service() {
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
                                 <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
                                 <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangecfo} multiple />
-                            </div>
+                                  </div>
+                                     {selectedcos?.map((item) => { 
+                                     return (<p>{item.name}</p>)
+                                  })}
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
                             </p>
@@ -1716,11 +2004,15 @@ export default function Service() {
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
                                 <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
                                 <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeusp}  multiple />
-                            </div>
+                                  </div>
+                                    {selectedcusp?.map((item) => { 
+                                     return (<p>{item.name}</p>)
+                                  })}
+                              
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
                             </p>
-                        </div>
+                              </div>
                         <div className="mt-3 lg:mt-6 w-full">
                             <label className="block fw-600">
                             11. Upload Site Analysis Report
@@ -1728,7 +2020,10 @@ export default function Service() {
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
                                 <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
                                 <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeusap}   multiple />
-                            </div>
+                                  </div>
+                                  {selectedcusap?.map((item) => { 
+                                     return (<p>{item.name}</p>)
+                                  })}
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
                             </p>
@@ -1740,7 +2035,11 @@ export default function Service() {
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
                                 <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
                                 <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file"  onChange={handleFileChangeuei}  multiple />
-                            </div>
+                                  </div>
+                                  {selectedcusep?.map((item) => { 
+                                     return (<p>{item.name}</p>)
+                                  })}
+                                  
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
                             </p>
@@ -1752,7 +2051,11 @@ export default function Service() {
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
                                 <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
                                 <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeutc}  multiple />
-                            </div>
+                                  </div>
+                                    {selectedcustp?.map((item) => { 
+                                     return (<p>{item.name}</p>)
+                                  })}
+                                  
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
                             </p>
@@ -1764,7 +2067,11 @@ export default function Service() {
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
                                 <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
                                 <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeuls}  multiple />
-                            </div>
+                                  </div>
+                                   {selectedculs?.map((item) => { 
+                                     return (<p>{item.name}</p>)
+                                  })}
+                                  
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
                             </p>
@@ -1776,7 +2083,11 @@ export default function Service() {
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
                                 <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
                                 <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file"  onChange={handleFileChangeusss}   multiple />
-                            </div>
+                                  </div>
+                                    {selectedculsss?.map((item) => {
+                                     return (<p>{item.name}</p>)
+                                  })}
+                                  
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
                             </p>
@@ -1891,7 +2202,10 @@ export default function Service() {
                                 <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
                                 <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" name='photosuveyplan'
                                 onChange={handleFileChangesp}  multiple />
-                            </div>
+                                  </div>
+                                    {selectedsp?.map((item) => { 
+                                      return (<p>{item.name}</p>)
+                                  })}
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
                             </p>
@@ -1905,6 +2219,9 @@ export default function Service() {
                                           <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
                                           <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeatp} multiple />
                                       </div>
+                                       {selectedap?.map((item) => { 
+                                            return (<p>{item.name}</p>)
+                                        })}
                                       <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                           Audio
                                       </p>
@@ -1919,6 +2236,9 @@ export default function Service() {
                                           <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
                                           <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangespstp} multiple />
                                       </div>
+                                          {selectedstp?.map((item) => { 
+                                            return (<p>{item.name}</p>)
+                                        })}
                                       <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                           Audio
                                       </p>
@@ -1933,6 +2253,9 @@ export default function Service() {
                                           <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
                                           <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangemp} multiple />
                                       </div>
+                                         {selectedsmc?.map((item) => { 
+                                            return (<p>{item.name}</p>)
+                                        })}
                                       <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                           Audio
                                       </p>
@@ -1946,6 +2269,9 @@ export default function Service() {
                                       <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
                                           <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
                                           <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeep} multiple />
+                                            {selectedelp?.map((item) => { 
+                                            return (<p>{item.name}</p>)
+                                        })}
                                       </div>
                                       <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                           Audio
