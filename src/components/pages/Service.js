@@ -83,24 +83,28 @@ export default function Service() {
       
     const AuhtCheck = () => {
            Swal.fire({
-            title: "Warning",
-            imageUrl: "https://media.istockphoto.com/id/894875516/vector/exclamation-point-sign-in-red-triangle-vector-icon.jpg?s=612x612&w=0&k=20&c=AYMHwOnNCaWz8j3ubjC24cBrlk_ei_oCB3kS-UwvZtU=",
+            title: " ",
+            imageUrl: "https://uxwing.com/wp-content/themes/uxwing/download/crime-security-military-law/authentication-icon.png",
             imageWidth: "75px",
-            text: 'Please Login First!',
+            //text: 'Please Sign Up or Login to request for a Service Provider. Thank You!',
+            html: 'Please <a href="/signup" style=" color: red; "> Sign Up </a> or <a href="/login" style=" color: red; ">Login</a> to request for a Service Provider. Thank You!',
             buttonsStyling: "false",
-            confirmButtonText: "Login Now",
+            denyButtonText: 'Sign Up',
+            confirmButtonText: "Login",
+            showDenyButton:true,
             confirmButtonColor: "#3F79AD",
+            denyButtonColor: "#ec8b20"
         }).then((result) => {
             if (result.isConfirmed) {
                  navigate("/login");
             } else if (result.isDenied) {
-                Swal.fire('Changes are not saved', '', 'info')
+                navigate("/signup");
             }
         });
     }
     
     const makeRequest = async () => {
-      console.log('makeRequest')
+    //   console.log('makeRequest')
         try {
             setLoading(true)
             const payload = {
@@ -123,6 +127,7 @@ export default function Service() {
             
             CloseSurvey()
             SuccessAlert("Request in Progress!");
+            navigate("/dashboard/projects")
             setLoading(false);
 
         } catch (error) {
@@ -559,6 +564,7 @@ export default function Service() {
                 const result = await submitDraw(fd, config);
                 if (result.success === true) {
                      SuccessAlert("Drawing Project created successfully!");
+                     navigate("/dashboard/projects")
                 }
                  CloseSurvey()
                 setLoading(false)
@@ -607,7 +613,8 @@ export default function Service() {
                 }
                 const result = await submitGeof(fd, config);
                 if (result.success === true) {
-                     SuccessAlert("Geotechnical Investigation created successfully!");
+                    SuccessAlert("Geotechnical Investigation created successfully!");
+                    navigate("/dashboard/projects")
                 }
                  CloseSurvey()
                 setLoading(false)
@@ -671,7 +678,8 @@ export default function Service() {
                 }
                 const result = await submitContruct(fd, config);
                 if (result.success === true) {
-                     SuccessAlert("Buiding Contractor Request created successfully!");
+                    SuccessAlert("Buiding Contractor Request created successfully!");
+                    navigate("/dashboard/projects")
                 }
                  CloseSurvey()
                 setLoading(false)
@@ -750,7 +758,7 @@ export default function Service() {
                 const result = await submitBUidAppr(fd, config);
                 if (result.success === true) {
                     SuccessAlert("Building Approval Project created successfully!");
-                     navigate("/login")
+                    navigate("/dashboard/projects")
                 }
                  CloseSurvey()
                 setLoading(false)

@@ -25,7 +25,8 @@ import "jspdf-autotable";
 import { useExportData } from "react-table-plugins";
 import Papa from "papaparse";
 import * as XLSX from 'xlsx'
-
+import { getMyProject } from '../../../../redux/actions/ProjectAction';
+import { useDispatch } from "react-redux";
  
 
 // export table files
@@ -87,7 +88,9 @@ function getExportFileBlob({ columns, data, fileType, fileName }) {
   return false;
 }
 
-export default function ProjectTable({status}){
+export default function ProjectTable({ status }) {
+   const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(false);
   // let  myProjects = useSelector((state) => state.orders. myProjects);
       let  myProjects = useSelector((state) => state.projects.projects);
@@ -113,10 +116,11 @@ export default function ProjectTable({status}){
         },
       };
          await Axios.delete(`/projects/delete/${id}`, config).then((response) => {
-        console.log(response)
+        // console.log(response)
       });
       setLoading(false);
-      SuccessAlert("Project Deleted Successfully!");
+         SuccessAlert("Project Deleted Successfully!");
+        dispatch(getMyProject());
     } catch (error) {
       setLoading(false);
       if (error.response.data.message) {
@@ -178,7 +182,7 @@ export default function ProjectTable({status}){
           },
           {
             Header: "Project ID		",
-            accessor:( row, index) => index +'PRO-234-SUR' + 1 ,
+            accessor:"projectSlug" ,
           },
           {
             Header: "Project Type",
