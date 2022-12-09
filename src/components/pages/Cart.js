@@ -29,7 +29,7 @@ export const Cart = () => {
      title: " ",
      imageUrl: "https://uxwing.com/wp-content/themes/uxwing/download/crime-security-military-law/authentication-icon.png",
      imageWidth: "75px",
-     //text: 'Please Sign Up or Login to request for a Service Provider. Thank You!',
+     //text: 'Please Sign Up or Login to order for products. Thank You!',
      html: 'Please <a href="/signup" style=" color: red; "> Sign Up </a> or <a href="/login" style=" color: red; ">Login</a> to request for a Service Provider. Thank You!',
      buttonsStyling: "false",
      denyButtonText: 'Sign Up',
