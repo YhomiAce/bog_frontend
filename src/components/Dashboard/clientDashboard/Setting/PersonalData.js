@@ -3,8 +3,9 @@ import { BiCheckCircle } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { updateAccount, SuccessAlert } from '../../../../services/endpoint';
 import Spinner from '../../../layouts/Spinner';
+import { UserAvatar } from '../../assets/Avatar';
 
-const BASE_URL = process.env.REACT_APP_IMAGE_URL;
+// const BASE_URL = process.env.REACT_APP_IMAGE_URL;
 
 const PersonalData = () => {
     const user = useSelector((state) => state.auth.user);
@@ -63,11 +64,7 @@ const PersonalData = () => {
                 <div className="mt-6 lg:mt-0 py-6 px-2 lg:px-8 rounded-lg">
                     <div className="flex items-center lg:my-6">
                         <div>
-                            <img
-                                src={user?.photo ? `${BASE_URL}/${user?.photo}` : "https://i.stack.imgur.com/l60Hf.png"}
-                                alt="profifepic"
-                                className="lg:w-20 w-16"
-                            />
+                            <UserAvatar/>
                         </div>
                         <div className="lg:fs-400 text-xs pl-2 lg:pl-6 w-6/12">
                             <p className="mb-2">Update Profile Picture</p>

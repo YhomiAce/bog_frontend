@@ -157,7 +157,7 @@ export const Cart = () => {
                                 <img
                                   src={item.image}
                                   alt="products"
-                                  className="w-32 lg:w-40 border rounded-md h-32 lg:h-40"
+                                  className="w-32 lg:w-40 border rounded-md h-32 lg:h-36"
                                 />
                               </div>
                               <div className="lg:w-6/12">

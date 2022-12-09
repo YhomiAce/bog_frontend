@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Avatar, Breadcrumbs } from "@material-tailwind/react";
+import {Breadcrumbs } from "@material-tailwind/react";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
@@ -7,6 +7,7 @@ import { getMe } from "../../../../redux/actions/authAction";
 import Axios from "../../../../config/config";
 import { AccountType } from "./AccountType";
 import Spinner from "../../../layouts/Spinner";
+import { UserAvatar } from "../../assets/Avatar";
 
 
 export const SwitchAccount = () => {
@@ -100,11 +101,7 @@ export const SwitchAccount = () => {
                             <p className="text-gray-800">You are currently signed in as a </p>
 
                             <div className="flex mt-4">
-                                <Avatar
-                                    src={user?.photo ? `${BASE_URL}/${user?.photo}` : "https://i.stack.imgur.com/l60Hf.png"}
-                                    alt="profifepic"
-                                    className="lg:w-20 w-16"
-                                />
+                                <UserAvatar/>
                                 <div className="pl-3">
                                     <p className="fw-600">{user ? getUserType(user?.userType) : ""}</p>
                                     <p >{user?.name}</p>

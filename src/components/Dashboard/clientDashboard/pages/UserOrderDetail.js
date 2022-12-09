@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Breadcrumbs } from "@material-tailwind/react";
+import { Breadcrumbs, Progress } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
 // import { BiEdit } from "react-icons/bi";
 import { Link, useParams } from "react-router-dom";
@@ -7,6 +7,7 @@ import Axios from "../../../../config/config";
 import Spinner from "../../../layouts/Spinner";
 import ItemList from "./Order/ItemList";
 import dayjs from 'dayjs';
+import { IoMdCheckmarkCircle } from "react-icons/io"
 
 export default function UserOrderDetail() {
     const { orderId } = useParams();
@@ -89,7 +90,27 @@ export default function UserOrderDetail() {
                     <div className="lg:p-5 px-2 py-4">
                         <div>
                             <p className="fw-600 underline">Order Progress</p>
-                            <div></div>
+                            <div className="my-6 mb-24 lg:my-10 relative w-11/12 mx-auto">
+                                <div className="">
+                                    <Progress value={50} color="amber" />
+                                </div>
+                                <div className="absolute -top-2 o-process">
+                                    <IoMdCheckmarkCircle className="text-2xl circle bg-white text-secondary"/>
+                                    <p className="fw-500 w-8 lg:w-auto fs-400 text-gray-500">Order Sent</p>
+                                </div>
+                                <div className="absolute -top-2 p-process">
+                                    <IoMdCheckmarkCircle className="text-2xl circle bg-white text-secondary"/>
+                                    <p className="fw-500 fs-400 w-8 lg:w-auto  text-gray-500 relative -left-6">Processing Order</p>
+                                </div>
+                                <div className="absolute -top-2 s-process">
+                                    <IoMdCheckmarkCircle className="text-2xl circle bg-white text-gray-400"/>
+                                    <p className="fw-500 fs-400 w-8 lg:w-auto  text-gray-500 relative -left-6">Shipping Order</p>
+                                </div>
+                                <div className="absolute -top-2 d-process">
+                                    <IoMdCheckmarkCircle className="text-2xl circle bg-white text-gray-400"/>
+                                    <p className="fw-500 fs-400 text-gray-500 relative -left-6">Delivered</p>
+                                </div>
+                            </div>
                         </div>
                         <div className="lg:grid-83">
                             <div>

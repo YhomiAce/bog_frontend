@@ -79,7 +79,7 @@ export default function ProductDetail() {
                                 <div className="lg:pl-8 mt-4 lg:w-5/12 lg:mt-0 relative">
                                     <p className="lg:text-3xl text-lg fw-600">{item.name}</p>
                                     <p className="fw-600 lg:py-4 py-2 text-gray-600"><span className="pr-2 ">Product Category :</span>{item.category.name}</p>
-                                    <div>
+                                    <div className="flex items-center">
                                         <div className="hidden lg:block">
                                             <ReactStars
                                                 edit={false}
@@ -94,6 +94,7 @@ export default function ProductDetail() {
                                                 size={25}
                                             />
                                         </div>
+                                        <p className="text-gray-500 pl-3">(5 Reviews)</p>
                                     </div>
                                     <p className="lg:text-2xl fs-700 fw-600 lg:py-6 py-2">{item.price}</p>
                                     <div className="relative">
