@@ -1,8 +1,16 @@
 import React from 'react'
 import Footer from './home-comp/Footer'
-import Header from './home-comp/Header'
+import Header from './home-comp/Header';
+import { useNavigate } from "react-router-dom";
+
 
 export const OrderSuccess = () => {
+    const navigate = useNavigate();
+     
+  const gotoLink = (url) => {
+    navigate(url)
+  }
+
   return (
     <div>
         <div className='font-primary'>
@@ -48,8 +56,8 @@ export const OrderSuccess = () => {
                     </div>
                     <div className='text-end lg:mt-10 mx-auto lg:w-11/12'>
                         <div>
-                            <button className='btn-primary'>Continue Shopping</button>
-                            <button className='border-pri text-primary fw-500 px-4 py-2 rounded-lg ml-6'>View Orders</button>
+                            <button className='btn-primary' onClick={() => gotoLink("/shop")}>Continue Shopping</button>
+                            <button className='border-pri text-primary fw-500 px-4 py-2 rounded-lg ml-6' onClick={() => gotoLink("/dashboard/orders")}>View Orders</button>
                         </div>
                     </div>
                 </div>

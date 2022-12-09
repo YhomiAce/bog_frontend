@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import * as ActionType from '../type'; 
 
 const initialState = {
