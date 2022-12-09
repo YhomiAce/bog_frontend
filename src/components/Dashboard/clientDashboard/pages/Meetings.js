@@ -7,8 +7,15 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { BsCameraVideo } from "react-icons/bs";
 import { MdOutlineCancel } from "react-icons/md";
 import { useState } from "react";
-import { FaTimes } from "react-icons/fa";
+import { FaFileDownload, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import {
+    Menu,
+    MenuHandler,
+    MenuList,
+    MenuItem,
+    Button,
+  } from "@material-tailwind/react";
 
 
 export default function Meetings() {
@@ -61,21 +68,37 @@ export default function Meetings() {
                             <Tab>Pending Request</Tab>
                         </TabList>
                         <TabPanel>
-                            <div className="mt-10">
-                            <div class="flex text-gray-600">
-                                <input
-                                class="border-2 border-gray-300 bg-white h-10 px-5 pr-4 rounded-l-lg text-sm focus:outline-none"
-                                type="search"
-                                name="search order by name"
-                                placeholder="Search"
-                                />
-                                <button
-                                type="submit"
-                                class=" bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
-                                >
-                                <FontAwesomeIcon icon={faSearch} className="text-white" />
-                                </button>
-                            </div>
+                            <div className="mt-10 flex justify-between">
+                                <div class="flex text-gray-600">
+                                    <input
+                                    class="border-2 border-gray-300 bg-white h-10 px-5 pr-4 rounded-l-lg text-sm focus:outline-none"
+                                    type="search"
+                                    name="search order by name"
+                                    placeholder="Search"
+                                    />
+                                    <button
+                                    type="submit"
+                                    class=" bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
+                                    >
+                                    <FontAwesomeIcon icon={faSearch} className="text-white" />
+                                    </button>
+                                </div>
+                                <Menu>
+                                    <MenuHandler>
+                                        <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none flex items-center"> Export <FaFileDownload className="text-2xl"/></Button>
+                                    </MenuHandler>
+                                    <MenuList>
+                                        <MenuItem >
+                                            Export as CSV
+                                        </MenuItem>
+                                        <MenuItem>
+                                            Export as Excel
+                                        </MenuItem>
+                                        <MenuItem>
+                                            Export as PDF 
+                                        </MenuItem>
+                                    </MenuList>
+                                </Menu>
                             </div>
                             <CardBody>
                             <div className="overflow-x-auto">

@@ -41,3 +41,5 @@ export const FETCH_USER_ORDERS = "FETCH_USER_ORDERS";
 export const USER_ERROR = "USER_ERROR";
 export const LOADING = "LOADING";
 export const DELETE_CART_ITEM = "DELETE_CART_ITEM";
+export const FETCH_MY_PROJECTS = "FETCH_MY_PROJECTS";
+export const FETCH_ALL_PROJECTS = "FETCH_All_PROJECTS";

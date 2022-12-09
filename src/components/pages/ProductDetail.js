@@ -26,10 +26,9 @@ export default function ProductDetail() {
     const { data: item, loading } = useFetchHook(url);
 
     const navigate = useNavigate()
-
     const [itemAdded, setItemAdded] = useState(false)
-    const [similarProducts, setSimilarProducts] = useState([])
-    console.log(item)
+    const [similarProducts, setSimilarProducts] = useState([]);
+
     const addItemToCart = (item, cartNum) => {
         dispatch(addToCart(item, cartNum));
         setItemAdded(true);

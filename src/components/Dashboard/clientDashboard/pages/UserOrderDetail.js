@@ -77,7 +77,7 @@ export default function UserOrderDetail() {
                             <Link to="/dashboard" className="opacity-60">
                                 <span>Dashboard</span>
                             </Link>
-                            <Link to="" className="opacity-60">
+                            <Link to="/dashboard/orders" className="opacity-60">
                                 <span>Orders</span>
                             </Link>
                             <Link to="" className="">

@@ -128,6 +128,9 @@
   .bg-primary{
     background-color: #3F79AD;
   }
+  .bg-primary-op{
+    background-color: rgba(63, 121, 173, .1);
+  }
   .text-primary{
     color: #3F79AD;
 }
@@ -136,6 +139,9 @@
 }
 .bg-secondary{
   background: #EC8B20;
+}
+.bg-secondary-op{
+  background: rgba(236, 139, 32, .1);
 }
 .bg-light{
   background: #F6FAFD;

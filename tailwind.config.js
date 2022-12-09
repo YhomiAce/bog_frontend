@@ -28,7 +28,8 @@ module.exports = withMT(
           'terms': "url('/src/components/assets/images/terms.png')",
           'privacy': "url('/src/components/assets/images/privacy.png')",
           'fantastic': "linear-gradient(to right bottom, rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.1)),url('/src/components/images/avatar.jpg')",
-          "hero": "linear-gradient(295.54deg, #AFC0FC 17.28%, #3F79AD 70.64%)"
+          "hero": "linear-gradient(295.54deg, #AFC0FC 17.28%, #3F79AD 70.64%)",
+          "app": "url('https://res.cloudinary.com/greenmouse-tech/image/upload/v1670510070/BOG/Frame_466381_ygmfe2.png')"
         }
       },
       fontFamily: {

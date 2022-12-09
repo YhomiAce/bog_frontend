@@ -458,16 +458,6 @@ export default function Service() {
                 fd.append('projectLocation', value.location);
                 fd.append('projectType', projecttype);
                 fd.append('buildingType', residenttype);
-               
-                // fd.append('surveyPlan', surveyPlan);
-                // fd.append('structuralPlan', structuralPlan);
-                // fd.append('architecturalPlan', atitechturePlan);
-                // fd.append('mechanicalPlan', mechanicalplan);
-                // fd.append('electricalPlan', electricalPlan);
-                // fd.append('drawingType', drawing);
-                // if (structuralPlan && structuralPlan !== '') {
-                //     fd.append("structuralPlan", structuralPlan);
-                // }
                 console.log(fd);
                 const config = {
                     headers: {
@@ -555,7 +545,8 @@ export default function Service() {
                 }
                 const result = await submitBUidAppr(fd, config);
                 if (result.success === true) {
-                     SuccessAlert("Building Approval Project created successfully!");
+                    SuccessAlert("Building Approval Project created successfully!");
+                     navigate("/login")
                 }
                  CloseSurvey()
                 setLoading(false)
@@ -592,7 +583,7 @@ export default function Service() {
             </div>
           </div>
         </div>
-        <div className="section">
+        <div className="section hidden">
             <div className="box">
                 <div className="text-center py-4">
                     <p className="text-xl lg:text-3xl fw-600">What service do you need a service provider for  ?</p>

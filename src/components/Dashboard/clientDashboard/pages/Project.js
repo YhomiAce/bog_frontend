@@ -1,25 +1,34 @@
-import React from "react";
+// import React from "react";
+import React, { useEffect } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import { Progress, Breadcrumbs } from "@material-tailwind/react";
+import {  Breadcrumbs } from "@material-tailwind/react";
 import ProjectChart from "../../assets/ProjectChart";
 import { useSelector } from 'react-redux';
-import { FaFileDownload, FaRegEye } from "react-icons/fa";
+import { FaRegEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import {
-    Menu,
-    MenuHandler,
-    MenuList,
-    MenuItem,
-    Button,
-  } from "@material-tailwind/react";
-  import { useNavigate } from "react-router-dom";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import ProjectTable from "../../assets/Tables/ProjectTable";
+import { getMyProject } from '../../../../redux/actions/ProjectAction';
+import { useDispatch } from "react-redux";
+
+// import {
+//     Menu,
+//     MenuHandler,
+//     MenuList,
+//     MenuItem,
+//     Button,
+//   } from "@material-tailwind/react";
+//   import { useNavigate } from "react-router-dom";
 
 export default function Projects() {
-    
     const auth = useSelector((state) => state.auth);
-
+    // let adminOrders = useSelector((state) => state.orders.adminOrders);
+ const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getMyProject());
+        // dispatch(getCategories());
+    }, [dispatch])
   let projects = null;
 
     if (auth?.user?.userType === "private_client") {
@@ -38,7 +47,7 @@ export default function Projects() {
 
 export function ClientProject() {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     return (
         <div>
@@ -81,7 +90,8 @@ export function ClientProject() {
                                         <Tab>Completed</Tab>
                                     </TabList>
                                     <TabPanel>
-                                        <div className="mt-10 flex justify-between">
+                                        <ProjectTable />
+                                        {/* <div className="mt-10 flex justify-between">
                                             <div class="flex text-gray-600">
                                                 <input
                                                 class="border-2 border-gray-300 bg-white  px-5 pr-4 rounded-l-lg text-sm focus:outline-none"
@@ -114,8 +124,8 @@ export function ClientProject() {
                                                     </MenuList>
                                                 </Menu>
                                             </div>
-                                        </div>
-                                        <div className="overflow-x-auto mt-6">
+                                        </div> */}
+                                        {/* <div className="overflow-x-auto mt-6">
                                             <table className="items-center w-full bg-transparent border-collapse">
                                             <thead className="thead-light bg-light">
                                                 <tr>
@@ -297,13 +307,22 @@ export function ClientProject() {
                                                                 ....
                                                             </MenuItem>
                                                         </MenuList>
-                                                    </Menu>
+                                                    </Menu> 
                                                 </td>
                                                 </tr>
                                             </tbody>
                                             </table>
-                                        </div>
+                                        </div> */}
                                     </TabPanel>
+                                      <TabPanel>
+                                <ProjectTable status={"pending"} />
+                            </TabPanel>
+                            <TabPanel>
+                                <ProjectTable status={"approved"} />
+                            </TabPanel>
+                            <TabPanel>
+                                <ProjectTable status={"completed"} />
+                            </TabPanel>
                                 </Tabs>
                             </div>
                         </div>
@@ -389,10 +408,10 @@ export function ServiceProject() {
                                             <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
                                                 Status
                                             </th>
-                                            <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
+                                        <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
                                                 Actions
-                                            </th>
-                                            </tr>
+                                        </th>
+                                     </tr>
                                         </thead>
                                         <tbody>
                                             <tr>

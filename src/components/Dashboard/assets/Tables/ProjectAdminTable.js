@@ -1,13 +1,18 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from 'react'
+// import React from 'react'
+import React, { useState } from "react";
 import { useSelector } from 'react-redux';
-import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight, FaFileDownload } from "react-icons/fa";
+import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight, FaFileDownload,FaRegEye } from "react-icons/fa";
 import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, usePagination } from "react-table";
 import { useNavigate } from "react-router-dom";
-import { BsThreeDotsVertical } from "react-icons/bs";
+// import { BsThreeDotsVertical } from "react-icons/bs";
 import { useMemo } from "react";
 import * as moment from 'moment'
+import { SuccessAlert } from "../../../../services/endpoint";
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
+import Axios from "../../../../config/config";
 import {
   Menu,
   MenuHandler,
@@ -82,19 +87,59 @@ function getExportFileBlob({ columns, data, fileType, fileName }) {
   return false;
 }
 
-export default function OrderTable({status}){
-  // let adminOrders = useSelector((state) => state.orders.adminOrders);
-      let adminOrders = useSelector((state) => state.orders.adminOrders);
-
+export default function ProjectsTable({status}){
+  // let   allProjects = useSelector((state) => state.orders.  allProjects);
+      let   allProjects = useSelector((state) => state.allprojects.projects);
+  console.log( allProjects);
     if (status) {
-        adminOrders = adminOrders.filter(where => where.status === status)
+          allProjects =   allProjects.filter(where => where.status === status)
     }
-    const formatNumber = (number) => {
-      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
+  //   const formatNumber = (number) => {
+  //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  // }
+    const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate()
     const gotoDetailsPage = (id) => {
-        navigate(`/dashboard/orderadmindetail?productId=${id}`)
+        navigate(`/dashboard/projectadmindetails?projectId=${id}`)
+    }
+  
+  const deleteProject = async (id) => {
+ if (loading) {
+    return (
+      <center>
+        {/* <Spinner /> */}
+      </center>
+    );
+  }
+       try {
+      setLoading(true);
+      const config = {
+        headers: {
+          "Content-Type": "Application/json",
+          authorization: localStorage.getItem("auth_token"),
+        },
+      };
+         await Axios.delete(`/projects/delete/${id}`, config).then((response) => {
+        console.log(response)
+      });
+      setLoading(false);
+      SuccessAlert("Project Deleted Successfully!");
+    } catch (error) {
+      setLoading(false);
+      if (error.response.data.message) {
+        toaster.notify(error.response.data.message, {
+          duration: "4000",
+          position: "bottom",
+        });
+        return;
+      }
+      toaster.notify(error.message, {
+        duration: "4000",
+        position: "bottom",
+      });
+    }
+      
     }
     const formatStatus = (status) => {
       switch (status) {
@@ -105,15 +150,33 @@ export default function OrderTable({status}){
           case "disapproved":
             return <p className="px-2 py-1 text-red-700 bg-red-100 w-28 rounded-md fw-600">Cancelled</p>
           case "pending":
-              return <p className="px-2 py-1 text-yellow-700 bg-yellow-100 w-24 rounded-md fw-600">Ongoing</p>
+              return <p className="px-2 py-1    w-24 rounded-md fw-600">Pending</p>
+           case "completed":
+              return <p className="px-2 py-1    w-24 rounded-md fw-600">Completed</p>
           case "draft":
               return "Draft"
           default: return status
       }
 
   }
+  const formatProductType = (projectTypes) => {
+      switch (projectTypes) {
+          case "land_survey":
+              return <p className="px-2 py-1   w-24 rounded-md fw-600">Land Survey</p>
+          case "building_approval":
+              return <p className="px-2 py-1   w-24 rounded-md fw-600">Building Approval</p>
+          case "contractor":
+            return <p className="px-2 py-1  w-28 rounded-md fw-600">Contractor</p>
+          case "construction_drawing":
+              return <p className="px-2 py-1    w-24 rounded-md fw-600">Construction Drawing</p>
+          case "draft":
+              return "Draft"
+          default: return status
+      }
 
-
+  }
+  
+ 
     const columns = useMemo(
         () => [
           {
@@ -121,42 +184,46 @@ export default function OrderTable({status}){
             accessor: ( row, index) => index + 1  //RDT provides index by default
           },
           {
-            Header: "Order ID	",
-            accessor: "orderSlug",
+            Header: "Project ID		",
+            accessor:( row, index) => index +'PRO-234-SUR' + 1 ,
           },
           {
-            Header: "Product Name",
-            accessor: "order_items[0].product.name",
+            Header: " Service Type",
+            accessor: "projectTypes",
+            Cell: (props) =>formatProductType(props.value)
             
           },
+         {
+           Header: "Project Status	",
+           accessor: "status",
+           Cell: (props) => formatStatus(props.value)
+         },
           {
-            Header: "Date",
+            Header: "Due Date",
             accessor: "createdAt",
-            Cell: (props) => moment(props.value).format("MMMM Do YYYY , h:mm:ss a")
+            Cell: (props) => moment(props.value).format("MM /D /YYYY "),
             // Filter: SelectColumnFilter, 
             // filter: 'includes',
-          },
-          {
-            Header: "Price",
-            accessor:  'totalAmount',
-            Cell: (props) => `NGN ${formatNumber(props.value)}`
-          },
-          {
-            Header: "Status",
-            accessor: "status",
-            Cell: (props) => formatStatus(props.value)
           },
           {
             Header: 'Action',
             accessor: 'id',
             Cell: (row) => <Menu placement="left-start" className="w-16">
                             <MenuHandler>
-                              <Button className="border-none bg-transparent shadow-none hover:shadow-none text-black"><button className="lg:text-xl"><BsThreeDotsVertical /></button></Button>
-                            </MenuHandler>
-                            <MenuList className="w-16 bg-gray-100 fw-600 text-black">
+                <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none"><FaRegEye className="text-2xl" /></Button>
+              </MenuHandler>
+                            {/* <MenuList className="w-16 bg-gray-100 fw-600 text-black">
                               <MenuItem onClick={() => gotoDetailsPage(row.value)}>View Details</MenuItem>
                                {/* <MenuItem className="bg-red-600 text-white">Delete</MenuItem> */}
-                            </MenuList>
+                    {/* </MenuList> */} 
+                            <MenuList>
+                                  <MenuItem onClick={() => gotoDetailsPage(row.value)}>
+                                      View Details
+                                  </MenuItem>
+                                  <MenuItem className="bg-red-600 text-white" onClick={() => deleteProject(row.value)}>
+                                      Delete
+                                  </MenuItem>
+                              </MenuList>
                           </Menu> ,
           },
         ],
@@ -164,7 +231,7 @@ export default function OrderTable({status}){
       );
 
     
-      const data = useMemo(() => adminOrders, [adminOrders]);
+      const data = useMemo(() =>   allProjects, [  allProjects]);
     
       return (
         <>
