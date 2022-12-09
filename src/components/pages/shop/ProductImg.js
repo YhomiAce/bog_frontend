@@ -33,7 +33,7 @@ export  const ProductImage = ({item}) => {
               className=""
         >
             {item.product_image.map((i,) => {
-                return <SwiperSlide><img src={`${item.image}`} alt="product" className="w-full h-60"/></SwiperSlide>;
+                return <SwiperSlide><img src={i.url} alt="product" className="w-full h-60"/></SwiperSlide>;
             })}
         </Swiper>   
         <Swiper 
@@ -46,7 +46,7 @@ export  const ProductImage = ({item}) => {
            className="mt-1"
         >
             {item.product_image.map((i, ) => {
-                return <SwiperSlide><img src={`${item.image}`} alt="product" className="h-12"/></SwiperSlide>;
+                return <SwiperSlide><img src={i.url} alt="product" className="h-12"/></SwiperSlide>;
             })}
         </Swiper>
     </div>

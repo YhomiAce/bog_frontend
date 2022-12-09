@@ -73,7 +73,7 @@ const ProductReducer = (state = initialState, action) => {
             console.log(payload);
             const oldProds = [...state.adminProducts];
             const prod = oldProds.find(where => where.id === payload.productId);
-            const prodInd = oldProds.findIndex(where => where.id === payload.productId);
+            const prodInd = oldProds.findIndex(where => where.id == payload.productId);
             console.log({prodInd, prod});
             prod.status = payload.status;
             console.log(prod);

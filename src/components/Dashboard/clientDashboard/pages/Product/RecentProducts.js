@@ -11,7 +11,7 @@ const RecentProducts = ({ item }) => {
     return (
         <div className="mt-12 flex border-b pb-4">
             <div className="w-4/12">
-                <img src="https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png" alt="productId" className="w-full h-32" />
+                <img src={item.image} alt="productId" className="w-full h-32" />
             </div>
             <div className="w-8/12 pl-6 grid content-between">
                 <div className="fs-500">

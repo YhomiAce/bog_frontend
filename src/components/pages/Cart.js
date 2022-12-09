@@ -151,7 +151,7 @@ export const Cart = () => {
                               <div className="lg:w-3/12">
                                 {/* <img src="https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png" alt="products" className="w-40 rounded-md h-20 lg:h-40" /> */}
                                 <img
-                                  src={`${item.image}`}
+                                  src={item.image}
                                   alt="products"
                                   className="w-32 lg:w-40 border rounded-md h-32 lg:h-40"
                                 />
