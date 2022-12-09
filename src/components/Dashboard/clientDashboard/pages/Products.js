@@ -28,7 +28,7 @@ export default function Products() {
     const products = useSelector((state) => state.products.userProducts);
     const isLoading = useSelector((state) => state.products.isLoading);
 
-    const draftProducts = products.length > 0 ? products.filter(where => where.status === "pending") : [];
+    const draftProducts = products.length > 0 ? products.filter(where => where.status === "draft") : [];
     const reviewProducts = products.length > 0 ? products.filter(where => where.status === "in_review") : [];
     const approvedProducts = products.length > 0 ? products.filter(where => where.status === "approved") : [];
 

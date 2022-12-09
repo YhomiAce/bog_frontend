@@ -1,14 +1,15 @@
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import {
-    Avatar, Menu, MenuHandler, MenuItem, MenuList, Button,
+    Menu, MenuHandler, MenuItem, MenuList, Button,
 } from "@material-tailwind/react";
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineUserSwitch } from "react-icons/ai"
 import { logout } from '../../../redux/actions/authAction';
+import {UserAvatar } from "../assets/Avatar";
+
 
 
 export default function Header() {
@@ -18,8 +19,8 @@ export default function Header() {
 
     const navigate = useNavigate()
 
-    const BASE_URL = process.env.REACT_APP_IMAGE_URL;
-    const user = useSelector((state) => state.auth.user);
+    // const BASE_URL = process.env.REACT_APP_IMAGE_URL;
+    // const user = useSelector((state) => state.auth.user);
 
 
     function ShowNotify() {
@@ -57,14 +58,14 @@ export default function Header() {
                         <p className="ml-5 fw-700 hidden lg:block">{ auth?.user ? getUserType(auth?.user?.userType) : ""} Dasboard</p>
                         
                     </div>
-                    <div className="flex items-center w-full">
-                        <div class="mr-6 relative mx-auto text-gray-600 hidden lg:block">
+                    <div className="flex items-center justify-end w-full">
+                        {/* <div class="mr-6 relative mx-auto text-gray-600 hidden lg:block">
                             <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
                                 type="search" name="search" placeholder="Search" />
                             <button type="submit" class="absolute bg-primary right-0 top-0 py-2 px-4 rounded-r-lg">
                                 <FontAwesomeIcon icon={faSearch} className="text-white" />
                             </button>
-                        </div>
+                        </div> */}
                         <div>
                             <p className="bg-transparent border-0 shadow-none hover:shadow-none  text-black px-1 ml-2"><Link to="switch" className="flex text-center"><p className="fs-500 text-center"><p className="text-primary"><AiOutlineUserSwitch/></p><p className="fw-500 text-primary">Switch</p></p></Link></p>
                         </div>
@@ -112,8 +113,9 @@ export default function Header() {
                             >
                                 <MenuHandler>
                                     <Button className="p-0">
-                                        <Avatar src={user?.photo ? `${BASE_URL}/${user?.photo}` : "https://i.stack.imgur.com/l60Hf.png"}
-                                    alt="profifepic" />
+                                        {/* <Avatar src={user?.photo ? `${BASE_URL}/${user?.photo}` : "https://i.stack.imgur.com/l60Hf.png"}
+                                    alt="profifepic" /> */}
+                                        <UserAvatar/>
                                     </Button>
                                 </MenuHandler>
                                 <MenuList>

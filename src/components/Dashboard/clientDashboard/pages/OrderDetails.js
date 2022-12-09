@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Avatar, Breadcrumbs } from "@material-tailwind/react";
+import { Avatar, Breadcrumbs, Progress } from "@material-tailwind/react";
 import dayjs from "dayjs";
 import React, { useState, useEffect } from "react";
 // import { BiEdit } from "react-icons/bi";
@@ -93,7 +93,11 @@ export default function OrderDetails() {
                     <div className="lg:p-5 px-2 py-4">
                         <div>
                             <p className="fw-600 underline">Order Progress</p>
-                            <div></div>
+                            <div>
+                                <div>
+                                    <Progress value={50}/>
+                                </div>
+                            </div>
                         </div>
                         <div className="lg:grid-83">
                             <div>

@@ -20,7 +20,7 @@ export  const ProductImage = ({item}) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <div className="lg:w-full">
+    <div className="lg:w-full ">
         <Swiper 
             style={{
                 "--swiper-navigation-color": "#fff",

@@ -14,6 +14,7 @@ import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
  import Spinner from '../layouts/Spinner';
 import Swal from "sweetalert2";
+import { BiLogIn } from "react-icons/bi";
 
 export default function Service() {
     const navigate = useNavigate();
@@ -789,7 +790,7 @@ export default function Service() {
           <div className="box">
             <div>
               <p className="lg:text-4xl text-2xl fw-700 mb-4">
-                Find Service Patner
+                Find Service Partner
               </p>
               <p className="lg:w-5/12">Thousands of qualified workers avaliable to help you to kick start your project</p>
             </div>
@@ -813,7 +814,7 @@ export default function Service() {
                     <div className="text-center py-4">
                         <p className="text-xl lg:text-3xl fw-600">What service do you need a service provider for  ?</p>
                     </div>
-                    <div className="lg:grid-3 justify-between lg:mt-24 mt-12">
+                    <div className="lg:grid-3 justify-between lg:mt-24 mt-12 mb-12 lg:mb-24">
                               <div className="shadow-md h-48 center-item">
                                   <div className="cursor-pointer" onClick={() => {
                                           // eslint-disable-next-line
@@ -857,8 +858,42 @@ export default function Service() {
                                 <p className="fw-500">Construction Drawing</p>
                             </div>
                         </div>
+                        <div className="shadow-md h-48 center-item mt-10">
+                                  <div className="cursor-pointer" onClick={() => {
+                                        // eslint-disable-next-line
+                                      {
+                                                  // eslint-disable-next-line
+                                          auth.isAuthenticated ?
+                                             setBAppove(true):
+                                              AuhtCheck()
+                                      }
+                                   }}>
+                            <img src={require("../assets/images/BA.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
+                                <p className="fw-500">Building Approval</p>
+                            </div>
+                        </div>
+                        <div className="shadow-md h-48 center-item  mt-10">
+                                  <div className="cursor-pointer" onClick={() => {
+                                       // eslint-disable-next-line
+                                      {
+                                                  // eslint-disable-next-line
+                                          auth.isAuthenticated ?
+                                             setBCon(true):
+                                              AuhtCheck()
+                                      }
+                                   }}>
+                                    <img src={require("../assets/images/SC.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
+                                        <p className="fw-500">Building Contractor</p>
+                                    </div>
+                        </div>
+                        <div className="shadow-md h-48 center-item  mt-10 bg-primary">
+                                  <div className="cursor-pointer flex items-center" onClick={() => navigate("/contact")}>
+                                        <p className="fw-500 text-white w-36 text-center">Request other Services</p>
+                                        <BiLogIn className="text-3xl text-white"/>
+                                </div>
+                        </div>
                     </div>
-                    <div  className="lg:grid-23 justify-evenly mb-24">
+                    {/* <div  className="lg:grid-23 justify-evenly mb-24">
                         <div className="shadow-md h-48 center-item mt-10">
                                   <div className="cursor-pointer" onClick={() => {
                                         // eslint-disable-next-line
@@ -887,7 +922,7 @@ export default function Service() {
                                 <p className="fw-500">Building Contractor</p>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div> 
         </div>
