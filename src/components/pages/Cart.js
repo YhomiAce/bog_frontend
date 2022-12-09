@@ -19,9 +19,32 @@ import Axios from "../../../src/config/config";
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 
+import Swal from "sweetalert2";
+
 // const baseURL = process.env.REACT_APP_IMAGE_URL;
 
 export const Cart = () => {
+  const AuhtCheck = () => {
+    Swal.fire({
+     title: " ",
+     imageUrl: "https://uxwing.com/wp-content/themes/uxwing/download/crime-security-military-law/authentication-icon.png",
+     imageWidth: "75px",
+     //text: 'Please Sign Up or Login to order for products. Thank You!',
+     html: 'Please <a href="/signup" style=" color: red; "> Sign Up </a> or <a href="/login" style=" color: red; ">Login</a> to order for products. Thank You!',
+     buttonsStyling: "false",
+     denyButtonText: 'Sign Up',
+     confirmButtonText: "Login",
+     showDenyButton:true,
+     confirmButtonColor: "#3F79AD",
+     denyButtonColor: "#ec8b20"
+ }).then((result) => {
+     if (result.isConfirmed) {
+          navigate("/login");
+     } else if (result.isDenied) {
+         navigate("/signup");
+     }
+ });
+}
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
@@ -322,7 +345,8 @@ export const Cart = () => {
                             className="w-full btn bg-primary text-white"
                             {...componentProps}
                             />
-                        ):<button
+                        ):
+                        <button
                             // onClick={() => navigate("/login")}
                             className="w-full btn bg-primary text-white"
                             >
@@ -330,10 +354,10 @@ export const Cart = () => {
                             </button> 
                             : (
                             <button
-                            onClick={() => navigate("/login")}
+                            onClick={() =>AuhtCheck()}
                             className="w-full btn bg-primary text-white"
                             >
-                            LOGIN
+                            CHECKOUT
                             </button>
                         )}
                         </div>

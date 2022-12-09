@@ -42,6 +42,7 @@ import ProjectDetailsClient from "./pages/ProjectDetailsClient";
 import OrderRequest from "./pages/OrderRequest";
 import UserOrderDetail from "./pages/UserOrderDetail";
 import KycAlert from "../assets/KycAlert";
+import { Subscription } from "./pages/Subscribtion";
 
 export default function ClientDashboard() {
     
@@ -99,6 +100,7 @@ export default function ClientDashboard() {
                         <Route path="review" element={<Review />} />
                         <Route path="inbox" element={<Inbox />} />
                         <Route path="kyc" element={<KycForm />} />
+                        <Route path="subscription" element={<Subscription/>} />
                         <Route path="settings" element={<Settings />} />
                         <Route path="" element={<Dashboard />} />
                         <Route path="" element={<Dashboard />}  />
