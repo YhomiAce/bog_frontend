@@ -1,4 +1,4 @@
-import { Avatar, Button } from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
 import React from "react";
 import { useSelector } from 'react-redux';
 import { UserAvatar } from "../../assets/Avatar";
@@ -6,7 +6,7 @@ import { UserAvatar } from "../../assets/Avatar";
 
 export const AccountType = ({ account, switchAccount }) => {
 
-    const BASE_URL = process.env.REACT_APP_IMAGE_URL;
+    // const BASE_URL = process.env.REACT_APP_IMAGE_URL;
     const user = useSelector((state) => state.auth.user);
     const getUserType = (type) => {
       switch (type) {

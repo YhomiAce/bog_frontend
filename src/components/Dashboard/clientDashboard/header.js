@@ -20,7 +20,7 @@ export default function Header() {
     const navigate = useNavigate()
 
     // const BASE_URL = process.env.REACT_APP_IMAGE_URL;
-    const user = useSelector((state) => state.auth.user);
+    // const user = useSelector((state) => state.auth.user);
 
 
     function ShowNotify() {
