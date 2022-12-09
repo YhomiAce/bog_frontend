@@ -164,8 +164,8 @@ export default function ProjectTable({ status }) {
             return <p className="px-2 py-1  w-28 rounded-md fw-600">Contractor</p>
           case "construction_drawing":
               return <p className="px-2 py-1    w-24 rounded-md fw-600">Construction Drawing</p>
-          case "draft":
-              return "Draft"
+          case "geotechnical_investigation":
+            return <p className="px-2 py-1  w-28 rounded-md fw-600">Geotechnical Investigation</p>
           default: return status
       }
 

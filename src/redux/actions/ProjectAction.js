@@ -51,8 +51,8 @@ export const  getMyProject = () => {
             dispatch(loading());
             const response = await axios.get('/projects/my-request', config);
 
-            // console.log(`====BY === OLAS==`);
-            // console.log(response);
+            console.log(`====BY === OLAS==`);
+            console.log(response);
             dispatch( fetchMyProject(response.data))
         } catch (error) {
             console.log(error.message);
