@@ -90,7 +90,7 @@ function getExportFileBlob({ columns, data, fileType, fileName }) {
 export default function ProjectsTable({status}){
   // let   allProjects = useSelector((state) => state.orders.  allProjects);
       let   allProjects = useSelector((state) => state.allprojects.projects);
-  console.log( allProjects);
+  // console.log( allProjects);
     if (status) {
           allProjects =   allProjects.filter(where => where.status === status)
     }
@@ -185,7 +185,7 @@ export default function ProjectsTable({status}){
           },
           {
             Header: "Project ID		",
-            accessor:( row, index) => index +'PRO-234-SUR' + 1 ,
+            accessor:"projectSlug",
           },
           {
             Header: " Service Type",
