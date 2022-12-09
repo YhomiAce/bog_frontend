@@ -1,17 +1,19 @@
+/* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
 import Footer from "./home-comp/Footer";
 import Header from "./home-comp/Header";
-import {useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { SimilarProducts } from "./shop/SimilarProduct";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/actions/cartAction';
 import ReactStars from "react-rating-stars-component";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { ProductImage } from "./shop/ProductImg";
 import { useNavigate } from "react-router-dom";
 import "toasted-notes/src/styles.css";
-
+import useFetchHook from "../../hooks/useFetchHook";
+import Spinner from "../layouts/Spinner";
+import { getProducts } from '../../redux/actions/ProductAction';
 
 
 export default function ProductDetail() {
@@ -19,24 +21,40 @@ export default function ProductDetail() {
     const products = useSelector((state) => state.products.products);
     const [cartNum, setCartNum] = useState(1)
     const dispatch = useDispatch()
-    const { itemId } = useParams()
-    const item = products.find(prod => prod.id === itemId);
-    const similarProducts = products.filter(where => where.category.id === item.category.id);
-    const navigate = useNavigate()
+    const { itemId } = useParams();
+    const url = `/product/${itemId}`
+    const { data: item, loading } = useFetchHook(url);
 
+    const navigate = useNavigate()
     const [itemAdded, setItemAdded] = useState(false)
-    // console.log(item)
+    const [similarProducts, setSimilarProducts] = useState([]);
+
     const addItemToCart = (item, cartNum) => {
         dispatch(addToCart(item, cartNum));
         setItemAdded(true);
     }
+    useEffect(() => {
+        dispatch(getProducts())
+        if (item != null) {
+            const similar = products.filter(where => where.category.id === item.category.id).filter(prod => prod.id != item.id);
+            setSimilarProducts(similar)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [item, !loading])
 
     useEffect(() => {
         if (itemAdded) {
             setTimeout(function () {
-            setItemAdded(false);
-          }, 4000);} // eslint-disable-next-line
-    }, [addItemToCart])
+                setItemAdded(false);
+            }, 4000);
+        } // eslint-disable-next-line
+    }, [addItemToCart]);
+
+    if (loading || !item) {
+        return <center>
+            <Spinner />
+        </center>
+    }
 
 
     return (
@@ -55,7 +73,7 @@ export default function ProductDetail() {
                             <div className="lg:flex lg:w-9/12 justify-between lg:pt-10">
                                 <div className="lg:w-5/12 shadow-md p-4">
                                     {/* <img src="https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png" alt="product" className="w-full lg:h-72" /> */}
-                                        
+
                                     <ProductImage item={item} />
                                 </div>
                                 <div className="lg:pl-8 mt-4 lg:w-5/12 lg:mt-0 relative">
@@ -87,7 +105,7 @@ export default function ProductDetail() {
                                                 {itemAdded && (
                                                     <div className="absolute lg:fs-400 fs-300 fw-600 px-2 text-center w-40 border lg:-right-1/4 lg:bottom-0 -bottom-3/4 py-1 bg-green-600 rounded text-gray-100 scale-ani">
                                                         <p>Added to Cart</p>
-                                                        <p onClick={() => {navigate("/carts")}} className="underline cursor-pointer">Click to view</p>
+                                                        <p onClick={() => { navigate("/carts") }} className="underline cursor-pointer">Click to view</p>
                                                     </div>
                                                 )}
                                             </div>
@@ -123,8 +141,14 @@ export default function ProductDetail() {
                 <div className="section">
                     <div className="box">
                         <div>
-                            <p className="fw-600 lg:text-2xl py-6">Similar Products</p>
-                            <SimilarProducts products={similarProducts} />
+                            {
+                                similarProducts.length > 0 ?
+                                    <>
+                                        <p className="fw-600 lg:text-2xl py-6">Similar Products</p>
+                                        <SimilarProducts products={similarProducts} />
+                                    </> : null
+                            }
+
                         </div>
                     </div>
                 </div>

@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { ApproveProduct } from '../../../../redux/actions/ProductAction';
 
-const baseURL = process.env.REACT_APP_IMAGE_URL;
+// const baseURL = process.env.REACT_APP_IMAGE_URL;
 
 export default function ProductDetailsAdmin() {
     const { search } = useLocation();
@@ -154,7 +154,7 @@ export default function ProductDetailsAdmin() {
                             <div className="mt-6 pb-4 flex justify-between overflow-x-auto">
                                 {
                                     product?.product_image.map(item => (
-                                        <img key={item.id} src={`${baseURL}/${item.image}`} alt="product" className="lg:w-36 rounded-lg" />
+                                        <img key={item.id} src={item.url} alt="product" className="lg:w-36 rounded-lg" />
                                     ))
                                 }
                             </div>

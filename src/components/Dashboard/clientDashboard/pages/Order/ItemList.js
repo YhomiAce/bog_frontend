@@ -8,7 +8,7 @@ const ItemList = ({item}) => {
         <div className="flex justify-between items-center mt-6">
             <div className="flex">
                 <div>
-                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899753/BOG/sands_cy9q3x.png" alt="order" className="w-16 h-16 lg:h-20 lg:w-20 rounded-lg" />
+                    <img src={item.product.image} alt="order" className="w-16 h-16 lg:h-20 lg:w-20 rounded-lg" />
                 </div>
                 <div className="grid content-between py-3 pl-4 fw-500">
                     <p><span className="text-gray-600">Name:</span> {item.product.name}</p>

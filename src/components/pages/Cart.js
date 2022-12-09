@@ -11,7 +11,7 @@ import Header from "./home-comp/Header";
 import { PaystackButton } from "react-paystack";
 import { MdDeleteOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { SuccessAlert } from "../../../src/services/endpoint";
+import { SuccessAlertWithRedirection } from "../../../src/services/endpoint";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
 import Spinner from "../../../src/components/layouts/Spinner";
@@ -57,8 +57,12 @@ export const Cart = () => {
     setProducts(productsArray);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  
+  const gotoLink = () => {
+    navigate("/ordersuccess")
+  }
 
-  const sendOrder = async (reference) => {
+  const sendOrder = async (payment) => {
     try {
       setLoading(true);
       const payload = {
@@ -71,7 +75,7 @@ export const Cart = () => {
           address: value.address,
         },
         paymentInfo: {
-          reference,
+          reference: payment.reference,
           amount: totalAmount,
         },
         discount: 0,
@@ -87,7 +91,7 @@ export const Cart = () => {
       };
       await Axios.post("/orders/submit-order", payload, config);
       setLoading(false);
-      SuccessAlert("Order in Progress!");
+      SuccessAlertWithRedirection("Order in Progress!", gotoLink);
     } catch (error) {
       setLoading(false);
       if (error.response.data.message) {
@@ -151,7 +155,7 @@ export const Cart = () => {
                               <div className="lg:w-3/12">
                                 {/* <img src="https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png" alt="products" className="w-40 rounded-md h-20 lg:h-40" /> */}
                                 <img
-                                  src={`${item.image}`}
+                                  src={item.image}
                                   alt="products"
                                   className="w-32 lg:w-40 border rounded-md h-32 lg:h-40"
                                 />

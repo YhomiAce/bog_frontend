@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { decrementQuantity, incrementQuantity, deleteItem } from '../../../../redux/actions/cartAction';
 
 
-const baseURL = process.env.REACT_APP_IMAGE_URL;
+// const baseURL = process.env.REACT_APP_IMAGE_URL;
 
 const CartItems = ({ item }) => {
     const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const CartItems = ({ item }) => {
         <div className="mt-12 flex border-b pb-4">
             <div className="lg:w-3/12">
                 {/* <img src="https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png" alt="productId" className="w-40 h-36" /> */}
-                <img src={`${baseURL}/${item.image}`}  alt="productId" className="w-40 h-36" />
+                <img src={item.image}  alt="productId" className="w-40 h-36" />
             </div>
             <div className="w-9/12 lg:pl-6 pl-3 grid content-between">
                 <div className="lg:fs-500">

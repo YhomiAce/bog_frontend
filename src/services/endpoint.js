@@ -84,6 +84,20 @@ export const WarningAlert = (message) => {
     }
   }
 
+export const SuccessAlertWithRedirection = (message, goto) => {
+    Swal.fire({
+        title: "Success",
+        imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",
+        imageWidth: "75px",
+        text: message,
+        buttonsStyling: "false",
+        confirmButtonText: "Continue",
+        confirmButtonColor: "#3F79AD",
+    }).then(() =>{
+        goto()
+    })
+}
+
 export const getBanks = async () => {
     try {
         const url = "/bank/allbanks";
