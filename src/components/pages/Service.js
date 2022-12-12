@@ -2164,7 +2164,7 @@ export default function Service() {
             </div>
       </div>
       )}
-      {bCon && (
+      {sCalc && (
         <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40" onClick={CloseSurvey}>
             <div className="bg-white lg:w-5/12 px-5 lg:px-12 h-800 overflow-y-auto overscroll-none  w-11/12 py-12 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
                 <div className="flex justify-between">
@@ -2727,12 +2727,12 @@ export default function Service() {
             </div>
       </div>
       )}
-      {sCalc && (
+      {bCon && (
         <div className="fixed font-primary top-0 w-full h-screen bg-op center-item z-40" onClick={CloseSurvey}>
             <div className="bg-white lg:w-5/12 px-5 lg:px-12 h-800 overflow-y-auto overscroll-none  w-11/12 py-12 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
                 <div className="flex justify-between">
                     <div>
-                        <p className="text-lg lg:text-2xl fw-600">Request for Smart Calc</p>
+                        <p className="text-lg lg:text-2xl fw-600">Request for Building Contractor</p>
                         <p className="mt-2 fs-500">Architectural, Structural, Electrical and Mechanical Drawings.</p>
                     </div>
                     <FontAwesomeIcon icon={faTimes} className="text-2xl relative -top-3 cursor-pointer" onClick={CloseSurvey}/>

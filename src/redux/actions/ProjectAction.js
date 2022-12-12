@@ -72,6 +72,15 @@ export const  getMyProject = () => {
 export const getProjects = () => {
     return async (dispatch) => {
         try {
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    "Content-Type": "application/json",
+                    'Authorization': authToken
+                }
+
+            }
             dispatch(loading());
             const response = await axios.get('/projects/all', config);
 
