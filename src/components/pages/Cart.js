@@ -26,25 +26,25 @@ import Swal from "sweetalert2";
 export const Cart = () => {
   const AuhtCheck = () => {
     Swal.fire({
-     title: " ",
-     imageUrl: "https://uxwing.com/wp-content/themes/uxwing/download/crime-security-military-law/authentication-icon.png",
-     imageWidth: "75px",
-     //text: 'Please Sign Up or Login to order for products. Thank You!',
-     html: 'Please <a href="/signup" style=" color: red; "> Sign Up </a> or <a href="/login" style=" color: red; ">Login</a> to order for products. Thank You!',
-     buttonsStyling: "false",
-     denyButtonText: 'Sign Up',
-     confirmButtonText: "Login",
-     showDenyButton:true,
-     confirmButtonColor: "#3F79AD",
-     denyButtonColor: "#ec8b20"
- }).then((result) => {
-     if (result.isConfirmed) {
-          navigate("/login");
-     } else if (result.isDenied) {
-         navigate("/signup");
-     }
- });
-}
+      title: " ",
+      imageUrl: "https://uxwing.com/wp-content/themes/uxwing/download/crime-security-military-law/authentication-icon.png",
+      imageWidth: "75px",
+      //text: 'Please Sign Up or Login to order for products. Thank You!',
+      html: 'Please <a href="/signup" style=" color: red; "> Sign Up </a> or <a href="/login" style=" color: red; ">Login</a> to order for products. Thank You!',
+      buttonsStyling: "false",
+      denyButtonText: 'Sign Up',
+      confirmButtonText: "Login",
+      showDenyButton: true,
+      confirmButtonColor: "#3F79AD",
+      denyButtonColor: "#ec8b20"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/login");
+      } else if (result.isDenied) {
+        navigate("/signup");
+      }
+    });
+  }
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
@@ -66,9 +66,12 @@ export const Cart = () => {
       country: "",
       postal_code: "",
       address: "",
+      contact_name: "",
+      contact_email: "",
+      contact_phone: "",
     },
   });// eslint-disable-next-line
-  const { city, state, country, postal_code, address } = form.values;
+  const { city, state, country, postal_code, address, contact_name, contact_email, contact_phone } = form.values;
   const value = form.values;
   let productsArray = carts.map((option) => {
     let prodInfo = {};
@@ -80,9 +83,13 @@ export const Cart = () => {
     setProducts(productsArray);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
-  const gotoLink = () => {
-    navigate("/ordersuccess")
+
+  const gotoLink = (orderId) => {
+    navigate("/ordersuccess", {
+      state: {
+        orderId
+      }
+    })
   }
 
   const sendOrder = async (payment) => {
@@ -96,6 +103,9 @@ export const Cart = () => {
           country: value.country,
           postal_code: value.postal_code,
           address: value.address,
+          contact_name: value.contact_name,
+          contact_email: value.contact_email,
+          contact_phone: value.contact_phone,
         },
         paymentInfo: {
           reference: payment.reference,
@@ -112,9 +122,10 @@ export const Cart = () => {
           authorization: localStorage.getItem("auth_token"),
         },
       };
-      await Axios.post("/orders/submit-order", payload, config);
+      const res = await Axios.post("/orders/submit-order", payload, config);
+      const orderId = res.order.id
       setLoading(false);
-      SuccessAlertWithRedirection("Order in Progress!", gotoLink);
+      SuccessAlertWithRedirection("Order in Progress!", gotoLink(orderId));
     } catch (error) {
       setLoading(false);
       if (error.response.data.message) {
@@ -221,21 +232,23 @@ export const Cart = () => {
                         );
                       })}
                     </div>
-                    
+
                   </div>
                 </div>
-                <div className="relative mt-8 lg:mt-0">
+                {
+                  carts?.length === 0 ? null :
+                  <div className="relative mt-8 lg:mt-0">
                   <div className="rounded-md shadow-md py-5 px-3 lg:px-5 sticky top-24">
                     <div class="grid">
-                        <p class="text-2xl fw-600">Order Summary</p>
-                        <div className="py-5 border-y border-gray-400 mt-6">
+                      <p class="text-2xl fw-600">Order Summary</p>
+                      <div className="py-5 border-y border-gray-400 mt-6">
                         <div className="fw-600 flex justify-between">
-                            <p>
+                          <p>
                             ITEMS <span className="px-2"></span>
-                            </p>
-                            <p>{carts.length}</p>
+                          </p>
+                          <p>{carts.length}</p>
                         </div>
-                        </div>
+                      </div>
                       <form onSubmit={form.handleSubmit}>
                         <div className="mt-3">
                           <label className="block">Contact Name</label>
@@ -243,7 +256,12 @@ export const Cart = () => {
                             type="text"
                             placeholder="enter contact name"
                             className="w-full mt-2 py-2 px-2 border-gray-400 rounded border"
-                            name="name"
+                            name="contact_name"
+                            required
+                            id="contact_name"
+                            value={contact_name}
+                            onChange={form.handleChange}
+                            onBlur={form.handleBlur}
                           />
                         </div>
                         <div className="lg:flex">
@@ -253,8 +271,12 @@ export const Cart = () => {
                               type="text"
                               placeholder="enter contact email"
                               className="w-full mt-1 py-2 px-2 border-gray-400 rounded border"
-                              name="email"
+                              name="contact_email"
                               required
+                              id="contact_email"
+                              value={contact_email}
+                              onChange={form.handleChange}
+                              onBlur={form.handleBlur}
                             />
                           </div>
                           <div className="w-full lg:w-6/12 lg:pl-3 mt-2">
@@ -263,7 +285,12 @@ export const Cart = () => {
                               type="text"
                               placeholder="enter contact phone number"
                               className="w-full mt-1 py-2 px-2 border-gray-400 rounded border"
-                              name="phone"
+                              name="contact_phone"
+                              required
+                              id="contact_phone"
+                              value={contact_phone}
+                              onChange={form.handleChange}
+                              onBlur={form.handleBlur}
                             />
                           </div>
                         </div>
@@ -364,43 +391,45 @@ export const Cart = () => {
                           </div>
                         </div>
                         <div className="fw-600 my-4">
-                        <div className="flex justify-between my-4">
+                          <div className="flex justify-between my-4">
                             <p>TOTAL COST</p>
                             <p>NGN {formatNumber(totalAmount)}</p>
-                                                  </div>
-                                                  
-                        {auth.isAuthenticated ? 
-                                                 ( value.address  !== null && value.address !== '') ?  (
-                                                          
-                            
-                            <PaystackButton
-                            
-                            text="CHECKOUT"
-                            label="CHECKOUT"
-                            className="w-full btn bg-primary text-white"
-                            {...componentProps}
-                            />
-                        ):
-                        <button
-                            // onClick={() => navigate("/login")}
-                            className="w-full btn bg-primary text-white"
-                            >
-                            CHECKOUT
-                            </button> 
+                          </div>
+
+                          {auth.isAuthenticated ?
+                            (value.address !== null && value.address !== '') ? (
+
+
+                              <PaystackButton
+
+                                text="CHECKOUT"
+                                label="CHECKOUT"
+                                className="w-full btn bg-primary text-white"
+                                {...componentProps}
+                              />
+                            ) :
+                              <button
+                                // onClick={() => navigate("/login")}
+                                className="w-full btn bg-primary text-white"
+                              >
+                                CHECKOUT
+                              </button>
                             : (
-                            <button
-                            onClick={() =>AuhtCheck()}
-                            className="w-full btn bg-primary text-white"
-                            >
-                            CHECKOUT
-                            </button>
-                        )}
+                              <button
+                                onClick={() => AuhtCheck()}
+                                className="w-full btn bg-primary text-white"
+                              >
+                                CHECKOUT
+                              </button>
+                            )}
                         </div>
                       </form>
-                      
+
                     </div>
                   </div>
                 </div>
+                }
+                
               </div>
             </div>
           </div>
