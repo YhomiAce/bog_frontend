@@ -8,6 +8,7 @@ import { Breadcrumbs} from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { HiOutlineDocumentDownload } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import ProjectsTable from "../../assets/Tables/ProjectAdminTable";
 
 export default function ProjectRequest() {
     
@@ -50,7 +51,7 @@ export default function ProjectRequest() {
                                 <Tab>All Projects Requests</Tab>
                             </TabList>
                             <TabPanel>
-                                <div className="mt-10">
+                                {/* <div className="mt-10">
                                     <div className="flex items-center">
                                         <div class="flex text-gray-600">
                                             <input
@@ -203,7 +204,8 @@ export default function ProjectRequest() {
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
+                                </div> */}
+                                <ProjectsTable status={"pending"} />
                             </TabPanel>
                         </Tabs>
                     </div>

@@ -103,7 +103,9 @@ export default function ProjectsTable({status}){
     const gotoDetailsPage = (id) => {
         navigate(`/dashboard/projectadmindetails?projectId=${id}`)
     }
-  
+    const gotoProjectFile = (id) => {
+      navigate(`/dashboard/projectfile?projectId=${id}`)
+  }
   const deleteProject = async (id) => {
  if (loading) {
     return (
@@ -162,15 +164,15 @@ export default function ProjectsTable({status}){
   const formatProductType = (projectTypes) => {
       switch (projectTypes) {
           case "land_survey":
-              return <p className="px-2 py-1   w-24 rounded-md fw-600">Land Survey</p>
+              return <p className="">Land Survey</p>
           case "building_approval":
-              return <p className="px-2 py-1   w-24 rounded-md fw-600">Building Approval</p>
+              return <p className=" ">Building Approval</p>
           case "contractor":
-            return <p className="px-2 py-1  w-28 rounded-md fw-600">Contractor</p>
+            return <p className="">Contractor</p>
           case "construction_drawing":
-              return <p className="px-2 py-1    w-24 rounded-md fw-600">Construction Drawing</p>
+              return <p className="">Construction Drawing</p>
            case "geotechnical_investigation":
-            return <p className="px-2 py-1  w-28 rounded-md fw-600">Geotechnical Investigation</p>
+            return <p className="">Geotechnical Investigation</p>
           default: return status
       }
 
@@ -190,7 +192,9 @@ export default function ProjectsTable({status}){
           {
             Header: " Service Type",
             accessor: "projectTypes",
-            Cell: (props) =>formatProductType(props.value)
+            Cell: (props) =>formatProductType(props.value),
+            Filter: SelectColumnFilter, 
+            filter: 'includes',
             
           },
          {
@@ -202,8 +206,7 @@ export default function ProjectsTable({status}){
             Header: "Due Date",
             accessor: "createdAt",
             Cell: (props) => moment(props.value).format("MM /D /YYYY "),
-            // Filter: SelectColumnFilter, 
-            // filter: 'includes',
+            
           },
           {
             Header: 'Action',
@@ -219,6 +222,9 @@ export default function ProjectsTable({status}){
                             <MenuList>
                                   <MenuItem onClick={() => gotoDetailsPage(row.value)}>
                                       View Details
+                                  </MenuItem>
+                                  <MenuItem onClick={() => gotoProjectFile(row.value)}>
+                                      View Form
                                   </MenuItem>
                                   <MenuItem className="bg-red-600 text-white" onClick={() => deleteProject(row.value)}>
                                       Delete
@@ -326,8 +332,8 @@ const Table = ({columns, data}) => {
                   {headerGroups.map((headerGroup) =>
                       headerGroup.headers.map((column) =>
                       column.Filter ? (
-                          <div className="fs-500 px-3 py-2 rounded-md bg-light" key={column.id}>
-                              <label for={column.id} className="fw-600 ">{column.render("Header")}: </label>
+                          <div className="fs-300 px-3 flex py-2 rounded-md bg-light" key={column.id}>
+                              <label for={column.id} className="fw-600 flex ">{column.render("Header")}: </label>
                               {column.render("Filter")}
                           </div>
                       ) : null
