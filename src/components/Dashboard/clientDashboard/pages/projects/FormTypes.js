@@ -108,7 +108,7 @@ export const GiForm = ({data}) => {
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Is there a building on the site</p>
-                    <p>{data?.projectData?.siteHasBuilding == true ? "yes" : "no"}</p>
+                    <p>{data?.projectData?.siteHasBuilding === true ? "yes" : "no"}</p>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Number of intended geotechnical borehole</p>
@@ -132,7 +132,7 @@ export const GiForm = ({data}) => {
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Apart from borehole and CPT, are there any special test or investigation you intend to run?</p>
-                    <p>{data?.projectData?.anySpecialInvestigation == true ? "yes" : "no"}</p>
+                    <p>{data?.projectData?.anySpecialInvestigation === true ? "yes" : "no"}</p>
                 </div>
             </div>
             <div className='mt-6 bg-white lg:p-10 rounded'>

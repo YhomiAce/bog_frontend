@@ -1,4 +1,4 @@
-import { Avatar, Breadcrumbs } from "@material-tailwind/react";
+import { Breadcrumbs } from "@material-tailwind/react";
 import { Link, useLocation } from "react-router-dom";
 import Axios from "../../../../../config/config";
 import Spinner from "../../../../layouts/Spinner";
