@@ -106,6 +106,9 @@ export default function ProjectTable({ status }) {
     const gotoDetailsPage = (id) => {
         navigate(`/dashboard/myprojectdetails?projectId=${id}`)
     }
+    const gotoProjectFile = (id) => {
+      navigate(`/dashboard/projectfile?projectId=${id}`)
+  }
   const deleteProject = async (id) => {
        try {
       setLoading(true);
@@ -157,15 +160,15 @@ export default function ProjectTable({ status }) {
   const formatProductType = (projectTypes) => {
       switch (projectTypes) {
           case "land_survey":
-              return <p className="px-2 py-1   w-24 rounded-md fw-600">Land Survey</p>
+              return <p className="">Land Survey</p>
           case "building_approval":
-              return <p className="px-2 py-1   w-24 rounded-md fw-600">Building Approval</p>
+              return <p className="">Building Approval</p>
           case "contractor":
-            return <p className="px-2 py-1  w-28 rounded-md fw-600">Contractor</p>
+            return <p className="">Contractor</p>
           case "construction_drawing":
-              return <p className="px-2 py-1    w-24 rounded-md fw-600">Construction Drawing</p>
+              return <p className="">Construction Drawing</p>
           case "geotechnical_investigation":
-            return <p className="px-2 py-1  w-28 rounded-md fw-600">Geotechnical Investigation</p>
+            return <p className="">Geotechnical Investigation</p>
           default: return status
       }
 
@@ -216,6 +219,9 @@ export default function ProjectTable({ status }) {
                             <MenuList>
                                   <MenuItem onClick={() => gotoDetailsPage(row.value)}>
                                       View Details
+                                  </MenuItem>
+                                  <MenuItem onClick={() => gotoProjectFile(row.value)}>
+                                      View Form
                                   </MenuItem>
                                   <MenuItem className="bg-red-600 text-white" onClick={() => deleteProject(row.value)}>
                                       Delete
