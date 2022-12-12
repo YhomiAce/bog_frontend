@@ -464,26 +464,26 @@ export default function Homepage() {
             {/* promote app */}
             <div className="section">
                 <div className="box">
-                    <div className="bg-app bg-cover lg:flex items-center justify-center rounded-xl text-white px-6">
-                        <div className="lg:w-5/12 py-10">
-                            <p className="lg:text-3xl fw-700 text-lg">Let's Build On The Go</p>
+                    <div className="bg-app bg-cover lg:flex flex-row-reverse lg:h-96 items-center justify-center rounded-xl text-white px-6">
+                        <div className="lg:w-6/12 lg:flex justify-end">
+                            <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670844720/BOG/Group_47497_xksedr.png" alt="app" className="relative left-8 lg:left-1/4" />
+                        </div>
+                        <div className="lg:w-5/12 xl:w-4/12 lg:py-10 relative -top-6 lg:top-0 lg:text-left text-center">
+                            <p className="lg:text-4xl fw-600 text-lg">Let's Build On The Go</p>
                             <p className="fw-500 fs-500 pt-12">BOG is available on iOS, Andriod and Web.</p>
                             <p className="fw-500 fs-500 pt-2">Open an account today</p>
                             <div className="mt-6 lg:mt-12">
                                 <Link to="/">
                                     <button className="rounded-xl bg-secondary">
-                                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670504238/BOG/appstore_dvsria.png" alt="appstore" className="w-24 lg:w-32" />
+                                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670844719/BOG/Frame_466445_v7lxvt.png" alt="appstore" className="w-24 lg:w-36" />
                                     </button>
                                 </Link>
                                 <Link to="/">
                                     <button className="rounded-xl bg-secondary ml-6">
-                                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670504241/BOG/playstore_twyw75.png" alt="appstore" className="w-24 lg:w-32" />
+                                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670844719/BOG/Frame_466443_nlsg5u.png" alt="appstore" className="w-24 lg:w-36" />
                                     </button>
                                 </Link>
                             </div>
-                        </div>
-                        <div className="lg:w-5/12 lg:pt-10">
-                            <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670510070/BOG/Group_47450_vy1lst.png" alt="app" className="" />
                         </div>
                     </div>
                 </div>

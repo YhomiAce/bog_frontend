@@ -39,7 +39,7 @@ export function Subscription() {
                     <div className='bg-white '>
                         <div className='text-center pt-6 lg:pt-12'>
                             <p className='text-2xl fw-600'><span className='text-primary'>Flexible </span>Plans</p>
-                            <p className='mt-3 text-gray-600 lg:w-96 mx-auto'>Choose a plan thet works best for you and your team.</p>
+                            <p className='mt-3 text-gray-600 lg:w-96 mx-auto'>Choose a plan that works best for you and your team.</p>
                         </div>
                         <div className='lg:flex justify-evenly py-12 lg:pb-24'>
                             <div className='lg:w-3/12 hover:scale-110 hover:bg-black hover:text-white transition duration-300 lg:p-10 rounded-md bg-white shades'>
@@ -58,7 +58,7 @@ export function Subscription() {
                                     </div>
                                     <div className='flex items-center'>
                                         <GiCheckMark/>
-                                        <p className='pl-1'>Render services clients</p>
+                                        <p className='pl-1'>Render services to clients</p>
                                     </div>
                                     <div className='flex items-center'>
                                         <GiCheckMark/>
@@ -89,7 +89,7 @@ export function Subscription() {
                                     </div>
                                     <div className='flex items-center'>
                                         <GiCheckMark/>
-                                        <p className='pl-1'>Render services clients</p>
+                                        <p className='pl-1'>Render services to clients</p>
                                     </div>
                                     <div className='flex items-center'>
                                         <GiCheckMark/>
@@ -120,7 +120,7 @@ export function Subscription() {
                                     </div>
                                     <div className='flex items-center'>
                                         <GiCheckMark/>
-                                        <p className='pl-1'>Render services clients</p>
+                                        <p className='pl-1'>Render services to clients</p>
                                     </div>
                                     <div className='flex items-center'>
                                         <GiCheckMark/>
