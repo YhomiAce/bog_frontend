@@ -81,8 +81,12 @@ export const Cart = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
-  const gotoLink = () => {
-    navigate("/ordersuccess")
+  const gotoLink = (orderId) => {
+    navigate("/ordersuccess", {
+      state: {
+        orderId
+      }
+    })
   }
 
   const sendOrder = async (payment) => {
@@ -112,9 +116,10 @@ export const Cart = () => {
           authorization: localStorage.getItem("auth_token"),
         },
       };
-      await Axios.post("/orders/submit-order", payload, config);
+      const res = await Axios.post("/orders/submit-order", payload, config);
+      const orderId = res.order.id
       setLoading(false);
-      SuccessAlertWithRedirection("Order in Progress!", gotoLink);
+      SuccessAlertWithRedirection("Order in Progress!", gotoLink(orderId));
     } catch (error) {
       setLoading(false);
       if (error.response.data.message) {
