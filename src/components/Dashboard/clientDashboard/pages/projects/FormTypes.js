@@ -37,7 +37,7 @@ export const LsForm = ({data}) => {
   
     }
     return (
-        <div className=" bg-white lg:p-10 rounded">
+        <div className=" bg-white lg:p-10 px-3 py-5 rounded">
             <div className="flex border-b py-3">
                 <p className="w-3/12 fw-500 border-r">Project Type</p>
                 <p className='lg:pl-4'>{formatProjectType(data?.projectTypes)}</p>
@@ -85,7 +85,7 @@ export const GiForm = ({data}) => {
 
     return (
        <div>
-            <div className=" bg-white lg:p-10 rounded">
+            <div className=" bg-white lg:p-10 px-3 py-5 rounded">
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Project Type</p>
                     <p>{formatProjectType(data?.projectTypes)}</p>
@@ -135,7 +135,7 @@ export const GiForm = ({data}) => {
                     <p>{data?.projectData?.anySpecialInvestigation === true ? "yes" : "no"}</p>
                 </div>
             </div>
-            <div className='mt-6 bg-white lg:p-10 rounded'>
+            <div className='mt-6 bg-white lg:p-10 rounded px-3 py-5'>
                 <p className='text-2xl fw-600 rounded mb-10'>Uploads</p>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Picture of Land Property</p>
@@ -166,7 +166,7 @@ export const CdForm = ({data}) => {
     }
     return (
        <div>
-            <div className=" bg-white lg:p-10 rounded">
+            <div className=" bg-white px-3 py-5 lg:p-10 rounded">
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Project Type</p>
                     <p>{formatProjectType(data?.projectTypes)}</p>
@@ -184,7 +184,7 @@ export const CdForm = ({data}) => {
                     <p>{data?.projectData?.projectType}</p>
                 </div>
             </div>
-            <div className='mt-6  lg:p-10 bg-white roubded '>
+            <div className='mt-6 px-3 py-5 lg:p-10 bg-white roubded '>
                 <p className='text-2xl fw-600rounded mb-10'>Uploads</p>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Survey Plan</p>
@@ -215,21 +215,21 @@ export const BaForm = ({data}) => {
     }
     return (
        <div>
-            <div className=" bg-white lg:p-10 rounded">
+            <div className=" bg-white px-3 py-5 lg:p-10 rounded">
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Project Type</p>
-                    <p>{formatProjectType(data?.projectTypes)}</p>
+                    <p className='pl-4'>{formatProjectType(data?.projectTypes)}</p>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Name of Client</p>
-                    <p>{data?.projectData?.clientName}</p>
+                    <p className='pl-4'>{data?.projectData?.clientName}</p>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Purpose of building</p>
-                    <p>{data?.projectData?.purpose}</p>
+                    <p className='pl-4'>{data?.projectData?.purpose}</p>
                 </div>
             </div>
-            <div className='mt-6  lg:p-10 bg-white rounded '>
+            <div className='mt-6 px-3 py-5  lg:p-10 bg-white rounded '>
                 <p className='text-2xl fw-600 rounded mb-10'>Uploads</p>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Survey Plan</p>
@@ -332,7 +332,7 @@ export const BcForm = ({data}) => {
     }
     return (
        <div>
-            <div className=" bg-white lg:p-10 rounded">
+            <div className=" bg-white px-3 py-5 lg:p-10 rounded">
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Project Type</p>
                     <p>{formatProjectType(data?.projectTypes)}</p>
@@ -354,7 +354,7 @@ export const BcForm = ({data}) => {
                     <p>Land Survey</p>
                 </div>
             </div>
-            <div className='mt-6 bg-white  lg:p-10 rounded'>
+            <div className='mt-6 px-3 py-5 bg-white  lg:p-10 rounded'>
                 <p className='text-2xl fw-600 mb-10'>Uploads</p>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Survey Plan</p>

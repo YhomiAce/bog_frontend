@@ -44,6 +44,7 @@ import UserOrderDetail from "./pages/UserOrderDetail";
 import KycAlert from "../assets/KycAlert";
 import { Subscription } from "./pages/Subscribtion";
 import ProjectFile from "./pages/projects/ProjectFile";
+import ProjectCategory from "./pages/ProjectCat";
 
 export default function ClientDashboard() {
     
@@ -95,6 +96,7 @@ export default function ClientDashboard() {
                         <Route path="servicepartner" element={<Spartners />} />
                         <Route path="allprojects" element={<AllProject />} />
                         <Route path="projectfile" element={<ProjectFile />} />
+                        <Route path="projectcategory" element={<ProjectCategory />} />
                         <Route path="meetings" element={<Meetings />} />
                         <Route path="transact" element={<Transactions />} />
                         <Route path="notify" element={<Notify />} />
