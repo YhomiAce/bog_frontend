@@ -370,7 +370,7 @@ export const Cart = () => {
                               </p>
                             ) : null}
                           </div> */}
-                          <div className="mt-2 w-full lg:w-6/12 pl-3">
+                          <div className="mt-2 w-full lg:w-6/12 lg:pl-3">
                             <label className="block">Address</label>
                             <input
                               type="text"
