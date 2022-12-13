@@ -80,14 +80,14 @@ const AdminSidebar = () => {
     };
 
     return (
-        <div>
+        <div className="overflow-y-scroll">
             <div>
                 <FontAwesomeIcon icon={faBarsStaggered} className="text-2xl fixed top-6 z-50 menu-btn lg:hidden" onClick={() => {
                     setShowSideBar(current => !current);
                 }} />
             </div>
             {showSideBar && (
-                <div className="fixed z-20 bg-white fs-400 top-20 w-6/12 lg:sidebar-w shadow min-h-screen pt-2 px-2 " onClick={CloseAll}>
+                <div className="fixed z-20 bg-white fs-400 top-20 w-6/12 lg:sidebar-w shadow min-h-screen pt-2 px-2" onClick={CloseAll}>
                     <div className="">
                         <NavLink
                             to=""
@@ -176,6 +176,12 @@ const AdminSidebar = () => {
                                         // style={({ isActive }) => (isActive ? activeStyle : undefined)}
                                         >
                                         <p className="py-2">Project Requests</p>
+                                    </NavLink>
+                                    <NavLink
+                                        to="projectcategory"
+                                        // style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                                        >
+                                        <p className="py-2">Service Category</p>
                                     </NavLink>
                                 </div>
                             )}
