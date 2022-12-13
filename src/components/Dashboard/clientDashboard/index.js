@@ -47,7 +47,7 @@ import ProjectFile from "./pages/projects/ProjectFile";
 import ProjectCategory from "./pages/ProjectCat";
 
 export default function ClientDashboard() {
-    
+
     const navigate = useNavigate()
     const [sidebarReduce, setSidebarReduce] = useState(false)
 
@@ -56,17 +56,19 @@ export default function ClientDashboard() {
         <div>
             <div className="font-primary">
                 <Header />
-                <div className="" style={{width: sidebarReduce? "100px" : "200px" }}>
+                <div className="" style={{ width: sidebarReduce ? "100px" : "200px" }}>
                     <Sidebar />
                 </div>
                 <div className="fixed top-0 hidden lg:block sub-menu z-50">
-                    <FontAwesomeIcon icon={faBarsStaggered} size="2x" className="text-2xl lg:ml-4 cursor-pointer" onClick={() => setSidebarReduce(!sidebarReduce)}/>
+                    <FontAwesomeIcon icon={faBarsStaggered} size="2x" className="text-2xl lg:ml-4 cursor-pointer" onClick={() => setSidebarReduce(!sidebarReduce)} />
                 </div>
-                <div 
-                    style={{width: sidebarReduce? "calc(100% - 45px)" : "" ,
-                            zIndex: sidebarReduce? "45" : "" }}
+                <div
+                    style={{
+                        width: sidebarReduce ? "calc(100% - 45px)" : "",
+                        zIndex: sidebarReduce ? "45" : ""
+                    }}
                     className="lg:main-p pt-21 home-bg pb-10 relative">
-                    <KycAlert/>
+                    <KycAlert />
                     <Routes element={<ProtectedRoute />}>
                         <Route path="" element={<Dashboard />} />
                         <Route path="orders" element={<Orders />} />
@@ -83,20 +85,20 @@ export default function ClientDashboard() {
                         <Route path="userdetails" element={<UserDetails />} />
                         <Route path="productscategory" element={<ProductsCategory />} />
                         <Route path="productsadmin" element={<ProductsAdmin />} />
-                        <Route path="productdetailadmin" element={<ProductDetailsAdmin/>} />
-                        <Route path="ordersadmin" element={<OrdersAdmin/>} />
-                        <Route path="myorderdetails" element={<OrderDetailsClient/>} />
-                        <Route path="orderadmindetail" element={<OrderDetails/>} />
-                        <Route path="order-detail/:orderId" element={<UserOrderDetail/>} />
-                        <Route path="projectsadmin" element={<ProjectsAdmin/>} />
-                        <Route path="projectadmindetail" element={<ProjectDetails/>} />
-                        <Route path="myprojectdetails" element={<ProjectDetailsClient/>} />
-                        <Route path="projectrequest" element={<ProjectRequest/>} />
+                        <Route path="productdetailadmin" element={<ProductDetailsAdmin />} />
+                        <Route path="ordersadmin" element={<OrdersAdmin />} />
+                        <Route path="myorderdetails" element={<OrderDetailsClient />} />
+                        <Route path="orderadmindetail" element={<OrderDetails />} />
+                        <Route path="order-detail/:orderId" element={<UserOrderDetail />} />
+                        <Route path="projectsadmin" element={<ProjectsAdmin />} />
+                        <Route path="projectadmindetail" element={<ProjectDetails />} />
+                        <Route path="myprojectdetails" element={<ProjectDetailsClient />} />
+                        <Route path="projectrequest" element={<ProjectRequest />} />
                         <Route path="productpartner" element={<Ppartners />} />
                         <Route path="servicepartner" element={<Spartners />} />
                         <Route path="allprojects" element={<AllProject />} />
                         <Route path="projectfile" element={<ProjectFile />} />
-                        <Route path="projectcategory" element={<ProjectCategory />} />
+                        <Route path="servicecategory" element={<ProjectCategory />} />
                         <Route path="meetings" element={<Meetings />} />
                         <Route path="transact" element={<Transactions />} />
                         <Route path="notify" element={<Notify />} />
@@ -104,16 +106,18 @@ export default function ClientDashboard() {
                         <Route path="review" element={<Review />} />
                         <Route path="inbox" element={<Inbox />} />
                         <Route path="kyc" element={<KycForm />} />
-                        <Route path="subscription" element={<Subscription/>} />
+                        <Route path="subscription" element={<Subscription />} />
                         <Route path="settings" element={<Settings />} />
                         <Route path="" element={<Dashboard />} />
-                        <Route path="" element={<Dashboard />}  />
+                        <Route path="" element={<Dashboard />} />
                     </Routes>
-                    
+
                 </div>
-                <div 
-                    style={{width: sidebarReduce? "calc(100% - 45px)" : "" ,
-                    zIndex: sidebarReduce? "45" : "" }}
+                <div
+                    style={{
+                        width: sidebarReduce ? "calc(100% - 45px)" : "",
+                        zIndex: sidebarReduce ? "45" : ""
+                    }}
                     className="lg:flex relative bg-white text-center lg:main-p px-5 py-5 text-primary fw-500 justify-between fs-400">
                     <div className="flex mb-5 lg:mb-0">
                         <ul className="flex w-full justify-evenly lg:justify-start">
@@ -131,6 +135,6 @@ export default function ClientDashboard() {
                 </div>
             </div>
         </div>
-        
-        )
+
+    )
 }
