@@ -75,7 +75,7 @@ const CreateCategoryProject = ({ CloseModal, item }) => {
                         loading ? <Spinner /> :
                             <div className="mt-8 flex justify-between">
                                 <Button color="red" onClick={CloseModal}>Cancel</Button>
-                                <Button type='submit' className="bg-primary">ADD Product</Button>
+                                <Button type='submit' className="bg-primary">ADD Service</Button>
                             </div>
                     }
                 </form>
