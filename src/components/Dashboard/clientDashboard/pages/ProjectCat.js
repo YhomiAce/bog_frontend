@@ -23,7 +23,7 @@ export default function ProjectCategory() {
     }
 
     useEffect(() => {
-        dispatch(getCategories());
+        dispatch(getCategories()); // eslint-disable-next-line 
     }, []);
 
     return (
