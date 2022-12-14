@@ -2,11 +2,11 @@ import { Button } from '@material-tailwind/react'
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createCategory } from '../../../../../../redux/actions/ProductAction';
+import { createServiceCategory, updateServiceCategory } from '../../../../../../redux/actions/ProjectAction';
 import { categorySchema } from '../../../../../../services/validation';
 import Spinner from '../../../../../layouts/Spinner';
 
-const CreateCategoryProject = ({ CloseModal }) => {
+const CreateCategoryProject = ({ CloseModal, item }) => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const stopLoading = () => {
@@ -16,14 +16,20 @@ const CreateCategoryProject = ({ CloseModal }) => {
     const submitHandler = (value) => {
         setLoading(true);
         const payload = {
-            ...value
+            title: value.name,
+            description: value.description,
         };
-        dispatch(createCategory(payload, stopLoading));
+        if (item != null) {
+           payload.typeId =item.id;
+           dispatch(updateServiceCategory(payload, stopLoading));
+        }else{
+            dispatch(createServiceCategory(payload, stopLoading));
+        }
     }
     const formik = useFormik({
         initialValues: {
-            name: "",
-            description: ""
+            name: item ? item.title : "",
+            description: item ? item.description : ""
         },
         onSubmit: submitHandler,
         validationSchema: categorySchema
@@ -33,9 +39,9 @@ const CreateCategoryProject = ({ CloseModal }) => {
         <div className="fixed font-primary top-0 left-0 w-full h-screen bg-op center-item z-40" onClick={CloseModal}>
             <div className="bg-white px-4 lg:w-5/12 rounded-md overflow-y-auto overscroll-none  w-11/12 pt-8 pb-8 lg:px-10 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
                 <form onSubmit={formik.handleSubmit}>
-                    <p className="lg:fs-700 fw-600">Add Category</p>
+                    <p className="lg:fs-700 fw-600">Add Service Type</p>
                     <div className="mt-5">
-                        <label className="block">Category Name</label>
+                        <label className="block">Service Type Name</label>
                         <input
                             type="text"
                             className="w-full border border-gray-400 rounded mt-2 py-2 px-2"
@@ -50,10 +56,6 @@ const CreateCategoryProject = ({ CloseModal }) => {
                             formik.touched.name && formik.errors.name ? <p className='text-red-500'>{formik.errors.name}</p> : null
                         }
                     </div>
-                    {/* <div className="mt-5">
-                        <label className="block">Category ID</label>
-                        <input type="text" className="w-full border border-gray-400 rounded mt-2 py-2 px-2" required />
-                    </div> */}
                     <div className="mt-5">
                         <label className="block">Category Description</label>
                         <textarea
@@ -73,7 +75,7 @@ const CreateCategoryProject = ({ CloseModal }) => {
                         loading ? <Spinner /> :
                             <div className="mt-8 flex justify-between">
                                 <Button color="red" onClick={CloseModal}>Cancel</Button>
-                                <Button type='submit' className="bg-primary">ADD Product</Button>
+                                <Button type='submit' className="bg-primary">ADD Service</Button>
                             </div>
                     }
                 </form>

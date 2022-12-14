@@ -178,7 +178,7 @@ const AdminSidebar = () => {
                                         <p className="py-2">Project Requests</p>
                                     </NavLink>
                                     <NavLink
-                                        to="projectcategory"
+                                        to="servicecategory"
                                         // style={({ isActive }) => (isActive ? activeStyle : undefined)}
                                         >
                                         <p className="py-2">Service Category</p>

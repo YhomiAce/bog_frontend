@@ -7,24 +7,40 @@ import { Breadcrumbs } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { HiOutlineDocumentDownload } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories } from "../../../../redux/actions/ProductAction";
-import CategoryItem from "./Product/CategoryItem";
+import { fetchServiceCategories } from "../../../../redux/actions/ProjectAction";
 import CreateCategoryProject from "./projects/Modal/CreateCategory";
+import CategoryItem from "./projects/CategoryItem";
+import ViewService from "./projects/Modal/ViewService";
 
 export default function ProjectCategory() {
     const dispatch = useDispatch();
     const products = useRef(null);
+    const [openViewModal, setOpenViewModal] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
+    const handleViewOpen = (data) => {
+        setSelectedItem(data);
+        setOpenViewModal(true)
+    }
+    const handleCloseView = () => {
+        setOpenViewModal(false);
+        setSelectedItem(null);
+    }
 
     const [adminAdd, setAdminAdd] = useState(false);
-    const categories = useSelector((state) => state.products.categories);
+    const categories = useSelector((state) => state.projects.services);
 
     function CloseModal() {
         setAdminAdd(false)
+        setSelectedItem(null);
+    }
+    function openEdit(data) {
+        setSelectedItem(data);
+        setAdminAdd(true)
     }
 
     useEffect(() => {
-        dispatch(getCategories()); // eslint-disable-next-line 
-    }, []);
+        dispatch(fetchServiceCategories()); // eslint-disable-next-line 
+    }, [dispatch]);
 
     return (
         <div className="">
@@ -61,7 +77,7 @@ export default function ProjectCategory() {
                     <div className="bg-white lg:p-5 lg:mt-6 mt-6 rounded-lg">
                         <Tabs className="px-2 lg:px-0 py-5 lg:py-0">
                             <TabList className="">
-                                <Tab>Products Category</Tab>
+                                <Tab>Service Category</Tab>
                             </TabList>
                             <TabPanel>
                                 <div className="mt-10">
@@ -97,23 +113,24 @@ export default function ProjectCategory() {
                                                     S/N
                                                 </th>
                                                 <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                    Category Name
+                                                    Service Name
                                                 </th>
-                                                {/* <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                    Category ID
-                                                </th> */}
-                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                    No of Products
-                                                </th>
-                                                <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
+
+                                                <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
                                                     Action
                                                 </th>
                                             </tr>
-                                           {
-                                            categories.length > 0 ? categories.map((category, index) => (
-                                                <CategoryItem item={category} key={category.id} sn={index+1} />
-                                            )) : <center><h5>No Categories added. Add new ones</h5></center>
-                                           }
+                                            {
+                                                categories.length > 0 ? categories.map((category, index) => (
+                                                    <CategoryItem 
+                                                    item={category} 
+                                                    key={category.id} 
+                                                    sn={index + 1} 
+                                                    handleViewOpen={handleViewOpen}
+                                                    openEdit={openEdit}
+                                                    />
+                                                )) : <center><h5>No Service Type added. Add new ones</h5></center>
+                                            }
                                         </tbody>
                                     </table>
                                 </div>
@@ -123,8 +140,12 @@ export default function ProjectCategory() {
                 </div>
             </div>
             {adminAdd && (
-                <CreateCategoryProject CloseModal={CloseModal} />
+                <CreateCategoryProject CloseModal={CloseModal} item={selectedItem} />
             )}
+            {openViewModal && (
+                <ViewService item={selectedItem} CloseModal={handleCloseView} />
+            )}
+
         </div>
     )
 }

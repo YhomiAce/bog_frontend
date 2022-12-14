@@ -1,12 +1,13 @@
-import * as ActionType from '../type'; 
+import * as ActionType from '../type';
 
 const initialState = {
     projects: [],
+    services: [],
     isLoading: false,
     error: null,
 }
 
- 
+
 const ProjectReducer = (state = initialState, action) => {
     const { type, payload } = action
     switch (type) {
@@ -17,6 +18,51 @@ const ProjectReducer = (state = initialState, action) => {
                 projects: payload,
                 error: null,
             }
+        case ActionType.FETCH_ALL_SERVICES:
+            return {
+                ...state,
+                isLoading: false,
+                services: payload,
+                error: null,
+            }
+        case ActionType.CREATE_SERVICE:
+            return {
+                ...state,
+                isLoading: false,
+                services: [payload, ...state.services],
+                error: null,
+            }
+        case ActionType.UPDATE_SERVICE:
+            const oldData = [...state.services]
+            const index = oldData.findIndex(where => where.id === payload.typeId)
+            console.log(index);
+            oldData[index].title = payload.title;
+            oldData[index].description = payload.description;
+            return {
+                ...state,
+                isLoading: false,
+                services: oldData,
+                error: null,
+            }
+        case ActionType.DELETE_SERVICE:
+            return {
+                ...state,
+                isLoading: false,
+                services: state.services.filter(where => where.id !== payload),
+                error: null,
+            }
+        case ActionType.PROJECT_ERROR:
+            return {
+                ...state,
+                error: payload,
+                isLoading: false
+            }
+        case ActionType.LOADING:
+            return {
+                ...state,
+                isLoading: true
+            }
+
         default: return state;
     }
 }
