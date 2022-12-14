@@ -335,7 +335,7 @@ const Table = ({columns, data}) => {
                   {headerGroups.map((headerGroup) =>
                       headerGroup.headers.map((column) =>
                       column.Filter ? (
-                          <div className="fs-500 px-3 py-2 rounded-md bg-light" key={column.id}>
+                          <div className="fs-500  px-3 py-2 rounded-md bg-light" key={column.id}>
                               <label for={column.id} className="fw-600 ">{column.render("Header")}: </label>
                               {column.render("Filter")}
                           </div>

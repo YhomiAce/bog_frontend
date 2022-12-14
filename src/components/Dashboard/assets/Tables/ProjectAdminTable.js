@@ -298,13 +298,13 @@ const Table = ({columns, data}) => {
 
     return (
         <>
-            <div className="flex items-center mb-5 justify-between">
+            <div className="lg:flex items-center mb-5 justify-between">
                 <GlobalFilter
                     preGlobalFilteredRows={preGlobalFilteredRows}
                     globalFilter={state.globalFilter}
                     setGlobalFilter={setGlobalFilter}
                 />
-                <div className="flex">
+                <div className="flex mt-5 lg:mt-0">
                 <Menu>
                     <MenuHandler>
                       <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none flex items-center">Export <FaFileDownload className="text-2xl"/></Button>
@@ -401,16 +401,16 @@ const Table = ({columns, data}) => {
                 </select>
             </div>
             <div>
-                <button className="border border-gray-400 px-2 p-1 text-xl" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+                <button className="border border-gray-400 px-2 p-1 fs-400 lg:text-xl" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                     <FaAngleDoubleLeft/>
                 </button>{' '}
-                <button className="border border-gray-400 px-2 p-1 text-xl" onClick={() => previousPage()} disabled={!canPreviousPage}>
+                <button className="border border-gray-400 px-2 p-1 fs-400 lg:text-xl" onClick={() => previousPage()} disabled={!canPreviousPage}>
                     <FaAngleLeft/>
                 </button>{' '}
-                <button className="border border-gray-400 px-2 p-1 text-xl" onClick={() => nextPage()} disabled={!canNextPage}>
+                <button className="border border-gray-400 px-2 p-1 fs-400 lg:text-xl" onClick={() => nextPage()} disabled={!canNextPage}>
                     <FaAngleRight/>
                 </button>{' '}
-                <button className="border border-gray-400 px-2 p-1 text-xl" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+                <button className="border border-gray-400 px-2 p-1 fs-400 lg:text-xl" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
                     <FaAngleDoubleRight/>
                 </button>
             </div>
