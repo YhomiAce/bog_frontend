@@ -87,7 +87,7 @@ const AdminSidebar = () => {
                 }} />
             </div>
             {showSideBar && (
-                <div className="fixed z-20 bg-white fs-400 top-20 w-6/12 lg:sidebar-w shadow min-h-screen pt-2 px-2" onClick={CloseAll}>
+                <div className="fixed lg:pb-12 overflow-y-scroll z-20 bg-white fs-400 top-20 w-6/12 h-full lg:sidebar-w shadow pt-2 px-2" onClick={CloseAll}>
                     <div className="">
                         <NavLink
                             to=""
@@ -231,14 +231,14 @@ const AdminSidebar = () => {
                                 <div className="lg:pl-8 pl-4 fs-400 pt-2" onClick={e => e.stopPropagation()}>
                                     <NavLink
                                         to="client"
-                                        // style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                                        style={({ isActive }) => (isActive ? activeStyles : undefined)}
                                         onClick={unShow}
                                         >
                                         <p className="py-1">Clients</p>
                                     </NavLink>
                                     <NavLink
                                         to="productpartner"
-                                        // style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                                        style={({ isActive }) => (isActive ? activeStyles : undefined)}
                                         onClick={unShow}
                                         >
                                         <p className="py-2">Product Partners</p>
@@ -249,7 +249,15 @@ const AdminSidebar = () => {
                                         style={({ isActive }) => (isActive ? activeStyles : undefined)}
                                         onClick={unShow}
                                         >
-                                        <p className="py-1">Service Partners</p>
+                                        <p className="py-1 pb-2">Service Partners</p>
+                                    </NavLink>
+                                    <NavLink
+                                        to="sub-admin"
+                                        className=""
+                                        style={({ isActive }) => (isActive ? activeStyles : undefined)}
+                                        onClick={unShow}
+                                        >
+                                        <p className="py-1">Sub Admins</p>
                                     </NavLink>
                                 </div>
                             )}
