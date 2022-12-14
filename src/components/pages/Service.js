@@ -93,6 +93,8 @@ export default function Service() {
             denyButtonText: 'Sign Up',
             confirmButtonText: "Login",
             showDenyButton:true,
+            showCancelButton: true,
+            cancelButtonColor: "rgba(254, 0, 56, 1)",
             confirmButtonColor: "#3F79AD",
             denyButtonColor: "#ec8b20"
         }).then((result) => {
