@@ -46,6 +46,8 @@ import { Subscription } from "./pages/Subscribtion";
 import ProjectFile from "./pages/projects/ProjectFile";
 import ProjectCategory from "./pages/ProjectCat";
 import Sadmins from "./pages/SAdmins";
+import { ViewBlog } from "./pages/Blog/ViewBlog";
+import { Testimonial } from "./pages/Testimonial";
 
 export default function ClientDashboard() {
 
@@ -80,6 +82,7 @@ export default function ClientDashboard() {
                         <Route path="client" element={<Clients />} />
                         <Route path="blog" element={<Blog />} />
                         <Route path="createpost" element={<BlogPost />} />
+                        <Route path="viewpost" element={<ViewBlog />} />
                         <Route path="editpost/:postId" element={<EditPost />} />
                         <Route path="email" element={<Email />} />
                         <Route path="createmail" element={<CreateEmail />} />
@@ -108,6 +111,7 @@ export default function ClientDashboard() {
                         <Route path="review" element={<Review />} />
                         <Route path="inbox" element={<Inbox />} />
                         <Route path="kyc" element={<KycForm />} />
+                        <Route path="testimonial" element={<Testimonial />} />
                         <Route path="subscription" element={<Subscription />} />
                         <Route path="settings" element={<Settings />} />
                         <Route path="" element={<Dashboard />} />

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../redux/actions/authAction';
 import { MdOutlineEmail } from "react-icons/md";
 import { HiOutlineLogout } from "react-icons/hi";
+import { ImNewspaper } from "react-icons/im";
 
 
 const ServiceSidebar = () => {
@@ -137,6 +138,15 @@ const ServiceSidebar = () => {
                             <BsBell className="text-xl" />
                             <p className="pl-3">Notification</p>
                             
+                        </NavLink>
+                        <NavLink 
+                            to="testimonial"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-3"
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            onClick={unShow}
+                            >
+                                <ImNewspaper className="text-xl" />
+                                <p className="pl-3">Testimonial</p>
                         </NavLink>
                         <NavLink 
                             to="transact"
