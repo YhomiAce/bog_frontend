@@ -3,16 +3,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Breadcrumbs } from "@material-tailwind/react";
 import { DownloadTableExcel } from "react-export-table-to-excel";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import React, {useRef} from "react";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import React, {useRef, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineDocumentDownload } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllBlogPosts } from "../../../../redux/actions/PostAction";
+import BlogItem from "./Blog/BlogItem";
 
 export default function Blog() {
-    
+    const dispatch = useDispatch();
     const blog = useRef(null);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    const blogs = useSelector((state) => state.blog.posts);
+
+    useEffect(() => {
+        dispatch(getAllBlogPosts());
+    }, [dispatch]);
 
     return (
         <div>
@@ -103,94 +111,12 @@ export default function Blog() {
                                                     Action
                                                 </th>
                                             </tr>
-                                            <tr>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                1
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Six reasons to use BOG
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                General
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                20-11-12
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Published
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                <div className="flex text-xl">
-                                                    <p className="bg-orange-100" onClick={() => navigate("/dashboard/editpost")}><BsThreeDotsVertical/></p>
-                                                </div>
-                                            </td>
-                                            </tr>
-                                            <tr>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                2
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                               Pros and Cons of construction... 
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Soil Test
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                21-11-22
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Published
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                <div className="flex text-xl">
-                                                    <p className="bg-orange-100"><BsThreeDotsVertical/></p>
-                                                </div>
-                                            </td>
-                                            </tr>
-                                            <tr>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                3
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Top 5 building sketches
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Construction Drawing 
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                21-11-2022
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Draft
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                <div className="flex text-xl">
-                                                <p className="bg-orange-100"><BsThreeDotsVertical/></p>
-                                                </div>
-                                            </td>
-                                            </tr>
-                                            <tr>
-                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                4
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Building approval in 3 steps
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Building Approval
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                24-11-22
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Draft
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                <div className="flex text-xl">
-                                                <p className="bg-orange-100"><BsThreeDotsVertical/></p>
-                                                </div>
-                                            </td>
-                                            </tr>
+                                            
+                                            {
+                                                blogs.length > 0 ? blogs.map((blog, index) => (
+                                                    <BlogItem key={blog.id} item={blog} sn={index} />
+                                                )) : <p>No Blog Post Created</p>
+                                            }
                                         </tbody>
                                     </table>
                                 </div>
@@ -244,50 +170,11 @@ export default function Blog() {
                                                     Action
                                                 </th>
                                             </tr>
-                                            <tr>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                1
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Six reasons to use BOG
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                General
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                20-11-12
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Published
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                <div className="flex text-xl">
-                                                    <p className="bg-orange-100" onClick={() => navigate("/dashboard/projectadmindetail")}><BsThreeDotsVertical/></p>
-                                                </div>
-                                            </td>
-                                            </tr>
-                                            <tr>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                2
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                               Pros and Cons of construction... 
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Soil Test
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                21-11-22
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Published
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                <div className="flex text-xl">
-                                                    <p className="bg-orange-100"><BsThreeDotsVertical/></p>
-                                                </div>
-                                            </td>
-                                            </tr>
+                                            {
+                                                blogs.length > 0 ? blogs.filter(where => where.isPublished).map((blog, index) => (
+                                                    <BlogItem key={blog.id} item={blog} sn={index} />
+                                                )) : <p>No Blog Post Created</p>
+                                            }
                                         </tbody>
                                     </table>
                                 </div>
@@ -341,50 +228,11 @@ export default function Blog() {
                                                     Action
                                                 </th>
                                             </tr>
-                                            <tr>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                1
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Top 5 building sketches
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Construction Drawing 
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                21-11-2022
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Draft
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                <div className="flex text-xl">
-                                                <p className="bg-orange-100"><BsThreeDotsVertical/></p>
-                                                </div>
-                                            </td>
-                                            </tr>
-                                            <tr>
-                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                2
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Building approval in 3 steps
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Building Approval
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                24-11-22
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Draft
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                <div className="flex text-xl">
-                                                <p className="bg-orange-100"><BsThreeDotsVertical/></p>
-                                                </div>
-                                            </td>
-                                            </tr>
+                                            {
+                                                blogs.length > 0 ? blogs.filter(where => where.status === "draft").map((blog, index) => (
+                                                    <BlogItem key={blog.id} item={blog} sn={index} />
+                                                )) : <p>No Blog Post Created</p>
+                                            }
                                         </tbody>
                                     </table>
                                 </div>

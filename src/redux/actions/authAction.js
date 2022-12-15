@@ -64,13 +64,13 @@ export const getMe = () => {
             } catch (error) {
                 console.log(error.message);
                 // dispatch(setError(error.message));
-                toaster.notify(
-                    error.message,
-                    {
-                        duration: "4000",
-                        position: "bottom",
-                    }
-                );
+                // toaster.notify(
+                //     error.message,
+                //     {
+                //         duration: "4000",
+                //         position: "bottom",
+                //     }
+                // );
             }
 
     }

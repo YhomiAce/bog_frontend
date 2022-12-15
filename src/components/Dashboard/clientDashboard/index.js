@@ -80,7 +80,7 @@ export default function ClientDashboard() {
                         <Route path="client" element={<Clients />} />
                         <Route path="blog" element={<Blog />} />
                         <Route path="createpost" element={<BlogPost />} />
-                        <Route path="editpost" element={<EditPost />} />
+                        <Route path="editpost/:postId" element={<EditPost />} />
                         <Route path="email" element={<Email />} />
                         <Route path="createmail" element={<CreateEmail />} />
                         <Route path="userdetails" element={<UserDetails />} />

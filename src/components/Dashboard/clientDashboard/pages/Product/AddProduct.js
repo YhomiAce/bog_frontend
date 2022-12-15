@@ -16,7 +16,6 @@ const AddProduct = () => {
     const handlePhotoChange = (e) => {
         setPhotos(Array.from(e.target.files));
     }
-    console.log(photos);
     const stopLoading = () => setLoading(false); 
 
     const createNewProduct = (value, action) => {
