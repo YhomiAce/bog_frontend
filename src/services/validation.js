@@ -82,3 +82,8 @@ export const categorySchema = Yup.object({
     name: Yup.string().required("Product title is required"),
     description: Yup.string().required("Product description is required"),
 });
+
+export const postSchema = Yup.object({
+    title: Yup.string().required("Product title is required"),
+    description: Yup.string().required("Product description is required"),
+});
