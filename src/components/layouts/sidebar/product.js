@@ -8,6 +8,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../redux/actions/authAction';
 import { HiOutlineLogout } from "react-icons/hi";
+import { ImNewspaper } from "react-icons/im";
 
 
 
@@ -125,6 +126,15 @@ const ProductSidebar = () => {
                             <BsBell className="text-xl" />
                             <p className="pl-3" id="sideText">Notifications</p>
                             
+                        </NavLink>
+                        <NavLink 
+                            to="testimonial"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-3"
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            onClick={unShow}
+                            >
+                                <ImNewspaper className="text-xl" />
+                                <p className="pl-3">Testimonial</p>
                         </NavLink>
                         <NavLink 
                             to="transact"
