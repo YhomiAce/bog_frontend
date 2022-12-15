@@ -56,7 +56,7 @@ export default function ProjectsAdmin() {
                         </Breadcrumbs>
                     </div>
                     <div className="mt-4 lg:mt-0">
-                        <button className="px-4 lg:py-2 py-1 rounded border-pri text-primary" onClick={() => setAdminAdd(!adminAdd)}>Assign New Order</button>
+                        <button className="px-4 lg:py-2 py-1 rounded border-pri text-primary" onClick={() => setAdminAdd(!adminAdd)}>Assign New Project</button>
                     </div>
                 </div>  
                 

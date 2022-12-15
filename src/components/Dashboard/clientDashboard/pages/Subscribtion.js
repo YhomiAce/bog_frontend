@@ -42,7 +42,7 @@ export function Subscription() {
                             <p className='mt-3 text-gray-600 lg:w-96 mx-auto'>Choose a plan that works best for you and your team.</p>
                         </div>
                         <div className='lg:flex justify-evenly py-12 lg:pb-24'>
-                            <div className='lg:w-3/12 hover:scale-110 hover:bg-black hover:text-white transition duration-300 lg:p-10 rounded-md bg-white shades'>
+                            <div className='lg:w-3/12 w-11/12 mx-auto hover:scale-110 hover:bg-black hover:text-white transition duration-300 lg:p-10 p-6 rounded-md bg-white shades'>
                                 <div className='flex pb-5'>
                                     <img src='https://res.cloudinary.com/greenmouse-tech/image/upload/v1670591820/BOG/basic-removebg-preview_aeltgx.png' alt="basic" className='w-16 bg-primary rounded-lg' />
                                     <div className='pl-3  fs-400 fw-600'>
@@ -73,7 +73,7 @@ export function Subscription() {
                                     <button className='flex items-center w-full btn-primary'>Choose Plan <span className='pl-2'><BsArrowRightCircleFill/></span></button>
                                 </div>
                             </div>
-                            <div className='lg:w-3/12 hover:scale-110 hover:bg-black hover:text-white transition duration-300 lg:p-10 rounded-md bg-white shades'>
+                            <div className='lg:w-3/12 w-11/12 mx-auto p-6 mt-7 lg:mt-0 hover:scale-110 hover:bg-black hover:text-white transition duration-300 lg:p-10 rounded-md bg-white shades'>
                                 <div className='flex pb-5'>
                                     <img src='https://res.cloudinary.com/greenmouse-tech/image/upload/v1670591820/BOG/basic-removebg-preview_aeltgx.png' alt="basic" className='w-16 bg-secondary rounded-lg' />
                                     <div className='pl-3  fs-400 fw-600'>
@@ -104,7 +104,7 @@ export function Subscription() {
                                     <button className='flex items-center w-full btn-primary'>Choose Plan <span className='pl-2'><BsArrowRightCircleFill/></span></button>
                                 </div>
                             </div>
-                            <div className='lg:w-3/12 hover:scale-110 hover:bg-black hover:text-white transition duration-300 lg:p-10 rounded-md bg-white shades'>
+                            <div className='lg:w-3/12  w-11/12 mx-auto p-6 mt-7 lg:mt-0 hover:scale-110 hover:bg-black hover:text-white transition duration-300 lg:p-10 rounded-md bg-white shades'>
                                 <div className='flex pb-5'>
                                     <img src='https://res.cloudinary.com/greenmouse-tech/image/upload/v1670591820/BOG/basic-removebg-preview_aeltgx.png' alt="basic" className='w-16 bg-green-300 rounded-lg' />
                                     <div className='pl-3  fs-400 fw-600'>
