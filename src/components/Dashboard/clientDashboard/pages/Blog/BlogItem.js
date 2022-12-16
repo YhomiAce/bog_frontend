@@ -15,6 +15,11 @@ const BlogItem = ({ item, sn }) => {
             pathname: `/dashboard/editpost/${id}`,
         })
     }
+    const gotoView = (id) => {
+        navigate({
+            pathname: `/dashboard/viewpost/${id}`,
+        })
+    }
     const deletePost = (id) => {
         Swal.fire({
             title: "Delete Blog Post",
@@ -59,7 +64,7 @@ const BlogItem = ({ item, sn }) => {
             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                 <div className="flex text-xl">
                     <span style={iconStyle}>
-                        <BsEye />
+                        <BsEye onClick={() => gotoView(item.id)} />
                     </span>
                     <span style={iconStyle}>
                         <BiEdit onClick={() => gotoEdit(item.id)} />
