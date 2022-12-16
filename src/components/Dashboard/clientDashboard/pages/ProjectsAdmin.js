@@ -386,7 +386,7 @@ export default function ProjectsAdmin() {
                                 </div>
                                 <div className="mt-8 flex lg:w-10/12 justify-between">
                                     <Button color="red" onClick={CloseModal}>Cancel</Button>
-                                    <Button className="bg-primary">ADD Product</Button>
+                                    <Button className="bg-primary">ADD Project</Button>
                                 </div>
                             </form>
                         </div> 
