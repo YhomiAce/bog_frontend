@@ -12,6 +12,16 @@ export const privateClientSchema = Yup.object({
     terms: Yup.boolean().required("Please accept terms and conditions")
 })
 
+export const adminSchema = Yup.object({
+    name: Yup.string().required("Name is required"),
+    level: Yup.string().required("Level is required"),
+    email: Yup.string().email("Enter a valid E-mail address").required("E-mail Address is required"),
+    password: Yup.string().required('Password is required').matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    ),
+})
+
 export const loginValidation = Yup.object({
     email: Yup.string().email("Enter a valid E-mail address").required("E-mail Address is required"),
     password: Yup.string().required('Password is required')
