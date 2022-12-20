@@ -3,11 +3,16 @@ import { BsArrowRight } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import { cutText, stripHtml } from '../../../services/helper'
 
-const News = ({item}) => {
+const News = ({ item }) => {
     return (
         <div className="lg:w-45 shadow-md rounded-md">
             <div>
-                <img src={item.images[0].image} alt="blog1" className="w-full h-52 rounded-t-md" />
+                {
+                    item?.images.length > 0 ?
+                    <img src={item.images[0].image} alt="blog1" className="w-full h-52 rounded-t-md" />
+                        : null
+                }
+                
             </div>
             <div className="px-3 lg:px-6 lg:py-8 py-4">
                 <p className="fs-600 fw-600">{item.title} </p>

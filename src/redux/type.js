@@ -54,3 +54,6 @@ export const CREATE_POST = "CREATE_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const POST_ERROR = "POST_ERROR";
 export const PROJECT_ERROR = "PROJECT_ERROR";
+export const FETCH_ADMIN = "FETCH_ADMIN";
+export const ADD_ADMIN = "ADD_ADMIN";
+export const DELETE_ADMIN = "DELETE_ADMIN";
