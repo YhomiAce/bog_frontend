@@ -12,36 +12,36 @@ import Header from "./home-comp/Header";
 export default function BlogPage() {
   const { blogId } = useParams();
   const { data: blog, loading } = useFetchHook(`/blog/find/${blogId}`);
-  const [ posts, setPosts] = useState([]);
-  const [ isLoading, setIsLoading] = useState([]);
-  
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState([]);
+
   const fetchRelatedBlog = async () => {
     try {
-        setIsLoading(true);
-        const config = {
-            headers: {
-                "Content-Type": "Application/json",
-                authorization: localStorage.getItem("auth_token"),
-            },
-        };
-        const url =`/blog/get-category-blogs/${blog?.category[0].id}`;
-        const res = await Axios.get(url,config);
-        const data = res.data;
-        const filteredPost = data.filter(where => where.id !== blogId).filter(where => where.isPublished);
-        const postData = filteredPost.slice(0,2)
-        console.log({postData});
-        setPosts(postData);
-        setIsLoading(false);
+      setIsLoading(true);
+      const config = {
+        headers: {
+          "Content-Type": "Application/json",
+          authorization: localStorage.getItem("auth_token"),
+        },
+      };
+      const url = `/blog/get-category-blogs/${blog?.category[0].id}`;
+      const res = await Axios.get(url, config);
+      const data = res.data;
+      const filteredPost = data.filter(where => where.id !== blogId).filter(where => where.isPublished);
+      const postData = filteredPost.slice(0, 2)
+      console.log({ postData });
+      setPosts(postData);
+      setIsLoading(false);
     } catch (error) {
-        setIsLoading(false);
+      setIsLoading(false);
     }
-}
+  }
 
   useEffect(() => {
-    if(blog){
+    if (blog) {
       fetchRelatedBlog();
     }
-}, [blog]);
+  }, [blog]);
 
   if (loading || !blog) {
     return <center>
@@ -59,7 +59,7 @@ export default function BlogPage() {
             <div className="lg:flex lg:mt-5">
               <div className="lg:w-2/12 pr-4 hidden lg:block">
                 <p className="fw-600 mt-12 bg-primary pl-2 text-white">Related News</p>
-                
+
                 {
                   !isLoading && posts.length > 0 ? posts.map(post => (
                     <RelatedNews key={post.id} item={post} />
@@ -76,11 +76,15 @@ export default function BlogPage() {
                     <p>@Admin | {dayjs(blog?.createdAt).format(" HH:mmA  DD MMM, YYYY")}</p>
                   </div>
                   <div>
-                    <img
-                      src={blog?.images[0].image}
-                      alt="blog1"
-                      className="w-full rounded-md"
-                    />
+                    {
+                      blog?.images.length > 0 ?
+                        <img
+                          src={blog?.images[0].image}
+                          alt="blog1"
+                          className="w-full rounded-md"
+                        /> : null
+                    }
+
                   </div>
                   <div className="mt-6 lg:mt-12">
                     <p>

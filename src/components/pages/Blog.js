@@ -54,7 +54,12 @@ export default function Blog() {
                                         recent &&
                                         <div className="lg:flex">
                                             <div className="lg:w-5/12">
-                                                <img src={recent?.images[0].image} alt="blog1" className="w-full rounded-md" />
+                                                {
+                                                    recent?.images.length > 0 ?
+                                                        <img src={recent?.images[0].image} alt="blog1" className="w-full rounded-md" />
+                                                        : null
+                                                }
+
                                             </div>
                                             <div className="lg:w-7/12 px-5">
                                                 <p className="text-xs text-gray-500 mt-6 lg:mt-0"> {dayjs(recent?.createdAt).format("DD-MMMM-YYYY")}</p>
