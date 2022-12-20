@@ -58,11 +58,15 @@ export const ViewBlog = () => {
                                 <p>@Admin | {dayjs(blog?.createdAt).format(" HH:mmA  DD MMM, YYYY")}</p>
                             </div>
                             <div>
-                                <img
-                                    src={blog?.images[0].image}
-                                    alt="blog1"
-                                    className="w-full rounded-md"
-                                />
+                                {blog.images.length > 0 ?
+                                 
+                                    <img
+                                        src={blog?.images[0].image}
+                                        alt="blog1"
+                                        className="w-full rounded-md"
+                                    />
+                                :null
+                                }
                             </div>
                             <div className="mt-6 lg:mt-12">
                                 <p>
