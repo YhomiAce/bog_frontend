@@ -48,6 +48,7 @@ import ProjectCategory from "./pages/ProjectCat";
 import Sadmins from "./pages/SAdmins";
 import { ViewBlog } from "./pages/Blog/ViewBlog";
 import { Testimonial } from "./pages/Testimonial";
+import SubAdminDetails from "./pages/SubAdminDetails";
 
 export default function ClientDashboard() {
 
@@ -101,6 +102,7 @@ export default function ClientDashboard() {
                         <Route path="productpartner" element={<Ppartners />} />
                         <Route path="servicepartner" element={<Spartners />} />
                         <Route path="sub-admin" element={<Sadmins />} />
+                        <Route path="admin-details" element={<SubAdminDetails />} />
                         <Route path="allprojects" element={<AllProject />} />
                         <Route path="projectfile" element={<ProjectFile />} />
                         <Route path="servicecategory" element={<ProjectCategory />} />

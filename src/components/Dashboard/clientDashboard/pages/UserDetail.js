@@ -2,7 +2,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar, Breadcrumbs } from "@material-tailwind/react";
 import React, {useEffect, useState} from "react";
-import { FaRegEye } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Axios from "../../../../config/config";
