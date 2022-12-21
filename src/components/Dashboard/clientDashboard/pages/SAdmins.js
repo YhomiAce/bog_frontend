@@ -12,6 +12,8 @@ export default function Sadmins() {
     const dispatch = useDispatch();
     const { admins } = useSelector((state) => state.users);
     // God'sWill to continue integration
+    // Create the table for admin listing
+    // add the three icons for view, edit and delete
     console.log(admins);
 
     const [adminAdd, setAdminAdd] = useState(false);
