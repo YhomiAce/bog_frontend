@@ -13,7 +13,7 @@ import News from "./Blog/News";
 import { cutText, stripHtml } from "../../services/helper";
 import Spinner from "../layouts/Spinner";
 import dayjs from "dayjs";
-import { PaginatedItems } from "./Blog/PaginateNews";
+// import { PaginatedItems } from "./Blog/PaginateNews";
 
 export default function Blog() {
     const dispatch = useDispatch();

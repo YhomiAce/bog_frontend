@@ -49,7 +49,7 @@ export const BAP = () => {
                     </div>
                     <div className='lg:flex justify-evenly lg:mt-24 mt-12'>
                         <div className='lg:w-4/12 lg:px-12 lg:py-20 p-7 shades radius-l'>
-                            <img src={require("../assets/images/hero1.png")} className="w-28 mx-auto"/>
+                            <img src={require("../assets/images/hero1.png")} alt="partner" className="w-28 mx-auto"/>
                             <p className='text-center text-2xl fw-700 text-primary'>BOG</p>
                             <p className='text-center fw-600 text-secondary'>Product Partner</p>
                             <p className='my-8 text-center fs-500 fw-500'>Sign-Up on BOG as a product partner and sell your building material to variety of customers nationwide.</p>
@@ -74,7 +74,7 @@ export const BAP = () => {
                             </div>
                         </div>
                         <div className='lg:w-4/12 lg:px-12 lg:py-20 p-7 shades radius-l mt-10 lg:mt-0'>
-                            <img src={require("../assets/images/hero2.png")} className="w-28 mx-auto"/>
+                            <img src={require("../assets/images/hero2.png")} alt="partner" className="w-28 mx-auto"/>
                             <p className='text-center text-2xl fw-700 text-primary'>BOG</p>
                             <p className='text-center fw-600 text-secondary'>Service Partner</p>
                             <p className='my-8 text-center fs-500 fw-500'>Sign-Up on BOG as a Service partner and render services (building, drawing, land survey...) to clients.</p>
