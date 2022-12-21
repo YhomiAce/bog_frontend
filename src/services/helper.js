@@ -29,3 +29,19 @@ export const stripHtml = (str)=> {
     // HTML tag with a null string.
     return str.replace( /(<([^>]+)>)/ig, '');
 }
+
+export const getUserType = (type) => {
+    switch (type) {
+        case "admin":
+            return "Super Admin"
+        case "professional":
+            return "Service Partner"
+        case "vendor":
+            return "Product Partner"
+        case "private_client":
+            return "Private Client"
+        case "corporate_client":
+            return "Corporate Client"
+        default: return ""
+    }
+}
