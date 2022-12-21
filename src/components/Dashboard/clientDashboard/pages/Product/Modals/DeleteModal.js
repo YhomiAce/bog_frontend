@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { removeProduct } from '../../../../../../redux/actions/ProductAction';
 import Spinner from '../../../../../layouts/Spinner';
 
-const DeleteModal = ({ CloseDelete, product }) => {
+const DeleteModal = ({ CloseDelete, product, isAdmin }) => {
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     console.log(product);
@@ -16,7 +16,7 @@ const DeleteModal = ({ CloseDelete, product }) => {
 
     const deleteProduct = () => {
         setLoading(true);
-        dispatch(removeProduct(product.id, saveLoading))
+        dispatch(removeProduct(product.id, saveLoading, isAdmin))
     }
 
     return (

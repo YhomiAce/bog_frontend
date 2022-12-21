@@ -104,6 +104,13 @@ const ProductReducer = (state = initialState, action) => {
                 error: null,
                 userProducts: state.userProducts.filter(where => where.id !== payload)
             }
+        case ActionType.ADMIN_DELETE_PRODUCT:
+            return {
+                ...state,
+                isLoading: false,
+                error: null,
+                adminProducts: state.adminProducts.filter(where => where.id !== payload)
+            }
         case ActionType.DELETE_CATEGORY:
             return {
                 ...state,

@@ -155,7 +155,7 @@ export default function Products() {
                 </div>
                 {/* modals */}
                 {productDelete && (
-                    <DeleteModal product={selectedProduct} CloseDelete={CloseDelete} />
+                    <DeleteModal product={selectedProduct} CloseDelete={CloseDelete} isAdmin={false} />
                 )}
                 {productEdit && (
                     <EditProduct CloseEditModal={CloseEditModal} product={selectedProduct} />

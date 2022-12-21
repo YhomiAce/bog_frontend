@@ -53,6 +53,13 @@ export const DeleteProduct = (payload) => {
     }
 }
 
+export const DeleteProductAdmin = (payload) => {
+    return {
+        type: ActionType.ADMIN_DELETE_PRODUCT,
+        payload
+    }
+}
+
 export const addProduct = (payload) => {
     return {
         type: ActionType.CREATE_PRODUCT,
@@ -266,14 +273,19 @@ export const getAdminProducts = (category) => {
 }
 
 
-export const removeProduct = (productId, saveLoading) => {
+export const removeProduct = (productId, saveLoading, isAdmin) => {
     return async (dispatch) => {
         try {
             dispatch(loading());
             const url = `/product/${productId}`
             const response = await axios.delete(url);
             console.log(response);
-            dispatch(DeleteProduct(productId));
+            if (isAdmin) {
+                dispatch(DeleteProductAdmin(productId));
+            }else{
+                dispatch(DeleteProduct(productId));
+            }
+
             saveLoading();
             Swal.fire({
                 title: "Success",
