@@ -73,6 +73,9 @@ export default function Sadmins() {
                             <TabPanel>
                                 <UsersTable userType={"professional"} />
                             </TabPanel>
+                            <TabPanel>
+                                <UsersTable userType={"admin"} />
+                            </TabPanel>
                         </Tabs>
                     </div>
                 </div>
