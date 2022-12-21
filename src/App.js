@@ -31,6 +31,7 @@ import BlogPage from './components/pages/BlogPage';
 import { updateCart } from './redux/actions/cartAction';
 import { useDispatch } from 'react-redux';
 import { OrderSuccess } from './components/pages/OrderSuccess';
+import { BAP } from './components/pages/BAP';
 
 if (localStorage.auth_token) {
   setAuthToken(localStorage.auth_token);
@@ -54,6 +55,7 @@ function App() {
         <Route path='/' element={<Homepage />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/faqs' element={<Faqs />} />
+        <Route path='/become-partner' element={<BAP />} />
         <Route path='/blog' element={<Blog />} />
         <Route path='/blognews/:blogId' element={<BlogPage />} />
         <Route path='/carts' element={<Cart />} />

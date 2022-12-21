@@ -5,7 +5,7 @@ import { cutText, stripHtml } from '../../../services/helper'
 
 const News = ({ item }) => {
     return (
-        <div className="lg:w-45 shadow-md rounded-md">
+        <div className="lg:w-full shadow-md rounded-md mt-6 lg:mt-10">
             <div>
                 {
                     item?.images.length > 0 ?

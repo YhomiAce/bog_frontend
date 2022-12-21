@@ -13,6 +13,7 @@ import News from "./Blog/News";
 import { cutText, stripHtml } from "../../services/helper";
 import Spinner from "../layouts/Spinner";
 import dayjs from "dayjs";
+import { PaginatedItems } from "./Blog/PaginateNews";
 
 export default function Blog() {
     const dispatch = useDispatch();
@@ -64,7 +65,7 @@ export default function Blog() {
                                             <div className="lg:w-7/12 px-5">
                                                 <p className="text-xs text-gray-500 mt-6 lg:mt-0"> {dayjs(recent?.createdAt).format("DD-MMMM-YYYY")}</p>
                                                 <p className="fs-600 lg:text-lg fw-600 py-3">{recent?.title}</p>
-                                                <p>{cutText(stripHtml(recent?.body), 100, '...')}</p>
+                                                <p>{cutText(stripHtml(recent?.body), 300, '...')}</p>
                                                 <Link to={`/blognews/${recent?.id}`}><p className="fs-400 flex items-center text-primary mt-4">Read More <span className="pl-2"><BsArrowRight /></span></p></Link>
                                             </div>
                                         </div>
@@ -73,7 +74,7 @@ export default function Blog() {
                                 </div>
                                 <div className="mt-16 lg:mt-24 ">
                                     <p className="lg:text-2xl text-lg fw-600 mb-8 ">All News</p>
-                                    <div className="lg:flex justify-between">
+                                    <div className="lg:grid-2s justify-between">
                                         {
                                             posts.length > 0 ? posts.filter(where => where.isPublished).map(post => (
                                                 <News key={post.id} item={post} />
