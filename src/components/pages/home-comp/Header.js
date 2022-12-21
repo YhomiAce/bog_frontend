@@ -122,7 +122,7 @@ export default function Header() {
                                 <li className="py-4"><Link to="/blog">Our Blog</Link></li>
                                 <li className="py-4"><Link to="/contact">Contact Us</Link></li>
                                 <li className="py-4"><Link to="/jointeam">Join our Team</Link></li>
-                                <li className="py-4"><Link to="/">Become A Partner</Link></li>
+                                <li className="py-4"><Link to="/become-partner">Become A Partner</Link></li>
                                 <li className="py-4"><Link to="/privacy">Privacy Policy</Link></li>
                                 <li className="py-4"><Link to="/terms">Terms and Conditions</Link></li>
                                 <li>

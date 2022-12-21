@@ -10,7 +10,8 @@ module.exports = withMT(
       extend: {
         spacing: {
           '101': '94%',
-          '100': '6%'
+          '100': '6%',
+          '102': '600px',
         },
         backgroundImage: {
           'profile': "linear-gradient(to right, rgba(105, 76, 87, 1),rgba(0, 0, 0, 0.2))",
@@ -27,7 +28,7 @@ module.exports = withMT(
           'footer': "url('/src/components/assets/images/footer.png')",
           'terms': "url('/src/components/assets/images/terms.png')",
           'privacy': "url('/src/components/assets/images/privacy.png')",
-          'fantastic': "linear-gradient(to right bottom, rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.1)),url('/src/components/images/avatar.jpg')",
+          'bap': "linear-gradient(to right bottom, rgba(236, 139, 32, .5),rgba(236, 139, 32, .5)),url('https://res.cloudinary.com/greenmouse-tech/image/upload/v1669132417/BOG/blog2_lmtl44.png')",
           "hero": "linear-gradient(295.54deg, #AFC0FC 17.28%, #3F79AD 70.64%)",
           "app": "url('https://res.cloudinary.com/greenmouse-tech/image/upload/v1670844719/BOG/Frame_466442_qfurti.png')"
         }
