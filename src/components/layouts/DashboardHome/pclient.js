@@ -13,7 +13,7 @@ export default function PclientDashboard() {
   
   return (
     <div className="min-h-screen">
-      <div className="w-full py-10 lg:px-8 bg-white px-4">
+      <div className="w-full py-6 lg:px-8 bg-white px-4">
         <div className="text-2xl fw-600 flex items-center">
           <p className="">Welcome, {user?.name}</p>
           <FontAwesomeIcon icon={faThumbsUp} className="pl-3 text-secondary" />
@@ -40,7 +40,7 @@ export default function PclientDashboard() {
       <div className=" p-5">
         <div className="mt-3">
           <div className="lg:grid-4 justify-between fs-500 fw-600">
-            <div className="bg-white px-4 py-3 rounded flex justify-between items-center shades">
+            <div className="px-4 py-3 bg-purple-100 rounded flex justify-between items-center shades">
               <Link to="orders" className="flex justify-between items-center w-full">
                 <div>
                   <p className="text-xxl fw-600 pb-2 text-xl">180 </p>
@@ -55,7 +55,7 @@ export default function PclientDashboard() {
                 </div>
               </Link>
             </div>
-            <div className="bg-white mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
+            <div className="bg-yellow-100 mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="orders" className="flex justify-between items-center w-full">
                 <div>
                   <p className="text-xxl pb-2 fw-600">10</p>
@@ -70,7 +70,7 @@ export default function PclientDashboard() {
                 </div>
               </Link>
             </div>
-            <div className="bg-white  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
+            <div className="bg-blue-100  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="projects" className="flex justify-between items-center w-full">
                 <div>
                   <p className="fw-600 text-xxl pb-2">25</p>
@@ -85,7 +85,7 @@ export default function PclientDashboard() {
                 </div>
               </Link>
             </div>
-            <div className="bg-white  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
+            <div className="bg-green-100  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="projects" className="flex justify-between items-center w-full">
                 <div>
                   <p className="text-xxl fw-600 pb-2">12</p>

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import { BsThreeDotsVertical } from "react-icons/bs";
-import { UsersTable } from "../../assets/Tables/UserTable";
 import { Breadcrumbs } from "@material-tailwind/react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { useDispatch, useSelector } from "react-redux";
@@ -56,7 +54,7 @@ export default function Sadmins() {
                         </Breadcrumbs>
                     </div>
                     <div className="mt-4 lg:mt-0 lg:w-2/12 lg:text-end">
-                        <button className="px-4 lg:py-2 py-1 rounded border-pri text-primary" onClick={() => setAdminAdd(!adminAdd)}>Add Admin</button>
+                        <button className="px-4 lg:py-2 py-1 bg-primary rounded border-pri text-white" onClick={() => setAdminAdd(!adminAdd)}>Add Admin</button>
                     </div>
                 </div>
                 {/* content */}
@@ -73,13 +71,10 @@ export default function Sadmins() {
                                 <SubAdminTable/>
                             </TabPanel>
                             <TabPanel>
-                                <UsersTable userType={"professional"} />
+                                <SubAdminTable status={"isActive"} />
                             </TabPanel>
                             <TabPanel>
-                                <UsersTable userType={"professional"} />
-                            </TabPanel>
-                            <TabPanel>
-                                <UsersTable userType={"admin"} />
+                                <SubAdminTable status={""} />
                             </TabPanel>
                         </Tabs>
                     </div>

@@ -40,15 +40,15 @@ const AddAdminModal = ({ CloseModal }) => {
     
     return (
         <div className="fixed font-primary top-0 left-0 w-full h-screen bg-op center-item z-40" onClick={CloseModal}>
-            <div className="bg-white px-4 lg:w-5/12 rounded-md h-700 overflow-y-auto overscroll-none  w-11/12 pt-8 pb-8 lg:px-10 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
+            <div className="bg-white px-4 lg:w-5/12 rounded-md h-103 overflow-y-auto overscroll-none  w-11/12 pt-8 pb-8 lg:px-10 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
             <form onSubmit={formik.handleSubmit}>
-                    <div className='flex justify-between'>
+                    <div className='flex justify-between lg:mt-3'>
                         <p className="lg:fs-700 fw-600">Create New Admin User</p>
                         <FaTimes className='cursor-pointer' onClick={CloseModal}/>
                     </div>
                     
                     <div className="mt-5">
-                        <label className="block">Name</label>
+                        <label className="block">Admin Name</label>
                         <input
                             type="text"
                             className="w-full  border border-gray-400 rounded mt-2 py-2 px-2"
@@ -90,10 +90,11 @@ const AddAdminModal = ({ CloseModal }) => {
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                         >
-                            <option>Select Admin Level</option>
-                            <option value="2">Junior Admin</option>
-                            <option value="3">Mid-level Admin</option>
-                            <option value="4">Super Admin</option>
+                            <option>Select Admin Role</option>
+                            <option value="1">Finance Admin</option>
+                            <option value="2">Product Admin</option>
+                            <option value="3">Project Admin</option>
+                            <option value="4">Article Admin</option>
                         </select>
                         {
                             formik.touched.level && formik.errors.level ? <p className='text-red-500'>{formik.errors.level}</p> : null

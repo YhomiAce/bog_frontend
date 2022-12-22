@@ -102,22 +102,25 @@ export function SubAdminTable({status, userType}) {
   if (userType) {
     admin = admin.filter(where => where.userType === userType)
 }
+if (status) {
+  admin = admin.filter(where => admin.status === status)
+}
   const navigate = useNavigate()
     const gotoDetailsPage = (id) => {
         navigate(`/dashboard/admin-details?adminId=${id}`)
     }
-  const formatType = (userType) => {
-    switch (userType) {
-        case "private_client":
-            return <p>Private Client</p>
-        case "corporate_client":
-          return <p>Corporate Client</p>
-        case "vendor":
-          return <p>Product Partner</p>
-        case "professional":
-          return <p>Service Partner</p>
+  const formatLevel = (level) => {
+    switch (level) {
+        case 1:
+            return <p className='bg-blue-100 px-4 py-1 rounded-lg w-40 fw-500'>Finance Admin</p>
+        case 2:
+          return <p className='bg-orange-100 px-4 py-1 rounded-lg w-40 fw-500'>Product Admin</p>
+        case 3:
+          return <p className='bg-green-100 px-4 py-1 rounded-lg w-40 fw-500'>Project Admin</p>
+        case 4:
+          return <p className='bg-purple-100 px-4 py-1 rounded-lg w-40 fw-500'>Article Admin</p>
 
-        default: return userType
+        default: return <p className='bg-gray-100 px-4 py-1 rounded-lg w-40 fw-500'>Super Admin</p>
     }
 
 }
@@ -130,7 +133,7 @@ export function SubAdminTable({status, userType}) {
             accessor: ( row, index) => index + 1  //RDT provides index by default
           },
           {
-            Header: "Full Name",
+            Header: "Admin Name",
             accessor: "name",
           },
           {
@@ -139,20 +142,11 @@ export function SubAdminTable({status, userType}) {
             
           },
           {
-            Header: "Phone Number",
-            accessor: "phone",
-          },
-          {
-            Header: "Client Type",
-            accessor:  'userType',
-            Cell: (props) => formatType(props.value)
-            
-          },
-          {
-            Header: "Level",
+            Header: "Admin Role",
             accessor: "level",
-            Filter: SelectColumnFilter, 
-            filter: 'includes',
+            Cell: (props) => formatLevel(props.value),
+            // Filter: SelectColumnFilter, 
+            // filter: 'includes',
           },
           {
             Header: 'Action',
