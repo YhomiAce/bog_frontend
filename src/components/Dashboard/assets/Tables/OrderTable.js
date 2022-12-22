@@ -155,7 +155,7 @@ export default function OrderTable({status}){
                             </MenuHandler>
                             <MenuList className="w-16 bg-gray-100 fw-600 text-black">
                               <MenuItem onClick={() => gotoDetailsPage(row.value)}>View Details</MenuItem>
-                               {/* <MenuItem className="bg-red-600 text-white">Delete</MenuItem> */}
+                               <MenuItem className="bg-red-600 text-white">Delete</MenuItem>
                             </MenuList>
                           </Menu> ,
           },
@@ -295,7 +295,7 @@ const Table = ({columns, data}) => {
                                     <tr 
                                         {...row.getRowProps()}>
                                     {row.cells.map((cell) => {
-                                        return <td className="border-b border-gray-200 align-middle font-light fs-500 whitespace-nowrap px-2 py-4 text-left" {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                                        return <td className="border-b border-gray-200 align-middle fs-500 whitespace-nowrap px-2 py-4 text-left" {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                                     })}
                                     </tr>
                                 );

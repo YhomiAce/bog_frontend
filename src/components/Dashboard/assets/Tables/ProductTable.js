@@ -315,7 +315,7 @@ const Table = ({ columns, data }) => {
                       <tr
                         {...row.getRowProps()}>
                         {row.cells.map((cell) => {
-                          return <td className="border-b border-gray-200 align-middle font-light fs-500 whitespace-nowrap px-2 py-4 text-left" {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                          return <td className="border-b border-gray-200 align-middle fs-500 whitespace-nowrap px-2 py-4 text-left" {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                         })}
                       </tr>
                     );

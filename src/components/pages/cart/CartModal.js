@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../../../redux/actions/cartAction";
 
-export const CartModal = () => {
+export const CartModal = (CloseModal) => {
 
     const AuhtCheck = () => {
         Swal.fire({
@@ -116,6 +116,7 @@ export const CartModal = () => {
           const res = await Axios.post("/orders/submit-order", payload, config);
           const orderId = res.order.id
           setLoading(false);
+          CloseModal();
           SuccessAlertWithRedirection("Order in Progress!", gotoLink(orderId));
         } catch (error) {
           setLoading(false);
@@ -130,12 +131,14 @@ export const CartModal = () => {
             duration: "4000",
             position: "bottom",
           });
+          CloseModal();
         }
       };
       const handlePaystackSuccessAction = (reference) => {
         console.log(reference);
         sendOrder(reference);
         dispatch(clearCart());
+        CloseModal();
       };
       const handlePaystackCloseAction = () => {
         console.log("incorrect transaction");

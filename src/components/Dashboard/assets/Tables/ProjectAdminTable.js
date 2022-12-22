@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import React from 'react'
 import React, { useState } from "react";
 import { useSelector } from 'react-redux';
-import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight, FaFileDownload,FaRegEye } from "react-icons/fa";
+import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight, FaFileDownload} from "react-icons/fa";
 import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, usePagination } from "react-table";
 import { useNavigate } from "react-router-dom";
 // import { BsThreeDotsVertical } from "react-icons/bs";
@@ -25,6 +25,7 @@ import "jspdf-autotable";
 import { useExportData } from "react-table-plugins";
 import Papa from "papaparse";
 import * as XLSX from 'xlsx'
+import { BsThreeDotsVertical } from "react-icons/bs";
 
  
 
@@ -213,12 +214,8 @@ export default function ProjectsTable({status}){
             accessor: 'id',
             Cell: (row) => <Menu placement="left-start" className="w-16">
                             <MenuHandler>
-                <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none"><FaRegEye className="text-2xl" /></Button>
-              </MenuHandler>
-                            {/* <MenuList className="w-16 bg-gray-100 fw-600 text-black">
-                              <MenuItem onClick={() => gotoDetailsPage(row.value)}>View Details</MenuItem>
-                               {/* <MenuItem className="bg-red-600 text-white">Delete</MenuItem> */}
-                    {/* </MenuList> */} 
+                              <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none"><BsThreeDotsVertical className="text-2xl" /></Button>
+                            </MenuHandler>
                             <MenuList>
                                   <MenuItem onClick={() => gotoDetailsPage(row.value)}>
                                       View Details
@@ -368,7 +365,7 @@ const Table = ({columns, data}) => {
                                     <tr 
                                         {...row.getRowProps()}>
                                     {row.cells.map((cell) => {
-                                        return <td className="border-b border-gray-200 align-middle font-light fs-500 whitespace-nowrap px-2 py-4 text-left" {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                                        return <td className="border-b border-gray-200 align-middle fs-500 whitespace-nowrap px-2 py-4 text-left" {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                                     })}
                                     </tr>
                                 );

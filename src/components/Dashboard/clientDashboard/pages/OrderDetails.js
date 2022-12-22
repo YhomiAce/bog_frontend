@@ -95,7 +95,7 @@ export default function OrderDetails() {
                         <div>
                             <div>
                                 <p className="fw-600 underline">Order Progress</p>
-                                <div className="my-6 mb-24 lg:my-10 relative w-11/12 mx-auto">
+                                <div className="my-6 mb-24 lg:my-10 relative w-11/12">
                                     <div className="">
                                         <Progress value={50} color="amber" />
                                     </div>
