@@ -228,8 +228,8 @@ export  function AboutSlides2({reviews}) {
                 modules={[Pagination, Autoplay, Navigation ]}
                 className=""
             >
-                {reviews.map((item, index) => (
-                        <SwiperSlide  virtualIndex={index}>
+                {reviews.length > 0 ? reviews.map((item, index) => (
+                        <SwiperSlide virtualIndex={index}>
                             <div className="py-4 mb-12 border border-blue-400 px-5 mx-auto bg-white rounded">
                                 <div className="flex items-center">
                                     <Avatar variant="circular" src={item.image} alt="img1" className=""/>
@@ -241,7 +241,7 @@ export  function AboutSlides2({reviews}) {
                                 <p className="mt-4 fs-500">{item.message}</p>
                             </div>
                         </SwiperSlide>
-                    ))}
+                    )) : null }
             </Swiper>
     )
 }
@@ -272,7 +272,7 @@ export function  ReviewSlide({reviews}) {
     return (
         <div className="w-full overflow-hidden " >
             <div className="flex w-200" ref={review}>
-                {reviews.map(item => {
+                {reviews.length > 0 ? reviews.map(item => {
                         return (
                             <div className="py-4 mr-10 w-96 hover:bg-primary hover:text-white border border-pri px-5 mx-auto bg-white rounded">
                                 <div className="flex items-center">
@@ -287,7 +287,7 @@ export function  ReviewSlide({reviews}) {
                         )
                     } 
                         
-                    )}
+                    ) : null}
             </div>
         </div>
     )
@@ -307,7 +307,7 @@ export  function ReviewSlideSm({reviews}) {
                 modules={[Autoplay, Pagination ]}
                 className=""
             >
-                 {reviews.map((item, index) => (
+                 {reviews.length > 0 ? reviews.map((item, index) => (
                         <SwiperSlide  virtualIndex={index}>
                             <div className="py-4 mb-8 hover:bg-primary hover:text-white border border-pri px-5 mx-auto bg-white rounded">
                                 <div className="flex items-center">
@@ -320,7 +320,7 @@ export  function ReviewSlideSm({reviews}) {
                                 <p className="mt-4 fs-500">{item.message}</p>
                             </div>
                         </SwiperSlide>
-                    ))}
+                    )) : null}
             </Swiper>
     )
 }
