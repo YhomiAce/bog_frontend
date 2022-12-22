@@ -11,7 +11,7 @@ import BlogSlides, { BlogSlidesSm } from "./home-comp/BlogSlide";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeftLong, faPlay } from "@fortawesome/free-solid-svg-icons";
-import { AboutSlides2Sm, ReviewSlide } from "./home-comp/AboutSlides";
+import { ReviewSlide, ReviewSlideSm } from "./home-comp/AboutSlides";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
 import Axios from "../../config/config";
@@ -107,7 +107,7 @@ export default function Homepage() {
             );
         }
     }
-
+    console.log(reviews)
     useEffect(() => {
         getReviews();
     }, []);
@@ -251,7 +251,7 @@ export default function Homepage() {
                                 <div className="flex items-center py-4 pl-4"><BsBag /><p className="pl-2">Shop for Sand</p></div>
                             </div>
                             <div className="mt-6 lg:mt-0 w-11/12 lg:w-full m-auto bg-white">
-                                <div className="">
+                                <div className="w-full bg-primary">
                                     <img src={require("../assets/images/steels.png")} alt="steel" className="w-full h-72" />
                                 </div>
                                 <div className="flex items-center py-4 pl-4"><BsBag /><p className="pl-2">Shop for Steel</p></div>
@@ -428,7 +428,9 @@ export default function Homepage() {
                             }
                         </div>
                         <div className="mt-12 lg:hidden">
-                            <AboutSlides2Sm />
+                            {
+                                loading? <Spinner/> : <ReviewSlideSm reviews={reviews} />
+                            }
                         </div>
                     </div>
                 </div>

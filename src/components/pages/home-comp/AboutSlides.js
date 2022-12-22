@@ -12,6 +12,7 @@ import img2 from "../../assets/images/img4.png";
 import img3 from "../../assets/images/img3.png";
 import img4 from "../../assets/images/image1.png";
 import { getUserType } from "../../../services/helper";
+import { Avatar } from "@material-tailwind/react";
 
 export const Reviews = [
     {
@@ -213,7 +214,7 @@ export  function AboutSlidesSm() {
     )
 }
 
-export  function AboutSlides2() {
+export  function AboutSlides2({reviews}) {
 
 
     return(
@@ -227,192 +228,20 @@ export  function AboutSlides2() {
                 modules={[Pagination, Autoplay, Navigation ]}
                 className=""
             >
-                <SwiperSlide className=" mb-12">
-                    <div className="py-4 border border-blue-400 px-5 mx-auto bg-white rounded">
-                        <div className="flex items-center">
-                            <img src={require("../../assets/images/img2.png")} alt="img1" className="w-16"/>
-                            <div className="pl-4">
-                                <p className="fw-600">Green Mouse</p>
-                                <p className="fs-300">Project Owner</p>
+                {reviews.map((item, index) => (
+                        <SwiperSlide  virtualIndex={index}>
+                            <div className="py-4 mb-12 border border-blue-400 px-5 mx-auto bg-white rounded">
+                                <div className="flex items-center">
+                                    <Avatar variant="circular" src={item.image} alt="img1" className=""/>
+                                    <div className="pl-4">
+                                        <p className="fw-600">{item.name}</p>
+                                        <p className="fs-300">{getUserType(item.user.userType)}</p>
+                                    </div>
+                                </div>
+                                <p className="mt-4 fs-500">{item.message}</p>
                             </div>
-                        </div>
-                        <p className="mt-4 fs-500 h-16">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide className="">
-                    <div className="py-4 border border-blue-400 px-5 mx-auto bg-white rounded">
-                        <div className="flex items-center">
-                            <img src={require("../../assets/images/image1.png")} alt="img1" className="w-16"/>
-                            <div className="pl-4">
-                                <p className="fw-600">Chukka Uzo</p>
-                                <p className="fs-300">Construction</p>
-                            </div>
-                        </div>
-                        <p className="mt-4 fs-500 h-16 overflow-hidden">Thanks to BOG, I now handle the whole construction process hazzlefree. I’m glad that I’m part of the BOG service providers.</p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="py-4 border border-blue-400 px-5 mx-auto bg-white rounded">
-                        <div className="flex items-center">
-                            <img src={require("../../assets/images/img3.png")} alt="img1" className="w-16"/>
-                            <div className="pl-4">
-                                <p className="fw-600">Frank Jnr</p>
-                                <p className="fs-300">Service Partner</p>
-                            </div>
-                        </div>
-                        <p className="mt-4 fs-500 h-16 overflow-hidden">I sell my gravel as a product partner on BOG and ever since i started, I’ve not had any issue with the platform. Its awesome.</p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="py-4 border border-blue-400 px-5 mx-auto bg-white rounded">
-                        <div className="flex items-center">
-                            <img src={require("../../assets/images/img4.png")} alt="img1" className="w-16"/>
-                            <div className="pl-4">
-                                <p className="fw-600">Promise Afolabi</p>
-                                <p className="fs-300">Civil Engineer</p>
-                            </div>
-                        </div>
-                        <p className="mt-4 fs-500 h-16 overflow-hidden">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="py-4 border border-blue-400 px-5 mx-auto bg-white rounded">
-                        <div className="flex items-center">
-                            <img src={require("../../assets/images/img4.png")} alt="img1" className="w-16"/>
-                            <div className="pl-4">
-                                <p className="fw-600">Green Mouse</p>
-                                <p className="fs-300">Project Owner</p>
-                            </div>
-                        </div>
-                        <p className="mt-4 fs-500 h-16 overflow-hidden">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="py-4 border border-blue-400 px-5 mx-auto bg-white rounded">
-                        <div className="flex items-center">
-                            <img src={require("../../assets/images/img2.png")} alt="img1" className="w-16"/>
-                            <div className="pl-4">
-                                <p className="fw-600">Green Mouse</p>
-                                <p className="fs-300">Project Owner</p>
-                            </div>
-                        </div>
-                        <p className="mt-4 fs-500 h-16 overflow-hidden">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="py-4 border border-blue-400 px-5 mx-auto bg-white rounded">
-                        <div className="flex items-center">
-                            <img src={require("../../assets/images/img3.png")} alt="img1" className="w-16"/>
-                            <div className="pl-4">
-                                <p className="fw-600">Green Mouse</p>
-                                <p className="fs-300">Project Owner</p>
-                            </div>
-                        </div>
-                        <p className="mt-4 fs-500 h-16 overflow-hidden">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
-                    </div>
-                </SwiperSlide>
-            </Swiper>
-    )
-}
-
-export  function AboutSlides2Sm() {
-
-
-    return(
-        <Swiper
-                spaceBetween={30}
-                autoplay={{ delay: 6000 }}
-                grabCursor={true}
-                centeredSlides={false}
-                slidesPerView={1}
-                pagination={true}
-                modules={[Autoplay, Pagination ]}
-                className=""
-            >
-                <SwiperSlide className=" mb-12">
-                    <div className="py-4 border border-blue-400 px-5 mx-auto bg-white rounded">
-                        <div className="flex items-center">
-                            <img src={require("../../assets/images/img2.png")} alt="img1" className="w-16"/>
-                            <div className="pl-4">
-                                <p className="fw-600">Green Mouse</p>
-                                <p className="fs-300">Project Owner</p>
-                            </div>
-                        </div>
-                        <p className="mt-4 fs-500">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide className="">
-                    <div className="py-4 border border-blue-400 px-5 mx-auto bg-white rounded">
-                        <div className="flex items-center">
-                            <img src={require("../../assets/images/image1.png")} alt="img1" className="w-16"/>
-                            <div className="pl-4">
-                                <p className="fw-600">Chukka Uzo</p>
-                                <p className="fs-300">Construction</p>
-                            </div>
-                        </div>
-                        <p className="mt-4 fs-500">Thanks to BOG, I now handle the whole construction process hazzlefree. I’m glad that I’m part of the BOG service providers.</p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="py-4 border border-blue-400 px-5 mx-auto bg-white rounded">
-                        <div className="flex items-center">
-                            <img src={require("../../assets/images/img3.png")} alt="img1" className="w-16"/>
-                            <div className="pl-4">
-                                <p className="fw-600">Frank Jnr</p>
-                                <p className="fs-300">Service Partner</p>
-                            </div>
-                        </div>
-                        <p className="mt-4 fs-500">I sell my gravel as a product partner on BOG and ever since i started, I’ve not had any issue. Its awesome.</p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="py-4 border border-blue-400 px-5 mx-auto bg-white rounded">
-                        <div className="flex items-center">
-                            <img src={require("../../assets/images/img4.png")} alt="img1" className="w-16"/>
-                            <div className="pl-4">
-                                <p className="fw-600">Promise Afolabi</p>
-                                <p className="fs-300">Civil Engineer</p>
-                            </div>
-                        </div>
-                        <p className="mt-4 fs-500">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="py-4 border border-blue-400 px-5 mx-auto bg-white rounded">
-                        <div className="flex items-center">
-                            <img src={require("../../assets/images/img4.png")} alt="img1" className="w-16"/>
-                            <div className="pl-4">
-                                <p className="fw-600">Green Mouse</p>
-                                <p className="fs-300">Project Owner</p>
-                            </div>
-                        </div>
-                        <p className="mt-4 fs-500">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="py-4 border border-blue-400 px-5 mx-auto bg-white rounded">
-                        <div className="flex items-center">
-                            <img src={require("../../assets/images/img2.png")} alt="img1" className="w-16"/>
-                            <div className="pl-4">
-                                <p className="fw-600">Green Mouse</p>
-                                <p className="fs-300">Project Owner</p>
-                            </div>
-                        </div>
-                        <p className="mt-4 fs-500">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="py-4 border border-blue-400 px-5 mx-auto bg-white rounded">
-                        <div className="flex items-center">
-                            <img src={require("../../assets/images/img3.png")} alt="img1" className="w-16"/>
-                            <div className="pl-4">
-                                <p className="fw-600">Green Mouse</p>
-                                <p className="fs-300">Project Owner</p>
-                            </div>
-                        </div>
-                        <p className="mt-4 fs-500">I’ve always wanted to monintor and manage my project in Nigeria her from UK. Thanks to BOG for making it possible </p>
-                    </div>
-                </SwiperSlide>
+                        </SwiperSlide>
+                    ))}
             </Swiper>
     )
 }
@@ -445,9 +274,9 @@ export function  ReviewSlide({reviews}) {
             <div className="flex w-200" ref={review}>
                 {reviews.map(item => {
                         return (
-                            <div className="py-4 mr-10 hover:bg-primary hover:text-white border border-pri px-5 mx-auto bg-white rounded">
+                            <div className="py-4 mr-10 w-96 hover:bg-primary hover:text-white border border-pri px-5 mx-auto bg-white rounded">
                                 <div className="flex items-center">
-                                    <img src={item.img} alt="img1" className="w-16"/>
+                                    <Avatar variant="circular" src={item.image} alt="img1" className=""/>
                                     <div className="pl-4">
                                         <p className="fw-600">{item.name}</p>
                                         <p className="fs-300">{getUserType(item.user.userType)}</p>
@@ -461,5 +290,37 @@ export function  ReviewSlide({reviews}) {
                     )}
             </div>
         </div>
+    )
+}
+
+export  function ReviewSlideSm({reviews}) {
+
+
+    return(
+        <Swiper
+                spaceBetween={30}
+                autoplay={{ delay: 6000 }}
+                grabCursor={true}
+                centeredSlides={false}
+                slidesPerView={1}
+                pagination={true}
+                modules={[Autoplay, Pagination ]}
+                className=""
+            >
+                 {reviews.map((item, index) => (
+                        <SwiperSlide  virtualIndex={index}>
+                            <div className="py-4 mb-8 hover:bg-primary hover:text-white border border-pri px-5 mx-auto bg-white rounded">
+                                <div className="flex items-center">
+                                    <Avatar variant="circular" src={item.image} alt="img1" className=""/>
+                                    <div className="pl-4">
+                                        <p className="fw-600">{item.name}</p>
+                                        <p className="fs-300">{getUserType(item.user.userType)}</p>
+                                    </div>
+                                </div>
+                                <p className="mt-4 fs-500">{item.message}</p>
+                            </div>
+                        </SwiperSlide>
+                    ))}
+            </Swiper>
     )
 }
