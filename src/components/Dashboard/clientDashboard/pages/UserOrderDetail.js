@@ -172,7 +172,7 @@ export default function UserOrderDetail() {
                                     <p className="fw-600">Order Review</p>
                                 </div>
                                 <div className="fs-400 mt-4">
-                                    <OrderReview/>
+                                    <OrderReview productId={orderId} review={order.review}/>
                                 </div>
                             </div>
                             {/* <div className="bg-white lg:p-6 p-3 mt-8 rounded-md">

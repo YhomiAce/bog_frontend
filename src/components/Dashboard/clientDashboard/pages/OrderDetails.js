@@ -9,6 +9,7 @@ import Axios from "../../../../config/config";
 import Spinner from "../../../layouts/Spinner";
 import ItemList from "./Order/ItemList";
 import { IoMdCheckmarkCircle } from "react-icons/io";
+import ReactStars from "react-rating-stars-component";
 
 
 export default function OrderDetails() {
@@ -66,7 +67,7 @@ export default function OrderDetails() {
                 order &&
                 <div className="min-h-screen fs-500 relative">
                     <div className="w-full py-8 bg-white px-4">
-                    <p className="text-2xl fw-600 lg:flex items-center">Order ID: <span className="text-primary px-3">{order?.orderSlug}</span> <span className="text-xs text-blue-500 bg-light px-2">{order?.status}</span></p>
+                        <p className="text-2xl fw-600 lg:flex items-center">Order ID: <span className="text-primary px-3">{order?.orderSlug}</span> <span className="text-xs text-blue-500 bg-light px-2">{order?.status}</span></p>
                         <p className="fs-400 text-gray-600 mt-2">View order details</p>
                         <Breadcrumbs className="bg-white pl-0 mt-4">
                             <Link to="/" className="opacity-60">
@@ -85,7 +86,7 @@ export default function OrderDetails() {
                             <Link to="/dashboard/ordersadmin" className="opacity-60">
                                 <span>Orders</span>
                             </Link>
-                            <Link  className="">
+                            <Link className="">
                                 <span>Order Details</span>
                             </Link>
                         </Breadcrumbs>
@@ -100,23 +101,23 @@ export default function OrderDetails() {
                                         <Progress value={50} color="amber" />
                                     </div>
                                     <div className="absolute -top-2 o-process">
-                                        <IoMdCheckmarkCircle className="text-2xl circle bg-white text-secondary"/>
+                                        <IoMdCheckmarkCircle className="text-2xl circle bg-white text-secondary" />
                                         <p className="fw-500 w-8 lg:w-auto fs-400 text-gray-500">Order Sent</p>
                                     </div>
                                     <div className="absolute -top-2 p-process">
-                                        <IoMdCheckmarkCircle className="text-2xl circle bg-white text-secondary"/>
+                                        <IoMdCheckmarkCircle className="text-2xl circle bg-white text-secondary" />
                                         <p className="fw-500 fs-400 w-8 lg:w-auto  text-gray-500 relative -left-6">Processing Order</p>
                                     </div>
                                     <div className="absolute -top-2 s-process">
-                                        <IoMdCheckmarkCircle className="text-2xl circle bg-white text-gray-400"/>
+                                        <IoMdCheckmarkCircle className="text-2xl circle bg-white text-gray-400" />
                                         <p className="fw-500 fs-400 w-8 lg:w-auto  text-gray-500 relative -left-6">Shipping Order</p>
                                     </div>
                                     <div className="absolute -top-2 d-process">
-                                        <IoMdCheckmarkCircle className="text-2xl circle bg-white text-gray-400"/>
+                                        <IoMdCheckmarkCircle className="text-2xl circle bg-white text-gray-400" />
                                         <p className="fw-500 fs-400 text-gray-500 relative -left-6">Delivered</p>
                                     </div>
+                                </div>
                             </div>
-                        </div>
                         </div>
                         <div className="lg:grid-83">
                             <div>
@@ -158,7 +159,7 @@ export default function OrderDetails() {
                                         <p className="fw-600">Transaction</p>
                                     </div>
                                     <div className="lg:flex grid-2 fw-500 justify-between pt-6">
-                                    <div>
+                                        <div>
                                             <p>Payment Ref: {order.order_items[0].paymentInfo.reference}</p>
                                             {/* <p className="text-gray-600">{order.order_items[0].paymentInfo.reference}</p> */}
                                         </div>
@@ -166,7 +167,7 @@ export default function OrderDetails() {
                                             <p>{dayjs(order.createdAt).format("DD-MM-YYYY")}</p>
                                         </div>
                                         <div className="mt-2 lg:mt-0">
-                                        <p className="text-black">&#8358;{formatNumber(getSubTotal(order.order_items) + order.deliveryFee)}</p>
+                                            <p className="text-black">&#8358;{formatNumber(getSubTotal(order.order_items) + order.deliveryFee)}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -179,7 +180,7 @@ export default function OrderDetails() {
                                     </div>
                                     <div className="flex mt-6">
                                         <div>
-                                            
+
                                             <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" variant="circular" alt="order" />
                                         </div>
                                         <div className="grid fs-400 content-between pl-4 fw-500">
@@ -210,13 +211,31 @@ export default function OrderDetails() {
                                 <div className="bg-white lg:p-6 p-3 mt-8 rounded-md">
                                     <div className="flex justify-between pb-4">
                                         <p className="fw-600">Client Review</p>
-                                        {/* <p className="text-primary"><BiEdit /></p> */}
+                                        {
+                                            order?.review &&
+                                            <div>
+                                                <textarea
+                                                    className='h-24 p-2 w-full rounded mt-2 border border-gray-400 '
+                                                    readOnly={true}
+                                                >
+                                                    {order?.review?.review}
+                                                </textarea>
+                                                <ReactStars
+                                                    count={5}
+                                                    size={45}
+                                                    color2={'#ffd700'}
+                                                    value={order?.review?.star}
+                                                />
+                                            </div>
+                                        }
+
+
                                     </div>
                                     <div className="fs-400 mt-4">
-                                        
+
                                     </div>
                                 </div>
-                               
+
                             </div>
                         </div>
                     </div>
