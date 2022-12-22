@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { adminSchema } from '../../../../../../services/validation';
 import Spinner from '../../../../../layouts/Spinner';
 import { createAdmin } from '../../../../../../redux/actions/UserAction';
+import { FaTimes } from 'react-icons/fa';
 
 const AddAdminModal = ({ CloseModal }) => {
     const dispatch = useDispatch();
@@ -41,13 +42,16 @@ const AddAdminModal = ({ CloseModal }) => {
         <div className="fixed font-primary top-0 left-0 w-full h-screen bg-op center-item z-40" onClick={CloseModal}>
             <div className="bg-white px-4 lg:w-5/12 rounded-md h-700 overflow-y-auto overscroll-none  w-11/12 pt-8 pb-8 lg:px-10 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
             <form onSubmit={formik.handleSubmit}>
-                    <p className="lg:fs-700 fw-600">Create New Admin User</p>
+                    <div className='flex justify-between'>
+                        <p className="lg:fs-700 fw-600">Create New Admin User</p>
+                        <FaTimes className='cursor-pointer' onClick={CloseModal}/>
+                    </div>
                     
                     <div className="mt-5">
                         <label className="block">Name</label>
                         <input
                             type="text"
-                            className="w-full lg:w-10/12 border border-gray-400 rounded mt-2 py-2 px-2"
+                            className="w-full  border border-gray-400 rounded mt-2 py-2 px-2"
                             required
                             id="name"
                             name="name"
@@ -63,7 +67,7 @@ const AddAdminModal = ({ CloseModal }) => {
                         <label className="block">Email</label>
                         <input
                             type="email"
-                            className="w-full lg:w-10/12 border border-gray-400 rounded mt-2 py-2 px-2"
+                            className="w-full  border border-gray-400 rounded mt-2 py-2 px-2"
                             required
                             id="email"
                             name="email"
@@ -78,7 +82,7 @@ const AddAdminModal = ({ CloseModal }) => {
                     <div className="mt-5">
                         <label className="block">Level</label>
                         <select
-                            className="w-full lg:w-10/12 border border-gray-400 rounded mt-2 py-2 px-2"
+                            className="w-full  border border-gray-400 rounded mt-2 py-2 px-2"
                             required
                             id="level"
                             name="level"
@@ -99,7 +103,7 @@ const AddAdminModal = ({ CloseModal }) => {
                         <label className="block">Password</label>
                         <input
                             type="password"
-                            className="w-full lg:w-10/12 border border-gray-400 rounded mt-2 py-2 px-2"
+                            className="w-full  border border-gray-400 rounded mt-2 py-2 px-2"
                             required
                             id="password"
                             name="password"
@@ -112,11 +116,11 @@ const AddAdminModal = ({ CloseModal }) => {
                         }
                     </div>
                     
-                    <div className="mt-8 flex lg:w-10/12 justify-between">
-                        <Button color="red" onClick={CloseModal}>Cancel</Button>
+                    <div className="mt-8 flex  justify-between">
+                        <Button color="red" className='lg:px-12' onClick={CloseModal}>Cancel</Button>
                         {
                             loading ? <Spinner /> :
-                                <Button type='submit' className="bg-primary">Create Admin</Button>
+                                <Button type='submit' className="bg-primary lg:px-12">Create Admin</Button>
                         }
                     </div>
                 </form>

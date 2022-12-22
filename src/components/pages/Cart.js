@@ -464,7 +464,7 @@ export const Cart = () => {
             <div className="bg-op fixed z-50 top-0 h-screen w-full flex justify-center items-center"  onClick={CloseModal}>
                 <div className="max-h-103 p-5 lg:p-10 bg-white w-11/12 lg:w-6/12 relative overflow-y-scroll " onClick={(e) => e.stopPropagation()}>
                   <FontAwesomeIcon icon={faTimes} className="text-2xl cursor-pointer absolute top-5 right-5" onClick={CloseModal} />
-                  <CartModal/>
+                  <CartModal CloseModal={CloseModal}/>
                 </div>
             </div>
           )
