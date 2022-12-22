@@ -13,8 +13,8 @@ export const BAP = () => {
                 <div className='absolute w-full h-full z-01 grid place-content-center'>
                     <div className='w-10/12 mx-auto'>
                         <div className='bap-hero w-full lg:p-10 p-6 lg:text-2xl fw-600 lg:mt-28 mt-20 '>
-                            <div className='absolute left-0 lg:top-24 top-10 w-6/12 lg:w-6/12 bg-primary text-center text-white lg:px-16 lg:py-16 py-8 rounded-xxl '>
-                                <p className='lg:text-2xl lg:leading-2'>" With BOG Partner program "</p>
+                            <div className='absolute left-0 lg:top-24 top-10 w-6/12 lg:w-8/12 xl:w-6/12 hero-head xxl:w-6/12 bg-primary text-center text-white lg:px-6 xl:px-12 lg:py-8 xl:py-16 py-8 rounded-xxl '>
+                                <p className='lg:text-2xl xl:text-2xl xl:leading-2'>" With BOG Partner program "</p>
                             </div>
                             <p className='lg:text-3xl lg:fw-700 text-center text-white'>you could get the right boost for your business to succeed.</p>
                         </div>
@@ -37,46 +37,50 @@ export const BAP = () => {
                         <span className='text-secondary text-xl'><BsFillCheckCircleFill/></span>
                         <p className='pl-2'>Get paid instantly when you sell a product or render a services</p>
                     </div>
+                    <div className='flex items-center fw-600 mt-5'>
+                        <span className='text-secondary text-xl'><BsFillCheckCircleFill/></span>
+                        <p className='pl-2'>Upload multiple products in shop</p>
+                    </div>
                 </div>
             </div>
         </div>
         <div className='section'>
             <div className='box'>
-                <div>
+                <div className='mt-24 lg:mt-0'>
                     <div className='text-center'>
                         <p className='fw-600 lg:text-3xl text-xl my-6'>What would you like to be doing this time tomorrow?</p>
-                        <p className='fs-500 lg:fs-600'>With BOG fast application and service process, this time tomorrow you could have the customer base you need to set your business up for success. Whatever is next on your agenda, our flexible customer care representatives are there to support almost any business need.</p>
+                        <p className='fs-500 lg:fs-700'>With BOG fast application and service process, this time tomorrow you could have the customer base you need to set your business up for success. Whatever is next on your agenda, our flexible customer care representatives are there to support almost any business need.</p>
                     </div>
                     <div className='lg:flex justify-evenly lg:mt-24 mt-12'>
-                        <div className='lg:w-4/12 lg:px-12 lg:py-20 p-7 shades radius-l'>
+                        <div className='lg:w-4/12 lg:px-12 lg:py-20 p-7 shades radius-l bg-blue-100 text-black'>
                             <img src={require("../assets/images/hero1.png")} alt="partner" className="w-28 mx-auto"/>
-                            <p className='text-center text-2xl fw-700 text-primary'>BOG</p>
+                            <p className='text-center text-2xl fw-700'>BOG</p>
                             <p className='text-center fw-600 text-secondary'>Product Partner</p>
                             <p className='my-8 text-center fs-500 fw-500'>Sign-Up on BOG as a product partner and sell your building material to variety of customers nationwide.</p>
                             <div>
                                 <div className='flex items-center fw-600 mt-5'>
-                                    <span className=' text-primary text-xl'><BsFillCheckCircleFill/></span>
+                                    <span className=' text-secondary text-xl'><BsFillCheckCircleFill/></span>
                                     <p className='pl-2'>Sell building material to customers.</p>
                                 </div>
                                 <div className='flex items-center fw-600 mt-5'>
-                                    <span className=' text-primary text-xl'><BsFillCheckCircleFill/></span>
+                                    <span className=' text-secondary text-xl'><BsFillCheckCircleFill/></span>
                                     <p className='pl-2'>Upload multiple products to the shop.</p>
                                 </div>
                                 <div className='flex items-center fw-600 mt-5'>
-                                    <span className=' text-primary text-xl'><BsFillCheckCircleFill/></span>
+                                    <span className=' text-secondary text-xl'><BsFillCheckCircleFill/></span>
                                     <p className='pl-2'>Instant payment after customer purchase.</p>
                                 </div>
                             </div>
                             <div className='text-center mt-10'>
-                                <Link>
+                                <Link to="/login">
                                     <button className='btn bg-secondary text-white fw-600'>Get Started</button>
                                 </Link>
                             </div>
                         </div>
-                        <div className='lg:w-4/12 lg:px-12 lg:py-20 p-7 shades radius-l mt-10 lg:mt-0'>
+                        <div className='lg:w-4/12 lg:px-12 lg:py-20 p-7 shades bg-orange-100  text-black radius-l mt-10 lg:mt-0'>
                             <img src={require("../assets/images/hero2.png")} alt="partner" className="w-28 mx-auto"/>
-                            <p className='text-center text-2xl fw-700 text-primary'>BOG</p>
-                            <p className='text-center fw-600 text-secondary'>Service Partner</p>
+                            <p className='text-center text-2xl fw-700'>BOG</p>
+                            <p className='text-center fw-600 text-primary'>Service Partner</p>
                             <p className='my-8 text-center fs-500 fw-500'>Sign-Up on BOG as a Service partner and render services (building, drawing, land survey...) to clients.</p>
                             <div>
                                 <div className='flex items-center fw-600 mt-5'>
@@ -85,7 +89,7 @@ export const BAP = () => {
                                 </div>
                                 <div className='flex items-center fw-600 mt-5'>
                                     <span className=' text-primary text-xl'><BsFillCheckCircleFill/></span>
-                                    <p className='pl-2'>Get up to three(3) service contracts at the go.</p>
+                                    <p className='pl-2'>Get up to three(3) service contracts at a go.</p>
                                 </div>
                                 <div className='flex items-center fw-600 mt-5'>
                                     <span className=' text-primary text-xl'><BsFillCheckCircleFill/></span>
@@ -94,7 +98,7 @@ export const BAP = () => {
                             </div>
                             <div className='text-center mt-10'>
                                 <Link to="/login">
-                                    <button className='btn bg-secondary text-white fw-600'>Get Started</button>
+                                    <button className='btn bg-primary text-white fw-600'>Get Started</button>
                                 </Link>
                             </div>
                         </div>

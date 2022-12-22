@@ -8,9 +8,9 @@ import {
 // import CartItem from './CartItem';
 import Footer from "./home-comp/Footer";
 import Header from "./home-comp/Header";
-import { PaystackButton } from "react-paystack";
+// import { PaystackButton } from "react-paystack";
 import { MdDeleteOutline } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SuccessAlertWithRedirection } from "../../../src/services/endpoint";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
@@ -20,10 +20,20 @@ import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 
 import Swal from "sweetalert2";
+import { CartModal } from "./cart/CartModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 // const baseURL = process.env.REACT_APP_IMAGE_URL;
 
 export const Cart = () => {
+
+  const[cartForm, setCartForm] = useState(false)
+
+  const CloseModal = () => {
+    setCartForm(false)
+  }
+
   const AuhtCheck = () => {
     Swal.fire({
       title: " ",
@@ -158,6 +168,7 @@ export const Cart = () => {
     amount: totalAmount,
     publicKey: "pk_test_0c79398dba746ce329d163885dd3fe5bc7e1f243",
   };
+  // eslint-disable-next-line
   const componentProps = {
     ...config,
     // text: 'Paystack Button Implementation',
@@ -178,16 +189,19 @@ export const Cart = () => {
         <div className="section">
           <div className="box">
             <div>
-              <p className="mb-10 text-3xl fw-600">My Cart</p>
+              <p className="mb-10 lg:text-3xl text-xl fw-600">My Cart</p>
               <div className="lg:grid-83 relative">
                 <div className="relative">
                   <div>
-                    <p class="text-2xl fw-600">Item(s)</p>
+                    <div className="py-2 flex justify-between border-b-2 ">
+                      <p className=""><Link to="/shop">Continue Shopping</Link></p>
+                      <p class="fw-600"><span className="px-2">{carts.length}</span>Item(s)</p>
+                    </div>
                     <div className="mt-4">
                       {carts?.map((item) => {
                         return (
                           <div>
-                            <div className="lg:flex mt-6 items-center relative">
+                            <div className="lg:flex mt-6 bg-light p-3 shadow rounded-xl items-center relative">
                               <div className="lg:w-3/12">
                                 {/* <img src="https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png" alt="products" className="w-40 rounded-md h-20 lg:h-40" /> */}
                                 <img
@@ -224,7 +238,7 @@ export const Cart = () => {
                                   </button>
                                 </div>
                               </div>
-                              <div className="absolute top-0 right-12 text-red-500 cursor-pointer text-xl">
+                              <div className="absolute top-5 right-12 text-red-500 cursor-pointer text-xl">
                                 <MdDeleteOutline
                                   onClick={() => dispatch(deleteItem(item.id))}
                                 />
@@ -239,8 +253,8 @@ export const Cart = () => {
                 </div>
                 {
                   carts?.length === 0 ? null :
-                  <div className="relative mt-8 lg:mt-0">
-                  <div className="rounded-md shadow-md py-5 px-3 lg:px-5 sticky top-24">
+                  <div className="relative mt-8 lg:mt-0 ">
+                  <div className="rounded-md bg-blue-100 shadow-md py-5 px-3 lg:px-5 sticky top-24">
                     <div class="grid">
                       <p class="text-2xl fw-600">Order Summary</p>
                       <div className="py-5 border-y border-gray-400 mt-6">
@@ -251,8 +265,26 @@ export const Cart = () => {
                           <p>{carts.length}</p>
                         </div>
                       </div>
+                      <div className="fw-600 mt-3 flex justify-between">
+                        <p>
+                          Subtotal
+                        </p>
+                        <p className="text-end">NGN {formatNumber(totalAmount)}</p>
+                      </div>
+                      <div className="fw-600 mt-3 flex justify-between">
+                        <p>
+                          Estimated Delivery Cost
+                        </p>
+                        <p>TBD</p>
+                      </div>
+                      <div className="fw-600 mt-3 flex justify-between">
+                        <p>
+                          Estimated Sales Tax
+                        </p>
+                        <p>TBD</p>
+                      </div>
                       <form onSubmit={form.handleSubmit}>
-                        <div className="mt-3">
+                        {/* <div className="mt-3">
                           <label className="block">Contact Name</label>
                           <input
                             type="text"
@@ -352,26 +384,6 @@ export const Cart = () => {
                               </p>
                             ) : null}
                           </div>
-                          {/* <div className="w-full lg:w-6/12 pl-3 mt-2">
-                            <label className="block">Postal Code</label>
-                            <input
-                              type="text"
-                              placeholder="enter your city"
-                              className="w-full mt-1 py-2 px-2 border-gray-400 rounded border"
-                              name="postal_code"
-                              required
-                              id="postal_code"
-                              value={postal_code}
-                              onChange={form.handleChange}
-                              onBlur={form.handleBlur}
-                            />
-                            {form.touched.postal_code &&
-                            form.errors.postal_code ? (
-                              <p className="text-red-500">
-                                {form.errors.postal_code}
-                              </p>
-                            ) : null}
-                          </div> */}
                           <div className="mt-2 w-full lg:w-6/12 lg:pl-3">
                             <label className="block">Address</label>
                             <input
@@ -391,7 +403,7 @@ export const Cart = () => {
                               </p>
                             ) : null}
                           </div>
-                        </div>
+                        </div> */}
                         <div className="fw-600 my-4">
                           <div className="flex justify-between my-4">
                             <p>TOTAL COST</p>
@@ -399,24 +411,34 @@ export const Cart = () => {
                           </div>
 
                           {auth.isAuthenticated ?
-                            (value.address !== null && value.address !== '') ? (
+                            // (value.address !== null && value.address !== '') ? (
 
 
-                              <PaystackButton
+                            //   <PaystackButton
 
-                                text="CHECKOUT"
-                                label="CHECKOUT"
-                                className="w-full btn bg-primary text-white"
-                                {...componentProps}
-                              />
-                            ) :
-                              <button
-                                // onClick={() => navigate("/login")}
-                                className="w-full btn bg-primary text-white"
+                            //     text="CHECKOUT"
+                            //     label="CHECKOUT"
+                            //     className="w-full btn bg-primary text-white"
+                            //     {...componentProps}
+                            //   />
+                            // ) 
+                            (
+                              <p
+                                onClick={() =>setCartForm(true)}
+                                className="w-full text-center btn bg-primary text-white"
                               >
-                                CHECKOUT
-                              </button>
-                            : (
+                                PROCEED TO CHECKOUT
+                              </p>
+                            )
+                            :
+                            //   <button
+                            //     // onClick={() => navigate("/login")}
+                            //     className="w-full btn bg-primary text-white"
+                            //   >
+                            //     CHECKOUT
+                            //   </button>
+                            // : 
+                            (
                               <button
                                 onClick={() => AuhtCheck()}
                                 className="w-full btn bg-primary text-white"
@@ -437,6 +459,16 @@ export const Cart = () => {
           </div>
         </div>
         <Footer />
+        {
+          cartForm && (
+            <div className="bg-op fixed z-50 top-0 h-screen w-full flex justify-center items-center"  onClick={CloseModal}>
+                <div className="max-h-103 p-5 lg:p-10 bg-white w-11/12 lg:w-6/12 relative overflow-y-scroll " onClick={(e) => e.stopPropagation()}>
+                  <FontAwesomeIcon icon={faTimes} className="text-2xl cursor-pointer absolute top-5 right-5" onClick={CloseModal} />
+                  <CartModal/>
+                </div>
+            </div>
+          )
+        }
       </div>
     </div>
   );
