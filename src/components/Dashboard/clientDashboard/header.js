@@ -2,7 +2,7 @@ import { faBell } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import {
-    Menu, MenuHandler, MenuItem, MenuList, Button,
+    Menu, MenuHandler, MenuItem, MenuList, Button, Avatar,
 } from "@material-tailwind/react";
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
@@ -67,7 +67,11 @@ export default function Header() {
                             </button>
                         </div> */}
                         <div>
-                            <p className="bg-transparent border-0 shadow-none hover:shadow-none  text-black px-1 ml-2"><Link to="switch" className="flex text-center"><p className="fs-500 text-center"><p className="text-primary"><AiOutlineUserSwitch/></p><p className="fw-500 text-primary">Switch</p></p></Link></p>
+                            { auth?.user?.userType === "admin"? 
+                                null
+                                :
+                                <p className="bg-transparent border-0 shadow-none hover:shadow-none  text-black px-1 ml-2"><Link to="switch" className="flex text-center"><p className="fs-500 text-center"><p className="text-primary"><AiOutlineUserSwitch/></p><p className="fw-500 text-primary">Switch</p></p></Link></p>
+                            }
                         </div>
                         <div className="relative mx-3">
                             <div onClick={ShowNotify} className="bg-gray-100 px-2 rounded-sm py-1">
@@ -115,7 +119,9 @@ export default function Header() {
                                     <Button className="p-0">
                                         {/* <Avatar src={user?.photo ? `${BASE_URL}/${user?.photo}` : "https://i.stack.imgur.com/l60Hf.png"}
                                     alt="profifepic" /> */}
-                                        <UserAvatar/>
+                                        {
+                                            auth?.user?.photo? <Avatar src={auth.user.photo} /> : <UserAvatar/>
+                                        }
                                     </Button>
                                 </MenuHandler>
                                 <MenuList>

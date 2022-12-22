@@ -1,6 +1,6 @@
 import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BsFillGrid1X2Fill, BsBell, BsGear, BsBag, BsEnvelope, BsBoxArrowRight, BsFillCaretDownFill, BsCameraVideo, BsReceiptCutoff } from "react-icons/bs";
+import { BsFillGrid1X2Fill, BsBell, BsGear, BsBag, BsBoxArrowRight, BsFillCaretDownFill, BsCameraVideo, BsReceiptCutoff } from "react-icons/bs";
 import { FiUsers } from "react-icons/fi";
 import { GrBlog, GrUserWorker } from "react-icons/gr";
 import React, { useState, useEffect } from "react";
@@ -262,15 +262,15 @@ const AdminSidebar = () => {
                                 </div>
                             )}
                         </div>
-                        <NavLink 
+                        {/* <NavLink 
                             to="email"
                             className="w-full flex items-center pl-2 py-2 fw-600 my-2"
                             onClick={unShow}
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             >
                                 <BsEnvelope className="text-xl" />
-                                <p className="pl-3">Email</p>
-                        </NavLink>
+                                <p className="pl-3">Newsletter</p>
+                        </NavLink> */}
                         <NavLink 
                             to="blog"
                             className="w-full flex items-center pl-2 py-2 fw-600 my-2"

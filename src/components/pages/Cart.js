@@ -425,7 +425,7 @@ export const Cart = () => {
                             (
                               <p
                                 onClick={() =>setCartForm(true)}
-                                className="w-full text-center btn bg-primary text-white"
+                                className="w-full cursor-pointer text-center btn bg-primary text-white"
                               >
                                 PROCEED TO CHECKOUT
                               </p>

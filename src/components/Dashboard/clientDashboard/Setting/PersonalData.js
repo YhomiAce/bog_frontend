@@ -1,3 +1,4 @@
+import { Avatar } from '@material-tailwind/react';
 import React, { useState } from 'react';
 import { BiCheckCircle } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
@@ -64,7 +65,9 @@ const PersonalData = () => {
                 <div className="mt-6 lg:mt-0 py-6 px-2 lg:px-8 rounded-lg">
                     <div className="flex items-center lg:my-6">
                         <div>
-                            <UserAvatar/>
+                            {
+                                user?.photo? <Avatar src={user.photo} className="w-20 h-20" /> : <UserAvatar/>
+                            }
                         </div>
                         <div className="lg:fs-400 text-xs pl-2 lg:pl-6 w-6/12">
                             <p className="mb-2">Update Profile Picture</p>
