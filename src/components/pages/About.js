@@ -1,13 +1,43 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import Axios from "../../config/config";
+import toaster from "toasted-notes";
 import { Link } from "react-router-dom";
-import { AboutSlides, AboutSlides2, AboutSlides2Sm, AboutSlidesSm } from "./home-comp/AboutSlides";
+import { AboutSlides, AboutSlides2, AboutSlidesSm, ReviewSlideSm } from "./home-comp/AboutSlides";
 import Footer from "./home-comp/Footer";
 import Header from "./home-comp/Header";
+import Spinner from "../layouts/Spinner";
 
 export default function About() {
 
     const [vision, setVision] = useState(true)
     const [mission, setMission] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [reviews, setReviews] = useState([]);
+
+    const getReviews = async () => {
+        try {
+            setLoading(true);
+            const res = await Axios.get('/testimony/get-hompage-testimonies');
+            setLoading(false);
+            if (res.success === true) {
+                setReviews(res.data)
+            }
+
+        } catch (error) {
+            setLoading(false);
+            toaster.notify(
+                error?.response?.data?.message || error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+    }
+    console.log(reviews)
+    useEffect(() => {
+        getReviews();
+    }, []);
 
 
   return (
@@ -141,10 +171,14 @@ export default function About() {
                         <p>See what our Clients and Patners have to say about us </p>
                     </div>
                     <div className="mt-12 hidden lg:block">
-                        <AboutSlides2/>
+                        {
+                            loading? <Spinner/> : <AboutSlides2 reviews={reviews}/>
+                        }
                     </div>
                     <div className="mt-12 lg:hidden">
-                        <AboutSlides2Sm/>
+                        {
+                            loading? <Spinner/> : <ReviewSlideSm reviews={reviews}/>
+                        }
                     </div>
                 </div>
             </div>
