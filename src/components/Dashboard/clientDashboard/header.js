@@ -6,7 +6,6 @@ import {
 } from "@material-tailwind/react";
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
-import { AiOutlineUserSwitch } from "react-icons/ai"
 import { logout } from '../../../redux/actions/authAction';
 import {UserAvatar } from "../assets/Avatar";
 
@@ -70,11 +69,16 @@ export default function Header() {
                             { auth?.user?.userType === "admin"? 
                                 null
                                 :
-                                <p className="bg-transparent border-0 shadow-none hover:shadow-none  text-black px-1 ml-2"><Link to="switch" className="flex text-center"><p className="fs-500 text-center"><p className="text-primary"><AiOutlineUserSwitch/></p><p className="fw-500 text-primary">Switch</p></p></Link></p>
+                               <Link to="switch">
+                                 <div>
+                                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671725813/BOG/switch_aflj0d.png" alt="switch" className="w-6 mx-auto" />
+                                    <p className="text-center fs-300 fw-500 text-primary">Switch</p>
+                                </div>
+                               </Link>
                             }
                         </div>
                         <div className="relative mx-3">
-                            <div onClick={ShowNotify} className="bg-gray-100 px-2 rounded-sm py-1">
+                            <div onClick={ShowNotify} className="bg-blue-100 px-2 rounded-sm py-1">
                                 <FontAwesomeIcon icon={faBell} className="lg:text-xl  text-primary" />
                                 <p className="absolute -top-2 left-3/4 border circle px-1 text-white text-xs bg-primary">6</p>
                             </div>
