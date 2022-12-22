@@ -289,7 +289,7 @@ const AdminSidebar = () => {
                                 <MdOutlineReviews className="text-lg" />
                                 <p className="pl-3">Testimonials</p>
                         </NavLink>
-                        {/* <NavLink 
+                        <NavLink 
                             to="inbox"
                             className="w-full flex items-center pl-2 py-2 fw-600 my-2"
                             onClick={unShow}
@@ -297,7 +297,7 @@ const AdminSidebar = () => {
                             >
                                 <MdOutlineEmail className="text-lg" />
                                 <p className="pl-3">Inbox</p>
-                        </NavLink> */}
+                        </NavLink>
                         <NavLink 
                             to="meetings"
                             onClick={unShow}
