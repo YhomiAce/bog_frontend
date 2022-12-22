@@ -7,9 +7,11 @@ import store from './store';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 // @material-tailwind/react
 import { ThemeProvider } from "@material-tailwind/react";
+import CookieSheet from './components/layouts/CookieSheet';
 
 const app = (
   <Provider store={store}>
+    <CookieSheet />
     <BrowserRouter>
       {/* <React.StrictMode> */}
         <ThemeProvider>

@@ -11,6 +11,7 @@ import img1 from "../../assets/images/img2.png";
 import img2 from "../../assets/images/img4.png";
 import img3 from "../../assets/images/img3.png";
 import img4 from "../../assets/images/image1.png";
+import { getUserType } from "../../../services/helper";
 
 export const Reviews = [
     {
@@ -416,11 +417,10 @@ export  function AboutSlides2Sm() {
     )
 }
 
-export function  ReviewSlide() {
+export function  ReviewSlide({reviews}) {
 
     const review = useRef();
     
-
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
             let tl = gsap.timeline();
@@ -443,17 +443,17 @@ export function  ReviewSlide() {
     return (
         <div className="w-full overflow-hidden " >
             <div className="flex w-200" ref={review}>
-                {Reviews.map(item => {
+                {reviews.map(item => {
                         return (
                             <div className="py-4 mr-10 hover:bg-primary hover:text-white border border-pri px-5 mx-auto bg-white rounded">
                                 <div className="flex items-center">
                                     <img src={item.img} alt="img1" className="w-16"/>
                                     <div className="pl-4">
                                         <p className="fw-600">{item.name}</p>
-                                        <p className="fs-300">{item.job}</p>
+                                        <p className="fs-300">{getUserType(item.user.userType)}</p>
                                     </div>
                                 </div>
-                                <p className="mt-4 fs-500">{item.review}</p>
+                                <p className="mt-4 fs-500">{item.message}</p>
                             </div>
                         )
                     } 

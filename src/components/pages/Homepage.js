@@ -1,8 +1,8 @@
-import React, {useLayoutEffect, useRef} from "react";
+import React, { useLayoutEffect, useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "./home-comp/Header";
-import {ImQuotesLeft, ImQuotesRight} from "react-icons/im"
+import { ImQuotesLeft, ImQuotesRight } from "react-icons/im"
 import { BsArrowRight, BsBag } from "react-icons/bs";
 import Faqs from "./home-comp/Faqs";
 import Footer from "./home-comp/Footer";
@@ -10,11 +10,12 @@ import ProfSlides, { ProfSlidesSm } from "./home-comp/ProfSlides";
 import BlogSlides, { BlogSlidesSm } from "./home-comp/BlogSlide";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeftLong, faPlay} from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { faArrowLeftLong, faPlay } from "@fortawesome/free-solid-svg-icons";
 import { AboutSlides2Sm, ReviewSlide } from "./home-comp/AboutSlides";
-
-
+import toaster from "toasted-notes";
+import "toasted-notes/src/styles.css";
+import Axios from "../../config/config";
+import Spinner from "../layouts/Spinner";
 
 // const Text = ({children}) => {
 //     return <div className="text">{children}</div>;
@@ -38,19 +39,21 @@ export default function Homepage() {
         const ctx = gsap.context(() => {
             let tl = gsap.timeline();
             // tl.from(into("text"), { y:10, opacity:0, duration:0.7, delay: .5, ease:"" ,stagger: 0.2,});
-            tl.from(intro1.current, {opacity:0, scale:0, ease: "back", duration: 0.5 , delay: 1,})
-        
-        
-        }, );
+            tl.from(intro1.current, { opacity: 0, scale: 0, ease: "back", duration: 0.5, delay: 1, })
 
-        
-            return () => ctx.revert();
+
+        },);
+
+
+        return () => ctx.revert();
     }, []);
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
-            gsap.from(hero.current, {y:-520, ease:"bounce",  duration:2, delay: 1.5, opacity:0,onComplete() {
-                ScrollTrigger.refresh(true);
-              }})
+            gsap.from(hero.current, {
+                y: -520, ease: "bounce", duration: 2, delay: 1.5, opacity: 0, onComplete() {
+                    ScrollTrigger.refresh(true);
+                }
+            })
 
             gsap.from(hazzle.current, {
                 scale: .6,
@@ -58,42 +61,70 @@ export default function Homepage() {
                 ease: "elastic",
                 delay: .1,
                 scrollTrigger: {
-                  trigger: hazzle.current,
-                  toggleActions: "restart none none none"
+                    trigger: hazzle.current,
+                    toggleActions: "restart none none none"
                 }
-              },);
+            },);
             const bl = gsap.timeline();
-            bl.to(news.current, {yPercent: -52,});
-  
-              ScrollTrigger.create({
-                  animation: bl,
-                  trigger: blog.current,
-                  pin: true,
-                  pinSpacing: true,
-                  toggleActions: "restart none none none",
-                  start: "center center",
-                  scrub: true,
-                  invalidateOnRefresh: true,
-                  
-                })
+            bl.to(news.current, { yPercent: -52, });
+
+            ScrollTrigger.create({
+                animation: bl,
+                trigger: blog.current,
+                pin: true,
+                pinSpacing: true,
+                toggleActions: "restart none none none",
+                start: "center center",
+                scrub: true,
+                invalidateOnRefresh: true,
+
+            })
         }, hero);
         ScrollTrigger.refresh(true)
         return () => ctx.revert();
-      }, []);
-    
+    }, []);
+
+    const [loading, setLoading] = useState(false);
+    const [reviews, setReviews] = useState([]);
+
+    const getReviews = async () => {
+        try {
+            setLoading(true);
+            const res = await Axios.get('/testimony/get-hompage-testimonies');
+            setLoading(false);
+            if (res.success === true) {
+                setReviews(res.data)
+            }
+
+        } catch (error) {
+            setLoading(false);
+            toaster.notify(
+                error?.response?.data?.message || error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+    }
+
+    useEffect(() => {
+        getReviews();
+    }, []);
 
 
 
 
-    return(
+
+    return (
         <div className="font-primary">
-            <Header/>
+            <Header />
             {/* hero banner */}
             <div className="bg-hero">
                 <div className="box">
                     <div className="lg:flex flex-row-reverse items-center py-1 pb-6 lg:py-6">
                         <div className="lg:w-6/12 relative z-0">
-                            <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669564220/BOG/hero_1_1_hcpq4u.png" alt="hero" className="lg:w-10/12 lg:float-right animate-pulse" ref={hero}/>
+                            <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669564220/BOG/hero_1_1_hcpq4u.png" alt="hero" className="lg:w-10/12 lg:float-right animate-pulse" ref={hero} />
                             <img src={require("../assets/images/hero1.png")} alt="hero1" className="absolute lg:w-28 w-20 hero1" />
                             <img src={require("../assets/images/hero2.png")} alt="hero2" className="absolute lg:w-28 w-20 hero2" />
                             <img src={require("../assets/images/hero3.png")} alt="hero3" className="absolute lg:w-28 w-20 hero3" />
@@ -119,7 +150,7 @@ export default function Homepage() {
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -131,23 +162,23 @@ export default function Homepage() {
                     </div>
                     <div className="lg:flex justify-between mt-16" id="hassle" ref={hazzle}>
                         <div className="text-center lg:w-2/12 px-4">
-                            <img src={require("../assets/images/calculator.png")} alt="calculator" className="lg:w-20 w-16 m-auto mb-6"/>
+                            <img src={require("../assets/images/calculator.png")} alt="calculator" className="lg:w-20 w-16 m-auto mb-6" />
                             <p>Price/Cost calculator</p>
                         </div>
                         <div className="text-center mt-6 lg:mt-0 lg:w-2/12 px-4">
-                            <img src={require("../assets/images/tv.png")} alt="tv" className="lg:w-20 w-16 m-auto mb-6"/>
-                            <p className="w-8/12 lg:w-full m-auto">In app meetings and reviews</p>    
+                            <img src={require("../assets/images/tv.png")} alt="tv" className="lg:w-20 w-16 m-auto mb-6" />
+                            <p className="w-8/12 lg:w-full m-auto">In app meetings and reviews</p>
                         </div>
                         <div className="text-center mt-6 lg:mt-0 lg:w-2/12 px-4">
-                            <img src={require("../assets/images/prof.png")} alt="providers" className="lg:w-20 w-16 m-auto mb-6"/>
+                            <img src={require("../assets/images/prof.png")} alt="providers" className="lg:w-20 w-16 m-auto mb-6" />
                             <p className="w-8/12 lg:w-full m-auto">Find expert construction workers</p>
                         </div>
                         <div className="text-center mt-6 lg:mt-0 lg:w-2/12 px-4">
-                        <img src={require("../assets/images/tractor.png")} alt="tractor" className="lg:w-20 w-16 m-auto mb-6"/>
+                            <img src={require("../assets/images/tractor.png")} alt="tractor" className="lg:w-20 w-16 m-auto mb-6" />
                             <p className="w-8/12 lg:w-full m-auto">Shop for construction materials</p>
                         </div>
                         <div className="text-center mt-6 lg:mt-0 lg:w-2/12 px-4">
-                        <img src={require("../assets/images/call.png")} alt="call" className="lg:w-20 w-16 m-auto mb-6"/>
+                            <img src={require("../assets/images/call.png")} alt="call" className="lg:w-20 w-16 m-auto mb-6" />
                             <p>Quality customer care</p>
                         </div>
                     </div>
@@ -167,7 +198,7 @@ export default function Homepage() {
                                 </p>
                             </div>
                             <div className="lg:w-2/12 w-1/12 flex justify-center self-end">
-                            <ImQuotesRight className="text-primary lg:text-6xl text-3xl" />
+                                <ImQuotesRight className="text-primary lg:text-6xl text-3xl" />
                             </div>
                         </div>
                     </div>
@@ -180,13 +211,13 @@ export default function Homepage() {
                         <p className="text-2xl lg:text-4xl fw-600">How It Works</p>
                     </div>
                     <div className="lg:w-10/12 m-auto relative h-video lg:my-16 xl:mb-24">
-                        <video loop playsInline muted  className="absolute z-0 w-full h-full left-0 top-0 rounded-lg">
+                        <video loop playsInline muted className="absolute z-0 w-full h-full left-0 top-0 rounded-lg">
                             <source src="https://res.cloudinary.com/greenmouse-tech/video/upload/v1668779475/BOG/BOGVideo_nmtany.mp4" />
-                            
+
                         </video>
                         <div className="absolute bg-white xl:left-50 lg:left-45 circle left-40 z-20 top-50 flex items-center">
                             {/* <div className="lg:w-20 w-10 h-1 bg-gray-400"></div> */}
-                            <div className="lg:w-20 lg:h-20 w-10 h-10 bg-blue-500 circle center-item " onClick={() => {setShowVideo(true)}}>
+                            <div className="lg:w-20 lg:h-20 w-10 h-10 bg-blue-500 circle center-item " onClick={() => { setShowVideo(true) }}>
                                 <FontAwesomeIcon icon={faPlay} className="lg:text-3xl text-white" />
                             </div>
                         </div>
@@ -194,12 +225,12 @@ export default function Homepage() {
                     {showVideo && (
                         <div className="center-item scale-ani bg-op top-0 left-0 z-40 fixed h-screen w-full">
                             <div className="box">
-                            <p className="lg:w-9/12 mx-auto" onClick={()=> {setShowVideo(false)}}><FontAwesomeIcon icon={faArrowLeftLong} className="text-2xl text-black" /></p>
+                                <p className="lg:w-9/12 mx-auto" onClick={() => { setShowVideo(false) }}><FontAwesomeIcon icon={faArrowLeftLong} className="text-2xl text-black" /></p>
                                 <video controls autoPlay className="lg:w-9/12 mx-auto">
                                     <source src="https://res.cloudinary.com/greenmouse-tech/video/upload/v1668779475/BOG/BOGVideo_nmtany.mp4" />
                                 </video>
                             </div>
-                            
+
                         </div>
                     )}
                 </div>
@@ -215,27 +246,27 @@ export default function Homepage() {
                         <div className="lg:grid-4 justify-between mt-12">
                             <div className="bg-white w-11/12 lg:w-full m-auto">
                                 <div className="">
-                                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669565021/BOG/sand_1_qhuy8e.png" alt="sand" className="w-full h-72"/>
+                                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669565021/BOG/sand_1_qhuy8e.png" alt="sand" className="w-full h-72" />
                                 </div>
-                                <div className="flex items-center py-4 pl-4"><BsBag/><p className="pl-2">Shop for Sand</p></div>
+                                <div className="flex items-center py-4 pl-4"><BsBag /><p className="pl-2">Shop for Sand</p></div>
                             </div>
                             <div className="mt-6 lg:mt-0 w-11/12 lg:w-full m-auto bg-white">
                                 <div className="">
-                                    <img src={require("../assets/images/steels.png")} alt="steel" className="w-full h-72"/>
+                                    <img src={require("../assets/images/steels.png")} alt="steel" className="w-full h-72" />
                                 </div>
-                                <div className="flex items-center py-4 pl-4"><BsBag/><p className="pl-2">Shop for Steel</p></div>
+                                <div className="flex items-center py-4 pl-4"><BsBag /><p className="pl-2">Shop for Steel</p></div>
                             </div>
                             <div className=" mt-6 lg:mt-0 w-11/12 lg:w-full m-auto bg-white">
                                 <div className="">
-                                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669565034/BOG/granite_1_ml5wb2.png" alt="steel" className="w-full h-72"/>
+                                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669565034/BOG/granite_1_ml5wb2.png" alt="steel" className="w-full h-72" />
                                 </div>
-                                <div className="flex items-center py-4 pl-4"><BsBag/><p className="pl-2">Shop for Granite</p></div>
+                                <div className="flex items-center py-4 pl-4"><BsBag /><p className="pl-2">Shop for Granite</p></div>
                             </div>
                             <div className=" mt-6 lg:mt-0 w-11/12 lg:w-full m-auto bg-white">
                                 <div className="">
-                                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669565035/BOG/cement_1_mvstfy.png" alt="steel" className="w-full h-72"/>
+                                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669565035/BOG/cement_1_mvstfy.png" alt="steel" className="w-full h-72" />
                                 </div>
-                                <div className="flex items-center py-4 pl-4"><BsBag/><p className="pl-2">Shop for Cement</p></div>
+                                <div className="flex items-center py-4 pl-4"><BsBag /><p className="pl-2">Shop for Cement</p></div>
                             </div>
                         </div>
                         <div className="text-center mt-12">
@@ -254,10 +285,10 @@ export default function Homepage() {
                         </div>
                     </div>
                     <div className="mt-12 lg:block hidden">
-                        <ProfSlides/>
+                        <ProfSlides />
                     </div>
                     <div className="mt-12 lg:hidden">
-                        <ProfSlidesSm/>
+                        <ProfSlidesSm />
                     </div>
                 </div>
             </div>
@@ -273,12 +304,12 @@ export default function Homepage() {
                             <div className="bg-secondary-op h-64 rounded-lg px-6 pt-8">
                                 <p className="text-lg fw-600">Sign Up as a Service Partner</p>
                                 <p className="mt-5 mb-7">Setup your account as a service partner and start selling your products fast and easy </p>
-                                <Link to="/signup/profession"><button className="text-white px-4 py-2 rounded-lg flex items-center fw-600 bg-secondary"><span className="pr-3">Sign Up</span> <BsArrowRight/></button></Link>
+                                <Link to="/signup/profession"><button className="text-white px-4 py-2 rounded-lg flex items-center fw-600 bg-secondary"><span className="pr-3">Sign Up</span> <BsArrowRight /></button></Link>
                             </div>
                             <div className="mt-6 bg-primary-op lg:mt-0 rounded-lg p-8">
                                 <p className="text-lg fw-600">Sign Up as a Product Partner</p>
                                 <p className="mt-5 mb-7">Setup your account as a product partner and start selling your products fast and easy </p>
-                                <Link to="/signup/supply"><button className="text-white px-4 py-2 rounded-lg  flex bg-primary items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight/></button></Link>
+                                <Link to="/signup/supply"><button className="text-white px-4 py-2 rounded-lg  flex bg-primary items-center fw-600"><span className="pr-3">Sign Up</span> <BsArrowRight /></button></Link>
                             </div>
                         </div>
                     </div>
@@ -293,15 +324,15 @@ export default function Homepage() {
                                 <p className="lg:text-3xl ">Stay updated with our blog posts</p>
                                 <p className="my-6">Stay engaged with the latest news and insights from BOG</p>
                                 <Link to="/blog">
-                                <button className="mt-6 px-6 py-2 btn-primary">
-                                    See All Blog Post
-                                </button>
+                                    <button className="mt-6 px-6 py-2 btn-primary">
+                                        See All Blog Post
+                                    </button>
                                 </Link>
                             </div>
-                            <div className="grid-2 w-9/12"  ref={news}>
+                            <div className="grid-2 w-9/12" ref={news}>
                                 <div className="mx-4 bg-white text-black relative">
                                     <div>
-                                        <img src={require("../assets/images/blog1.png")} alt="blog1" className="w-full"/>
+                                        <img src={require("../assets/images/blog1.png")} alt="blog1" className="w-full" />
                                     </div>
                                     <div className="bg-primary w-28 text-white text-xs fw-500 py-3 relative -top-4 left-4 text-center">
                                         22 OCT, 2022
@@ -309,12 +340,12 @@ export default function Homepage() {
                                     <div className="py-6 pt-3 px-5">
                                         <p className="fw-600 lg:text-xl">6 Ways to Improve Machine Operators’ Safety on Cons. . .</p>
                                         <p className="pt-2 pb-3 ">It should not be surprising that there needs to be an emphasis on machine operators, given...</p>
-                                        <BsArrowRight className="text-lg text-primary"/>
+                                        <BsArrowRight className="text-lg text-primary" />
                                     </div>
                                 </div>
                                 <div className="mx-4 bg-white text-black relative">
                                     <div>
-                                        <img src={require("../assets/images/blog1.png")} alt="blog1" className="w-full"/>
+                                        <img src={require("../assets/images/blog1.png")} alt="blog1" className="w-full" />
                                     </div>
                                     <div className="bg-primary w-28 text-white text-xs fw-500 py-3 relative -top-4 left-4 text-center">
                                         22 OCT, 2022
@@ -322,12 +353,12 @@ export default function Homepage() {
                                     <div className="py-6 pt-3 px-5">
                                         <p className="fw-600 lg:text-xl">6 Ways to Improve Machine Operators’ Safety on Cons. . .</p>
                                         <p className="pt-2 pb-3 ">It should not be surprising that there needs to be an emphasis on machine operators, given...</p>
-                                        <BsArrowRight className="text-lg text-primary"/>
+                                        <BsArrowRight className="text-lg text-primary" />
                                     </div>
                                 </div>
                                 <div className="mx-4 mt-12 bg-white text-black relative">
                                     <div>
-                                        <img src={require("../assets/images/blog2.png")} alt="blog1" className="w-full"/>
+                                        <img src={require("../assets/images/blog2.png")} alt="blog1" className="w-full" />
                                     </div>
                                     <div className="bg-primary w-28 text-white text-xs fw-500 py-3 relative -top-4 left-4 text-center">
                                         22 OCT, 2022
@@ -335,12 +366,12 @@ export default function Homepage() {
                                     <div className="py-6 pt-3 px-5">
                                         <p className="fw-600 lg:text-xl">6 Ways to Improve Machine Operators’ Safety on Cons. . .</p>
                                         <p className="pt-2 pb-3 ">It should not be surprising that there needs to be an emphasis on machine operators, given...</p>
-                                        <BsArrowRight className="text-lg text-primary"/>
+                                        <BsArrowRight className="text-lg text-primary" />
                                     </div>
                                 </div>
                                 <div className="mx-4 mt-12 bg-white text-black relative">
                                     <div>
-                                        <img src={require("../assets/images/blog2.png")} alt="blog1" className="w-full"/>
+                                        <img src={require("../assets/images/blog2.png")} alt="blog1" className="w-full" />
                                     </div>
                                     <div className="bg-primary w-28 text-white text-xs fw-500 py-3 relative -top-4 left-4 text-center">
                                         22 OCT, 2022
@@ -348,7 +379,7 @@ export default function Homepage() {
                                     <div className="py-6 pt-3 px-5">
                                         <p className="fw-600 lg:text-xl">6 Ways to Improve Machine Operators’ Safety on Cons. . .</p>
                                         <p className="pt-2 pb-3 ">It should not be surprising that there needs to be an emphasis on machine operators, given...</p>
-                                        <BsArrowRight className="text-lg text-primary"/>
+                                        <BsArrowRight className="text-lg text-primary" />
                                     </div>
                                 </div>
                             </div>
@@ -363,14 +394,14 @@ export default function Homepage() {
                             </button>
                         </div>
                         <div className="w-8/12">
-                            <BlogSlides/>
+                            <BlogSlides />
                         </div>
                     </div>
                     <div className="lg:hidden">
                         <div className=" mb-6 text-white">
                             <p className="lg:text-3xl text-xl fw-600">Stay updated with our blog posts</p>
                             <p className="my-6">Stay engaged with the latest news and insights from BOG</p>
-                            
+
                         </div>
                         <BlogSlidesSm />
                         <div className="mt-6">
@@ -391,10 +422,13 @@ export default function Homepage() {
                             <p>See what our Clients and Patners have to say about us </p>
                         </div>
                         <div className="mt-12 hidden lg:block">
-                            <ReviewSlide/>
+                            {
+                                loading ? <Spinner /> :
+                                    <ReviewSlide reviews={reviews} />
+                            }
                         </div>
                         <div className="mt-12 lg:hidden">
-                            <AboutSlides2Sm/>
+                            <AboutSlides2Sm />
                         </div>
                     </div>
                 </div>
@@ -404,7 +438,7 @@ export default function Homepage() {
                 <div className="box">
                     <div className="lg:flex flex-row-reverse justify-center items-center">
                         <div className="lg:w-6/12 ">
-                            <img src={require("../assets/images/build.png")} alt="build" className="lg:w-10/12 w-full m-auto"/>
+                            <img src={require("../assets/images/build.png")} alt="build" className="lg:w-10/12 w-full m-auto" />
                         </div>
                         <div className="lg:w-5/12 mt-6 lg:mt-0 ">
                             <p className="text-xl lg:text-3xl fw-500">
@@ -420,7 +454,7 @@ export default function Homepage() {
             {/* why bog */}
             <div className="section bg-light">
                 <div className="box">
-                   <div>
+                    <div>
                         <div className="text-center">
                             <p className="lg:text-2xl text-xl fw-700">Why BOG? Because we deliver the best.</p>
                             <p className="mt-2 lg:w-10/12 mx-auto">No more compromising or missed opportunities with BOG by your side. With our hassle-free application, this time tomorrow you could have access to the products and services you need. It’s just what we do.</p>
@@ -437,12 +471,12 @@ export default function Homepage() {
                                 <p>A dedicated Customer Care Service will get to know you and your service need and provide a personalised solution.</p>
                             </div>
                             <div className="text-center mt-7 lg:mt-0">
-                            <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670515982/BOG/flexibility_1_1_ivqqdd.png" alt="support" className="w-36 mx-auto mb-4" />
+                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1670515982/BOG/flexibility_1_1_ivqqdd.png" alt="support" className="w-36 mx-auto mb-4" />
                                 <p className="fw-700 text-xl">Confidence</p>
                                 <p>Join thousands of individuals who patronizes BOG and experience smooth and standard services.</p>
                             </div>
                         </div>
-                   </div>
+                    </div>
                 </div>
             </div>
             {/* faqs */}
@@ -453,7 +487,7 @@ export default function Homepage() {
                             <p className="text-xl lg:text-3xl fw-600 text-center">Frequently Asked Questions</p>
                         </div>
                         <div className="lg:w-8/12 mt-12 m-auto">
-                            <Faqs/>
+                            <Faqs />
                         </div>
                         <div className="text-center lg:w-8/12 mt-12 mx-auto ">
                             <Link to="/faqs"><button className="btn-primary lg:px-10 px-4 rounded fs-500">See All FAQs</button></Link>
@@ -490,9 +524,9 @@ export default function Homepage() {
             </div>
             {/* footer */}
             <div>
-                <Footer/>
+                <Footer />
             </div>
         </div>
-        )
+    )
 
 }
