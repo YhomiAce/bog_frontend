@@ -104,12 +104,12 @@ export default function PclientDashboard() {
         </div>
         {/* recent order and chart */}
         <div className="mt-7 lg:grid-83 justify-between">
-          <div className=" fw-600 fs-500 bg-white pt-6 rounded">
-            <div className="lg:flex px-5 justify-between">
+          <div className=" fw-600 fs-500 bg-white rounded">
+            <div className="lg:flex px-5 border-b-2 items-center py-3 bg-primary text-white rounded-t-lg justify-between">
               <div>
                 <p className="fw-600 text-lg mb-6 lg:mb-0">Recent Orders</p>
               </div>
-              <div>
+              <div className="">
                 <div class="mr-6 relative mx-auto text-gray-600">
                   <input
                     class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
@@ -119,7 +119,7 @@ export default function PclientDashboard() {
                   />
                   <button
                     type="submit"
-                    class="absolute bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
+                    class="absolute border bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
                   >
                     <FontAwesomeIcon icon={faSearch} className="text-white" />
                   </button>
@@ -224,10 +224,10 @@ export default function PclientDashboard() {
               </CardBody>
             </div>
           </div>
-          <div className="bg-white mt-6 lg:mt-0 rounded pt-6 px-4">
-            <div className="flex justify-between">
+          <div className="bg-white mt-6 lg:mt-0 rounded ">
+            <div className="flex justify-between border-b-2 items-center py-3 px-4 bg-primary text-white rounded-t-lg">
               <p className="fw-600 text-lg">Order Analysis</p>
-              <select disabled className="bg-gray-100">
+              <select disabled className="bg-white py-1 rounded text-black">
                 <option>weekly</option>
               </select>
             </div>
@@ -238,23 +238,23 @@ export default function PclientDashboard() {
         </div>
         {/* project analysis and ongoing project*/}
         <div className="mt-7 lg:grid-74 justify-between">
-          <div className="py-6 px-4 bg-white rounded">
-            <div className="flex justify-between">
+          <div className="pb-6 bg-white rounded">
+            <div className="flex justify-between border-b-2 items-center py-3 px-4 bg-primary text-white rounded-t-lg">
               <p className="text-lg fw-600">Project Analysis</p>
-              <select disabled className="bg-gray-100">
+              <select disabled className="bg-white py-1 rounded text-black">
                 <option>yearly</option>
               </select>
             </div>
-            <div className="mt-4">
+            <div className="mt-4 px-4 ">
               <ProjectChart />
             </div>
           </div>
           {/* ongoing projects */}
-          <div className="bg-white mt-6 lg:mt-0 px-6 py-6 rounded">
-            <div>
+          <div className="bg-white mt-6 lg:mt-0 pb-6 rounded">
+            <div  className="border-b-2 items-center py-3 px-4 bg-primary text-white rounded-t-lg">
               <p className="text-lg fw-600">Ongoing Projects</p>
             </div>
-            <div className="pt-8 text-sm fw-600">
+            <div className="pt-8 text-sm fw-600 px-6">
               <div className="flex justify-between items-center">
                 <Avatar src={require("../images/profile.png")} />
                 <div className="lg:w-7/12 xl:w-8/12 w-6/12">

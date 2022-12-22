@@ -21,7 +21,7 @@ export default function ProjectChart() {
       };
       return (
         <div>
-          <ReactApexChart type="line" series={series} options={guestOption} width="100%" />
+          <ReactApexChart type="area" series={series} options={guestOption} width="100%" height={300}/>
         </div>
       );
 }
