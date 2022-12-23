@@ -16,6 +16,8 @@ import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
 import Axios from "../../config/config";
 import Spinner from "../layouts/Spinner";
+import { HomepageBlog } from "./Blog/HomepageBlog";
+import News from "./Blog/News";
 
 // const Text = ({children}) => {
 //     return <div className="text">{children}</div>;
@@ -303,7 +305,7 @@ export default function Homepage() {
                         <div className="mt-12 lg:grid-2 justify-around">
                             <div className="bg-secondary-op h-64 rounded-lg px-6 pt-8">
                                 <p className="text-lg fw-600">Sign Up as a Service Partner</p>
-                                <p className="mt-5 mb-7">Setup your account as a service partner and start selling your products fast and easy </p>
+                                <p className="mt-5 mb-7">Setup your account as a service partner and start rendering services to clients fast and easy </p>
                                 <Link to="/signup/profession"><button className="text-white px-4 py-2 rounded-lg flex items-center fw-600 bg-secondary"><span className="pr-3">Sign Up</span> <BsArrowRight /></button></Link>
                             </div>
                             <div className="mt-6 bg-primary-op lg:mt-0 rounded-lg p-8">
@@ -329,8 +331,8 @@ export default function Homepage() {
                                     </button>
                                 </Link>
                             </div>
-                            <div className="grid-2 w-9/12" ref={news}>
-                                <div className="mx-4 bg-white text-black relative">
+                            <div className="w-9/12" ref={news}>
+                                {/* <div className="mx-4 bg-white text-black relative">
                                     <div>
                                         <img src={require("../assets/images/blog1.png")} alt="blog1" className="w-full" />
                                     </div>
@@ -381,7 +383,8 @@ export default function Homepage() {
                                         <p className="pt-2 pb-3 ">It should not be surprising that there needs to be an emphasis on machine operators, given...</p>
                                         <BsArrowRight className="text-lg text-primary" />
                                     </div>
-                                </div>
+                                </div> */}
+                                <HomepageBlog/>
                             </div>
                         </div>
                     </div>

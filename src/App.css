@@ -445,6 +445,9 @@
     right:-8%;
   }
 }
+.ar-32 {
+  aspect-ratio: 3/ 2;
+}
 }
 .sub-menu{
   left: 15.5%;

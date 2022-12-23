@@ -64,20 +64,21 @@ export const OrderSuccess = () => {
                         </div> */}
                             <div className='bg-light text-end pb-3'>
                                 <p className='bg-primary fw-600 px-3 py-2 text-white w-full'>Payment</p>
-                                <div className='px-3 bg-light py-4 border-b-2'>
+                                <div className='px-3 bg-light py-4'>
                                     <p className=''>Subtotal - <span className='fw-500'>&#8358; {formatNumber(getSubTotal(order.order_items))}</span></p>
                                     <p className='my-2'>Shipping & Handling - <span className='fw-500'>&#8358; {formatNumber(order.deliveryFee)}</span></p>
                                     {/* <p className='mb-2'>Tax - <span className='fw-500'>NGN 2,000</span></p> */}
                                     <p className='fw-600'>Total - <span className='fw-500'>&#8358; {formatNumber(getSubTotal(order.order_items) + order.deliveryFee)}</span></p>
                                 </div>
-                                <div className='py-2 pr-3'>
+                                {/* <div className='py-2 pr-3'>
                                     <a
                                         href={`${BASE_URL}/uploads/invoice/ORD-${order.orderSlug}.pdf`}
                                         target="_blank"
                                         className='bg-primary px-5 py-1 text-white' rel="noreferrer"
                                     >Print Invoice</a>
-                                    {/* <button onClick={() => printInvoice(order.orderSlug)} className='bg-primary px-5 py-1 text-white'>Print Invoice</button> */}
-                                </div>
+                                    
+                                </div> */}
+                                {/* <button onClick={() => printInvoice(order.orderSlug)} className='bg-primary px-5 py-1 text-white'>Print Invoice</button> */}
                             </div>
                         </div>
                         <div className='text-end lg:mt-10 mx-auto lg:w-11/12'>
