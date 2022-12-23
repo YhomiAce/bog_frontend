@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
 import Footer from "./home-comp/Footer";
@@ -11,9 +12,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { ProductImage } from "./shop/ProductImg";
 import { useNavigate } from "react-router-dom";
 import "toasted-notes/src/styles.css";
-import useFetchHook from "../../hooks/useFetchHook";
 import Spinner from "../layouts/Spinner";
 import { getProducts } from '../../redux/actions/ProductAction';
+import Axios from "../../config/config";
 
 
 export default function ProductDetail() {
@@ -22,8 +23,27 @@ export default function ProductDetail() {
     const [cartNum, setCartNum] = useState(1)
     const dispatch = useDispatch()
     const { itemId } = useParams();
-    const url = `/product/${itemId}`
-    const { data: item, loading } = useFetchHook(url);
+    const [item, setItem] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    const fetchProduct = async () => {
+        try {
+            setLoading(true);
+            const config = {
+                headers: {
+                    "Content-Type": "Application/json",
+                    authorization: localStorage.getItem("auth_token"),
+                },
+            };
+            const url = `/product/${itemId}`
+            const res = await Axios.get(url,config);
+            const data = res.data;
+            setItem(data);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+        }
+    }
 
     const navigate = useNavigate()
     const [itemAdded, setItemAdded] = useState(false)
@@ -33,6 +53,10 @@ export default function ProductDetail() {
         dispatch(addToCart(item, cartNum));
         setItemAdded(true);
     }
+
+    useEffect(() => {
+        fetchProduct();
+    }, [itemId])
     useEffect(() => {
         dispatch(getProducts())
         if (item != null) {

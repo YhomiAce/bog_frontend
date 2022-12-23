@@ -15,8 +15,8 @@ import {
 import useFetchHook from "../../../../hooks/useFetchHook";
 import TransactionItem from "./Transaction/TransactionItem";
 
-export default function Transactions() {
-    const { loading, data: transactions } = useFetchHook("/transactions/user");    
+export default function AdminTransactions() {
+    const { loading, data: transactions } = useFetchHook("/transactions");    
 
     return (
         <div>

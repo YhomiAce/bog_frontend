@@ -49,6 +49,7 @@ import Sadmins from "./pages/SAdmins";
 import { ViewBlog } from "./pages/Blog/ViewBlog";
 import { Testimonial } from "./pages/Testimonial";
 import SubAdminDetails from "./pages/SubAdminDetails";
+import AdminTransactions from "./pages/AdminTransactions";
 
 export default function ClientDashboard() {
 
@@ -108,6 +109,7 @@ export default function ClientDashboard() {
                         <Route path="servicecategory" element={<ProjectCategory />} />
                         <Route path="meetings" element={<Meetings />} />
                         <Route path="transact" element={<Transactions />} />
+                        <Route path="transactions" element={<AdminTransactions />} />
                         <Route path="notify" element={<Notify />} />
                         <Route path="switch" element={<SwitchAccount />} />
                         <Route path="review" element={<Review />} />

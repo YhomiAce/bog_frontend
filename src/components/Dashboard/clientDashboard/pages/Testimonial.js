@@ -130,7 +130,7 @@ export const Testimonial = () => {
                             </div>
                             {
                                 testimony !== null ?
-                                null :
+                                    null :
                                     <>
                                         {
                                             loading ? <Spinner /> :

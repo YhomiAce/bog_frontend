@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../../../redux/actions/cartAction";
 
-export const CartModal = (CloseModal) => {
+export const CartModal = ({CloseModal}) => {
 
     const AuhtCheck = () => {
         Swal.fire({
@@ -119,8 +119,9 @@ export const CartModal = (CloseModal) => {
           CloseModal();
           SuccessAlertWithRedirection("Order in Progress!", gotoLink(orderId));
         } catch (error) {
+          CloseModal();
           setLoading(false);
-          if (error.response.data.message) {
+          if (error?.response?.data?.message) {
             toaster.notify(error.response.data.message, {
               duration: "4000",
               position: "bottom",
@@ -131,14 +132,13 @@ export const CartModal = (CloseModal) => {
             duration: "4000",
             position: "bottom",
           });
-          CloseModal();
+         
         }
       };
       const handlePaystackSuccessAction = (reference) => {
         console.log(reference);
         sendOrder(reference);
         dispatch(clearCart());
-        CloseModal();
       };
       const handlePaystackCloseAction = () => {
         console.log("incorrect transaction");
