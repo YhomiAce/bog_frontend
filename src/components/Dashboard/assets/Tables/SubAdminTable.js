@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAdmins } from '../../../../redux/actions/UserAction';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight, FaFileDownload } from "react-icons/fa";
+import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight, FaEye, FaFileDownload } from "react-icons/fa";
 import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, usePagination } from "react-table";
 import {useMemo } from "react";
 import {
@@ -15,7 +15,6 @@ import {
   MenuItem,
   Button,
 } from "@material-tailwind/react";
-import { BsThreeDotsVertical } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -151,16 +150,8 @@ if (status) {
           {
             Header: 'Action',
             accessor: 'id',
-            Cell: (row) => <Menu placement="left-start" className="w-16">
-                    <MenuHandler>
-                      <Button className="border-none bg-transparent shadow-none hover:shadow-none text-black"><button className="lg:text-xl"><BsThreeDotsVertical /></button></Button>
-                    </MenuHandler>
-                    <MenuList className="w-16 bg-gray-100 fw-600 text-black">
-                      <MenuItem onClick={() => gotoDetailsPage(row.value)}>View</MenuItem>
-                      <MenuItem>Edit</MenuItem>
-                      <MenuItem className="bg-red-600 text-white">Delete</MenuItem>
-                    </MenuList>
-                  </Menu>,
+            Cell: (row) => 
+            <p><FaEye onClick={() => gotoDetailsPage(row.value)}/></p>,
           },
         ],  // eslint-disable-next-line 
         []
