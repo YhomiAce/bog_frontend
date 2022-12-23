@@ -17,7 +17,6 @@ import "toasted-notes/src/styles.css";
 import Axios from "../../config/config";
 import Spinner from "../layouts/Spinner";
 import { HomepageBlog } from "./Blog/HomepageBlog";
-import News from "./Blog/News";
 
 // const Text = ({children}) => {
 //     return <div className="text">{children}</div>;

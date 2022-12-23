@@ -7,7 +7,7 @@ import Spinner from '../layouts/Spinner';
 import { capitalizeFirstLetter, formatNumber, getSubTotal } from '../../services/helper';
 import dayjs from 'dayjs';
 
-const BASE_URL = "https://bog.greenmouseproperties.com";
+// const BASE_URL = "https://bog.greenmouseproperties.com";
 
 export const OrderSuccess = () => {
     const navigate = useNavigate();

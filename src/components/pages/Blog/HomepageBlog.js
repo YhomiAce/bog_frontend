@@ -12,8 +12,6 @@ export const HomepageBlog = () => {
     const dispatch = useDispatch();
 
     const  {posts, isLoading} = useSelector((state) => state.blog);
-    const recentPost = posts.filter(where => where.isPublished)
-    const recent = recentPost.length > 0 ? recentPost[0] : null
 
     useEffect(() => {
         dispatch(getAllBlogPosts());
