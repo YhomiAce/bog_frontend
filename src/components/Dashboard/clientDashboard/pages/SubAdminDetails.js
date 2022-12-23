@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar, Breadcrumbs } from "@material-tailwind/react";
+import dayjs from "dayjs";
 import React, {useEffect, useState} from "react";
 import { Link, useLocation } from "react-router-dom";
 import Axios from "../../../../config/config";
@@ -91,22 +92,21 @@ export default function SubAdminDetails() {
                                         <p className="text-gray-600">Email:</p>
                                         <p className="pl-3">{admin?.email? admin.email : "null"}</p>
                                     </div>
-                                    <div className="flex mt-2">
+                                    {/* <div className="flex mt-2">
                                         <p className="text-gray-600">Phone:</p>
                                         <p className="pl-3">{admin?.phone}</p>
-                                    </div>
+                                    </div> */}
                                     <div className="flex mt-2">
                                         <p className="text-gray-600">Level:</p>
                                         <p className="pl-3">{admin?.level? admin.level : "null"}</p>
                                     </div>
-                                    <div className="flex mt-2">
+                                    {/* <div className="flex mt-2">
                                         <p className="text-gray-600">Password:</p>
                                         <p className="pl-3 overflow-x-scroll">{admin?.password}</p>
-                                    </div>
-                                    
+                                    </div> */}
                                     <div className="flex mt-2">
                                         <p className="text-gray-600">Registered On:</p>
-                                        <p className="pl-3">{admin?.createdAt}</p>
+                                        <p className="pl-3">{dayjs(admin?.createdAt).format(" HH:mmA  DD MMMM, YYYY")}</p>
                                     </div>
                                 </div>
                             </div>
