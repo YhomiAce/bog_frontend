@@ -78,7 +78,7 @@ export const OrderSuccess = () => {
                                     >Print Invoice</a>
                                     
                                 </div> */}
-                                <button onClick={() => printInvoice(order.orderSlug)} className='bg-primary px-5 py-1 text-white'>Print Invoice</button>
+                                <button onClick={() => printInvoice(order.orderSlug)} className='bg-primary px-5 py-1 text-white'>Print Receipt</button>
                             </div>
                         </div>
                         <div className='text-end lg:mt-10 mx-auto lg:w-11/12'>
