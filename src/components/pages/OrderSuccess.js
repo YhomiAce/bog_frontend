@@ -7,7 +7,7 @@ import Spinner from '../layouts/Spinner';
 import { capitalizeFirstLetter, formatNumber, getSubTotal } from '../../services/helper';
 import dayjs from 'dayjs';
 
-// const BASE_URL = "https://bog.greenmouseproperties.com";
+const BASE_URL = "https://bog.greenmouseproperties.com";
 
 export const OrderSuccess = () => {
     const navigate = useNavigate();
@@ -21,10 +21,10 @@ export const OrderSuccess = () => {
         navigate(url)
     }
 
-    // const printInvoice = (orderId) => {
-    //     const url = `${BASE_URL}/uploads/invoice/ORD-${orderId}`
-    //     window.open(url, "_blank")
-    // }
+    const printInvoice = (orderId) => {
+        const url = `${BASE_URL}/uploads/${orderId}.pdf`
+        window.open(url, "_blank")
+    }
 
     if (loading || !order) {
         return <center>
@@ -78,7 +78,7 @@ export const OrderSuccess = () => {
                                     >Print Invoice</a>
                                     
                                 </div> */}
-                                {/* <button onClick={() => printInvoice(order.orderSlug)} className='bg-primary px-5 py-1 text-white'>Print Invoice</button> */}
+                                <button onClick={() => printInvoice(order.orderSlug)} className='bg-primary px-5 py-1 text-white'>Print Invoice</button>
                             </div>
                         </div>
                         <div className='text-end lg:mt-10 mx-auto lg:w-11/12'>
