@@ -31,7 +31,8 @@ module.exports = withMT(
           'privacy': "url('/src/components/assets/images/privacy.png')",
           'bap': "linear-gradient(to right bottom, rgba(236, 139, 32, .5),rgba(236, 139, 32, .5)),url('https://res.cloudinary.com/greenmouse-tech/image/upload/v1669132417/BOG/blog2_lmtl44.png')",
           "hero": "linear-gradient(295.54deg, #AFC0FC 17.28%, #3F79AD 70.64%)",
-          "app": "url('https://res.cloudinary.com/greenmouse-tech/image/upload/v1670844719/BOG/Frame_466442_qfurti.png')"
+          "app": "url('https://res.cloudinary.com/greenmouse-tech/image/upload/v1670844719/BOG/Frame_466442_qfurti.png')",
+          'calc': "linear-gradient(to right bottom,rgba(63, 121, 173, 1),rgba(0, 0, 0, .8)),url('https://res.cloudinary.com/greenmouse-tech/image/upload/v1672394241/BOG/calc_p82zp6.jpg')",
         }
       },
       fontFamily: {

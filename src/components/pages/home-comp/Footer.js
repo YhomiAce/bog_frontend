@@ -26,7 +26,7 @@ export default function Footer(){
                             <ul>
                                 <li className="py-1"><Link to="/services" className="cursor-pointer">Find A Service Partner</Link></li>
                                 <li className="py-1"><Link to="/shop" className="cursor-pointer">Shop for Products</Link></li>
-                                <li className="py-1"><Link to="/shop" className="cursor-pointer">Become A Partner</Link></li>
+                                <li className="py-1"><Link to="/become-partner" className="cursor-pointer">Become A Partner</Link></li>
                             </ul>
                         </div>
                         <div className="lg:w-3/12 mt-10 lg:mt-0">
@@ -53,7 +53,8 @@ export default function Footer(){
                         <div className="mt-4 lg:mt-0">
                             <ul className="flex justify-center lg:text-end">
                                 <li className="pr-2"><Link to="/terms">Terms & Conditions</Link></li>
-                                <li className="pl-2 border-l"><Link to="/privacy">Privacy Policy</Link></li>
+                                <li className="px-2 border-l"><Link to="/privacy">Privacy Policy</Link></li>
+                                <li className="pl-2 border-l"><Link to="/return">Return Policy</Link></li>
                             </ul>
                         </div>
                     </div>
