@@ -58,7 +58,7 @@ export const Calculator = () => {
     useEffect (() => {
        if(formResult === true){
         SmartCalc()
-       }
+       } // eslint-disable-next-line 
     }, [formResult])
     const SmartCalc = () => {
         
