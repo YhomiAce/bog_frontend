@@ -1,6 +1,6 @@
 import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BsCameraVideo,BsCart3, BsFillGrid1X2Fill, BsBell, BsGear, BsReceiptCutoff, BsBag, BsEnvelope, BsBoxArrowRight } from "react-icons/bs";
+import { BsCameraVideo,BsCart3, BsFillGrid1X2Fill, BsBell, BsGear, BsReceiptCutoff, BsBag, BsEnvelope, BsBoxArrowRight, BsCalculator } from "react-icons/bs";
 import { GrTransaction } from "react-icons/gr"
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -72,7 +72,7 @@ const ClientSidebar = () => {
                     <div>
                         <NavLink
                             to=""
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-3"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
 
                             onClick={unShow}
                         >
@@ -81,7 +81,7 @@ const ClientSidebar = () => {
                         </NavLink>
                         <NavLink
                             to="projects"
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-3"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             onClick={unShow}
                         >
@@ -91,7 +91,7 @@ const ClientSidebar = () => {
                         <NavLink 
                             to="orders"
                             onClick={unShow}
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-3"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             >
                                 <BsBag className="text-lg" />
@@ -100,7 +100,7 @@ const ClientSidebar = () => {
                         <NavLink 
                             to="cart"
                             onClick={unShow}
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-3"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             >
                                 <BsCart3 className="text-lg" />
@@ -108,7 +108,7 @@ const ClientSidebar = () => {
                         </NavLink>
                         <NavLink 
                             to="inbox"
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-3"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             onClick={unShow}
                             >
@@ -117,7 +117,7 @@ const ClientSidebar = () => {
                         </NavLink>
                         <NavLink 
                             to="meetings"
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-3"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             onClick={unShow}
                             >
@@ -126,7 +126,7 @@ const ClientSidebar = () => {
                         </NavLink>
                         <NavLink 
                             to="notify"
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-3"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             onClick={unShow}
                             >
@@ -135,7 +135,7 @@ const ClientSidebar = () => {
                         </NavLink>
                         <NavLink 
                             to="testimonial"
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-3"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             onClick={unShow}
                             >
@@ -143,8 +143,17 @@ const ClientSidebar = () => {
                                 <p className="pl-3">Testimonial</p>
                         </NavLink>
                         <NavLink 
+                            to="smart-calc"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            onClick={unShow}
+                            >
+                                <BsCalculator className="text-xl" />
+                                <p className="pl-3">Smart Calculator</p>
+                        </NavLink>
+                        <NavLink 
                             to="transact"
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-3"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             onClick={unShow}
                             >
@@ -152,19 +161,10 @@ const ClientSidebar = () => {
                                 <p className="pl-3">Transactions</p>
                         </NavLink>
                     </div>
-                    <div>
-                        {/* <NavLink 
-                            to="help"
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-3"
-                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                            onClick={unShow}
-                            >
-                                <FontAwesomeIcon icon={faQuestionCircle} className="pr-3  text-lg" />
-                                Help
-                        </NavLink> */}
+                    <div className="pb-12">
                         <NavLink 
                             to="settings"
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-3"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             onClick={unShow}
                             >

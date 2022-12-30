@@ -167,14 +167,14 @@
 }
 .border-primary{
   border: 2px solid #3F79AD;
-  box-shadow: 4px 4px 0px #3F79AD;
+  box-shadow: 4px 4px 0px rgb(63, 121, 173);
 }
 .border-pri{
   border: 1px solid #3F79AD;
 }
 .border-secondary{
   border: 2px solid #EC8B20;;
-  box-shadow: 4px 4px 0px #EC8B20;;
+  box-shadow: 4px 4px 0px rgb(236, 139, 32);;
 }
 .home-bg{
   background: #F5F5F5;
