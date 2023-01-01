@@ -51,6 +51,7 @@ import { Testimonial } from "./pages/Testimonial";
 import SubAdminDetails from "./pages/SubAdminDetails";
 import AdminTransactions from "./pages/AdminTransactions";
 import Notification from "./pages/Notification";
+import { SmartCalc } from "./pages/SmartCalc";
 
 export default function ClientDashboard() {
 
@@ -120,6 +121,7 @@ export default function ClientDashboard() {
                         <Route path="testimonial" element={<Testimonial />} />
                         <Route path="subscription" element={<Subscription />} />
                         <Route path="settings" element={<Settings />} />
+                        <Route path="smart-calc" element={<SmartCalc />} />
                         <Route path="" element={<Dashboard />} />
                         <Route path="" element={<Dashboard />} />
                     </Routes>

@@ -127,7 +127,15 @@ export default function Terms() {
                 <p className="pb-2">The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.</p>
                 <p className="pb-2">As long as the website and the information and services on the website are provided with set instructions, procedures and guidelines, we will not be liable for any loss or damage of any nature occurring as a result of not following the set instructions, procedures and guidelines such as transactions not duly referenced or carrying out transactions with a vendor outside of this website/app.</p>
               </div>
-              
+              <div className="mt-4">
+                  <p className="pb-2 fw-600">Disclaimer on BOG Site</p>
+                  <p className="pb-2">Herein below are 3 Clauses fit for the purpose, the 3rd being more encompassing. Kindly peruse and revert back for any clarifications.</p>
+                  <ul className="pb-2 list-disc pl-5 lg:pl-10">
+                    <li>Disclaimer: Parties other than BOG may provide products, services, recommendations, or views on BOG’s platform (“Third Party Materials”). BOG is not responsible for examining or evaluating such Third Party Materials, and does not provide any warranties relating to the Third Party Materials. Links to such Third Party Materials are for your convenience and does not constitute an endorsement of such Third Party Materials.</li>
+                    <li className="mt-2">Warranty Disclaimer. The warranties expressly set forth on this platform are exclusive. BOG makes no other warranty, express or implied, including without limitation, any implied warranty of merchantability or fitness for a particular purpose regarding the goods or any other service provided in. BOG specifically disclaims any warranty or guarantee of any particular goods or services of any particular Provider sought outside of this System. </li>
+                    <li className="mt-2">BOG Limited disclaims, and Retailer waives, any claims and damages arising from the failures, errors or delays of the Company’s third-party agents, vendor or supplier in connection with the provision of goods and services provided on the Company’s behalf outside this platform or such transactions without requisite reference generated from the BOG system. the company makes no express or implied representation or warranty, with respect to the goods sold and services provided outside this platform including, but not limited to, implied conditions of fitness for a particular purpose, non-infringement, or merchantability. no agent, employee, vendor, service provider or supplier has any authority to bind the company to any affirmation, representation or warranty except by an authorized transaction with requisite reference number generated from the BOG system.</li>
+                  </ul>
+              </div>
             </div>
           </div>
         </div>

@@ -32,6 +32,7 @@ import { updateCart } from './redux/actions/cartAction';
 import { useDispatch } from 'react-redux';
 import { OrderSuccess } from './components/pages/OrderSuccess';
 import { BAP } from './components/pages/BAP';
+import Refund from './components/pages/Refund';
 
 if (localStorage.auth_token) {
   setAuthToken(localStorage.auth_token);
@@ -68,6 +69,7 @@ function App() {
         <Route path='/ordersuccess' element={<OrderSuccess />} />
         <Route path='/terms' element={<Terms />} />
         <Route path='/privacy' element={<Privacy />} />
+        <Route path='/return' element={<Refund />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup/*' element={<SignupIndex />} />
         <Route path='/forget' element={<Forget />} />
