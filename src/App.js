@@ -47,6 +47,7 @@ function App() {
     }
     store.dispatch(getMe());
   });
+
   return (
     <div className="">
       {/* <Alert /> */}

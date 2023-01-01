@@ -114,3 +114,20 @@ export const getBanks = async () => {
         );
     }
 }
+
+export const markNotificationAsRead = async (id) => {
+    try {
+        const url = `/notifications/mark-read/${id}`;
+        const res = await Axios.patch(url);
+        return res;
+    } catch (error) {
+        const errors = error.response.data.message;
+        toaster.notify(
+            errors,
+            {
+                duration: "4000",
+                position: "bottom",
+            }
+        );
+    }
+}

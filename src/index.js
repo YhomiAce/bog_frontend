@@ -8,17 +8,37 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 // @material-tailwind/react
 import { ThemeProvider } from "@material-tailwind/react";
 import CookieSheet from './components/layouts/CookieSheet';
+import { io } from "socket.io-client";
+import { fetchAdminNotifications, fetchUserNotifications } from './redux/actions/notifications';
+import TimeAgo from 'javascript-time-ago'
+
+import en from 'javascript-time-ago/locale/en.json'
+import ru from 'javascript-time-ago/locale/ru.json'
+
+TimeAgo.addDefaultLocale(en)
+TimeAgo.addLocale(ru)
+
+const socket = io(`${process.env.REACT_APP_API_URL}`,);
+
+socket.on("getNotifications", (payload) => {
+  console.log(payload);
+  store.dispatch(fetchAdminNotifications(payload))
+})
+socket.on("getUserNotifications", (payload) => {
+  console.log(payload);
+  store.dispatch(fetchUserNotifications(payload))
+})
 
 const app = (
   <Provider store={store}>
     <CookieSheet />
     <BrowserRouter>
       {/* <React.StrictMode> */}
-        <ThemeProvider>
+      <ThemeProvider>
         <ErrorBoundary>
           <App />
         </ErrorBoundary>
-        </ThemeProvider>
+      </ThemeProvider>
       {/* </React.StrictMode> */}
     </BrowserRouter>
   </Provider>
