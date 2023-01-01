@@ -50,6 +50,7 @@ import { ViewBlog } from "./pages/Blog/ViewBlog";
 import { Testimonial } from "./pages/Testimonial";
 import SubAdminDetails from "./pages/SubAdminDetails";
 import AdminTransactions from "./pages/AdminTransactions";
+import Notification from "./pages/Notification";
 
 export default function ClientDashboard() {
 
@@ -110,7 +111,8 @@ export default function ClientDashboard() {
                         <Route path="meetings" element={<Meetings />} />
                         <Route path="transact" element={<Transactions />} />
                         <Route path="transactions" element={<AdminTransactions />} />
-                        <Route path="notify" element={<Notify />} />
+                        <Route path="notification" element={<Notify />} />
+                        <Route path="notify" element={<Notification />} />
                         <Route path="switch" element={<SwitchAccount />} />
                         <Route path="review" element={<Review />} />
                         <Route path="inbox" element={<Inbox />} />

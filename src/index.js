@@ -9,7 +9,7 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import { ThemeProvider } from "@material-tailwind/react";
 import CookieSheet from './components/layouts/CookieSheet';
 import { io } from "socket.io-client";
-import { fetchAdminNotifications, fetchUserNotifications } from './redux/actions/notifications';
+import { fetchAdminNotifications } from './redux/actions/notifications';
 import TimeAgo from 'javascript-time-ago'
 
 import en from 'javascript-time-ago/locale/en.json'
@@ -24,10 +24,7 @@ socket.on("getNotifications", (payload) => {
   console.log(payload);
   store.dispatch(fetchAdminNotifications(payload))
 })
-socket.on("getUserNotifications", (payload) => {
-  console.log(payload);
-  store.dispatch(fetchUserNotifications(payload))
-})
+
 
 const app = (
   <Provider store={store}>

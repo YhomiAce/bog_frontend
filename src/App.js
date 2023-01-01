@@ -40,9 +40,9 @@ if (localStorage.auth_token) {
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
+    console.log( (store.getState().auth.user));
     // if (store.getState().auth.isAuthenticated) store.dispatch(getMe());
     if(localStorage.carts){
-      console.log(localStorage.carts);
       dispatch(updateCart())
     }
     store.dispatch(getMe());

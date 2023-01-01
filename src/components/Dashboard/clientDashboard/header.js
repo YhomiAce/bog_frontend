@@ -43,7 +43,8 @@ export default function Header() {
     let content;
     const gotoNotification = async (id) => {
         setNotifyDown(true)
-        navigate("/dashboard/notify");
+        const url = auth?.user?.userType === "admin" ? "/dashboard/notification" : "/dashboard/notify"
+        navigate(url);
         await markNotificationAsRead(id)
     }
     if (auth?.user?.userType === "admin") {

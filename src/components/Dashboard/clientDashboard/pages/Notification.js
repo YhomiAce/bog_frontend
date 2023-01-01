@@ -7,9 +7,10 @@ import useFetchHook from "../../../../hooks/useFetchHook";
 // import Spinner from "../../../layouts/Spinner";
 import NotificationItem from "./Notification/NotificationItem";
 
-export default function Notify() {
-    const notifications = useSelector(state => state.notifications.adminNotifications);
-    const {data: adminNotifications } = useFetchHook('/notifications/admin');
+export default function Notification() {
+    const notifications = useSelector(state => state.notifications.userNotifications);
+    const user = useSelector(state => state.auth.user);
+    const {data: userNotifications } = useFetchHook(`/notifications/user/${user?.id}`);
 
     return (
         <div>
@@ -58,8 +59,8 @@ export default function Notify() {
                             <TabPanel>
                                 <div className="mt-10 px-3 lg:px--0 lg:pb-0 pb-5">
                                     {
-                                        adminNotifications &&
-                                        adminNotifications.map(item => (
+                                        userNotifications &&
+                                        userNotifications.map(item => (
                                             <NotificationItem key={item.id} item={item} />
                                         ))
                                     }
@@ -68,8 +69,8 @@ export default function Notify() {
                             <TabPanel>
                                 <div className="mt-10 pb-8 px-3">
                                     {
-                                        adminNotifications &&
-                                        adminNotifications.filter(where => !where.isRead).map(item => (
+                                        userNotifications &&
+                                        userNotifications.filter(where => !where.isRead).map(item => (
                                             <NotificationItem key={item.id} item={item} />
                                         ))
                                     }
