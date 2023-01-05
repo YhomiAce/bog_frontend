@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
 import { Button } from "@material-tailwind/react";
 import { BsExclamationCircleFill } from "react-icons/bs";
-import { useDispatch } from 'react-redux';
-import { removeProduct } from '../../../../../redux/actions/ProductAction';
 import Spinner from '../../../../layouts/Spinner';
 import Axios from '../../../../../config/config';
 
 const ApproveModal = ({ CloseDelete, meetingId }) => {
     const [loading, setLoading] = useState(false);
-    const dispatch = useDispatch();
-    const saveLoading = () => {
-        setLoading(false);
-        CloseDelete();
-    };
 
     const approveMeeting = async () => {
         try {

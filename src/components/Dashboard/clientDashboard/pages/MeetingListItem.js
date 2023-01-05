@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Menu, MenuHandler, MenuItem, MenuList } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react'
 import { BsCameraVideo, BsThreeDotsVertical } from 'react-icons/bs';
@@ -17,7 +18,7 @@ const MeetingListItem = ({userId}) => {
         if (meetings?.length === 0) {
             fetchMeetings();
         }
-    }, []);
+    }, [meetings]);
 
     const myAction = (actType, id) => {
         setAction(actType)
@@ -67,6 +68,12 @@ const MeetingListItem = ({userId}) => {
            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                {res.approval_status}
            </td>
+           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                <div className="flex text-primary cursor-pointer items-center text-xl">
+                    <BsCameraVideo />
+                    <p className="underline fs-400 pl-1">See Recording</p>
+                </div>
+            </td>
            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                <div className="flex text-primary cursor-pointer items-center text-xl">
                    <BsCameraVideo />

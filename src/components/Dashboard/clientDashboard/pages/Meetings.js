@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 // import ProductTable from "../../assets/Tables/ProductTable";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -216,6 +217,9 @@ export default function Meetings() {
                                     </th>
                                     <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
                                         Approval Status
+                                    </th>
+                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                        Recording
                                     </th>
                                     <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
                                         Action
