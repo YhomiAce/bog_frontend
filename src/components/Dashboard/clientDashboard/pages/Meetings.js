@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import ProductTable from "../../assets/Tables/ProductTable";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Breadcrumbs, CardBody } from "@material-tailwind/react";
@@ -16,15 +16,106 @@ import {
     MenuItem,
     Button,
   } from "@material-tailwind/react";
+import SelectableItem from "../../../widgets/SelectableItem";
+import Axios from '../../../../config/config';
+import toaster from "toasted-notes";
+import { useSelector } from "react-redux";
+import { useFormik } from "formik";
+import Spinner from "../../../layouts/Spinner";
+import MeetingListItem from "./MeetingListItem";
 
 
 export default function Meetings() {
     
     const [rMeet, setRMeet] = useState(false)
+    const [projects, setprojects] = useState([]);
+    const [selectedProject, setSelectedProject] = useState();
+    const [loading, setLoading] = useState(false);
+    const user = useSelector((state) => state.auth.user);
+    console.log(user);
 
     function CloseDelete() {
         setRMeet(false)
     }
+    useEffect(() => {
+        if (projects.length === 0) {
+            fetchProjects();
+        }
+    }, []);
+    const handleProjectChange = (val) => {
+        const value = val.value;
+        setSelectedProject(value);
+    }
+    const fetchProjects = async () => {
+        try {
+            setLoading(true);
+            const url = "/projects/all";
+            const res = await Axios.get(url);
+            const results = res.data;
+            const data = results.map(result => {
+                return {
+                    projectSlug: result.projectSlug,
+                }
+            });
+            setprojects(data);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+    }
+
+    // set meeting
+    const setMeeting = async () => {
+        try {
+            setLoading(true);
+            const url = "/meeting/create";
+            const payload = {
+                requestId: user.id,
+                requestEmail: user.email,
+                projectSlug: selectedProject,
+                ...formik.values
+            }
+            console.log(payload)
+            const res = await Axios.post(url, payload);
+            console.log(res.data);
+            
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+    }
+
+    const formik = useFormik({
+        initialValues: {
+            description: "",
+            date: "",
+            time: "",
+        },
+        onSubmit: setMeeting,
+    });
+    const { date, description, time } = formik.values
+
+    const options = projects.length > 0 ? projects.map(projects => {
+        return {
+            label: projects.projectSlug,
+            value: projects.projectSlug
+        };
+    }) : [];
+
 
     return (
         <div>
@@ -123,90 +214,16 @@ export default function Meetings() {
                                     <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
                                         Status
                                     </th>
+                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                        Approval Status
+                                    </th>
                                     <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
                                         Action
                                     </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            1
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            SUR-MET-20343 
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            LND-RET-56784
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            12/11/2022
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            11:00am
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Attended
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            <div className="flex text-primary cursor-pointer items-center text-xl">
-                                                <BsCameraVideo />
-                                                <p className="underline fs-400 pl-1">See Recording</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            2
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Sand-VAC-20E42 
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            SND-WET-56782
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            12/11/2022
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            12:00am
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Attended
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            <div className="flex text-primary cursor-pointer items-center text-xl">
-                                                <BsCameraVideo />
-                                                <p className="underline fs-400 pl-1">See Recording</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            3
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            DRAW-VAC-20E42 
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            DRW-BTT-5962
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            16/11/2022
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            9:00am
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Attended
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            <div className="flex text-primary cursor-pointer items-center text-xl">
-                                                <BsCameraVideo />
-                                                <p className="underline fs-400 pl-1">See Recording</p>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    {user.id && <MeetingListItem userId={user.id} />}
                                     <tr>
                                         <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                             4
@@ -409,33 +426,63 @@ export default function Meetings() {
                 {rMeet && (
                     <div className="fixed font-primary top-0 left-0 w-full h-screen bg-op center-item z-40" onClick={CloseDelete}>
                         <div className="bg-white px-4 lg:w-5/12 rounded-md h-700 overflow-y-auto overscroll-none  w-11/12 pt-8 pb-8 lg:px-10 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
-                            <form>
+                            <form onSubmit={formik.handleSubmit}>
                                 <div className="flex justify-between">
                                     <p className="lg:text-lg fw-600">Request Meeting</p>
                                     <FaTimes onClick={CloseDelete}/>
                                 </div>
                                 <div className="mt-5 lg:mt-8">
                                     <label className="block">Project ID</label>
-                                    <input type="text" className="w-full lg:w-11/12 border border-gray-400 rounded mt-2 py-2 px-2" required/>
+                                    <SelectableItem
+                                        placeholder="Select Podio App"
+                                        options={options}
+                                        handleChange={handleProjectChange}
+                                        className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
+                                    />
                                 </div>
                                 <div className="mt-5">
                                     <label className="block">Preffered Meeting Date/Time</label>
                                     <div className="flex">
-                                        <input type="date" className="w-4/12 lg:w-4/12 border border-gray-400 rounded mt-2 py-2 px-2" required/>
-                                        <input type="time" min="00:00" max="23:59" className="w-4/12 ml-6 lg:w-4/12 border border-gray-400 rounded mt-2 py-2 px-2" required/>
+                                        <input
+                                            type="date"
+                                            name="date"
+                                            id="date"
+                                            value={date}
+                                            onChange={formik.handleChange}
+                                            className="w-4/12 lg:w-4/12 border border-gray-400 rounded mt-2 py-2 px-2"
+                                            required
+                                        />
+                                        <input
+                                            type="time"
+                                            min="00:00"
+                                            max="23:59"
+                                            name="time"
+                                            id="time"
+                                            value={time}
+                                            onChange={formik.handleChange}
+                                            className="w-4/12 ml-6 lg:w-4/12 border border-gray-400 rounded mt-2 py-2 px-2"
+                                            required
+                                        />
                                     </div>
                                 </div>
                                 <div className="mt-5">
                                     <label className="block">Description</label>
-                                    <textarea className="w-full lg:w-11/12 h-24 border border-gray-400 rounded mt-2 p-2" required></textarea>
+                                    <textarea
+                                        name="description"
+                                        id="description"
+                                        value={description}
+                                        onChange={formik.handleChange}
+                                        className="w-full lg:w-11/12 h-24 border border-gray-400 rounded mt-2 p-2"
+                                        required
+                                    ></textarea>
                                 </div>
                                 <div className="mt-8 flex lg:w-11/12 justify-between">
                                     <button className="btn bg-red-500 lg:px-7 text-white" onClick={CloseDelete}>
                                         Cancel
                                     </button>
-                                    <button className="btn-primary lg:px-7">
+                                    {loading? <Spinner /> : <button className="btn-primary lg:px-7">
                                         Set Meeting
-                                    </button>
+                                    </button>}
                                 </div>
                             </form>
                         </div> 
