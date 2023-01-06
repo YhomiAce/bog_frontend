@@ -5,6 +5,7 @@ import { BsCameraVideo, BsThreeDotsVertical } from 'react-icons/bs';
 import toaster from 'toasted-notes';
 import Axios from '../../../../config/config';
 import Spinner from '../../../layouts/Spinner';
+import ActionFeedBack from './Modals/ActionFeedBack';
 import ApproveModal from './Modals/ApproveModal';
 import DeleteModal from './Modals/DeleteModal';
 
@@ -13,6 +14,7 @@ const MeetingListItem = ({userId, isAdmin}) => {
     const [action, setAction] = useState('')
     const [meetings, setprojects] = useState([]);
     const [selectedId, setId] = useState();
+    const [feedback, setFeetback] = useState();
 
     useEffect(() => {
         if (meetings?.length === 0) {
@@ -120,8 +122,16 @@ const MeetingListItem = ({userId, isAdmin}) => {
         }
 
 
-        {action === 'decline' && <DeleteModal meetingId={selectedId} CloseDelete={()=>setAction('')} />}
-        {action === 'approve' && <ApproveModal meetingId={selectedId} CloseDelete={()=>setAction('')} />}
+        {action === 'decline' && <DeleteModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} />}
+        {action === 'approve' && <ApproveModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} />}
+        {feedback && 
+            <ActionFeedBack
+                closeFeedBack={()=>setFeetback()}
+                title={feedback.title}
+                icon={feedback.icon}
+                info={feedback.info}
+                status={feedback.icon}
+            />}
         </>
     )
 }

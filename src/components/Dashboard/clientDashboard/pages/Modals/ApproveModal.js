@@ -1,26 +1,48 @@
 import React, { useState } from 'react';
 import { Button } from "@material-tailwind/react";
-import { BsExclamationCircleFill } from "react-icons/bs";
+import { BsCheck, BsExclamationCircleFill } from "react-icons/bs";
 import Spinner from '../../../../layouts/Spinner';
 import Axios from '../../../../../config/config';
+import { FaTimes } from 'react-icons/fa';
 
-const ApproveModal = ({ CloseDelete, meetingId }) => {
+const ApproveModal = ({ CloseDelete, meetingId, setFeetback }) => {
     const [loading, setLoading] = useState(false);
 
     const approveMeeting = async () => {
         try {
             setLoading(true);
             const url = "/meeting/action";
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    "Content-Type": "application/json",
+                    'Authorization': authToken
+                }
+
+            }
             const payload = {
                 status: 'approved',
                 meetingId: meetingId,
             }
-            const res = await Axios.post(url, payload);
+            const res = await Axios.post(url, payload, config);
             const results = res.data;
             console.log(results);
             setLoading(false);
+            CloseDelete()
+            setFeetback({
+                info: "Approved Successfully",
+                status: "success",
+                icon: <BsCheck />
+            })
         } catch (error) {
             setLoading(false);
+            CloseDelete()
+            setFeetback({
+                info: "Error Occured",
+                status: "error",
+                icon: <FaTimes />
+            })
         }
     }
 
