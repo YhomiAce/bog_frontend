@@ -98,8 +98,8 @@ const MeetingListItem = ({userId, isAdmin}) => {
                                     </div>
                                 </MenuItem>
                             }
-                                <MenuItem onClick={() => myAction('approve', res.id)}>Approve</MenuItem>
-                                <MenuItem onClick={() => myAction('decline', res.id)} className="bg-red-600 text-white">Decline</MenuItem>
+                                {isAdmin && <MenuItem onClick={() => myAction('approve', res.id)}>Approve</MenuItem>}
+                                {isAdmin && <MenuItem onClick={() => myAction('decline', res.id)} className="bg-red-600 text-white">Decline</MenuItem>}
                             </MenuList>
                         </Menu>
                     </div>
