@@ -5,7 +5,6 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Breadcrumbs, CardBody } from "@material-tailwind/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { BsCameraVideo } from "react-icons/bs";
 import { MdOutlineCancel } from "react-icons/md";
 import { useState } from "react";
 import { FaFileDownload, FaTimes } from "react-icons/fa";
