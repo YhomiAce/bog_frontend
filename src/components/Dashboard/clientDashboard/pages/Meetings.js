@@ -25,7 +25,7 @@ import Spinner from "../../../layouts/Spinner";
 import MeetingListItem from "./MeetingListItem";
 
 
-export default function Meetings() {
+const Meetings = () => {
     
     const [rMeet, setRMeet] = useState(false)
     const [projects, setprojects] = useState([]);
@@ -49,8 +49,17 @@ export default function Meetings() {
     const fetchProjects = async () => {
         try {
             setLoading(true);
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    "Content-Type": "application/json",
+                    'Authorization': authToken
+                }
+
+            }
             const url = "/projects/all";
-            const res = await Axios.get(url);
+            const res = await Axios.get(url, config);
             const results = res.data;
             const data = results.map(result => {
                 return {
@@ -466,3 +475,5 @@ export default function Meetings() {
         </div>
         )
 }
+
+export default Meetings

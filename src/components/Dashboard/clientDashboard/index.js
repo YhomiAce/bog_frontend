@@ -110,8 +110,8 @@ export default function ClientDashboard() {
                         <Route path="allprojects" element={<AllProject />} />
                         <Route path="projectfile" element={<ProjectFile />} />
                         <Route path="servicecategory" element={<ProjectCategory />} />
-                        <Route path="dashboard/meetings" element={<Meetings />} />
-                        <Route path="dashboard/admin-meetings" element={<AdminMeeting />} />
+                        <Route path="meetings" element={<Meetings />} />
+                        <Route path="admin-meetings" element={<AdminMeeting />} />
                         <Route path="transact" element={<Transactions />} />
                         <Route path="transactions" element={<AdminTransactions />} />
                         <Route path="notification" element={<Notify />} />

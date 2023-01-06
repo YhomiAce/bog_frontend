@@ -25,7 +25,7 @@ import Spinner from "../../../layouts/Spinner";
 import MeetingListItem from "./MeetingListItem";
 
 
-export default function AdminMeeting() {
+const AdminMeeting = () => {
     
     const [rMeet, setRMeet] = useState(false)
     const [projects, setprojects] = useState([]);
@@ -49,8 +49,17 @@ export default function AdminMeeting() {
     const fetchProjects = async () => {
         try {
             setLoading(true);
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    "Content-Type": "application/json",
+                    'Authorization': authToken
+                }
+
+            }
             const url = "/projects/all";
-            const res = await Axios.get(url);
+            const res = await Axios.get(url, config);
             const results = res.data;
             const data = results.map(result => {
                 return {
@@ -223,7 +232,7 @@ export default function AdminMeeting() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {user.id && <MeetingListItem userId={user.id} />}
+                                    {user.id && <MeetingListItem userId={user.id} isAdmin={true} />}
                                 </tbody>
                                 </table>
                             </div>
@@ -466,3 +475,5 @@ export default function AdminMeeting() {
         </div>
         )
 }
+
+export default AdminMeeting
