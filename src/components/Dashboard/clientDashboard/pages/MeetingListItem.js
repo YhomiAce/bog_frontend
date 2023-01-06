@@ -8,7 +8,7 @@ import Spinner from '../../../layouts/Spinner';
 import ApproveModal from './Modals/ApproveModal';
 import DeleteModal from './Modals/DeleteModal';
 
-const MeetingListItem = ({userId}) => {
+const MeetingListItem = ({userId, isAdmin}) => {
     const [loading, setLoading] = useState(false);
     const [action, setAction] = useState('')
     const [meetings, setprojects] = useState([]);
@@ -27,7 +27,12 @@ const MeetingListItem = ({userId}) => {
     const fetchMeetings = async () => {
         try {
             setLoading(true);
-            const url = "/meeting/my-meeting/" + userId;
+            let url;
+            if(isAdmin){
+                url = "/meeting/all";
+            }else{
+                url = "/meeting/my-meeting/" + userId
+            }
             const res = await Axios.get(url);
             const results = res.data;
             console.log(results);
@@ -69,20 +74,20 @@ const MeetingListItem = ({userId}) => {
                {res.approval_status}
            </td>
            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                <div className="flex text-primary cursor-pointer items-center text-xl">
-                    <BsCameraVideo />
-                    <p className="underline fs-400 pl-1">See Recording</p>
-                </div>
-            </td>
-           <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                <div className="flex text-primary cursor-pointer items-center text-xl">
-                   <BsCameraVideo />
                    <div className="flex text-xl">
                         <Menu placement="left-start" className="w-16">
                             <MenuHandler>
                                 <Button className="border-none bg-transparent shadow-none hover:shadow-none text-primary px-0"><button className="lg:text-xl text-primary"><BsThreeDotsVertical /></button></Button>
                             </MenuHandler>
                             <MenuList className="w-16 bg-gray-100 fw-600 text-black">
+                            {res.recording !== "" && <MenuItem>
+                                    <div className="flex text-primary cursor-pointer items-center text-xl">
+                                        <BsCameraVideo />
+                                        <p className="underline fs-400 pl-1">See Recording</p>
+                                    </div>
+                                </MenuItem>
+                            }
                                 <MenuItem onClick={() => myAction('approve', res.id)}>Approve</MenuItem>
                                 <MenuItem onClick={() => myAction('decline', res.id)} className="bg-red-600 text-white">Decline</MenuItem>
                             </MenuList>

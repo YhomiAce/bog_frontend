@@ -299,7 +299,7 @@ const AdminSidebar = () => {
                                 <p className="pl-3">Inbox</p>
                         </NavLink>
                         <NavLink 
-                            to="meetings"
+                            to="admin-meetings"
                             onClick={unShow}
                             className="w-full flex items-center pl-2 py-2 fw-600 my-2"
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}

@@ -25,7 +25,7 @@ import Spinner from "../../../layouts/Spinner";
 import MeetingListItem from "./MeetingListItem";
 
 
-export default function Meetings() {
+export default function AdminMeeting() {
     
     const [rMeet, setRMeet] = useState(false)
     const [projects, setprojects] = useState([]);
