@@ -27,13 +27,22 @@ const MeetingListItem = ({userId, isAdmin}) => {
     const fetchMeetings = async () => {
         try {
             setLoading(true);
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    "Content-Type": "application/json",
+                    'Authorization': authToken
+                }
+
+            }
             let url;
             if(isAdmin){
                 url = "/meeting/all";
             }else{
                 url = "/meeting/my-meeting/" + userId
             }
-            const res = await Axios.get(url);
+            const res = await Axios.get(url, config);
             const results = res.data;
             console.log(results);
             setprojects(results);
@@ -81,7 +90,8 @@ const MeetingListItem = ({userId, isAdmin}) => {
                                 <Button className="border-none bg-transparent shadow-none hover:shadow-none text-primary px-0"><button className="lg:text-xl text-primary"><BsThreeDotsVertical /></button></Button>
                             </MenuHandler>
                             <MenuList className="w-16 bg-gray-100 fw-600 text-black">
-                            {res.recording !== "" && <MenuItem>
+                            
+                            {res.start_url && <MenuItem>
                                     <div className="flex text-primary cursor-pointer items-center text-xl">
                                         <BsCameraVideo />
                                         <p className="underline fs-400 pl-1">See Recording</p>
