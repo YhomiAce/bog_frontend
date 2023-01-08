@@ -7,6 +7,7 @@ import Axios from '../../../../config/config';
 import Spinner from '../../../layouts/Spinner';
 import ActionFeedBack from './Modals/ActionFeedBack';
 import ApproveModal from './Modals/ApproveModal';
+import CancelModal from './Modals/CancelModal';
 import DeleteModal from './Modals/DeleteModal';
 
 const MeetingListItem = ({userId, isAdmin, filterBy}) => {
@@ -109,6 +110,7 @@ const MeetingListItem = ({userId, isAdmin, filterBy}) => {
                                 </MenuItem>}
                                 {isAdmin && <MenuItem onClick={() => myAction('approve', res.id)}>Approve</MenuItem>}
                                 {isAdmin && <MenuItem onClick={() => myAction('decline', res.id)} className="bg-red-600 text-white">Decline</MenuItem>}
+                                {!isAdmin && filterBy === 'pending' && <MenuItem onClick={() => myAction('cancel', res.id)} className="bg-red-600 text-white">Cancel Meeting</MenuItem>}
                             </MenuList>
                         </Menu>
                     </div>
@@ -131,6 +133,7 @@ const MeetingListItem = ({userId, isAdmin, filterBy}) => {
 
         {action === 'decline' && <DeleteModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} />}
         {action === 'approve' && <ApproveModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} />}
+        {action === 'cancel' && <CancelModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} />}
         {feedback && 
             <ActionFeedBack
                 closeFeedBack={()=>setFeetback()}
