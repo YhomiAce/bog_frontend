@@ -1,18 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Menu, MenuHandler, MenuItem, MenuList } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react'
-import { BsCameraVideo, BsThreeDotsVertical } from 'react-icons/bs';
+import { BsCameraVideo, BsLink, BsThreeDotsVertical } from 'react-icons/bs';
 import toaster from 'toasted-notes';
 import Axios from '../../../../config/config';
 import Spinner from '../../../layouts/Spinner';
 import ActionFeedBack from './Modals/ActionFeedBack';
 import ApproveModal from './Modals/ApproveModal';
+import CancelModal from './Modals/CancelModal';
 import DeleteModal from './Modals/DeleteModal';
 
-const MeetingListItem = ({userId, isAdmin}) => {
+const MeetingListItem = ({userId, isAdmin, filterBy}) => {
     const [loading, setLoading] = useState(false);
     const [action, setAction] = useState('')
-    const [meetings, setprojects] = useState([]);
+    const [meetings, setMeeting] = useState([]);
     const [selectedId, setId] = useState();
     const [feedback, setFeetback] = useState();
 
@@ -46,8 +47,7 @@ const MeetingListItem = ({userId, isAdmin}) => {
             }
             const res = await Axios.get(url, config);
             const results = res.data;
-            console.log(results);
-            setprojects(results);
+            setMeeting(results);
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -60,8 +60,10 @@ const MeetingListItem = ({userId, isAdmin}) => {
             );
         }
     }
-    const meetingTR = meetings.length
-    > 0 ? meetings.map((res, i) => {
+    const filterMeeting = meetings.filter(x => x.approval_status === filterBy && x)
+    const meetingTR = filterMeeting.length
+    > 0 ? filterMeeting.map((res, i) => {
+        console.log(res);
        return <tr key={i}>
            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                {i}
@@ -95,13 +97,20 @@ const MeetingListItem = ({userId, isAdmin}) => {
                             
                             {res.start_url && <MenuItem>
                                     <div className="flex text-primary cursor-pointer items-center text-xl">
-                                        <BsCameraVideo />
-                                        <p className="underline fs-400 pl-1">See Recording</p>
+                                        <BsLink />
+                                        <a href={res.start_url} target="_blank" rel="noreferrer"><p className="underline fs-400 pl-1">Meeting Link</p></a>
                                     </div>
                                 </MenuItem>
                             }
+                                {res.status === "attended" && <MenuItem>
+                                    <div className="flex text-primary cursor-pointer items-center text-xl">
+                                        <BsCameraVideo />
+                                        <p className="underline fs-400 pl-1">See Recording</p>
+                                    </div>
+                                </MenuItem>}
                                 {isAdmin && <MenuItem onClick={() => myAction('approve', res.id)}>Approve</MenuItem>}
                                 {isAdmin && <MenuItem onClick={() => myAction('decline', res.id)} className="bg-red-600 text-white">Decline</MenuItem>}
+                                {!isAdmin && filterBy === 'pending' && <MenuItem onClick={() => myAction('cancel', res.id)} className="bg-red-600 text-white">Cancel Meeting</MenuItem>}
                             </MenuList>
                         </Menu>
                     </div>
@@ -124,13 +133,14 @@ const MeetingListItem = ({userId, isAdmin}) => {
 
         {action === 'decline' && <DeleteModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} />}
         {action === 'approve' && <ApproveModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} />}
+        {action === 'cancel' && <CancelModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} />}
         {feedback && 
             <ActionFeedBack
                 closeFeedBack={()=>setFeetback()}
                 title={feedback.title}
                 icon={feedback.icon}
                 info={feedback.info}
-                status={feedback.icon}
+                status={feedback.status}
             />}
         </>
     )

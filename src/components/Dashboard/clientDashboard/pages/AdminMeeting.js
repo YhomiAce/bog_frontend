@@ -5,7 +5,6 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Breadcrumbs, CardBody } from "@material-tailwind/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { MdOutlineCancel } from "react-icons/md";
 import { useState } from "react";
 import { FaFileDownload, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -23,6 +22,8 @@ import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import Spinner from "../../../layouts/Spinner";
 import MeetingListItem from "./MeetingListItem";
+import { BsCheck } from "react-icons/bs";
+import ActionFeedBack from "./Modals/ActionFeedBack";
 
 
 const AdminMeeting = () => {
@@ -31,6 +32,7 @@ const AdminMeeting = () => {
     const [projects, setprojects] = useState([]);
     const [selectedProject, setSelectedProject] = useState();
     const [loading, setLoading] = useState(false);
+    const [feedback, setFeetback] = useState(false);
     const user = useSelector((state) => state.auth.user);
     console.log(user);
 
@@ -46,18 +48,17 @@ const AdminMeeting = () => {
         const value = val.value;
         setSelectedProject(value);
     }
+    const authToken = localStorage.getItem("auth_token");
+    const config = {
+        headers:
+        {
+            "Content-Type": "application/json",
+            'Authorization': authToken
+        }
+
+    }
     const fetchProjects = async () => {
         try {
-            setLoading(true);
-            const authToken = localStorage.getItem("auth_token");
-            const config = {
-                headers:
-                {
-                    "Content-Type": "application/json",
-                    'Authorization': authToken
-                }
-
-            }
             const url = "/projects/all";
             const res = await Axios.get(url, config);
             const results = res.data;
@@ -82,6 +83,7 @@ const AdminMeeting = () => {
 
     // set meeting
     const setMeeting = async () => {
+
         try {
             setLoading(true);
             const url = "/meeting/create";
@@ -92,12 +94,22 @@ const AdminMeeting = () => {
                 ...formik.values
             }
             console.log(payload)
-            const res = await Axios.post(url, payload);
-            console.log(res.data);
-            
+            await Axios.post(url, payload, config);
             setLoading(false);
+            setRMeet(false)
+            setFeetback({
+                info: "Request Sent",
+                status: "success",
+                icon: <BsCheck />
+            })            
         } catch (error) {
             setLoading(false);
+            setRMeet(false)
+            setFeetback({
+                info: "Error Occured",
+                status: "error",
+                icon: <FaTimes />
+            })
             toaster.notify(
                 error.message,
                 {
@@ -205,34 +217,34 @@ const AdminMeeting = () => {
                                 <table className="items-center w-full bg-transparent border-collapse">
                                 <thead className="thead-light bg-light">
                                     <tr>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        S/N
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Meeting ID
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Project ID
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Date
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Time
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Status
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Approval Status
-                                    </th>
-                                    <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
-                                        Action
-                                    </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            S/N
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Meeting ID
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Project ID
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Date
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Time
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Status
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Approval Status
+                                        </th>
+                                        <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
+                                            Action
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {user.id && <MeetingListItem userId={user.id} isAdmin={true} />}
+                                    {user.id && <MeetingListItem userId={user.id} filterBy="attended" isAdmin />}
                                 </tbody>
                                 </table>
                             </div>
@@ -245,81 +257,33 @@ const AdminMeeting = () => {
                                 <thead className="thead-light bg-light">
                                     <tr>
                                     <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        S/N
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Meeting ID
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Project ID
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Date
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Time
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Status
-                                    </th>
-                                    <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
-                                        Action
-                                    </th>
+                                            S/N
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Meeting ID
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Project ID
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Date
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Time
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Status
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Approval Status
+                                        </th>
+                                        <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
+                                            Action
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        1
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        SUR-MET-20343 
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        LND-RET-56781
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        12/11/2022
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        11:00am
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Upcoming
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        <div className="flex text-red-600 cursor-pointer items-center text-xl">
-                                            <MdOutlineCancel />
-                                            <p className="underline fs-400 pl-1">Cancel Meeting</p>
-                                        </div>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        2
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        SUR-MET-20343 
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        LND-REU-34567
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        12/11/2022
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        11:00am
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        Upcoming
-                                    </td>
-                                    <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        <div className="flex text-red-600 cursor-pointer items-center text-xl">
-                                            <MdOutlineCancel />
-                                            <p className="underline fs-400 pl-1">Cancel Meeting</p>
-                                        </div>
-                                    </td>
-                                    </tr>
+                                    {user.id && <MeetingListItem userId={user.id} filterBy="approved" isAdmin />}
                                 </tbody>
                                 </table>
                             </div>
@@ -332,72 +296,33 @@ const AdminMeeting = () => {
                                 <thead className="thead-light bg-light">
                                     <tr>
                                     <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        S/N
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Project Name
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Date
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Time
-                                    </th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                        Status
-                                    </th>
-                                    <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
-                                        Action
-                                    </th>
+                                            S/N
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Meeting ID
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Project ID
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Date
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Time
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Status
+                                        </th>
+                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                            Approval Status
+                                        </th>
+                                        <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
+                                            Action
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            1
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Land Survey
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            12/11/2022
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            11:00am
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            pending
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            <div className="flex text-red-600 cursor-pointer items-center text-xl">
-                                                <MdOutlineCancel />
-                                                <p className="underline fs-400 pl-1">Cancel Request</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            1
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            Land Survey
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            12/11/2022
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            11:00am
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            pending
-                                        </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                            <div className="flex text-red-600 cursor-pointer items-center text-xl">
-                                                <MdOutlineCancel />
-                                                <p className="underline fs-400 pl-1">Cancel Request</p>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    {user.id && <MeetingListItem userId={user.id} filterBy="pending" isAdmin />}
                                 </tbody>
                                 </table>
                             </div>
@@ -464,7 +389,7 @@ const AdminMeeting = () => {
                                         Cancel
                                     </button>
                                     {loading? <Spinner /> : <button className="btn-primary lg:px-7">
-                                        Set Meeting
+                                        Request Meeting
                                     </button>}
                                 </div>
                             </form>
@@ -472,6 +397,14 @@ const AdminMeeting = () => {
                     </div>
                 )}
             </div>
+            {feedback && 
+                <ActionFeedBack
+                    closeFeedBack={()=>setFeetback(false)}
+                    title={feedback.title}
+                    icon={feedback.icon}
+                    info={feedback.info}
+                    status={feedback.status}
+                />}
         </div>
         )
 }
