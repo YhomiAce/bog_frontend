@@ -16,7 +16,7 @@ const ActionFeedBack = ({ closeFeedBack, info, icon, status }) => {
                     <p>{info}</p>
                 </div>
                 <div className="bg-light rounded-b-md  py-4 mt-5 text-end px-5">
-                    <Button color="black" variant="outlined" ripple={true} onClick={closeFeedBack }>Cancel</Button>
+                    <Button color="black" variant="outlined" ripple={true} onClick={closeFeedBack }>OK</Button>
                 </div>
             </div>
         </div>

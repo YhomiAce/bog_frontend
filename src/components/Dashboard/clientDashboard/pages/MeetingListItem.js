@@ -65,7 +65,6 @@ const MeetingListItem = ({isAdmin, filterBy}) => {
     const filterMeeting = meetings.filter(x => x.approval_status === filterBy && x)
     const meetingTR = filterMeeting.length
     > 0 ? filterMeeting.map((res, i) => {
-        console.log(res);
        return <tr key={i}>
            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                {i}
@@ -77,7 +76,7 @@ const MeetingListItem = ({isAdmin, filterBy}) => {
                {res.projectSlug}
            </td>
            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-               {res.date.split('T')[0]}
+               {res.date ? res.date.split('T')[0] : "-"}
            </td>
            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                {res.time}
