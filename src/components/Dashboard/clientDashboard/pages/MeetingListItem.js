@@ -1,67 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Menu, MenuHandler, MenuItem, MenuList } from '@material-tailwind/react';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { BsCameraVideo, BsLink, BsThreeDotsVertical } from 'react-icons/bs';
-import { useSelector } from 'react-redux';
-import toaster from 'toasted-notes';
-import Axios from '../../../../config/config';
-import Spinner from '../../../layouts/Spinner';
+// import Spinner from '../../../layouts/Spinner';
 import ActionFeedBack from './Modals/ActionFeedBack';
 import ApproveModal from './Modals/ApproveModal';
 import CancelModal from './Modals/CancelModal';
 import DeleteModal from './Modals/DeleteModal';
 
-const MeetingListItem = ({isAdmin, filterBy}) => {
-    const user = useSelector((state) => state.auth.user);
-    const [loading, setLoading] = useState(false);
-    const [action, setAction] = useState('')
-    const [meetings, setMeeting] = useState([]);
+const MeetingListItem = ({isAdmin, filterBy, meetings, removeMeeting}) => {
+    const [action, setAction] = useState('');
     const [selectedId, setId] = useState();
     const [feedback, setFeetback] = useState();
-
-    useEffect(() => {
-        if (meetings?.length === 0) {
-            fetchMeetings();
-        }
-    }, [meetings]);
 
     const myAction = (actType, id) => {
         setAction(actType)
         setId(id)
     }
-    const fetchMeetings = async () => {
-        try {
-            setLoading(true);
-            const authToken = localStorage.getItem("auth_token");
-            const config = {
-                headers:
-                {
-                    "Content-Type": "application/json",
-                    'Authorization': authToken
-                }
 
-            }
-            let url;
-            if(isAdmin){
-                url = "/meeting/all";
-            }else{
-                url = "/meeting/my-meeting/" + user.id
-            }
-            const res = await Axios.get(url, config);
-            const results = res.data;
-            setMeeting(results);
-            setLoading(false);
-        } catch (error) {
-            setLoading(false);
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
-        }
-    }
     const filterMeeting = meetings.filter(x => x.approval_status === filterBy && x)
     const meetingTR = filterMeeting.length
     > 0 ? filterMeeting.map((res, i) => {
@@ -125,16 +81,10 @@ const MeetingListItem = ({isAdmin, filterBy}) => {
    </div>
     return (
         <>
-        { !loading ? 
-            meetingTR
-        :
-        <Spinner />
-        }
-
-
-        {action === 'decline' && <DeleteModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} />}
-        {action === 'approve' && <ApproveModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} />}
-        {action === 'cancel' && <CancelModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} />}
+        { meetingTR }
+        {action === 'decline' && <DeleteModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeMeeting={removeMeeting} />}
+        {action === 'approve' && <ApproveModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeMeeting={removeMeeting} />}
+        {action === 'cancel' && <CancelModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeMeeting={removeMeeting} />}
         {feedback && 
             <ActionFeedBack
                 closeFeedBack={()=>setFeetback()}

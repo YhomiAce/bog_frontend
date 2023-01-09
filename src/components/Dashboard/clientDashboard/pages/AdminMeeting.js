@@ -24,6 +24,7 @@ import Spinner from "../../../layouts/Spinner";
 import MeetingListItem from "./MeetingListItem";
 import { BsCheck } from "react-icons/bs";
 import ActionFeedBack from "./Modals/ActionFeedBack";
+import { fetchMeetings, fetchProjects } from "../../../../redux/actions/meetingAction";
 
 
 const AdminMeeting = () => {
@@ -33,17 +34,20 @@ const AdminMeeting = () => {
     const [selectedProject, setSelectedProject] = useState();
     const [loading, setLoading] = useState(false);
     const [feedback, setFeetback] = useState(false);
+    const [meetings, setMeeting] = useState([]);
     const user = useSelector((state) => state.auth.user);
-    console.log(user);
 
     function CloseDelete() {
         setRMeet(false)
     }
     useEffect(() => {
-        if (projects.length === 0) {
-            fetchProjects();
+        if (user && meetings.length === 0) {
+            fetchMeetings(setLoading, setMeeting, user, true)
         }
-    }, []);
+        if (projects.length === 0) {
+            fetchProjects(setprojects, setLoading, config);
+        }
+    }, [user]);
     const handleProjectChange = (val) => {
         const value = val.value;
         setSelectedProject(value);
@@ -57,32 +61,21 @@ const AdminMeeting = () => {
         }
 
     }
-    const fetchProjects = async () => {
-        try {
-            const url = "/projects/all";
-            const res = await Axios.get(url, config);
-            const results = res.data;
-            const data = results.map(result => {
-                return {
-                    projectSlug: result.projectSlug,
-                }
-            });
-            setprojects(data);
-            setLoading(false);
-        } catch (error) {
-            setLoading(false);
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
-        }
+
+    const addToMeeting = (param) => {
+        const oldMeeting = [...meetings]
+        const newMeeting = [param, ...oldMeeting]
+        setMeeting(newMeeting);
     }
 
+    const removeFromMeeting = (id) => {
+        const newMeeting = meetings.filter(x => x.id !== id && x)
+        console.log(newMeeting, id)
+        setMeeting(newMeeting);
+    }
+    
     // set meeting
-    const setMeeting = async () => {
+    const requestMeeting = async () => {
 
         try {
             setLoading(true);
@@ -94,7 +87,8 @@ const AdminMeeting = () => {
                 ...formik.values
             }
             console.log(payload)
-            await Axios.post(url, payload, config);
+            const newMeeting = await Axios.post(url, payload, config);
+            addToMeeting(newMeeting.data);
             setLoading(false);
             setRMeet(false)
             setFeetback({
@@ -126,7 +120,7 @@ const AdminMeeting = () => {
             date: "",
             time: "",
         },
-        onSubmit: setMeeting,
+        onSubmit: requestMeeting,
     });
     const { date, description, time } = formik.values
 
@@ -244,7 +238,7 @@ const AdminMeeting = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {<MeetingListItem filterBy="attended" isAdmin />}
+                                    {<MeetingListItem filterBy="attended" isAdmin meetings={meetings} removeMeeting={removeFromMeeting} />}
                                 </tbody>
                                 </table>
                             </div>
@@ -283,7 +277,7 @@ const AdminMeeting = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {<MeetingListItem filterBy="approved" isAdmin />}
+                                    {<MeetingListItem filterBy="approved" isAdmin meetings={meetings} removeMeeting={removeFromMeeting} />}
                                 </tbody>
                                 </table>
                             </div>
@@ -322,7 +316,7 @@ const AdminMeeting = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {<MeetingListItem filterBy="pending" isAdmin />}
+                                    {<MeetingListItem filterBy="pending" isAdmin meetings={meetings} removeMeeting={removeFromMeeting} />}
                                 </tbody>
                                 </table>
                             </div>
