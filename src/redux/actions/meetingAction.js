@@ -3,52 +3,175 @@ import axios from '../../config/config';
 import Swal from "sweetalert2";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
-// import setAuthToken from '../../config/setAuthHeader';
-import { setAlert } from './alert';
-import { io } from "socket.io-client";
-import { fetchUserNotifications } from './notifications';
+import Axios from '../../config/config';
 
 
-export const setMeetingHandler = (apiData, stopLoading) => {
+export const loading = () => {
+    return {
+        type: ActionType.LOADING
+    }
+}
+
+export const setError = (payload) => {
+    return {
+        type: ActionType.MEETING_ERROR,
+        payload
+    }
+}
+
+export const fetchAllMeetings = (payload) => {
+    return {
+        type: ActionType.FETCH_ALL_MEETINGS,
+        payload
+    }
+}
+
+export const cancelMeetingAction = (payload) => {
+    return {
+        type: ActionType.CANCEL_MEETING,
+        payload
+    }
+}
+
+export const declineMeeting = (payload) => {
+    return {
+        type: ActionType.DECLINE_MEETING,
+        payload
+    }
+}
+
+export const approveMeeting = (payload) => {
+    return {
+        type: ActionType.APPROVE_MEETING,
+        payload
+    }
+}
+
+export const createMeeting = (payload) => {
+    return {
+        type: ActionType.CREATE_MEETING,
+        payload
+    }
+}
+
+export const fetchProjects = async (setprojects, setLoading, config) => {
+    try {
+        setLoading(true);
+        const url = "/projects/all";
+        const res = await Axios.get(url, config);
+        const results = res.data;
+        const data = results.map(result => {
+            return {
+                projectSlug: result.projectSlug,
+            }
+        });
+        setprojects(data);
+        setLoading(false);
+    } catch (error) {
+        setLoading(false);
+        toaster.notify(
+            error.message,
+            {
+                duration: "4000",
+                position: "bottom",
+            }
+        );
+    }
+}
+
+export const fetchMeetings = async (setLoading, setMeeting, user, isAdmin) => {
+    try {
+        setLoading(true);
+        const authToken = localStorage.getItem("auth_token");
+        const config = {
+            headers:
+            {
+                "Content-Type": "application/json",
+                'Authorization': authToken
+            }
+        }
+        let url;
+        url = "/meeting/my-meeting/" + user.id
+        const res = await Axios.get(url, config);
+        const results = res.data;
+        console.log(results)
+        setMeeting(results);
+        setLoading(false);
+    } catch (error) {
+        setLoading(false);
+        toaster.notify(
+            error.message,
+            {
+                duration: "4000",
+                position: "bottom",
+            }
+        );
+    }
+}
+
+
+export const  meetingAction = (payload, addToMeeting) => {
     return async (dispatch) => {
         try {
-            const url = `/meeting/create`;
-            const response = await axios.post(url, apiData);
-            console.log(response);
-            const socket = io(`${process.env.REACT_APP_API_URL}`, {
-                query: {
-                    userId: response.user.id
-                }
-            });
-            socket.on("getUserNotifications", (payload) => {
-                console.log(payload);
-                dispatch(fetchUserNotifications(payload))
-            })
-            stopLoading();
+            dispatch(loading());
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    'authorization': localStorage.getItem("auth_token")
+                },
+            }
+            const response = await axios.post('/meeting/action', payload, config);
+            dispatch(declineMeeting(response.data))
             Swal.fire({
-                title: "Success",
-                imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",
-                imageWidth: "75px",
-                text: "Login completed successfully",
-                buttonsStyling: "false",
-                confirmButtonText: "Continue",
-                confirmButtonColor: "#3F79AD",
-            }).then(() => {
-                
+                title: "Post Deleted",
+                text: "Post deleted successfully",
+                icon: "success"
             })
         } catch (error) {
             console.log(error.message);
-            const errors = error.response.data.message;
-            stopLoading();
-            
-            dispatch(setAlert(errors, "danger"))
+            dispatch(setError(error.message));
             toaster.notify(
-                errors,
+                error.message,
                 {
                     duration: "4000",
                     position: "bottom",
                 }
             );
         }
+
+    }
+}
+
+export const cancelMeeting = (id) => {
+    return async (dispatch) => {
+        try {
+            dispatch(loading());
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    'authorization': localStorage.getItem("auth_token")
+                },
+            }
+            const url = `/meeting/delete/${id}`
+            const response = await axios.delete(url, config);
+            console.log(response);
+            dispatch(cancelMeetingAction(id));
+            Swal.fire({
+                title: "Post Cancelled",
+                text: "Post cancelled successfully",
+                icon: "success"
+            })
+        } catch (error) {
+            console.log(error.message);
+            dispatch(setError(error.message));
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+
     }
 }

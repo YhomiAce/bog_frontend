@@ -24,6 +24,7 @@ import Spinner from "../../../layouts/Spinner";
 import MeetingListItem from "./MeetingListItem";
 import ActionFeedBack from "./Modals/ActionFeedBack";
 import { BsCheck } from "react-icons/bs";
+import { fetchMeetings, fetchProjects } from "../../../../redux/actions/meetingAction";
 
 
 const Meetings = () => {
@@ -33,21 +34,35 @@ const Meetings = () => {
     const [selectedProject, setSelectedProject] = useState();
     const [loading, setLoading] = useState(false);
     const [feedback, setFeetback] = useState(false);
+    const [meetings, setMeeting] = useState([]);
     const user = useSelector((state) => state.auth.user);
-    console.log(user);
-
     function CloseDelete() {
         setRMeet(false)
     }
     useEffect(() => {
-        if (projects.length === 0) {
-            fetchProjects();
+        if (user && meetings.length === 0) {
+            fetchMeetings(setLoading, setMeeting, user)
         }
-    }, []);
+        if (projects.length === 0) {
+            fetchProjects(setprojects, setLoading);
+        }
+    }, [user]);
     const handleProjectChange = (val) => {
         const value = val.value;
         setSelectedProject(value);
     }
+    const addToMeeting = (param) => {
+        const oldMeeting = [...meetings]
+        const newMeeting = [param, ...oldMeeting]
+        setMeeting(newMeeting);
+    }
+
+    const removeFromMeeting = (id) => {
+        const newMeeting = meetings.filter(x => x.id !== id && x)
+        console.log(newMeeting, id)
+        setMeeting(newMeeting);
+    }
+
     const authToken = localStorage.getItem("auth_token");
     const config = {
         headers:
@@ -57,33 +72,9 @@ const Meetings = () => {
         }
 
     }
-    const fetchProjects = async () => {
-        try {
-            setLoading(true);
-            const url = "/projects/all";
-            const res = await Axios.get(url, config);
-            const results = res.data;
-            const data = results.map(result => {
-                return {
-                    projectSlug: result.projectSlug,
-                }
-            });
-            setprojects(data);
-            setLoading(false);
-        } catch (error) {
-            setLoading(false);
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
-        }
-    }
 
     // set meeting
-    const setMeeting = async () => {
+    const requestMeeting = async () => {
         try {
             setLoading(true);
             const url = "/meeting/create";
@@ -93,7 +84,9 @@ const Meetings = () => {
                 projectSlug: selectedProject,
                 ...formik.values
             }
-            await Axios.post(url, payload, config);
+            const newMeeting = await Axios.post(url, payload, config);
+            addToMeeting(newMeeting.data)
+
             setLoading(false);
             setRMeet(false)
             setFeetback({
@@ -118,14 +111,13 @@ const Meetings = () => {
             );
         }
     }
-
     const formik = useFormik({
         initialValues: {
             description: "",
             date: "",
             time: "",
         },
-        onSubmit: setMeeting,
+        onSubmit: requestMeeting,
     });
     const { date, description, time } = formik.values
 
@@ -243,7 +235,7 @@ const Meetings = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {<MeetingListItem filterBy="attended" />}
+                                    {<MeetingListItem filterBy="attended" meetings={meetings} removeMeeting={removeFromMeeting} />}
                                 </tbody>
                                 </table>
                             </div>
@@ -282,7 +274,7 @@ const Meetings = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {<MeetingListItem filterBy="approved" />}
+                                    {<MeetingListItem filterBy="approved" meetings={meetings} removeMeeting={removeFromMeeting} />}
                                 </tbody>
                                 </table>
                             </div>
@@ -321,7 +313,7 @@ const Meetings = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {<MeetingListItem filterBy="pending" />}
+                                    {<MeetingListItem filterBy="pending" meetings={meetings} removeMeeting={removeFromMeeting} />}
                                 </tbody>
                                 </table>
                             </div>
