@@ -5,7 +5,7 @@ import Spinner from '../../../../layouts/Spinner';
 import Axios from '../../../../../config/config';
 import { FaTimes } from 'react-icons/fa';
 
-const CancelModal = ({ CloseDelete, meetingId, setFeetback }) => {
+const CancelModal = ({ CloseDelete, meetingId, setFeetback, removeMeeting }) => {
     const [loading, setLoading] = useState(false);
 
     const declineMeeting = async () => {
@@ -30,6 +30,7 @@ const CancelModal = ({ CloseDelete, meetingId, setFeetback }) => {
             console.log(results)
             setLoading(false);
             CloseDelete()
+            removeMeeting(meetingId)
             setFeetback({
                 info: "Cancelled Successfully",
                 status: "success",
