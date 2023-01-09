@@ -27,7 +27,7 @@ const CancelModal = ({ CloseDelete, meetingId, setFeetback }) => {
             }
             const res = await Axios.post(url, payload, config);
             const results = res.data;
-            console.log(results);
+            console.log(results)
             setLoading(false);
             CloseDelete()
             setFeetback({

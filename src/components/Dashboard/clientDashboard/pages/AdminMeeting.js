@@ -244,7 +244,7 @@ const AdminMeeting = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {user.id && <MeetingListItem userId={user.id} filterBy="attended" isAdmin />}
+                                    {<MeetingListItem filterBy="attended" isAdmin />}
                                 </tbody>
                                 </table>
                             </div>
@@ -283,7 +283,7 @@ const AdminMeeting = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {user.id && <MeetingListItem userId={user.id} filterBy="approved" isAdmin />}
+                                    {<MeetingListItem filterBy="approved" isAdmin />}
                                 </tbody>
                                 </table>
                             </div>
@@ -322,7 +322,7 @@ const AdminMeeting = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {user.id && <MeetingListItem userId={user.id} filterBy="pending" isAdmin />}
+                                    {<MeetingListItem filterBy="pending" isAdmin />}
                                 </tbody>
                                 </table>
                             </div>
