@@ -25,9 +25,7 @@ const DeleteModal = ({ CloseDelete, meetingId, setFeetback }) => {
                 }
 
             }
-            const res = await Axios.post(url, payload, config);
-            const results = res.data;
-            console.log(results);
+            await Axios.post(url, payload, config);
             setLoading(false);
             CloseDelete()
             setFeetback({

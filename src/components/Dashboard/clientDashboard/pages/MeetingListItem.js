@@ -2,6 +2,7 @@
 import { Button, Menu, MenuHandler, MenuItem, MenuList } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react'
 import { BsCameraVideo, BsLink, BsThreeDotsVertical } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
 import toaster from 'toasted-notes';
 import Axios from '../../../../config/config';
 import Spinner from '../../../layouts/Spinner';
@@ -10,7 +11,8 @@ import ApproveModal from './Modals/ApproveModal';
 import CancelModal from './Modals/CancelModal';
 import DeleteModal from './Modals/DeleteModal';
 
-const MeetingListItem = ({userId, isAdmin, filterBy}) => {
+const MeetingListItem = ({isAdmin, filterBy}) => {
+    const user = useSelector((state) => state.auth.user);
     const [loading, setLoading] = useState(false);
     const [action, setAction] = useState('')
     const [meetings, setMeeting] = useState([]);
@@ -43,7 +45,7 @@ const MeetingListItem = ({userId, isAdmin, filterBy}) => {
             if(isAdmin){
                 url = "/meeting/all";
             }else{
-                url = "/meeting/my-meeting/" + userId
+                url = "/meeting/my-meeting/" + user.id
             }
             const res = await Axios.get(url, config);
             const results = res.data;
