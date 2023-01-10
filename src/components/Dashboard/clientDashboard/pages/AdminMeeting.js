@@ -24,18 +24,19 @@ import Spinner from "../../../layouts/Spinner";
 import MeetingListItem from "./MeetingListItem";
 import { BsCheck } from "react-icons/bs";
 import ActionFeedBack from "./Modals/ActionFeedBack";
-import { fetchMeetings, fetchProjects } from "../../../../redux/actions/meetingAction";
+import { fetchMeetings } from "../../../../redux/actions/meetingAction";
+import useFetchHook from "../../../../hooks/useFetchHook";
 
 
 const AdminMeeting = () => {
     
     const [rMeet, setRMeet] = useState(false)
-    const [projects, setprojects] = useState([]);
     const [selectedProject, setSelectedProject] = useState();
     const [loading, setLoading] = useState(false);
     const [feedback, setFeetback] = useState(false);
     const [meetings, setMeeting] = useState([]);
     const user = useSelector((state) => state.auth.user);
+    const { data: projects,  } = useFetchHook("/projects/all");
 
     function CloseDelete() {
         setRMeet(false)
@@ -44,9 +45,7 @@ const AdminMeeting = () => {
         if (user && meetings.length === 0) {
             fetchMeetings(setLoading, setMeeting, user, true)
         }
-        if (projects.length === 0) {
-            fetchProjects(setprojects, setLoading, config);
-        }
+       
     }, [user]);
     const handleProjectChange = (val) => {
         const value = val.value;
@@ -84,7 +83,8 @@ const AdminMeeting = () => {
                 requestId: user.id,
                 requestEmail: user.email,
                 projectSlug: selectedProject,
-                ...formik.values
+                ...formik.values,
+                userType: user.userType
             }
             console.log(payload)
             const newMeeting = await Axios.post(url, payload, config);
@@ -124,7 +124,7 @@ const AdminMeeting = () => {
     });
     const { date, description, time } = formik.values
 
-    const options = projects.length > 0 ? projects.map(projects => {
+    const options = projects ? projects.map(projects => {
         return {
             label: projects.projectSlug,
             value: projects.projectSlug

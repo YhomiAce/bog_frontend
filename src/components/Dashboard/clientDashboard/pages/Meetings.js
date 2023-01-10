@@ -14,7 +14,7 @@ import {
     MenuList,
     MenuItem,
     Button,
-  } from "@material-tailwind/react";
+} from "@material-tailwind/react";
 import SelectableItem from "../../../widgets/SelectableItem";
 import Axios from '../../../../config/config';
 import toaster from "toasted-notes";
@@ -24,18 +24,19 @@ import Spinner from "../../../layouts/Spinner";
 import MeetingListItem from "./MeetingListItem";
 import ActionFeedBack from "./Modals/ActionFeedBack";
 import { BsCheck } from "react-icons/bs";
-import { fetchMeetings, fetchProjects } from "../../../../redux/actions/meetingAction";
+import { fetchMeetings } from "../../../../redux/actions/meetingAction";
+import useFetchHook from "../../../../hooks/useFetchHook";
 
 
 const Meetings = () => {
-    
+
     const [rMeet, setRMeet] = useState(false)
-    const [projects, setprojects] = useState([]);
     const [selectedProject, setSelectedProject] = useState();
     const [loading, setLoading] = useState(false);
     const [feedback, setFeetback] = useState(false);
     const [meetings, setMeeting] = useState([]);
     const user = useSelector((state) => state.auth.user);
+    const { data: projects,  } = useFetchHook("/projects/my-request");
     function CloseDelete() {
         setRMeet(false)
     }
@@ -43,10 +44,9 @@ const Meetings = () => {
         if (user && meetings.length === 0) {
             fetchMeetings(setLoading, setMeeting, user)
         }
-        if (projects.length === 0) {
-            fetchProjects(setprojects, setLoading);
-        }
+        
     }, [user]);
+
     const handleProjectChange = (val) => {
         const value = val.value;
         setSelectedProject(value);
@@ -82,7 +82,8 @@ const Meetings = () => {
                 requestId: user.id,
                 requestEmail: user.email,
                 projectSlug: selectedProject,
-                ...formik.values
+                ...formik.values,
+                userType: user.userType
             }
             const newMeeting = await Axios.post(url, payload, config);
             addToMeeting(newMeeting.data)
@@ -121,7 +122,7 @@ const Meetings = () => {
     });
     const { date, description, time } = formik.values
 
-    const options = projects.length > 0 ? projects.map(projects => {
+    const options = projects ? projects.map(projects => {
         return {
             label: projects.projectSlug,
             value: projects.projectSlug
@@ -139,12 +140,12 @@ const Meetings = () => {
                         <Breadcrumbs className="bg-white pl-0 mt-4">
                             <Link to="/" className="opacity-60">
                                 <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-4 w-4"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-4 w-4"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
                                 >
-                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                                 </svg>
                             </Link>
                             <Link to="/dashboard" className="opacity-60">
@@ -156,169 +157,169 @@ const Meetings = () => {
                         </Breadcrumbs>
                     </div>
                     <div>
-                        <button className="text-primary px-3 py-1 rounded border-pri" onClick={() => {setRMeet(true)}}>Request Meetings</button>
+                        <button className="text-primary px-3 py-1 rounded border-pri" onClick={() => { setRMeet(true) }}>Request Meetings</button>
                     </div>
-                </div> 
+                </div>
                 <div className="lg:p-5 px-2">
                     {/* <div className="bg-white px-4 lg:px-8 py-6 rounded-md">
                          <ProductTable/>
                     </div> */}
                     <div className="bg-white lg:p-5  mt-6 rounded-lg">
                         <Tabs className="px-2 lg:px-0 py-5 lg:py-0">
-                        <TabList className="flex fs-400">
-                            <Tab>Completed</Tab>
-                            <Tab>Upcoming</Tab>
-                            <Tab>Pending Request</Tab>
-                        </TabList>
-                        <TabPanel>
-                            <div className="mt-10 flex justify-between">
-                                <div class="flex text-gray-600">
-                                    <input
-                                        class="border-2 border-gray-300 bg-white h-10 px-5 pr-4 rounded-l-lg text-sm focus:outline-none"
-                                        type="search"
-                                        name="search order by name"
-                                        placeholder="Search"
-                                    />
-                                    <button
-                                        type="submit"
-                                        class=" bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
-                                    >
-                                        <FontAwesomeIcon icon={faSearch} className="text-white" />
-                                    </button>
+                            <TabList className="flex fs-400">
+                                <Tab>Completed</Tab>
+                                <Tab>Upcoming</Tab>
+                                <Tab>Pending Request</Tab>
+                            </TabList>
+                            <TabPanel>
+                                <div className="mt-10 flex justify-between">
+                                    <div class="flex text-gray-600">
+                                        <input
+                                            class="border-2 border-gray-300 bg-white h-10 px-5 pr-4 rounded-l-lg text-sm focus:outline-none"
+                                            type="search"
+                                            name="search order by name"
+                                            placeholder="Search"
+                                        />
+                                        <button
+                                            type="submit"
+                                            class=" bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
+                                        >
+                                            <FontAwesomeIcon icon={faSearch} className="text-white" />
+                                        </button>
+                                    </div>
+                                    <Menu>
+                                        <MenuHandler>
+                                            <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none flex items-center"> Export <FaFileDownload className="text-2xl" /></Button>
+                                        </MenuHandler>
+                                        <MenuList>
+                                            <MenuItem >
+                                                Export as CSV
+                                            </MenuItem>
+                                            <MenuItem>
+                                                Export as Excel
+                                            </MenuItem>
+                                            <MenuItem>
+                                                Export as PDF
+                                            </MenuItem>
+                                        </MenuList>
+                                    </Menu>
                                 </div>
-                                <Menu>
-                                    <MenuHandler>
-                                        <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none flex items-center"> Export <FaFileDownload className="text-2xl"/></Button>
-                                    </MenuHandler>
-                                    <MenuList>
-                                        <MenuItem >
-                                            Export as CSV
-                                        </MenuItem>
-                                        <MenuItem>
-                                            Export as Excel
-                                        </MenuItem>
-                                        <MenuItem>
-                                            Export as PDF 
-                                        </MenuItem>
-                                    </MenuList>
-                                </Menu>
-                            </div>
-                            <CardBody>
-                            <div className="overflow-x-auto">
-                                <table className="items-center w-full bg-transparent border-collapse">
-                                <thead className="thead-light bg-light">
-                                    <tr>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            S/N
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Meeting ID
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Project ID
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Date
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Time
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Status
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Approval Status
-                                        </th>
-                                        <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
-                                            Action
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {<MeetingListItem filterBy="attended" meetings={meetings} removeMeeting={removeFromMeeting} />}
-                                </tbody>
-                                </table>
-                            </div>
-                            </CardBody>
-                        </TabPanel>
-                        <TabPanel>
-                            <CardBody>
-                            <div className="overflow-x-auto">
-                                <table className="items-center w-full bg-transparent border-collapse">
-                                <thead className="thead-light bg-light">
-                                    <tr>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            S/N
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Meeting ID
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Project ID
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Date
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Time
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Status
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Approval Status
-                                        </th>
-                                        <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
-                                            Action
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {<MeetingListItem filterBy="approved" meetings={meetings} removeMeeting={removeFromMeeting} />}
-                                </tbody>
-                                </table>
-                            </div>
-                            </CardBody>
-                        </TabPanel>
-                        <TabPanel>
-                            <CardBody>
-                            <div className="overflow-x-auto">
-                                <table className="items-center w-full bg-transparent border-collapse">
-                                <thead className="thead-light bg-light">
-                                    <tr>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            S/N
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Meeting ID
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Project ID
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Date
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Time
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Status
-                                        </th>
-                                        <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                            Approval Status
-                                        </th>
-                                        <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
-                                            Action
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {<MeetingListItem filterBy="pending" meetings={meetings} removeMeeting={removeFromMeeting} />}
-                                </tbody>
-                                </table>
-                            </div>
-                            </CardBody>
-                        </TabPanel>
+                                <CardBody>
+                                    <div className="overflow-x-auto">
+                                        <table className="items-center w-full bg-transparent border-collapse">
+                                            <thead className="thead-light bg-light">
+                                                <tr>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        S/N
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Meeting ID
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Project ID
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Date
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Time
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Status
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Approval Status
+                                                    </th>
+                                                    <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
+                                                        Action
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {<MeetingListItem filterBy="attended" meetings={meetings} removeMeeting={removeFromMeeting} />}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </CardBody>
+                            </TabPanel>
+                            <TabPanel>
+                                <CardBody>
+                                    <div className="overflow-x-auto">
+                                        <table className="items-center w-full bg-transparent border-collapse">
+                                            <thead className="thead-light bg-light">
+                                                <tr>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        S/N
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Meeting ID
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Project ID
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Date
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Time
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Status
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Approval Status
+                                                    </th>
+                                                    <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
+                                                        Action
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {<MeetingListItem filterBy="approved" meetings={meetings} removeMeeting={removeFromMeeting} />}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </CardBody>
+                            </TabPanel>
+                            <TabPanel>
+                                <CardBody>
+                                    <div className="overflow-x-auto">
+                                        <table className="items-center w-full bg-transparent border-collapse">
+                                            <thead className="thead-light bg-light">
+                                                <tr>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        S/N
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Meeting ID
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Project ID
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Date
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Time
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Status
+                                                    </th>
+                                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                        Approval Status
+                                                    </th>
+                                                    <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
+                                                        Action
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {<MeetingListItem filterBy="pending" meetings={meetings} removeMeeting={removeFromMeeting} />}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </CardBody>
+                            </TabPanel>
                         </Tabs>
                     </div>
                 </div>
@@ -328,7 +329,7 @@ const Meetings = () => {
                             <form onSubmit={formik.handleSubmit}>
                                 <div className="flex justify-between">
                                     <p className="lg:text-lg fw-600">Request Meeting</p>
-                                    <FaTimes onClick={CloseDelete}/>
+                                    <FaTimes onClick={CloseDelete} />
                                 </div>
                                 <div className="mt-5 lg:mt-8">
                                     <label className="block">Project ID</label>
@@ -379,25 +380,25 @@ const Meetings = () => {
                                     <button className="btn bg-red-500 lg:px-7 text-white" onClick={CloseDelete}>
                                         Cancel
                                     </button>
-                                    {loading? <Spinner /> : <button className="btn-primary lg:px-7">
+                                    {loading ? <Spinner /> : <button className="btn-primary lg:px-7">
                                         Request Meeting
                                     </button>}
                                 </div>
                             </form>
-                        </div> 
+                        </div>
                     </div>
                 )}
             </div>
-            {feedback && 
+            {feedback &&
                 <ActionFeedBack
-                    closeFeedBack={()=>setFeetback(false)}
+                    closeFeedBack={() => setFeetback(false)}
                     title={feedback.title}
                     icon={feedback.icon}
                     info={feedback.info}
                     status={feedback.status}
                 />}
         </div>
-        )
+    )
 }
 
 export default Meetings

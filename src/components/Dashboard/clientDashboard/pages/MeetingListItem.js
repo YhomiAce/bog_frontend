@@ -7,15 +7,22 @@ import ActionFeedBack from './Modals/ActionFeedBack';
 import ApproveModal from './Modals/ApproveModal';
 import CancelModal from './Modals/CancelModal';
 import DeleteModal from './Modals/DeleteModal';
+import MeetingInfoModal from './Modals/MeetingInfoModal';
 
 const MeetingListItem = ({isAdmin, filterBy, meetings, removeMeeting}) => {
     const [action, setAction] = useState('');
     const [selectedId, setId] = useState();
     const [feedback, setFeetback] = useState();
+    const [selectedMeeting, setSelectedMeeting] = useState();
 
     const myAction = (actType, id) => {
         setAction(actType)
         setId(id)
+    }
+
+    const openViewModal = (actType, meeting) => {
+        setAction(actType)
+        setSelectedMeeting(meeting)
     }
 
     const filterMeeting = meetings.filter(x => x.approval_status === filterBy && x)
@@ -52,12 +59,21 @@ const MeetingListItem = ({isAdmin, filterBy, meetings, removeMeeting}) => {
                             </MenuHandler>
                             <MenuList className="w-16 bg-gray-100 fw-600 text-black">
                             
-                            {res.start_url && <MenuItem>
+                            {res.start_url && 
+                                <>
+                                    <MenuItem onClick={() => openViewModal('view', res)}>Meeting Info</MenuItem>
+                                    
                                     <div className="flex text-primary cursor-pointer items-center text-xl">
                                         <BsLink />
-                                        <a href={res.start_url} target="_blank" rel="noreferrer"><p className="underline fs-400 pl-1">Meeting Link</p></a>
+                                        {
+                                            isAdmin ?
+                                            <a href={res.start_url} target="_blank" rel="noreferrer"><p className="underline fs-400 pl-1">Meeting Link</p></a>
+                                            :
+                                            <a href={res.meeting_info.join_url} target="_blank" rel="noreferrer"><p className="underline fs-400 pl-1">Meeting Link</p></a>
+                                        }
+                                        
                                     </div>
-                                </MenuItem>
+                                </>
                             }
                                 {res.status === "attended" && <MenuItem>
                                     <div className="flex text-primary cursor-pointer items-center text-xl">
@@ -85,6 +101,7 @@ const MeetingListItem = ({isAdmin, filterBy, meetings, removeMeeting}) => {
         {action === 'decline' && <DeleteModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeMeeting={removeMeeting} />}
         {action === 'approve' && <ApproveModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeMeeting={removeMeeting} />}
         {action === 'cancel' && <CancelModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeMeeting={removeMeeting} />}
+        {action === 'view' && <MeetingInfoModal CloseModal={()=>setAction('')} meeting={selectedMeeting} />}
         {feedback && 
             <ActionFeedBack
                 closeFeedBack={()=>setFeetback()}
