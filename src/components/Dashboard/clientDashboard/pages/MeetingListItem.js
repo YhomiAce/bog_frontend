@@ -9,7 +9,7 @@ import CancelModal from './Modals/CancelModal';
 import DeleteModal from './Modals/DeleteModal';
 import MeetingInfoModal from './Modals/MeetingInfoModal';
 
-const MeetingListItem = ({isAdmin, filterBy, meetings, removeMeeting}) => {
+const MeetingListItem = ({isAdmin, filterBy, meetings, removeMeeting, updateMeetingStatus}) => {
     const [action, setAction] = useState('');
     const [selectedId, setId] = useState();
     const [feedback, setFeetback] = useState();
@@ -30,7 +30,7 @@ const MeetingListItem = ({isAdmin, filterBy, meetings, removeMeeting}) => {
     > 0 ? filterMeeting.map((res, i) => {
        return <tr key={i}>
            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-               {i}
+               {i+1}
            </td>
            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                {res.meetingSlug}
@@ -98,8 +98,8 @@ const MeetingListItem = ({isAdmin, filterBy, meetings, removeMeeting}) => {
     return (
         <>
         { meetingTR }
-        {action === 'decline' && <DeleteModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeMeeting={removeMeeting} />}
-        {action === 'approve' && <ApproveModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeMeeting={removeMeeting} />}
+        {action === 'decline' && <DeleteModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeMeeting={removeMeeting} updateMeetingStatus={updateMeetingStatus} />}
+        {action === 'approve' && <ApproveModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeMeeting={removeMeeting}  updateMeetingStatus={updateMeetingStatus}/>}
         {action === 'cancel' && <CancelModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeMeeting={removeMeeting} />}
         {action === 'view' && <MeetingInfoModal CloseModal={()=>setAction('')} meeting={selectedMeeting} />}
         {feedback && 

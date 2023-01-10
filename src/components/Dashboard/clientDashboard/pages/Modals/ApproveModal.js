@@ -5,7 +5,7 @@ import Spinner from '../../../../layouts/Spinner';
 import Axios from '../../../../../config/config';
 import { FaTimes } from 'react-icons/fa';
 
-const ApproveModal = ({ CloseDelete, meetingId, setFeetback, removeMeeting }) => {
+const ApproveModal = ({ CloseDelete, meetingId, setFeetback, updateMeetingStatus}) => {
     const [loading, setLoading] = useState(false);
 
     const approveMeeting = async () => {
@@ -29,7 +29,8 @@ const ApproveModal = ({ CloseDelete, meetingId, setFeetback, removeMeeting }) =>
             
             setLoading(false);
             CloseDelete()
-            removeMeeting(meetingId)
+            // removeMeeting(meetingId)
+            updateMeetingStatus(payload)
             setFeetback({
                 info: "Approved Successfully",
                 status: "success",

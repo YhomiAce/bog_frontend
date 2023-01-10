@@ -72,6 +72,13 @@ const AdminMeeting = () => {
         console.log(newMeeting, id)
         setMeeting(newMeeting);
     }
+
+    const updateMeetingStatus = (payload) => {
+        const oldMeeting = [...meetings];
+        const index = meetings.findIndex(where => where.id === payload.meetingId);
+        oldMeeting[index].approval_status = payload.status;
+        setMeeting(oldMeeting);
+    }
     
     // set meeting
     const requestMeeting = async () => {
@@ -238,7 +245,7 @@ const AdminMeeting = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {<MeetingListItem filterBy="attended" isAdmin meetings={meetings} removeMeeting={removeFromMeeting} />}
+                                    {<MeetingListItem filterBy="attended" isAdmin meetings={meetings} removeMeeting={removeFromMeeting} updateMeetingStatus={updateMeetingStatus} />}
                                 </tbody>
                                 </table>
                             </div>
@@ -277,7 +284,7 @@ const AdminMeeting = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {<MeetingListItem filterBy="approved" isAdmin meetings={meetings} removeMeeting={removeFromMeeting} />}
+                                    {<MeetingListItem filterBy="approved" isAdmin meetings={meetings} removeMeeting={removeFromMeeting} updateMeetingStatus={updateMeetingStatus} />}
                                 </tbody>
                                 </table>
                             </div>
@@ -316,7 +323,12 @@ const AdminMeeting = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {<MeetingListItem filterBy="pending" isAdmin meetings={meetings} removeMeeting={removeFromMeeting} />}
+                                    {<MeetingListItem 
+                                    filterBy="pending" 
+                                    isAdmin meetings={meetings} 
+                                    removeMeeting={removeFromMeeting} 
+                                    updateMeetingStatus={updateMeetingStatus}
+                                    />}
                                 </tbody>
                                 </table>
                             </div>
