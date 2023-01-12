@@ -17,7 +17,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBarsStaggered, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { SwitchAccount } from "./pages/SwitchAccount";
-import Inbox from "./pages/inbox";
 import Ppartners from "./pages/Ppartners";
 import Spartners from "./pages/Spartner";
 import Clients from "./pages/Clients";
@@ -53,6 +52,8 @@ import AdminTransactions from "./pages/AdminTransactions";
 import Notification from "./pages/Notification";
 import { SmartCalc } from "./pages/SmartCalc";
 import AdminMeeting from "./pages/AdminMeeting";
+import AdminInbox from "./pages/Admins/InboxAdmin";
+import UserInbox from "./pages/Users/InboxUser";
 
 export default function ClientDashboard() {
 
@@ -118,7 +119,8 @@ export default function ClientDashboard() {
                         <Route path="notify" element={<Notification />} />
                         <Route path="switch" element={<SwitchAccount />} />
                         <Route path="review" element={<Review />} />
-                        <Route path="inbox" element={<Inbox />} />
+                        <Route path="inbox" element={<UserInbox />} />
+                        <Route path="announcement" element={<AdminInbox />} />
                         <Route path="kyc" element={<KycForm />} />
                         <Route path="testimonial" element={<Testimonial />} />
                         <Route path="subscription" element={<Subscription />} />

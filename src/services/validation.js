@@ -97,3 +97,10 @@ export const postSchema = Yup.object({
     title: Yup.string().required("Product title is required"),
     description: Yup.string().required("Product description is required"),
 });
+
+export const announcementSchema = Yup.object({
+    title: Yup.string().required("title is required"),
+    content: Yup.string().required("content is required"),
+    user: Yup.string().required("Reciever is required"),
+    expiredAt: Yup.date().required("Expiration date is required"),
+});

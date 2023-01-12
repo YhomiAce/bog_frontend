@@ -142,7 +142,13 @@ export default function Header() {
                                 </MenuHandler>
                                 <MenuList>
                                     <MenuItem onClick={() => navigate("/dashboard/transact")}>Transactions</MenuItem>
-                                    <MenuItem onClick={() => navigate("/dashboard/inbox")}>Inbox</MenuItem>
+                                    {
+                                        auth?.user?.userType === "admin" ?
+                                        <MenuItem onClick={() => navigate("/dashboard/announcement")}>Inbox</MenuItem>
+                                        :
+                                        <MenuItem onClick={() => navigate("/dashboard/inbox")}>Inbox</MenuItem>
+                                    }
+                                    
                                     <MenuItem onClick={() => navigate("/dashboard/meetings")}>Meetings</MenuItem>
                                     <MenuItem onClick={() => navigate("/dashboard/settings")}>Settings</MenuItem>
                                     <MenuItem onClick={() => dispatch(logout())}>Sign Out</MenuItem>
