@@ -3,7 +3,7 @@ import React  from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { ProductKyc } from "./Kyc/ProductKyc";
+// import { ProductKyc } from "./Kyc/ProductKyc";
 import { VendorKyc } from "./Kyc/VendorKyc";
 
 
