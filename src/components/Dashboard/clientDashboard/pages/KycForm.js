@@ -10,7 +10,7 @@ import { VendorKyc } from "./Kyc/VendorKyc";
 export default function KycForm() {
     const auth = useSelector((state) => state.auth);
   
-    let form = <CKycForm/>;
+    let form = null;
   
       if (auth?.user?.userType === "vendor") {
         form = <PKycForm/>
@@ -55,40 +55,6 @@ export function PKycForm() {
                 {/* product contents */}
                 <div className="lg:p-5 px-2 py-4">
                     <div className="bg-white px-4 rounded-md pt-8 pb-8 lg:p-10 lg:pb-16 shadow lg:w-11/12 xl:w-10/12 mx-auto">
-                        {/* <form>
-                            <div className="bg-white px-4 rounded-md pt-8 pb-8 lg:p-10 lg:pb-16 shadow fw-500">
-                                <div className="lg:flex">
-                                    <div className="mt-5 lg:mt-8 lg:pr-5 lg:w-6/12">
-                                        <label className="block">Your TIN (Taxpayer Identification Number)</label>
-                                        <input type="text" className="w-full border border-gray-400 rounded mt-2 py-2 px-2" placeholder="Enter your TIN" required/>
-                                    </div>
-                                    <div className="mt-5 lg:mt-8 lg:pl-5 lg:w-6/12">
-                                        <div className="flex justify-between"><label className="block">Upload your CAC</label> <p className="pr-4"><AiOutlineInfoCircle/></p></div>
-                                        <input type="file" className="w-full border border-gray-400 rounded mt-2 py-2 px-2" required/>
-                                    </div>
-                                </div>
-                                <div className="lg:flex">
-                                    <div className="mt-5 lg:mt-7 lg:w-6/12 lg:pr-6">
-                                        <label className="block">Bank Account Holder Number</label>
-                                        <input type="text" className="w-full  border border-gray-400 rounded mt-2 py-2 px-2" placeholder="Enter your bank account name" required/>
-                                    </div>
-                                    <div className="mt-5 lg:mt-7 lg:w-6/12 lg:pl-6">
-                                        <label className="block">Bank Name</label>
-                                        <input type="text" className="w-full  border border-gray-400 rounded mt-2 py-2 px-2" placeholder="Enter your bank name" required/>
-                                    </div>
-                                </div>
-                                <div className="mt-5 lg:mt-7 lg:w-6/12 lg:pr-6">
-                                    <label className="block">Account Number</label>
-                                    <input type="text" className="w-full  border border-gray-400 rounded mt-2 py-2 px-2" placeholder="Enter your bank account number" required/>
-                                </div>
-                            </div>
-                            <div className="my-8 border-t border-gray-300 pt-8">
-                                <div className="text-end">
-                                    <button className="btn bg-primary text-white lg:px-24 lg:fw-600">Submit KYC</button>
-                                </div>
-                            </div>
-                        </form> */}
-                        {/* <ProductKyc/> */}
                         <VendorKyc/>
                     </div> 
                 </div>
@@ -130,42 +96,8 @@ export function SKycForm() {
                 {/* kyc contents */}
                 <div className="lg:p-5 px-2 py-4">
                     <div className="bg-white px-4 rounded-md pt-8 pb-8 lg:p-10 lg:pb-16 shadow lg:w-10/12 mx-auto">
-                        {/* <div className="scale-ani" onClick={e => e.stopPropagation()}>
-                            <form>
-                                <div className="bg-white px-4 rounded-md pt-8 pb-8 lg:p-10 lg:pb-16 shadow fw-500">
-                                    <div className="lg:flex">
-                                        <div className="mt-5 lg:mt-8 lg:pr-5 lg:w-6/12">
-                                            <div className="flex justify-between"><label className="block">Certificate of Operation</label> <p className="pr-4"><AiOutlineInfoCircle/></p></div>
-                                            <input type="file" className="w-full border border-gray-400 rounded mt-2 py-2 px-2" required/>
-                                        </div>
-                                        <div className="mt-5 lg:mt-8 lg:pl-5 lg:w-6/12">
-                                            <div className="flex justify-between"><label className="block">Professional Membership Certificates</label> <p className="pr-4"><AiOutlineInfoCircle/></p></div>
-                                            <input type="file" className="w-full border border-gray-400 rounded mt-2 py-2 px-2" required/>
-                                        </div>
-                                    </div>
-                                    <div className="lg:flex">
-                                        <div className="mt-5 lg:mt-7 lg:w-6/12 lg:pr-6">
-                                            <label className="block">Bank Account Holder Number</label>
-                                            <input type="text" className="w-full  border border-gray-400 rounded mt-2 py-2 px-2" placeholder="Enter your bank account name" required/>
-                                        </div>
-                                        <div className="mt-5 lg:mt-7 lg:w-6/12 lg:pl-6">
-                                            <label className="block">Bank Name</label>
-                                            <input type="text" className="w-full  border border-gray-400 rounded mt-2 py-2 px-2" placeholder="Enter your bank name" required/>
-                                        </div>
-                                    </div>
-                                    <div className="mt-5 lg:mt-7 lg:w-6/12 lg:pr-6">
-                                        <label className="block">Account Number</label>
-                                        <input type="text" className="w-full  border border-gray-400 rounded mt-2 py-2 px-2" placeholder="Enter your bank account number" required/>
-                                    </div>
-                                </div>
-                                <div className="my-8 border-t border-gray-300 pt-8">
-                                    <div className="text-end">
-                                        <button className="btn bg-primary text-white lg:px-24 lg:fw-600">Submit KYC</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>  */}
-                        <ProductKyc/>
+                        {/* <ProductKyc/> */}
+                        <VendorKyc/>
                     </div> 
                 </div>
             </div>

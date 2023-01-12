@@ -72,7 +72,7 @@ export default function Header() {
                         <img src='https://res.cloudinary.com/greenmouse-tech/image/upload/v1667908351/BOG/jot-logo_q4jjyl.png' className="mx-3 w-9" alt="Notify" />
                     </div>
                     <div>
-                        <p>{notify.message.substring(0, 20)}</p>
+                        <p>{notify.message.substring(0, 22)}</p>
                         <p className="text-gray-500 text-xs"><ReactTimeAgo date={Date.parse(notify.createdAt)} locale="en-US" /></p>
 
                     </div>
