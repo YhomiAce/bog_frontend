@@ -1,3 +1,4 @@
+import { RiDeleteBin5Line } from 'react-icons/ri';
 import ReactTimeAgo from 'react-time-ago';
 import { markNotificationAsRead } from '../../../../../services/endpoint';
 
@@ -6,7 +7,7 @@ const NotificationItem = ({item}) => {
         await markNotificationAsRead(item.id)
     }
     return (
-        <div className="flex items-center mt-7 lg:mt-12" onClick={readNotification}>
+        <div className="flex items-center relative mt-7 lg:mt-12" onClick={readNotification}>
             <div className="w-3/12 lg:w-auto">
                 <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="avatar" className="w-12 h-12 circle " />
             </div>
@@ -14,6 +15,7 @@ const NotificationItem = ({item}) => {
                 <p className="text-gray-600"><span className="text-black">BOG Admin</span> {item.message} </p>
                 <p className="fs-400 text-gray-500"><ReactTimeAgo date={Date.parse(item.createdAt)} locale="en-US"/></p>
             </div>
+            <RiDeleteBin5Line className='absolute text-red-500 cursor-pointer hover:scale-105 top-0 right-4'/>
         </div>
     )
 }
