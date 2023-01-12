@@ -24,11 +24,11 @@ export const SendMessage = () => {
                 </select>
             </div>
             <div className='lg:flex'>
-                <div className='mt-4 lg:w-6/12 pr-2'>
+                <div className='mt-4 lg:w-6/12 lg:pr-2'>
                     <label>Attachment</label>
                     <input type="file" className="w-full  border border-gray-400 rounded mt-2 py-2 px-2" />
                 </div>
-                <div className='mt-4 lg:w-6/12 pl-2'>
+                <div className='mt-4 lg:w-6/12 lg:pl-2'>
                     <label>Expiration Date</label>
                     <input type="date" className="w-full  border border-gray-400 rounded mt-2 py-2 px-2" />
                 </div>
