@@ -186,35 +186,6 @@ const AdminSidebar = () => {
                                 </div>
                             )}
                         </div>
-                        {/* <div
-                            
-                            className="w-full items-center pl-2 py-2 fw-600 my-2"
-                            onClick={unShow}
-                        >
-                            <div className="flex" onClick={e => e.stopPropagation()}>
-                                <BsEnvelope className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setEmailDrop(!emailDrop);setProjectDrop(false);setProductDrop(false);setOrderDrop(false);setUserDrop(false)}}>
-                                    <p className="pl-3 pr-5">Email</p>
-                                    <BsFillCaretDownFill className="text-black"/>
-                                </div>
-                            </div>
-                            {emailDrop && (
-                                <div className="lg:ml-9 ml-4 fs-400 pt-2">
-                                    <NavLink
-                                        to="projects"
-                                        // style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                                        >
-                                        <p className="py-2">My Projects</p>
-                                    </NavLink>
-                                    <NavLink
-                                        to="allprojects"
-                                        // style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                                        >
-                                        <p className="py-2">Available Projects</p>
-                                    </NavLink>
-                                </div>
-                            )}
-                        </div> */}
                         <div
                             
                             className="w-full items-center pl-2 py-2 fw-600 my-2"
@@ -262,15 +233,6 @@ const AdminSidebar = () => {
                                 </div>
                             )}
                         </div>
-                        {/* <NavLink 
-                            to="email"
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
-                            onClick={unShow}
-                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                            >
-                                <BsEnvelope className="text-xl" />
-                                <p className="pl-3">Newsletter</p>
-                        </NavLink> */}
                         <NavLink 
                             to="blog"
                             className="w-full flex items-center pl-2 py-2 fw-600 my-2"
@@ -296,7 +258,7 @@ const AdminSidebar = () => {
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                             >
                                 <MdOutlineEmail className="text-lg" />
-                                <p className="pl-3">Inbox</p>
+                                <p className="pl-3">Messages</p>
                         </NavLink>
                         <NavLink 
                             to="admin-meetings"

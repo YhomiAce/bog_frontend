@@ -53,10 +53,10 @@ export default function Header() {
             return (
                 <p key={notify.id} className="my-5 flex" onClick={() =>gotoNotification(notify.id)}>
                     <div>
-                        <img src={require("./images/profile.png")} className="mx-3 w-9" alt="Notify" />
+                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667908351/BOG/jot-logo_q4jjyl.png" className="mx-3 w-9" alt="Notify" />
                     </div>
                     <div>
-                        <p>{notify.message.substring(0, 20)}</p>
+                        <p>{notify.message.substring(0, 20) + "..."}</p>
                         <p className="text-gray-500 text-xs"><ReactTimeAgo date={Date.parse(notify.createdAt)} locale="en-US" /></p>
 
                     </div>
@@ -69,7 +69,7 @@ export default function Header() {
             return (
                 <p key={notify.id} className="my-5 flex" onClick={() =>gotoNotification(notify.id)}>
                     <div>
-                        <img src={require("./images/profile.png")} className="mx-3 w-9" alt="Notify" />
+                        <img src='https://res.cloudinary.com/greenmouse-tech/image/upload/v1667908351/BOG/jot-logo_q4jjyl.png' className="mx-3 w-9" alt="Notify" />
                     </div>
                     <div>
                         <p>{notify.message.substring(0, 20)}</p>
@@ -126,7 +126,7 @@ export default function Header() {
                                 <div className="absolute bg-white rounded shadow pb-5 w-68 lg:w-72 text-start fs-400 lg:-left-64 -left-56 top-12" onClick={ShowNotify}>
                                     <p className="mb-3 text-white bg-primary py-2 pl-3 text-lg fw-600">Notifications</p>
                                     {content}
-                                    <Link to="notify"><p className="text-center hover:text-orange-500">View All</p></Link>
+                                    <Link to={auth?.user?.userType === "admin" ? "notification" : "notify"}><p className="text-center hover:text-orange-500">View All</p></Link>
                                 </div>
                             )}
                         </div>
@@ -135,8 +135,6 @@ export default function Header() {
                             >
                                 <MenuHandler>
                                     <Button className="p-0">
-                                        {/* <Avatar src={user?.photo ? `${BASE_URL}/${user?.photo}` : "https://i.stack.imgur.com/l60Hf.png"}
-                                    alt="profifepic" /> */}
                                         {
                                             auth?.user?.photo ? <Avatar src={auth.user.photo} /> : <UserAvatar />
                                         }

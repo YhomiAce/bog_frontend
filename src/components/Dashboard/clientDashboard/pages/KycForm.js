@@ -4,6 +4,7 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ProductKyc } from "./Kyc/ProductKyc";
+import { VendorKyc } from "./Kyc/VendorKyc";
 
 
 export default function KycForm() {
@@ -53,7 +54,7 @@ export function PKycForm() {
                 </div>  
                 {/* product contents */}
                 <div className="lg:p-5 px-2 py-4">
-                    <div className="bg-white px-4 rounded-md pt-8 pb-8 lg:p-10 lg:pb-16 shadow lg:w-10/12 mx-auto">
+                    <div className="bg-white px-4 rounded-md pt-8 pb-8 lg:p-10 lg:pb-16 shadow lg:w-11/12 xl:w-10/12 mx-auto">
                         {/* <form>
                             <div className="bg-white px-4 rounded-md pt-8 pb-8 lg:p-10 lg:pb-16 shadow fw-500">
                                 <div className="lg:flex">
@@ -87,7 +88,8 @@ export function PKycForm() {
                                 </div>
                             </div>
                         </form> */}
-                        <ProductKyc/>
+                        {/* <ProductKyc/> */}
+                        <VendorKyc/>
                     </div> 
                 </div>
             </div>
