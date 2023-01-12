@@ -106,7 +106,7 @@ const ProductSidebar = () => {
                             onClick={unShow}
                             >
                                 <BsEnvelope className="text-lg" />
-                                <p className="pl-3" id="sideText">Inbox</p>
+                                <p className="pl-3" id="sideText">Messages</p>
                         </NavLink>
                         <NavLink 
                             to="meetings"

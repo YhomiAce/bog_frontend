@@ -113,7 +113,7 @@ const ClientSidebar = () => {
                             onClick={unShow}
                             >
                                 <BsEnvelope className="text-lg" />
-                                <p className="pl-3">Inbox</p>
+                                <p className="pl-3">Messages</p>
                         </NavLink>
                         <NavLink 
                             to="meetings"
