@@ -94,13 +94,25 @@ export default function Header() {
                                 <li className="py-4"><Link to="/shop">Products</Link></li>
                                 <li className="py-4"><Link to="/services">Service Partners</Link></li>
                                 <li className="py-4"><Link to="/blog">Our Blog</Link></li>
+                                <li className="py-4"><Link to="/become-partner">Become a Partner</Link></li>
                                 <li className="py-4"><Link to="/jointeam">Join Our Team</Link></li>
                                 <li className="py-4"><Link to="/contact">Contact Us</Link></li>
                                 <li className="py-4"><Link to="/faqs">FAQs</Link></li>
                                 <li className="pt-8" onClick={CloseMenu}>
-                                    <Link to="/login">
-                                        <Button className="px-10">Login</Button>
+                                    {
+                                        auth?.isAuthenticated ? <Link to="/dashboard">
+                                        <Button className="px-10 bg-primary">Dashboard</Button>
                                     </Link>
+                                    :
+                                    <div>
+                                        <Link to="/login">
+                                            <Button className="px-10 bg-primary">Login</Button>
+                                        </Link>
+                                        <Link to="/signup">
+                                            <Button className="px-10 bg-transparent text-black ml-3">Sign Up</Button>
+                                        </Link>
+                                    </div>
+                                    }
                                 </li>
                             </ul>
                         </div>
