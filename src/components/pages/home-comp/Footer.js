@@ -51,7 +51,7 @@ export default function Footer(){
                             Copyright &copy; {new Date().getFullYear()}{' '} BOG. All Rights Reserved
                         </div>
                         <div className="mt-4 lg:mt-0">
-                            <ul className="flex justify-center lg:text-end">
+                            <ul className="flex justify-center text-center fs-300 md:fs-600 lg:text-end">
                                 <li className="pr-2"><Link to="/terms">Terms & Conditions</Link></li>
                                 <li className="px-2 border-l"><Link to="/privacy">Privacy Policy</Link></li>
                                 <li className="pl-2 border-l"><Link to="/return">Return Policy</Link></li>
