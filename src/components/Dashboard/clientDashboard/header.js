@@ -53,7 +53,7 @@ export default function Header() {
             return (
                 <p key={notify.id} className="my-5 flex" onClick={() =>gotoNotification(notify.id)}>
                     <div>
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667908351/BOG/jot-logo_q4jjyl.png" className="mx-3 w-9 h-9" alt="Notify" />
+                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667908351/BOG/jot-logo_q4jjyl.png" className="mx-3 w-7 h-6" alt="Notify" />
                     </div>
                     <div>
                         <p>{notify.message.substring(0, 20) + "..."}</p>
