@@ -81,8 +81,8 @@ const MeetingListItem = ({isAdmin, filterBy, meetings, removeMeeting, updateMeet
                                         <p className="underline fs-400 pl-1">See Recording</p>
                                     </div>
                                 </MenuItem>}
-                                {isAdmin && <MenuItem onClick={() => myAction('approve', res.id)}>Approve</MenuItem>}
-                                {isAdmin && <MenuItem onClick={() => myAction('decline', res.id)} className="bg-red-600 text-white">Decline</MenuItem>}
+                                {isAdmin && res.approval_status === "pending" && <MenuItem onClick={() => myAction('approve', res.id)}>Approve</MenuItem>}
+                                {isAdmin && res.approval_status === "pending" && <MenuItem onClick={() => myAction('decline', res.id)} className="bg-red-600 text-white">Decline</MenuItem>}
                                 {!isAdmin && filterBy === 'pending' && <MenuItem onClick={() => myAction('cancel', res.id)} className="bg-red-600 text-white">Cancel Meeting</MenuItem>}
                             </MenuList>
                         </Menu>
