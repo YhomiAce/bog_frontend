@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { BsArrowRight, BsSearch } from "react-icons/bs";
-import { Faq, Faq2, Faq3, Faq4, Faq5, Faq6 } from "./home-comp/Faqs";
+import { Faq, Faq2, Faq3, Faq4, Faq5, Faq6, Faq7 } from "./home-comp/Faqs";
 import Footer from "./home-comp/Footer";
 import Header from "./home-comp/Header";
 
@@ -9,22 +9,32 @@ export default function Faqs() {
     const [general, setGeneral] = useState(true);
     const [mobile, setMobile] = useState(false);
     const [safety, setSafety] = useState(false);
+    const [security, setSecurity] = useState(false);
  
   const OpenGeneral = () => {
     setGeneral(true)
     setMobile(false)
     setSafety(false)
+    setSecurity(false)
   };
   const OpenMobile = () => {
     setGeneral(false)
     setMobile(true)
     setSafety(false)
+    setSecurity(false)
   };
   const OpenSafety = () => {
     setGeneral(false)
     setMobile(false)
     setSafety(true)
+    setSecurity(false)
   };
+  const OpenSecurity = () => {
+    setSecurity(true)
+    setGeneral(false)
+    setMobile(false)
+    setSafety(false)
+  }
 
 //   const activeState = {
 //     color: general ? "white" : "black",
@@ -54,7 +64,7 @@ export default function Faqs() {
                 </div>
                 <div className="section">
                     <div className="box">
-                        <div className="lg:flex items-center">
+                        <div className="lg:flex">
                             <div className="lg:w-3/12">
                                 <div className="bg-light py-5 w-10/12">
                                     <div className="px-4">
@@ -64,29 +74,32 @@ export default function Faqs() {
                                     <div className="mt-6">
                                         <ul className="text-gray-600">
                                             <li 
-                                                className="hover:bg-primary  rounded py-2 px-4 hover:text-white" 
+                                                className="hover:bg-blue-100  rounded py-2 px-4 cursor-pointer" 
                                                 style={general ? activeState : undefined}
                                                 onClick={OpenGeneral}
                                                 >
                                                     General
                                             </li>
                                             <li 
-                                                className="hover:bg-primary hover:text-white rounded py-2 px-4"
+                                                className="hover:bg-blue-100 cursor-pointer rounded py-2 px-4"
                                                 onClick={OpenMobile}
                                                 style={mobile ? activeState : undefined}
                                                 >
-                                                    Using the Mobile App
+                                                    Our Services
                                             </li>
                                             <li 
-                                                className="hover:bg-primary hover:text-white  rounded py-2 px-4" 
+                                                className="hover:bg-blue-100 cursor-pointer  rounded py-2 px-4" 
                                                 onClick={OpenSafety}
                                                 style={safety ? activeState : undefined}
                                                 >
-                                                    Safety & Security
+                                                    Return Policy
                                             </li>
-                                            <li className="hover:bg-primary hover:text-white  rounded py-2 px-4">Become a service patner</li>
-                                            <li className="hover:bg-primary hover:text-white  rounded py-2 px-4">Become a product provider</li>
-                                            <li className="hover:bg-primary hover:text-white  rounded py-2 px-4">Terms & Conditions </li>
+                                            <li className="hover:bg-blue-100 cursor-pointer  rounded py-2 px-4"
+                                                onClick={OpenSecurity}
+                                                style={security ? activeState : undefined}
+                                                >
+                                                    Security
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -106,9 +119,14 @@ export default function Faqs() {
                                 )}
                                 {safety && (
                                     <div className="lg:flex justify-around" >
-                                    <div className="lg:w-5/12"><Faq5/></div>
-                                    <div className="lg:w-5/12 mt-6 lg:mt-0"><Faq6/></div>
-                                </div>
+                                        <div className="lg:w-5/12"><Faq5/></div>
+                                        <div className="lg:w-5/12 mt-6 lg:mt-0"><Faq6/></div>
+                                    </div>
+                                )}
+                                {security && (
+                                    <div className="lg:flex" >
+                                        <div className="lg:w-5/12"><Faq7/></div>
+                                    </div>
                                 )}
                             </div>
                         </div>
