@@ -252,7 +252,7 @@ const AdminSidebar = () => {
                                 <p className="pl-3">Testimonials</p>
                         </NavLink>
                         <NavLink 
-                            to="inbox"
+                            to="announcement"
                             className="w-full flex items-center pl-2 py-2 fw-600 my-2"
                             onClick={unShow}
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
