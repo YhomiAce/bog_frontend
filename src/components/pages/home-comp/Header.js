@@ -81,13 +81,13 @@ export default function Header() {
                 </div>
             </div>
             {menuShow && (
-                <div className="w-full bg-op absolute lg:hidden z-40 top-0 min-h-screen">
+                <div className="w-full bg-op fixed lg:hidden z-40 top-0 min-h-screen">
                     <div className="absolute menu lg:hidden w-10/12 bg-white px-6 z-40 top-0 min-h-screen">
                         <div className="flex justify-between pt-5">
                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669563824/BOG/logo_1_1_ubgtnr.png" alt="logo" className="w-36" />
                             <MdOutlineCancel onClick={() => { setMenuShow(false) }} />
                         </div>
-                        <div className="mt-10">
+                        <div className="mt-5">
                             <ul className="list-none">
                                 <li className="py-4"><Link to="/">Home</Link></li>
                                 <li className="py-4"><Link to="/about">About</Link></li>
