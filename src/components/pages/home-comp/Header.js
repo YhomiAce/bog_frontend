@@ -81,26 +81,38 @@ export default function Header() {
                 </div>
             </div>
             {menuShow && (
-                <div className="w-full bg-op absolute lg:hidden z-40 top-0 min-h-screen">
+                <div className="w-full bg-op fixed lg:hidden z-40 top-0 min-h-screen">
                     <div className="absolute menu lg:hidden w-10/12 bg-white px-6 z-40 top-0 min-h-screen">
                         <div className="flex justify-between pt-5">
                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669563824/BOG/logo_1_1_ubgtnr.png" alt="logo" className="w-36" />
                             <MdOutlineCancel onClick={() => { setMenuShow(false) }} />
                         </div>
-                        <div className="mt-10">
+                        <div className="mt-5">
                             <ul className="list-none">
                                 <li className="py-4"><Link to="/">Home</Link></li>
                                 <li className="py-4"><Link to="/about">About</Link></li>
                                 <li className="py-4"><Link to="/shop">Products</Link></li>
                                 <li className="py-4"><Link to="/services">Service Partners</Link></li>
                                 <li className="py-4"><Link to="/blog">Our Blog</Link></li>
+                                <li className="py-4"><Link to="/become-partner">Become a Partner</Link></li>
                                 <li className="py-4"><Link to="/jointeam">Join Our Team</Link></li>
                                 <li className="py-4"><Link to="/contact">Contact Us</Link></li>
                                 <li className="py-4"><Link to="/faqs">FAQs</Link></li>
                                 <li className="pt-8" onClick={CloseMenu}>
-                                    <Link to="/login">
-                                        <Button className="px-10">Login</Button>
+                                    {
+                                        auth?.isAuthenticated ? <Link to="/dashboard">
+                                        <Button className="px-10 bg-primary">Dashboard</Button>
                                     </Link>
+                                    :
+                                    <div>
+                                        <Link to="/login">
+                                            <Button className="px-10 bg-primary">Login</Button>
+                                        </Link>
+                                        <Link to="/signup">
+                                            <Button className="px-10 bg-transparent text-black ml-3">Sign Up</Button>
+                                        </Link>
+                                    </div>
+                                    }
                                 </li>
                             </ul>
                         </div>

@@ -93,6 +93,7 @@ export const SendMessage = ({closeModal}) => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                     >
+                        <option selected>Select Receiver</option>
                         <option value="all">All</option>
                         <option value="private_client">Private Clients</option>
                         <option value="corporate_client">Corporate Clients</option>
