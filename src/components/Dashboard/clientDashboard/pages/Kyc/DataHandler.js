@@ -32,7 +32,6 @@ export const saveData = async ({url, setLoading, formData, user, setFormData, se
                 ...formData,
                 userType: user.userType
             }
-            console.log(payload);
             const newInfo = await Axios.post(url, payload, config);
             setFormData({
                 ...formData,
@@ -73,7 +72,6 @@ export const hasFileDelete = async ({url, id, user, setLoading, setData, setFeet
     try {
         setLoading(true);
         const myUrl = `/${url}/delete/${id}`
-        console.log(myUrl)
         await Axios.delete(myUrl, config);
         await fetcherForFiles({url, user, setData})
         setLoading(false);
@@ -105,7 +103,6 @@ export const loadData = async (url, user, formData, setFormData) => {
         userType: user.userType
     }
     const newInfo = await Axios.post(url, payload, config);
-    console.log(newInfo.data);
     setFormData({
         ...formData,
         ...newInfo.data,

@@ -38,7 +38,6 @@ export const UploadDoc = ({handleOpen}) => {
     const isUploaded = (name) => {
         return allDocuments?.filter(doc => doc.name === name && doc);
     }
-    console.log(formData)
     const SelectFile = ({proposedFileArray, isUploaded}) => {
         const myFiles = proposedFileArray.map((file, i) => {
             const uploaded = isUploaded(file.as)

@@ -22,7 +22,6 @@ export const SupplyCat = ({handleOpen}) => {
         const { value, checked } = e.target;
         const { categories } = formData;
         if (checked) {
-            console.log(value)
             setFormData({
                 categories: [...categories, value]
             })
