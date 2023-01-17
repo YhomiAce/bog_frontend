@@ -71,7 +71,7 @@ export const JobExecution = ({handleOpen}) => {
                         className='w-full mt-2 p-2 border border-gray-400 rounded'
                     />
                     <input
-                        value={res.date.split("T")[0]}
+                        value={res.date?.split("T")[0]}
                         onChange={(e) => updateValue(e.target.value, "organisation_name")} 
                         type="date"
                         disabled

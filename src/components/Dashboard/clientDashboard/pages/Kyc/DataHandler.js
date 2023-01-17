@@ -24,7 +24,6 @@ export const saveData = async ({url, setLoading, formData, user, setFormData, se
     try {
         const streamUrl = url.split('/')[1]
         setLoading(true);
-        console.log(hasFile);
         if(hasFile) {
             await Axios.post(url, formData, config);
             await fetcherForFiles({url: streamUrl, user, setData: setFormData})
@@ -106,6 +105,7 @@ export const loadData = async (url, user, formData, setFormData) => {
         userType: user.userType
     }
     const newInfo = await Axios.post(url, payload, config);
+    console.log(newInfo.data);
     setFormData({
         ...formData,
         ...newInfo.data,

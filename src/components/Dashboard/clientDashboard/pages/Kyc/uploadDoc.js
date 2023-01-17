@@ -10,8 +10,7 @@ export const UploadDoc = ({handleOpen}) => {
     const [isLoaded, setDataLoaded] = useState(false);
     const [feedback, setFeetback] = useState(false);
     const [allDocuments, setAllDocuments] = useState()
-    const [formData, setFormData] = useState({
-    });
+    const [formData, setFormData] = useState({});
     const user = useSelector((state) => state.auth.user);
     useEffect(() => {
         !isLoaded && fetcherForFiles({url: "kyc-documents",user, setData: setAllDocuments})
@@ -39,19 +38,18 @@ export const UploadDoc = ({handleOpen}) => {
     const isUploaded = (name) => {
         return allDocuments?.filter(doc => doc.name === name && doc);
     }
-
+    console.log(formData)
     const SelectFile = ({proposedFileArray, isUploaded}) => {
         const myFiles = proposedFileArray.map((file, i) => {
             const uploaded = isUploaded(file.as)
-            console.log(uploaded);
             if(uploaded.length === 0) {
                 return (
                     <div className="mt-3" key={i}>
                         <label>{file.title}</label>
                         <input
+                            type="file"
                             name={file.as}
                             onChange={(e) => updateValue(e.target.files[0], file.as)}
-                            type="file"
                             className='w-full mt-2 p-2 border border-gray-400 rounded'
                         />
                     </div>
@@ -60,7 +58,7 @@ export const UploadDoc = ({handleOpen}) => {
                 return (
                     <div className="mt-3"  key={i}>
                         <label>{file.title}</label><div className="flex justify-between">
-                            <a href={uploaded[0].file} className="mt-3 text-blue-600">view document</a>
+                            <a href={uploaded[0].file}  className="mt-3 text-blue-600">view document</a>
                             <button onClick={() => hasFileDelete({url: "kyc-documents", id: uploaded[0].id, user, setLoading, setData: setAllDocuments, setFeetback}) } className="btn-primary bg-red-600 lg:px-7">
                                 Delete
                             </button>

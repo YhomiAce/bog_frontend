@@ -22,6 +22,7 @@ export const SupplyCat = ({handleOpen}) => {
         const { value, checked } = e.target;
         const { categories } = formData;
         if (checked) {
+            console.log(value)
             setFormData({
                 categories: [...categories, value]
             })
@@ -32,14 +33,14 @@ export const SupplyCat = ({handleOpen}) => {
         }
     }
 
-    console.log(formData.categories)
     const dataLoader = () => {
         const url = "/kyc-supply-category/fetch";
         loadData(url, user, formData, setFormData)
     }
     const DataSaver = () => {
         const url = "/kyc-supply-category/create";
-        saveData({url, setLoading, ...formData, categories: formData.categories.toString(), user, setFormData, setFeetback});
+        const newData = {...formData, categories: formData.categories.toString()}
+        saveData({url, setLoading, formData: newData, user, setFormData, setFeetback, hasFile: false});
     }
     let newValue = {};
     const updateValue = (newVal, variable) => {
