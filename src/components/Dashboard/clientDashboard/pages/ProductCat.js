@@ -17,6 +17,7 @@ export default function ProductsCategory() {
     const products = useRef(null);
 
     const [adminAdd, setAdminAdd] = useState(false);
+
     const categories = useSelector((state) => state.products.categories);
 
     function CloseModal() {
