@@ -98,8 +98,6 @@ const ProductReducer = (state = initialState, action) => {
             }
         case ActionType.UPDATE_PRODUCT:
             const oldArr = [...state.adminProducts];
-            console.log(oldArr);
-            console.log(payload);
             // const productElem = oldArr.find(where => where.id === payload.id);
             const prodIndex = oldArr.findIndex(where => where.id === payload.id);            
             oldArr[prodIndex] = payload;
