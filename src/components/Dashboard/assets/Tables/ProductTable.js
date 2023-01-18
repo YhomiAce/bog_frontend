@@ -127,7 +127,7 @@ export default function ProductTable({ status }) {
     const {value, data} = row
     const selected = data.find(where => where.id === value);
     setSelectedProduct(selected);
-    setEditModal(true)
+    setProductDelete(true)
   }
 
   const editProduct = (row) => {
