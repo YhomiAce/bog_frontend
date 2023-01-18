@@ -69,7 +69,7 @@ export const addProduct = (payload) => {
 
 export const DeleteCategory = (payload) => {
     return {
-        type: ActionType.DELETE_PRODUCT,
+        type: ActionType.DELETE_CATEGORY,
         payload
     }
 }
@@ -80,10 +80,11 @@ export const addCategory = (payload) => {
         payload
     }
 }
-export const editCategory = (payload) => {
+export const editCategory = (payload, id) => {
     return {
         type: ActionType.EDIT_CATEGORY,
         payload,
+        id
     }
 }
 
@@ -358,8 +359,7 @@ export const removeCategory = (categoryId, saveLoading) => {
         try {
             dispatch(loading());
             const url = `/product/category/${categoryId}`
-            const response = await axios.delete(url);
-            console.log(response);
+            await axios.delete(url);
             dispatch(DeleteCategory(categoryId));
             saveLoading();
             Swal.fire({
@@ -391,10 +391,14 @@ export const updateCategory = (payload, saveLoading, categoryId) => {
     return async (dispatch) => {
         try {
             dispatch(loading());
-            const url = `/product/category/${categoryId}`
-            const response = await axios.patch(url, payload);
+            const url = `/product/category/${categoryId}`;
+            const sentPayload = {
+                name: payload.name,
+                description: payload.description
+            };
+            const response = await axios.patch(url, sentPayload);
             console.log(response);
-            dispatch(editCategory(payload));
+            dispatch(editCategory(payload, categoryId));
             saveLoading();
             Swal.fire({
                 title: "Success",
@@ -468,7 +472,6 @@ export const updateProduct = (payload, productId, saveLoading) => {
                 },
             }
             const response = await axios.patch(url, payload, config);
-            console.log(response);
             dispatch(editProduct(response.data));
             saveLoading();
             Swal.fire({

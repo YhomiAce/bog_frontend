@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import EditCategoryModal from "../Product/Modals/EditCategoryModal";
+import DeleteCategoryModal from "../Product/Modals/DeleteCategoryModal";
+
 import {
     Menu,
     MenuHandler,
@@ -12,9 +14,15 @@ import {
 const CategoryItem = ({ item, sn }) => {
   
   const [adminEdit, setAdminEdit] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+
 
   function CloseModal() {
     setAdminEdit(false)
+  }
+
+  function CloseDelete() {
+    setDeleteModal(false)
   }
 
   return (
@@ -36,7 +44,7 @@ const CategoryItem = ({ item, sn }) => {
                     </MenuHandler>
                     <MenuList className="w-16 bg-gray-100 fw-600 text-black">
                       <MenuItem onClick={() => setAdminEdit(!adminEdit)}>View</MenuItem>
-                      <MenuItem>Delete</MenuItem>
+                      <MenuItem onClick={() => setDeleteModal(!deleteModal)}>Delete</MenuItem>
                     </MenuList>
                   </Menu>
         </div>
@@ -44,6 +52,10 @@ const CategoryItem = ({ item, sn }) => {
       
       {adminEdit && (
         <EditCategoryModal CloseModal={CloseModal} itemDetails={item} />
+      )}
+
+      {deleteModal && (
+        <DeleteCategoryModal category={item} CloseDelete={CloseDelete} isAdmin={true} />
       )}
 
 </tr>
