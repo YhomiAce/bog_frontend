@@ -164,14 +164,14 @@ export default function ProductTable({ status }) {
       {
         Header: 'Action',
         accessor: 'id',
-        Cell: (row) => <Menu placement="left-start" className="w-16">
+        Cell: (row) => <Menu placement="bottom-start" className="w-16">
           <MenuHandler>
             <Button className="border-none bg-transparent shadow-none hover:shadow-none text-black"><button className="lg:text-xl"><BsThreeDotsVertical /></button></Button>
           </MenuHandler>
           <MenuList className="w-16 bg-gray-100 fw-600 text-black">
             <MenuItem onClick={() => gotoDetailsPage(row.value)}>View Details</MenuItem>
             <MenuItem>Edit Product</MenuItem>
-            <MenuItem onClick={() => changeDeleteProduct(row)} className="bg-red-600 text-white">Delete</MenuItem>
+            <MenuItem onClick={() => changeDeleteProduct(row)} className="bg-gray-100 text-black">Delete</MenuItem>
           </MenuList>
         </Menu>,
       },

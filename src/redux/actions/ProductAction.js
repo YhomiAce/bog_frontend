@@ -76,14 +76,14 @@ export const DeleteCategory = (payload) => {
 
 export const addCategory = (payload) => {
     return {
-        type: ActionType.CREATE_PRODUCT,
+        type: ActionType.ADD_CATEGORY,
         payload
     }
 }
 export const editCategory = (payload) => {
     return {
-        type: ActionType.CREATE_PRODUCT,
-        payload
+        type: ActionType.EDIT_CATEGORY,
+        payload,
     }
 }
 
@@ -387,20 +387,20 @@ export const removeCategory = (categoryId, saveLoading) => {
     }
 }
 
-export const updateCategory = (categoryId, saveLoading) => {
+export const updateCategory = (payload, saveLoading, categoryId) => {
     return async (dispatch) => {
         try {
             dispatch(loading());
             const url = `/product/category/${categoryId}`
-            const response = await axios.delete(url);
+            const response = await axios.patch(url, payload);
             console.log(response);
-            dispatch(editCategory(categoryId));
+            dispatch(editCategory(payload));
             saveLoading();
             Swal.fire({
                 title: "Success",
                 imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",
                 imageWidth: "75px",
-                text: "Category deleted successfully",
+                text: "Category updated successfully",
                 buttonsStyling: "false",
                 confirmButtonText: "Continue",
                 confirmButtonColor: "#3F79AD",

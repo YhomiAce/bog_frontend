@@ -55,6 +55,17 @@ const ProductReducer = (state = initialState, action) => {
                 categories: state.categories.concat(payload),
                 error: null,
             }
+        case ActionType.EDIT_CATEGORY:
+            const oldCategories = [...state.categories];
+            console.log(oldCategories);
+            const catIndex = oldCategories.findIndex(where => where.name === payload.name);
+            oldCategories[catIndex] = payload;
+            return {
+                ...state,
+                isLoading: false,
+                categories: oldCategories,
+                error: null,
+            }
         case ActionType.UPDATE_PRODUCT_STATUS:
             console.log(payload);
             const oldProducts = [...state.userProducts];
