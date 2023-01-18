@@ -57,7 +57,7 @@ export default function Settings() {
             </Tabs>
           </div>
           <div>
-            <div className="bg-white w-full py-6 lg:px-6 px-3 rounded-lg mt-6">
+            {/*<div className="bg-white w-full py-6 lg:px-6 px-3 rounded-lg mt-6">
               <p className="fs-700 fw-600">Your Account Status</p>
               <div className="flex py-6">
                 <p className="px-4 py-2 bg-green-500 fw-600 fs-400 text-white rounded-lg">Email Verified</p>
@@ -70,7 +70,7 @@ export default function Settings() {
               <p className="mb-6 mt-3">You have not submitted your KYC application to verify your indentity.</p>
               <button className="btn-primary" onClick={() => {navigate("/dashboard/kyc")}}>Click to Proceed</button>
               <p className="mt-7 text-red-600">* KYC verification required for verification badge</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

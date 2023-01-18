@@ -11,7 +11,7 @@ const initialState = {
 }
 
 const ProductReducer = (state = initialState, action) => {
-    const { type, payload } = action
+    const { type, payload, id } = action
     switch (type) {
         case ActionType.FETCH_PRODUCTS:
             return {
@@ -58,7 +58,7 @@ const ProductReducer = (state = initialState, action) => {
         case ActionType.EDIT_CATEGORY:
             const oldCategories = [...state.categories];
             console.log(oldCategories);
-            const catIndex = oldCategories.findIndex(where => where.name === payload.name);
+            const catIndex = oldCategories.findIndex(where => where.id === id);
             oldCategories[catIndex] = payload;
             return {
                 ...state,
@@ -97,15 +97,16 @@ const ProductReducer = (state = initialState, action) => {
                 error: null,
             }
         case ActionType.UPDATE_PRODUCT:
+            const oldArr = [...state.adminProducts];
+            console.log(oldArr);
             console.log(payload);
-            const oldArr = [...state.userProducts];
             // const productElem = oldArr.find(where => where.id === payload.id);
             const prodIndex = oldArr.findIndex(where => where.id === payload.id);            
             oldArr[prodIndex] = payload;
             return {
                 ...state,
                 isLoading: false,
-                userProducts: oldArr,
+                adminProducts: oldArr,
                 error: null,
             }
         case ActionType.DELETE_PRODUCT:

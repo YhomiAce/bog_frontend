@@ -16,7 +16,9 @@ const EditCategoryModal = ({ CloseModal, itemDetails }) => {
     const submitHandler = (value) => {
         setLoading(true);
         const payload = {
-            ...value
+            id: itemDetails.id,
+            ...value,
+            totalProducts: itemDetails.totalProducts
         };
         dispatch(updateCategory(payload, stopLoading, itemDetails.id));
     }

@@ -20,6 +20,7 @@ import { useExportData } from "react-table-plugins";
 import Papa from "papaparse";
 import * as XLSX from 'xlsx'
 import DeleteModal from "../../clientDashboard/pages/Product/Modals/DeleteModal";
+import AdminEditProduct from "../../clientDashboard/pages/Product/Modals/AdminEditProduct";
 
 
 
@@ -89,8 +90,8 @@ function getExportFileBlob({ columns, data, fileType, fileName }) {
 export default function ProductTable({ status }) {
   let adminProducts = useSelector((state) => state.products.adminProducts);
   const [productDelete, setProductDelete] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null)
-  
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [editModal, setEditModal] = useState(false);
 
   function CloseDelete() {
     setProductDelete(false)
@@ -126,7 +127,18 @@ export default function ProductTable({ status }) {
     const {value, data} = row
     const selected = data.find(where => where.id === value);
     setSelectedProduct(selected);
-    setProductDelete(true)
+    setEditModal(true)
+  }
+
+  const editProduct = (row) => {
+    const { value, data } = row
+    const selected = data.find(where => where.id === value);
+    setSelectedProduct(selected);
+    setEditModal(true)
+  }
+
+  function CloseModal() {
+    setEditModal(false)
   }
 
 
@@ -170,7 +182,7 @@ export default function ProductTable({ status }) {
           </MenuHandler>
           <MenuList className="w-16 bg-gray-100 fw-600 text-black">
             <MenuItem onClick={() => gotoDetailsPage(row.value)}>View Details</MenuItem>
-            <MenuItem>Edit Product</MenuItem>
+            <MenuItem onClick={() => editProduct(row)}>Edit Product</MenuItem>
             <MenuItem onClick={() => changeDeleteProduct(row)} className="bg-gray-100 text-black">Delete</MenuItem>
           </MenuList>
         </Menu>,
@@ -190,6 +202,9 @@ export default function ProductTable({ status }) {
       </div>
       {productDelete && (
         <DeleteModal product={selectedProduct} CloseDelete={CloseDelete} isAdmin={true} />
+      )}
+      {editModal && (
+        <AdminEditProduct CloseModal={CloseModal} product={selectedProduct} />
       )}
     </>
   );
