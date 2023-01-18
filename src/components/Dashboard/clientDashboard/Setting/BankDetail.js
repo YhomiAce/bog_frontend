@@ -152,7 +152,7 @@ const BankDetail = () => {
                 </div> : <div className="mt-3 w-10/12">
                     <label className="block mb-1 fw-500">Select Bank</label>
                     <SelectableItem
-                        placeholder="Select Podio App"
+                        placeholder="Select Bank Name"
                         options={options}
                         handleChange={handleBankChange}
                         className="w-10/12 py-2 px-3 rounded-lg bg-light border border-gray-400"
