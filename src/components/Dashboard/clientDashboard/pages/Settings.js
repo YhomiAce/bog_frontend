@@ -5,11 +5,11 @@ import ChangePassword from "../Setting/ChangePassword";
 import BankDetail from "../Setting/BankDetail";
 import { Breadcrumbs } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export default function Settings() {
 
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
 
   return (
     <div className="p-5">
