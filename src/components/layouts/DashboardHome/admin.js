@@ -12,14 +12,12 @@ import { getAdminOrders } from '../../../redux/actions/OrderAction';
 // import { format } from 'date-fns';
 // import Moment from 'react-moment';
 import * as moment from 'moment'
+import { formatNumber } from "../../../services/helper";
 // import Moment from 'react-moment';
 
 
 export default function AdminDashboard(status) {
     const user = useSelector((state) => state.auth.user);
-    //  const formatNumber = (number) => {
-    //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    // }
     const formatStatus = (status) => {
         switch (status) {
             case "in_review":
@@ -38,11 +36,7 @@ export default function AdminDashboard(status) {
 
     }
     let adminOrders = useSelector((state) => state.orders.adminOrders);
-    //  if (status) {
-    //     adminOrders = adminOrders.filter(where => where.status === status)
-    //  }
-    console.log(adminOrders);
-    // console.log(`====== ${adminOrders}`);
+    
 
   const dispatch = useDispatch();
     useEffect(() => {
@@ -80,17 +74,19 @@ export default function AdminDashboard(status) {
         <div className="mt-3">
           <div className="lg:grid-4 justify-between fs-500 fw-600">
             <div className="bg-blue-100 px-4 py-3 rounded flex justify-between items-center shades">
-              <div>
-                <p className="text-xxl fw-600 pb-2 text-xl">147</p>
-                <p className="text-gray-600">Total Users</p>
-              </div>
-              <div className="">
-                <img
-                  src={require("../images/users.png")}
-                  alt="project"
-                  className="-bottom-3 relative w-20"
-                />
-              </div>
+              <Link to="projectsadmin" className="flex justify-between items-center w-full">
+                <div>
+                    <p className="text-xxl fw-600 pb-2 text-xl">147</p>
+                    <p className="text-gray-600">Total Projects</p>
+                </div>
+                <div className="">
+                    <img
+                    src={require("../images/users.png")}
+                    alt="project"
+                    className="-bottom-3 relative w-20"
+                    />
+                </div>
+              </Link>
             </div>
             <div className="bg-orange-100 mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="client" className="flex justify-between items-center w-full">
@@ -159,15 +155,15 @@ export default function AdminDashboard(status) {
                     <option>weekly</option>
                 </select>
                 </div>
-                <div className="mt-8">
-                <div>
-                    <p className="fw-600 text-lg bg-secondary text-white px-6 rounded mb-3">Orders Chart</p>
-                    <ChartLine />
-                </div>
                 <div className="mt-4">
-                    <p className="fw-600 text-lg bg-secondary text-white px-6 rounded mb-3">Projects Chart</p>
-                    <ProjectChart />
-                </div>
+                    <div className="bg-light p-4 rounded">
+                        <p className="fw-600 text-lg text-primary border-b rounded mb-3">Orders Chart</p>
+                        <ChartLine />
+                    </div>
+                    <div className="mt-4 bg-light p-4 rounded">
+                        <p className="fw-600 text-lg text-primary border-b  rounded mb-3">Projects Chart</p>
+                        <ProjectChart />
+                    </div>
                 </div>
                 <div>
                     <div></div>
@@ -191,131 +187,60 @@ export default function AdminDashboard(status) {
                     <CardBody>
                     <div className="overflow-x-auto">
                         <table className="items-center w-full bg-transparent border-collapse">
-                        <thead className="thead-light rounded-lg bg-gray-100">
+                        <thead className="thead-light rounded-lg bg-light">
                             <tr className="rounded-lg">
-                            <th className="px-2 align-middle fw-500 py-3 text-sm whitespace-nowrap text-left">
-                                S/N
-                            </th>
-                            <th className="px-2 align-middle fw-500 py-3 text-sm whitespace-nowrap text-left">
-                                Order ID
-                            </th>
-                            <th className="px-2 align-middle fw-500 py-3 text-sm whitespace-nowrap text-left">
-                                Product Name
-                            </th>
-                            <th className="px-2 align-middle fw-500 py-3 text-sm whitespace-nowrap text-left">
-                                Date
-                            </th>
-                            <th className="px-2 align-middle fw-500 py-3 text-sm whitespace-nowrap text-left">
-                                Order Status
-                            </th>
+                                <th className="px-2 align-middle fw-600 py-3 text-primary whitespace-nowrap text-left">
+                                    S/N
+                                </th>
+                                <th className="px-2 align-middle fw-600 py-3 text-primary whitespace-nowrap text-left">
+                                    Order ID
+                                </th>
+                                <th className="px-2 align-middle fw-600 py-3 text-primary whitespace-nowrap text-left">
+                                    Product Name
+                                </th>
+                                <th className="px-2 align-middle fw-600 py-3 text-primary whitespace-nowrap text-left">
+                                    Date
+                                </th>
+                                <th className="px-2 align-middle fw-600 py-3 text-primary whitespace-nowrap text-left">
+                                    Order Price
+                                </th>
+                                <th className="px-2 align-middle fw-600 py-3 text-primary whitespace-nowrap text-left">
+                                    Order Status
+                                </th>
                             </tr>
-                                      </thead>
-                                      
+                        </thead>
                         <tbody className="fw-400">
-                                           {
-                                              adminOrders.length > 0 ? adminOrders.slice(0, 9).map((item, index) => {
-                                return (<tr>
-            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        {/* {sn} */}
-                                        {index + 1}
-                                        
-            </td>
-            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                {item.orderSlug}
-            </td>
-            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                {item.order_items[0].product.name}
-            </td>
-            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                        {/* {item.order_items.category.name} */}
-                                        {/* {item.createdAt}    */}
-                                        {/* {moment} */}
-                                        {moment(item.createdAt).format("MMMM Do YYYY , h:mm:ss a")}{" "}
-             </td>
-            {/* <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                NGN {formatNumber(item.totalAmount)}
-            </td> */}
-            <td className="border-b text-blue-600 border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                {formatStatus(item.status)}
-            </td>
-            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                <div className="flex text-xl">
-                    {/* <p className="bg-orange-100" onClick={() => gotoDetailsPage(item.id)}><BsThreeDotsVertical /></p> */}
-                </div>
-            </td>
-        </tr>)
-                                // return <AdminProductListItem key={product.id} item={product} sn={index + 1} />
-                            }) : null
-                                          }
-                                          
-                            {/* <tr> */}
-                            {/* <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                1
-                            </th>
-                            <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                Granite-VAC-2OE42
-                            </td>
-                            <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                Granite
-                            </td>
-                            <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                10/10/2022
-                            </td>
-                            <td className=" text-green-600 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                Delivered
-                            </td>
-                            </tr> */}
-                            <tr>
-                            {/* <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                2
-                            </th>
-                            <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                Sand-DCL-20E42
-                            </td>
-                            <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                Sand
-                            </td>
-                            <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                19/10/2022
-                            </td>
-                            <td className=" text-blue-600 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                Awaiting Delivery
-                            </td>
-                            </tr>
-                            <tr> */}
-                            {/* <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                3
-                            </th>
-                            <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                Cement-PDL-2OE42
-                            </td>
-                            <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                Cement
-                            </td>
-                            <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                23/11/2022
-                            </td>
-                            <td className=" text-red-600 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                Canceled
-                            </td>
-                            </tr>
-                            <tr> */}
-                            {/* <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                4
-                            </th>
-                            <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                Steel-XBL-2OLBB
-                            </td>
-                            <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                Steel
-                            </td>
-                            <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                24/11/2022
-                            </td>
-                            <td className=" text-green-600 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                Delivered
-                            </td> */}
-                            </tr>
+                            {
+                                adminOrders.length > 0 ? adminOrders.slice(0, 9).map((item, index) => {
+                                    return (
+                                        <tr>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                {index + 1}                    
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                {item.orderSlug}
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                {item.order_items[0].product.name}
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                {moment(item.createdAt).format("MMMM Do YYYY , h:mm:ss a")}{" "}
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                NGN {formatNumber(item.totalAmount)}
+                                            </td>
+                                            <td className="border-b text-blue-600 border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                {formatStatus(item.status)}
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                <div className="flex text-xl">
+                                                    {/* <p className="bg-orange-100" onClick={() => gotoDetailsPage(item.id)}><BsThreeDotsVertical /></p> */}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                }) : null
+                            }
                         </tbody>
                         </table>
                     </div>

@@ -127,13 +127,13 @@ export const FinanceData = ({handleOpen}) => {
                     className='w-full mt-2 p-2 border border-gray-400 rounded'
                 />
             </div>
-            {loading ? <Spinner /> : <button onClick={DataSaver} className="btn-primary bg-green-600 lg:px-7">
-                Save
-            </button>}
-            <div className='pt-8 flex justify-between'>
-                <p className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600' onClick={() => handleOpen(5)}>Previous</p>
-                <p className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600' onClick={() => handleOpen(7)}>Next</p>
-            </div>
+            {loading ? <Spinner /> : 
+                <div className='pt-8 flex justify-end'>
+                    <button onClick={DataSaver} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>
+                        Save
+                    </button>
+                </div>
+            }
         </div>
         {feedback &&
             <ActionFeedBack

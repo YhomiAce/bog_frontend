@@ -94,11 +94,13 @@ export const UploadDoc = ({handleOpen}) => {
   return (
     <form className='lg:px-4 scale-ani'>
         {allDocuments ? <SelectFile isUploaded={isUploaded} proposedFileArray={fileList} /> : <Spinner />}
-        <div className='pt-8 flex justify-between'>
-            <p className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600' onClick={() => handleOpen(6)}>Previous</p>
+        <div className=''>
             {!loading ?
-                <p onClick={DataSaver} className='w-36 cursor-pointer rounded-lg py-3 text-center bg-primary text-white fw-600'>Submit Form</p>
-                :
+                <div className='pt-8 flex justify-end'>
+                    <button onClick={DataSaver} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>
+                        Save
+                    </button>
+                </div>                :
                 <Spinner />
             }
         </div>
