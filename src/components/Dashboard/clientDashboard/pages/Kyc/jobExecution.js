@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
+import { BsDashCircleFill, BsPlusCircleFill } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
+import { FcDeleteDatabase } from 'react-icons/fc'
 import Spinner from '../../../../layouts/Spinner';
 import ActionFeedBack from '../Modals/ActionFeedBack';
 import { hasFileDelete, fetcherForFiles, saveData } from './DataHandler';
@@ -164,3 +166,124 @@ export const JobExecution = ({handleOpen}) => {
     </div>
   )
 }
+
+
+export const NewApp = () => {
+
+    const [formValues, setFormValues] = useState([{ name: "", email : ""}])
+    const [mini, setMini] = useState(false)
+
+    let handleChange = (i, e) => {
+        let newFormValues = [...formValues];
+        newFormValues[i][e.target.name] = e.target.value;
+        setFormValues(newFormValues);
+      }
+    
+    let addFormFields = () => {
+        setFormValues([...formValues, { name: "", email: "" }])
+      }
+    
+    let removeFormFields = (i) => {
+        let newFormValues = [...formValues];
+        newFormValues.splice(i, 1);
+        setFormValues(newFormValues)
+    }
+    
+    let handleSubmit = (event) => {
+        event.preventDefault();
+        alert(JSON.stringify(formValues));
+    }
+
+    return (
+        <form  onSubmit={handleSubmit}>
+          {formValues.map((element, index) => (
+            <div className="form-inline mt-6" key={index}>
+              <div className='flex bg-light p-5 rounded-lg justify-between items-center'>
+                <p className='fw-600 text-lg'>Job Entry {index + 1}</p>
+                <p className='flex items-center'> {
+                        index ? 
+                            <button type="button"  className="mr-4 text-xxl" onClick={() => removeFormFields(index)}><FcDeleteDatabase/></button> 
+                            : null
+                    }
+                    {mini? <BsDashCircleFill className='text-primary text-xl' onClick={() => setMini(false)}/> : <BsPlusCircleFill className='text-primary text-xl' onClick={() => setMini(true)}/>}</p>
+              </div>
+              {
+                mini && (
+                    <div className='px-5'>
+                        <div className='lg:flex'>
+                            <div className='lg:w-6/12 lg:pr-3 mt-5'>
+                                <label className='fw-500'>Name</label>
+                                <input 
+                                    type="text" 
+                                    name="name" 
+                                    value={element.name || ""} 
+                                    onChange={e => handleChange(index, e)} 
+                                    className='w-full mt-2 p-2 border border-gray-400 rounded'
+                                    />
+                            </div>
+                            <div className='lg:w-6/12 lg:pl-3 mt-5'>
+                                <label className='fw-500'>Value (NGN)</label>
+                                <input 
+                                    type="text" 
+                                    name="name" 
+                                    value={element.name || ""} 
+                                    onChange={e => handleChange(index, e)} 
+                                    className='w-full mt-2 p-2 border border-gray-400 rounded'
+                                    />
+                            </div>
+                        </div>
+                        <div className='lg:flex'>
+                                <div className='lg:w-6/12 lg:pr-3 mt-5'>
+                                    <label className='fw-500'>Date</label>
+                                    <input 
+                                        type="text" 
+                                        name="name" 
+                                        value={element.name || ""} 
+                                        onChange={e => handleChange(index, e)} 
+                                        className='w-full mt-2 p-2 border border-gray-400 rounded'
+                                        />
+                                </div>
+                                <div className='lg:w-6/12 lg:pl-3 mt-5'>
+                                    <label className='fw-500'>Provisional Document</label>
+                                    <input 
+                                        type="text" 
+                                        name="name" 
+                                        value={element.name || ""} 
+                                        onChange={e => handleChange(index, e)} 
+                                        className='w-full mt-2 p-2 border border-gray-400 rounded'
+                                        />
+                                </div>
+                        </div>
+                        <div className='mt-5'>
+                            <label className='fw-500'>Number of experience(years) as a contractor/sub-contractor</label>
+                            <input 
+                                type="number" 
+                                name="name" 
+                                value={element.name || ""} 
+                                onChange={e => handleChange(index, e)} 
+                                className='w-full mt-2 p-2 border border-gray-400 rounded'
+                                />
+                        </div>
+                        <div className='mt-5'>
+                            <label className='fw-500'>If the company is a subsidiary, what involvement, if any, will the parent company have?</label>
+                            <textarea
+                                type="number" 
+                                name="name" 
+                                value={element.name || ""} 
+                                onChange={e => handleChange(index, e)} 
+                                className='w-full mt-2 h-24 p-2 border border-gray-400 rounded'
+                                />
+                        </div>
+                    </div>
+                )
+              }
+            </div>
+          ))}
+          <div className="mt-10 flex justify-between items-center">
+              <button className='rounded-lg px-2 lg:px-6 py-3 text-center bg-secondary text-white fw-600' type="button" onClick={() => addFormFields()}>Add Job Experience</button>
+              <button className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600' type="submit">Save</button>
+          </div>
+      </form>
+    )
+}
+

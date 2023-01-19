@@ -140,13 +140,17 @@ export const OrganisationInfo = ({handleOpen}) => {
                 className='w-full p-2 mt-2 border border-gray-400 rounded h-24'
             />
         </div>  
-        {loading ? <Spinner /> : <button onClick={DataSaver} className="btn-primary bg-green-600 lg:px-7">
-                Save
-        </button>}
-        <div className='pt-8 flex justify-between'>
+        {loading ? <Spinner /> : 
+            <div className='pt-8 flex justify-end'>
+                <button onClick={DataSaver} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>
+                    Save
+                </button>
+            </div>
+        }
+        {/* <div className='pt-8 flex justify-between'>
             <p className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600' onClick={() => handleOpen(1)}>Previous</p>
             <p className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600' onClick={() => handleOpen(3)}>Next</p>
-        </div>
+        </div> */}
         {feedback &&
             <ActionFeedBack
                 closeFeedBack={() => setFeetback(false)}
