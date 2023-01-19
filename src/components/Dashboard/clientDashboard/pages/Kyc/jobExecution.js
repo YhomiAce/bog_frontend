@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { FcDeleteDatabase } from 'react-icons/fc'
 import Spinner from '../../../../layouts/Spinner';
 import ActionFeedBack from '../Modals/ActionFeedBack';
-import { hasFileDelete, fetcherForFiles, saveData, loadData } from './DataHandler';
+import { hasFileDelete, fetcherForFiles, saveData } from './DataHandler';
 
 export const JobExecution = ({handleOpen}) => {
     const [loading, setLoading] = useState(false);
@@ -14,39 +14,31 @@ export const JobExecution = ({handleOpen}) => {
     const [doc, setDoc] = useState()
     const [addWork, setAddWork] = useState(false)
     const [myWorks, setWorks] = useState([])
-    const [sectionTwoData, setSectionTwoData] = useState({
-        company_involvement: "",
-        years_of_experience: ""
-    })
     const [formData, setFormData] = useState({
         name: "",
         value: "",
         date: "",
+        company_involvement: "",
+        years_of_experience: ""
     });
     const user = useSelector((state) => state.auth.user);
     useEffect(() => {
-        if (!isLoaded) {
-            fetcherForFiles({ url:"kyc-work-experience", user, setData:setWorks})
-            loadData("/kyc-years-experience/fetch", user, sectionTwoData, setSectionTwoData)
-        }
+        !isLoaded && fetcherForFiles({ url:"kyc-work-experience", user, setData:setWorks})
         setDataLoaded(true);
     }, [])
 
-    const WorkDataSaver = () => {
+    const DataSaver = () => {
         const url = "/kyc-work-experience/create";
         const fd = new FormData();
         fd.append(`document`, doc);
         fd.append("name", formData.name);
         fd.append("value", formData.value);
         fd.append("date", formData.date);
+        fd.append("years_of_experience", formData.years_of_experience);
+        fd.append("company_involvement", formData.company_involvement);
         fd.append("userType", user.userType)
         saveData({url, setLoading, formData: fd, user, setFormData: setWorks, setFeetback, hasFile: true});
         setAddWork(true)
-    }
-    const InfoDataSaver = () => {
-        setAddWork(false)
-        const url = "/kyc-years-experience/create";
-        saveData({url, setLoading, formData: sectionTwoData, user, setFormData: setSectionTwoData, setFeetback, hasFile: false});
     }
     let newValue = {};
     const updateValue = (newVal, variable) => {
@@ -54,19 +46,12 @@ export const JobExecution = ({handleOpen}) => {
         variable === 'value' && (newValue = { value: newVal });
         variable === 'date' && (newValue = { date: newVal });
         variable === 'document' && (newValue = { document: newVal });
+        variable === 'years_of_experience' && (newValue = { years_of_experience: newVal });
+        variable === 'company_involvement' && (newValue = { company_involvement: newVal });
 
         setFormData({
             ...formData,
             ...newValue,
-        });
-    };
-    let newInfoValue = {};
-    const updateSectionTwo = (newVal, variable) => {
-        variable === 'company_involvement' && (newInfoValue = { company_involvement: newVal });
-        variable === 'years_of_experience' && (newInfoValue = { years_of_experience: newVal });
-        setSectionTwoData({
-            ...sectionTwoData,
-            ...newInfoValue,
         });
     };
   return (
@@ -101,6 +86,8 @@ export const JobExecution = ({handleOpen}) => {
                         placeholder="Date"
                         className='w-full mt-2 p-2 border border-gray-400 rounded'
                     />
+                    <p className="mt-2">{res.years_of_experience} years of experience</p>
+                    <p className="mt-2">{res.company_involvement}</p>
                     <div className="flex justify-between mt-3">
                         <a href={res.fileUrl} className="mt-5 text-blue-600">view document</a>
                         <button onClick={() => hasFileDelete({url: "kyc-work-experience", id: res.id, user, setLoading, setData:setWorks, setFeetback})} className="btn-primary bg-red-600 lg:px-7">
@@ -139,39 +126,34 @@ export const JobExecution = ({handleOpen}) => {
                     placeholder="Documents"
                     className='w-full mt-2 p-2 border border-gray-400 rounded'
                 />
-                {loading ? <Spinner /> : <button onClick={WorkDataSaver} className="btn-primary my-2 bg-green-600 lg:px-7">
-                        Save
-                </button>}
+                <div className='mt-3'>
+            <label>Number of experience(years) as a contractor/sub-contractor</label>
+            <input
+                
+                type="number"value={formData.years_of_experience}
+                onChange={(e) => updateValue(e.target.value, "years_of_experience")}
+                className='w-full mt-2 p-2 border border-gray-400 rounded'
+            />
+        </div>
+        <div className='mt-3'>
+            <label>If the company is a subsidiary, what involvement, if any, will the parent company have?</label>
+            <textarea
+                value={formData.company_involvement}
+                onChange={(e) => updateValue(e.target.value, "company_involvement")}
+                className='w-full p-2 mt-2 border border-gray-400 rounded h-24'
+            />
+        </div>
+        {loading ? <Spinner /> : <button onClick={DataSaver} className="btn-primary bg-green-600 lg:px-7">
+                Save
+        </button>}
             </div>
             : 
             <button className="btn-primary lg:px-7 my-5" onClick={()=> setAddWork(true)}>Add Job Experience</button>
         }
         </div>
-        <div className="mt-6">
-            <div className='mt-3'>
-                <label>Number of experience(years) as a contractor/sub-contractor</label>
-                <input
-                    value={sectionTwoData.years_of_experience}
-                    type="number"
-                    onChange={(e) => updateSectionTwo(e.target.value, "years_of_experience")}
-                    className='w-full mt-2 p-2 border border-gray-400 rounded'
-                />
-            </div>
-            <div className='mt-3'>
-                <label>If the company is a subsidiary, what involvement, if any, will the parent company have?</label>
-                <textarea
-                    value={sectionTwoData.company_involvement}
-                    onChange={(e) => updateSectionTwo(e.target.value, "company_involvement")}
-                    className='w-full p-2 mt-2 border border-gray-400 rounded h-24'
-                />
-            </div>
-            {loading ? <Spinner /> : 
-                <div className='pt-8 flex justify-end'>
-                    <button onClick={InfoDataSaver} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>
-                        Save
-                    </button>
-                </div>
-            }
+        <div className='pt-8 flex justify-between'>
+            <p className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600' onClick={() => handleOpen(3)}>Previous</p>
+            <p className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600' onClick={() => handleOpen(5)}>Next</p>
         </div>
         {feedback &&
             <ActionFeedBack
