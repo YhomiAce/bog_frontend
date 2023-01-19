@@ -57,6 +57,7 @@ const AdminSidebar = () => {
     const [userDrop, setUserDrop] = useState(false);
     const [productDrop, setProductDrop] = useState(false);
     const [projectDrop, setProjectDrop] = useState(false);
+    const [settingsDrop, setSettingsDrop] = useState(false);
     const [signOut, setSignOut] = useState(false)
 
     function CloseAll() {
@@ -289,13 +290,31 @@ const AdminSidebar = () => {
                             <p className="pl-3">Transactions</p>
                         </NavLink>
                     </div>
-                    <div>
+                    <div className="w-full items-center fw-600">
                         <Link to="settings">
-                            <div className="w-full py-2 pl-2 fw-600 flex items-center my-2 rounded-lg">
+                            <div className="w-full py-2 pl-2 fw-600 flex items-center my-2 rounded-lg" onClick={() => { setSettingsDrop(!settingsDrop); setUserDrop(false); setProjectDrop(false); setProductDrop(false); setOrderDrop(false); }}>
                                 <BsGear className="text-lg" />
-                                <p className="pl-3">Settings</p>
+                                <p className="pl-3 pr-5">Settings</p>
+                                <BsFillCaretDownFill className="text-black" />
+                                </div>
+                            <div>
+                                {settingsDrop && (
+                                    <div className="lg:pl-8 pl-4 fs-400 pt-2" onClick={e => e.stopPropagation()}>
+                                        <NavLink
+                                            to="smart-calc"
+                                            style={({ isActive }) => (isActive ? activeStyles : undefined)}
+                                            onClick={unShow}
+                                        >
+                                            <p className="py-1">Smart Calculator</p>
+                                        </NavLink>
+                                    </div>
+                                )
+                                }
                             </div>
                         </Link>
+                    </div>
+                    
+                    <div>
                         <Link>
                             <div
                                 style={sideBarStyle.cursorStyle}

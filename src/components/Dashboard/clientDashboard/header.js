@@ -81,9 +81,6 @@ export default function Header() {
         }) : null
     }
 
-
-
-
     return (
         <div className="fixed w-full z-50 bg-gray-100">
             <div className="flex w-full bg-white justify-between lg:head-grid">
