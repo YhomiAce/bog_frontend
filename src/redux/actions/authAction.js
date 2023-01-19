@@ -200,3 +200,7 @@ export const logout = () => (dispatch) => {
     dispatch({ type: ActionType.LOGOUT });
     window.location.href = "/login";
 };
+export const Adminlogout = () => (dispatch) => {
+    dispatch({ type: ActionType.LOGOUT });
+    window.location.href = "/admin";
+};

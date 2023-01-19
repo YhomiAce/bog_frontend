@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../../redux/actions/authAction';
+import { Adminlogout } from '../../../redux/actions/authAction';
 import { MdOutlineEmail, MdOutlineReviews } from "react-icons/md";
 import { VscHistory } from "react-icons/vsc";
 import { HiOutlineLogout } from "react-icons/hi";
@@ -61,8 +61,9 @@ const AdminSidebar = () => {
     const [signOut, setSignOut] = useState(false)
 
     function CloseAll() {
+        // setSettingsDrop(false)
         setOrderDrop(false)
-        // setEmailDrop(false)
+        setProductDrop(false)
         setUserDrop(false)
         setProjectDrop(false)
     }
@@ -88,7 +89,7 @@ const AdminSidebar = () => {
                 }} />
             </div>
             {showSideBar && (
-                <div className="fixed lg:pb-12 overflow-y-scroll z-20 bg-white fs-400 top-20 w-6/12 h-full lg:sidebar-w shadow pt-2 px-2" onClick={CloseAll}>
+                <div className="fixed lg:pb-24 overflow-y-scroll z-20 bg-white fs-400 top-20 w-6/12 h-full lg:sidebar-w shadow pt-2 px-2" onClick={CloseAll}>
                     <div className="">
                         <NavLink
                             to=""
@@ -106,7 +107,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <BsReceiptCutoff className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setProductDrop(!productDrop);setProjectDrop(false);setOrderDrop(false);setUserDrop(false)}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setProductDrop(!productDrop);setProjectDrop(false);setOrderDrop(false);setUserDrop(false);setSettingsDrop(false)}}>
                                     <p className="pl-3 pr-5">Products</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>
@@ -135,7 +136,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <BsBag className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setOrderDrop(!orderDrop);setProjectDrop(false);setProductDrop(false);setUserDrop(false)}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setOrderDrop(!orderDrop);setProjectDrop(false);setProductDrop(false);setUserDrop(false);setSettingsDrop(false)}}>
                                     <p className="pl-3 pr-5">Orders</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>
@@ -159,7 +160,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <GrUserWorker className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setProjectDrop(!projectDrop);setProductDrop(false);setOrderDrop(false);setUserDrop(false)}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setProjectDrop(!projectDrop);setProductDrop(false);setOrderDrop(false);setUserDrop(false);setSettingsDrop(false)}}>
                                     <p className="pl-3 pr-5">Projects</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>
@@ -168,19 +169,19 @@ const AdminSidebar = () => {
                                 <div className="lg:ml-9 ml-4 fs-400 pt-2">
                                     <NavLink
                                         to="projectsadmin"
-                                        // style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                                        style={({ isActive }) => (isActive ? activeStyles : undefined)}
                                         >
                                         <p className="py-2">All Projects</p>
                                     </NavLink>
                                     <NavLink
                                         to="projectrequest"
-                                        // style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                                        style={({ isActive }) => (isActive ? activeStyles : undefined)}
                                         >
                                         <p className="py-2">Project Requests</p>
                                     </NavLink>
                                     <NavLink
                                         to="servicecategory"
-                                        // style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                                        style={({ isActive }) => (isActive ? activeStyles : undefined)}
                                         >
                                         <p className="py-2">Service Category</p>
                                     </NavLink>
@@ -194,7 +195,7 @@ const AdminSidebar = () => {
                         >
                             <div className="flex" onClick={e => e.stopPropagation()}>
                                 <FiUsers className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => {setUserDrop(!userDrop);setProjectDrop(false);setProductDrop(false);setOrderDrop(false);}}>
+                                <div className="flex items-center cursor-pointer" onClick={() => {setUserDrop(!userDrop);setProjectDrop(false);setProductDrop(false);setOrderDrop(false);setSettingsDrop(false)}}>
                                     <p className="pl-3 pr-5">Users</p>
                                     <BsFillCaretDownFill className="text-black"/>
                                 </div>
@@ -291,15 +292,20 @@ const AdminSidebar = () => {
                         </NavLink>
                     </div>
                     <div className="w-full items-center fw-600">
-                        <Link to="settings">
-                            <div className="w-full py-2 pl-2 fw-600 flex items-center my-2 rounded-lg" onClick={() => { setSettingsDrop(!settingsDrop); setUserDrop(false); setProjectDrop(false); setProductDrop(false); setOrderDrop(false); }}>
+                            <div className="w-full py-2 pl-2 fw-600 cursor-pointer flex items-center my-2 rounded-lg" onClick={() => {setSettingsDrop(!settingsDrop); setUserDrop(false); setProjectDrop(false); setProductDrop(false); setOrderDrop(false); }}>
                                 <BsGear className="text-lg" />
                                 <p className="pl-3 pr-5">Settings</p>
                                 <BsFillCaretDownFill className="text-black" />
                                 </div>
                             <div>
                                 {settingsDrop && (
-                                    <div className="lg:pl-8 pl-4 fs-400 pt-2" onClick={e => e.stopPropagation()}>
+                                    <div className="lg:pl-8 pl-4 fs-400 pt-1" onClick={e => e.stopPropagation()}>
+                                        <NavLink
+                                            to="settings"
+                                            onClick={unShow}
+                                        >
+                                            <p className="pb-2">Profile Settings</p>
+                                        </NavLink>
                                         <NavLink
                                             to="smart-calc"
                                             onClick={unShow}
@@ -310,7 +316,6 @@ const AdminSidebar = () => {
                                 )
                                 }
                             </div>
-                        </Link>
                     </div>
                     
                     <div>
@@ -338,7 +343,7 @@ const AdminSidebar = () => {
                         </div>
                         <div className="text-end px-4 my-5">
                             <button className="btn py-1 border-pri text-primary" onClick={CloseModal}>No</button>
-                            <button className="btn py-1 ml-5 border border-red-600 text-red-600" onClick={() => dispatch(logout())}>Yes</button>
+                            <button className="btn py-1 ml-5 border border-red-600 text-red-600" onClick={() => dispatch(Adminlogout())}>Yes</button>
                         </div>
                     </div>
                 </div>

@@ -1,28 +1,27 @@
-import { faBell } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React from "react";
 import {
     Menu, MenuHandler, MenuItem, MenuList, Button, Avatar,
 } from "@material-tailwind/react";
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from '../../../redux/actions/authAction';
+import { Adminlogout, logout } from '../../../redux/actions/authAction';
 import { UserAvatar } from "../assets/Avatar";
 import ReactTimeAgo from "react-time-ago";
 import { markNotificationAsRead } from "../../../services/endpoint";
+import { FaBell } from "react-icons/fa";
 
 
 export default function Header() {
     const dispatch = useDispatch()
     const auth = useSelector((state) => state.auth);
-    const [notifyDown, setNotifyDown] = useState(false)
+    // const [notifyDown, setNotifyDown] = useState(false)
     const { adminNotifications, userNotifications } = useSelector(state => state.notifications);
 
     const navigate = useNavigate();
 
-    function ShowNotify() {
-        setNotifyDown(current => !current)
-    }
+    // function ShowNotify() {
+    //     setNotifyDown(current => !current)
+    // }
     const getUserType = (type) => {
         switch (type) {
             case "admin":
@@ -42,7 +41,6 @@ export default function Header() {
     let count = 0;
     let content;
     const gotoNotification = async (id) => {
-        setNotifyDown(true)
         const url = auth?.user?.userType === "admin" ? "/dashboard/notification" : "/dashboard/notify"
         navigate(url);
         await markNotificationAsRead(id)
@@ -114,7 +112,26 @@ export default function Header() {
                                 </Link>
                             }
                         </div>
-                        <div className="relative mx-3">
+                        <div>
+                            <Menu placement="bottom-end">
+                                <MenuHandler>
+                                    <Button className="p-2 bg-transparent shadow-none">
+                                        <div className="bg-blue-100 px-2 rounded-sm py-2 relative">
+                                            <FaBell className="lg:text-xl text-lg text-primary" />
+                                            <p className="absolute -top-2 left-3/4 border circle px-1 text-white text-xs bg-primary">{count}</p>
+                                        </div>
+                                    </Button>
+                                </MenuHandler>
+                                <MenuList className="p-0">
+                                    <MenuItem className="p-0 pb-4 w-64 lg:w-72">
+                                        <p className="mb-3 text-white bg-primary py-2 pl-3 text-lg fw-600">Notifications</p>
+                                        {content}
+                                        <Link to={auth?.user?.userType === "admin" ? "notification" : "notify"}><p className="text-center hover:text-orange-500">View All</p></Link>
+                                    </MenuItem>
+                                </MenuList>
+                            </Menu>
+                        </div>
+                        {/* <div className="relative mx-3">
                             <div onClick={ShowNotify} className="bg-blue-100 px-2 rounded-sm py-1">
                                 <FontAwesomeIcon icon={faBell} className="lg:text-xl  text-primary" />
                                 <p className="absolute -top-2 left-3/4 border circle px-1 text-white text-xs bg-primary"> {count} </p>
@@ -126,7 +143,7 @@ export default function Header() {
                                     <Link to={auth?.user?.userType === "admin" ? "notification" : "notify"}><p className="text-center hover:text-orange-500">View All</p></Link>
                                 </div>
                             )}
-                        </div>
+                        </div> */}
                         <div className="ml-5">
                             <Menu placement="bottom-end"
                             >
@@ -141,14 +158,16 @@ export default function Header() {
                                     <MenuItem onClick={() => navigate("/dashboard/transact")}>Transactions</MenuItem>
                                     {
                                         auth?.user?.userType === "admin" ?
-                                        <MenuItem onClick={() => navigate("/dashboard/announcement")}>Inbox</MenuItem>
+                                        <MenuItem onClick={() => navigate("/dashboard/announcement")}>Messages</MenuItem>
                                         :
-                                        <MenuItem onClick={() => navigate("/dashboard/inbox")}>Inbox</MenuItem>
+                                        <MenuItem onClick={() => navigate("/dashboard/inbox")}>Messages</MenuItem>
                                     }
                                     
                                     <MenuItem onClick={() => navigate("/dashboard/meetings")}>Meetings</MenuItem>
-                                    <MenuItem onClick={() => navigate("/dashboard/settings")}>Settings</MenuItem>
-                                    <MenuItem onClick={() => dispatch(logout())}>Sign Out</MenuItem>
+                                    <MenuItem onClick={() => navigate("/dashboard/settings")}>Profile Settings</MenuItem>
+                                    {
+                                        auth?.user?.userType === "admin"? <MenuItem onClick={() => dispatch(Adminlogout())}>Sign Out</MenuItem> : <MenuItem onClick={() => dispatch(logout())}>Sign Out</MenuItem>
+                                    }
                                 </MenuList>
                             </Menu>
                         </div>

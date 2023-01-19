@@ -7,7 +7,6 @@ import  { Button } from "@material-tailwind/react";
 // import {BsThreeDotsVertical} from "react-icons/bs";
 import { Breadcrumbs} from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-// import { HiOutlineDocumentDownload } from "react-icons/hi";
 // import { useNavigate } from "react-router-dom";
 import ProjectsTable from "../../assets/Tables/ProjectAdminTable";
 import { getProjects } from '../../../../redux/actions/ProjectAction';
@@ -56,7 +55,7 @@ export default function ProjectsAdmin() {
                         </Breadcrumbs>
                     </div>
                     <div className="mt-4 lg:mt-0">
-                        <button className="px-4 lg:py-2 py-1 rounded border-pri text-primary" onClick={() => setAdminAdd(!adminAdd)}>Assign New Project</button>
+                        <button className="px-4 lg:py-2 py-1 rounded border-pri text-primary" onClick={() => setAdminAdd(!adminAdd)}><span>Assign New Project</span></button>
                     </div>
                 </div>  
                 

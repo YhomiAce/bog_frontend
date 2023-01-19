@@ -170,8 +170,11 @@ export const JobExecution = ({handleOpen}) => {
 
 export const NewApp = () => {
 
+    const initialState = {
+        index: false,
+    }
     const [formValues, setFormValues] = useState([{ name: "", email : ""}])
-    const [mini, setMini] = useState(false)
+    const [mini, setMini] = useState(initialState)
 
     let handleChange = (i, e) => {
         let newFormValues = [...formValues];
@@ -205,11 +208,11 @@ export const NewApp = () => {
                             <button type="button"  className="mr-4 text-xxl" onClick={() => removeFormFields(index)}><FcDeleteDatabase/></button> 
                             : null
                     }
-                    {mini? <BsDashCircleFill className='text-primary text-xl' onClick={() => setMini(false)}/> : <BsPlusCircleFill className='text-primary text-xl' onClick={() => setMini(true)}/>}</p>
+                    {mini? <BsDashCircleFill className='text-primary text-xl' onClick={() => setMini(false)}/> : <BsPlusCircleFill className='text-primary text-xl' onClick={() => setMini({index:true})}/>}</p>
               </div>
               {
                 mini && (
-                    <div className='px-5'>
+                    <div className='px-5 scale-ani'>
                         <div className='lg:flex'>
                             <div className='lg:w-6/12 lg:pr-3 mt-5'>
                                 <label className='fw-500'>Name</label>

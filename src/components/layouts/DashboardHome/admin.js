@@ -13,6 +13,7 @@ import { getAdminOrders } from '../../../redux/actions/OrderAction';
 // import Moment from 'react-moment';
 import * as moment from 'moment'
 import { formatNumber } from "../../../services/helper";
+import { FaRegHandPointRight } from "react-icons/fa";
 // import Moment from 'react-moment';
 
 
@@ -179,7 +180,7 @@ export default function AdminDashboard(status) {
                     </div>
                     <div>
                        <Link to="ordersadmin">
-                        <button className="btn-primary">View All Orders</button>
+                        <button className="flex items-center border-b border-primary px-2 py-1"><span className="pr-1">Goto Orders </span><FaRegHandPointRight className="text-lg text-primary"/></button>
                        </Link>
                     </div>
                 </div>
