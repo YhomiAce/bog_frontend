@@ -302,7 +302,6 @@ const AdminSidebar = () => {
                                     <div className="lg:pl-8 pl-4 fs-400 pt-2" onClick={e => e.stopPropagation()}>
                                         <NavLink
                                             to="smart-calc"
-                                            style={({ isActive }) => (isActive ? activeStyles : undefined)}
                                             onClick={unShow}
                                         >
                                             <p className="py-1">Smart Calculator</p>
