@@ -38,6 +38,10 @@ export const UploadDoc = ({handleOpen}) => {
     const isUploaded = (name) => {
         return allDocuments?.filter(doc => doc.name === name && doc);
     }
+    const openDoc = (url) => {
+        console.log(url)
+        window.open(url, "_blank")
+    }
     const SelectFile = ({proposedFileArray, isUploaded}) => {
         const myFiles = proposedFileArray.map((file, i) => {
             const uploaded = isUploaded(file.as)
@@ -57,7 +61,7 @@ export const UploadDoc = ({handleOpen}) => {
                 return (
                     <div className="mt-3"  key={i}>
                         <label>{file.title}</label><div className="flex justify-between">
-                            <a href={uploaded[0].file}  className="mt-3 text-blue-600">view document</a>
+                            <h5 onClick={() => openDoc(uploaded[0].file)}  className="mt-3 cursor-pointer text-blue-600">view document</h5>
                             <button onClick={() => hasFileDelete({url: "kyc-documents", id: uploaded[0].id, user, setLoading, setData: setAllDocuments, setFeetback}) } className="btn-primary bg-red-600 lg:px-7">
                                 Delete
                             </button>
