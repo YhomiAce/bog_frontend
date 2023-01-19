@@ -98,11 +98,8 @@ export const hasFileDelete = async ({url, id, user, setLoading, setData, setFeet
 }
 
 
-export const loadData = async (url, user, formData, setFormData) => {
-    const payload = {
-        userType: user.userType
-    }
-    const newInfo = await Axios.post(url, payload, config);
+export const loadData = async (url, formData, setFormData) => {
+    const newInfo = await Axios.get(url, config);
     setFormData({
         ...formData,
         ...newInfo.data,
@@ -110,10 +107,7 @@ export const loadData = async (url, user, formData, setFormData) => {
 }
 
 export const fetcherForFiles = async({url, user, setData}) => {
-    const fullUrl = `/${url}/fetch`;
-    const payload = {
-        userType: user.userType
-    }
-    const newInfo = await Axios.post(fullUrl, payload, config);
+    const fullUrl = `/${url}/fetch/${user.userType}`;
+    const newInfo = await Axios.get(fullUrl, config);
     setData(newInfo.data);
 }
