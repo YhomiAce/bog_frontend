@@ -8,7 +8,7 @@ import { cutText, getUserType } from "../../../../../services/helper"
 import dayjs from "dayjs";
 import { BsEye } from "react-icons/bs";
 import Swal from "sweetalert2";
-import { BiTrash } from "react-icons/bi";
+import { BiMessageRoundedDetail, BiTrash } from "react-icons/bi";
 import { MessageModal } from "../Users/MessageModal";
 
 export default function AdminInbox() {
@@ -86,7 +86,7 @@ export default function AdminInbox() {
                         </Breadcrumbs>
                     </div>
                     <div>
-                        <button className="btn bg-secondary text-white fw-600" onClick={() => setMessage(true)}>New Message</button>
+                        <button className="btn bg-secondary text-white fw-600 flex items-center" onClick={() => setMessage(true)}><BiMessageRoundedDetail className="text-xl"/> <span className="pl-1">New Message</span></button>
                     </div>
                 </div>
                 {/* content */}

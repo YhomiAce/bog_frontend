@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBlogPosts } from "../../../../redux/actions/PostAction";
 import BlogItem from "./Blog/BlogItem";
+import { FaBlogger } from "react-icons/fa";
 
 export default function Blog() {
     const dispatch = useDispatch();
@@ -50,7 +51,7 @@ export default function Blog() {
                         </Breadcrumbs>
                     </div>
                     <div className="text-end">
-                        <button className="btn py-1 lg:py-2 mt-2 lg:mt-0 border-pri text-primary" onClick={() => navigate("/dashboard/createpost")} >Create Post</button>
+                        <button className="btn py-1 lg:py-2 mt-2 lg:mt-0 bg-blue-100 flex items-center shadow-lg" onClick={() => navigate("/dashboard/createpost")} ><FaBlogger className="text-xl"/><span className="pl-1 fw-500">Create Post</span></button>
                     </div>
                 </div> 
                 {/* content */}

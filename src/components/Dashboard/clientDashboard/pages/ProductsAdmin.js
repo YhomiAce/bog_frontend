@@ -8,6 +8,8 @@ import { getAdminProducts, getCategories } from '../../../../redux/actions/Produ
 import AdminCreateProduct from "./Product/Modals/AdminCreateProduct";
 // import AdminProductLists from "./Product/AdminProductLists";
 import ProductTable from "../../assets/Tables/ProductTable";
+import { MdOutlineProductionQuantityLimits } from "react-icons/md"
+
 
 export default function ProductsAdmin() {
     const dispatch = useDispatch();
@@ -50,7 +52,7 @@ export default function ProductsAdmin() {
                         </Breadcrumbs>
                     </div>
                     <div className="mt-4 lg:mt-0">
-                        <button className="px-4 lg:py-2 py-1 rounded border-pri text-primary" onClick={() => setAdminAdd(!adminAdd)}>Add Product</button>
+                        <button className="px-4 lg:py-2 py-1 rounded bg-secondary flex items-center text-white shadow-lg" onClick={() => setAdminAdd(!adminAdd)}><MdOutlineProductionQuantityLimits className="text-xl"/><span className="pl-1 fw-500">Add Product</span></button>
                     </div>
                 </div>
                 {/* product contents */}

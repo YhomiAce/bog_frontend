@@ -6,7 +6,7 @@ import { Breadcrumbs, CardBody } from "@material-tailwind/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { FaFileDownload, FaTimes } from "react-icons/fa";
+import { FaFileDownload, FaMeetup, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import {
     Menu,
@@ -166,7 +166,7 @@ const AdminMeeting = () => {
                         </Breadcrumbs>
                     </div>
                     <div>
-                        <button className="text-primary px-3 py-1 rounded border-pri" onClick={() => {setRMeet(true)}}>Request Meetings</button>
+                        <button className="px-3 py-1 lg:py-2 rounded border-pri flex items-center bg-primary shadow-lg" onClick={() => {setRMeet(true)}}><FaMeetup className="text-xl text-white"/> <span className="text-white fw-500 pl-1">Request Meetings</span></button>
                     </div>
                 </div> 
                 <div className="lg:p-5 px-2">
