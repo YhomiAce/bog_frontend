@@ -1,33 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { BsArrowRight } from 'react-icons/bs'
+import { IoArrowBackCircleSharp, IoArrowForwardCircleSharp } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 import { cutText, stripHtml } from '../../../services/helper'
-import { useDispatch, useSelector } from "react-redux";
-import { getAllBlogPosts, getAllBlogCategories } from "../../../redux/actions/PostAction";
+import {  useSelector } from "react-redux";
 
-// Example items, to simulate fetching from another resources.
-// const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+
 
 function News({ currentItems }) {
 
-    const dispatch = useDispatch();
-
-    const post = useSelector((state) => state.blog);
-    const posts =  post.filter(where => where.isPublished)
-
-    console.log(posts)
-
-    useEffect(() => {
-        dispatch(getAllBlogPosts());
-        dispatch(getAllBlogCategories());
-    }, [dispatch]);
-
   return (
-    <>
+    <div className='lg:grid-2s justify-between'>
       {currentItems &&
-        posts?.map((item) => (
-            <div className="lg:w-full shadow-md rounded-md">
+        currentItems?.map((item) => (
+            <div className="lg:w-full shadow-md rounded-md  mt-6 lg:mt-10">
                 <div>
                     {
                         item?.images.length > 0 ?
@@ -47,21 +34,14 @@ function News({ currentItems }) {
                 </div>
             </div>
         ))}
-    </>
+    </div>
   );
 }
 
-export function PaginatedItems({ itemsPerPage }) {
+export function BlogItems({ itemsPerPage }) {
 
-    const dispatch = useDispatch();
-
-    const post = useSelector((state) => state.blog);
+    const post = useSelector((state) => state.blog.posts);
     const posts =  post.filter(where => where.isPublished)
-
-    useEffect(() => {
-        dispatch(getAllBlogPosts());
-        dispatch(getAllBlogCategories());
-    }, [dispatch]);
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
@@ -70,7 +50,7 @@ export function PaginatedItems({ itemsPerPage }) {
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
   const endOffset = itemOffset + itemsPerPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentItems = posts.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(posts.length / itemsPerPage);
 
@@ -87,13 +67,18 @@ export function PaginatedItems({ itemsPerPage }) {
     <>
       <News currentItems={currentItems} />
       <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
+        breakLabel={<p>break</p>}
+        nextLabel={<p className='ml-2'><IoArrowForwardCircleSharp className='text-3xl text-secondary'/></p>}
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={3}
         pageCount={pageCount}
-        previousLabel="< previous"
+        previousLabel={<p className='mr-2'><IoArrowBackCircleSharp className='text-3xl text-secondary'/></p>}
         renderOnZeroPageCount={null}
+        className="flex justify-end items-center mt-12 bg-light w-full fs-600 lg:py-2 lg:px-5 rounded-lg"
+        pageClassName="w-9 h-9 grid place-content-center border border-gray-400 text-white mx-1 fw-600 circle bg-primary"
+        pageLinkClassName="w-9 h-9 grid place-content-center border border-gray-400 text-white mx-1 fw-600 circle bg-primary"
+        activeClassName="bg-light text-black"
+        activeLinkClassName="bg-light text-black"
       />
     </>
   );

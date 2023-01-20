@@ -9,11 +9,10 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBlogPosts, getAllBlogCategories } from "../../redux/actions/PostAction";
 import NewsCategory from "./Blog/NewsCategory";
-import News from "./Blog/News";
 import { cutText, stripHtml } from "../../services/helper";
 import Spinner from "../layouts/Spinner";
 import dayjs from "dayjs";
-// import { PaginatedItems } from "./Blog/PaginateNews";
+import { BlogItems } from "./Blog/PaginateNews";
 
 export default function Blog() {
     const dispatch = useDispatch();
@@ -74,15 +73,14 @@ export default function Blog() {
                                 </div>
                                 <div className="mt-16 lg:mt-24 ">
                                     <p className="lg:text-2xl text-lg fw-600 mb-8 ">All News</p>
-                                    <div className="lg:grid-2s justify-between">
-                                        {
+                                    <div className="">
+                                        {/* {
                                             posts.length > 0 ? posts.filter(where => where.isPublished).map(post => (
                                                 <News key={post.id} item={post} />
                                             )) : null
-                                        }
-
+                                        } */}
+                                        <BlogItems  itemsPerPage={4}/>
                                     </div>
-
                                 </div>
                             </div>
                             <div className="hidden lg:block w-3/12 pl-8">

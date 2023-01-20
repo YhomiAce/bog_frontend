@@ -92,7 +92,7 @@ export const  getAllBlogPosts = () => {
                 },
             }
             const response = await axios.get('/blog/get-blogs', config);
-            console.log(response);
+            // console.log(response);
             dispatch( fetchPost(response.data))
         } catch (error) {
             console.log(error.message);

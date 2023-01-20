@@ -6,12 +6,13 @@ import Footer from "./home-comp/Footer";
 import Header from "./home-comp/Header";
 import { Menu, MenuHandler, MenuList, MenuItem, Button } from "@material-tailwind/react";
 import { RiEqualizerLine } from 'react-icons/ri';
-import AllProducts from "./shop/AllProducts";
+// import AllProducts from "./shop/AllProducts";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCategories, getProducts } from '../../redux/actions/ProductAction';
 import CategoryList from "./shop/CategoryList";
 import Spinner from '../layouts/Spinner';
+import { ProductItems } from "./shop/AllprodPag";
 
 export default function Shop() {
     const dispatch = useDispatch();
@@ -129,7 +130,11 @@ export default function Shop() {
                             <div className="w-9/12 pl-3 lg:pl-0 lg:w-8/12">
 
                                   {
-                                    loading ? <Spinner /> : <AllProducts products={show ? productCategory : products} />
+                                    loading ? <Spinner /> : 
+                                    <div>
+                                        {/* <AllProducts products={show ? productCategory : products} /> */}
+                                        <ProductItems itemsPerPage={6} products={show ? productCategory : products}/>
+                                    </div>
                                   }      
                                 
 

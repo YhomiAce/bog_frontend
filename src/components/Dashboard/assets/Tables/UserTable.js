@@ -176,8 +176,7 @@ export function UsersTable({status, userType}){
                               </MenuHandler>
                               <MenuList className="w-16 bg-gray-100 fw-600 text-black">
                                 <MenuItem onClick={() => gotoDetailsPage(row.value)}>View Details</MenuItem>
-                                <MenuItem></MenuItem>
-                                <MenuItem className="bg-red-600 text-white">Block User</MenuItem>
+                                <MenuItem className="bg-red-600 hover:bg-red-500 hover:text-white text-white">Delete User</MenuItem>
                               </MenuList>
                             </Menu>,
           },

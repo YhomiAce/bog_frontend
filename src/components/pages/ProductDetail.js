@@ -15,6 +15,8 @@ import "toasted-notes/src/styles.css";
 import Spinner from "../layouts/Spinner";
 import { getProducts } from '../../redux/actions/ProductAction';
 import Axios from "../../config/config";
+import { formatNumber } from "../../services/helper";
+import { BsFillInfoCircleFill } from "react-icons/bs";
 
 
 export default function ProductDetail() {
@@ -93,16 +95,16 @@ export default function ProductDetail() {
                 </div>
                 <div className="section">
                     <div className="box">
-                        <div className="lg:flex justify-center w-full">
-                            <div className="lg:flex lg:w-9/12 justify-between lg:pt-10">
-                                <div className="lg:w-5/12 shadow-md p-4">
+                        <div className=" w-full">
+                            <div className="lg:flex items-center justify-between lg:pt-10">
+                                <div className="lg:w-6/12 bg-light shadow-md p-4">
                                     {/* <img src="https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png" alt="product" className="w-full lg:h-72" /> */}
 
                                     <ProductImage item={item} />
                                 </div>
-                                <div className="lg:pl-8 mt-4 lg:w-5/12 lg:mt-0 relative">
+                                <div className="lg:pl-8 mt-4 lg:w-6/12 lg:mt-0 relative">
                                     <p className="lg:text-3xl text-lg fw-600">{item.name}</p>
-                                    <p className="fw-600 lg:py-4 py-2 text-gray-600"><span className="pr-2 ">Product Category :</span>{item.category.name}</p>
+                                    <p className="fw-600 py-2 text-gray-600"><span className="pr-2 ">Product Category :</span>{item.category.name}</p>
                                     <div className="flex items-center">
                                         <div className="hidden lg:block">
                                             <ReactStars
@@ -120,15 +122,17 @@ export default function ProductDetail() {
                                         </div>
                                         <p className="text-gray-500 pl-3">(5 Reviews)</p>
                                     </div>
-                                    <p className="lg:text-2xl fs-700 fw-600 lg:py-6 py-2">{item.price}</p>
-                                    <div className="relative">
-                                        <p className="fw-600 text-gray-600">Quantity</p>
-                                        <div className="mt-6 flex fs-500 lg:fs-600">
-                                            <input type="number" min={0} max={10} value={cartNum} onChange={(e) => setCartNum(e.target.value)} className="w-16 px-1 lg:px-2 rounded py-1 lg:py-2 border border-black" />
+                                    <p className="lg:text-2xl fs-700 fw-600 py-2 text-secondary">NGN {formatNumber(item.price)}</p>
+                                    <div className="relative flex">
+                                        <div className="mt-2 flex items-end fs-500 lg:fs-600">
+                                            <div>
+                                                <p className="fw-600 text-gray-600 mb-2">Quantity</p>
+                                                <input type="number" min={0} max={10} value={cartNum} onChange={(e) => setCartNum(e.target.value)} className="w-16 px-1 lg:px-2 rounded py-1 lg:py-2 border border-black" />
+                                            </div>
                                             <div className="">
                                                 <button className="btn-primary ml-7 px-4 lg:px-8 " onClick={() => addItemToCart(item, cartNum)}>Add To Cart</button>
                                                 {itemAdded && (
-                                                    <div className="absolute lg:fs-400 fs-300 fw-600 px-2 text-center w-40 border lg:-right-1/4 lg:bottom-0 -bottom-3/4 py-1 bg-green-600 rounded text-gray-100 scale-ani">
+                                                    <div className="absolute lg:fs-400 fs-300 fw-600 px-2 text-center w-40 border lg:right-0 xl:right-1/4 lg:bottom-0 -bottom-3/4 py-1 bg-green-600 rounded text-gray-100 scale-ani">
                                                         <p>Added to Cart</p>
                                                         <p onClick={() => { navigate("/carts") }} className="underline cursor-pointer">Click to view</p>
                                                     </div>
@@ -136,12 +140,15 @@ export default function ProductDetail() {
                                             </div>
                                         </div>
                                     </div>
+                                    <div>
+                                        <p className="mt-4 lg:mt-6 flex fw-500 text-primary fs-300 lg:fs-500"><span className="text-lg lg:text-xl pr-2 mt-1"><BsFillInfoCircleFill/></span><span>Delivery is effecient and fast to every part of Nigeria. (same day delivery is location based)</span></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="section">
+                <div className="">
                     <div className="box">
                         <div>
                             <Tabs>

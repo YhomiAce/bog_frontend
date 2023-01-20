@@ -20,7 +20,27 @@ export  const ProductImage = ({item}) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <div className="lg:w-full ">
+    <div className="lg:w-full flex">
+         <Swiper 
+           onSwiper={setThumbsSwiper}
+           spaceBetween={2}
+           slidesPerView={5}
+           freeMode={true}
+           direction='vertical'
+        //    breakpoints: {
+        //     480: {
+        //       direction: "vertical",
+        //       slidesPerView: 3
+        //     }
+        //   }
+           watchSlidesProgress={true}
+           modules={[FreeMode, Navigation, Thumbs]}
+           className="w-2/12 pr-3"
+        >
+            {item.product_image.map((i, ) => {
+                return <SwiperSlide><img src={i.url} alt="product" className="w-11/12 lg:h-16"/></SwiperSlide>;
+            })}
+        </Swiper>
         <Swiper 
             style={{
                 "--swiper-navigation-color": "#fff",
@@ -30,25 +50,12 @@ export  const ProductImage = ({item}) => {
               navigation={true}
               thumbs={{ swiper: thumbsSwiper }}
               modules={[FreeMode, Navigation, Thumbs]}
-              className=""
+              className="w-10/12 pl-3"
         >
             {item.product_image.map((i,) => {
-                return <SwiperSlide><img src={i.url} alt="product" className="w-full h-60"/></SwiperSlide>;
+                return <SwiperSlide><img src={i.url} alt="product" className="w-full lg:h-72 xl:h-96"/></SwiperSlide>;
             })}
         </Swiper>   
-        <Swiper 
-           onSwiper={setThumbsSwiper}
-           spaceBetween={5}
-           slidesPerView={4}
-           freeMode={true}
-           watchSlidesProgress={true}
-           modules={[FreeMode, Navigation, Thumbs]}
-           className="mt-1"
-        >
-            {item.product_image.map((i, ) => {
-                return <SwiperSlide><img src={i.url} alt="product" className="h-12"/></SwiperSlide>;
-            })}
-        </Swiper>
     </div>
   );
 };

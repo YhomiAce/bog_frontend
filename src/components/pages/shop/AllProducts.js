@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import { formatNumber } from "../../../services/helper";
 // import { useSelector } from "react-redux";
 // import sand from "../../assets/images/sands.png";
 
@@ -28,7 +29,7 @@ const AllProducts = ({ products }) => {
                                     value={4}
                                     size={20}
                                 />
-                                <p className="fw-600 fs-300 lg:fs-600">{item.price}</p>
+                                <p className="fw-600 fs-300 lg:fs-600">NGN{formatNumber(item.price)}</p>
                             </Link>
                         </div>
                     )
