@@ -28,8 +28,8 @@ export const OrganisationInfo = ({handleOpen}) => {
     }, [])
 
     const dataLoader = () => {
-        const url = "/kyc-organisation-info/fetch";
-        loadData(url, user, formData, setFormData)
+        const url = "/kyc-organisation-info/fetch/" + user.userType;
+        loadData(url, formData, setFormData)
     }
     const DataSaver = () => {
         const url = "/kyc-organisation-info/create";

@@ -24,8 +24,8 @@ export const FinanceData = ({handleOpen}) => {
     }, [])
 
     const dataLoader = () => {
-        const url = "/kyc-financial-data/fetch";
-        loadData(url, user, formData, setFormData)
+        const url = "/kyc-financial-data/fetch/" + user.userType;
+        loadData(url, formData, setFormData)
     }
     const DataSaver = () => {
         const url = "/kyc-financial-data/create";
