@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import { formatNumber } from '../../../services/helper';
 
 export const SimilarProducts = ({ products }) => {
 
@@ -20,7 +21,7 @@ export const SimilarProducts = ({ products }) => {
                                     value={4}
                                     size={20}
                                 />
-                                <p className="fw-600 fs-400 lg:fs-600">{item.price}</p>
+                                <p className="fw-600 fs-400 lg:fs-600">NGN {formatNumber(item.price)}</p>
                             </Link>
                         </div>
                     )
