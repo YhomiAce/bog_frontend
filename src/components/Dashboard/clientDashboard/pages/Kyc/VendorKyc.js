@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import { FinanceData } from './FinanceData';
 import { GeneralInfo } from './generalInfo';
-import { JobExecution, NewApp } from './jobExecution';
+import { JobExecution } from './jobExecution';
 import { OrganisationInfo } from './organisationInfo';
 import { SupplyCat } from './supplyCat';
 import { TaxDetails } from './taxDetails';
@@ -93,7 +93,7 @@ export const VendorKyc = () => {
                 open === 3? <TaxDetails handleOpen={handleOpen} /> : ""
             }
             {
-                open === 4? <div><JobExecution handleOpen={handleOpen} /> <NewApp/></div> : ""
+                open === 4? <JobExecution handleOpen={handleOpen} />: ""
             }
             {
                 open === 5? <SupplyCat handleOpen={handleOpen}/> : ""
