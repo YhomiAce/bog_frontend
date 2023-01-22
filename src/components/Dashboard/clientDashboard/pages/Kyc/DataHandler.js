@@ -3,17 +3,8 @@ import { FaTimes } from "react-icons/fa";
 import toaster from "toasted-notes";
 import Axios from "../../../../../config/config";
 
-const authToken = localStorage.getItem("auth_token");
-const config = {
-    headers:
-    {
-        "Content-Type": "application/json",
-        'Authorization': authToken
-    }
-
-}
-
 export const saveData = async ({url, setLoading, formData, user, setFormData, setFeetback, setData, hasFile}) => {
+    const authToken = localStorage.getItem("auth_token");
     const config = {
         headers:
         {
@@ -62,6 +53,7 @@ export const saveData = async ({url, setLoading, formData, user, setFormData, se
 }
 
 export const hasFileDelete = async ({url, id, user, setLoading, setData, setFeetback}) => {
+    const authToken = localStorage.getItem("auth_token");
     const config = {
         headers:
         {
@@ -99,6 +91,15 @@ export const hasFileDelete = async ({url, id, user, setLoading, setData, setFeet
 
 
 export const loadData = async (url, formData, setFormData) => {
+    const authToken = localStorage.getItem("auth_token");
+    const config = {
+        headers:
+        {
+            'Content-Type': 'application/json',
+            'Authorization': authToken
+        }
+    }
+    console.log(url, formData, setFormData)
     const newInfo = await Axios.get(url, config);
     setFormData({
         ...formData,
@@ -107,6 +108,14 @@ export const loadData = async (url, formData, setFormData) => {
 }
 
 export const fetcherForFiles = async({url, user, setData}) => {
+    const authToken = localStorage.getItem("auth_token");
+    const config = {
+        headers:
+        {
+            'Content-Type': 'application/json',
+            'Authorization': authToken
+        }
+    }
     const fullUrl = `/${url}/fetch/${user.userType}`;
     const newInfo = await Axios.get(fullUrl, config);
     setData(newInfo.data);
