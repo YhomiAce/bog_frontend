@@ -7,13 +7,10 @@ import Spinner from '../../../../layouts/Spinner';
 import ActionFeedBack from '../Modals/ActionFeedBack';
 import { hasFileDelete, fetcherForFiles, saveData } from './DataHandler';
 
-export const JobExecution = ({handleOpen}) => {
-    const initialState = {
-        index: false,
-    }
-    const [mini, setMini] = useState(initialState)
+export const JobExecution = () => {
+    
+    const [mini, setMini] = useState('')
 
-    // mine, stephan
     const [loading, setLoading] = useState(false);
     const [isLoaded, setDataLoaded] = useState(false);
     const [feedback, setFeetback] = useState(false);
@@ -32,7 +29,6 @@ export const JobExecution = ({handleOpen}) => {
         !isLoaded && fetcherForFiles({ url:"kyc-work-experience", user, setData:setWorks})
         setDataLoaded(true);
     }, [])
-    console.log(myWorks);
     const DataSaver = () => {
         const url = "/kyc-work-experience/create";
         const fd = new FormData();
@@ -67,15 +63,12 @@ export const JobExecution = ({handleOpen}) => {
             <div className="form-inline mt-6" key={index}>
               <div className='flex bg-light p-5 rounded-lg justify-between items-center'>
                 <p className='fw-600 text-lg'>Job Entry {index + 1}</p>
-                <p className='flex items-center'> {
-                        index ? 
-                            <button type="button"  className="mr-4 text-xxl" onClick={() => hasFileDelete({url: "kyc-work-experience", id: element.id, user, setLoading, setData:setWorks, setFeetback})}><FcDeleteDatabase/></button> 
-                            : null
-                    }
-                    {mini? <BsDashCircleFill className='text-primary text-xl' onClick={() => setMini(false)}/> : <BsPlusCircleFill className='text-primary text-xl' onClick={() => setMini({index:true})}/>}</p>
+                <p className='flex items-center'> 
+                    <button type="button"  className="mr-4 text-xxl" onClick={() => hasFileDelete({url: "kyc-work-experience", id: element.id, user, setLoading, setData:setWorks, setFeetback})}><FcDeleteDatabase/></button>        
+                    {mini === index ? <BsDashCircleFill className='text-primary text-xl' onClick={() => setMini('')}/> : <BsPlusCircleFill className='text-primary text-xl' onClick={() => setMini(index)}/>}</p>
               </div>
               {
-                mini && (
+                mini === index && (
                     <div className='px-5 scale-ani'>
                         <div className='lg:flex'>
                             <div className='lg:w-6/12 lg:pr-3 mt-5'>
@@ -168,7 +161,7 @@ export const JobExecution = ({handleOpen}) => {
                                 <div className='lg:w-6/12 lg:pr-3 mt-5'>
                                     <label className='fw-500'>Date</label>
                                     <input 
-                                        type="text" 
+                                        type="date" 
                                         name="name" 
                                         value={formData.date}
                                         onChange={(e) => updateValue(e.target.value, "date")}
@@ -190,8 +183,8 @@ export const JobExecution = ({handleOpen}) => {
                             <input 
                                 type="number" 
                                 name="name" 
-                                value={formData.company_involvement}
-                                onChange={(e) => updateValue(e.target.value, "company_involvement")}
+                                value={formData.years_of_experience}
+                                onChange={(e) => updateValue(e.target.value, "years_of_experience")}
                                 className='w-full mt-2 p-2 border border-gray-400 rounded'
                                 />
                         </div>
