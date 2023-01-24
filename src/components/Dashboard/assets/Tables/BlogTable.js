@@ -19,8 +19,6 @@ import "jspdf-autotable";
 import { useExportData } from "react-table-plugins";
 import Papa from "papaparse";
 import * as XLSX from 'xlsx'
-import dayjs from 'dayjs';
-import { formatNumber } from '../../../../services/helper';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import { deleteBlogPost } from '../../../../redux/actions/PostAction';
@@ -115,18 +113,14 @@ export function BlogTable({status}) {
             }
         });
     }
-    const iconStyle = {
-        cursor: "pointer",
-        marginLeft: "5px"
-    }
     let blog = useSelector((state) => state.blog.posts);
     if (status) {
         blog = blog.filter(where => where.status === status)
       }
   
-    const gotoDetailsPage = (id) => {
-        navigate(`/dashboard/transact-details?transactId=${id}`)
-    }
+    // const gotoDetailsPage = (id) => {
+    //     navigate(`/dashboard/transact-details?transactId=${id}`)
+    // }
 
 
     const columns = useMemo(
