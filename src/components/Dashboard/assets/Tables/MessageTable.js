@@ -20,7 +20,7 @@ import { useExportData } from "react-table-plugins";
 import Papa from "papaparse";
 import * as XLSX from 'xlsx'
 import dayjs from 'dayjs';
-import { cutText, formatNumber, getUserType } from '../../../../services/helper';
+import { cutText,  getUserType } from '../../../../services/helper';
 import { useSelector } from 'react-redux';
 
 // export table files
@@ -85,11 +85,11 @@ function getExportFileBlob({ columns, data, fileType, fileName }) {
 export function MessageTable({openModal, deleteMsg}) {
 
   let msg = useSelector((state) => state.announcements.announcements);
-  
-  const navigate = useNavigate()
-    const gotoDetailsPage = (id) => {
-        navigate(`/dashboard/transact-details?transactId=${id}`)
-    }
+   
+    const navigate = useNavigate()
+    // const gotoDetailsPage = (id) => {
+    //     navigate(`/dashboard/transact-details?transactId=${id}`)
+    // }
 
 
     const columns = useMemo(

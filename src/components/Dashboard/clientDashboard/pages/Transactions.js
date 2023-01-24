@@ -13,7 +13,6 @@ import {
     Button,
   } from "@material-tailwind/react";
 import useFetchHook from "../../../../hooks/useFetchHook";
-import TransactionItem from "./Transaction/TransactionItem";
 import { AdminTransactTable } from "../../assets/Tables/AdminTransaction";
 
 export default function Transactions() {

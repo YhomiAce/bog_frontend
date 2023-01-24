@@ -10,7 +10,7 @@ import { BsEye } from "react-icons/bs";
 import Swal from "sweetalert2";
 import { BiMessageRoundedDetail, BiTrash } from "react-icons/bi";
 import { MessageModal } from "../Users/MessageModal";
-import { MessageTable } from "../../../assets/Tables/MessageTable";
+// import { MessageTable } from "../../../assets/Tables/MessageTable";
 
 export default function AdminInbox() {
     const dispatch = useDispatch();

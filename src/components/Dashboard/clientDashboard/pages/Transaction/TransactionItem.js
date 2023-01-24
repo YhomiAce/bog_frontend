@@ -31,7 +31,7 @@ export const TransactionDetails = () => {
     };
 
     useEffect (() => {
-        fetchTransactDetails(userId)
+        fetchTransactDetails(userId)  // eslint-disable-next-line 
     }, []) ;
 
 
