@@ -198,9 +198,9 @@ export const register = (apiData, navigate, stopLoading) => {
 // Logout
 export const logout = () => (dispatch) => {
     dispatch({ type: ActionType.LOGOUT });
-    window.location.href = "/login";
+    window.location.href = "/";
 };
 export const Adminlogout = () => (dispatch) => {
     dispatch({ type: ActionType.LOGOUT });
-    window.location.href = "/admin";
+    window.location.href = "/";
 };

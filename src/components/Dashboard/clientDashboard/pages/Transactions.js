@@ -13,7 +13,7 @@ import {
     Button,
   } from "@material-tailwind/react";
 import useFetchHook from "../../../../hooks/useFetchHook";
-import TransactionItem from "./Transaction/TransactionItem";
+import { AdminTransactTable } from "../../assets/Tables/AdminTransaction";
 
 export default function Transactions() {
     const { loading, data: transactions } = useFetchHook("/transactions/user");    
@@ -119,7 +119,8 @@ export default function Transactions() {
                                     {
                                         !loading && transactions !== null ?
                                         transactions.map((item, index) => (
-                                            <TransactionItem key={item.id} sn={index} item={item} />
+                                            // <TransactionItem key={item.id} sn={index} item={item} />
+                                            <AdminTransactTable key={item.id} sn={index} item={item} />
                                         )) : null
                                     }                                   
                                     

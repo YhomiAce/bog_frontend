@@ -10,6 +10,7 @@ import { BsEye } from "react-icons/bs";
 import Swal from "sweetalert2";
 import { BiMessageRoundedDetail, BiTrash } from "react-icons/bi";
 import { MessageModal } from "../Users/MessageModal";
+// import { MessageTable } from "../../../assets/Tables/MessageTable";
 
 export default function AdminInbox() {
     const dispatch = useDispatch();
@@ -22,8 +23,8 @@ export default function AdminInbox() {
         setMessage(false)
     }
     
-    const openViewModal = (val) => {
-        setSelectedMessage(val);
+    const openViewModal = (msg) => {
+        setSelectedMessage(msg);
         setView(true)
     }
 
@@ -111,7 +112,7 @@ export default function AdminInbox() {
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">{index + 1}</td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">{cutText(item.title, 20, "...")}</td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left"> {cutText(item.content, 20, "...")} </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left"> {getUserType(item.user)} </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left"> {getUserType(item.user)}</td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left"> {dayjs(item.createdAt).format("DD-MMM-YYYY")} </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left"> {dayjs(item.expiredAt).format("DD-MMM-YYYY")} </td>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
@@ -132,6 +133,7 @@ export default function AdminInbox() {
                                 }
                             </tbody>
                         </table>
+                        {/* { announcements.length > 0 ? <MessageTable openModal={openViewModal} deleteMsg={deleteMessage}/> : <p className="text-center my-10">No content yet</p>} */}
                     </div>
                 </div>
             </div>

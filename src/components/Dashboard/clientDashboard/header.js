@@ -155,7 +155,6 @@ export default function Header() {
                                     </Button>
                                 </MenuHandler>
                                 <MenuList>
-                                    <MenuItem onClick={() => navigate("/dashboard/transact")}>Transactions</MenuItem>
                                     {
                                         auth?.user?.userType === "admin" ?
                                         <MenuItem onClick={() => navigate("/dashboard/announcement")}>Messages</MenuItem>

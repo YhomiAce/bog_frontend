@@ -54,6 +54,7 @@ import { SmartCalc } from "./pages/SmartCalc";
 import AdminMeeting from "./pages/AdminMeeting";
 import AdminInbox from "./pages/Admins/InboxAdmin";
 import UserInbox from "./pages/Users/InboxUser";
+import { TransactionDetails } from "./pages/Transaction/TransactionItem";
 
 export default function ClientDashboard() {
 
@@ -114,6 +115,7 @@ export default function ClientDashboard() {
                         <Route path="meetings" element={<Meetings />} />
                         <Route path="admin-meetings" element={<AdminMeeting />} />
                         <Route path="transact" element={<Transactions />} />
+                        <Route path="transact-details" element={<TransactionDetails />} />
                         <Route path="transactions" element={<AdminTransactions />} />
                         <Route path="notification" element={<Notify />} />
                         <Route path="notify" element={<Notification />} />
