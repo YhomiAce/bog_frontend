@@ -121,7 +121,7 @@ export function AdminTransactTable({item}) {
           },
           {
             Header: 'Action',
-            accessor: 'TransactionId',
+            accessor: 'id',
             id: "main",
             Cell: (row) => <Menu placement="left-start" className="w-16">
                     <MenuHandler>

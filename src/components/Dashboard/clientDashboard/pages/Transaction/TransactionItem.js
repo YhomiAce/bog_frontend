@@ -10,18 +10,20 @@ export const TransactionDetails = () => {
     const { search } = useLocation();
     const userId = new URLSearchParams(search).get("transactId");
     const [item, setItem] = useState(null);
+    const [details, setDetails] = useState(null);
     const [loading, setLoading] = useState(false);
     const [moreDetails, setMoreDetails] = useState(false);
 
     const fetchTransactDetails = async (transactId) =>{
         try {
             setLoading(true);
-            const url = `/transaction?txn=${transactId}`
+            const url = `/transaction/${transactId}`
             await Axios.get(url)
             const res = await Axios.get(url);
             const datas = res.data
             console.log(datas)
-            setItem(res.data);
+            setItem(res.data.transaction);
+            setDetails(res.data.detail)
             setLoading(false);
             setMoreDetails(true)
             return datas;
@@ -65,7 +67,7 @@ export const TransactionDetails = () => {
                                 </div>
                                 <div className='border-b py-2 flex'>
                                     <p className='fw-500 w-4/12'>Amount:</p>
-                                    <p className='w-8/12'>{formatNumber(item?.amount)}</p>
+                                    <p className='w-8/12'>NGN{formatNumber(item?.amount)}</p>
                                 </div>
                                 <div className='border-b py-2 flex'>
                                     <p className='fw-500 w-4/12'>Transaction Status:</p>
@@ -81,8 +83,8 @@ export const TransactionDetails = () => {
                                     <p className='w-8/12'>{item?.user?.name}</p>
                                 </div>
                                 <div className='border-b py-2 flex'>
-                                    <p className='fw-500 w-4/12'>User Account Type:</p>
-                                    <p className='w-8/12'> {item?.user?.userType}</p>
+                                    <p className='fw-500 w-4/12'>Order/Project ID:</p>
+                                    <p className='w-8/12'> {details?.id}</p>
                                 </div>
                                 <div className='border-b py-2 flex'>
                                     <p className='fw-500 w-4/12'>User Email:</p>
