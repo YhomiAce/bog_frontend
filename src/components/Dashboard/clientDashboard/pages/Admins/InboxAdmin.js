@@ -4,13 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllAnnouncements, deleteAnnouncement } from "../../../../../redux/actions/AnnouncementAction";
 import { SendMessage } from "./Modals/SendMessage";
-import { cutText, getUserType } from "../../../../../services/helper"
-import dayjs from "dayjs";
-import { BsEye } from "react-icons/bs";
 import Swal from "sweetalert2";
-import { BiMessageRoundedDetail, BiTrash } from "react-icons/bi";
+import { BiMessageRoundedDetail} from "react-icons/bi";
 import { MessageModal } from "../Users/MessageModal";
-// import { MessageTable } from "../../../assets/Tables/MessageTable";
+import { MessageTable } from "../../../assets/Tables/MessageTable";
 
 export default function AdminInbox() {
     const dispatch = useDispatch();
@@ -24,6 +21,7 @@ export default function AdminInbox() {
     }
     
     const openViewModal = (msg) => {
+        console.log(msg)
         setSelectedMessage(msg);
         setView(true)
     }
@@ -36,10 +34,6 @@ export default function AdminInbox() {
         dispatch(getAllAnnouncements())
     }, [dispatch]);
 
-    const iconStyle = {
-        cursor: "pointer",
-        marginLeft: "5px"
-    }
 
     const deleteMessage = (id) => {
         Swal.fire({
@@ -93,47 +87,7 @@ export default function AdminInbox() {
                 {/* content */}
                 <div className="lg:p-5 px-3 py-5 mt-6">
                     <div className="p-6 bg-white rounded-lg">
-                        <table className="items-center w-full bg-transparent border-collapse">
-                            <thead className="bg-light p-2 rounded-lg text-primary">
-                                <tr>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 whitespace-nowrap text-left">S/N</th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 whitespace-nowrap text-left">Title</th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 whitespace-nowrap text-left">Content</th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 whitespace-nowrap text-left">Receipients</th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 whitespace-nowrap text-left">Created At</th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 whitespace-nowrap text-left">Expired At</th>
-                                    <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 whitespace-nowrap text-left">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    announcements.length > 0 ? announcements.map((item, index) => (
-                                        <tr key={item.id}>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">{index + 1}</td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">{cutText(item.title, 20, "...")}</td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left"> {cutText(item.content, 20, "...")} </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left"> {getUserType(item.user)}</td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left"> {dayjs(item.createdAt).format("DD-MMM-YYYY")} </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left"> {dayjs(item.expiredAt).format("DD-MMM-YYYY")} </td>
-                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                <div className="flex text-xl">
-                                                    <span style={iconStyle}>
-                                                        <BsEye onClick={() => openViewModal(item)} />
-                                                    </span>
-                                                    <span style={iconStyle}>
-                                                        <BiTrash onClick={() => deleteMessage(item.id)} />
-                                                    </span>
-
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    )) :
-                                        <p className="text-center my-10">No content yet</p>
-                                }
-                            </tbody>
-                        </table>
-                        {/* { announcements.length > 0 ? <MessageTable openModal={openViewModal} deleteMsg={deleteMessage}/> : <p className="text-center my-10">No content yet</p>} */}
+                        { announcements.length > 0 ? <MessageTable openModal={openViewModal} deleteMsg={deleteMessage}/> : <p className="text-center my-10">No content yet</p>}
                     </div>
                 </div>
             </div>
