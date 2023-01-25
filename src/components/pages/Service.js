@@ -118,6 +118,7 @@ export default function Service() {
                 landSize: landSize,
                 propertyType: propertyType,
                 surveyType: propertyType,
+                userType: user.userType
             }
             console.log(payload);
             const config = {
@@ -547,6 +548,7 @@ export default function Service() {
                 fd.append('projectLocation', value.location);
                 fd.append('projectType', projecttype);
                 fd.append('buildingType', residenttype);
+                fd.append('userType', user.userType);
                
                 // fd.append('surveyPlan', surveyPlan);
                 // fd.append('structuralPlan', structuralPlan);
@@ -591,6 +593,7 @@ export default function Service() {
                 setLoading(true)
                 // console.log(userData);
                 const fd = new FormData();
+                fd.append('userType', user.userType);
                 fd.append('clientName', value.clientname);
                 fd.append('propertyLocation', value.locationofthesite);
                 fd.append('landSize',  value.sizeofland);
@@ -668,6 +671,7 @@ export default function Service() {
                     fd.append(`drawingType[]`, drawing[d]);
                 }
                 fd.append('title', user?.fname);
+                fd.append('userType', user.userType);
                 fd.append('clientName', value.clientname);
                 fd.append('projectLocation', value.location);
                 fd.append('projectType', projecttype);
@@ -746,6 +750,7 @@ export default function Service() {
                 for (let u = 0; u < letterofsupervision.length; u++) {
                     fd.append(`supervisorLetter[]`, letterofsupervision[u]);
                 }
+                fd.append('userType', user.userType);
                 fd.append('title', value.title);
                 fd.append('clientName', value.clientname);
                 fd.append('projectLocation', value.location);

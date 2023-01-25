@@ -44,6 +44,17 @@ const ProjectReducer = (state = initialState, action) => {
                 services: oldData,
                 error: null,
             }
+        case ActionType.UPDATE_PROJECT:
+            const oldProjects = [...state.projects];
+            const prodIndex = oldProjects.findIndex(where => where.id === payload.projectId);
+            oldProjects[prodIndex].approvalStatus = "in_review";
+            return {
+                ...state,
+                isLoading: false,
+                projects: oldProjects,
+                error: null,
+            }
+        
         case ActionType.DELETE_SERVICE:
             return {
                 ...state,

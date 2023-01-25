@@ -1,4 +1,4 @@
-import * as ActionType from '../type'; 
+import * as ActionType from '../type';
 
 const initialState = {
     projects: [],
@@ -6,7 +6,7 @@ const initialState = {
     error: null,
 }
 
- 
+
 const ProjectsReducer = (state = initialState, action) => {
     const { type, payload } = action
     switch (type) {
@@ -15,6 +15,17 @@ const ProjectsReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 projects: payload,
+                error: null,
+            }
+        case ActionType.APPROVE_PROJECT:
+            const oldProjectData = [...state.projects];
+            const projectIndex = oldProjectData.findIndex(where => where.id === payload.projectId);
+            oldProjectData[projectIndex].approvalStatus = "approved";
+            oldProjectData[projectIndex].status = "approved";
+            return {
+                ...state,
+                isLoading: false,
+                projects: oldProjectData,
                 error: null,
             }
         default: return state;

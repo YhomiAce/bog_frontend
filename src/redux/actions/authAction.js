@@ -41,12 +41,14 @@ export const getMe = () => {
     return async (dispatch) => {
         // setAuthToken(localStorage.auth_token);
         try {
-            const type = localStorage.getItem("userType")
-            const token = localStorage.getItem("auth_token")
+            const type = localStorage.getItem("userType");
             let url = `/user/me`;
+            const authToken = localStorage.getItem("auth_token");
             const config = {
-                header: {
-                    Authorization: token
+                headers:
+                {
+                    'Content-Type' : 'application/json',
+                    'Authorization': authToken
                 }
             }
             if (type) {
@@ -56,7 +58,7 @@ export const getMe = () => {
             console.log(response);
             const socket = io(`${process.env.REACT_APP_API_URL}`, {
                 query: {
-                    userId: response.user.id
+                    userId: response.user.profile.id
                 }
             });
             socket.on("getUserNotifications", (payload) => {
@@ -87,7 +89,7 @@ export const loginUser = (apiData, navigate, stopLoading) => {
             console.log(response);
             const socket = io(`${process.env.REACT_APP_API_URL}`, {
                 query: {
-                    userId: response.user.id
+                    userId: response.user.profile.id
                 }
             });
             socket.on("getUserNotifications", (payload) => {
@@ -96,17 +98,18 @@ export const loginUser = (apiData, navigate, stopLoading) => {
             })
             dispatch(login(response));
             stopLoading();
-            Swal.fire({
-                title: "Success",
-                imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",
-                imageWidth: "75px",
-                text: "Login completed successfully",
-                buttonsStyling: "false",
-                confirmButtonText: "Continue",
-                confirmButtonColor: "#3F79AD",
-            }).then(() => {
-                navigate("/dashboard");
-            })
+            // Swal.fire({
+            //     title: "Success",
+            //     imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",
+            //     imageWidth: "75px",
+            //     text: "Login completed successfully",
+            //     buttonsStyling: "false",
+            //     confirmButtonText: "Continue",
+            //     confirmButtonColor: "#3F79AD",
+            // }).then(() => {
+            //     navigate("/dashboard");
+            // })
+            navigate("/dashboard");
         } catch (error) {
             console.log(error.message);
             const errors = error.response.data.message;
@@ -133,17 +136,18 @@ export const loginAdmin = (apiData, navigate, stopLoading) => {
             dispatch(login(response));
             stopLoading();
             localStorage.removeItem("userType")
-            Swal.fire({
-                title: "Success",
-                imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",
-                imageWidth: "75px",
-                text: "Login completed successfully",
-                buttonsStyling: "false",
-                confirmButtonText: "Continue",
-                confirmButtonColor: "#3F79AD",
-            }).then(() => {
-                navigate("/dashboard");
-            })
+            // Swal.fire({
+            //     title: "Success",
+            //     imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",
+            //     imageWidth: "75px",
+            //     text: "Login completed successfully",
+            //     buttonsStyling: "false",
+            //     confirmButtonText: "Continue",
+            //     confirmButtonColor: "#3F79AD",
+            // }).then(() => {
+            //     navigate("/dashboard");
+            // })
+            navigate("/dashboard");
         } catch (error) {
             console.log(error.message);
             const errors = error.response.data.message;
