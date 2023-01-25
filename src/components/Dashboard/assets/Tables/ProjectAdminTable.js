@@ -246,7 +246,7 @@ export default function ProjectsTable({ status }) {
               View Details
             </MenuItem>
             {
-              row.cell.row.original.approvalStatus !== "in_review" &&
+              row.cell.row.original.approvalStatus === "in_review" &&
               <MenuItem onClick={() => approveProjectForCommencement(row.value)}>
                 Approve Project
               </MenuItem>
