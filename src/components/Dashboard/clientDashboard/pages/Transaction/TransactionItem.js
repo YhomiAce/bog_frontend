@@ -80,7 +80,7 @@ export const TransactionDetails = () => {
                             <div className='mt-6'>
                                 <div className='border-b py-2 flex'>
                                     <p className='fw-500 w-4/12'>User Name:</p>
-                                    <p className='w-8/12'>{item?.user?.name}</p>
+                                    <p className='w-8/12'>{`${item?.user?.fname} ${item?.user?.lname}`}</p>
                                 </div>
                                 <div className='border-b py-2 flex'>
                                     <p className='fw-500 w-4/12'>Order/Project ID:</p>
