@@ -51,6 +51,27 @@ export const getUserType = (type) => {
         default: return ""
     }
 }
+export const getUserTypes = (type) => {
+    switch (type) {
+        case "admin":
+            return "Super Admin"
+        case "professional":
+            return "Service Partner"
+        case "vendor":
+            return "Product Partner"
+        case "private_client":
+            return "Private Client"
+        case "corporate_client":
+            return "Corporate Client"
+        case "all":
+            return "All Users"
+        case "product_partner":
+            return "Product Partner"
+        case "service_partner":
+            return "Service Partner"
+        default: return ""
+    }
+}
 
 export const getUserTypeRevserse = (type) => {
     switch (type) {

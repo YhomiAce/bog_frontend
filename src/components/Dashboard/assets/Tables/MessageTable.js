@@ -13,7 +13,6 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import { useNavigate } from 'react-router-dom';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { useExportData } from "react-table-plugins";
@@ -86,10 +85,6 @@ export function MessageTable({openModal, deleteMsg}) {
 
   let msg = useSelector((state) => state.announcements.announcements);
    
-    const navigate = useNavigate()
-    // const gotoDetailsPage = (id) => {
-    //     navigate(`/dashboard/transact-details?transactId=${id}`)
-    // }
 
 
     const columns = useMemo(
@@ -111,7 +106,9 @@ export function MessageTable({openModal, deleteMsg}) {
           {
             Header: "Recipients",
             accessor: "user",
-            Cell: (props) => {getUserType(props.value)}
+            Cell: (props) => getUserType(props.value),
+            Filter: SelectColumnFilter, 
+            filter: 'includes',
           },
           {
             Header: "Created At",
@@ -131,7 +128,7 @@ export function MessageTable({openModal, deleteMsg}) {
                       <Button className="border-none bg-transparent shadow-none hover:shadow-none text-black"><button className="lg:text-xl"><BsThreeDotsVertical /></button></Button>
                     </MenuHandler>
                     <MenuList className="w-16 bg-gray-100 fw-600 text-black">
-                      <MenuItem onClick={() => openModal(row.original)}>View Details</MenuItem>
+                      <MenuItem onClick={() => openModal(row.row.original)}>View Details</MenuItem>
                       <MenuItem onClick={() => deleteMsg(row.value)}>Delete Message</MenuItem>
                     </MenuList>
                   </Menu>,
