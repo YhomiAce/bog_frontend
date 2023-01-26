@@ -71,13 +71,27 @@ export default function UserDetails() {
             default: return userType
         }
     }
+    const formatName = (userType) => {
+        switch (userType) {
+            case "private_client":
+                return 'Client'
+            case "corporate_client":
+              return 'Client'
+            case "vendor":
+              return 'Product Partner'
+            case "professional":
+              return 'Service Partner'
+    
+            default: return ""
+        }
+    }
 
 
     return (
         <div>
             <div className="min-h-screen fs-500 relative">
                 <div className="w-full py-8 bg-white px-4">
-                    <p className="fs-700 lg:text-2xl fw-600 flex items-top">View Client: <span className="text-primary lg:fs px-3 lg:w-auto w-6/12">{client?.name}</span></p>
+                    <p className="fs-700 lg:text-2xl fw-600 flex items-top">View {formatName(client?.userType)}: <span className="text-primary lg:fs px-3 lg:w-auto w-6/12">{client?.name}</span></p>
                     <p className="fs-400 text-gray-600 mt-2">Manage and review all clients</p>
                     <Breadcrumbs className="bg-white pl-0 mt-4">
                         <Link to="/" className="opacity-60">
@@ -110,9 +124,9 @@ export default function UserDetails() {
                                     <div className="bg-white p-3 lg:p-8">
                                         <div className="flex items-top lg:items-center">
                                             <div className="">
-                                                <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="profile" className="lg:w-36 lg:h-36 w-16 h-16" />
+                                                <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="profile" className="lg:w-36 lg:h-36 md:w-24 md:h-24 w-16 h-16" />
                                             </div>
-                                            <div className="lg:pl-10 pl-6">
+                                            <div className="xl:pl-10 md:pl-6 pl-6">
                                                 <p className="lg:text-xl fw-600">{client?.name? client?.name : ""}</p>
                                                 <p className="lg:grid-2 w-full">{accounts.map( item => {
                                                     return <p className="lg:w-36">{formatType(item.userType)}</p>

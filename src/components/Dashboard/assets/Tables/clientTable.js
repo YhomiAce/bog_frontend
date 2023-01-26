@@ -179,8 +179,7 @@ if (status) {
                     </MenuHandler>
                     <MenuList className="w-16 bg-gray-100 fw-600 text-black">
                       <MenuItem onClick={() => gotoDetailsPage(row.value)}>View Details</MenuItem>
-                      <MenuItem></MenuItem>
-                      <MenuItem className="bg-red-600 text-white">Delete</MenuItem>
+                      <MenuItem className="bg-red-600 text-white hover:bg-red-500">Delete Client</MenuItem>
                     </MenuList>
                   </Menu>,
           },
