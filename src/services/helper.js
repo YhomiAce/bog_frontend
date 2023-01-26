@@ -51,24 +51,16 @@ export const getUserType = (type) => {
         default: return ""
     }
 }
-export const getUserTypes = (type) => {
+export const getStatus = (type) => {
     switch (type) {
-        case "admin":
-            return "Super Admin"
-        case "professional":
-            return "Service Partner"
-        case "vendor":
-            return "Product Partner"
-        case "private_client":
-            return "Private Client"
-        case "corporate_client":
-            return "Corporate Client"
-        case "all":
-            return "All Users"
-        case "product_partner":
-            return "Product Partner"
-        case "service_partner":
-            return "Service Partner"
+        case "pending":
+            return <p className="px-2 py-1 text-orange-700 bg-orange-100 w-24 rounded-md fw-600">Pending</p>
+        case "approved":
+            return <p className="px-2 py-1 text-green-700 bg-green-100 w-24 rounded-md fw-600">Approved</p>
+        case "declined":
+            return <p className="px-2 py-1 text-red-700 bg-red-100 w-24 rounded-md fw-600">Declined</p>
+        case "completed":
+            return <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">Completed</p>
         default: return ""
     }
 }

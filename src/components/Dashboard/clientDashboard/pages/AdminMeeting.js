@@ -26,6 +26,7 @@ import { BsCheck } from "react-icons/bs";
 import ActionFeedBack from "./Modals/ActionFeedBack";
 import { fetchMeetings } from "../../../../redux/actions/meetingAction";
 import useFetchHook from "../../../../hooks/useFetchHook";
+// import { MeetingTable } from "../../assets/Tables/MeetingTable";
 
 
 const AdminMeeting = () => {
@@ -73,7 +74,7 @@ const AdminMeeting = () => {
         setMeeting(newMeeting);
     }
 
-    const updateMeetingStatus = (payload) => {
+    const   updateMeetingStatus = (payload) => {
         const oldMeeting = [...meetings];
         const index = meetings.findIndex(where => where.id === payload.meetingId);
         oldMeeting[index].approval_status = payload.status;
@@ -248,6 +249,7 @@ const AdminMeeting = () => {
                                     {<MeetingListItem filterBy="attended" isAdmin meetings={meetings} removeMeeting={removeFromMeeting} updateMeetingStatus={updateMeetingStatus} />}
                                 </tbody>
                                 </table>
+                                {/* {meetings.length > 0 ? <MeetingTable  status={"attended"} isAdmin meet={meetings} removeMeet={removeFromMeeting} updateMeetingStatus={updateMeetingStatus}/> : null} */}
                             </div>
                             </CardBody>
                         </TabPanel>
@@ -287,6 +289,7 @@ const AdminMeeting = () => {
                                     {<MeetingListItem filterBy="approved" isAdmin meetings={meetings} removeMeeting={removeFromMeeting} updateMeetingStatus={updateMeetingStatus} />}
                                 </tbody>
                                 </table>
+                                {/* {<MeetingTable  status={"approved"} isAdmin meet={meetings} removeMeet={removeFromMeeting} updateMeetingStatus={updateMeetingStatus} />} */}
                             </div>
                             </CardBody>
                         </TabPanel>
@@ -331,6 +334,7 @@ const AdminMeeting = () => {
                                     />}
                                 </tbody>
                                 </table>
+                                {/* {<MeetingTable  status={"pending"} isAdmin meet={meetings} removeMeet={removeFromMeeting} updateMeetStatus={updateMeetingStatus} />} */}
                             </div>
                             </CardBody>
                         </TabPanel>

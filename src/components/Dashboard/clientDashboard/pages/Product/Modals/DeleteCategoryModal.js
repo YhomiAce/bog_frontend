@@ -15,7 +15,7 @@ const DeleteCategoryModal = ({ CloseDelete, category, isAdmin }) => {
 
     const deleteProduct = () => {
         setLoading(true);
-        dispatch(removeCategory(category.id, saveLoading))
+        dispatch(removeCategory(category, saveLoading))
     }
 
     return (

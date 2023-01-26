@@ -26,6 +26,7 @@ import ActionFeedBack from "./Modals/ActionFeedBack";
 import { BsCheck } from "react-icons/bs";
 import { fetchMeetings } from "../../../../redux/actions/meetingAction";
 import useFetchHook from "../../../../hooks/useFetchHook";
+// import { MeetingTable } from "../../assets/Tables/MeetingTable";
 
 
 const Meetings = () => {
@@ -237,8 +238,10 @@ const Meetings = () => {
                                             </thead>
                                             <tbody>
                                                 {<MeetingListItem filterBy="attended" meetings={meetings} removeMeeting={removeFromMeeting} />}
+                                                
                                             </tbody>
                                         </table>
+                                        {/* {meetings.length > 0? <MeetingTable filterBy="attended" status={'attended'} meet={meetings} removeMeet={removeFromMeeting} /> : ''} */}
                                     </div>
                                 </CardBody>
                             </TabPanel>
@@ -278,6 +281,7 @@ const Meetings = () => {
                                                 {<MeetingListItem filterBy="approved" meetings={meetings} removeMeeting={removeFromMeeting} />}
                                             </tbody>
                                         </table>
+                                        {/* {<MeetingTable filterBy="attended" status={'approved'} meet={meetings} removeMeet={removeFromMeeting} />} */}
                                     </div>
                                 </CardBody>
                             </TabPanel>
@@ -317,6 +321,7 @@ const Meetings = () => {
                                                 {<MeetingListItem filterBy="pending" meetings={meetings} removeMeeting={removeFromMeeting} />}
                                             </tbody>
                                         </table>
+                                        {/* {<MeetingTable filterBy="attended" status={'pending'} meet={meetings} removeMeet={removeFromMeeting} />} */}
                                     </div>
                                 </CardBody>
                             </TabPanel>
