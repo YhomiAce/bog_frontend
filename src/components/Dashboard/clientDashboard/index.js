@@ -14,7 +14,7 @@ import Projects from "./pages/Project";
 import Cart from "./pages/Cart";
 import { AllProject } from "./pages/allprojects";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBarsStaggered, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { SwitchAccount } from "./pages/SwitchAccount";
 import Ppartners from "./pages/Ppartners";
