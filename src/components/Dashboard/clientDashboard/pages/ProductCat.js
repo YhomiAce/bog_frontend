@@ -75,7 +75,7 @@ export default function ProductsCategory() {
                 {/* product contents */}
                 <div className="lg:p-5 px-2 py-4">
                     <div className="bg-white lg:p-5 lg:mt-6 mt-6 rounded-lg">
-                        <div className="mt-10">
+                        <div className="">
                             {categories.length > 0 ? <ProductCategoryTable adminEdit={AdminEdit} adminDelete={AdminDelete}/> : <center><h5>No Categories added. Add new ones</h5></center>}
                         </div>
                     </div>

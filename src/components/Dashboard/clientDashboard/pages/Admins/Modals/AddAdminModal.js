@@ -5,11 +5,19 @@ import { useDispatch } from 'react-redux';
 import { adminSchema } from '../../../../../../services/validation';
 import Spinner from '../../../../../layouts/Spinner';
 import { createAdmin } from '../../../../../../redux/actions/UserAction';
-import { FaTimes } from 'react-icons/fa';
+import { FaRegEye, FaRegEyeSlash, FaTimes } from 'react-icons/fa';
 
 const AddAdminModal = ({ CloseModal }) => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
+    const [passwordType, setPasswordType] = useState("password");
+    const togglePassword = () => {
+        if (passwordType === "password") {
+        setPasswordType("text")
+        return;
+        }
+        setPasswordType("password")
+    }
 
     const stopLoading = () => {
         setLoading(false);
@@ -102,16 +110,22 @@ const AddAdminModal = ({ CloseModal }) => {
                     </div>
                     <div className="mt-5">
                         <label className="block">Password</label>
-                        <input
-                            type="password"
-                            className="w-full  border border-gray-400 rounded mt-2 py-2 px-2"
-                            required
-                            id="password"
-                            name="password"
-                            value={password}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                        />
+                        <div className='flex items-center bg-input border border-gray-400 mt-1 rounded'>
+                            <input
+                                type={passwordType}
+                                placeholder="Enter your desired password"
+                                className="w-full border-0 py-2 px-2 rounded"
+                                required
+                                id="password"
+                                name="password"
+                                value={password}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            />
+                            <div onClick={togglePassword} className="px-3">
+                                {passwordType === "password" ? <FaRegEyeSlash className="text-xl" /> : <FaRegEye className="text-xl" />}
+                            </div>
+                        </div>
                         {
                             formik.touched.password && formik.errors.password ? <p className='text-red-500'>{formik.errors.password}</p> : null
                         }

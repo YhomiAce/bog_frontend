@@ -150,9 +150,9 @@ export default function ClientDashboard() {
                         Copyright &copy; {new Date().getFullYear()}{' '} Build On The Go
                     </div>
                 </div>
-                <div className="fixed bottom-0 right-0 lg:m-5 m-4">
+                {/* <div className="fixed bottom-0 right-0 lg:m-5 m-4">
                     <FontAwesomeIcon icon={faQuestionCircle} className="lg:text-5xl text-3xl text-secondary cursor-pointer" />
-                </div>
+                </div> */}
             </div>
         </div>
 
