@@ -31,12 +31,12 @@ export default function AdminLogin() {
     const { email, password } = formik.values;
     useEffect(() => {
         if (isAuthenticated === true) {
-            navigate("/dashboard/home");
+            navigate("/dashboard");
         }
     }, []);
 
     if (isAuthenticated === true) {
-        return <Navigate to="/dashboard/home" replace />
+        return <Navigate to="/dashboard" replace />
     }
 
     return (

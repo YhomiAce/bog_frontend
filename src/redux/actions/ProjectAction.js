@@ -4,26 +4,11 @@ import Swal from "sweetalert2";
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
 
-
-
-const authToken = localStorage.getItem("auth_token");
-const config = {
-    headers:
-    {
-        "Content-Type": "application/json",
-        'Authorization': authToken
-    }
-
-}
-
 export const loading = () => {
     return {
         type: ActionType.LOADING
     }
 }
- 
- 
-// Code by Olatech 
 
 export const setError = (payload) => {
     return {
@@ -32,7 +17,7 @@ export const setError = (payload) => {
     }
 }
 
-export const  fetchProjects = (payload) => {
+export const fetchProjects = (payload) => {
     return {
         type: ActionType.FETCH_ALL_PROJECTS,
         payload
@@ -74,14 +59,35 @@ export const editService = (payload) => {
     }
 }
 
+export const editProject = (payload) => {
+    return {
+        type: ActionType.UPDATE_PROJECT,
+        payload
+    }
+}
 
-export const  getMyProject = () => {
+export const approveProject = (payload) => {
+    return {
+        type: ActionType.APPROVE_PROJECT,
+        payload
+    }
+}
+
+export const getMyProject = (userType) => {
     return async (dispatch) => {
         try {
             dispatch(loading());
-            const response = await axios.get('/projects/my-request', config);
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                }
+            }
+            const response = await axios.get('/projects/my-request?userType=' + userType, config);
             console.log(response);
-            dispatch( fetchMyProject(response.data))
+            dispatch(fetchMyProject(response.data))
         } catch (error) {
             console.log(error.message);
             dispatch(setError(error.message));
@@ -96,14 +102,22 @@ export const  getMyProject = () => {
 
     }
 }
- 
-export const  fetchServiceCategories = () => {
+
+export const fetchServiceCategories = () => {
     return async (dispatch) => {
         try {
             dispatch(loading());
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                }
+            }
             const response = await axios.get('/service/type', config);
             console.log(response);
-            dispatch( fetchServices(response.data))
+            dispatch(fetchServices(response.data))
         } catch (error) {
             console.log(error.message);
             dispatch(setError(error.message));
@@ -119,15 +133,17 @@ export const  fetchServiceCategories = () => {
     }
 }
 
-export const  deleteServiceCategory = (id) => {
+export const deleteServiceCategory = (id) => {
     return async (dispatch) => {
         try {
             dispatch(loading());
+            const authToken = localStorage.getItem("auth_token");
             const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                    'authorization': localStorage.getItem("auth_token")
-                },
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                }
             }
             const url = `/service/type/delete/${id}`
             const response = await axios.delete(url, config);
@@ -153,7 +169,7 @@ export const  deleteServiceCategory = (id) => {
     }
 }
 
-export const  createServiceCategory = (payload, saveLoading) => {
+export const createServiceCategory = (payload, saveLoading) => {
     return async (dispatch) => {
         try {
             dispatch(loading());
@@ -165,7 +181,6 @@ export const  createServiceCategory = (payload, saveLoading) => {
             }
             const url = `/service/type/create`
             const response = await axios.post(url, payload, config);
-            console.log(response);
             dispatch(addService(response.data));
             saveLoading();
             Swal.fire({
@@ -189,15 +204,17 @@ export const  createServiceCategory = (payload, saveLoading) => {
     }
 }
 
-export const  updateServiceCategory = (payload, saveLoading) => {
+export const updateServiceCategory = (payload, saveLoading) => {
     return async (dispatch) => {
         try {
             dispatch(loading());
+            const authToken = localStorage.getItem("auth_token");
             const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                    'authorization': localStorage.getItem("auth_token")
-                },
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                }
             }
             const url = `/service/type/update`
             const response = await axios.patch(url, payload, config);
@@ -232,17 +249,14 @@ export const getProjects = () => {
             const config = {
                 headers:
                 {
-                    "Content-Type": "application/json",
+                    'Content-Type': 'application/json',
                     'Authorization': authToken
                 }
-
             }
             dispatch(loading());
             const response = await axios.get('/projects/all', config);
-
-            console.log(`====BY === OLAS==`);
             console.log(response);
-            dispatch( fetchProjects(response.data))
+            dispatch(fetchProjects(response.data))
         } catch (error) {
             console.log(error.message);
             dispatch(setError(error.message));
@@ -258,6 +272,81 @@ export const getProjects = () => {
     }
 }
 
+export const commenceProject = (projectId) => {
+    return async (dispatch) => {
+        try {
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                }
+            }
+            dispatch(loading());
+            const response = await axios.patch('/projects/request-for-approval/'+projectId, config);
+            console.log(response);
+            const payload = {
+                projectId
+            }
+            dispatch(editProject(payload));
+            Swal.fire({
+                title: "Review Sent",
+                text: "Project sent for review",
+                icon: "success"
+            })
+        } catch (error) {
+            console.log(error.message);
+            dispatch(setError(error.message));
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+
+    }
+}
+
+export const approveProjectToStart = (projectId) => {
+    return async (dispatch) => {
+        try {
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                }
+            }
+            dispatch(loading());
+            const response = await axios.patch('/projects/approve-project/'+projectId, config);
+            console.log(response);
+            const payload = {
+                projectId
+            }
+            dispatch(approveProject(payload));
+            Swal.fire({
+                title: "Approved",
+                text: "Project Approved Successfully",
+                icon: "success"
+            })
+        } catch (error) {
+            console.log(error);
+            dispatch(setError(error.message));
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+
+    }
+}
+
 // Code by Olatech ends here 
- 
- 
+

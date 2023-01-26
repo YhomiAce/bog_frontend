@@ -112,7 +112,7 @@ export default function Login() {
                                     <input type="checkbox" className="p-4 border-gray-400" />
                                     <p className="px-2">Remember me</p>
                                 </div>
-                                <div className="mt-6 w-full flex">
+                                <div className="mt-6 w-full flex text-center">
                                     {
                                         loading ? <Spinner /> : <button type="submit" className="w-full text-lg text-white bg-primary py-2 rounded fw-600">
                                             Log in
