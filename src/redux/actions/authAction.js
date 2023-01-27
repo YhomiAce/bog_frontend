@@ -55,16 +55,6 @@ export const getMe = () => {
                 url = `/user/me?userType=${type}`
             }
             const response = await axios.get(url, config);
-            console.log(response);
-            const socket = io(`${process.env.REACT_APP_API_URL}`, {
-                query: {
-                    userId: response.user.profile.id
-                }
-            });
-            socket.on("getUserNotifications", (payload) => {
-                console.log(payload);
-                dispatch(fetchUserNotifications(payload))
-            })
             dispatch(setUser(response))
         } catch (error) {
             console.log(error.message);
