@@ -54,9 +54,9 @@ export default function ProjectsAdmin() {
                             </Link>
                         </Breadcrumbs>
                     </div>
-                    <div className="mt-4 lg:mt-0">
+                    {/* <div className="mt-4 lg:mt-0">
                         <button className="px-4 lg:py-2 py-1 rounded border-pri text-primary" onClick={() => setAdminAdd(!adminAdd)}><span>Assign New Project</span></button>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* service contents */}
@@ -65,18 +65,22 @@ export default function ProjectsAdmin() {
                         <Tabs className="px-2 lg:px-0 py-5 lg:py-0">
                             <TabList className="">
                                 <Tab>All Projects</Tab>
+                                <Tab>Posted</Tab>
                                 <Tab>Ongoing</Tab>
                                 <Tab>Completed</Tab>
                                 <Tab>Overdue</Tab>
                             </TabList>
                             <TabPanel>
-                                <ProjectsTable />
+                                <ProjectsTable status={"in_review"} />
                             </TabPanel>
                             <TabPanel>
-                                <ProjectsTable status={"pending"} />
+                                <ProjectsTable status={"in_review"} />
                             </TabPanel>
                             <TabPanel>
-                                <ProjectsTable status={"approved"} />
+                                <ProjectsTable status={"ongoing"} />
+                            </TabPanel>
+                            <TabPanel>
+                                <ProjectsTable status={"completed"} />
                             </TabPanel>
                             <TabPanel>
                                 <ProjectsTable status={"completed"} />

@@ -55,6 +55,7 @@ import AdminMeeting from "./pages/AdminMeeting";
 import AdminInbox from "./pages/Admins/InboxAdmin";
 import UserInbox from "./pages/Users/InboxUser";
 import { TransactionDetails } from "./pages/Transaction/TransactionItem";
+import ServiceCategory from "./pages/ServiceCat";
 
 export default function ClientDashboard() {
 
@@ -105,6 +106,7 @@ export default function ClientDashboard() {
                         <Route path="projectadmindetails" element={<ProjectDetails />} />
                         <Route path="myprojectdetails" element={<ProjectDetailsClient />} />
                         <Route path="projectrequest" element={<ProjectRequest />} />
+                        <Route path="service-category" element={<ServiceCategory />} />
                         <Route path="productpartner" element={<Ppartners />} />
                         <Route path="servicepartner" element={<Spartners />} />
                         <Route path="sub-admin" element={<Sadmins />} />

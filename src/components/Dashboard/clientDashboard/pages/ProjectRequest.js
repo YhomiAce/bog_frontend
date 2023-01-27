@@ -48,8 +48,7 @@ export default function ProjectRequest() {
                                 <Tab>All Projects Requests</Tab>
                             </TabList>
                             <TabPanel>
-                                
-                                <ProjectsTable status="in_review" />
+                                <ProjectsTable status="pending" />
                             </TabPanel>
                         </Tabs>
                     </div>

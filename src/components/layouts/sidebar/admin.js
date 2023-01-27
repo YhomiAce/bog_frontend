@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { Adminlogout } from '../../../redux/actions/authAction';
-import { MdOutlineEmail, MdOutlineReviews } from "react-icons/md";
+import { MdEngineering, MdOutlineEmail, MdOutlineReviews } from "react-icons/md";
 import { VscHistory } from "react-icons/vsc";
 import { HiOutlineLogout } from "react-icons/hi";
 
@@ -188,6 +188,15 @@ const AdminSidebar = () => {
                                 </div>
                             )}
                         </div>
+                        <NavLink 
+                            to="service-category"
+                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
+                            onClick={unShow}
+                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            >
+                                <MdEngineering className="text-2xl" />
+                                <p className="pl-3">Services</p>
+                        </NavLink>
                         <div
                             
                             className="w-full items-center pl-2 py-2 fw-600 my-2"
