@@ -283,8 +283,11 @@ export const commenceProject = (projectId) => {
                     'Authorization': authToken
                 }
             }
+            const body = {
+                approvalStatus: 'in_review'
+            }
             dispatch(loading());
-            const response = await axios.patch('/projects/request-for-approval/'+projectId, config);
+            const response = await axios.patch('/projects/request-for-approval/'+projectId, body, config);
             console.log(response);
             const payload = {
                 projectId
@@ -322,7 +325,11 @@ export const approveProjectToStart = (projectId) => {
                 }
             }
             dispatch(loading());
-            const response = await axios.patch('/projects/approve-project/'+projectId, config);
+            const body = {
+                approvalStatus: 'approved',
+                status: "approved"
+            }
+            const response = await axios.patch('/projects/approve-project/'+projectId, body, config);
             console.log(response);
             const payload = {
                 projectId
