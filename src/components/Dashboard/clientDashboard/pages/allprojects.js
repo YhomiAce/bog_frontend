@@ -1,7 +1,16 @@
+import { Button, Menu, MenuHandler, MenuItem, MenuList } from "@material-tailwind/react";
 import React from "react";
+import { useState } from "react";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaCheck, FaRegEye, FaTimes } from "react-icons/fa";
 
 export function AllProject() {
+
+    const [assign, setAssign] = useState(false)
+    
+    const CloseModal = () => {
+        setAssign(false)
+    }
 
     return (
         <div>
@@ -71,10 +80,15 @@ export function AllProject() {
                                             </td>
                                             <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 <div className="flex text-xl">
-                                                    <p><FaRegEye/></p>
-                                                    <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
-                                                    <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
-                                                    
+                                                    <Menu>
+                                                        <MenuHandler>
+                                                            <Button className="border-none bg-transparent shadow-none hover:shadow-none text-black"><button className="lg:text-xl"><BsThreeDotsVertical /></button></Button>
+                                                        </MenuHandler>
+                                                        <MenuList>
+                                                            <MenuItem>View Submission</MenuItem>
+                                                            <MenuItem>Submit Qoutation</MenuItem>
+                                                        </MenuList>
+                                                    </Menu>
                                                 </div>
                                             </td>
                                             </tr>
@@ -159,87 +173,6 @@ export function AllProject() {
                                                 </div>
                                             </td>
                                             </tr>
-                                            <tr>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    5
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    DRAW-PDL-18L40
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Construction Drawing
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Island, Lagos
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    19/11/2022
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Pending
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    <div className="flex text-xl">
-                                                        <p><FaRegEye/></p>
-                                                        <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
-                                                        <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    6
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    DRAW-PDL-18L40
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Construction Drawing
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Island, Lagos
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    19/11/2022
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Pending
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    <div className="flex text-xl">
-                                                        <p><FaRegEye/></p>
-                                                        <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
-                                                        <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    7
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    DRAW-PDL-18L40
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Construction Drawing
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Island, Lagos
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    19/11/2022
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Pending
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    <div className="flex text-xl">
-                                                        <p><FaRegEye/></p>
-                                                        <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
-                                                        <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
-                                                    </div>
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -248,6 +181,11 @@ export function AllProject() {
                     </div>
                 </div>
             </div>
+            {
+                assign && (
+                    <div onClick={CloseModal}></div>
+                )
+            }
         </div>
     )
 }
