@@ -2,17 +2,29 @@
 import React, { useState } from "react";
 import { Breadcrumbs } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { ProductCategoryTable } from "../../assets/Tables/ProductCatTable";
+import { useDispatch, useSelector } from "react-redux";
 import CreateServiceModal from "./Product/Modals/CreateService";
 import { MdOutlineEngineering } from "react-icons/md";
+import { ServiceCategoryTable } from "../../assets/Tables/ServiceCatTable";
+import { useEffect } from "react";
+import { getAllServiceCategories } from "../../../../redux/actions/ServiceCategoryAction";
 
 export default function ServiceCategory() {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const [adminAdd, setAdminAdd] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
 
-    const categories = useSelector((state) => state.products.categories);
+    const categories = useSelector((state) => state.service.services);
+
+    useEffect(() => {
+        dispatch(getAllServiceCategories())
+    }, [dispatch]);
+
+    const openEditModal = (item) => {
+        setSelectedItem(item);
+        setAdminAdd(true);
+    }
     
 
     function CloseModal() {
@@ -53,13 +65,13 @@ export default function ServiceCategory() {
                 <div className="lg:p-5 px-2 py-4">
                     <div className="bg-white lg:p-5 lg:mt-6 mt-6 rounded-lg">
                         <div className="">
-                            {categories.length > 0 ? <ProductCategoryTable /> : <center><h5>No Categories added. Add new ones</h5></center>}
+                            {categories.length > 0 ? <ServiceCategoryTable adminEdit={openEditModal} /> : <center><h5>No Categories added. Add new ones</h5></center>}
                         </div>
                     </div>
                 </div>
             </div>
             {adminAdd && (
-                <CreateServiceModal CloseModal={CloseModal} />
+                <CreateServiceModal selected={selectedItem} CloseModal={CloseModal} />
             )}
         </div>
     )

@@ -10,6 +10,7 @@ import ProjectsReducer from "./ProjectsReducer";
 import PostReducer from "./PostReducer";
 import NotificationReducer from "./NotificationReducer";
 import AnnouncementReducer from "./AnnouncementReducer";
+import ServiceCategory from "./ServiceCategory";
 
 const rootReducer = combineReducers({
     alert: AlertReducer,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     allprojects: ProjectsReducer,
     blog: PostReducer,
     notifications: NotificationReducer,
-    announcements: AnnouncementReducer
+    announcements: AnnouncementReducer,
+    service: ServiceCategory
 });
 
 export default rootReducer;
