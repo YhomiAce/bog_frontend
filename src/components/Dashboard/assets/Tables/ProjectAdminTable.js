@@ -111,9 +111,9 @@ export default function ProjectsTable({ status }) {
   const gotoDetailsPage = (id) => {
     navigate(`/dashboard/projectadmindetails?projectId=${id}`)
   }
-  // const gotoProjectFile = (id) => {
-  //   navigate(`/dashboard/projectfile?projectId=${id}`)
-  // }
+  const gotoProjectFile = (id) => {
+    navigate(`/dashboard/projectfile?projectId=${id}`)
+  }
   const deleteProject = async (id) => {
     if (loading) {
       return (
@@ -242,9 +242,24 @@ export default function ProjectsTable({ status }) {
             <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none"><BsThreeDotsVertical className="text-2xl" /></Button>
           </MenuHandler>
           <MenuList>
-            <MenuItem onClick={() => gotoDetailsPage(row.value)}>
-              View Details
-            </MenuItem>
+            {
+              row.cell.row.original.approvalStatus === "ongoing" &&
+              <MenuItem onClick={() => gotoDetailsPage(row.value)}>
+                View Details
+              </MenuItem>
+            }
+            {
+              row.cell.row.original.approvalStatus === "pending" &&
+              <MenuItem onClick={() => gotoProjectFile(row.value)}>
+                View Form
+              </MenuItem>
+            }
+            {
+              row.cell.row.original.approvalStatus === "pending" &&
+              <MenuItem onClick={() => approveProjectForCommencement(row.value)}>
+                Post Project
+              </MenuItem>
+            }
             {
               row.cell.row.original.approvalStatus === "in_review" &&
               <MenuItem onClick={() => approveProjectForCommencement(row.value)}>
@@ -252,8 +267,8 @@ export default function ProjectsTable({ status }) {
               </MenuItem>
             }
 
-            <MenuItem className="bg-red-600 text-white" onClick={() => deleteProject(row.value)}>
-              Delete
+            <MenuItem className="bg-red-600 text-white hover:text-white hover:bg-red-500" onClick={() => deleteProject(row.value)}>
+              Decline Project
             </MenuItem>
           </MenuList>
         </Menu>,
@@ -359,7 +374,7 @@ const Table = ({ columns, data }) => {
             headerGroup.headers.map((column) =>
               column.Filter ? (
                 <div className="fs-300 px-3 flex py-2 rounded-md bg-light" key={column.id}>
-                  <label for={column.id} className="fw-600 flex ">{column.render("Header")}: </label>
+                  {/* <label for={column.id} className="fw-600 flex ">{column.render("Header")}: </label> */}
                   {column.render("Filter")}
                 </div>
               ) : null
@@ -469,9 +484,9 @@ export function SelectColumnFilter({
       onChange={(e) => {
         setFilter(e.target.value || undefined);
       }}
-      className="bg-light outline-none"
+      className="bg-light outline-none p-1"
     >
-      <option value="">All</option>
+      <option value="">All Services</option>
       {options.map((option, i) => (
         <option key={i} value={option}>
           {option}
