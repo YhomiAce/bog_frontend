@@ -98,7 +98,7 @@ export default function ProjectsTable({ status }) {
       allProjects = allProjects.filter(where => where.approvalStatus === status)
       console.log({ allProjects });
     } else {
-      allProjects = allProjects.filter(where => where.status === status)
+      allProjects = allProjects.filter(where => where.approvalStatus === "approved").filter(where => where.status === status)
     }
   }
   //   const formatNumber = (number) => {
@@ -113,6 +113,9 @@ export default function ProjectsTable({ status }) {
   }
   const gotoProjectFile = (id) => {
     navigate(`/dashboard/projectfile?projectId=${id}`)
+  }
+  const gotoServiceRequest = (id) => {
+    navigate(`/dashboard/service-request`)
   }
   const deleteProject = async (id) => {
     if (loading) {
@@ -251,7 +254,7 @@ export default function ProjectsTable({ status }) {
             {
               row.cell.row.original.approvalStatus === "pending" &&
               <MenuItem onClick={() => gotoProjectFile(row.value)}>
-                View Form
+                View Submission
               </MenuItem>
             }
             {
@@ -266,7 +269,12 @@ export default function ProjectsTable({ status }) {
                 Approve Project
               </MenuItem>
             }
-
+            {
+              row.cell.row.original.approvalStatus === "in_review" &&
+              <MenuItem onClick={() => gotoServiceRequest(row.value)}>
+                View Request
+              </MenuItem>
+            }
             <MenuItem className="bg-red-600 text-white hover:text-white hover:bg-red-500" onClick={() => deleteProject(row.value)}>
               Decline Project
             </MenuItem>
