@@ -33,7 +33,7 @@ export const SupplyCat = ({handleOpen}) => {
     }
 
     const dataLoader = () => {
-        const url = "/kyc-supply-category/fetch/" + user.userType;
+        const url = "/kyc-supply-category/fetch?userType=" + user.userType;
         loadData(url, formData, setFormData)
     }
     const DataSaver = () => {

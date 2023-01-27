@@ -5,8 +5,6 @@ import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
 // import setAuthToken from '../../config/setAuthHeader';
 import { setAlert } from './alert';
-import { io } from "socket.io-client";
-import { fetchUserNotifications } from './notifications';
 
 
 export const registerSuccess = (payload) => {
@@ -55,16 +53,6 @@ export const getMe = () => {
                 url = `/user/me?userType=${type}`
             }
             const response = await axios.get(url, config);
-            console.log(response);
-            const socket = io(`${process.env.REACT_APP_API_URL}`, {
-                query: {
-                    userId: response.user.profile.id
-                }
-            });
-            socket.on("getUserNotifications", (payload) => {
-                console.log(payload);
-                dispatch(fetchUserNotifications(payload))
-            })
             dispatch(setUser(response))
         } catch (error) {
             console.log(error.message);
@@ -86,16 +74,7 @@ export const loginUser = (apiData, navigate, stopLoading) => {
         try {
             const url = `/user/login`;
             const response = await axios.post(url, apiData);
-            console.log(response);
-            const socket = io(`${process.env.REACT_APP_API_URL}`, {
-                query: {
-                    userId: response.user.profile.id
-                }
-            });
-            socket.on("getUserNotifications", (payload) => {
-                console.log(payload);
-                dispatch(fetchUserNotifications(payload))
-            })
+            
             dispatch(login(response));
             stopLoading();
             // Swal.fire({

@@ -2,11 +2,11 @@ import { Button } from '@material-tailwind/react'
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createCategory } from '../../../../../../redux/actions/ProductAction';
-import { categorySchema } from '../../../../../../services/validation';
+import { createServiceCategory, updateServiceCategory } from '../../../../../../redux/actions/ServiceCategoryAction';
+import {  serviceCategorySchema } from '../../../../../../services/validation';
 import Spinner from '../../../../../layouts/Spinner';
 
-const CreateServiceModal = ({ CloseModal }) => {
+const CreateServiceModal = ({ CloseModal, selected }) => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const stopLoading = () => {
@@ -18,17 +18,21 @@ const CreateServiceModal = ({ CloseModal }) => {
         const payload = {
             ...value
         };
-        dispatch(createCategory(payload, stopLoading));
+        if (!selected) {
+            dispatch(createServiceCategory(payload, stopLoading));
+        }else{
+            payload.id = selected.id;
+            dispatch(updateServiceCategory(payload, stopLoading));
+        }
     }
     const formik = useFormik({
         initialValues: {
-            name: "",
-            description: ""
+            name:  selected ? selected.name : "",
         },
         onSubmit: submitHandler,
-        validationSchema: categorySchema
+        validationSchema: serviceCategorySchema
     });
-    const { name, description } = formik.values;
+    const { name } = formik.values;
     return (
         <div className="fixed font-primary top-0 left-0 w-full h-screen bg-op center-item z-40" onClick={CloseModal}>
             <div className="bg-white px-4 lg:w-5/12 rounded-md overflow-y-auto overscroll-none  w-11/12 pt-8 pb-8 lg:px-10 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
@@ -50,26 +54,12 @@ const CreateServiceModal = ({ CloseModal }) => {
                             formik.touched.name && formik.errors.name ? <p className='text-red-500'>{formik.errors.name}</p> : null
                         }
                     </div>
-                    <div className="mt-5">
-                        <label className="block">Category Description</label>
-                        <textarea
-                            className="w-full h-24 border border-gray-400 rounded mt-2 p-2"
-                            required
-                            id="description"
-                            name="description"
-                            value={description}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                        ></textarea>
-                        {
-                            formik.touched.description && formik.errors.description ? <p className='text-red-500'>{formik.errors.description}</p> : null
-                        }
-                    </div>
+                    
                     {
                         loading ? <Spinner /> :
                             <div className="mt-8 flex justify-between">
                                 <Button color="red" onClick={CloseModal}>Cancel</Button>
-                                <Button type='submit' className="bg-primary">ADD Service</Button>
+                                <Button type='submit' className="bg-primary">{ selected ? 'Update' : 'Add'} Service</Button>
                             </div>
                     }
                 </form>

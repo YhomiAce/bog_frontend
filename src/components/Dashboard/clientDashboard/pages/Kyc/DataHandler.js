@@ -116,7 +116,7 @@ export const fetcherForFiles = async({url, user, setData}) => {
             'Authorization': authToken
         }
     }
-    const fullUrl = `/${url}/fetch/${user.userType}`;
+    const fullUrl = `/${url}/fetch?userType=${user.userType}`;
     const newInfo = await Axios.get(fullUrl, config);
     setData(newInfo.data);
 }
