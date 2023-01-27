@@ -28,7 +28,7 @@ export const OrganisationInfo = ({handleOpen}) => {
     }, [])
 
     const dataLoader = () => {
-        const url = "/kyc-organisation-info/fetch/" + user.userType;
+        const url = "/kyc-organisation-info/fetch?userType=" + user.userType;
         loadData(url, formData, setFormData)
     }
     const DataSaver = () => {

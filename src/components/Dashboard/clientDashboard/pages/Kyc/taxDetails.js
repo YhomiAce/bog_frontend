@@ -21,7 +21,7 @@ export const TaxDetails = ({handleOpen}) => {
     }, [])
 
     const dataLoader = () => {
-        const url = "/kyc-tax-permits/fetch/" + user.userType;
+        const url = "/kyc-tax-permits/fetch?userType=" + user.userType;
         loadData(url, formData, setFormData)
     }
     const DataSaver = () => {

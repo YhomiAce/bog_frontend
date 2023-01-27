@@ -25,7 +25,7 @@ export const GeneralInfo = ({handleOpen}) => {
     }, [])
 
     const dataLoader = () => {
-        const url = "/kyc-general-info/fetch/" + user.userType;
+        const url = "/kyc-general-info/fetch?userType=" + user.userType;
         loadData(url, formData, setFormData)
     }
     const DataSaver = () => {
