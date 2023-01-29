@@ -6,7 +6,7 @@ import  CartReducer  from "./CartReducer";
 import UserReducer from "./UsersReducer";
 import OrderReducer from "./OrderReducer";
 import ProjectReducer from "./ProjectReducer";
-import ProjectsReducer from "./ProjectsReducer";
+import AdminProjectsReducer from "./ProjectsReducer";
 import PostReducer from "./PostReducer";
 import NotificationReducer from "./NotificationReducer";
 import AnnouncementReducer from "./AnnouncementReducer";
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
     users: UserReducer,
     orders: OrderReducer,
     projects: ProjectReducer,
-    allprojects: ProjectsReducer,
+    allprojects: AdminProjectsReducer,
     blog: PostReducer,
     notifications: NotificationReducer,
     announcements: AnnouncementReducer,

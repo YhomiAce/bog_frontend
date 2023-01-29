@@ -11,6 +11,7 @@ import { fetchServiceCategories } from "../../../../redux/actions/ProjectAction"
 import CreateCategoryProject from "./projects/Modal/CreateCategory";
 import CategoryItem from "./projects/CategoryItem";
 import ViewService from "./projects/Modal/ViewService";
+import { getAllServiceCategories } from "../../../../redux/actions/ServiceCategoryAction";
 
 export default function ProjectCategory() {
     const dispatch = useDispatch();
@@ -39,6 +40,7 @@ export default function ProjectCategory() {
     }
 
     useEffect(() => {
+        dispatch(getAllServiceCategories())
         dispatch(fetchServiceCategories()); // eslint-disable-next-line 
     }, [dispatch]);
 
@@ -113,7 +115,13 @@ export default function ProjectCategory() {
                                                     S/N
                                                 </th>
                                                 <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Service Provider
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
                                                     Service Name
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Project Slug
                                                 </th>
 
                                                 <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">

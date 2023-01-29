@@ -9,10 +9,10 @@ import { useNavigate } from "react-router-dom";
 // import { BsThreeDotsVertical } from "react-icons/bs";
 import { useMemo } from "react";
 import * as moment from 'moment'
-import { SuccessAlert } from "../../../../services/endpoint";
-import toaster from "toasted-notes";
-import "toasted-notes/src/styles.css";
-import Axios from "../../../../config/config";
+// import { SuccessAlert } from "../../../../services/endpoint";
+// import toaster from "toasted-notes";
+// import "toasted-notes/src/styles.css";
+// import Axios from "../../../../config/config";
 import {
   Menu,
   MenuHandler,
@@ -104,7 +104,7 @@ export default function ProjectsTable({ status }) {
   //   const formatNumber = (number) => {
   //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   // }
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const navigate = useNavigate()
@@ -114,43 +114,44 @@ export default function ProjectsTable({ status }) {
   const gotoProjectFile = (id) => {
     navigate(`/dashboard/projectfile?projectId=${id}`)
   }
-  const deleteProject = async (id) => {
-    if (loading) {
-      return (
-        <center>
-          {/* <Spinner /> */}
-        </center>
-      );
-    }
-    try {
-      setLoading(true);
-      const config = {
-        headers: {
-          "Content-Type": "Application/json",
-          authorization: localStorage.getItem("auth_token"),
-        },
-      };
-      await Axios.delete(`/projects/delete/${id}`, config).then((response) => {
-        console.log(response)
-      });
-      setLoading(false);
-      SuccessAlert("Project Deleted Successfully!");
-    } catch (error) {
-      setLoading(false);
-      if (error.response.data.message) {
-        toaster.notify(error.response.data.message, {
-          duration: "4000",
-          position: "bottom",
-        });
-        return;
-      }
-      toaster.notify(error.message, {
-        duration: "4000",
-        position: "bottom",
-      });
-    }
+  // const deleteProject = async (id,) => {
+  //   if (loading) {
+  //     return (
+  //       <center>
+  //         {/* <Spinner /> */}
+  //       </center>
+  //     );
+  //   }
+  //   try {
+  //     setLoading(true);
+  //     const config = {
+  //       headers: {
+  //         "Content-Type": "Application/json",
+  //         authorization: localStorage.getItem("auth_token"),
+  //       },
+  //     };
+  //     await Axios.delete(`/projects/delete/${id}`, config).then((response) => {
+  //       console.log(response)
+  //     });
+  //     setLoading(false);
+  //     SuccessAlert("Project Deleted Successfully!");
+  //   } catch (error) {
+  //     setLoading(false);
+  //     if (error.response.data.message) {
+  //       toaster.notify(error.response.data.message, {
+  //         duration: "4000",
+  //         position: "bottom",
+  //       });
+  //       return;
+  //     }
+  //     toaster.notify(error.message, {
+  //       duration: "4000",
+  //       position: "bottom",
+  //     });
+  //   }
 
-  }
+  // }
+
   const formatStatus = (status) => {
     switch (status) {
       case "in_review":
@@ -158,7 +159,10 @@ export default function ProjectsTable({ status }) {
       case "approved":
         return <p className="px-2 py-1 text-green-700 bg-green-100 w-24 rounded-md fw-600">Approved</p>
       case "disapproved":
+      case "cancel":
         return <p className="px-2 py-1 text-red-700 bg-red-100 w-28 rounded-md fw-600">Cancelled</p>
+      case "close":
+        return <p className="px-2 py-1 text-red-700 bg-red-100 w-28 rounded-md fw-600">Closed</p>
       case "pending":
         return <p className="px-2 py-1    w-24 rounded-md fw-600">Pending</p>
       case "completed":
@@ -186,20 +190,23 @@ export default function ProjectsTable({ status }) {
 
   }
 
-  const approveProjectForCommencement = (id) => {
+  const approveProjectForCommencement = (id, hasApproved) => {
     Swal.fire({
-      title: "Approve Project",
-      text: 'Approve Project to commence?',
+      title: hasApproved ? "Approve Project" : "Disapprove Project",
+      text: hasApproved ? 'Approve Project to commence?' : 'Disapprove Project?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#4BB543',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Yes Commence',
+      confirmButtonText: hasApproved ? 'Yes Commence': 'Yes Disapprove',
       cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.value) {
-
-        dispatch(approveProjectToStart(id))
+        const payload ={
+          projectId: id,
+          isApproved: hasApproved
+        }
+        dispatch(approveProjectToStart(payload))
       }
     });
   }
@@ -262,12 +269,15 @@ export default function ProjectsTable({ status }) {
             }
             {
               row.cell.row.original.approvalStatus === "in_review" &&
-              <MenuItem onClick={() => approveProjectForCommencement(row.value)}>
+              <MenuItem onClick={() => approveProjectForCommencement(row.value, true)}>
                 Approve Project
               </MenuItem>
             }
 
-            <MenuItem className="bg-red-600 text-white hover:text-white hover:bg-red-500" onClick={() => deleteProject(row.value)}>
+            <MenuItem 
+            className="bg-red-600 text-white hover:text-white hover:bg-red-500" 
+            onClick={() => approveProjectForCommencement(row.value, false)}
+            >
               Decline Project
             </MenuItem>
           </MenuList>
@@ -296,7 +306,7 @@ function GlobalFilter({
   setGlobalFilter,
 }) {
   const count = preGlobalFilteredRows.length
-  const [value, setValue] = React.useState(globalFilter)
+  const [value, setValue] = useState(globalFilter)
   const onChange = useAsyncDebounce(value => {
     setGlobalFilter(value || undefined)
   }, 200)
