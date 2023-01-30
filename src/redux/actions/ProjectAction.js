@@ -427,3 +427,41 @@ export const getServicePartnerProjects = (userId) => {
 
     }
 }
+
+export const DispatchProject = (projectId) => {
+    return async (dispatch) => {
+        try {
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                }
+            }
+            dispatch(loading());
+            const body = {
+                projectId,
+                status: "dispatched"
+            }
+            const response = await axios.patch('/projects/dispatch-project/'+projectId, body, config);
+            console.log(response);
+            Swal.fire({
+                title: "Project Dispatched",
+                text: `Project has been dispatched Successfully`,
+                icon: "success"
+            })
+        } catch (error) {
+            console.log(error);
+            dispatch(setError(error.message));
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+
+    }
+}

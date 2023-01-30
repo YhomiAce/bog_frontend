@@ -1165,7 +1165,34 @@ export default function Service() {
                         </div>
                         <div className="mt-3 lg:mt-6 w-full">
                             <label className="block fw-600">
-                              5. Type of property to be built<span className="text-red-600 pl-2">*</span>
+                              5. Type of Property to be built<span className="text-red-600 pl-2">*</span>
+                            </label>
+                            <div className="mt-3 fs-500" onChange={handleChangeet.bind(this)}>
+                                <div className="py-1">
+                                    <input type="radio" required name="b-type" value="Residential" />
+                                    <label className="pl-1">Residential</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" required name="b-type" value="Commercial" />
+                                    <label className="pl-1">Commercial</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" required name="b-type"  value="Industrial"/>
+                                    <label className="pl-1">Industrial</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" required name="b-type" value="Educational" />
+                                    <label className="pl-1">Educational</label>
+                                </div>
+                                <div className="py-1">
+                                    <input type="radio" required name="b-type" value="Religious" />
+                                    <label className="pl-1">Religious</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-3 lg:mt-6 w-full">
+                            <label className="block fw-600">
+                              5. Type of Survey<span className="text-red-600 pl-2">*</span>
                             </label>
                             <div className="mt-3 fs-500" onChange={handleChangeet.bind(this)}>
                                 <div className="py-1">

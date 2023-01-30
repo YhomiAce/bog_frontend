@@ -37,7 +37,7 @@ export default function ServiceCategory() {
                 <div className="w-full py-8 bg-white px-4 lg:flex justify-between items-center">
                     <div>
                         <p className="text-2xl fw-600">Manage Services</p>
-                        <p className="fs-400 text-gray-600 mt-2">Update, add and edit service categories to render to customers. </p>
+                        <p className="fs-400 text-gray-600 mt-2">Update, add and edit various service types rendered to clients. </p>
                         <Breadcrumbs className="bg-white pl-0 mt-4">
                             <Link to="/" className="opacity-60">
                                 <svg

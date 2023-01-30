@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { getDispatchedProjects } from "../../../../redux/actions/ProjectAction";
@@ -12,11 +12,16 @@ export function AllProject() {
 
     useEffect(() => {
         if (user) {
-            console.log(user);
             dispatch(getDispatchedProjects(user.profile.id))
         }
     }, [dispatch, user])
 
+
+    const [assign, setAssign] = useState(false)
+
+    const CloseModal = () => {
+        setAssign(false)
+    }
 
     return (
         <div>
@@ -67,34 +72,34 @@ export function AllProject() {
                                         <tbody>
 
                                             {
-                                                projects.length >  0 ? projects.map((item, index) => (
-                                            <tr>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    {index + 1}
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    {item.project.projectSlug}
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    {getProjectCategory(item.project.projectTypes)}
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    {item.projectDetails.propertyLocation}
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    {dayjs(item.project.createdAt).format("YYYY-MM-DD")}
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Pending
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    <div className="flex text-xl">
-                                                        <p><FaRegEye /></p>
+                                                projects.length > 0 ? projects.map((item, index) => (
+                                                    <tr>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {index + 1}
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {item.project.projectSlug}
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {getProjectCategory(item.project.projectTypes)}
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {item.projectDetails.propertyLocation}
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {dayjs(item.project.createdAt).format("YYYY-MM-DD")}
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            Pending
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            <div className="flex text-xl">
+                                                                <p><FaRegEye /></p>
 
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            )) : null
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                )) : null
                                             }
                                         </tbody>
                                     </table>
@@ -104,6 +109,11 @@ export function AllProject() {
                     </div>
                 </div>
             </div>
+            {
+                assign && (
+                    <div onClick={CloseModal}></div>
+                )
+            }
         </div>
     )
 }

@@ -27,7 +27,7 @@ import Papa from "papaparse";
 import * as XLSX from 'xlsx'
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Swal from "sweetalert2";
-import { approveProjectToStart } from "../../../../redux/actions/ProjectAction";
+import { approveProjectToStart, DispatchProject } from "../../../../redux/actions/ProjectAction";
 
 // export table files
 
@@ -98,7 +98,7 @@ export default function ProjectsTable({ status }) {
       allProjects = allProjects.filter(where => where.approvalStatus === status)
       console.log({ allProjects });
     } else {
-      allProjects = allProjects.filter(where => where.status === status)
+      allProjects = allProjects.filter(where => where.approvalStatus === "approved").filter(where => where.status === status)
     }
   }
   //   const formatNumber = (number) => {
@@ -114,43 +114,11 @@ export default function ProjectsTable({ status }) {
   const gotoProjectFile = (id) => {
     navigate(`/dashboard/projectfile?projectId=${id}`)
   }
-  // const deleteProject = async (id,) => {
-  //   if (loading) {
-  //     return (
-  //       <center>
-  //         {/* <Spinner /> */}
-  //       </center>
-  //     );
-  //   }
-  //   try {
-  //     setLoading(true);
-  //     const config = {
-  //       headers: {
-  //         "Content-Type": "Application/json",
-  //         authorization: localStorage.getItem("auth_token"),
-  //       },
-  //     };
-  //     await Axios.delete(`/projects/delete/${id}`, config).then((response) => {
-  //       console.log(response)
-  //     });
-  //     setLoading(false);
-  //     SuccessAlert("Project Deleted Successfully!");
-  //   } catch (error) {
-  //     setLoading(false);
-  //     if (error.response.data.message) {
-  //       toaster.notify(error.response.data.message, {
-  //         duration: "4000",
-  //         position: "bottom",
-  //       });
-  //       return;
-  //     }
-  //     toaster.notify(error.message, {
-  //       duration: "4000",
-  //       position: "bottom",
-  //     });
-  //   }
-
-  // }
+  
+  const gotoServiceRequest = (id) => {
+    navigate(`/dashboard/service-request`)
+  }
+  
 
   const formatStatus = (status) => {
     switch (status) {
@@ -211,6 +179,24 @@ export default function ProjectsTable({ status }) {
     });
   }
 
+  const dispatchProjectToPartners = (id) => {
+    Swal.fire({
+      title: "Post Project",
+      text: 'Do you want to send project out to service partners',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#4BB543',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes Send',
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.value) {
+       
+        dispatch(DispatchProject(id))
+      }
+    });
+  }
+
 
   const columns = useMemo(
     () => [
@@ -258,12 +244,12 @@ export default function ProjectsTable({ status }) {
             {
               row.cell.row.original.approvalStatus === "pending" &&
               <MenuItem onClick={() => gotoProjectFile(row.value)}>
-                View Form
+                View Submission
               </MenuItem>
             }
             {
-              row.cell.row.original.approvalStatus === "pending" &&
-              <MenuItem onClick={() => approveProjectForCommencement(row.value)}>
+              row.cell.row.original.approvalStatus === "approved" &&
+              <MenuItem onClick={() => dispatchProjectToPartners(row.value)}>
                 Post Project
               </MenuItem>
             }
@@ -274,10 +260,15 @@ export default function ProjectsTable({ status }) {
               </MenuItem>
             }
 
+            {
+              row.cell.row.original.approvalStatus === "in_review" &&
+              <MenuItem onClick={() => gotoServiceRequest(row.value)}>
+                View Request
+              </MenuItem>
+            }
             <MenuItem 
             className="bg-red-600 text-white hover:text-white hover:bg-red-500" 
-            onClick={() => approveProjectForCommencement(row.value, false)}
-            >
+            onClick={() => approveProjectForCommencement(row.value, false)}>
               Decline Project
             </MenuItem>
           </MenuList>
