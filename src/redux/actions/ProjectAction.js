@@ -453,9 +453,10 @@ export const DispatchProject = (projectId) => {
             })
         } catch (error) {
             console.log(error);
-            dispatch(setError(error.message));
+            let errorMsg = error?.response?.data?.message || error.message
+            dispatch(setError(errorMsg));
             toaster.notify(
-                error.message,
+                errorMsg,
                 {
                     duration: "4000",
                     position: "bottom",

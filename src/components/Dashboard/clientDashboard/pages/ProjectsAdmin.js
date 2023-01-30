@@ -71,10 +71,10 @@ export default function ProjectsAdmin() {
                                 <Tab>Overdue</Tab>
                             </TabList>
                             <TabPanel>
-                                <ProjectsTable status={"in_review"} />
+                                <ProjectsTable status={"approved"} />
                             </TabPanel>
                             <TabPanel>
-                                <ProjectsTable status={"in_review"} />
+                                <ProjectsTable status={"dispatched"} />
                             </TabPanel>
                             <TabPanel>
                                 <ProjectsTable status={"ongoing"} />
