@@ -87,6 +87,13 @@ export const fetchAssignedProjects = (payload) => {
     }
 }
 
+export const assignProject = (payload) => {
+    return {
+        type: ActionType.ASSIGN_PROJECT,
+        payload
+    }
+}
+
 export const getMyProject = (userType) => {
     return async (dispatch) => {
         try {
@@ -382,7 +389,7 @@ export const getDispatchedProjects = (userId) => {
             dispatch(loading());
             const response = await axios.get(`/projects/dispatched-projects/${userId}`, config);
             console.log(response);
-            dispatch(fetchAssignedProjects(response.data))
+            dispatch(fetchDispatchedProjects(response.data))
         } catch (error) {
             console.log(error.message);
             dispatch(setError(error.message));
@@ -439,7 +446,7 @@ export const DispatchProject = (projectId) => {
                     'Authorization': authToken
                 }
             }
-            dispatch(loading());
+            // dispatch(loading());
             const body = {
                 projectId,
                 status: "dispatched"
@@ -449,6 +456,77 @@ export const DispatchProject = (projectId) => {
             Swal.fire({
                 title: "Project Dispatched",
                 text: `Project has been dispatched Successfully`,
+                icon: "success"
+            })
+        } catch (error) {
+            console.log(error);
+            let errorMsg = error?.response?.data?.message || error.message
+            dispatch(setError(errorMsg));
+            toaster.notify(
+                errorMsg,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+
+    }
+}
+
+export const bidForProject = (payload, saveLoading) => {
+    return async (dispatch) => {
+        try {
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                }
+            }
+            // dispatch(loading());
+            const response = await axios.post('projects/bid-project', payload, config);
+            console.log(response);
+            Swal.fire({
+                title: "Done",
+                text: `Admin will get back you`,
+                icon: "success"
+            })
+        } catch (error) {
+            console.log(error);
+            let errorMsg = error?.response?.data?.message || error.message
+            dispatch(setError(errorMsg));
+            toaster.notify(
+                errorMsg,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+
+    }
+}
+
+export const assignProjectToPartner = (payload, saveLoading) => {
+    return async (dispatch) => {
+        try {
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                }
+            }
+            // dispatch(loading());
+            const response = await axios.post('/projects/assign-project', payload, config);
+            console.log(response);
+            dispatch(assignProject(payload.projectId))
+            Swal.fire({
+                title: "Done",
+                text: `Project assigned to partner`,
                 icon: "success"
             })
         } catch (error) {

@@ -34,6 +34,7 @@ export const SupplyCat = ({handleOpen, tab}) => {
                 categories: categories.filter(x => x !== value)
             })
         }
+        setIsSaving(true);
     }
 
     const dataLoader = () => {

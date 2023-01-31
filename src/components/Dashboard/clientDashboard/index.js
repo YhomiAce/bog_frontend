@@ -108,7 +108,7 @@ export default function ClientDashboard() {
                         <Route path="projectadmindetails" element={<ProjectDetails />} />
                         <Route path="myprojectdetails" element={<ProjectDetailsClient />} />
                         <Route path="projectrequest" element={<ProjectRequest />} />
-                        <Route path="service-request" element={<ServiceRequest />} />
+                        <Route path="service-request/:projectId" element={<ServiceRequest />} />
                         <Route path="service-category" element={<ServiceCategory />} />
                         <Route path="productpartner" element={<Ppartners />} />
                         <Route path="servicepartner" element={<Spartners />} />

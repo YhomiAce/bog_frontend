@@ -9,7 +9,10 @@ export const privateClientSchema = Yup.object({
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
     ),
-    terms: Yup.boolean().required("Please accept terms and conditions")
+    terms: Yup.boolean().required("Please accept terms and conditions"),
+    password2: Yup.string()
+        .required('Please retype your password.')
+        .oneOf([Yup.ref('password')], 'Your passwords do not match.'),
 })
 
 export const adminSchema = Yup.object({
@@ -61,7 +64,10 @@ export const supplierValidationSchema = Yup.object({
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
     ),
-    terms: Yup.boolean().required("Please accept terms and conditions")
+    terms: Yup.boolean().required("Please accept terms and conditions"),
+    password2: Yup.string()
+        .required('Please retype your password.')
+        .oneOf([Yup.ref('password')], 'Your passwords do not match.'),
 })
 
 export const servicePartnerValidationSchema = Yup.object({
@@ -76,6 +82,9 @@ export const servicePartnerValidationSchema = Yup.object({
     ),
     terms: Yup.boolean().required("Please accept terms and conditions"),
     serviceTypeId: Yup.string().required("Please select the type of service you render"),
+    password2: Yup.string()
+        .required('Please retype your password.')
+        .oneOf([Yup.ref('password')], 'Your passwords do not match.'),
 })
 
 export const corporateClientSchema = Yup.object({
@@ -86,7 +95,10 @@ export const corporateClientSchema = Yup.object({
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
     ),
-    terms: Yup.boolean().required("Please accept terms and conditions")
+    terms: Yup.boolean().required("Please accept terms and conditions"),
+    password2: Yup.string()
+        .required('Please retype your password.')
+        .oneOf([Yup.ref('password')], 'Your passwords do not match.'),
 });
 
 export const productSchema = Yup.object({
@@ -126,4 +138,11 @@ export const serviceTypeCategorySchema = Yup.object({
     title: Yup.string().required("Name is required"),
     description: Yup.string().required("Description is required"),
     serviceId: Yup.string().required("Service rendered is required"),
+});
+
+export const projectBidSchema = Yup.object({
+    areYouInterested: Yup.string().required("Name is required"),
+    deliveryTimeLine: Yup.number().required("Delivery timeline is expected"),
+    projectCost: Yup.number().required("How much would it cost to get this project done"),
+    reasonOfInterest: Yup.string().required("Select the reason why you're interested"),
 });

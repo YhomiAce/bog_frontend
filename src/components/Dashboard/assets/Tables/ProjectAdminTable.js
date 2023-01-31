@@ -114,16 +114,18 @@ export default function ProjectsTable({ status }) {
   const gotoProjectFile = (id) => {
     navigate(`/dashboard/projectfile?projectId=${id}`)
   }
-  
+
   const gotoServiceRequest = (id) => {
-    navigate(`/dashboard/service-request`)
+    navigate(`/dashboard/service-request/${id}`)
   }
-  
+
 
   const formatStatus = (status) => {
     switch (status) {
       case "in_review":
         return <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">Ongoing</p>
+      case "dispatched":
+        return <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">Dispatched</p>
       case "approved":
         return <p className="px-2 py-1 text-green-700 bg-green-100 w-24 rounded-md fw-600">Approved</p>
       case "disapproved":
@@ -166,11 +168,11 @@ export default function ProjectsTable({ status }) {
       showCancelButton: true,
       confirmButtonColor: '#4BB543',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: hasApproved ? 'Yes Commence': 'Yes Disapprove',
+      confirmButtonText: hasApproved ? 'Yes Commence' : 'Yes Disapprove',
       cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.value) {
-        const payload ={
+        const payload = {
           projectId: id,
           isApproved: hasApproved
         }
@@ -191,7 +193,7 @@ export default function ProjectsTable({ status }) {
       cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.value) {
-       
+
         dispatch(DispatchProject(id))
       }
     });
@@ -242,35 +244,45 @@ export default function ProjectsTable({ status }) {
               </MenuItem>
             }
             {
+              row.cell.row.original.status === "ongoing" && 
+              <MenuItem onClick={() => gotoDetailsPage(row.value)}>
+                View Details
+              </MenuItem>
+            }
+            {
               row.cell.row.original.approvalStatus === "pending" &&
               <MenuItem onClick={() => gotoProjectFile(row.value)}>
                 View Submission
               </MenuItem>
             }
             {
-              row.cell.row.original.approvalStatus === "in_review" &&
+              row.cell.row.original.approvalStatus === "approved" && row.cell.row.original.status !== "ongoing" &&
               <MenuItem onClick={() => dispatchProjectToPartners(row.value)}>
                 Post Project
               </MenuItem>
             }
             {
-              row.cell.row.original.approvalStatus === "iapproved" &&
+              row.cell.row.original.approvalStatus === "in_review" && row.cell.row.original.status !== "ongoing" &&
               <MenuItem onClick={() => approveProjectForCommencement(row.value, true)}>
                 Approve Project
               </MenuItem>
             }
 
             {
-              row.cell.row.original.approvalStatus === "in_review" &&
+              row.cell.row.original.status === "dispatched" &&
               <MenuItem onClick={() => gotoServiceRequest(row.value)}>
                 View Request
               </MenuItem>
             }
-            <MenuItem 
-            className="bg-red-600 text-white hover:text-white hover:bg-red-500" 
-            onClick={() => approveProjectForCommencement(row.value, false)}>
-              Decline Project
-            </MenuItem>
+            {
+              row.cell.row.original.status !== "ongoing" && row.cell.row.original.status !== "dispatched" &&
+              <MenuItem
+                className="bg-red-600 text-white hover:text-white hover:bg-red-500"
+                onClick={() => approveProjectForCommencement(row.value, false)}>
+                Decline Project
+              </MenuItem>
+            }
+
           </MenuList>
         </Menu>,
       },

@@ -7,7 +7,7 @@ import { register } from "../../../redux/actions/authAction";
 import { supplierValidationSchema } from '../../../services/validation';
 import ReCAPTCHA from "react-google-recaptcha";
 import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
-import {AiOutlineInfoCircle}  from 'react-icons/ai';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 const SignSupply = () => {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const SignSupply = () => {
     setPasswordType("password")
   }
 
-  
+
   const [refTooltip, setRefTooltip] = useState(false)
   const [passTooltip, setPassTooltip] = useState(false)
 
@@ -50,6 +50,7 @@ const SignSupply = () => {
       email: "",
       phone: "",
       password: "",
+      password2: "",
       terms: false,
       aboutUs: "",
       reference: referenceValue || "",
@@ -57,7 +58,7 @@ const SignSupply = () => {
     validationSchema: supplierValidationSchema,
     onSubmit: handleSubmit,
   });
-  const { lname, fname, email, password, phone, terms, company_name, aboutUs, reference } = formik.values;
+  const { lname, fname, email, password, phone, terms, company_name, aboutUs, reference, password2 } = formik.values;
   return (
     <div className="bg-login bg-fixed bg-cover text-black font-primary">
       <Link to="/">
@@ -189,10 +190,10 @@ const SignSupply = () => {
                   <div className="w-full mt-6">
                     <label className="block">Password</label>
                     {passTooltip && (
-                        <div className='flex scale-ani py-2 px-2 my-2 bg-tool rounded fs-300' onClick={() => setPassTooltip((prev) => !prev)}>
-                            <AiOutlineInfoCircle className="text-lg text-gray-700"/>
-                            <p className='pl-2'>The password must contain minimum of 8 characters, uppercase character and a unique character</p>
-                        </div>
+                      <div className='flex scale-ani py-2 px-2 my-2 bg-tool rounded fs-300' onClick={() => setPassTooltip((prev) => !prev)}>
+                        <AiOutlineInfoCircle className="text-lg text-gray-700" />
+                        <p className='pl-2'>The password must contain minimum of 8 characters, uppercase character and a unique character</p>
+                      </div>
                     )}
                     <div className='flex items-center bg-input border border-gray-400 mt-1 rounded'>
                       <input
@@ -215,15 +216,38 @@ const SignSupply = () => {
                     }
                   </div>
                   <div className="w-full mt-6">
-                  <div className='flex justify-between pr-2'>
-                        <label className='block'>Referral Code (Optional)</label>
-                        <AiOutlineInfoCircle className="text-lg text-gray-700" onClick={() => setRefTooltip((prev) => !prev)}/>
+                    <label className="block">Confirm Password</label>
+
+                    <div className="flex items-center bg-input border border-gray-400 mt-1 rounded">
+                      <input
+                        type={passwordType}
+                        placeholder="Enter your desired password"
+                        className="w-full border-0 py-2 px-2 rounded"
+                        value={password2}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        onFocus={() => setPassTooltip(true)}
+                        id="password2"
+                        name="password2"
+                      />
+                      <div onClick={togglePassword} className="px-3">
+                        {passwordType === "password" ? <FaRegEyeSlash className="text-xl" /> : <FaRegEye className="text-xl" />}
+                      </div>
+                    </div>
+                    {
+                      formik.touched.password2 && formik.errors.password2 ? <p className='text-red-500'>{formik.errors.password2}</p> : null
+                    }
+                  </div>
+                  <div className="w-full mt-6">
+                    <div className='flex justify-between pr-2'>
+                      <label className='block'>Referral Code (Optional)</label>
+                      <AiOutlineInfoCircle className="text-lg text-gray-700" onClick={() => setRefTooltip((prev) => !prev)} />
                     </div>
                     {refTooltip && (
-                        <div className='flex scale-ani py-2 px-2 my-2 bg-tool rounded fs-300'>
-                            <AiOutlineInfoCircle className="text-lg text-gray-700"/>
-                            <p className='pl-2'>Please, only enter the referral. Leave empty if you dont have a referral code.</p>
-                        </div>
+                      <div className='flex scale-ani py-2 px-2 my-2 bg-tool rounded fs-300'>
+                        <AiOutlineInfoCircle className="text-lg text-gray-700" />
+                        <p className='pl-2'>Please, only enter the referral. Leave empty if you dont have a referral code.</p>
+                      </div>
                     )}
                     <input
                       type="text"
@@ -272,8 +296,8 @@ const SignSupply = () => {
                     <p className="px-2">
                       I agree to the
                       <Link to="/terms"><span className=" pl-2 text-primary hover:text-red-600 cursor-pointer  ">
-                                    Terms & Conditions
-                                </span></Link>.
+                        Terms & Conditions
+                      </span></Link>.
                     </p>
                   </div>
                   <div className="mt-8">
