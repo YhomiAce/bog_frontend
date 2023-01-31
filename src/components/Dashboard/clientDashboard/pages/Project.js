@@ -1,7 +1,7 @@
 // import React from "react";
 import React, { useEffect } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import {  Breadcrumbs } from "@material-tailwind/react";
+import { Breadcrumbs } from "@material-tailwind/react";
 import ProjectChart from "../../assets/ProjectChart";
 import { useSelector } from 'react-redux';
 import { FaRegEye } from "react-icons/fa";
@@ -12,27 +12,24 @@ import { useDispatch } from "react-redux";
 
 export default function Projects() {
     const auth = useSelector((state) => state.auth);
-    // let adminOrders = useSelector((state) => state.orders.adminOrders);
- const dispatch = useDispatch();
+    const dispatch = useDispatch();
     useEffect(() => {
         if (auth.user) {
             dispatch(getMyProject(auth.user.userType));
         }
     }, [dispatch, auth])
-  let projects = null;
+    let projects = null;
 
     if (auth?.user?.userType === "private_client") {
-      projects = <ClientProject/>
-    }else if(auth?.user?.userType === "corporate_client"){
-      projects = <ClientProject/>
-    }else if(auth?.user?.userType === "professional"){
+        projects = <ClientProject />
+    } else if (auth?.user?.userType === "corporate_client") {
+        projects = <ClientProject />
+    } else if (auth?.user?.userType === "professional") {
         projects = <ServiceProject />
-      }else if(auth?.user?.userType === "admin"){
-      projects = <ServiceProject/>
+    } else if (auth?.user?.userType === "admin") {
+        projects = <ServiceProject />
     }
-  return projects;
-
-    
+    return projects;
 }
 
 export function ClientProject() {
@@ -49,12 +46,12 @@ export function ClientProject() {
                     <Breadcrumbs className="bg-white pl-0 mt-4">
                         <Link to="/" className="opacity-60">
                             <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-4 w-4"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
                             >
-                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                             </svg>
                         </Link>
                         <Link to="/dashboard" className="opacity-60">
@@ -64,7 +61,7 @@ export function ClientProject() {
                             <span>Projects</span>
                         </Link>
                     </Breadcrumbs>
-                </div> 
+                </div>
                 {/* content */}
                 <div className="lg:p-5 px-3 py-5 mt-6">
                     {/* project analysis and calendar*/}
@@ -81,17 +78,17 @@ export function ClientProject() {
                                     </TabList>
                                     <TabPanel>
                                         <ProjectTable />
-                                        
+
                                     </TabPanel>
-                                      <TabPanel>
-                                <ProjectTable status={"pending"} />
-                            </TabPanel>
-                            <TabPanel>
-                                <ProjectTable status={"approved"} />
-                            </TabPanel>
-                            <TabPanel>
-                                <ProjectTable status={"completed"} />
-                            </TabPanel>
+                                    <TabPanel>
+                                        <ProjectTable status={"pending"} />
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <ProjectTable status={"approved"} />
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <ProjectTable status={"completed"} />
+                                    </TabPanel>
                                 </Tabs>
                             </div>
                         </div>
@@ -101,9 +98,9 @@ export function ClientProject() {
                             <div className="mb-5">
                                 <p className="text-lg fw-600">Project Analysis</p>
                             </div>
-                            <ProjectChart/>
+                            <ProjectChart />
                         </div>
-                        
+
                         <div className="bg-white rounded-md mt-6 lg:mt-0">
                             <div className="bg-primary text-white rounded-t-md">
                                 <p className="py-6 fw-600 ml-7 lg:text-lg">Calender</p>
@@ -113,7 +110,7 @@ export function ClientProject() {
                 </div>
             </div>
         </div>
-        )
+    )
 }
 
 export function ServiceProject() {
@@ -128,12 +125,12 @@ export function ServiceProject() {
                     <Breadcrumbs className="bg-white pl-0 mt-4">
                         <Link to="/" className="opacity-60">
                             <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-4 w-4"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
                             >
-                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                             </svg>
                         </Link>
                         <Link to="/dashboard" className="opacity-60">
@@ -143,7 +140,7 @@ export function ServiceProject() {
                             <span>Projects</span>
                         </Link>
                     </Breadcrumbs>
-                </div> 
+                </div>
                 {/* content */}
                 <div className="lg:p-5 px-3 py-5 mt-6">
                     {/* project analysis for my projects*/}
@@ -159,56 +156,56 @@ export function ServiceProject() {
                                     <table className="items-center w-full bg-transparent border-collapse">
                                         <thead className="thead-light bg-light">
                                             <tr>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                S/N
-                                            </th>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                Project ID
-                                            </th>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                Project Category
-                                            </th>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                Location
-                                            </th>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                Date
-                                            </th>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                Status
-                                            </th>
-                                        <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
-                                                Actions
-                                        </th>
-                                     </tr>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    S/N
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Project ID
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Project Category
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Location
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Date
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Status
+                                                </th>
+                                                <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
+                                                    Actions
+                                                </th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                1
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                DRAW-VAC-20E42 
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Construction Drawing
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Ogba, Lagos
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                20-04-2022
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Ongoing
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                <div className="flex text-xl">
-                                                    <p><FaRegEye/></p>
-                                                </div>
-                                            </td>
+                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                    1
+                                                </td>
+                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                    DRAW-VAC-20E42
+                                                </td>
+                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                    Construction Drawing
+                                                </td>
+                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                    Ogba, Lagos
+                                                </td>
+                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                    20-04-2022
+                                                </td>
+                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                    Ongoing
+                                                </td>
+                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                    <div className="flex text-xl">
+                                                        <p><FaRegEye /></p>
+                                                    </div>
+                                                </td>
                                             </tr>
-                                           
+
                                         </tbody>
                                     </table>
                                 </div>

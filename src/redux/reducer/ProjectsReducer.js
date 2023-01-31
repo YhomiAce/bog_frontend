@@ -7,7 +7,7 @@ const initialState = {
 }
 
 
-const ProjectsReducer = (state = initialState, action) => {
+const AdminProjectsReducer = (state = initialState, action) => {
     const { type, payload } = action
     switch (type) {
         case ActionType.FETCH_ALL_PROJECTS:
@@ -20,8 +20,8 @@ const ProjectsReducer = (state = initialState, action) => {
         case ActionType.APPROVE_PROJECT:
             const oldProjectData = [...state.projects];
             const projectIndex = oldProjectData.findIndex(where => where.id === payload.projectId);
-            oldProjectData[projectIndex].approvalStatus = "approved";
-            oldProjectData[projectIndex].status = "approved";
+            oldProjectData[projectIndex].approvalStatus = payload.isApproved ? "approved" : "disapproved";
+            oldProjectData[projectIndex].status = payload.isApproved ? "approved" : "closed";
             return {
                 ...state,
                 isLoading: false,
@@ -31,4 +31,4 @@ const ProjectsReducer = (state = initialState, action) => {
         default: return state;
     }
 }
-export default ProjectsReducer;
+export default AdminProjectsReducer;

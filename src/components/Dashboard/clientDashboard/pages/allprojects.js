@@ -1,11 +1,24 @@
-import React from "react";
-import { useState } from "react";
-import { FaCheck, FaRegEye, FaTimes } from "react-icons/fa";
+import dayjs from "dayjs";
+import React, { useEffect, useState } from "react";
+import { FaRegEye } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { getDispatchedProjects } from "../../../../redux/actions/ProjectAction";
+import { getProjectCategory } from "../../../../services/helper";
 
 export function AllProject() {
+    const projects = useSelector(state => state.projects.dispatchedProjects);
+    const user = useSelector(state => state.auth.user);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (user) {
+            dispatch(getDispatchedProjects(user.profile.id))
+        }
+    }, [dispatch, user])
+
 
     const [assign, setAssign] = useState(false)
-    
+
     const CloseModal = () => {
         setAssign(false)
     }
@@ -17,7 +30,7 @@ export function AllProject() {
                 <div className="w-full py-8 bg-white px-4">
                     <p className="text-2xl fw-600">All Projects</p>
                     <p className="fs-400 text-gray-600 mt-2">Projects available on BOG</p>
-                </div> 
+                </div>
                 {/* content */}
                 <div className="lg:p-5 px-3 py-5 mt-6">
                     {/* all projects table*/}
@@ -29,142 +42,65 @@ export function AllProject() {
                                 </div>
                             </div>
                             <div className="px-5 mt-6">
-                            <div className="overflow-x-auto">
+                                <div className="overflow-x-auto">
                                     <table className="items-center w-full bg-transparent border-collapse">
                                         <thead className="thead-light bg-light">
                                             <tr>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                S/N
-                                            </th>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                Project ID
-                                            </th>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                Project Category
-                                            </th>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                Location
-                                            </th>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                Date
-                                            </th>
-                                            <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                                                Status
-                                            </th>
-                                            <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
-                                                Actions
-                                            </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    S/N
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Project ID
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Project Category
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Location
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Date
+                                                </th>
+                                                <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                                                    Status
+                                                </th>
+                                                <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
+                                                    Actions
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                1
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                DRAW-VAC-20E42 
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Construction Drawing
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Ogba, Lagos
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                20-04-2022
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Pending
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                <div className="flex text-xl">
-                                                    <p><FaRegEye/></p>
-                                                    <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
-                                                    <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
-                                                </div>
-                                            </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    2
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    DRAW-ERC-20E42 
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Architectural Drawing
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Ojo, Lagos
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    10/10/2022
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Pending
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    <div className="flex text-xl">
-                                                    <p><FaRegEye/></p>
-                                                    <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
-                                                    <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                3
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                DRAW-PDL-18L40
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Construction Drawing
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Island, Lagos
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                19/11/2022
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Pending
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                <div className="flex text-xl">
-                                                    <p><FaRegEye/></p>
-                                                    <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
-                                                    <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
-                                                </div>
-                                            </td>
-                                            </tr>
-                                            <tr>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                4
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                DRAW-DCL-20E42
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Electrical Drawing
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Ikeja, Lagos
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                17/10/2022
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                Pending
-                                            </td>
-                                            <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                <div className="flex text-xl">
-                                                    <p><FaRegEye/></p>
-                                                    <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
-                                                    <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
-                                                </div>
-                                            </td>
-                                            </tr>
+
+                                            {
+                                                projects.length > 0 ? projects.map((item, index) => (
+                                                    <tr>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {index + 1}
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {item.project.projectSlug}
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {getProjectCategory(item.project.projectTypes)}
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {item.projectDetails.propertyLocation}
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {dayjs(item.project.createdAt).format("YYYY-MM-DD")}
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            Pending
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            <div className="flex text-xl">
+                                                                <p><FaRegEye /></p>
+
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                )) : null
+                                            }
                                         </tbody>
                                     </table>
                                 </div>

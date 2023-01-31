@@ -1,20 +1,26 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import Spinner from '../../layouts/Spinner';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { register } from "../../../redux/actions/authAction";
-import { supplierValidationSchema } from '../../../services/validation';
+import { servicePartnerValidationSchema } from '../../../services/validation';
 import ReCAPTCHA from "react-google-recaptcha";
 import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
-import {AiOutlineInfoCircle}  from 'react-icons/ai';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { fetchServiceCategories } from '../../../redux/actions/ProjectAction';
 
 export default function SignProfession() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const stopLoading = () => setLoading(false);
-  const captchaRef = useRef(null)
+  const captchaRef = useRef(null);
+  const categories = useSelector((state) => state.projects.services);
+
+  useEffect(() => {
+    dispatch(fetchServiceCategories()); // eslint-disable-next-line 
+  }, [dispatch]);
 
   const [passwordType, setPasswordType] = useState("password");
   const togglePassword = () => {
@@ -52,11 +58,15 @@ export default function SignProfession() {
       terms: false,
       aboutUs: "",
       reference: referenceValue || "",
+      serviceTypeId: ""
     },
-    validationSchema: supplierValidationSchema,
+    validationSchema: servicePartnerValidationSchema,
     onSubmit: handleSubmit,
   });
-  const { fname, lname, email, password, phone, terms, company_name, aboutUs, reference } = formik.values;
+  const { fname, lname, email, password, phone, terms, company_name, aboutUs, reference, serviceTypeId } = formik.values;
+  const options = categories.length > 0 ? categories.map(category => {
+    return <option value={category.id}>{category.title}</option>
+  }) : []
   return (
     <div className="bg-login bg-fixed bg-cover text-black font-primary">
       <Link to="/">
@@ -187,12 +197,28 @@ export default function SignProfession() {
                   }
                 </div>
                 <div className="w-full mt-6">
+                  <label className='block'>Type of Services Rendered</label>
+                  <select
+                    className='mt-2 py-2 px-2 bg-white border border-gray-500 rounded w-full'
+                    id="serviceTypeId"
+                    name="serviceTypeId"
+                    value={serviceTypeId}
+                    onChange={formik.handleChange}
+                  >
+                    <option selected >Select The service category</option>
+                    {options}
+                  </select>
+                  {
+                    formik.touched.serviceTypeId && formik.errors.serviceTypeId ? <p className='text-red-500'>{formik.errors.serviceTypeId}</p> : null
+                  }
+                </div>
+                <div className="w-full mt-6">
                   <label className="block">Password</label>
                   {passTooltip && (
-                      <div className='flex scale-ani py-2 px-2 my-2 bg-tool rounded fs-300' onClick={() => setPassTooltip((prev) => !prev)}>
-                          <AiOutlineInfoCircle className="text-lg text-gray-700"/>
-                          <p className='pl-2'>The password must contain minimum of 8 characters, uppercase character and a unique character</p>
-                      </div>
+                    <div className='flex scale-ani py-2 px-2 my-2 bg-tool rounded fs-300' onClick={() => setPassTooltip((prev) => !prev)}>
+                      <AiOutlineInfoCircle className="text-lg text-gray-700" />
+                      <p className='pl-2'>The password must contain minimum of 8 characters, uppercase character and a unique character</p>
+                    </div>
                   )}
                   <div className='flex items-center bg-input border border-gray-400 mt-1 rounded'>
                     <input
@@ -216,14 +242,14 @@ export default function SignProfession() {
                 </div>
                 <div className="w-full mt-6">
                   <div className='flex justify-between pr-2'>
-                      <label className='block'>Referral Code (Optional)</label>
-                      <AiOutlineInfoCircle className="text-lg text-gray-700" onClick={() => setRefTooltip((prev) => !prev)}/>
+                    <label className='block'>Referral Code (Optional)</label>
+                    <AiOutlineInfoCircle className="text-lg text-gray-700" onClick={() => setRefTooltip((prev) => !prev)} />
                   </div>
                   {refTooltip && (
-                      <div className='flex scale-ani py-2 px-2 my-2 bg-tool rounded fs-300'>
-                          <AiOutlineInfoCircle className="text-lg text-gray-700"/>
-                          <p className='pl-2'>Please, only enter the referral. Leave empty if you dont have a referral code.</p>
-                      </div>
+                    <div className='flex scale-ani py-2 px-2 my-2 bg-tool rounded fs-300'>
+                      <AiOutlineInfoCircle className="text-lg text-gray-700" />
+                      <p className='pl-2'>Please, only enter the referral. Leave empty if you dont have a referral code.</p>
+                    </div>
                   )}
                   <input
                     type="text"
@@ -272,8 +298,8 @@ export default function SignProfession() {
                   <p className="px-2">
                     I agree to the
                     <Link to="/terms"><span className=" pl-2 text-primary hover:text-red-600 cursor-pointer  ">
-                                    Terms & Conditions
-                                </span></Link>.
+                      Terms & Conditions
+                    </span></Link>.
                   </p>
                 </div>
                 <div className="mt-8">

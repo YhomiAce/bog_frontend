@@ -25,7 +25,7 @@ export default function ServiceCategory() {
         setSelectedItem(item);
         setAdminAdd(true);
     }
-    
+
 
     function CloseModal() {
         setAdminAdd(false)
@@ -58,7 +58,7 @@ export default function ServiceCategory() {
                         </Breadcrumbs>
                     </div>
                     <div className="mt-4 lg:mt-0">
-                        <button className="px-4 lg:py-2 py-1 rounded bg-primary text-white fw-600 flex items-center" onClick={() => setAdminAdd(!adminAdd)}><span className="pr-1"><MdOutlineEngineering/></span>Add New Category</button>
+                        <button className="px-4 lg:py-2 py-1 rounded bg-primary text-white fw-600 flex items-center" onClick={() => setAdminAdd(!adminAdd)}><span className="pr-1"><MdOutlineEngineering /></span>Add New Category</button>
                     </div>
                 </div>
                 {/* product contents */}

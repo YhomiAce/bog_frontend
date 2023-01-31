@@ -5,7 +5,7 @@ import Spinner from '../../../../layouts/Spinner';
 import ActionFeedBack from '../Modals/ActionFeedBack';
 import { loadData, saveData } from './DataHandler';
 
-export const SupplyCat = ({handleOpen}) => {
+export const SupplyCat = ({handleOpen, tab}) => {
     const [loading, setLoading] = useState(false);
     const [isLoaded, setDataLoaded] = useState(false);
     const [feedback, setFeetback] = useState(false);
@@ -13,6 +13,10 @@ export const SupplyCat = ({handleOpen}) => {
         categories: [],
         others: "",
     });
+    const [isSaving, setIsSaving] = useState(false);
+    const gotoPrev = () => {
+        handleOpen(tab - 1);
+    }
     const user = useSelector((state) => state.auth.user);
     useEffect(() => {
         !isLoaded && dataLoader()
@@ -39,7 +43,12 @@ export const SupplyCat = ({handleOpen}) => {
     const DataSaver = () => {
         const url = "/kyc-supply-category/create";
         const newData = {...formData, categories: formData.categories.toString()}
-        saveData({url, setLoading, formData: newData, user, setFormData, setFeetback, hasFile: false});
+        if(isSaving){
+            setIsSaving(false);
+            saveData({url, setLoading, formData: newData, user, setFormData, setFeetback, hasFile: false});
+        }else{
+            handleOpen(tab+1);
+        }
     }
     let newValue = {};
     const updateValue = (newVal, variable) => {
@@ -48,6 +57,7 @@ export const SupplyCat = ({handleOpen}) => {
             ...formData,
             ...newValue,
         });
+        setIsSaving(true);
     };
   return (
     <div className='lg:px-4 scale-ani'>
@@ -208,9 +218,12 @@ export const SupplyCat = ({handleOpen}) => {
             />
         </div>
         {loading ? <Spinner /> : 
-            <div className='pt-8 flex justify-end'>
+            <div className='pt-8 flex justify-between'>
+                <button onClick={gotoPrev} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>
+                    Previous
+                </button>
                 <button onClick={DataSaver} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>
-                    Save
+                    Save&Continue
                 </button>
             </div>
         }

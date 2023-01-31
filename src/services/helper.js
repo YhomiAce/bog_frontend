@@ -84,3 +84,19 @@ export const getUserTypeRevserse = (type) => {
         default: return ""
     }
 }
+
+export const getProjectCategory = (type) => {
+    switch (type) {
+        case "land_survey":
+            return "Land Survey"
+        case "construction_drawing":
+            return "Construction Drawing"
+        case "building_approval":
+            return "Building Approval"
+        case "geotechnical_investigation":
+            return "Geotechnical Investigation"
+        case "contractor":
+            return "Contractor"
+        default: return ""
+    }
+}

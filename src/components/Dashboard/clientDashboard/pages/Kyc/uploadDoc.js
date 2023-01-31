@@ -5,15 +5,19 @@ import Spinner from '../../../../layouts/Spinner';
 import ActionFeedBack from '../Modals/ActionFeedBack';
 import { fetcherForFiles, hasFileDelete, saveData } from './DataHandler';
 
-export const UploadDoc = ({handleOpen}) => {
+export const UploadDoc = ({ handleOpen, tab }) => {
     const [loading, setLoading] = useState(false);
     const [isLoaded, setDataLoaded] = useState(false);
     const [feedback, setFeetback] = useState(false);
     const [allDocuments, setAllDocuments] = useState()
     const [formData, setFormData] = useState({});
     const user = useSelector((state) => state.auth.user);
+    const [isSaving, setIsSaving] = useState(false);
+    const gotoPrev = () => {
+        handleOpen(tab - 1)
+    }
     useEffect(() => {
-        !isLoaded && fetcherForFiles({url: "kyc-documents",user, setData: setAllDocuments})
+        !isLoaded && fetcherForFiles({ url: "kyc-documents", user, setData: setAllDocuments })
         setDataLoaded(true);
     }, [])
     const DataSaver = () => {
@@ -25,7 +29,9 @@ export const UploadDoc = ({handleOpen}) => {
             fd.append(allKeys[i], allDocValues[i]);
         }
         fd.append("userType", user.userType);
-        saveData({url, setLoading, formData: fd, user, setFormData: setAllDocuments, setFeetback, hasFile: true});
+        if (isSaving) {
+            saveData({ url, setLoading, formData: fd, user, setFormData: setAllDocuments, setFeetback, hasFile: true });
+        }
     }
     let newValue = {};
     const updateValue = (newVal, variable) => {
@@ -34,6 +40,7 @@ export const UploadDoc = ({handleOpen}) => {
             ...formData,
             ...newValue,
         });
+        setIsSaving(true)
     };
     const isUploaded = (name) => {
         return allDocuments?.filter(doc => doc.name === name && doc);
@@ -42,10 +49,10 @@ export const UploadDoc = ({handleOpen}) => {
         console.log(url)
         window.open(url, "_blank")
     }
-    const SelectFile = ({proposedFileArray, isUploaded}) => {
+    const SelectFile = ({ proposedFileArray, isUploaded }) => {
         const myFiles = proposedFileArray.map((file, i) => {
             const uploaded = isUploaded(file.as)
-            if(uploaded.length === 0) {
+            if (uploaded.length === 0) {
                 return (
                     <div className="mt-3" key={i}>
                         <label>{file.title}</label>
@@ -57,12 +64,12 @@ export const UploadDoc = ({handleOpen}) => {
                         />
                     </div>
                 )
-            }else{
+            } else {
                 return (
-                    <div className="mt-3"  key={i}>
+                    <div className="mt-3" key={i}>
                         <label>{file.title}</label><div className="flex justify-between">
-                            <h5 onClick={() => openDoc(uploaded[0].file)}  className="mt-3 cursor-pointer text-blue-600">view document</h5>
-                            <button onClick={() => hasFileDelete({url: "kyc-documents", id: uploaded[0].id, user, setLoading, setData: setAllDocuments, setFeetback}) } className="btn-primary bg-red-600 lg:px-7">
+                            <h5 onClick={() => openDoc(uploaded[0].file)} className="mt-3 cursor-pointer text-blue-600">view document</h5>
+                            <button onClick={() => hasFileDelete({ url: "kyc-documents", id: uploaded[0].id, user, setLoading, setData: setAllDocuments, setFeetback })} className="btn-primary bg-red-600 lg:px-7">
                                 Delete
                             </button>
                         </div>
@@ -73,39 +80,42 @@ export const UploadDoc = ({handleOpen}) => {
         return myFiles
     }
     const fileList = [
-        {title: "Company's Corporate Profile", as: "Company_Corporate_Profile"},
-        {title: "Organizational Chart", as: "Organizational_Chart"},
-        {title: "Certificate of Incorporation / Registration", as: "Certificate_of_Registration"},
-        {title: "Corporate Affairs Commission Schedule of Directors form (CO7), and Statement of Allotment of Shares form (CO2)", as: "CAC"},
-        {title: "Memorandum and Articles of Association", as: "Memorandum_of_Association"},
-        {title: "Health, Safety and Environmental (HSE) Policies", as: "HSE_Policies"},
-        {title: "Quality Management Procedure", as: "Quality_Management_Procedure"},
-        {title: "Three years TAX Clearance Certificate", as: "TAX_Certificate"},
-        {title: "VAT Registration Certificate", as: "VAT_Certificate"},
-        {title: "A reference letter from the company's bank", as: "reference_from_bank"},
-        {title: "Company's six(6) months bank statement", as: "Company_statement"},
-        {title: "Workmen's Compensation Insurance (NSITF)", as: "Workmen_Insurance_NSITF"},
-        {title: "One(1) passport sized photograph of MD/Rep and all other directors", as: "passport_of_MD"},
-        {title: "Last three(3) years audited financials of the company ", as: "audited_financials"},
-        {title: "Three(3) sided photograph of Operational Area and Main Entrance", as: "photograph_of_operational"},
-        {title: "Passport of vendors and all directors", as: "Passport_of_vendors"},
-        
+        { title: "Company's Corporate Profile", as: "Company_Corporate_Profile" },
+        { title: "Organizational Chart", as: "Organizational_Chart" },
+        { title: "Certificate of Incorporation / Registration", as: "Certificate_of_Registration" },
+        { title: "Corporate Affairs Commission Schedule of Directors form (CO7), and Statement of Allotment of Shares form (CO2)", as: "CAC" },
+        { title: "Memorandum and Articles of Association", as: "Memorandum_of_Association" },
+        { title: "Health, Safety and Environmental (HSE) Policies", as: "HSE_Policies" },
+        { title: "Quality Management Procedure", as: "Quality_Management_Procedure" },
+        { title: "Three years TAX Clearance Certificate", as: "TAX_Certificate" },
+        { title: "VAT Registration Certificate", as: "VAT_Certificate" },
+        { title: "A reference letter from the company's bank", as: "reference_from_bank" },
+        { title: "Company's six(6) months bank statement", as: "Company_statement" },
+        { title: "Workmen's Compensation Insurance (NSITF)", as: "Workmen_Insurance_NSITF" },
+        { title: "One(1) passport sized photograph of MD/Rep and all other directors", as: "passport_of_MD" },
+        { title: "Last three(3) years audited financials of the company ", as: "audited_financials" },
+        { title: "Three(3) sided photograph of Operational Area and Main Entrance", as: "photograph_of_operational" },
+        { title: "Passport of vendors and all directors", as: "Passport_of_vendors" },
+
     ]
-  return (
-    <form className='lg:px-4 scale-ani'>
-        {allDocuments ? <SelectFile isUploaded={isUploaded} proposedFileArray={fileList} /> : <Spinner />}
-        <div className=''>
-            {!loading ?
-                <div className='pt-8 flex justify-end'>
-                    <button onClick={DataSaver} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>
-                        Save
-                    </button>
-                </div>                :
-                <Spinner />
-            }
-        </div>
-        {
-            feedback &&
+    return (
+        <form className='lg:px-4 scale-ani'>
+            {allDocuments ? <SelectFile isUploaded={isUploaded} proposedFileArray={fileList} /> : <Spinner />}
+            <div className=''>
+                {!loading ?
+                    <div className='pt-8 flex justify-between'>
+                        <button onClick={gotoPrev} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>
+                            Previous
+                        </button>
+                        <button onClick={DataSaver} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>
+                            Submit
+                        </button>
+                    </div> :
+                    <Spinner />
+                }
+            </div>
+            {
+                feedback &&
                 <ActionFeedBack
                     closeFeedBack={() => setFeetback(false)}
                     title={feedback.title}
@@ -113,7 +123,7 @@ export const UploadDoc = ({handleOpen}) => {
                     info={feedback.info}
                     status={feedback.status}
                 />
-        }
-    </form>
-  )
+            }
+        </form>
+    )
 }

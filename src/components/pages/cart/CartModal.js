@@ -293,24 +293,18 @@ export const CartModal = ({CloseModal}) => {
                 <p>NGN {formatNumber(totalAmount)}</p>
                 </div>
 
-                {auth.isAuthenticated ?
+                {auth.isAuthenticated &&
                 (value.address !== null && value.address !== '') ? (
 
 
                     <PaystackButton
-
+                    
                     text="CHECKOUT"
                     label="CHECKOUT"
                     className="w-full btn bg-primary text-white"
                     {...componentProps}
                     />
-                ) :
-                    <button
-                    // onClick={() => navigate("/login")}
-                    className="w-full btn bg-primary text-white"
-                    >
-                    CHECKOUT
-                    </button>
+                ) 
                 : (
                     <button
                     onClick={() => AuhtCheck()}
