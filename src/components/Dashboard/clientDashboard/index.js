@@ -57,6 +57,7 @@ import UserInbox from "./pages/Users/InboxUser";
 import { TransactionDetails } from "./pages/Transaction/TransactionItem";
 import ServiceCategory from "./pages/ServiceCat";
 import { ServiceRequest } from "./pages/ServiceRequest";
+import  AdminSub  from "./pages/AdminSub";
 
 export default function ClientDashboard() {
 
@@ -132,6 +133,7 @@ export default function ClientDashboard() {
                         <Route path="subscription" element={<Subscription />} />
                         <Route path="settings" element={<Settings />} />
                         <Route path="smart-calc" element={<SmartCalc />} />
+                        <Route path="admin-sub" element={<AdminSub />} />
                         <Route path="" element={<Dashboard />} />
                         <Route path="" element={<Dashboard />} />
                     </Routes>

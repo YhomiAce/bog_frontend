@@ -1,12 +1,53 @@
-import { Breadcrumbs } from '@material-tailwind/react'
+import { Breadcrumbs, Button } from '@material-tailwind/react'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { GiCheckMark } from "react-icons/gi"
-import { BsArrowRightCircleFill } from 'react-icons/bs'
+import { BsArrowRightCircleFill, BsInfoCircleFill } from 'react-icons/bs'
+import { usePaystackPayment } from 'react-paystack'
+import { FaTimes } from 'react-icons/fa'
+import { useState } from 'react'
+import Swal from 'sweetalert2'
 
 export function Subscription() {
-    
 
+    const navigate = useNavigate()
+    const[getKyc, setGetKyc] = useState(true)
+
+    const CloseModal = () => {
+        setGetKyc(false)
+    }
+
+    const config = {
+        reference: (new Date()).getTime().toString(),
+        email: "user@example.com",
+        amount: 20000, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+        publicKey: 'pk_test_0c79398dba746ce329d163885dd3fe5bc7e1f243',
+    };
+    
+    // you can call this function anything
+    const onSuccess = (reference) => {
+      // Implementation for whatever you want to do with reference and after success call.
+      console.log(reference);
+      Swal.fire({
+        title: "Success",
+        imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",
+        imageWidth: "75px",
+        text: "Congratulation, your subscription is successful",
+        buttonsStyling: "false",
+        confirmButtonText: '<Link to="/dashboard">Continue</Link>',
+        confirmButtonColor: "#3F79AD",
+        }).then(function() {
+            window.location.href = "/dashboard";
+        })
+    };
+  
+    // you can call this function anything
+    const onClose = () => {
+      // implementation for  whatever you want to do when the Paystack dialog closed.
+      console.log('closed')
+    }
+    
+    const initializePayment = usePaystackPayment(config);
     return (
         <div className="">
             <div className="min-h-screen fs-500 relative">
@@ -70,7 +111,8 @@ export function Subscription() {
                                     </div>
                                 </div>
                                 <div className='text-center'>
-                                    <button className='flex items-center w-full btn-primary'>Choose Plan <span className='pl-2'><BsArrowRightCircleFill/></span></button>
+                                    <button className='flex items-center w-full btn-primary' onClick={() => {
+                                        initializePayment(onSuccess, onClose)}}>Choose Plan <span className='pl-2'><BsArrowRightCircleFill/></span></button>
                                 </div>
                             </div>
                             <div className='lg:w-3/12 w-11/12 mx-auto p-6 mt-7 lg:mt-0 hover:scale-110 hover:bg-black hover:text-white transition duration-300 lg:p-10 rounded-md bg-white shades'>
@@ -101,7 +143,8 @@ export function Subscription() {
                                     </div>
                                 </div>
                                 <div className='text-center'>
-                                    <button className='flex items-center w-full btn-primary'>Choose Plan <span className='pl-2'><BsArrowRightCircleFill/></span></button>
+                                    <button className='flex items-center w-full btn-primary' onClick={() => {
+                                        initializePayment(onSuccess, onClose)}}>Choose Plan <span className='pl-2'><BsArrowRightCircleFill/></span></button>
                                 </div>
                             </div>
                             <div className='lg:w-3/12  w-11/12 mx-auto p-6 mt-7 lg:mt-0 hover:scale-110 hover:bg-black hover:text-white transition duration-300 lg:p-10 rounded-md bg-white shades'>
@@ -132,48 +175,37 @@ export function Subscription() {
                                     </div>
                                 </div>
                                 <div className='text-center'>
-                                    <button className='flex items-center w-full btn-primary'>Choose Plan <span className='pl-2'><BsArrowRightCircleFill/></span></button>
+                                    <button className='flex items-center w-full btn-primary' onClick={() => {
+                                        initializePayment(onSuccess, onClose)}}>Choose Plan <span className='pl-2'><BsArrowRightCircleFill/></span></button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {/* <div className="scale-ani" onClick={e => e.stopPropagation()}>
-                        <form>
-                            <div className="bg-white px-4 rounded-md pt-8 pb-8 lg:p-10 lg:pb-16 shadow fw-500">
-                                <div className="lg:flex">
-                                    <div className="mt-5 lg:mt-8 lg:pr-5 lg:w-6/12">
-                                        <label className="block">Your TIN (Taxpayer Identification Number)</label>
-                                        <input type="text" className="w-full border border-gray-400 rounded mt-2 py-2 px-2" placeholder="Enter your TIN" required/>
-                                    </div>
-                                    <div className="mt-5 lg:mt-8 lg:pl-5 lg:w-6/12">
-                                        <div className="flex justify-between"><label className="block">Upload your CAC</label> <p className="pr-4"><AiOutlineInfoCircle/></p></div>
-                                        <input type="file" className="w-full border border-gray-400 rounded mt-2 py-2 px-2" required/>
-                                    </div>
-                                </div>
-                                <div className="lg:flex">
-                                    <div className="mt-5 lg:mt-7 lg:w-6/12 lg:pr-6">
-                                        <label className="block">Bank Account Holder Number</label>
-                                        <input type="text" className="w-full  border border-gray-400 rounded mt-2 py-2 px-2" placeholder="Enter your bank account name" required/>
-                                    </div>
-                                    <div className="mt-5 lg:mt-7 lg:w-6/12 lg:pl-6">
-                                        <label className="block">Bank Name</label>
-                                        <input type="text" className="w-full  border border-gray-400 rounded mt-2 py-2 px-2" placeholder="Enter your bank name" required/>
-                                    </div>
-                                </div>
-                                <div className="mt-5 lg:mt-7 lg:w-6/12 lg:pr-6">
-                                    <label className="block">Account Number</label>
-                                    <input type="text" className="w-full  border border-gray-400 rounded mt-2 py-2 px-2" placeholder="Enter your bank account number" required/>
-                                </div>
-                            </div>
-                            <div className="my-8 border-t border-gray-300 pt-8">
-                                <div className="text-end">
-                                    <button className="btn bg-primary text-white lg:px-24 lg:fw-600">Submit KYC</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>  */}
                 </div>
             </div>
+            {
+                getKyc && (
+                    <div className="fixed font-primary top-0 left-0 w-full h-screen bg-op center-item z-40" onClick={CloseModal}>
+                        <div className="bg-white lg:w-5/12 rounded-md overflow-y-auto overscroll-none  w-11/12 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
+                                <div className='flex justify-between px-4 py-6'>
+                                    <p className="lg:fs-700 fw-500 flex">
+                                        <span className='block mt-1 mr-2 text-secondary'>
+                                            <BsInfoCircleFill/>
+                                        </span>
+                                        <span>
+                                            Please note that you are to complete and submit your KYC form before proceeding with your choiced subscription.
+                                        </span>
+                                    </p>
+                                    <FaTimes className='cursor-pointer text-red-600 mb-3' onClick={CloseModal}/>
+                                </div>
+                                <div className='mt-4 px-4 py-4 bg-light text-end'>
+                                    <Button className='bg-secondary' onClick={() => {navigate('/dashboard/kyc')}} >Goto KYC</Button>
+                                    <Button className='bg-primary ml-4' onClick={CloseModal}>Continue</Button>
+                                </div>
+                        </div>
+                    </div>
+                )
+            }
         </div>
         )
 }

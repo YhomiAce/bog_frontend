@@ -1,7 +1,5 @@
-import { Button, Menu, MenuHandler, MenuItem, MenuList } from "@material-tailwind/react";
 import React from "react";
 import { useState } from "react";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaCheck, FaRegEye, FaTimes } from "react-icons/fa";
 
 export function AllProject() {
@@ -80,15 +78,9 @@ export function AllProject() {
                                             </td>
                                             <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 <div className="flex text-xl">
-                                                    <Menu>
-                                                        <MenuHandler>
-                                                            <Button className="border-none bg-transparent shadow-none hover:shadow-none text-black"><button className="lg:text-xl"><BsThreeDotsVertical /></button></Button>
-                                                        </MenuHandler>
-                                                        <MenuList>
-                                                            <MenuItem>View Submission</MenuItem>
-                                                            <MenuItem>Submit Qoutation</MenuItem>
-                                                        </MenuList>
-                                                    </Menu>
+                                                    <p><FaRegEye/></p>
+                                                    <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
+                                                    <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
                                                 </div>
                                             </td>
                                             </tr>

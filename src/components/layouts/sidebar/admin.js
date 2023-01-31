@@ -321,6 +321,12 @@ const AdminSidebar = () => {
                                         >
                                             <p className="py-1">Smart Calculator</p>
                                         </NavLink>
+                                        <NavLink
+                                            to="admin-sub"
+                                            onClick={unShow}
+                                        >
+                                            <p className="pt-2">Subscription Plan</p>
+                                        </NavLink>
                                     </div>
                                 )
                                 }
