@@ -889,7 +889,7 @@ export default function Service() {
                                               AuhtCheck()
                                       }
                                    }}>
-                                    <img src={require("../assets/images/SC.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
+                                    <img src={require("../assets/images/BC.png")} alt="survey" className="lg:w-16 mx-auto mb-5" />
                                         <p className="fw-500">Building Contractor</p>
                                     </div>
                         </div>
@@ -1192,7 +1192,7 @@ export default function Service() {
                         </div>
                         <div className="mt-3 lg:mt-6 w-full">
                             <label className="block fw-600">
-                              5. Type of Survey<span className="text-red-600 pl-2">*</span>
+                              6. Type of Survey<span className="text-red-600 pl-2">*</span>
                             </label>
                             <div className="mt-3 fs-500" onChange={handleChangeet.bind(this)}>
                                 <div className="py-1">
@@ -1396,8 +1396,7 @@ export default function Service() {
                                 6. Upload available picture of the land or property
                             </label>
                             <div class="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input class="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleLandandProperties} multiple  />
+                                <input class="cursor-pointer w-full p-2 " type="file" onChange={handleLandandProperties} multiple  />
                                   </div>
                                   {selectedpro?.map((item) => { 
                                       return (<p>{item.name}</p>)
@@ -1634,8 +1633,7 @@ export default function Service() {
                                 Upload Survey Plan<span className="text-red-600 pl-2">*</span>
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" name='photosuveyplan'
+                                <input className="cursor-pointer w-full rounded p-2" type="file" name='photosuveyplan'
                                 onChange={handleFileChangesp}  multiple />
                                   </div>
                                     {selectedsp?.map((item) => { 
@@ -1968,8 +1966,7 @@ export default function Service() {
                                 3. Upload Survey Plan<span className="text-red-600 pl-2">*</span>
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" name='photosuveyplan'
+                                <input className="cursor-pointer rounded p-2 w-full" type="file" name='photosuveyplan'
                                 onChange={handleFileChangesp}  multiple />
                                   </div>
                                     {selectedsp?.map((item) => { 
@@ -1985,10 +1982,9 @@ export default function Service() {
                                          4.  Upload Architectural plan
                                       </label>
                                       <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                          <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
-                                          <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeatp} multiple />
+                                          <input className="cursor-pointer rounded w-full p-2" type="file" onChange={handleFileChangeatp} multiple />
                                   </div>
-                                   {selectedap?.map((item) => { 
+                                        {selectedap?.map((item) => { 
                                             return (<p>{item.name}</p>)
                                         })}
                                       <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
@@ -2001,8 +1997,7 @@ export default function Service() {
                                          5.  Upload Structural plan
                                       </label>
                                       <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                          <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
-                                          <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangespstp} multiple />
+                                          <input className="cursor-pointer rounded p-2 w-full" type="file" onChange={handleFileChangespstp} multiple />
                                   </div>
                                       {selectedstp?.map((item) => { 
                                             return (<p>{item.name}</p>)
@@ -2017,8 +2012,7 @@ export default function Service() {
                                          6.   Upload Mechanical plan
                                       </label>
                                       <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                          <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
-                                          <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangemp} multiple />
+                                          <input className="cursor-pointer w-full p-2 rounded" type="file" onChange={handleFileChangemp} multiple />
                                   </div>
                                      {selectedsmc?.map((item) => { 
                                             return (<p>{item.name}</p>)
@@ -2033,8 +2027,7 @@ export default function Service() {
                                          7.  Upload Electrical plan
                                       </label>
                                       <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                          <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload /><span className="pl-2">Upload file</span></p>
-                                      <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeep} multiple />
+                                        <input className="cursor-pointer p-2 w-full rounded" type="file" onChange={handleFileChangeep} multiple />
                                       </div>
                                         {selectedelp?.map((item) => { 
                                             return (<p>{item.name}</p>)
@@ -2049,8 +2042,7 @@ export default function Service() {
                             8. Upload Soil Test Report
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangestp}  multiple />
+                                <input className="cursor-pointer w-full rounded p-2" type="file" onChange={handleFileChangestp}  multiple />
                                   </div>
                                    {selectedsoi?.map((item) => { 
                                             return (<p>{item.name}</p>)
@@ -2064,8 +2056,7 @@ export default function Service() {
                             9. Upload C of O/Deed of Assignment/R of O<span className="text-red-600 pl-2">*</span>
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangecfo} multiple />
+                                <input className="cursor-pointer w-full rounded-p-2" type="file" onChange={handleFileChangecfo} multiple />
                                   </div>
                                      {selectedcos?.map((item) => { 
                                      return (<p>{item.name}</p>)
@@ -2079,8 +2070,7 @@ export default function Service() {
                             10. Upload Site plan
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeusp}  multiple />
+                                <input className="cursor-pointer w-full rounded p-2" type="file" onChange={handleFileChangeusp}  multiple />
                                   </div>
                                     {selectedcusp?.map((item) => { 
                                      return (<p>{item.name}</p>)
@@ -2095,8 +2085,7 @@ export default function Service() {
                             11. Upload Site Analysis Report
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeusap}   multiple />
+                                <input className="cursor-pointer w-full rounded-p-2" type="file" onChange={handleFileChangeusap}   multiple />
                                   </div>
                                   {selectedcusap?.map((item) => { 
                                      return (<p>{item.name}</p>)
@@ -2110,8 +2099,7 @@ export default function Service() {
                             12. Upload Environmental Impact Assessment report
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file"  onChange={handleFileChangeuei}  multiple />
+                                <input className="cursor-pointer w-full p-2 rounded" type="file"  onChange={handleFileChangeuei}  multiple />
                                   </div>
                                   {selectedcusep?.map((item) => { 
                                      return (<p>{item.name}</p>)
@@ -2126,8 +2114,7 @@ export default function Service() {
                             13. Upload Tax Clearance Certificate
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeutc}  multiple />
+                                <input className="cursor-pointer w-full p-2 rounded" type="file" onChange={handleFileChangeutc}  multiple />
                                   </div>
                                     {selectedcustp?.map((item) => { 
                                      return (<p>{item.name}</p>)
@@ -2142,8 +2129,7 @@ export default function Service() {
                             14.  Upload Letter of Supervision from COREN Registered Engineer
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file" onChange={handleFileChangeuls}  multiple />
+                                <input className="cursor-pointer w-full p-2 rounded" type="file" onChange={handleFileChangeuls}  multiple />
                                   </div>
                                    {selectedculs?.map((item) => { 
                                      return (<p>{item.name}</p>)
@@ -2158,8 +2144,7 @@ export default function Service() {
                             15. Upload Stamped and Sealed Copy of Structural Calculation Sheet
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file"  onChange={handleFileChangeusss}   multiple />
+                                <input className="cursor-pointer p-2 w-full rounded" type="file"  onChange={handleFileChangeusss}   multiple />
                                   </div>
                                     {selectedculsss?.map((item) => {
                                      return (<p>{item.name}</p>)
@@ -2801,8 +2786,7 @@ export default function Service() {
                                 2. Upload Survey Plan<span className="text-red-600 pl-2">*</span>
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file"  multiple />
+                                <input className="cursor-pointer w-full p-2 rounded" type="file"  multiple />
                             </div>
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
@@ -2813,8 +2797,7 @@ export default function Service() {
                                 3. Upload Architectural plan<span className="text-red-600 pl-2">*</span>
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file"  multiple />
+                                <input className="cursor-pointer p-2 w-full" type="file"  multiple />
                             </div>
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
@@ -2825,8 +2808,7 @@ export default function Service() {
                                 4. Upload Structural plan, 
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file"  multiple />
+                                <input className="cursor-pointer w-full rounded p-2" type="file"  multiple />
                             </div>
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
@@ -2837,8 +2819,7 @@ export default function Service() {
                                 5. Upload Mechanical plan, 
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file"  multiple />
+                                <input className="cursor-pointer w-full rounded p-2" type="file"  multiple />
                             </div>
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
@@ -2849,8 +2830,7 @@ export default function Service() {
                                 6. Upload Electrical plan, 
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <p className="py-1 relative z-0 flex items-center"><AiOutlineCloudUpload/><span className="pl-2">Upload file</span></p>
-                                <input className="cursor-pointer absolute block opacity-0 focus:opacity-1 z-10 pin-r pin-t" type="file"  multiple />
+                                <input className="cursor-pointer w-full rounded p-2" type="file"  multiple />
                             </div>
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio

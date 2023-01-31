@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { GiCheckMark } from "react-icons/gi"
 import { BsArrowRightCircleFill, BsInfoCircleFill } from 'react-icons/bs'
 import { usePaystackPayment } from 'react-paystack'
-import { FaTimes } from 'react-icons/fa'
 import { useState } from 'react'
 import Swal from 'sweetalert2'
 
@@ -196,7 +195,6 @@ export function Subscription() {
                                             Please note that you are to complete and submit your KYC form before proceeding with your choiced subscription.
                                         </span>
                                     </p>
-                                    <FaTimes className='cursor-pointer text-red-600 mb-3' onClick={CloseModal}/>
                                 </div>
                                 <div className='mt-4 px-4 py-4 bg-light text-end'>
                                     <Button className='bg-secondary' onClick={() => {navigate('/dashboard/kyc')}} >Goto KYC</Button>
