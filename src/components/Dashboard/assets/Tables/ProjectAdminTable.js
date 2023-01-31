@@ -236,7 +236,7 @@ export default function ProjectsTable({ status }) {
           </MenuHandler>
           <MenuList>
             {
-              row.cell.row.original.approvalStatus === "ongoing" &&
+              row.cell.row.original.approvalStatus === "in_review" &&
               <MenuItem onClick={() => gotoDetailsPage(row.value)}>
                 View Details
               </MenuItem>
@@ -248,13 +248,13 @@ export default function ProjectsTable({ status }) {
               </MenuItem>
             }
             {
-              row.cell.row.original.approvalStatus === "approved" &&
+              row.cell.row.original.approvalStatus === "in_review" &&
               <MenuItem onClick={() => dispatchProjectToPartners(row.value)}>
                 Post Project
               </MenuItem>
             }
             {
-              row.cell.row.original.approvalStatus === "in_review" &&
+              row.cell.row.original.approvalStatus === "iapproved" &&
               <MenuItem onClick={() => approveProjectForCommencement(row.value, true)}>
                 Approve Project
               </MenuItem>
