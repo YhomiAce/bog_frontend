@@ -1,10 +1,9 @@
 // import React from "react";
 import React, { useEffect } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import { Breadcrumbs } from "@material-tailwind/react";
+import { Breadcrumbs, Button, Menu, MenuHandler, MenuItem, MenuList } from "@material-tailwind/react";
 import ProjectChart from "../../assets/ProjectChart";
 import { useSelector } from 'react-redux';
-import { FaRegEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ProjectTable from "../../assets/Tables/ProjectTable";
 import { getMyProject } from '../../../../redux/actions/ProjectAction';
@@ -201,7 +200,15 @@ export function ServiceProject() {
                                                 </td>
                                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                                     <div className="flex text-xl">
-                                                        <p><FaRegEye /></p>
+                                                        <Menu>
+                                                            <MenuHandler>
+                                                               <Button></Button>
+                                                            </MenuHandler>
+                                                            <MenuList>
+                                                                <MenuItem>View Details</MenuItem>
+                                                                <MenuItem>Update Details</MenuItem>
+                                                            </MenuList>
+                                                        </Menu>
                                                     </div>
                                                 </td>
                                             </tr>
