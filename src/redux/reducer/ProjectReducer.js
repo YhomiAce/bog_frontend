@@ -63,7 +63,7 @@ const ProjectReducer = (state = initialState, action) => {
                 projects: oldProjects,
                 error: null,
             }
-        
+
         case ActionType.DELETE_SERVICE:
             return {
                 ...state,

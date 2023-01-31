@@ -9,6 +9,7 @@ export function AllProject() {
     const projects = useSelector(state => state.projects.dispatchedProjects);
     const user = useSelector(state => state.auth.user);
     const dispatch = useDispatch();
+    console.log(projects);
 
     useEffect(() => {
         if (user) {
