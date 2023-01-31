@@ -103,8 +103,8 @@ export const UploadDoc = ({ handleOpen, tab }) => {
             {allDocuments ? <SelectFile isUploaded={isUploaded} proposedFileArray={fileList} /> : <Spinner />}
             <div className=''>
                 {!loading ?
-                    <div className='pt-8 flex justify-between'>
-                        <button onClick={gotoPrev} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>
+                    <div className='pt-8 flex justify-between lg:justify-end'>
+                        <button onClick={gotoPrev} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600 lg:mr-10'>
                             Previous
                         </button>
                         <button onClick={DataSaver} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>

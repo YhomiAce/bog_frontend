@@ -208,12 +208,14 @@ export const JobExecution = ({ handleOpen, tab }) => {
                     />
                 </div>
             </div>}
-            <div className="mt-10 flex justify-between items-center">
-                <button onClick={gotoPrev} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>
+            <div className='mt-4'>
+                <button className='rounded-lg px-2 lg:px-6 py-3 text-center bg-secondary text-white fw-600' type="button" onClick={() => setAddWork(!addWork)}>{!addWork ? 'Add Job Experience' : 'Close'}</button>
+            </div>
+            <div className="mt-10 flex justify-between lg:justify-end items-center">
+                <button onClick={gotoPrev} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600 lg:mr-10'>
                     Previous
                 </button>
-                <button className='rounded-lg px-2 lg:px-6 py-3 text-center bg-secondary text-white fw-600' type="button" onClick={() => setAddWork(!addWork)}>{!addWork ? 'Add Job Experience' : 'Close'}</button>
-                {loading ? <Spinner /> : <button onClick={DataSaver} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600' type="submit">Save&Continue</button>}
+                {loading ? <Spinner /> : <button onClick={DataSaver} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600' type="submit">Save & Continue</button>}
             </div>
             {feedback &&
                 <ActionFeedBack

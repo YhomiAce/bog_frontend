@@ -136,7 +136,7 @@ export const GeneralInfo = ({handleOpen, tab}) => {
         {loading ? <Spinner /> : 
             <div className='pt-8 flex justify-end'>
                 <button onClick={DataSaver} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>
-                    Save&Continue
+                    Save & Continue
                 </button>
             </div>}
         {feedback &&
