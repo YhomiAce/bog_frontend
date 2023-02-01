@@ -488,6 +488,7 @@ export const bidForProject = (payload, saveLoading) => {
             // dispatch(loading());
             const response = await axios.post('projects/bid-project', payload, config);
             console.log(response);
+            saveLoading()
             Swal.fire({
                 title: "Done",
                 text: `Admin will get back you`,
@@ -497,6 +498,7 @@ export const bidForProject = (payload, saveLoading) => {
             console.log(error);
             let errorMsg = error?.response?.data?.message || error.message
             dispatch(setError(errorMsg));
+            saveLoading()
             toaster.notify(
                 errorMsg,
                 {
@@ -524,6 +526,7 @@ export const assignProjectToPartner = (payload, saveLoading) => {
             const response = await axios.post('/projects/assign-project', payload, config);
             console.log(response);
             dispatch(assignProject(payload.projectId))
+            saveLoading()
             Swal.fire({
                 title: "Done",
                 text: `Project assigned to partner`,
@@ -533,6 +536,7 @@ export const assignProjectToPartner = (payload, saveLoading) => {
             console.log(error);
             let errorMsg = error?.response?.data?.message || error.message
             dispatch(setError(errorMsg));
+            saveLoading()
             toaster.notify(
                 errorMsg,
                 {
