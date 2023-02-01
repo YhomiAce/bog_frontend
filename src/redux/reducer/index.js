@@ -11,6 +11,7 @@ import PostReducer from "./PostReducer";
 import NotificationReducer from "./NotificationReducer";
 import AnnouncementReducer from "./AnnouncementReducer";
 import ServiceCategory from "./ServiceCategory";
+import SubscriptionReducer from "./SubscriptionReducer";
 
 const rootReducer = combineReducers({
     alert: AlertReducer,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
     blog: PostReducer,
     notifications: NotificationReducer,
     announcements: AnnouncementReducer,
-    service: ServiceCategory
+    service: ServiceCategory,
+    subscription: SubscriptionReducer,
 });
 
 export default rootReducer;

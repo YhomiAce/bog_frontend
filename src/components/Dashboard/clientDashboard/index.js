@@ -57,7 +57,7 @@ import UserInbox from "./pages/Users/InboxUser";
 import { TransactionDetails } from "./pages/Transaction/TransactionItem";
 import ServiceCategory from "./pages/ServiceCat";
 import { ServiceRequest } from "./pages/ServiceRequest";
-import  AdminSub  from "./pages/AdminSub";
+import AdminSub from "./pages/AdminSub";
 
 export default function ClientDashboard() {
 
