@@ -39,7 +39,7 @@ export default function ProjectRequest() {
                     <div className="bg-white lg:p-5 lg:mt-6 mt-6 rounded-lg">
                         <Tabs className="px-2 lg:px-0 py-5 lg:py-0">
                             <TabList className="">
-                                <Tab>All Projects Requests</Tab>
+                                <Tab>All Projects Requests ---</Tab>
                             </TabList>
                             <TabPanel>
                                 {/* <div className="mt-10">

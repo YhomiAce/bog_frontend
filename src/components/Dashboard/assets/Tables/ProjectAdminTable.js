@@ -2,7 +2,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import React from 'react'
 import React, { useState } from "react";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight, FaFileDownload} from "react-icons/fa";
 import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, usePagination } from "react-table";
 import { useNavigate } from "react-router-dom";
@@ -26,6 +26,8 @@ import { useExportData } from "react-table-plugins";
 import Papa from "papaparse";
 import * as XLSX from 'xlsx'
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { useEffect } from "react";
+import { getProjects } from "../../../../redux/actions/ProjectAction";
 
  
 
@@ -90,11 +92,16 @@ function getExportFileBlob({ columns, data, fileType, fileName }) {
 
 export default function ProjectsTable({status}){
   // let   allProjects = useSelector((state) => state.orders.  allProjects);
+  const dispatch = useDispatch()
+    useEffect(() => {
+      dispatch(getProjects())
+    }, [dispatch])
       let   allProjects = useSelector((state) => state.allprojects.projects);
   // console.log( allProjects);
     if (status) {
           allProjects =   allProjects.filter(where => where.status === status)
     }
+    console.log(allProjects)
   //   const formatNumber = (number) => {
   //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   // }
@@ -224,7 +231,10 @@ export default function ProjectsTable({status}){
                                       View Form
                                   </MenuItem>
                                   <MenuItem className="bg-red-600 text-white" onClick={() => deleteProject(row.value)}>
-                                      Delete
+                                      Decline
+                                  </MenuItem>
+                                  <MenuItem className="bg-green-600 text-white mt-1" onClick={() => deleteProject(row.value)}>
+                                      Approve
                                   </MenuItem>
                               </MenuList>
                           </Menu> ,
