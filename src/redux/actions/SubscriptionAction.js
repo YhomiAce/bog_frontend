@@ -151,14 +151,18 @@ export const updateSubscriptionPlan = (payload, saveLoading) => {
             dispatch(loading());
             const config = {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    'Content-Type': 'application/json',
                     'authorization': localStorage.getItem("auth_token")
                 },
             }
             const url = `/subscription/update`
-             await axios.patch(url, payload, config);
-            const response = await axios.get(`/subscription/plans/${payload.planId}`)
-            dispatch(editPlan(response.data));
+            const result = await axios.patch(url, payload, config);
+            console.log(result);
+            if (result.success === true) {
+                const response = await axios.get(`/subscription/plans/${payload.planId}`)
+                dispatch(editPlan(response.data));
+                
+            }
             saveLoading();
             Swal.fire({
                 title: "Plan updated",

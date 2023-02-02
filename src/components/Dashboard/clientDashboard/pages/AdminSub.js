@@ -1,23 +1,38 @@
 import { Breadcrumbs } from "@material-tailwind/react";
-import React, { useState} from "react";
+import React, { useEffect, useState } from "react";
 import { MdPlaylistAddCheck } from "react-icons/md";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getAllSubscriptionPlans } from "../../../../redux/actions/SubscriptionAction";
+import Spinner from "../../../layouts/Spinner";
 import { SubscriptionTable } from "../../assets/Tables/Subscription";
 import { AddSub } from "./Admins/Modals/AddSub";
 
 export default function AdminSub() {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const [subscription, setSubscription] = useState(false);
+    const [selected, setSelected] = useState();
+    const { isLoading } = useSelector(state => state.subscription);
 
     const closeModal = () => {
         setSubscription(false)
     }
-    
 
-    // useEffect(() => {
-    //     dispatch(getAllAnnouncements())
-    // }, [dispatch]);
+    const openEditModal = (item) => {
+        setSelected(item)
+        setSubscription(true)
+    }
+
+
+    useEffect(() => {
+        dispatch(getAllSubscriptionPlans())
+    }, [dispatch]);
+
+    if (isLoading) {
+        return <center>
+            <Spinner />
+        </center>
+    }
 
 
     return (
@@ -48,13 +63,13 @@ export default function AdminSub() {
                         </Breadcrumbs>
                     </div>
                     <div>
-                        <button className="btn bg-secondary text-white fw-600 flex items-center" onClick={() => setSubscription(true)}><MdPlaylistAddCheck className="text-2xl"/> <span className="pl-1">Add New Plan</span></button>
+                        <button className="btn bg-secondary text-white fw-600 flex items-center" onClick={() => setSubscription(true)}><MdPlaylistAddCheck className="text-2xl" /> <span className="pl-1">Add New Plan</span></button>
                     </div>
                 </div>
                 {/* content */}
                 <div className="lg:p-5 px-3 py-5 mt-6">
                     <div className="lg:p-2 bg-white rounded-lg">
-                        <SubscriptionTable/>
+                        <SubscriptionTable openEditModal={openEditModal} />
                     </div>
                 </div>
             </div>
@@ -62,7 +77,7 @@ export default function AdminSub() {
                 subscription && (
                     <div className="fixed font-primary left-0 top-0 w-full h-screen bg-op center-item z-40" onClick={closeModal}>
                         <div className="bg-white lg:w-5/12 rounded-md  overscroll-none  w-11/12 p-8 shadow fw-500 scale-ani max-h-70 overflow-scroll" onClick={e => e.stopPropagation()}>
-                            <AddSub closeModal={closeModal}/>
+                            <AddSub closeModal={closeModal} item={selected} />
                         </div>
                     </div>
                 )

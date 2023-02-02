@@ -146,3 +146,9 @@ export const projectBidSchema = Yup.object({
     projectCost: Yup.number().required("How much would it cost to get this project done"),
     reasonOfInterest: Yup.string().required("Select the reason why you're interested"),
 });
+
+export const subscriptionPlanSchema = Yup.object({
+    name: Yup.string().required("Name is required"),
+    amount: Yup.number().required("Amount is required"),
+    duration: Yup.number().required("Duration is required"),
+});
