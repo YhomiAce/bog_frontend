@@ -18,7 +18,7 @@ export default function Userauth() {
 
   useEffect(() => {
     setLoading(true);
-    const url = `/user/verify?email=${email}&token=${token}`;
+    const url = `/user/verify?email=${encodeURIComponent(email)}&token=${token}`;
     axios.get(url).then((res) => {
       setLoading(false);
       console.log(res);
