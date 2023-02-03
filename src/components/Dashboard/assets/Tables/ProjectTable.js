@@ -230,9 +230,12 @@ export default function ProjectTable({ status }) {
           </MenuHandler>
 
           <MenuList>
-            <MenuItem onClick={() => gotoDetailsPage(row.value)}>
+            {
+              row.cell.row.original.approvalStatus !== "in_review" &&
+              <MenuItem onClick={() => gotoDetailsPage(row.value)}>
               View Details
             </MenuItem>
+            }
             <MenuItem onClick={() => gotoProjectFile(row.value)}>
               View Form
             </MenuItem>
