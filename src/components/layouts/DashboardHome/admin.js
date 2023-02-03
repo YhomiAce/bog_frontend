@@ -214,7 +214,7 @@ export default function AdminDashboard(status) {
                             {
                                 adminOrders.length > 0 ? adminOrders.slice(0, 9).map((item, index) => {
                                     return (
-                                        <tr>
+                                        <tr key={index}>
                                             <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                                 {index + 1}                    
                                             </td>

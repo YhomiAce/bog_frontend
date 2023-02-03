@@ -48,10 +48,10 @@ export default function Ppartners() {
                             <UsersTable userType={"vendor"}/>
                         </TabPanel>
                         <TabPanel>
-                            <UsersTable userType={"vendor"} status={"isActive"}/>
+                            <UsersTable userType={"vendor"} status={true}/>
                         </TabPanel>
                         <TabPanel>
-                            <UsersTable userType={"vendor"} status={""}/>
+                            <UsersTable userType={"vendor"} status={false}/>
                         </TabPanel>
                         </Tabs>
                     </div>

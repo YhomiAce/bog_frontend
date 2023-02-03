@@ -48,10 +48,10 @@ export default function Spartners() {
                             <UsersTable userType={"professional"}/>
                         </TabPanel>
                         <TabPanel>
-                            <UsersTable userType={"professional"}/>
+                            <UsersTable userType={"professional"} status={true}/>
                         </TabPanel>
                         <TabPanel>
-                            <UsersTable userType={"professional"}/>
+                            <UsersTable userType={"professional"} status={false}/>
                         </TabPanel>
                         </Tabs>
                     </div>
