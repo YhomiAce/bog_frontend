@@ -88,31 +88,33 @@ const SubscriptionItem = ({ item, user }) => {
         </center>
     }
     return (
-        <div className='lg:w-3/12 w-11/12 mx-auto hover:scale-110 hover:bg-black hover:text-white transition duration-300 lg:p-10 p-6 rounded-md bg-white shades'>
-            <div className='flex pb-5'>
-                <img src='https://res.cloudinary.com/greenmouse-tech/image/upload/v1670591820/BOG/basic-removebg-preview_aeltgx.png' alt="basic" className='w-16 bg-primary rounded-lg' />
-                <div className='pl-3  fs-400 fw-600'>
-                    <p>{item.name}</p>
-                    <p className=''>{item.duration} weeks</p>
-                    <p>&#8358;{formatNumber(item.amount)}</p>
+        <div className='w-11/12 mb-7 lg:mb-0 mx-auto '>
+            <div className='hover:scale-110 hover:bg-black hover:text-white transition duration-300 lg:p-10 p-6 rounded-md bg-white shades'>
+                <div className='flex pb-5'>
+                    <img src='https://res.cloudinary.com/greenmouse-tech/image/upload/v1670591820/BOG/basic-removebg-preview_aeltgx.png' alt="basic" className='w-16 bg-primary rounded-lg' />
+                    <div className='pl-3  fs-400 fw-600'>
+                        <p>{item.name}</p>
+                        <p className=''>{item.duration} weeks</p>
+                        <p>&#8358;{formatNumber(item.amount)}</p>
+                    </div>
                 </div>
-            </div>
-            <div className='border-t py-4'>
-                {
-                    item.benefits.map(ben => (
-                        <div className='flex items-center' key={ben.id}>
-                            <GiCheckMark />
-                            <p className='pl-1'>{ben.benefit}</p>
-                        </div>
-                    ))
-                }
+                <div className='border-t py-4'>
+                    {
+                        item.benefits.map(ben => (
+                            <div className='flex items-center' key={ben.id}>
+                                <GiCheckMark />
+                                <p className='pl-1'>{ben.benefit}</p>
+                            </div>
+                        ))
+                    }
 
 
-            </div>
-            <div className='text-center'>
-                <button className='flex items-center w-full btn-primary' onClick={() => {
-                    initializePayment(onSuccess, onClose)
-                }}>Choose Plan <span className='pl-2'><BsArrowRightCircleFill /></span></button>
+                </div>
+                <div className='text-center'>
+                    <button className='flex items-center w-full btn-primary' onClick={() => {
+                        initializePayment(onSuccess, onClose)
+                    }}>Choose Plan <span className='pl-2'><BsArrowRightCircleFill /></span></button>
+                </div>
             </div>
         </div>
     )

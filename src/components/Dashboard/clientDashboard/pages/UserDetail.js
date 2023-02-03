@@ -347,7 +347,12 @@ export default function UserDetails() {
                                             <Tab>Organisation Information</Tab>
                                             <Tab>Tax Details and Permits</Tab>
                                             <Tab>Work/Job Execution Experience</Tab>
-                                            <Tab>Categories of Supply</Tab>
+                                            {
+                                                client?.userType === "vendor"? 
+                                                <Tab>Categories of Supply</Tab>
+                                                :
+                                                ''
+                                            }
                                             <Tab>Financial Data</Tab>
                                             <Tab>Uploaded Documents</Tab>
                                         </TabList>
@@ -474,14 +479,19 @@ export default function UserDetails() {
                                                 }
                                             </div>
                                         </TabPanel>
-                                        <TabPanel>
-                                            <div className="mt-6 fw-500">
-                                                <p>Categories of supply</p>
-                                                <ul className="list-disc mt-6 ml-8">
-                                                    <li className="my-2">{kyc?.suppyCategory?.categories? kyc?.suppyCategory?.categories : "No data"}</li>
-                                                </ul>
-                                            </div>
-                                        </TabPanel>
+                                        {
+                                                client?.userType === "vendor"? 
+                                                <TabPanel>
+                                                    <div className="mt-6 fw-500">
+                                                        <p>Categories of supply</p>
+                                                        <ul className="list-disc mt-6 ml-8">
+                                                            <li className="my-2">{kyc?.suppyCategory?.categories? kyc?.suppyCategory?.categories : "No data"}</li>
+                                                        </ul>
+                                                    </div>
+                                                </TabPanel>
+                                                :
+                                                ''
+                                            }
                                         <TabPanel>
                                             <div className="mt-6 fw-500">
                                                 <div className="py-4 border-b">
