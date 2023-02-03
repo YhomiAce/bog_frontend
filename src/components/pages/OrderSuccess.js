@@ -14,15 +14,16 @@ export const OrderSuccess = () => {
     const location = useLocation()
     console.log(location.state);
     const url = `orders/order-detail/${location.state.orderId}`
-    const { loading, data: order } = useFetchHook(url)
-    console.log(order);
+    const { loading, data: order } = useFetchHook(url);
 
     const gotoLink = (url) => {
         navigate(url)
     }
 
     const printInvoice = (orderId) => {
-        const url = `${BASE_URL}/uploads/${orderId}.pdf`
+        const splitSlug = orderId.split('/');
+        console.log(splitSlug);
+        const url = `${BASE_URL}/uploads/${splitSlug[2]}.pdf`
         window.open(url, "_blank")
     }
 
