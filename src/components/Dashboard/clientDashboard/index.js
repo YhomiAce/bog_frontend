@@ -40,7 +40,7 @@ import OrderDetailsClient from "./pages/OrderDetails Client";
 import ProjectDetailsClient from "./pages/ProjectDetailsClient";
 import OrderRequest from "./pages/OrderRequest";
 import UserOrderDetail from "./pages/UserOrderDetail";
-import KycAlert from "../assets/KycAlert";
+import KycAlert, { KycModals } from "../assets/KycAlert";
 import { Subscription } from "./pages/Subscribtion";
 import ProjectFile from "./pages/projects/ProjectFile";
 import ProjectCategory from "./pages/ProjectCat";
@@ -75,6 +75,7 @@ export default function ClientDashboard() {
                 <div className="fixed top-0 hidden lg:block sub-menu z-50">
                     <FontAwesomeIcon icon={faBarsStaggered} size="2x" className="text-2xl lg:ml-4 cursor-pointer" onClick={() => setSidebarReduce(!sidebarReduce)} />
                 </div>
+                <KycModals/>
                 <div
                     style={{
                         width: sidebarReduce ? "calc(100% - 45px)" : "",
