@@ -5,8 +5,6 @@ import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
 // import setAuthToken from '../../config/setAuthHeader';
 import { setAlert } from './alert';
-import { io } from "socket.io-client";
-import { fetchUserNotifications } from './notifications';
 
 
 export const registerSuccess = (payload) => {
@@ -41,28 +39,20 @@ export const getMe = () => {
     return async (dispatch) => {
         // setAuthToken(localStorage.auth_token);
         try {
-            const type = localStorage.getItem("userType")
-            const token = localStorage.getItem("auth_token")
+            const type = localStorage.getItem("userType");
             let url = `/user/me`;
+            const authToken = localStorage.getItem("auth_token");
             const config = {
-                header: {
-                    Authorization: token
+                headers:
+                {
+                    'Content-Type' : 'application/json',
+                    'Authorization': authToken
                 }
             }
             if (type) {
                 url = `/user/me?userType=${type}`
             }
             const response = await axios.get(url, config);
-            console.log(response);
-            const socket = io(`${process.env.REACT_APP_API_URL}`, {
-                query: {
-                    userId: response.user.id
-                }
-            });
-            socket.on("getUserNotifications", (payload) => {
-                console.log(payload);
-                dispatch(fetchUserNotifications(payload))
-            })
             dispatch(setUser(response))
         } catch (error) {
             console.log(error.message);
@@ -84,29 +74,21 @@ export const loginUser = (apiData, navigate, stopLoading) => {
         try {
             const url = `/user/login`;
             const response = await axios.post(url, apiData);
-            console.log(response);
-            const socket = io(`${process.env.REACT_APP_API_URL}`, {
-                query: {
-                    userId: response.user.id
-                }
-            });
-            socket.on("getUserNotifications", (payload) => {
-                console.log(payload);
-                dispatch(fetchUserNotifications(payload))
-            })
+            
             dispatch(login(response));
             stopLoading();
-            Swal.fire({
-                title: "Success",
-                imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",
-                imageWidth: "75px",
-                text: "Login completed successfully",
-                buttonsStyling: "false",
-                confirmButtonText: "Continue",
-                confirmButtonColor: "#3F79AD",
-            }).then(() => {
-                navigate("/dashboard");
-            })
+            // Swal.fire({
+            //     title: "Success",
+            //     imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",
+            //     imageWidth: "75px",
+            //     text: "Login completed successfully",
+            //     buttonsStyling: "false",
+            //     confirmButtonText: "Continue",
+            //     confirmButtonColor: "#3F79AD",
+            // }).then(() => {
+            //     navigate("/dashboard");
+            // })
+            navigate("/dashboard");
         } catch (error) {
             console.log(error.message);
             const errors = error.response.data.message;
@@ -133,17 +115,18 @@ export const loginAdmin = (apiData, navigate, stopLoading) => {
             dispatch(login(response));
             stopLoading();
             localStorage.removeItem("userType")
-            Swal.fire({
-                title: "Success",
-                imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",
-                imageWidth: "75px",
-                text: "Login completed successfully",
-                buttonsStyling: "false",
-                confirmButtonText: "Continue",
-                confirmButtonColor: "#3F79AD",
-            }).then(() => {
-                navigate("/dashboard");
-            })
+            // Swal.fire({
+            //     title: "Success",
+            //     imageUrl: "https://t4.ftcdn.net/jpg/05/10/52/31/360_F_510523138_0c1lsboUsa9qvOSxdaOrQIYm2eAhjiGw.jpg",
+            //     imageWidth: "75px",
+            //     text: "Login completed successfully",
+            //     buttonsStyling: "false",
+            //     confirmButtonText: "Continue",
+            //     confirmButtonColor: "#3F79AD",
+            // }).then(() => {
+            //     navigate("/dashboard");
+            // })
+            navigate("/dashboard");
         } catch (error) {
             console.log(error.message);
             const errors = error.response.data.message;
@@ -198,9 +181,9 @@ export const register = (apiData, navigate, stopLoading) => {
 // Logout
 export const logout = () => (dispatch) => {
     dispatch({ type: ActionType.LOGOUT });
-    window.location.href = "/login";
+    window.location.href = "/";
 };
 export const Adminlogout = () => (dispatch) => {
     dispatch({ type: ActionType.LOGOUT });
-    window.location.href = "/admin";
+    window.location.href = "/";
 };

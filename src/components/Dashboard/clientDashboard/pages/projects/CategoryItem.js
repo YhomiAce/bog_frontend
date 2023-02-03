@@ -34,6 +34,12 @@ const CategoryItem = ({ item, sn, handleViewOpen, openEdit }) => {
       <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
         {item.title}
       </td>
+      <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+        {item.service.name}
+      </td>
+      <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+        {item.slug}
+      </td>
 
       <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
         <div className="flex text-xl">

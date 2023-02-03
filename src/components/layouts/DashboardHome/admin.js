@@ -74,7 +74,7 @@ export default function AdminDashboard(status) {
       <div className=" p-5">
         <div className="mt-3">
           <div className="lg:grid-4 justify-between fs-500 fw-600">
-            <div className="bg-blue-100 px-4 py-3 rounded flex justify-between items-center shades">
+            <div className="bg-[#e0e7ff] px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="projectsadmin" className="flex justify-between items-center w-full">
                 <div>
                     <p className="text-xxl fw-600 pb-2 text-xl">147</p>

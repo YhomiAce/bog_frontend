@@ -1,16 +1,25 @@
 import { Breadcrumbs } from "@material-tailwind/react";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import useFetchHook from "../../../../hooks/useFetchHook";
+import { fetchAllUserNotifications } from "../../../../redux/actions/notifications";
 // import Spinner from "../../../layouts/Spinner";
 import NotificationItem from "./Notification/NotificationItem";
+
 
 export default function Notification() {
     const notifications = useSelector(state => state.notifications.userNotifications);
     const user = useSelector(state => state.auth.user);
-    const {data: userNotifications } = useFetchHook(`/notifications/user/${user?.id}`);
+    const dispatch = useDispatch();
+    // const {data: userNotifications } = useFetchHook(`/notifications/user/${user?.id}`);
+    useEffect(() => {
+        if(user){
+            dispatch(fetchAllUserNotifications(user.profile.id))
+        }
+
+    }, [dispatch, user]);
 
     return (
         <div>
@@ -50,7 +59,7 @@ export default function Notification() {
                                 <div className="mt-10 px-3 pb-5">
                                     {
                                         notifications.length > 0 &&
-                                        notifications.map(item => (
+                                        notifications.filter(where=> !where.isRead).map(item => (
                                             <NotificationItem key={item.id} item={item} />
                                         ))
                                     }
@@ -59,8 +68,8 @@ export default function Notification() {
                             <TabPanel>
                                 <div className="mt-10 px-3 lg:px--0 lg:pb-0 pb-5">
                                     {
-                                        userNotifications &&
-                                        userNotifications.map(item => (
+                                        notifications &&
+                                        notifications.map(item => (
                                             <NotificationItem key={item.id} item={item} />
                                         ))
                                     }
@@ -69,8 +78,8 @@ export default function Notification() {
                             <TabPanel>
                                 <div className="mt-10 pb-8 px-3">
                                     {
-                                        userNotifications &&
-                                        userNotifications.filter(where => !where.isRead).map(item => (
+                                        notifications &&
+                                        notifications.filter(where => where.status === "unread").map(item => (
                                             <NotificationItem key={item.id} item={item} />
                                         ))
                                     }

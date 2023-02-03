@@ -5,10 +5,11 @@ import Spinner from '../../../../layouts/Spinner';
 import ActionFeedBack from '../Modals/ActionFeedBack';
 import { loadData, saveData } from './DataHandler';
 
-export const GeneralInfo = ({handleOpen}) => {
+export const GeneralInfo = ({handleOpen, tab}) => {
     const [loading, setLoading] = useState(false);
     const [isLoaded, setDataLoaded] = useState(false);
     const [feedback, setFeetback] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
     const [formData, setFormData] = useState({
         organisation_name: "",
         email_address: "",
@@ -25,15 +26,21 @@ export const GeneralInfo = ({handleOpen}) => {
     }, [])
 
     const dataLoader = () => {
-        const url = "/kyc-general-info/fetch/" + user.userType;
+        const url = "/kyc-general-info/fetch?userType=" + user.userType;
         loadData(url, formData, setFormData)
     }
     const DataSaver = () => {
         const url = "/kyc-general-info/create";
-        saveData({url, setLoading, formData, user, setFormData, setFeetback, hasFile: false});
+        if(isSaving){
+            setIsSaving(false)
+            saveData({url, setLoading, formData, user, setFormData, setFeetback, hasFile: false});
+        }else{
+            handleOpen(tab+1);
+        }
     }
     let newValue = {};
     const updateValue = (newVal, variable) => {
+        setIsSaving(true);
         variable === 'organisation_name' && (newValue = { organisation_name: newVal });
         variable === 'email_address' && (newValue = { email_address: newVal });
         variable === 'contact_number' && (newValue = { contact_number: newVal });
@@ -129,7 +136,7 @@ export const GeneralInfo = ({handleOpen}) => {
         {loading ? <Spinner /> : 
             <div className='pt-8 flex justify-end'>
                 <button onClick={DataSaver} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>
-                    Save
+                    Save & Continue
                 </button>
             </div>}
         {feedback &&

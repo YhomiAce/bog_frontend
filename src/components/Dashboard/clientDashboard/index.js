@@ -14,7 +14,7 @@ import Projects from "./pages/Project";
 import Cart from "./pages/Cart";
 import { AllProject } from "./pages/allprojects";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBarsStaggered, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { SwitchAccount } from "./pages/SwitchAccount";
 import Ppartners from "./pages/Ppartners";
@@ -54,6 +54,10 @@ import { SmartCalc } from "./pages/SmartCalc";
 import AdminMeeting from "./pages/AdminMeeting";
 import AdminInbox from "./pages/Admins/InboxAdmin";
 import UserInbox from "./pages/Users/InboxUser";
+import { TransactionDetails } from "./pages/Transaction/TransactionItem";
+import ServiceCategory from "./pages/ServiceCat";
+import { ServiceRequest } from "./pages/ServiceRequest";
+import AdminSub from "./pages/AdminSub";
 
 export default function ClientDashboard() {
 
@@ -104,6 +108,8 @@ export default function ClientDashboard() {
                         <Route path="projectadmindetails" element={<ProjectDetails />} />
                         <Route path="myprojectdetails" element={<ProjectDetailsClient />} />
                         <Route path="projectrequest" element={<ProjectRequest />} />
+                        <Route path="service-request/:projectId" element={<ServiceRequest />} />
+                        <Route path="service-category" element={<ServiceCategory />} />
                         <Route path="productpartner" element={<Ppartners />} />
                         <Route path="servicepartner" element={<Spartners />} />
                         <Route path="sub-admin" element={<Sadmins />} />
@@ -114,6 +120,7 @@ export default function ClientDashboard() {
                         <Route path="meetings" element={<Meetings />} />
                         <Route path="admin-meetings" element={<AdminMeeting />} />
                         <Route path="transact" element={<Transactions />} />
+                        <Route path="transact-details" element={<TransactionDetails />} />
                         <Route path="transactions" element={<AdminTransactions />} />
                         <Route path="notification" element={<Notify />} />
                         <Route path="notify" element={<Notification />} />
@@ -126,6 +133,7 @@ export default function ClientDashboard() {
                         <Route path="subscription" element={<Subscription />} />
                         <Route path="settings" element={<Settings />} />
                         <Route path="smart-calc" element={<SmartCalc />} />
+                        <Route path="admin-sub" element={<AdminSub />} />
                         <Route path="" element={<Dashboard />} />
                         <Route path="" element={<Dashboard />} />
                     </Routes>
@@ -148,9 +156,9 @@ export default function ClientDashboard() {
                         Copyright &copy; {new Date().getFullYear()}{' '} Build On The Go
                     </div>
                 </div>
-                <div className="fixed bottom-0 right-0 lg:m-5 m-4">
+                {/* <div className="fixed bottom-0 right-0 lg:m-5 m-4">
                     <FontAwesomeIcon icon={faQuestionCircle} className="lg:text-5xl text-3xl text-secondary cursor-pointer" />
-                </div>
+                </div> */}
             </div>
         </div>
 

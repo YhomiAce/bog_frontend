@@ -5,7 +5,7 @@ import Spinner from '../../../../layouts/Spinner';
 import ActionFeedBack from '../Modals/ActionFeedBack';
 import { loadData, saveData } from './DataHandler';
 
-export const OrganisationInfo = ({handleOpen}) => {
+export const OrganisationInfo = ({handleOpen, tab}) => {
     const [loading, setLoading] = useState(false);
     const [isLoaded, setDataLoaded] = useState(false);
     const [feedback, setFeetback] = useState(false);
@@ -21,6 +21,10 @@ export const OrganisationInfo = ({handleOpen}) => {
         contact_email: "",
         others_operations: "",
     });
+    const [isSaving, setIsSaving] = useState(false);
+    const gotoPrev = () => {
+        handleOpen(tab-1)
+    }
     const user = useSelector((state) => state.auth.user);
     useEffect(() => {
         !isLoaded && dataLoader()
@@ -28,13 +32,19 @@ export const OrganisationInfo = ({handleOpen}) => {
     }, [])
 
     const dataLoader = () => {
-        const url = "/kyc-organisation-info/fetch/" + user.userType;
+        const url = "/kyc-organisation-info/fetch?userType=" + user.userType;
         loadData(url, formData, setFormData)
     }
     const DataSaver = () => {
         const url = "/kyc-organisation-info/create";
-        saveData({url, setLoading, formData, user, setFormData, setFeetback});
+        if(isSaving){
+            setIsSaving(false)
+            saveData({url, setLoading, formData, user, setFormData, setFeetback});
+        }else{
+            handleOpen(tab+1);
+        }
     }
+
     let newValue = {};
     const updateValue = (newVal, variable) => {
         variable === 'organisation_type' && (newValue = { organisation_type: newVal });
@@ -51,6 +61,7 @@ export const OrganisationInfo = ({handleOpen}) => {
             ...formData,
             ...newValue,
         });
+        setIsSaving(true);
     };
   return (
     <div className='lg:px-4 scale-ani'>
@@ -141,9 +152,12 @@ export const OrganisationInfo = ({handleOpen}) => {
             />
         </div>  
         {loading ? <Spinner /> : 
-            <div className='pt-8 flex justify-end'>
+            <div className='pt-8 flex justify-between lg:justify-end'>
+                <button onClick={gotoPrev} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600 lg:mr-10'>
+                    Previous
+                </button>
                 <button onClick={DataSaver} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>
-                    Save
+                    Save & Continue
                 </button>
             </div>
         }

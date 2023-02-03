@@ -5,7 +5,7 @@ import Spinner from '../../../../layouts/Spinner';
 import ActionFeedBack from '../Modals/ActionFeedBack';
 import { loadData, saveData } from './DataHandler';
 
-export const TaxDetails = ({handleOpen}) => {
+export const TaxDetails = ({handleOpen, tab}) => {
     const [loading, setLoading] = useState(false);
     const [isLoaded, setDataLoaded] = useState(false);
     const [feedback, setFeetback] = useState(false);
@@ -14,6 +14,10 @@ export const TaxDetails = ({handleOpen}) => {
         TIN: "",
         relevant_statutory: "",
     });
+    const [isSaving, setIsSaving] = useState(false);
+    const gotoPrev = () => {
+        handleOpen(tab-1)
+    }
     const user = useSelector((state) => state.auth.user);
     useEffect(() => {
         !isLoaded && dataLoader()
@@ -21,12 +25,18 @@ export const TaxDetails = ({handleOpen}) => {
     }, [])
 
     const dataLoader = () => {
-        const url = "/kyc-tax-permits/fetch/" + user.userType;
+        const url = "/kyc-tax-permits/fetch?userType=" + user.userType;
+        
         loadData(url, formData, setFormData)
     }
     const DataSaver = () => {
         const url = "/kyc-tax-permits/create";
-        saveData({url, setLoading, formData, user, setFormData, setFeetback});
+        if(isSaving){
+            setIsSaving(false);
+            saveData({url, setLoading, formData, user, setFormData, setFeetback});
+        }else{
+            handleOpen(tab+1);
+        }
     }
     let newValue = {};
     const updateValue = (newVal, variable) => {
@@ -38,6 +48,7 @@ export const TaxDetails = ({handleOpen}) => {
             ...formData,
             ...newValue,
         });
+        setIsSaving(true);
     };
   return (
     <div className='lg:px-4 scale-ani'>
@@ -68,9 +79,12 @@ export const TaxDetails = ({handleOpen}) => {
             />
         </div>
         {loading ? <Spinner /> : 
-            <div className='pt-8 flex justify-end'>
+            <div className='pt-8 flex justify-between lg:justify-end'>
+                <button onClick={gotoPrev} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600 lg:mr-10'>
+                    Previous
+                </button>
                 <button onClick={DataSaver} className='w-36 rounded-lg py-3 text-center bg-primary text-white fw-600'>
-                    Save
+                    Save & Continue
                 </button>
             </div>
         }

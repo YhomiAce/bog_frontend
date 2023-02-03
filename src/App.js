@@ -7,8 +7,7 @@ import Homepage from './components/pages/Homepage';
 import Forget from './components/pages/Forget';
 import Userauth from './components/pages/Emailauth';
 // import Alert from './components/layouts/Alert';
-import { getMe } from './redux/actions/authAction';
-import store from './store';
+// import { getMe } from './redux/actions/authAction';
 import setAuthToken from './config/setAuthHeader';
 // import Dashboard from './components/Dashboard/Dashboard';
 import ResetPassword from './components/pages/ResetPassword';
@@ -41,12 +40,9 @@ if (localStorage.auth_token) {
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log( (store.getState().auth.user));
-    // if (store.getState().auth.isAuthenticated) store.dispatch(getMe());
     if(localStorage.carts){
       dispatch(updateCart())
     }
-    store.dispatch(getMe());
   });
 
   return (

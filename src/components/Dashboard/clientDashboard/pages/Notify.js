@@ -1,15 +1,19 @@
 import { Breadcrumbs } from "@material-tailwind/react";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import useFetchHook from "../../../../hooks/useFetchHook";
+import { fetchAllAdminNotifications } from "../../../../redux/actions/notifications";
 // import Spinner from "../../../layouts/Spinner";
 import NotificationItem from "./Notification/NotificationItem";
 
 export default function Notify() {
+    const dispatch = useDispatch();
     const notifications = useSelector(state => state.notifications.adminNotifications);
-    const {data: adminNotifications } = useFetchHook('/notifications/admin');
+    
+    useEffect(() => {
+        dispatch(fetchAllAdminNotifications())
+    }, [dispatch,]);
 
     return (
         <div>
@@ -49,8 +53,8 @@ export default function Notify() {
                                 <div className="mt-10 px-3 pb-5">
                                     {
                                         notifications.length > 0 &&
-                                        notifications.map(item => (
-                                            <NotificationItem key={item.id} item={item} />
+                                        notifications.filter(where => !where.isRead).map(item => (
+                                            <NotificationItem key={item.id} item={item} isAdmin />
                                         ))
                                     }
                                 </div>
@@ -58,9 +62,9 @@ export default function Notify() {
                             <TabPanel>
                                 <div className="mt-10 px-3 lg:px--0 lg:pb-0 pb-5">
                                     {
-                                        adminNotifications &&
-                                        adminNotifications.map(item => (
-                                            <NotificationItem key={item.id} item={item} />
+                                        notifications &&
+                                        notifications.map(item => (
+                                            <NotificationItem key={item.id} item={item} isAdmin />
                                         ))
                                     }
                                 </div>
@@ -68,9 +72,9 @@ export default function Notify() {
                             <TabPanel>
                                 <div className="mt-10 pb-8 px-3">
                                     {
-                                        adminNotifications &&
-                                        adminNotifications.filter(where => !where.isRead).map(item => (
-                                            <NotificationItem key={item.id} item={item} />
+                                        notifications &&
+                                        notifications.filter(where => !where.isRead).map(item => (
+                                            <NotificationItem key={item.id} item={item} isAdmin />
                                         ))
                                     }
                                 </div>

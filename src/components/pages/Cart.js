@@ -284,126 +284,7 @@ export const Cart = () => {
                         <p>TBD</p>
                       </div>
                       <form onSubmit={form.handleSubmit}>
-                        {/* <div className="mt-3">
-                          <label className="block">Contact Name</label>
-                          <input
-                            type="text"
-                            placeholder="enter contact name"
-                            className="w-full mt-2 py-2 px-2 border-gray-400 rounded border"
-                            name="contact_name"
-                            required
-                            id="contact_name"
-                            value={contact_name}
-                            onChange={form.handleChange}
-                            onBlur={form.handleBlur}
-                          />
-                        </div>
-                        <div className="lg:flex">
-                          <div className="w-full lg:w-6/12 lg:pr-3 mt-2">
-                            <label className="block">Contact Email</label>
-                            <input
-                              type="text"
-                              placeholder="enter contact email"
-                              className="w-full mt-1 py-2 px-2 border-gray-400 rounded border"
-                              name="contact_email"
-                              required
-                              id="contact_email"
-                              value={contact_email}
-                              onChange={form.handleChange}
-                              onBlur={form.handleBlur}
-                            />
-                          </div>
-                          <div className="w-full lg:w-6/12 lg:pl-3 mt-2">
-                            <label className="block">Contact Phone Number</label>
-                            <input
-                              type="text"
-                              placeholder="enter contact phone number"
-                              className="w-full mt-1 py-2 px-2 border-gray-400 rounded border"
-                              name="contact_phone"
-                              required
-                              id="contact_phone"
-                              value={contact_phone}
-                              onChange={form.handleChange}
-                              onBlur={form.handleBlur}
-                            />
-                          </div>
-                        </div>
-                        <div className="lg:flex">
-                          <div className="w-full lg:w-6/12 lg:pr-3 mt-2">
-                            <label className="block">City</label>
-                            <input
-                              type="text"
-                              placeholder="enter your city"
-                              className="w-full mt-1 py-2 px-2 border-gray-400 rounded border"
-                              name="city"
-                              required
-                              id="city"
-                              value={city}
-                              onChange={form.handleChange}
-                              onBlur={form.handleBlur}
-                            />
-                            {form.touched.city && form.errors.city ? (
-                              <p className="text-red-500">{form.errors.city}</p>
-                            ) : null}
-                          </div>
-                          <div className="w-full lg:w-6/12 lg:pl-3 mt-2">
-                            <label className="block">State</label>
-                            <input
-                              type="text"
-                              placeholder="enter your state"
-                              className="w-full mt-1 py-2 px-2 border-gray-400 rounded border"
-                              name="state"
-                              required
-                              id="state"
-                              value={state}
-                              onChange={form.handleChange}
-                              onBlur={form.handleBlur}
-                            />
-                            {form.touched.state && form.errors.state ? (
-                              <p className="text-red-500">{form.errors.state}</p>
-                            ) : null}
-                          </div>
-                        </div>
-                        <div className="lg:flex">
-                          <div className="w-full lg:w-6/12 pr-3 mt-2">
-                            <label className="block">Country</label>
-                            <input
-                              type="text"
-                              placeholder="enter your country"
-                              className="w-full mt-1 py-2 px-2 border-gray-400 rounded border"
-                              name="country"
-                              required
-                              id="country"
-                              value={country}
-                              onChange={form.handleChange}
-                              onBlur={form.handleBlur}
-                            />
-                            {form.touched.country && form.errors.country ? (
-                              <p className="text-red-500">
-                                {form.errors.country}
-                              </p>
-                            ) : null}
-                          </div>
-                          <div className="mt-2 w-full lg:w-6/12 lg:pl-3">
-                            <label className="block">Address</label>
-                            <input
-                              type="text"
-                              placeholder="enter your address"
-                              className="w-full mt-2 py-2 px-2 border-gray-400 rounded border"
-                              name="address"
-                              required
-                              id="address"
-                              value={address}
-                              onChange={form.handleChange}
-                              onBlur={form.handleBlur}
-                            />
-                            {form.touched.address && form.errors.address ? (
-                              <p className="text-red-500">
-                                {form.errors.address}
-                              </p>
-                            ) : null}
-                          </div>
-                        </div> */}
+                        
                         <div className="fw-600 my-4">
                           <div className="flex justify-between my-4">
                             <p>TOTAL COST</p>
@@ -411,17 +292,7 @@ export const Cart = () => {
                           </div>
 
                           {auth.isAuthenticated ?
-                            // (value.address !== null && value.address !== '') ? (
-
-
-                            //   <PaystackButton
-
-                            //     text="CHECKOUT"
-                            //     label="CHECKOUT"
-                            //     className="w-full btn bg-primary text-white"
-                            //     {...componentProps}
-                            //   />
-                            // ) 
+                            
                             (
                               <p
                                 onClick={() =>setCartForm(true)}
@@ -431,13 +302,7 @@ export const Cart = () => {
                               </p>
                             )
                             :
-                            //   <button
-                            //     // onClick={() => navigate("/login")}
-                            //     className="w-full btn bg-primary text-white"
-                            //   >
-                            //     CHECKOUT
-                            //   </button>
-                            // : 
+                            
                             (
                               <button
                                 onClick={() => AuhtCheck()}

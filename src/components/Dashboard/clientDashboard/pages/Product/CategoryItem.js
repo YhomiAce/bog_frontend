@@ -16,7 +16,7 @@ const CategoryItem = ({ item, sn }) => {
   const [adminEdit, setAdminEdit] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
 
-
+  
   function CloseModal() {
     setAdminEdit(false)
   }

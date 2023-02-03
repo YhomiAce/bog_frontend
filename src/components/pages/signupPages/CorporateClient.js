@@ -53,6 +53,7 @@ const CorporateClient = () => {
             email: "",
             phone: "",
             password: "",
+            password2: "",
             aboutUs: "",
             terms: false,
             reference: referenceValue || "",
@@ -60,7 +61,7 @@ const CorporateClient = () => {
         validationSchema: corporateClientSchema,
         onSubmit: handleSubmit,
     });
-    const { name, email, password, phone, terms, aboutUs, reference } = formik.values;
+    const { name, email, password, phone, terms, aboutUs, reference, password2 } = formik.values;
     return (
         <div className="mt-8">
             {
@@ -140,6 +141,29 @@ const CorporateClient = () => {
                             </div>
                             {
                                 formik.touched.password && formik.errors.password ? <p className='text-red-500'>{formik.errors.password}</p> : null
+                            }
+                        </div>
+                        <div className="w-full mt-6">
+                            <label className="block">Confirm Password</label>
+                            
+                            <div className="flex items-center bg-input border border-gray-400 mt-1 rounded">
+                                <input
+                                    type={passwordType}
+                                    placeholder="Enter your desired password"
+                                    className="w-full border-0 py-2 px-2 rounded"
+                                    value={password2}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    onFocus={() => setPassTooltip(true)}
+                                    id="password2"
+                                    name="password2"
+                                />
+                                <div onClick={togglePassword} className="px-3">
+                                    {passwordType === "password" ? <FaRegEyeSlash className="text-xl" /> : <FaRegEye className="text-xl" />}
+                                </div>
+                            </div>
+                            {
+                                formik.touched.password2 && formik.errors.password2 ? <p className='text-red-500'>{formik.errors.password2}</p> : null
                             }
                         </div>
                         <div className="w-full mt-6">

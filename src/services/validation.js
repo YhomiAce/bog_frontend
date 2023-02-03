@@ -9,7 +9,10 @@ export const privateClientSchema = Yup.object({
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
     ),
-    terms: Yup.boolean().required("Please accept terms and conditions")
+    terms: Yup.boolean().required("Please accept terms and conditions"),
+    password2: Yup.string()
+        .required('Please retype your password.')
+        .oneOf([Yup.ref('password')], 'Your passwords do not match.'),
 })
 
 export const adminSchema = Yup.object({
@@ -61,7 +64,27 @@ export const supplierValidationSchema = Yup.object({
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
     ),
-    terms: Yup.boolean().required("Please accept terms and conditions")
+    terms: Yup.boolean().required("Please accept terms and conditions"),
+    password2: Yup.string()
+        .required('Please retype your password.')
+        .oneOf([Yup.ref('password')], 'Your passwords do not match.'),
+})
+
+export const servicePartnerValidationSchema = Yup.object({
+    fname: Yup.string().required("First name is required"),
+    lname: Yup.string().required("Last name is required"),
+    company_name: Yup.string().required("Company name is required"),
+    email: Yup.string().email("Enter a valid E-mail address").required("E-mail Address is required"),
+    phone: Yup.string().required("Phone number is required"),
+    password: Yup.string().required('Password is required').matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    ),
+    terms: Yup.boolean().required("Please accept terms and conditions"),
+    serviceTypeId: Yup.string().required("Please select the type of service you render"),
+    password2: Yup.string()
+        .required('Please retype your password.')
+        .oneOf([Yup.ref('password')], 'Your passwords do not match.'),
 })
 
 export const corporateClientSchema = Yup.object({
@@ -72,7 +95,10 @@ export const corporateClientSchema = Yup.object({
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
     ),
-    terms: Yup.boolean().required("Please accept terms and conditions")
+    terms: Yup.boolean().required("Please accept terms and conditions"),
+    password2: Yup.string()
+        .required('Please retype your password.')
+        .oneOf([Yup.ref('password')], 'Your passwords do not match.'),
 });
 
 export const productSchema = Yup.object({
@@ -92,6 +118,9 @@ export const categorySchema = Yup.object({
     name: Yup.string().required("Product title is required"),
     description: Yup.string().required("Product description is required"),
 });
+export const serviceCategorySchema = Yup.object({
+    name: Yup.string().required("Service name is required")
+});
 
 export const postSchema = Yup.object({
     title: Yup.string().required("Product title is required"),
@@ -103,4 +132,23 @@ export const announcementSchema = Yup.object({
     content: Yup.string().required("content is required"),
     user: Yup.string().required("Reciever is required"),
     expiredAt: Yup.date().required("Expiration date is required"),
+});
+
+export const serviceTypeCategorySchema = Yup.object({
+    title: Yup.string().required("Name is required"),
+    description: Yup.string().required("Description is required"),
+    serviceId: Yup.string().required("Service rendered is required"),
+});
+
+export const projectBidSchema = Yup.object({
+    areYouInterested: Yup.string().required("Name is required"),
+    deliveryTimeLine: Yup.number().required("Delivery timeline is expected"),
+    projectCost: Yup.number().required("How much would it cost to get this project done"),
+    reasonOfInterest: Yup.string().required("Select the reason why you're interested"),
+});
+
+export const subscriptionPlanSchema = Yup.object({
+    name: Yup.string().required("Name is required"),
+    amount: Yup.number().required("Amount is required"),
+    duration: Yup.number().required("Duration is required"),
 });

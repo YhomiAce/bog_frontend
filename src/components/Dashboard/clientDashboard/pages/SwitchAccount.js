@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {Breadcrumbs } from "@material-tailwind/react";
+import {Avatar, Breadcrumbs } from "@material-tailwind/react";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
@@ -7,7 +7,6 @@ import { getMe } from "../../../../redux/actions/authAction";
 import Axios from "../../../../config/config";
 import { AccountType } from "./AccountType";
 import Spinner from "../../../layouts/Spinner";
-import { UserAvatar } from "../../assets/Avatar";
 
 
 export const SwitchAccount = () => {
@@ -69,6 +68,21 @@ export const SwitchAccount = () => {
         dispatch(getMe());
         navigate("/dashboard");
     }
+    const getImg = (type) => {
+        switch (type) {
+            case "admin":
+                return "Super Admin"
+            case "professional":
+                return "https://res.cloudinary.com/greenmouse-tech/image/upload/v1675036906/BOG/Service_Partner_2_x8hdqh.png"
+            case "vendor":
+                return "https://res.cloudinary.com/greenmouse-tech/image/upload/v1675035671/BOG/Product_partner_2_h5imvx.png"
+            case "private_client":
+                return "https://res.cloudinary.com/greenmouse-tech/image/upload/v1675035671/BOG/Private_client_2_ghidej.png"
+            case "corporate_client":
+                return "https://res.cloudinary.com/greenmouse-tech/image/upload/v1675036828/BOG/Corporate_client_2_bskzcq.png"
+            default: return ""
+        }
+    }
 
     return (
         <div>
@@ -101,7 +115,7 @@ export const SwitchAccount = () => {
                             <p className="text-gray-800">You are currently signed in as a </p>
 
                             <div className="flex mt-4">
-                                <UserAvatar/>
+                                <Avatar src={getImg(user?.userType)} alt='profile'/>
                                 <div className="pl-3">
                                     <p className="fw-600">{user ? getUserType(user?.userType) : ""}</p>
                                     <p >{user?.name}</p>

@@ -18,14 +18,14 @@ import {
 import SelectableItem from "../../../widgets/SelectableItem";
 import Axios from '../../../../config/config';
 import toaster from "toasted-notes";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import Spinner from "../../../layouts/Spinner";
 import MeetingListItem from "./MeetingListItem";
 import ActionFeedBack from "./Modals/ActionFeedBack";
 import { BsCheck } from "react-icons/bs";
 import { fetchMeetings } from "../../../../redux/actions/meetingAction";
-import useFetchHook from "../../../../hooks/useFetchHook";
+import { getMyProject } from "../../../../redux/actions/ProjectAction";
 
 
 const Meetings = () => {
@@ -36,7 +36,16 @@ const Meetings = () => {
     const [feedback, setFeetback] = useState(false);
     const [meetings, setMeeting] = useState([]);
     const user = useSelector((state) => state.auth.user);
-    const { data: projects,  } = useFetchHook("/projects/my-request");
+    const projects = useSelector((state) => state.projects.projects);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (user) {
+            dispatch(getMyProject(user.userType));
+        }
+
+    }, [dispatch, user]);
+   
     function CloseDelete() {
         setRMeet(false)
     }
@@ -237,8 +246,10 @@ const Meetings = () => {
                                             </thead>
                                             <tbody>
                                                 {<MeetingListItem filterBy="attended" meetings={meetings} removeMeeting={removeFromMeeting} />}
+                                                
                                             </tbody>
                                         </table>
+                                        {/* {meetings.length > 0? <MeetingTable filterBy="attended" status={'attended'} meet={meetings} removeMeet={removeFromMeeting} /> : ''} */}
                                     </div>
                                 </CardBody>
                             </TabPanel>
@@ -278,6 +289,7 @@ const Meetings = () => {
                                                 {<MeetingListItem filterBy="approved" meetings={meetings} removeMeeting={removeFromMeeting} />}
                                             </tbody>
                                         </table>
+                                        {/* {<MeetingTable filterBy="attended" status={'approved'} meet={meetings} removeMeet={removeFromMeeting} />} */}
                                     </div>
                                 </CardBody>
                             </TabPanel>
@@ -317,6 +329,7 @@ const Meetings = () => {
                                                 {<MeetingListItem filterBy="pending" meetings={meetings} removeMeeting={removeFromMeeting} />}
                                             </tbody>
                                         </table>
+                                        {/* {<MeetingTable filterBy="attended" status={'pending'} meet={meetings} removeMeet={removeFromMeeting} />} */}
                                     </div>
                                 </CardBody>
                             </TabPanel>

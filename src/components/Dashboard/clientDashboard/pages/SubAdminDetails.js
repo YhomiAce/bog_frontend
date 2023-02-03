@@ -81,8 +81,8 @@ export default function SubAdminDetails() {
                                 <div className="lg:pl-10 pl-6">
                                     <p className="lg:text-xl fw-600">{admin?.name}</p>
                                     <div className="flex mt-3">
-                                        {/* <button className="bg-green-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-2 py-1 text-white">Verify</button> */}
-                                        <button className="bg-orange-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-2 py-1 ml-0 text-white">Suspend</button>
+                                        <button className="bg-orange-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-2 py-1 text-white">Suspend</button>
+                                        <button className="bg-red-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-2 py-1 ml-3 text-white">Delete</button>
                                     </div>
                                 </div>
                             </div>

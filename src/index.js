@@ -8,9 +8,10 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 // @material-tailwind/react
 import { ThemeProvider } from "@material-tailwind/react";
 import CookieSheet from './components/layouts/CookieSheet';
-import { io } from "socket.io-client";
-import { fetchAdminNotifications } from './redux/actions/notifications';
 import TimeAgo from 'javascript-time-ago'
+import FetchMeIfAuthenticated from './hooks/useFetchMe';
+import FetchAdminNotification from './hooks/useFetchAdminNotification';
+import FetchUserNotification from './hooks/useFetchUserNotification';
 
 import en from 'javascript-time-ago/locale/en.json'
 import ru from 'javascript-time-ago/locale/ru.json'
@@ -18,16 +19,13 @@ import ru from 'javascript-time-ago/locale/ru.json'
 TimeAgo.addDefaultLocale(en)
 TimeAgo.addLocale(ru)
 
-const socket = io(`${process.env.REACT_APP_API_URL}`,);
-
-socket.on("getNotifications", (payload) => {
-  console.log(payload);
-  store.dispatch(fetchAdminNotifications(payload))
-})
 
 
 const app = (
   <Provider store={store}>
+    <FetchMeIfAuthenticated />
+    <FetchAdminNotification />
+    <FetchUserNotification />
     <CookieSheet />
     <BrowserRouter>
       {/* <React.StrictMode> */}

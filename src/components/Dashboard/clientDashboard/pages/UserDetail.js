@@ -12,15 +12,18 @@ import { HiIdentification } from "react-icons/hi";
 import { MdMarkEmailUnread, MdProductionQuantityLimits } from "react-icons/md";
 import { RiAccountPinCircleFill, RiBaseStationLine } from "react-icons/ri";
 import { VscReferences } from "react-icons/vsc";
+import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Axios from "../../../../config/config";
+import { formatNumber } from "../../../../services/helper";
 import Spinner from "../../../layouts/Spinner";
 import { VerifyModal } from "./Modals/VerifyModal";
 
 // const baseURL = process.env.REACT_APP_IMAGE_URL;
 
 export default function UserDetails() {
+
     const { search } = useLocation();
     const userId = new URLSearchParams(search).get("userId");
     const [client, setClient] = useState(null);
@@ -28,6 +31,7 @@ export default function UserDetails() {
     const [loading, setLoading] = useState(false);
     const [moreDetails, setMoreDetails] = useState(false);
     const [verify, setVerify] = useState(false);
+    const [kyc, setKyc] = useState(null);
 
     const fetchUserDetails = async (userId) =>{
         try {
@@ -46,9 +50,22 @@ export default function UserDetails() {
             setLoading(false);
         }
     };
+    const fetchKycDetails = async (userId) => {
+        try {
+            const url = `/kyc/user-kyc/${userId}?userType=vendor`
+            await Axios.get(url)
+            const res = await Axios.get(url);
+            const kycs = res.data
+            setKyc(kycs)
+            console.log(kycs)
+        } catch(error){
+            console(error)
+        }
+    }
 
     useEffect (() => {
         fetchUserDetails(userId)
+        fetchKycDetails(userId)
     }, []) ;
 
 
@@ -71,13 +88,27 @@ export default function UserDetails() {
             default: return userType
         }
     }
+    const formatName = (userType) => {
+        switch (userType) {
+            case "private_client":
+                return 'Client'
+            case "corporate_client":
+              return 'Client'
+            case "vendor":
+              return 'Product Partner'
+            case "professional":
+              return 'Service Partner'
+    
+            default: return ""
+        }
+    }
 
 
     return (
         <div>
             <div className="min-h-screen fs-500 relative">
                 <div className="w-full py-8 bg-white px-4">
-                    <p className="fs-700 lg:text-2xl fw-600 flex items-top">View Client: <span className="text-primary lg:fs px-3 lg:w-auto w-6/12">{client?.name}</span></p>
+                    <p className="fs-700 lg:text-2xl fw-600 flex items-top">View {formatName(client?.userType)}: <span className="text-primary lg:fs px-3 lg:w-auto w-6/12">{client?.name}</span></p>
                     <p className="fs-400 text-gray-600 mt-2">Manage and review all clients</p>
                     <Breadcrumbs className="bg-white pl-0 mt-4">
                         <Link to="/" className="opacity-60">
@@ -110,9 +141,9 @@ export default function UserDetails() {
                                     <div className="bg-white p-3 lg:p-8">
                                         <div className="flex items-top lg:items-center">
                                             <div className="">
-                                                <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="profile" className="lg:w-36 lg:h-36 w-16 h-16" />
+                                                <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="profile" className="lg:w-36 lg:h-36 md:w-24 md:h-24 w-16 h-16" />
                                             </div>
-                                            <div className="lg:pl-10 pl-6">
+                                            <div className="xl:pl-10 md:pl-6 pl-6">
                                                 <p className="lg:text-xl fw-600">{client?.name? client?.name : ""}</p>
                                                 <p className="lg:grid-2 w-full">{accounts.map( item => {
                                                     return <p className="lg:w-36">{formatType(item.userType)}</p>
@@ -291,31 +322,31 @@ export default function UserDetails() {
                                             <div className="mt-6 fw-500">
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Name of Organisation:</p>
-                                                    <p className="mt-1">Green Mouse</p>
+                                                    <p className="mt-1">{kyc?.kycGeneralInfo?.organisation_name? kyc?.kycGeneralInfo?.organisation_name : "No data"}</p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Email Adress:</p>
-                                                    <p className="mt-1">test@test.com</p>
+                                                    <p className="mt-1">{kyc?.kycGeneralInfo?.email_address? kyc?.kycGeneralInfo?.email_address : "No data"}</p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Office Telephone / Contact No:</p>
-                                                    <p className="mt-1">080 0000 000 000</p>
+                                                    <p className="mt-1">{kyc?.kycGeneralInfo?.contact_number? kyc?.kycGeneralInfo?.contact_number : "No data"}</p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Type of Registration:</p>
-                                                    <p className="mt-1">Registered Business Name</p>
+                                                    <p className="mt-1">{kyc?.kycGeneralInfo?.reg_type? kyc?.kycGeneralInfo?.reg_type : "No data"}</p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Incorporation / Registration No:</p>
-                                                    <p className="mt-1">123456789</p>
+                                                    <p className="mt-1">{kyc?.kycGeneralInfo?.registration_number? kyc?.kycGeneralInfo?.registration_number : "No data"}</p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Business Address:</p>
-                                                    <p className="mt-1">2 metalbox ogba, ikaja, lagos.</p>
+                                                    <p className="mt-1">{kyc?.kycGeneralInfo?.business_address? kyc?.kycGeneralInfo?.business_address : "No data"}</p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Address of other significant operational base (including Email/Telephone):</p>
-                                                    <p className="mt-1">2 metalbox ogba, ikaja, lagos.</p>
+                                                    <p className="mt-1">{kyc?.kycGeneralInfo?.operational_address? kyc?.kycGeneralInfo?.operational_address : "No data"}</p>
                                                 </div>
                                             </div>
                                         </TabPanel>
@@ -323,27 +354,27 @@ export default function UserDetails() {
                                             <div className="mt-6 fw-500">
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Type of Organisation:</p>
-                                                    <p className="mt-1">Limited Liability</p>
+                                                    <p className="mt-1">{kyc?.kycOrganisationInfo?.organisation_type? kyc?.kycOrganisationInfo?.organisation_type : "No data"}</p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Date of Incorporation / Registration:</p>
-                                                    <p className="mt-1">20 October 2002</p>
+                                                    <p className="mt-1">{kyc?.kycOrganisationInfo?.Incorporation_date? dayjs(kyc?.kycOrganisationInfo?.Incorporation_date).format('DD-MMM-YYYY') : "No data"}</p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Director's Details:</p>
-                                                    <p className="mt-1 flex items-center"><span>Full Name:</span><span className="pl-2">Green Mouse</span></p>
-                                                    <p className="mt-1 flex items-center"><span>Designation:</span><span className="pl-2">Branch Manager</span></p>
-                                                    <p className="mt-1 flex items-center"><span>Phone Number:</span><span className="pl-2">090 000 0000 000</span></p>
-                                                    <p className="mt-1 flex items-center"><span>Email:</span><span className="pl-2">test@gmail.com</span></p>
+                                                    <p className="mt-1 flex items-center"><span>Full Name:</span><span className="pl-2">{kyc?.kycOrganisationInfo?.director_fullname? kyc?.kycOrganisationInfo?.director_fullname : "No data"}</span></p>
+                                                    <p className="mt-1 flex items-center"><span>Designation:</span><span className="pl-2">{kyc?.kycOrganisationInfo?.director_designation? kyc?.kycOrganisationInfo?.director_designation : "No data"}</span></p>
+                                                    <p className="mt-1 flex items-center"><span>Phone Number:</span><span className="pl-2">{kyc?.kycOrganisationInfo?.director_phone? kyc?.kycOrganisationInfo?.director_phone : "No data"}</span></p>
+                                                    <p className="mt-1 flex items-center"><span>Email:</span><span className="pl-2">{kyc?.kycOrganisationInfo?.director_email? kyc?.kycOrganisationInfo?.director_email : "No data"}</span></p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Contact Person:</p>
-                                                    <p className="mt-1 flex items-center"><span>Phone Number:</span><span className="pl-2">090 000 0000 000</span></p>
-                                                    <p className="mt-1 flex items-center"><span>Email:</span><span className="pl-2">test@gmail.com</span></p>
+                                                    <p className="mt-1 flex items-center"><span>Phone Number:</span><span className="pl-2">{kyc?.kycOrganisationInfo?.contact_phone? kyc?.kycOrganisationInfo?.contact_phone : "No data"}</span></p>
+                                                    <p className="mt-1 flex items-center"><span>Email:</span><span className="pl-2">{kyc?.kycOrganisationInfo?.contact_email? kyc?.kycOrganisationInfo?.contact_email : "No data"}</span></p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Other companies operated:</p>
-                                                    <p className="mt-1">Metalbox Industries</p>
+                                                    <p className="mt-1">{kyc?.kycOrganisationInfo?.others_operations? kyc?.kycOrganisationInfo?.others_operations : "No data"}</p>
                                                 </div>
                                             </div>
                                         </TabPanel>
@@ -351,57 +382,70 @@ export default function UserDetails() {
                                             <div className="mt-6 fw-500">
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">VAT Registration Number:</p>
-                                                    <p className="mt-1">RUU84O90PPPPPPEE9</p>
+                                                    <p className="mt-1">{kyc?.kycTaxPermits?.VAT? kyc?.kycTaxPermits?.VAT : "No data"}</p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Tax Identification Number:</p>
-                                                    <p className="mt-1">PEUIR095KG8EJE3</p>
+                                                    <p className="mt-1">{kyc?.kycTaxPermits?.TIN? kyc?.kycTaxPermits?.TIN : "No data"}</p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">List of Relevant statutory/professional bodies registered with:</p>
+                                                    <p className="mt-1">{kyc?.kycTaxPermits?.relevant_statutory? kyc?.kycTaxPermits?.relevant_statutory : "No data"}</p>
                                                 </div>
                                             </div>
                                         </TabPanel>
                                         <TabPanel>
                                             <div className="mt-6 fw-500">
                                                 <p>List the most relevant jobs by monetary value with other companies </p>
-                                                <div className="mt-4">
-                                                    <p>Job 1</p>
-                                                    <div className="py-4 border-b">
-                                                        <p className="text-gray-500 text-primary">Name:</p>
-                                                        <p className="mt-1">Green Mouse</p>
-                                                    </div>
-                                                    <div className="py-4 border-b">
-                                                        <p className="text-gray-500">Value (NGN):</p>
-                                                        <p className="mt-1">NGN 5,000,000</p>
-                                                    </div>
-                                                    <div className="py-4 border-b">
-                                                        <p className="text-gray-500">Date:</p>
-                                                        <p className="mt-1">08 December 2018</p>
-                                                    </div>
-                                                    <div className="py-4 border-b">
-                                                        <p className="text-gray-500">Provisional document:</p>
-                                                        <p className="mt-1 text-primary">open document</p>
-                                                    </div>
-                                                    <div className="py-4 border-b">
-                                                        <p className="text-gray-500">Experience(years):</p>
-                                                        <p className="mt-1">3 Years</p>
-                                                    </div>
-                                                    <div className="py-4 border-b">
-                                                        <p className="text-gray-500">Invovement of parent company:</p>
-                                                        <p className="mt-1">nill</p>
-                                                    </div>
-                                                </div>
+                                                {
+                                                    kyc?.kycWorkExperience.length > 0? kyc?.kycWorkExperience.map((item, index) =>
+                                                         (
+                                                            <div className="mt-4 bg-light lg:p-6 rounded-md">
+                                                                <p>Job {index + 1}</p>
+                                                                <div className="lg:flex w-full">
+                                                                    <div className="py-4 border-b lg:w-6/12">
+                                                                        <p className="text-gray-500 text-primary">Name:</p>
+                                                                        <p className="mt-1">{item?.name}</p>
+                                                                    </div>
+                                                                    <div className="py-4 border-b lg:w-6/12">
+                                                                        <p className="text-gray-500">Value (NGN):</p>
+                                                                        <p className="mt-1">{formatNumber(item?.value)}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="lg:flex w-full">
+                                                                    <div className="py-4 border-b lg:w-6/12">
+                                                                        <p className="text-gray-500">Date:</p>
+                                                                        <p className="mt-1">{dayjs(item?.date).format('DD-MMM-YYYY')}</p>
+                                                                    </div>
+                                                                    <div className="py-4 border-b lg:w-6/12">
+                                                                        <p className="text-gray-500">Provisional document:</p>
+                                                                        <p className="mt-1 text-primary">
+                                                                            <a href={item?.fileUrl} target='_blank' rel="noreferrer" >Open Document</a>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="lg:flex w-full">
+                                                                    <div className="py-4 border-b lg:w-6/12">
+                                                                        <p className="text-gray-500">Experience(years):</p>
+                                                                        <p className="mt-1">{item?.years_of_experience? item?.years_of_experience : "No data"}</p>
+                                                                    </div>
+                                                                    <div className="py-4 border-b lg:w-6/12">
+                                                                        <p className="text-gray-500">Invovement of parent company:</p>
+                                                                        <p className="mt-1">{item?.company_involvement? item?.company_involvement : "No data"}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        ))
+                                                        :
+                                                        ""
+                                                }
                                             </div>
                                         </TabPanel>
                                         <TabPanel>
                                             <div className="mt-6 fw-500">
                                                 <p>Categories of supply</p>
                                                 <ul className="list-disc mt-6 ml-8">
-                                                    <li className="my-2">Marine</li>
-                                                    <li className="my-2">Electrical / Instrumentation</li>
-                                                    <li className="my-2">Building Materials</li>
-                                                    <li className="my-2">HSE</li>
+                                                    <li className="my-2">{kyc?.suppyCategory?.categories? kyc?.suppyCategory?.categories : "No data"}</li>
                                                 </ul>
                                             </div>
                                         </TabPanel>
@@ -409,29 +453,51 @@ export default function UserDetails() {
                                             <div className="mt-6 fw-500">
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Bank Account Holder Name:</p>
-                                                    <p className="mt-1">Green Mouse</p>
+                                                    <p className="mt-1">{kyc?.kycFinancialData?.account_name? kyc?.kycFinancialData?.account_name : "No data"}</p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Bank Name:</p>
-                                                    <p className="mt-1">First United Bank of Ikeja</p>
+                                                    <p className="mt-1">{kyc?.kycFinancialData?.bank_name? kyc?.kycFinancialData?.bank_name : "No data"}</p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Bank Account Number:</p>
-                                                    <p className="mt-1">00 0000 000 000</p>
+                                                    <p className="mt-1">{kyc?.kycFinancialData?.account_number? kyc?.kycFinancialData?.account_number : "No data"}</p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Name and address of banker(s) from whom references can be obtained:</p>
-                                                    <p className="mt-1">Metalbox Road</p>                                                    
-                                                    <p className="mt-1">Metalbox Road Ikeja</p>
+                                                    <p className="mt-1">{kyc?.kycFinancialData?.account_name? kyc?.kycFinancialData?.account_name : "No data"}</p>                                                    
+                                                    <p className="mt-1">{kyc?.kycFinancialData?.banker_address? kyc?.kycFinancialData?.banker_address : "No data"}</p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Type of Account:</p>
-                                                    <p className="mt-1">Current Account</p>
+                                                    <p className="mt-1">{kyc?.kycFinancialData?.account_type? kyc?.kycFinancialData?.account_type : "No data"}</p>
                                                 </div>
                                                 <div className="py-4 border-b">
                                                     <p className="text-gray-500">Level of current overdraft facility:</p>
-                                                    <p className="mt-1">nill</p>
+                                                    <p className="mt-1">{kyc?.kycFinancialData?.overdraft_facility? kyc?.kycFinancialData?.overdraft_facility : "No data"}</p>
                                                 </div>
+                                            </div>
+                                        </TabPanel>
+                                        <TabPanel>
+                                            <div className="mt-6 fw-500">
+                                                <p>List the most relevant jobs by monetary value with other companies </p>
+                                                {
+                                                    kyc?.kycDocuments.length > 0? kyc?.kycDocuments.map((item, index) =>
+                                                         (
+                                                            <div className="mt-4">
+                                                                <div className="lg:flex w-full">
+                                                                    <div className="py-4 border-b lg:w-6/12">
+                                                                        <p className="text-gray-500 text-primary">{item?.name}:</p>
+                                                                        <p className="mt-1 text-primary">
+                                                                            <a href={item?.file} target="_blank" rel="noreferrer">View Document</a>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        ))
+                                                        :
+                                                        ""
+                                                }
                                             </div>
                                         </TabPanel>
                                     </Tabs>
