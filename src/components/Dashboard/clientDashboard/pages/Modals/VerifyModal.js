@@ -63,6 +63,9 @@ export const VerifyModal = ({setVerify, client, reload}) => {
           });
         }
       };
+      if (loading){
+        return ''
+      }    
     
   return (
     <div className="fixed font-primary left-0 top-0 w-full h-screen bg-op center-item z-40" onClick={CloseModal}>
