@@ -100,24 +100,14 @@ export function UsersTable({status, userType}){
     if (userType) {
         users = users.filter(where => where.userType === userType)
     }
-    if (status) {
-      users = users.filter(where => where.status === status)
+    if (status !== undefined) {
+      users = users.filter(users => users.isActive === status)
     }
     const navigate = useNavigate()
     const gotoDetailsPage = (id) => {
         navigate(`/dashboard/userdetails?userId=${id}`)
     }
 
-    const formatStatus = (status) => {
-      switch (status) {
-          case "isAcive":
-              return <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">Active</p>
-          
-
-          default: return <p className="px-2 py-1 text-orange-700 bg-orange-100 w-24 rounded-md fw-600">Inactive</p>
-      }
-
-  }
   const formatType = (userType) => {
     switch (userType) {
         case "private_client":
@@ -165,14 +155,16 @@ export function UsersTable({status, userType}){
           {
             Header: "Status",
             accessor: "isActive",
-            Cell: (props) => formatStatus(props.value)
+            Cell: (props) => props.value? 
+            <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600 text-center">Active</p> 
+            : <p className="px-2 py-1 text-orange-700 bg-orange-100 w-24 rounded-md fw-600">Inactive</p>
           },
           {
             Header: 'Action',
             accessor: 'id',
             Cell: (row) => <Menu placement="left-start" className="w-16">
                               <MenuHandler>
-                                <Button className="border-none bg-transparent shadow-none hover:shadow-none text-black"><button className="lg:text-xl"><BsThreeDotsVertical /></button></Button>
+                                <Button className="border-none bg-transparent shadow-none hover:shadow-none text-black"><p className="lg:text-xl"><BsThreeDotsVertical /></p></Button>
                               </MenuHandler>
                               <MenuList className="w-16 bg-gray-100 fw-600 text-black">
                                 <MenuItem onClick={() => gotoDetailsPage(row.value)}>View Details</MenuItem>

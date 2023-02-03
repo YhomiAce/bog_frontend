@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar, Breadcrumbs } from "@material-tailwind/react";
-import { daysInWeek } from "date-fns";
 import dayjs from "dayjs";
 import React, {useEffect, useState} from "react";
 import { AiOutlineWechat } from "react-icons/ai";
@@ -9,10 +8,9 @@ import { BsFillCalendarDateFill } from "react-icons/bs";
 import { FaToolbox } from "react-icons/fa";
 import { GiRotaryPhone } from "react-icons/gi";
 import { HiIdentification } from "react-icons/hi";
-import { MdMarkEmailUnread, MdProductionQuantityLimits } from "react-icons/md";
+import { MdMarkEmailUnread, MdProductionQuantityLimits, MdVerified } from "react-icons/md";
 import { RiAccountPinCircleFill, RiBaseStationLine } from "react-icons/ri";
 import { VscReferences } from "react-icons/vsc";
-import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Axios from "../../../../config/config";
@@ -50,9 +48,9 @@ export default function UserDetails() {
             setLoading(false);
         }
     };
-    const fetchKycDetails = async (userId) => {
+    const fetchKycDetails = async (userId, userType) => {
         try {
-            const url = `/kyc/user-kyc/${userId}?userType=vendor`
+            const url = `/kyc/user-kyc/${userId}?userType=${userType}`
             await Axios.get(url)
             const res = await Axios.get(url);
             const kycs = res.data
@@ -62,11 +60,20 @@ export default function UserDetails() {
             console(error)
         }
     }
+    const Reload = () => {
+        setTimeout(() => {
+            fetchUserDetails(userId)
+        }, 3000);
+    }
 
     useEffect (() => {
         fetchUserDetails(userId)
-        fetchKycDetails(userId)
     }, []) ;
+    useEffect(()=> {
+        if(client){
+            fetchKycDetails(userId, client.userType)
+        }
+    }, [client])
 
 
   if (loading){
@@ -124,9 +131,21 @@ export default function UserDetails() {
                         <Link to="/dashboard" className="opacity-60">
                             <span>Dashboard</span>
                         </Link>
-                        <Link to="/dashboard/client" className="opacity-60">
-                            <span>Users</span>
-                        </Link>
+                        {
+                            client?.userType === "vendor"? 
+                            <Link to="/dashboard/productpartner" className="opacity-60">
+                                <span>Users</span>
+                            </Link>
+                            :
+                            client?.userType === "professional"? 
+                            <Link to="/dashboard/servicepartner" className="opacity-60">
+                                <span>Users</span>
+                            </Link>
+                            :
+                            <Link to="/dashboard/clients" className="opacity-60">
+                                <span>Users</span>
+                            </Link>
+                        }
                         <Link to="" className="">
                             <span>Users Details</span>
                         </Link>
@@ -139,20 +158,34 @@ export default function UserDetails() {
                             <div className="">
                                 <div className="lg:w-full justify-evenly lg:grid-2 rounded-md">
                                     <div className="bg-white p-3 lg:p-8">
-                                        <div className="flex items-top lg:items-center">
+                                        <div className="flex relative items-top lg:items-center">
                                             <div className="">
                                                 <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="profile" className="lg:w-36 lg:h-36 md:w-24 md:h-24 w-16 h-16" />
                                             </div>
                                             <div className="xl:pl-10 md:pl-6 pl-6">
                                                 <p className="lg:text-xl fw-600">{client?.name? client?.name : ""}</p>
                                                 <p className="lg:grid-2 w-full">{accounts.map( item => {
-                                                    return <p className="lg:w-36">{formatType(item.userType)}</p>
+                                                    return <p className="lg:w-36" key={item.id}>{formatType(item.userType)}</p>
                                                 })}</p>
                                                 <div className="flex mt-3">
-                                                    <button className="bg-green-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-4 py-1 text-white"onClick={() => setVerify(true)}>Verify</button>
+                                                    {
+                                                        client?.profile.isVerified?
+                                                        <button className="bg-green-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-4 py-1 text-white">Verified</button>
+                                                        :
+                                                        <button className="bg-green-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-4 py-1 text-white"onClick={() => setVerify(true)}>Verify</button>
+                                                    }
                                                     <button className="bg-orange-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-2 py-1 ml-5 text-white">Suspend</button>
                                                 </div>
                                             </div>
+                                            {
+                                                client?.profile.isVerified?
+                                                <div className="absolute top-5 right-5 flex items-center">
+                                                    <MdVerified className="text-3xl text-secondary"/>
+                                                    <p className="fw-600 text-primary">{client?.profile.kycPoint}</p>
+                                                </div>
+                                                :
+                                                ''
+                                            }
                                         </div>
                                         <div className="mt-6">
                                             <div className="flex items-center shadow-lg p-4">
@@ -227,7 +260,7 @@ export default function UserDetails() {
                                                         </div>
                                                     </div>
                                                     : 
-                                                    client?.userType === "vendor"? 
+                                                    client?.userType === "professional"? 
                                                         <div className="lg:grid-2 col-span-full">
                                                             <div className="border-b mt-2 py-2">
                                                                 <div className="w-16 h-16 circle bg-light center-item">
@@ -249,7 +282,7 @@ export default function UserDetails() {
                                                             </div>
                                                         </div>
                                                         :
-                                                        client?.userType === "professional"? 
+                                                        client?.userType === "vendor"? 
                                                         <div className="lg:grid-2 col-span-full">
                                                         <div className="border-b mt-2 py-2">
                                                             <div className="w-16 h-16 circle bg-light center-item">
@@ -265,7 +298,7 @@ export default function UserDetails() {
                                                                 <FaToolbox className="text-xl lg:text-3xl text-primary"/>
                                                             </div>
                                                             <div className="fw-500 mt-2 flex">
-                                                                <p className="text-gray-500">Total Service Orders:</p>
+                                                                <p className="text-gray-500">Total Product:</p>
                                                                 <p className="pl-3">{accounts.length}</p>
                                                             </div>
                                                         </div>
@@ -510,7 +543,7 @@ export default function UserDetails() {
                 }
             </div>
             {
-                verify && <VerifyModal setVerify={setVerify}/>
+                verify && <VerifyModal setVerify={setVerify} client={client} reload={Reload}/>
             }
         </div>
         )
