@@ -73,7 +73,7 @@ export function Subscription() {
                                     <p className='text-2xl fw-600'><span className='text-primary'>Flexible </span>Plans</p>
                                     <p className='mt-3 text-gray-600 lg:w-96 mx-auto'>Choose a plan that works best for you and your team.</p>
                                 </div>
-                                <div className='lg:flex justify-evenly py-12 lg:pb-24'>
+                                <div className='lg:grid-3s items-center gap-y-8 justify-evenly py-12 lg:pb-24'>
                                     {
                                         plans.map(item => (
                                             <SubscriptionItem key={item.id} item={item} user={user} />
