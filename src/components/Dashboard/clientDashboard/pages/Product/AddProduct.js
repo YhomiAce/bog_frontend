@@ -9,6 +9,7 @@ import { createProduct } from '../../../../../redux/actions/ProductAction';
 const AddProduct = () => {
     const dispatch = useDispatch();
     const categories = useSelector((state) => state.products.categories);
+    const { user } = useSelector((state) => state.auth);
     const [category, setCategory] = useState("");
     const [photos, setPhotos] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -163,20 +164,17 @@ const AddProduct = () => {
                 {
                     loading ? <Spinner /> :
                         <div className="mt-8 flex lg:w-10/12 justify-between">
-                            {/* <button 
-                            type='submit' 
-                            className="btn-primary w-5/12 px-1 "
-                            // onClick={() => createNewProduct("draft")}
-                            >
-                                Save to Drafts
-                            </button> */}
-                            <button 
-                            type='submit' 
-                            className="btn-primary w-5/12"
-                            // onClick={() => createNewProduct("pending")}
-                            >
-                                Add Product
-                            </button>
+                            {   !user?.profile?.hasActiveSubscription?
+                                <p className="btn-primary w-5/12 text-center">Subscribe to add Products</p>
+                                :
+                                <button 
+                                    type='submit' 
+                                    className="btn-primary w-5/12"
+                                    // onClick={() => createNewProduct("pending")}
+                                    >
+                                        Add Product
+                                    </button>
+                            }
                         </div>
                 }
 
