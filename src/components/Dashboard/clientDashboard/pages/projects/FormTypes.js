@@ -375,31 +375,31 @@ export const BcForm = ({data}) => {
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Survey Plan</p>
                     <div>
-                        <p onClick={() => openDoc()}>Preview document</p>
+                        <p onClick={() => openDoc(data?.projectData?.surveyPlan)}>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Architectural Plan</p>
                     <div>
-                        <p onClick={() => openDoc()}>Preview document</p>
+                        <p onClick={() => openDoc(data?.projectData?.architecturalPlan)}>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Structural Plan</p>
                     <div>
-                        <p onClick={() => openDoc()}>Preview document</p>
+                        <p onClick={() => openDoc(data?.projectData?.structuralPlan)}>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Mechanical Plan</p>
                     <div>
-                        <p onClick={() => openDoc()}>Preview document</p>
+                        <p onClick={() => openDoc(data?.projectData?.mechanicalPlan)}>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Electrical Plan</p>
                     <div>
-                        <p onClick={() => openDoc()}>Preview document</p>
+                        <p onClick={() => openDoc(data?.projectData?.electricalPlan)}>Preview document</p>
                     </div>
                 </div>
             </div>

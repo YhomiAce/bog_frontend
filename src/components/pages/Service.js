@@ -840,7 +840,7 @@ export default function Service() {
                     'authorization': localStorage.getItem("auth_token")
                 },
             }
-            const { architecturalPlan, mechanicalPlan, electricalPlan, structuralPlan, surveyPlan, clientName, projectLocation, projectType, title } = contractorData
+            const { architecturalPlan, mechanicalPlan, structuralPlan, surveyPlan, clientName, projectLocation, projectType, title } = contractorData
             const fd = new FormData();
             for (let c = 0; c < architecturalPlan.length; c++) {
                 fd.append(`architecturalPlan`, architecturalPlan[c]);
@@ -932,7 +932,7 @@ export default function Service() {
                                   <div className="cursor-pointer" onClick={() => {
                                           // eslint-disable-next-line
                                       {
-                                                  // eslint-disable-next-line
+                                        // eslint-disable-next-line
                                           auth.isAuthenticated ?
                                              setGInvest(true):
                                               AuhtCheck()
