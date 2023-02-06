@@ -397,7 +397,7 @@ export const BcForm = ({data}) => {
                     </div>
                 </div>
                 <div className="flex border-b py-3">
-                    <p className="w-3/12 fw-500">Electrical Plan</p>
+                    <p className="w-3/12 fw-500">Electrical Plan </p>
                     <div>
                         <p onClick={() => openDoc(data?.projectData?.electricalPlan)}>Preview document</p>
                     </div>
