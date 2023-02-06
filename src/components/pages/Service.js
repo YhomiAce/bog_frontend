@@ -226,6 +226,21 @@ export default function Service() {
         );
     }
     }
+    const submitBuildingContractor = async (payload, headers) => {
+        try {
+            const url = "/projects/contractor/request";
+            const res = await Axios.post(url, payload, headers);
+            return res;
+        } catch (error) {
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+        }
     const MAX_LENGTH = 5;
     const [surveyPlan, setSurveyPlan] = useState([]);
     const [landandproperty, setLandandProerty] = useState([]);
@@ -489,7 +504,6 @@ export default function Service() {
     const [purposebuilding, setPurposeBuilding] = useState("");
  
     const  handleDrawingChange = (event) => {
-        // setValue(!values);
         setDrawin(event.target.value);
     }
 
@@ -518,7 +532,6 @@ export default function Service() {
         // setValue(!values);
         setPurposeBuilding(event.target.value);
     }
-    console.log(drawing);
     const submitHandler = async () => {
             try {
                 setLoading(true)
@@ -526,23 +539,24 @@ export default function Service() {
 
                 const fd = new FormData();
                 for (let s = 0; s < surveyPlan.length; s++) {
-                    fd.append(`surveyPlan[]`, surveyPlan[s]);
+                    fd.append(`surveyPlan`, surveyPlan[s]);
                 }
                 for (let p = 0; p < atitechturePlan.length; p++) {
-                    fd.append(`architecturalPlan[]`, atitechturePlan[p]);
+                    fd.append(`architecturalPlan`, atitechturePlan[p]);
                 }
                 for (let t = 0; t < structuralPlan.length; t++) {
-                    fd.append(`structuralPlan[]`, structuralPlan[t]);
+                    fd.append(`structuralPlan`, structuralPlan[t]);
                 }
                 for (let m = 0; m < mechanicalplan.length; m++) {
-                    fd.append(`mechanicalPlan[]`, mechanicalplan[m]);
+                    fd.append(`mechanicalPlan`, mechanicalplan[m]);
                 }
                 for (let e = 0; e < electricalPlan.length; e++) {
-                    fd.append(`electricalPlan[]`, electricalPlan[e]);
+                    fd.append(`electricalPlan`, electricalPlan[e]);
                 }
-                for (let d = 0; d < drawing.length; d++) {
-                    fd.append(`drawingType[]`, drawing[d]);
-                }
+                // for (let d = 0; d < drawing.length; d++) {
+                //     fd.append(`drawingType`, drawing[d]);
+                // }
+                fd.append(`drawingType`, drawing);
                 fd.append('title', user?.fname);
                 fd.append('clientName', value.clientname);
                 fd.append('projectLocation', value.location);
@@ -608,7 +622,7 @@ export default function Service() {
                 fd.append('comment', value.specify);
                 fd.append('title', 'Request for geotechnical Investigation');                
                 for (let dd = 0; dd < landandproperty.length; dd++) {
-                    fd.append(`propertyPicture[]`, landandproperty[dd]);
+                    fd.append(`propertyPicture`, landandproperty[dd]);
                 }
                 console.log(fd);
                 const config = {
@@ -653,22 +667,22 @@ export default function Service() {
 
                 const fd = new FormData();
                 for (let s = 0; s < surveyPlan.length; s++) {
-                    fd.append(`surveyPlan[]`, surveyPlan[s]);
+                    fd.append(`surveyPlan`, surveyPlan[s]);
                 }
                 for (let p = 0; p < atitechturePlan.length; p++) {
-                    fd.append(`architecturalPlan[]`, atitechturePlan[p]);
+                    fd.append(`architecturalPlan`, atitechturePlan[p]);
                 }
                 for (let t = 0; t < structuralPlan.length; t++) {
-                    fd.append(`structuralPlan[]`, structuralPlan[t]);
+                    fd.append(`structuralPlan`, structuralPlan[t]);
                 }
                 for (let m = 0; m < mechanicalplan.length; m++) {
-                    fd.append(`mechanicalPlan[]`, mechanicalplan[m]);
+                    fd.append(`mechanicalPlan`, mechanicalplan[m]);
                 }
                 for (let e = 0; e < electricalPlan.length; e++) {
-                    fd.append(`electricalPlan[]`, electricalPlan[e]);
+                    fd.append(`electricalPlan`, electricalPlan[e]);
                 }
                 for (let d = 0; d < drawing.length; d++) {
-                    fd.append(`drawingType[]`, drawing[d]);
+                    fd.append(`drawingType`, drawing[d]);
                 }
                 fd.append('title', user?.fname);
                 fd.append('userType', user.userType);
@@ -712,43 +726,43 @@ export default function Service() {
 
                 const fd = new FormData();
                 for (let s = 0; s < surveyPlan.length; s++) {
-                    fd.append(`surveyPlan[]`, surveyPlan[s]);
+                    fd.append(`surveyPlan`, surveyPlan[s]);
                 }
                 for (let p = 0; p < atitechturePlan.length; p++) {
-                    fd.append(`architecturalPlan[]`, atitechturePlan[p]);
+                    fd.append(`architecturalPlan`, atitechturePlan[p]);
                 }
                 for (let t = 0; t < structuralPlan.length; t++) {
-                    fd.append(`structuralPlan[]`, structuralPlan[t]);
+                    fd.append(`structuralPlan`, structuralPlan[t]);
                 }
                 for (let m = 0; m < mechanicalplan.length; m++) {
-                    fd.append(`mechanicalPlan[]`, mechanicalplan[m]);
+                    fd.append(`mechanicalPlan`, mechanicalplan[m]);
                 }
                 for (let e = 0; e < electricalPlan.length; e++) {
-                    fd.append(`electricalPlan[]`, electricalPlan[e]);
+                    fd.append(`electricalPlan`, electricalPlan[e]);
                 }
                 for (let r = 0; r < soiltestreport.length; r++) {
-                    fd.append(`soilTestReport[]`, soiltestreport[r]);
+                    fd.append(`soilTestReport`, soiltestreport[r]);
                 }
                 for (let w = 0; w < siteplan.length; w++) {
-                    fd.append(`sitePlan[]`, siteplan[w]);
+                    fd.append(`sitePlan`, siteplan[w]);
                 }
                 for (let o = 0; o < siteanalysisreport.length; o++) {
-                    fd.append(`siteAnalysisReport[]`, siteanalysisreport[o]);
+                    fd.append(`siteAnalysisReport`, siteanalysisreport[o]);
                 }
                 for (let c = 0; c < enviromentimpactreport.length; c++) {
-                    fd.append(`environmentImpactReport[]`, enviromentimpactreport[c]);
+                    fd.append(`environmentImpactReport`, enviromentimpactreport[c]);
                 }
                 for (let f = 0; f < taxClearance.length; f++) {
-                    fd.append(`clearanceCertificate[]`, taxClearance[f]);
+                    fd.append(`clearanceCertificate`, taxClearance[f]);
                 }
                 for (let h = 0; h < stampandseal.length; h++) {
-                    fd.append(`structuralCalculationSheet[]`, stampandseal[h]);
+                    fd.append(`structuralCalculationSheet`, stampandseal[h]);
                 }
                 for (let n = 0; n < cofoorofo.length; n++) {
-                    fd.append(`deedOfAgreement[]`, cofoorofo[n]);
+                    fd.append(`deedOfAgreement`, cofoorofo[n]);
                 }
                 for (let u = 0; u < letterofsupervision.length; u++) {
-                    fd.append(`supervisorLetter[]`, letterofsupervision[u]);
+                    fd.append(`supervisorLetter`, letterofsupervision[u]);
                 }
                 fd.append('userType', user.userType);
                 fd.append('title', value.title);
@@ -785,6 +799,84 @@ export default function Service() {
     
      const { title, name, clientname, locationofthesite, location, propertyLocation,sizeofland,gborehole,borehole,cpt,specify} = form.values;
       const value = form.values
+
+
+      const [contractorData, setContractorData] = useState({
+        title: "",
+        clientName: "",
+        projectLocation: "",
+        projectType: "",
+        buildingType: "",
+        surveyPlan: "",
+        structuralPlan: "",
+        architecturalPlan: "",
+        mechanicalPlan: "",
+    });
+    let newValue = {};
+    const updateValue = (newVal, variable) => {
+        variable === 'title' && (newValue = { title: newVal });
+        variable === 'clientName' && (newValue = { clientName: newVal });
+        variable === 'projectLocation' && (newValue = { projectLocation: newVal });
+        variable === 'projectType' && (newValue = { projectType: newVal });
+        variable === 'buildingType' && (newValue = { buildingType: newVal });
+        variable === 'surveyPlan' && (newValue = { surveyPlan: newVal });
+        variable === 'structuralPlan' && (newValue = { structuralPlan: newVal });
+        variable === 'architecturalPlan' && (newValue = { architecturalPlan: newVal });
+        variable === 'mechanicalPlan' && (newValue = { mechanicalPlan: newVal });
+
+        setContractorData({
+            ...contractorData,
+            ...newValue,
+        });
+    };
+    const contractorSubmitHandler = async(e) => {
+        e.preventDefault()
+        try {
+            setLoading(true)
+            // console.log(userData);
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'authorization': localStorage.getItem("auth_token")
+                },
+            }
+            const { architecturalPlan, mechanicalPlan, structuralPlan, surveyPlan, clientName, projectLocation, projectType, title } = contractorData
+            const fd = new FormData();
+            for (let c = 0; c < architecturalPlan.length; c++) {
+                fd.append(`architecturalPlan`, architecturalPlan[c]);
+            }
+            for (let f = 0; f < mechanicalPlan.length; f++) {
+                fd.append(`mechanicalPlan`, mechanicalPlan[f]);
+            }
+            // for (let h = 0; h < electricalPlan.length; h++) {
+            //     fd.append(`electricalPlan`, electricalPlan[h]);
+            // }
+            for (let n = 0; n < structuralPlan.length; n++) {
+                fd.append(`structuralPlan`, structuralPlan[n]);
+            }
+            for (let u = 0; u < surveyPlan.length; u++) {
+                fd.append(`surveyPlan`, surveyPlan[u]);
+            }
+            fd.append('projectType', projectType);
+            fd.append('title', title);
+            fd.append('clientName', clientName);
+            fd.append('userType', user.userType);
+            fd.append('projectLocation', projectLocation);
+
+            console.log(fd);
+            const result = await submitBuildingContractor(fd, config);
+                if (result.success === true) {
+                    SuccessAlert("Building Contractor Project created successfully!");
+                    navigate("/dashboard/projects")
+                }
+            CloseSurvey()
+            setLoading(false)
+        } catch (error) {
+            console.log(error);
+            setLoading(false)
+        }
+    }
+    console.log(contractorData);
     // console.log(value.locationofthesite);
     // console.log(value.sizeofland);
     // console.log(value.borehole);
@@ -840,7 +932,7 @@ export default function Service() {
                                   <div className="cursor-pointer" onClick={() => {
                                           // eslint-disable-next-line
                                       {
-                                                  // eslint-disable-next-line
+                                        // eslint-disable-next-line
                                           auth.isAuthenticated ?
                                              setGInvest(true):
                                               AuhtCheck()
@@ -1274,7 +1366,7 @@ export default function Service() {
                     <p><span className="text-red-600 pr-2">*</span>Required</p>
                 </div>
                 <div className="mt-5">
-                    <form   onSubmit={formdrawinvest.handleSubmit}>
+                    <form onSubmit={formdrawinvest.handleSubmit}>
                         <div className="fs-500">
                             <p><span className="text-red-600  pr-2">*</span>This form will record your name, please fill your name.</p>
                             <input
@@ -2761,15 +2853,14 @@ export default function Service() {
                     <p><span className="text-red-600 pr-2">*</span>Required</p>
                 </div>
                 <div className="mt-5">
-                    <form>
+                    <form onSubmit={contractorSubmitHandler}>
                         <div className="fs-500">
-                                  <p><span className="text-red-600  pr-2">*</span>This form will record your name, please fill your name.</p>
-                                  
+                            <p><span className="text-red-600  pr-2">*</span>This form will record your name, please fill your name.</p>
                             <input
-                                        type="text"
-                                        placeholder="Enter your name"
-                                        className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
-                                    />
+                                type="text"
+                                placeholder="Enter your name"
+                                className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
+                            />
                         </div>
                         <div className="mt-3 lg:mt-6 w-full">
                             <label className="block fw-600">
@@ -2777,6 +2868,7 @@ export default function Service() {
                             </label>
                             <input
                                     type="text"
+                                    onChange={(e) => updateValue(e.target.value, 'clientName')}
                                     placeholder=""
                                     className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
                                 />
@@ -2786,7 +2878,7 @@ export default function Service() {
                                 2. Upload Survey Plan<span className="text-red-600 pl-2">*</span>
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <input className="cursor-pointer w-full p-2 rounded" type="file"  multiple />
+                                <input className="cursor-pointer w-full p-2 rounded" type="file" onChange={(e) => updateValue(e.target.files, 'surveyPlan')}  multiple />
                             </div>
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
@@ -2797,7 +2889,7 @@ export default function Service() {
                                 3. Upload Architectural plan<span className="text-red-600 pl-2">*</span>
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <input className="cursor-pointer p-2 w-full" type="file"  multiple />
+                                <input className="cursor-pointer p-2 w-full" onChange={(e) => updateValue(e.target.files, 'architecturalPlan')} type="file"  multiple />
                             </div>
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
@@ -2808,7 +2900,7 @@ export default function Service() {
                                 4. Upload Structural plan, 
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <input className="cursor-pointer w-full rounded p-2" type="file"  multiple />
+                                <input onChange={(e) => updateValue(e.target.files, 'structuralPlan')} className="cursor-pointer w-full rounded p-2" type="file"  multiple />
                             </div>
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
@@ -2819,7 +2911,7 @@ export default function Service() {
                                 5. Upload Mechanical plan, 
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <input className="cursor-pointer w-full rounded p-2" type="file"  multiple />
+                                <input onChange={(e) => updateValue(e.target.files, 'mechanicalPlan')} className="cursor-pointer w-full rounded p-2" type="file"  multiple />
                             </div>
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
@@ -2830,7 +2922,7 @@ export default function Service() {
                                 6. Upload Electrical plan, 
                             </label>
                             <div className="overflow-hidden border border-gray-400 rounded center-item relative w-64 mt-4 mb-4">
-                                <input className="cursor-pointer w-full rounded p-2" type="file"  multiple />
+                                <input onChange={(e) => updateValue(e.target.files, 'electricalPlan')} className="cursor-pointer w-full rounded p-2" type="file"  multiple />
                             </div>
                             <p className="my-2 fs-300 text-gray-600">File number limit: 5 Single file size limit: 1GB Allowed file types: Word, Excel, PPT, PDF, Image, Video,
                                 Audio
@@ -2842,6 +2934,7 @@ export default function Service() {
                             </label>
                             <input
                                     type="text"
+                                    onChange={(e) => updateValue(e.target.value, 'projectLocation')}
                                     placeholder="Enter location address"
                                     className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
                                 />
@@ -2852,23 +2945,23 @@ export default function Service() {
                             </label>
                             <div className="mt-3 fs-500">
                                 <div className="py-1">
-                                    <input type="radio" required name="p-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Residential', 'projectType')} required name="p-type" />
                                     <label className="pl-1">Residential</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="p-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Commercial', 'projectType')} required name="p-type" />
                                     <label className="pl-1">Commercial</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="p-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Industrial', 'projectType')} required name="p-type" />
                                     <label className="pl-1">Industrial</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="p-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Educational', 'projectType')} required name="p-type" />
                                     <label className="pl-1">Educational</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="p-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Religious', 'projectType')} required name="p-type" />
                                     <label className="pl-1">Religious</label>
                                 </div>
                             </div>
@@ -2879,23 +2972,23 @@ export default function Service() {
                             </label>
                             <div className="mt-3 fs-500">
                                 <div className="py-1">
-                                    <input type="radio" required name="r-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Bungalow', 'buildingType')} required name="r-type" />
                                     <label className="pl-1">Bungalow</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="r-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Duplex', 'buildingType')} required name="r-type" />
                                     <label className="pl-1">Duplex</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="r-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Multi-storey', 'buildingType')} required name="r-type" />
                                     <label className="pl-1">Multi-storey</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="r-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Terraced building', 'buildingType')} required name="r-type" />
                                     <label className="pl-1">Terraced building</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="r-type" />
+                                    <input type="radio" onChange={(e) => updateValue('High rise building', 'buildingType')} required name="r-type" />
                                     <label className="pl-1">High rise building</label>
                                 </div>
                             </div>
@@ -2906,23 +2999,23 @@ export default function Service() {
                             </label>
                             <div className="mt-3 fs-500">
                                 <div className="py-1">
-                                    <input type="radio" required name="c-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Bank', 'buildingType')} required name="c-type" />
                                     <label className="pl-1">Bank</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="c-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Shopping mall', 'buildingType')} required name="c-type" />
                                     <label className="pl-1">Shopping mall</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="c-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Supermarket', 'buildingType')} required name="c-type" />
                                     <label className="pl-1">Supermarket</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="c-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Office suites', 'buildingType')} required name="c-type" />
                                     <label className="pl-1">Office suites</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="c-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Others', 'buildingType')} required name="c-type" />
                                     <label className="pl-1">Others</label>
                                 </div>
                             </div>
@@ -2933,15 +3026,15 @@ export default function Service() {
                             </label>
                             <div className="mt-3 fs-500">
                                 <div className="py-1">
-                                    <input type="radio" required name="m-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Church', 'buildingType')} required name="m-type" />
                                     <label className="pl-1">Church</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="m-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Mosque', 'buildingType')} required name="m-type" />
                                     <label className="pl-1">Mosque</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="c-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Others', 'buildingType')} required name="m-type" />
                                     <label className="pl-1">Others</label>
                                 </div>
                             </div>
@@ -2952,23 +3045,23 @@ export default function Service() {
                             </label>
                             <div className="mt-3 fs-500">
                                 <div className="py-1">
-                                    <input type="radio" required name="e-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Primary', 'buildingType')} required name="e-type" />
                                     <label className="pl-1">Primary</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="e-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Secondary', 'buildingType')} required name="e-type" />
                                     <label className="pl-1">Secondary</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="e-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Tertiary', 'buildingType')} required name="e-type" />
                                     <label className="pl-1">Tertiary</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="e-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Postgraduate', 'buildingType')} required name="e-type" />
                                     <label className="pl-1">Postgraduate</label>
                                 </div>
                                 <div className="py-1">
-                                    <input type="radio" required name="e-type" />
+                                    <input type="radio" onChange={(e) => updateValue('Others', 'buildingType')} required name="e-type" />
                                     <label className="pl-1">Others</label>
                                 </div>
                             </div>

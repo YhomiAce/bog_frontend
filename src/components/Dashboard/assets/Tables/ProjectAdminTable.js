@@ -91,10 +91,10 @@ function getExportFileBlob({ columns, data, fileType, fileName }) {
 export default function ProjectsTable({ status }) {
   // let   allProjects = useSelector((state) => state.orders.  allProjects);
   let allProjects = useSelector((state) => state.allprojects.projects);
-  // console.log( allProjects);
+  
   if (status) {
 
-    if (status === "in_review") {
+    if (status === "pending") {
       allProjects = allProjects.filter(where => where.approvalStatus === status)
       console.log({ allProjects });
     } else {

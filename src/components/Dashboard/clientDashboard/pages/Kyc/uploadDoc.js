@@ -16,6 +16,7 @@ export const UploadDoc = ({ handleOpen, tab }) => {
     const gotoPrev = () => {
         handleOpen(tab - 1)
     }
+    console.log(formData)
     useEffect(() => {
         !isLoaded && fetcherForFiles({ url: "kyc-documents", user, setData: setAllDocuments })
         setDataLoaded(true);
@@ -46,7 +47,6 @@ export const UploadDoc = ({ handleOpen, tab }) => {
         return allDocuments?.filter(doc => doc.name === name && doc);
     }
     const openDoc = (url) => {
-        console.log(url)
         window.open(url, "_blank")
     }
     const SelectFile = ({ proposedFileArray, isUploaded }) => {
@@ -56,12 +56,15 @@ export const UploadDoc = ({ handleOpen, tab }) => {
                 return (
                     <div className="mt-3" key={i}>
                         <label>{file.title}</label>
-                        <input
-                            type="file"
-                            name={file.as}
-                            onChange={(e) => updateValue(e.target.files[0], file.as)}
-                            className='w-full mt-2 p-2 border border-gray-400 rounded'
-                        />
+                        <div className='w-full flex items-center mt-2 p-2 border border-gray-400 rounded'>
+                            <input
+                                type="file"
+                                name={file.as}
+                                onChange={(e) => updateValue(e.target.files[0], file.as)}
+                                className=''
+                            />
+                            <p className="text-blue-500">{formData[file.as]?.name}</p>
+                        </div>
                     </div>
                 )
             } else {
