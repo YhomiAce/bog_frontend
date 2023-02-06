@@ -39,7 +39,7 @@ export default function Header() {
                         <ul className="flex xl:font-600 fw-600 fw-600 w-full justify-between">
                             <li><BsList className="xl:text-3xl text-2xl cursor-pointer transition hover:scale-110" onClick={() => setHomeMenu(true)} /></li>
                             <li><Link to="/shop">Products</Link></li>
-                            <li><Link to="/services">Find Service Partner</Link></li>
+                            <li><Link to="/services">Request for Service Provider</Link></li>
                         </ul>
                     </div>
                     <div className="w-4/12 flex justify-center">

@@ -58,7 +58,7 @@ export default function Settings() {
             </Tabs>
           </div>
           {
-            auth?.user.userType === "admin" || auth?.user.userType === "private_client" || auth?.user.userType === "corporate_client"? 
+            auth?.user?.userType === "admin" || auth?.user?.userType === "private_client" || auth?.user?.userType === "corporate_client"? 
             ""
             :
             <div>
