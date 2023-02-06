@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
-import { BsCheck2Circle, BsCheckCircle } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import Spinner from '../../../../layouts/Spinner';
 import ActionFeedBack from '../Modals/ActionFeedBack';
