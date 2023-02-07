@@ -6,7 +6,7 @@ import { GrBlog, GrUserWorker } from "react-icons/gr";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Adminlogout } from '../../../redux/actions/authAction';
 import { MdEngineering, MdOutlineEmail, MdOutlineReviews } from "react-icons/md";
 import { VscHistory } from "react-icons/vsc";
@@ -16,6 +16,8 @@ import { HiOutlineLogout } from "react-icons/hi";
 const AdminSidebar = () => {
     const dispatch = useDispatch();
     const [showSideBar, setShowSideBar] = useState(true);
+
+    const user = useSelector((state) => state.auth.user)
 
     useEffect(() => {
 
@@ -99,174 +101,204 @@ const AdminSidebar = () => {
                             <BsFillGrid1X2Fill className="text-lg" />
                             <p className="pl-3"> Dashboard</p>
                         </NavLink>
-                        <div
-                            className="w-full items-center pl-2 py-2 fw-600 my-2"
-                            onClick={unShow}
-                        >
-                            <div className="flex" onClick={e => e.stopPropagation()}>
-                                <FiUsers className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => { setUserDrop(!userDrop); setProjectDrop(false); setProductDrop(false); setOrderDrop(false); setSettingsDrop(false) }}>
-                                    <p className="pl-3 pr-5">Users</p>
-                                    <BsFillCaretDownFill className="text-black" />
+                        {
+                             user?.level === 1?
+                             <div
+                                className="w-full items-center pl-2 py-2 fw-600 my-2"
+                                onClick={unShow}
+                            >
+                                <div className="flex" onClick={e => e.stopPropagation()}>
+                                    <FiUsers className="text-xl" />
+                                    <div className="flex items-center cursor-pointer" onClick={() => { setUserDrop(!userDrop); setProjectDrop(false); setProductDrop(false); setOrderDrop(false); setSettingsDrop(false) }}>
+                                        <p className="pl-3 pr-5">Users</p>
+                                        <BsFillCaretDownFill className="text-black" />
+                                    </div>
                                 </div>
+                                {userDrop && (
+                                    <div className="lg:pl-8 pl-4 fs-400 pt-2" onClick={e => e.stopPropagation()}>
+                                        <NavLink
+                                            to="client"
+                                            style={({ isActive }) => (isActive ? activeStyles : undefined)}
+                                            onClick={unShow}
+                                        >
+                                            <p className="py-1">Clients</p>
+                                        </NavLink>
+                                        <NavLink
+                                            to="productpartner"
+                                            style={({ isActive }) => (isActive ? activeStyles : undefined)}
+                                            onClick={unShow}
+                                        >
+                                            <p className="py-2">Product Partners</p>
+                                        </NavLink>
+                                        <NavLink
+                                            to="servicepartner"
+                                            className=""
+                                            style={({ isActive }) => (isActive ? activeStyles : undefined)}
+                                            onClick={unShow}
+                                        >
+                                            <p className="py-1 pb-2">Service Partners</p>
+                                        </NavLink>
+                                        <NavLink
+                                            to="sub-admin"
+                                            className=""
+                                            style={({ isActive }) => (isActive ? activeStyles : undefined)}
+                                            onClick={unShow}
+                                        >
+                                            <p className="py-1">Sub Admins</p>
+                                        </NavLink>
+                                    </div>
+                                )}
                             </div>
-                            {userDrop && (
-                                <div className="lg:pl-8 pl-4 fs-400 pt-2" onClick={e => e.stopPropagation()}>
-                                    <NavLink
-                                        to="client"
-                                        style={({ isActive }) => (isActive ? activeStyles : undefined)}
-                                        onClick={unShow}
-                                    >
-                                        <p className="py-1">Clients</p>
-                                    </NavLink>
-                                    <NavLink
-                                        to="productpartner"
-                                        style={({ isActive }) => (isActive ? activeStyles : undefined)}
-                                        onClick={unShow}
-                                    >
-                                        <p className="py-2">Product Partners</p>
-                                    </NavLink>
-                                    <NavLink
-                                        to="servicepartner"
-                                        className=""
-                                        style={({ isActive }) => (isActive ? activeStyles : undefined)}
-                                        onClick={unShow}
-                                    >
-                                        <p className="py-1 pb-2">Service Partners</p>
-                                    </NavLink>
-                                    <NavLink
-                                        to="sub-admin"
-                                        className=""
-                                        style={({ isActive }) => (isActive ? activeStyles : undefined)}
-                                        onClick={unShow}
-                                    >
-                                        <p className="py-1">Sub Admins</p>
-                                    </NavLink>
+                            :
+                            ''
+                        }
+                        {
+                             user?.level === 1 || user?.level === 4 ?
+                            <div
+                                className="w-full items-center pl-2 py-2 fw-600 my-2"
+                                onClick={unShow}
+                            >
+                                <div className="flex" onClick={e => e.stopPropagation()}>
+                                    <BsReceiptCutoff className="text-xl" />
+                                    <div className="flex items-center cursor-pointer" onClick={() => { setProductDrop(!productDrop); setProjectDrop(false); setOrderDrop(false); setUserDrop(false); setSettingsDrop(false) }}>
+                                        <p className="pl-3 pr-5">Products</p>
+                                        <BsFillCaretDownFill className="text-black" />
+                                    </div>
                                 </div>
-                            )}
-                        </div>
-                        <div
-                            className="w-full items-center pl-2 py-2 fw-600 my-2"
-                            onClick={unShow}
-                        >
-                            <div className="flex" onClick={e => e.stopPropagation()}>
-                                <BsReceiptCutoff className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => { setProductDrop(!productDrop); setProjectDrop(false); setOrderDrop(false); setUserDrop(false); setSettingsDrop(false) }}>
-                                    <p className="pl-3 pr-5">Products</p>
-                                    <BsFillCaretDownFill className="text-black" />
-                                </div>
+                                {productDrop && (
+                                    <div className="lg:ml-9 ml-4 fs-400 pt-2">
+                                        <NavLink
+                                            to="productsadmin"
+                                        // style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                                        >
+                                            <p className="py-2">All Products</p>
+                                        </NavLink>
+                                        <NavLink
+                                            to="productscategory"
+                                        // style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                                        >
+                                            <p className="pt-2">Categories</p>
+                                        </NavLink>
+                                    </div>
+                                )}
                             </div>
-                            {productDrop && (
-                                <div className="lg:ml-9 ml-4 fs-400 pt-2">
-                                    <NavLink
-                                        to="productsadmin"
-                                    // style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                                    >
-                                        <p className="py-2">All Products</p>
-                                    </NavLink>
-                                    <NavLink
-                                        to="productscategory"
-                                    // style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                                    >
-                                        <p className="pt-2">Categories</p>
-                                    </NavLink>
+                            :
+                            ''
+                        }
+                        {
+                             user?.level === 1 || user?.level === 4 ?
+                            <div
+                                className="w-full items-center pl-2 py-2 fw-600 my-2"
+                                onClick={unShow}
+                            >
+                                <div className="flex" onClick={e => e.stopPropagation()}>
+                                    <BsBag className="text-xl" />
+                                    <div className="flex items-center cursor-pointer" onClick={() => { setOrderDrop(!orderDrop); setProjectDrop(false); setProductDrop(false); setUserDrop(false); setSettingsDrop(false) }}>
+                                        <p className="pl-3 pr-5">Orders</p>
+                                        <BsFillCaretDownFill className="text-black" />
+                                    </div>
                                 </div>
-                            )}
-                        </div>
-                        <div
+                                {orderDrop && (
+                                    <div className="lg:ml-9 ml-4 fs-400 pt-2">
+                                        <NavLink
+                                            to="ordersadmin"
+                                        // style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                                        >
+                                            <p className="py-2">All Orders</p>
+                                        </NavLink>
 
-                            className="w-full items-center pl-2 py-2 fw-600 my-2"
-                            onClick={unShow}
-                        >
-                            <div className="flex" onClick={e => e.stopPropagation()}>
-                                <BsBag className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => { setOrderDrop(!orderDrop); setProjectDrop(false); setProductDrop(false); setUserDrop(false); setSettingsDrop(false) }}>
-                                    <p className="pl-3 pr-5">Orders</p>
-                                    <BsFillCaretDownFill className="text-black" />
-                                </div>
+                                    </div>
+                                )}
                             </div>
-                            {orderDrop && (
-                                <div className="lg:ml-9 ml-4 fs-400 pt-2">
-                                    <NavLink
-                                        to="ordersadmin"
-                                    // style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                                    >
-                                        <p className="py-2">All Orders</p>
-                                    </NavLink>
-
+                            :
+                            ''
+                        }
+                        {
+                            user?.level === 1 || user?.level === 5 ?
+                            <div
+                                className="w-full items-center pl-2 py-2 fw-600 my-2"
+                                onClick={unShow}
+                            >
+                                <div className="flex" onClick={e => e.stopPropagation()}>
+                                    <GrUserWorker className="text-xl" />
+                                    <div className="flex items-center cursor-pointer" onClick={() => { setProjectDrop(!projectDrop); setProductDrop(false); setOrderDrop(false); setUserDrop(false); setSettingsDrop(false) }}>
+                                        <p className="pl-3 pr-5">Projects</p>
+                                        <BsFillCaretDownFill className="text-black" />
+                                    </div>
                                 </div>
-                            )}
-                        </div>
-                        <div
+                                {projectDrop && (
+                                    <div className="lg:ml-9 ml-4 fs-400 pt-2">
+                                        <NavLink
+                                            to="projectsadmin"
+                                            style={({ isActive }) => (isActive ? activeStyles : undefined)}
+                                        >
+                                            <p className="py-2">All Projects</p>
+                                        </NavLink>
+                                        <NavLink
+                                            to="projectrequest"
+                                            style={({ isActive }) => (isActive ? activeStyles : undefined)}
+                                        >
+                                            <p className="py-2">Project Requests</p>
+                                        </NavLink>
 
-                            className="w-full items-center pl-2 py-2 fw-600 my-2"
-                            onClick={unShow}
-                        >
-                            <div className="flex" onClick={e => e.stopPropagation()}>
-                                <GrUserWorker className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => { setProjectDrop(!projectDrop); setProductDrop(false); setOrderDrop(false); setUserDrop(false); setSettingsDrop(false) }}>
-                                    <p className="pl-3 pr-5">Projects</p>
-                                    <BsFillCaretDownFill className="text-black" />
-                                </div>
+                                    </div>
+                                )}
                             </div>
-                            {projectDrop && (
-                                <div className="lg:ml-9 ml-4 fs-400 pt-2">
-                                    <NavLink
-                                        to="projectsadmin"
-                                        style={({ isActive }) => (isActive ? activeStyles : undefined)}
-                                    >
-                                        <p className="py-2">All Projects</p>
-                                    </NavLink>
-                                    <NavLink
-                                        to="projectrequest"
-                                        style={({ isActive }) => (isActive ? activeStyles : undefined)}
-                                    >
-                                        <p className="py-2">Project Requests</p>
-                                    </NavLink>
+                            :
+                            ''
+                        }
+                        {
+                            user?.level === 1 || user?.level === 5 ?
+                            <div
+                                className="w-full items-center pl-2 py-2 fw-600 my-2"
+                                onClick={unShow}
+                            >
+                                <div className="flex" onClick={e => e.stopPropagation()}>
+                                    <MdEngineering className="text-xl" />
+                                    <div className="flex items-center cursor-pointer" onClick={() => { setServiceDrop(!serviceDrop); setOrderDrop(false); setProjectDrop(false); setProductDrop(false); setUserDrop(false); setSettingsDrop(false) }}>
+                                        <p className="pl-3 pr-5">Services</p>
+                                        <BsFillCaretDownFill className="text-black" />
+                                    </div>
+                                </div>
+                                {serviceDrop && (
+                                    <div className="lg:ml-9 ml-4 fs-400 pt-2">
+                                        <NavLink
+                                            to="service-category"
+                                            style={({ isActive }) => (isActive ? activeStyles : undefined)}
+                                        >
+                                            <p className="py-2">Category</p>
+                                        </NavLink>
+                                        <NavLink
+                                            to="servicecategory"
+                                            style={({ isActive }) => (isActive ? activeStyles : undefined)}
+                                        >
+                                            <p className="py-2">Providers</p>
+                                        </NavLink>
 
-                                </div>
-                            )}
-                        </div>
-                        <div
-                            className="w-full items-center pl-2 py-2 fw-600 my-2"
-                            onClick={unShow}
-                        >
-                            <div className="flex" onClick={e => e.stopPropagation()}>
-                                <MdEngineering className="text-xl" />
-                                <div className="flex items-center cursor-pointer" onClick={() => { setServiceDrop(!serviceDrop); setOrderDrop(false); setProjectDrop(false); setProductDrop(false); setUserDrop(false); setSettingsDrop(false) }}>
-                                    <p className="pl-3 pr-5">Services</p>
-                                    <BsFillCaretDownFill className="text-black" />
-                                </div>
+                                    </div>
+                                )}
                             </div>
-                            {serviceDrop && (
-                                <div className="lg:ml-9 ml-4 fs-400 pt-2">
-                                    <NavLink
-                                        to="service-category"
-                                        style={({ isActive }) => (isActive ? activeStyles : undefined)}
-                                    >
-                                        <p className="py-2">Category</p>
-                                    </NavLink>
-                                    <NavLink
-                                        to="servicecategory"
-                                        style={({ isActive }) => (isActive ? activeStyles : undefined)}
-                                    >
-                                        <p className="py-2">Providers</p>
-                                    </NavLink>
+                            :
+                            ''
+                        }
 
-                                </div>
-                            )}
-                        </div>
-
-                        <NavLink
-                            to="blog"
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
-                            onClick={unShow}
-                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                        >
-                            <GrBlog className="text-lg" />
-                            <p className="pl-3">Blog</p>
-                        </NavLink>
-                        <NavLink
+                        {
+                           user?.level === 1 || user?.level === 2 ?
+                            <NavLink
+                                to="blog"
+                                className="w-full flex items-center pl-2 py-2 fw-600 my-2"
+                                onClick={unShow}
+                                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            >
+                                <GrBlog className="text-lg" />
+                                <p className="pl-3">Blog</p>
+                            </NavLink>
+                            :
+                            ''
+                        }
+                       {
+                        user?.level === 1?
+                         <NavLink
                             to="review"
                             className="w-full flex items-center pl-2 py-2 fw-600 my-2"
                             onClick={unShow}
@@ -275,77 +307,118 @@ const AdminSidebar = () => {
                             <MdOutlineReviews className="text-lg" />
                             <p className="pl-3">Testimonials</p>
                         </NavLink>
-                        <NavLink
-                            to="announcement"
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
-                            onClick={unShow}
-                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                        >
-                            <MdOutlineEmail className="text-lg" />
-                            <p className="pl-3">Messages</p>
-                        </NavLink>
-                        <NavLink
-                            to="admin-meetings"
-                            onClick={unShow}
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
-                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                        >
-                            <BsCameraVideo className="text-xl " />
-                            <p className="pl-3">Meetings</p>
-                        </NavLink>
-                        <NavLink
-                            to="notification"
-                            onClick={unShow}
-                            className="w-full flex items-center pl-2 py-2 fw-600 my-2"
-                            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                        >
-                            <BsBell className="text-xl" />
-                            <p className="pl-3">Notification</p>
+                        :
+                        ''
+                       }
+                        {
+                            user?.level === 1?
+                            <NavLink
+                                to="announcement"
+                                className="w-full flex items-center pl-2 py-2 fw-600 my-2"
+                                onClick={unShow}
+                                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            >
+                                <MdOutlineEmail className="text-lg" />
+                                <p className="pl-3">Messages</p>
+                            </NavLink>
+                            :
+                            ''
+                        }
+                        {
+                            user?.level === 1 || user?.level === 5 ?
+                            <NavLink
+                                to="admin-meetings"
+                                onClick={unShow}
+                                className="w-full flex items-center pl-2 py-2 fw-600 my-2"
+                                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            >
+                                <BsCameraVideo className="text-xl " />
+                                <p className="pl-3">Meetings</p>
+                            </NavLink>
+                            :
+                            ''
+                        }
+                        {
+                            user?.level === 1 || user?.level === 4 || user?.level === 5 ?
+                            <NavLink
+                                to="notification"
+                                onClick={unShow}
+                                className="w-full flex items-center pl-2 py-2 fw-600 my-2"
+                                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            >
+                                <BsBell className="text-xl" />
+                                <p className="pl-3">Notification</p>
 
-                        </NavLink>
+                            </NavLink>
+                            :
+                            ''
+                        }
+                        {
+                            user?.level === 1 || user?.level === 3 ?
+                            <NavLink
+                                to="transactions"
+                                onClick={unShow}
+                                className="w-full flex items-center pl-2 py-2 fw-600 my-2"
+                                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                            >
+                                <VscHistory className="text-xl" />
+                                <p className="pl-3">Transactions</p>
+                            </NavLink>
+                            :
+                            ''
+                        }
+                    </div>
+                    {
+                        user?.level === 1?
+                        <div className="w-full items-center fw-600">
+                            <div className="w-full py-2 pl-2 fw-600 cursor-pointer flex items-center my-2 rounded-lg" onClick={() => { setSettingsDrop(!settingsDrop); setUserDrop(false); setProjectDrop(false); setProductDrop(false); setOrderDrop(false); }}>
+                                <BsGear className="text-lg" />
+                                <p className="pl-3 pr-5">Settings</p>
+                                <BsFillCaretDownFill className="text-black" />
+                            </div>
+                            <div>
+                                {settingsDrop && (
+                                    <div className="lg:pl-8 pl-4 fs-400 pt-1" onClick={e => e.stopPropagation()}>
+                                        <NavLink
+                                            to="settings"
+                                            onClick={unShow}
+                                        >
+                                            <p className="pb-2">Profile Settings</p>
+                                        </NavLink>
+                                        <NavLink
+                                            to="smart-calc"
+                                            onClick={unShow}
+                                        >
+                                            <p className="py-1">Smart Calculator</p>
+                                        </NavLink>
+                                        <NavLink
+                                            to="admin-sub"
+                                            onClick={unShow}
+                                        >
+                                            <p className="pt-2">Subscription Plan</p>
+                                        </NavLink>
+                                    </div>
+                                )
+                                }
+                            </div>
+                        </div>
+                        :
+                        ''
+                    }
+                    {
+                        user?.level === 2 || user?.level === 3 || user?.level === 4?
                         <NavLink
-                            to="transactions"
+                            to="settings"
                             onClick={unShow}
                             className="w-full flex items-center pl-2 py-2 fw-600 my-2"
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
                         >
-                            <VscHistory className="text-xl" />
-                            <p className="pl-3">Transactions</p>
+                            <BsGear className="text-xl" />
+                            <p className="pl-3">Profile</p>
                         </NavLink>
-                    </div>
-                    <div className="w-full items-center fw-600">
-                        <div className="w-full py-2 pl-2 fw-600 cursor-pointer flex items-center my-2 rounded-lg" onClick={() => { setSettingsDrop(!settingsDrop); setUserDrop(false); setProjectDrop(false); setProductDrop(false); setOrderDrop(false); }}>
-                            <BsGear className="text-lg" />
-                            <p className="pl-3 pr-5">Settings</p>
-                            <BsFillCaretDownFill className="text-black" />
-                        </div>
-                        <div>
-                            {settingsDrop && (
-                                <div className="lg:pl-8 pl-4 fs-400 pt-1" onClick={e => e.stopPropagation()}>
-                                    <NavLink
-                                        to="settings"
-                                        onClick={unShow}
-                                    >
-                                        <p className="pb-2">Profile Settings</p>
-                                    </NavLink>
-                                    <NavLink
-                                        to="smart-calc"
-                                        onClick={unShow}
-                                    >
-                                        <p className="py-1">Smart Calculator</p>
-                                    </NavLink>
-                                    <NavLink
-                                        to="admin-sub"
-                                        onClick={unShow}
-                                    >
-                                        <p className="pt-2">Subscription Plan</p>
-                                    </NavLink>
-                                </div>
-                            )
-                            }
-                        </div>
-                    </div>
-
+                        :
+                        ''
+                    }
                     <div>
                         <Link>
                             <div

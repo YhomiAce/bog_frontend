@@ -99,10 +99,10 @@ const AddAdminModal = ({ CloseModal }) => {
                             onBlur={formik.handleBlur}
                         >
                             <option>Select Admin Role</option>
-                            <option value="1">Finance Admin</option>
-                            <option value="2">Product Admin</option>
-                            <option value="3">Project Admin</option>
-                            <option value="4">Article Admin</option>
+                            <option value="2">Article Admin</option>
+                            <option value="3">Finance Admin</option>
+                            <option value="4">Product Admin</option>
+                            <option value="5">Project Admin</option>
                         </select>
                         {
                             formik.touched.level && formik.errors.level ? <p className='text-red-500'>{formik.errors.level}</p> : null
