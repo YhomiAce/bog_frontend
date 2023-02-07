@@ -111,15 +111,17 @@ if (status) {
   const formatLevel = (level) => {
     switch (level) {
         case 1:
-            return <p className='bg-blue-100 px-4 py-1 rounded-lg w-40 fw-500'>Finance Admin</p>
+          return <p className='bg-red-100 px-4 py-1 rounded-lg w-40 fw-500'>Super Admin</p>
         case 2:
-          return <p className='bg-orange-100 px-4 py-1 rounded-lg w-40 fw-500'>Product Admin</p>
+            return <p className='bg-blue-100 px-4 py-1 rounded-lg w-40 fw-500'>Article Admin</p>
         case 3:
-          return <p className='bg-green-100 px-4 py-1 rounded-lg w-40 fw-500'>Project Admin</p>
+          return <p className='bg-orange-100 px-4 py-1 rounded-lg w-40 fw-500'>Finance Admin</p>
         case 4:
-          return <p className='bg-purple-100 px-4 py-1 rounded-lg w-40 fw-500'>Article Admin</p>
+          return <p className='bg-green-100 px-4 py-1 rounded-lg w-40 fw-500'>Product Admin</p>
+        case 5:
+          return <p className='bg-purple-100 px-4 py-1 rounded-lg w-40 fw-500'>Project Admin</p>
 
-        default: return <p className='bg-gray-100 px-4 py-1 rounded-lg w-40 fw-500'>Super Admin</p>
+        default: return <p className='bg-gray-100 px-4 py-1 rounded-lg w-40 fw-500'>Waiting...</p>
     }
 
 }
