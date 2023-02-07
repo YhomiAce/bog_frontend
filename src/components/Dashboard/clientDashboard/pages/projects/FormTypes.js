@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const FormTypes = ({data}) => {
-  
+
 
     let formType = null;
 
@@ -66,6 +66,10 @@ export const LsForm = ({data}) => {
     )
 }
 export const GiForm = ({data}) => {
+    const openDoc = (url) => {
+        console.log(url)
+        window.open(url, "_blank")
+    }
     const formatProjectType = (type) => {
         switch (data.projectTypes) {
             case "land_survey":
@@ -140,7 +144,7 @@ export const GiForm = ({data}) => {
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Picture of Land Property</p>
                     <div>
-                        <img src="" alt="project" className='w-32 h-32 border rounded' />
+                        <p onClick={() => openDoc(data?.projectData?.propertyPicture)} alt="project" className='w-32 h-32 border rounded'>Preview document</p>
                     </div>
                 </div>
             </div>
@@ -148,6 +152,10 @@ export const GiForm = ({data}) => {
     )
 }
 export const CdForm = ({data}) => {
+    const openDoc = (url) => {
+        console.log(url)
+        window.open(url, "_blank")
+    }
     const formatProjectType = (type) => {
         switch (data.projectTypes) {
             case "land_survey":
@@ -189,7 +197,7 @@ export const CdForm = ({data}) => {
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Survey Plan</p>
                     <div>
-                        <img src={data?.projectData?.surveyPlan} alt="project" className='w-28 h-28 border pl-4 rounded border rounded-lg' />
+                        <p onClick={() => openDoc(data?.projectData?.surveyPlan)} alt="project" className='w-28 h-28 border pl-4 rounded border rounded-lg'>Preview document</p>
                     </div>
                 </div>
             </div>
@@ -197,6 +205,10 @@ export const CdForm = ({data}) => {
     )
 }
 export const BaForm = ({data}) => {
+    const openDoc = (url) => {
+        console.log(url)
+        window.open(url, "_blank")
+    }
     const formatProjectType = (type) => {
         switch (data.projectTypes) {
             case "land_survey":
@@ -234,79 +246,79 @@ export const BaForm = ({data}) => {
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Survey Plan</p>
                     <div>
-                        <img src={data?.projectData?.surveyPlan}  alt="project" className='w-28 h-28 border rounded pl-4' />
+                        <p onClick={() => openDoc(data?.projectData?.surveyPlan)}  alt="project" className='w-56 h-8 border border-blue-500 cursor-pointer rounded text-center'>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Architectural Plan</p>
                     <div>
-                        <img src={data?.projectData?.surveyPlan}  alt="project" className='w-28 h-28 border rounded pl-4' />
+                        <p onClick={() => openDoc(data?.projectData?.architecturalPlan)}  alt="project" className='w-56 h-8 border border-blue-500 cursor-pointer rounded text-center'>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Structural Plan</p>
                     <div>
-                        <img src={data?.projectData?.surveyPlan}  alt="project" className='w-28 h-28 border rounded pl-4' />
+                        <p onClick={() => openDoc(data?.projectData?.structuralPlan)}  alt="project" className='w-56 h-8 border border-blue-500 cursor-pointer rounded text-center'>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Mechanical Plan</p>
                     <div>
-                        <img src={data?.projectData?.surveyPlan}  alt="project" className='w-28 h-28 border rounded pl-4' />
+                        <p onClick={() => openDoc(data?.projectData?.mechanicalPlan)}  alt="project" className='w-56 h-8 border border-blue-500 cursor-pointer rounded text-center'>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Electrical Plan</p>
                     <div>
-                        <img src={data?.projectData?.surveyPlan}  alt="project" className='w-28 h-28 border rounded pl-4' />
+                        <p onClick={() => openDoc(data?.projectData?.electricalPlan)}  alt="project" className='w-56 h-8 border border-blue-500 cursor-pointer rounded text-center'>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Soil Test Report</p>
                     <div>
-                        <img src={data?.projectData?.surveyPlan}  alt="project" className='w-28 h-28 border rounded pl-4' />
+                        <p onClick={() => openDoc(data?.projectData?.surveyPlan)}  alt="project" className='w-56 h-8 border border-blue-500 cursor-pointer rounded text-center'>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">C of O/Deed of Assignment/R of O</p>
                     <div>
-                        <img src={data?.projectData?.surveyPlan}  alt="project" className='w-28 h-28 border rounded pl-4' />
+                        <p onClick={() => openDoc(data?.projectData?.surveyPlan)}  alt="project" className='w-56 h-8 border border-blue-500 cursor-pointer rounded text-center'>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Site plan</p>
                     <div>
-                        <img src={data?.projectData?.surveyPlan}  alt="project" className='w-28 h-28 border rounded pl-4' />
+                        <p onClick={() => openDoc(data?.projectData?.surveyPlan)}  alt="project" className='w-56 h-8 border border-blue-500 cursor-pointer rounded text-center'>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Site Analysis Report</p>
                     <div>
-                        <img src={data?.projectData?.surveyPlan}  alt="project" className='w-28 h-28 border rounded pl-4' />
+                        <p onClick={() => openDoc(data?.projectData?.surveyPlan)}  alt="project" className='w-56 h-8 border border-blue-500 cursor-pointer rounded text-center'>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500"> Environmental Impact Assessment report</p>
                     <div>
-                        <img src={data?.projectData?.surveyPlan}  alt="project" className='w-28 h-28 border rounded pl-4' />
+                        <p onClick={() => openDoc(data?.projectData?.surveyPlan)}  alt="project" className='w-56 h-8 border border-blue-500 cursor-pointer rounded text-center'>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Tax Clearance Certificate</p>
                     <div>
-                        <img src={data?.projectData?.surveyPlan}  alt="project" className='w-28 h-28 border rounded pl-4' />
+                        <p onClick={() => openDoc(data?.projectData?.surveyPlan)}  alt="project" className='w-56 h-8 border border-blue-500 cursor-pointer rounded text-center'>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">  Letter of Supervision from COREN Registered Engineer</p>
                     <div>
-                        <img src={data?.projectData?.surveyPlan}  alt="project" className='w-28 h-28 border rounded pl-4' />
+                        <p onClick={() => openDoc(data?.projectData?.surveyPlan)}  alt="project" className='w-56 h-8 border border-blue-500 cursor-pointer rounded text-center'>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500"> Stamped and Sealed Copy of Structural Calculation Sheet</p>
                     <div>
-                        <img src={data?.projectData?.structuralCalculationSheet}  alt="project" className='w-28 h-28 border rounded pl-4' />
+                        <p onClick={() => openDoc(data?.projectData?.structuralCalculationSheet)}  alt="project" className='w-56 h-8 border border-blue-500 cursor-pointer rounded text-center'>Preview document</p>
                     </div>
                 </div>
             </div>
@@ -314,6 +326,10 @@ export const BaForm = ({data}) => {
     )
 }
 export const BcForm = ({data}) => {
+    const openDoc = (url) => {
+        console.log(url)
+        window.open(url, "_blank")
+    }
     const formatProjectType = (type) => {
         switch (data.projectTypes) {
             case "land_survey":
@@ -359,31 +375,31 @@ export const BcForm = ({data}) => {
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Survey Plan</p>
                     <div>
-                        <img src="" alt="project" className='w-28 h-28 border pl-4 rounded' />
+                        <p onClick={() => openDoc(data?.projectData?.surveyPlan)}>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Architectural Plan</p>
                     <div>
-                        <img src="" alt="project" className='w-28 h-28 border pl-4 rounded' />
+                        <p onClick={() => openDoc(data?.projectData?.architecturalPlan)}>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Structural Plan</p>
                     <div>
-                        <img src="" alt="project" className='w-28 h-28 border pl-4 rounded' />
+                        <p onClick={() => openDoc(data?.projectData?.structuralPlan)}>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
                     <p className="w-3/12 fw-500">Mechanical Plan</p>
                     <div>
-                        <img src="" alt="project" className='w-28 h-28 border pl-4 rounded' />
+                        <p onClick={() => openDoc(data?.projectData?.mechanicalPlan)}>Preview document</p>
                     </div>
                 </div>
                 <div className="flex border-b py-3">
-                    <p className="w-3/12 fw-500">Electrical Plan</p>
+                    <p className="w-3/12 fw-500">Electrical Plan </p>
                     <div>
-                        <img src="" alt="project" className='w-28 h-28 border pl-4 rounded' />
+                        <p onClick={() => openDoc(data?.projectData?.electricalPlan)}>Preview document</p>
                     </div>
                 </div>
             </div>

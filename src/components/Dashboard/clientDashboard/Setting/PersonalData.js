@@ -1,5 +1,5 @@
 import { Avatar } from '@material-tailwind/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiCheckCircle } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { updateAccount, SuccessAlert } from '../../../../services/endpoint';
@@ -14,11 +14,21 @@ const PersonalData = () => {
     const [loading, setLoading] = useState(false);
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useState({
-        fname: user?.fname ? user?.fname : "",
-        lname: user?.lname ? user?.lname : "",
-        phone: user?.phone ? user?.phone : "",
+        fname: "",
+        lname: "",
+        phone: "",
     });
     const { fname, lname, phone } = userData;
+
+    useEffect(() => {
+        if(user){
+            setUserData({
+                fname: user?.fname ? user?.fname : "",
+                lname: user?.lname ? user?.lname : "",
+                phone: user?.phone ? user?.phone : "",
+            })
+        }
+    },[user]);
 
     const handleFileChange = (e) => {
         console.log(e.target.files[0]);
@@ -105,7 +115,7 @@ const PersonalData = () => {
                                 className="w-10/12 lg:w-full placeholder-black py-2 px-3 rounded-lg bg-light border border-gray-600"
                                 name="lname"
                                 id="lname"
-                                value={user?.lname ? user?.lname : lname}
+                                value={lname}
                                 onChange={handleUserDetailsChange}
                             />
                         </div>
@@ -133,23 +143,6 @@ const PersonalData = () => {
                             />
                         </div>
                     </div>
-                    {/* <div className="lg:grid-2 justify-between lg:mt-4">
-                        <div className="mt-3">
-                            <label className="block mb-1 fw-500">Date of Birth</label>
-                            <input
-                                type="date"
-                                className="w-10/12 lg:w-full py-2 px-3 rounded-lg bg-light border border-gray-600"
-                            />
-                        </div>
-                        <div className="mt-3">
-                            <label className="block mb-1 fw-500">Gender</label>
-                            <select className="w-10/12 lg:w-full py-2 px-3 rounded-lg bg-light border border-gray-600">
-                                <option></option>
-                                <option>Male</option>
-                                <option>Female</option>
-                            </select>
-                        </div>
-                    </div> */}
                     <div className="mt-10 lg:flex justify-between items-center">
                         {
                             loading ? <Spinner /> :
