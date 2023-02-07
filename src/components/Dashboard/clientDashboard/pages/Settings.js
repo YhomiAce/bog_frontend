@@ -66,9 +66,12 @@ export default function Settings() {
                 <p className="fs-700 fw-600">Your Account Status</p>
                 <div className="flex py-6">
                   <p className="px-4 py-2 bg-green-500 fw-600 fs-400 text-white rounded-lg">Email Verified</p>
-                  <p className="px-4 py-2 bg-orange-500 fw-600 fs-400 text-white rounded-lg ml-5">KYC Pending</p>
+                  <p className="px-4 py-2 bg-orange-500 fw-600 fs-400 text-white rounded-lg ml-5"> {auth?.user?.profile?.isVerified ? `KYC Point: ${auth?.user?.profile?.kycPoint}`: 'KYC Pending'} </p>
+                  <p className="px-4 py-2 bg-green-500 fw-600 fs-400 text-white rounded-lg">{auth?.user?.profile?.hasActiveSubscription ? `Active Subscription`: 'Subscribe to our plans'}</p>
                 </div>
               </div>
+              {
+                !auth?.user?.profile?.isVerified &&
               <div className="bg-white w-full py-6 lg:px-6 px-3 rounded-lg mt-6">
                 <p className="fs-700 fw-600">Identity Verification - KYC</p>
                 <p className="mt-4">To comply with regulation, participant will have to go through indentity verification.</p>
@@ -76,6 +79,7 @@ export default function Settings() {
                 <button className="btn-primary" onClick={() => {navigate("/dashboard/kyc")}}>Click to Proceed</button>
                 <p className="mt-7 text-red-600">* KYC verification required for verification badge</p>
               </div>
+              }
             </div>
           }
         </div>
