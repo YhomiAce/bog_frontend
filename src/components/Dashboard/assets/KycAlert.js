@@ -31,7 +31,10 @@ export const KycModal = () => {
     console.log(location)
     if(location.pathname === '/dashboard/kyc') {
       CloseModal()
-    }else{
+    }else if(location.pathname === '/dashboard/switch'){
+      CloseModal()
+    }
+    else{
       OpenModal()
     }
 
