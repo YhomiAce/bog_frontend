@@ -77,7 +77,7 @@ function OrderReqest() {
                       </thead>
                       <tbody>
                         {
-                          orders.length > 0 ? orders.map((item, index) => (
+                          orders?.length > 0 ? orders.map((item, index) => (
                             <RequestItem key={item.id} item={item} index={index} />
                           )) : null
                         }
@@ -97,7 +97,7 @@ function OrderReqest() {
                       </thead>
                       <tbody>
                         {
-                          orders.length > 0 ? orders.filter(order => order.status === "awaiting_shipment").map((item, index) => (
+                          orders?.length > 0 ? orders.filter(order => order.status === "awaiting_shipment").map((item, index) => (
                             <RequestItem key={item.id} item={item} index={index} />
                           )) : null
                         }
@@ -135,7 +135,7 @@ function OrderReqest() {
                       </thead>
                       <tbody>
                         {
-                          orders.length > 0 ? orders.filter(order => order.status === "cancelled").map((item, index) => (
+                          orders?.length > 0 ? orders.filter(order => order.status === "cancelled").map((item, index) => (
                             <RequestItem key={item.id} item={item} index={index} />
                           )) : null
                         }

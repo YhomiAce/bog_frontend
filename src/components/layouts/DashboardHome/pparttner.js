@@ -1,16 +1,37 @@
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { useSelector } from "react-redux";
-import {FaCheck, FaRegEye, FaTimes} from "react-icons/fa";
-import {BsCheckSquare,BsCheckCircle} from 'react-icons/bs';
+import { useDispatch, useSelector } from "react-redux";
 import {  Breadcrumbs, CardBody, Progress } from "@material-tailwind/react";
-import ChartLine from "../assets/UsersChart";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { getProductOwnerOrders } from "../../../redux/actions/OrderAction";
+import { getUserProducts } from "../../../redux/actions/ProductAction";
+import dayjs from "dayjs";
+import { formatNumber } from "../../../services/helper";
+import { ProductAnalysis } from "../assets/ProductAnalysis";
+import { OrderAnalysis } from "../assets/OrderAnalysis";
 // import ProjectChart from "../assets/ProjectChart";
 
 export default function ProductDashboard() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getUserProducts())
+    dispatch(getProductOwnerOrders())
+  }, [dispatch])
   const user = useSelector((state) => state.auth.user);
+  const product = useSelector((state) => state.products.userProducts);
+  const orders = useSelector((state) => state.orders.orderRequests);
+
+  const storeProducts = product.filter(where => where.showInShop === true)
+  const completedOrders = orders.filter(where => where.order.status === "completed")
+  const ongoingOrders = orders.filter(where => where.order.status === "ongoing")
+  const pendingOrders = orders.filter(where => where.order.status === "pending")
+  const approvedProduct = product.filter(where => where.status === "approved")
+  const reviewProduct = product.filter(where => where.status === "in_review")
+  const disapprovedProduct = product.filter(where => where.status === "disapproved")
+
+  const total = orders.reduce((sum, r) => sum + r.amount, 0)
   
   return (
     <div className="min-h-screen">
@@ -42,10 +63,10 @@ export default function ProductDashboard() {
         <div className="mt-3">
           <div className="lg:grid-4 justify-between fs-500 fw-600">
             <div className="bg-white px-4 py-3 rounded flex justify-between items-center shades">
-              <Link to="order-request" className="flex justify-between items-center w-full">
+              <Link to="products" className="flex justify-between items-center w-full">
                 <div>
-                  <p className="text-xxl fw-600 pb-2 text-xl">180 </p>
-                  <p className="text-gray-600">Total Request</p>
+                  <p className="text-xxl fw-600 pb-2 text-xl">{product? product.length : 0}</p>
+                  <p className="text-gray-600">Total Producs</p>
                 </div>
                 <div className="">
                   <img
@@ -56,11 +77,26 @@ export default function ProductDashboard() {
                 </div>
               </Link>
             </div>
+            <div className="bg-white  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
+              <Link to="products" className="flex justify-between items-center w-full">
+                <div>
+                  <p className="text-xxl fw-600 pb-2">{storeProducts? storeProducts.length : 0}</p>
+                  <p className="text-gray-600">Products in Store</p>
+                </div>
+                <div className="">
+                  <img
+                    src={require("../images/complete.png")}
+                    alt="ongoing"
+                    className=" left-2 relative w-20"
+                  />
+                </div>
+              </Link>
+            </div>
             <div className="bg-white mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="orders" className="flex justify-between items-center w-full">
                 <div>
-                  <p className="text-xxl pb-2 fw-600">23</p>
-                  <p className="text-gray-600">Pending Orders</p>
+                  <p className="text-xxl pb-2 fw-600">{orders? orders.length : 0}</p>
+                  <p className="text-gray-600">Order Request</p>
                 </div>
                 <div className="">
                   <img
@@ -74,29 +110,14 @@ export default function ProductDashboard() {
             <div className="bg-white  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="orders" className="flex justify-between items-center w-full">
                 <div>
-                  <p className="fw-600 text-xxl pb-2">25</p>
-                  <p className="text-gray-600">Active Deliveries</p>
+                  <p className="fw-600 text-xxl pb-2">{completedOrders? completedOrders.length : 0}</p>
+                  <p className="text-gray-600">Completed Deliveries</p>
                 </div>
                 <div className="relative">
                   <img
                     src={require("../images/deliver.png")}
                     alt="cart"
                     className=" relative w-16"
-                  />
-                </div>
-              </Link>
-            </div>
-            <div className="bg-white  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
-              <Link to="orders" className="flex justify-between items-center w-full">
-                <div>
-                  <p className="text-xxl fw-600 pb-2">12</p>
-                  <p className="text-gray-600">Completed Deliveries</p>
-                </div>
-                <div className="">
-                  <img
-                    src={require("../images/complete.png")}
-                    alt="ongoing"
-                    className=" left-2 relative w-20"
                   />
                 </div>
               </Link>
@@ -128,7 +149,7 @@ export default function ProductDashboard() {
                             Order ID
                           </th>
                           <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            Product Category
+                            Product Name
                           </th>
                           <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
                             Quantity
@@ -137,169 +158,44 @@ export default function ProductDashboard() {
                             Date
                           </th>
                           <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            Status
+                            Order Status
                           </th>
                           <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
-                            Actions
+                            Payment Status
                           </th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            1
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Granite-VAC-20E42 
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Granite
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            2
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            12/11/2022
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Pending
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            <div className="flex text-xl">
-                              <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
-                              <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
-                              <p><FaRegEye/></p>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            2
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Sand- DCL-20E42
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Sand
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            3
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            10/10/2022
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Cancelled
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            <div className="flex text-xl">
-                              <p><FaRegEye/></p>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            3
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Cement- PDL-18L40
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Cement
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            182 Bags of Cement
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            19/11/2022
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Delivered
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            <div className="flex text-xl">
-                              <p><FaRegEye/></p>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            4
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Sand- DCL-20E42
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Sand
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            2
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            17/10/2022
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Delivered
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            <div className="flex text-xl">
-                              <p><FaRegEye/></p>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            5
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Steel- XBL-12L88
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Steel
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            755 Kgs 
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            25/10/2022
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Delivered
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            <div className="flex text-xl">
-                              <p><FaRegEye/></p>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            6
-                          </th>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Cement- PDL-18L40
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Cement
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            50 bags
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            10/11/2022
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            Pending
-                          </td>
-                          <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                            <div className="flex text-xl">
-                              <p className="border border-gray-500 text-red-600 "><FaTimes/></p>
-                              <p className="border border-gray-500 text-green-600 mx-5"><FaCheck/></p>
-                              <p><FaRegEye/></p>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
+                      <tbody className="fw-400">
+                            {
+                                orders.length > 0 ? orders.slice(0, 6).map((item, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                {index + 1}                    
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                {item?.order.orderSlug}
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                {item?.product.name}
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                              {item?.quantity}
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                {dayjs(item?.createdAt).format('DD-MMM-YYYY')}
+                                            </td>
+                                            <td className="border-b text-blue-600 border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                {item?.order.status}
+                                            </td>
+                                            <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                {item?.status}
+                                            </td>
+                                        </tr>
+                                    )
+                                }) : <p className="text-primary text-center fw-500 mt-8">No Order Request Yet</p>
+                            }
+                        </tbody>
                     </table>
                   </div>
                 </CardBody>
@@ -308,73 +204,48 @@ export default function ProductDashboard() {
         </div>
         </div>
         {/* project analysis and ongoing project*/}
-        <div className="lg:grid-3 justify-between">
+        <div className="lg:grid-3 justify-between lg:mt-8">
           {/* overview */}
-          <div className="bg-white mt-6 rounded-lg px-4 py-6">
-            <p className="fw-600 fs-700">Overview</p>
-            <div className="mt-5 fs-400">
+          <div className="bg-white mt-6 rounded-lg ">
+            <p className="fw-600 fs-700 bg-primary rounded-t-lg text-white p-4">Overview</p>
+            <div className="mt-5 fs-400 px-4 py-6">
               <div className="mb-3">
                 <div className="flex justify-between">
-                  <p className="mb-2">Revenue</p>
-                  <p className="text-green-600">1,400</p>
+                  <p className="mb-2">Total Revenue</p>
+                  <p className="text-green-600 fw-600">NGN {formatNumber(total)}</p>
                 </div>
                 <Progress color="green" value="95"/>
               </div>
               <div className="mb-3">
                 <div className="flex justify-between">
                   <p className="mb-2">Expenses</p>
-                  <p className="text-red-600">1,100</p>
+                  <p className="text-red-600">NGN 0</p>
                 </div>
-                <Progress color="red" value="65"/>
+                <Progress color="red" value="0"/>
               </div>
               <div className="mb-3">
                 <div className="flex justify-between">
                   <p className="mb-2">Profit</p>
-                  <p className="text-green-600">300</p>
+                  <p className="text-green-600">NGN {formatNumber(total)}</p>
                 </div>
-                <Progress color="green" value="35"/>
+                <Progress color="green" value="95"/>
               </div>
             </div>
           </div>
           {/* request analysis */}
-          <div className="bg-white mt-6 rounded-lg px-4 py-6">
-            <div><p className="fw-600 fs-700">Request Analysis</p></div>
-            <div className="mt-4">
-              <ChartLine/>
+          <div className="bg-white mt-6 rounded-lg ">
+            <div><p className="fw-600 fs-700 bg-primary rounded-t-lg text-white p-4">Product Analysis</p></div>
+            <div className="mt-4 px-4 py-6">
+              <ProductAnalysis approvedProduct={approvedProduct} disapprovedProduct={disapprovedProduct} reviewProduct={reviewProduct}/>
             </div>
           </div>
           {/* ivoices */}
-          <div className="bg-white mt-6 rounded-lg px-4 py-6">
-            <div className="flex justify-between">
-              <p className="fw-600 fs-700">Invoices</p>
-              <p className="border border-gray-700 fs-500 cursor-pointer rounded-md px-3">New</p>
+          <div className="bg-white mt-6 rounded-lg ">
+            <div className="flex justify-between bg-primary rounded-t-lg text-white p-4">
+              <p className="fw-600 fs-700 ">Order Analysis</p>
             </div>
-            <div className="border-t border-b border-gray-400 py-4 mt-4">
-              <div className="grid-3 fs-400 justify-between">
-                <div>
-                  <div className="flex items-center"><p className="p-2 py-1 fw-600 circle bg-red-200 text-red-800">4</p><p className="text-red-600 pl-2">Overdue</p></div>
-                  <p className="fw-500 mt-1 fs-300">NGN 265,480</p>
-                </div>
-                <div>
-                  <div className="flex items-center"><p className="p-2 py-1 fw-600 circle bg-yellow-200 text-yellow-800">2</p><p className="text-yellow-600 pl-2">Unpaid</p></div>
-                  <p className="fw-500 mt-1 fs-300">NGN 265,480</p>
-                </div>
-                <div>
-                  <div className="flex items-center"><p className="p-2 py-1 fw-600 circle bg-blue-200 text-blue-800">5</p><p className="text-blue-600 pl-2">Draft</p></div>
-                  <p className="fw-500 mt-1 fs-300">NGN 265,480</p>
-                </div>
-              </div>
-            </div>
-            <div className="mt-4">
-              <p className="fw-600 fs-700 border-b border-gray-400 pb-2">Approved Requests</p>
-              <div className="flex justify-between fs-400 mt-3">
-                <div className="flex items-center">
-                  <BsCheckSquare className="bg-primary text-white"/><p className="pl-1">Chukka</p>
-                </div>
-                <div className="text-green-600 flex items-center">
-                  <BsCheckCircle/><p className="pl-1">Approved order</p>
-                </div>
-              </div>
+            <div className="px-4 py-6">
+              <OrderAnalysis ongoingOrders={ongoingOrders} completedOrders={completedOrders} pendingOrders={pendingOrders}/>
             </div>
           </div>
         </div>
