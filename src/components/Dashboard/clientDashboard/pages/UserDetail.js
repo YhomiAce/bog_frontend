@@ -161,6 +161,37 @@ export default function UserDetails() {
         }
     }
 
+    const unsuspendUser = async (userId) => {
+        try {
+            setLoading(true);
+            const authToken = localStorage.getItem("auth_token");
+            console.log(authToken);
+            const config = {
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                }
+            }
+            const url = `/admin/unsuspend-user`;
+            const body = {
+                userId
+            }
+            const response = await Axios.post(url, body, config);
+            console.log(response);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+    }
+
     const suspendUserACtion = (userId) => {
         Swal.fire({
             title: "Suspend User",
@@ -177,9 +208,28 @@ export default function UserDetails() {
                 Swal.fire({
                     title: 'Success',
                     text: 'User suspendend'
-                }).then(() => {
-                    navigate(-1);
-                })
+                });
+            }
+        });
+    }
+
+    const unsuspendUserACtion = (userId) => {
+        Swal.fire({
+            title: "UnSuspend User",
+            text: 'Do you want to unuspend this user?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#4BB543',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes ',
+            cancelButtonText: "Cancel",
+        }).then((result) => {
+            if (result.value) {
+                unsuspendUser(userId);
+                Swal.fire({
+                    title: 'Success',
+                    text: 'User unsuspendend'
+                });
             }
         });
     }
@@ -247,19 +297,29 @@ export default function UserDetails() {
                                                         client?.profile.isVerified ?
                                                             <button className="bg-green-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-4 py-1 text-white">Verified</button>
                                                             : client.userType === "vendor" || client.userType === "professional" ?
-                                                            <button
-                                                                className="bg-green-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-4 py-1 text-white"
-                                                                disabled={disable} onClick={() => setVerify(true)}
-                                                            >
-                                                                {disable ? 'Incomplete KYC' : 'Verify'}
-                                                            </button> : null
+                                                                <button
+                                                                    className="bg-green-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-4 py-1 text-white"
+                                                                    disabled={disable} onClick={() => setVerify(true)}
+                                                                >
+                                                                    {disable ? 'Incomplete KYC' : 'Verify'}
+                                                                </button> : null
                                                     }
-                                                    <button
-                                                        className="bg-orange-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-2 py-1 ml-5 text-white"
-                                                        onClick={() => suspendUserACtion(client.id)}
-                                                    >
-                                                        Suspend
-                                                    </button>
+                                                    {
+                                                        client?.isSuspended ?
+                                                            <button
+                                                                className="bg-orange-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-2 py-1 ml-5 text-white"
+                                                                onClick={() => unsuspendUserACtion(client.id)}
+                                                            >
+                                                               UnSuspend
+                                                            </button> :
+                                                            <button
+                                                                className="bg-orange-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-2 py-1 ml-5 text-white"
+                                                                onClick={() => suspendUserACtion(client.id)}
+                                                            >
+                                                                Suspend
+                                                            </button>
+                                                    }
+
                                                 </div>
                                             </div>
                                             {
