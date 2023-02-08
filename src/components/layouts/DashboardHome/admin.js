@@ -14,6 +14,8 @@ import { getAdminOrders } from '../../../redux/actions/OrderAction';
 import * as moment from 'moment'
 import { formatNumber } from "../../../services/helper";
 import { FaRegHandPointRight } from "react-icons/fa";
+import { getProjects } from "../../../redux/actions/ProjectAction";
+import { getUsers } from "../../../redux/actions/UserAction";
 // import Moment from 'react-moment';
 
 
@@ -37,11 +39,33 @@ export default function AdminDashboard(status) {
 
     }
     let adminOrders = useSelector((state) => state.orders.adminOrders);
-    
+    let projects = useSelector((state) => state.allprojects.projects)
+    // let products = useSelector((state) => state.projects.products)
+    let orders = useSelector((state) => state.orders.adminOrders)
+    let userDatas = useSelector((state) => state.users.users)
+
+    let users = userDatas?.map(data => data.user)
+    const client = users.filter(user => {
+        return (user.userType === "corporate_client" || user.userType === "private_client");
+    }); 
+    const service = users.filter(where  => where.userType === 'professional')
+    const vendor = users.filter(where  => where.userType === 'vendor')
+    const pendingProjects = projects.filter(where => where.status === "pending")
+    const ongoingProjects = projects.filter(where => where.status === "ongoing")
+    const completedProjects = projects.filter(where => where.status === "completed")
+    const cancelledProjects = projects.filter(where => where.status === "cancelled")
+
+    const pendingOrder = orders.filter(where => where.status === "pending")
+    const ongoingOrder = orders.filter(where => where.status === "ongoing")
+    const completedOrder = orders.filter(where => where.status === "completed")
+    const cancelledOrder = orders.filter(where => where.status === "cancelled")
+
 
   const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAdminOrders());
+        dispatch(getProjects());
+        dispatch(getUsers());
         // dispatch(getCategories());
     }, [dispatch])
   
@@ -77,7 +101,7 @@ export default function AdminDashboard(status) {
             <div className="bg-[#e0e7ff] px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="projectsadmin" className="flex justify-between items-center w-full">
                 <div>
-                    <p className="text-xxl fw-600 pb-2 text-xl">147</p>
+                    <p className="text-xxl fw-600 pb-2 text-xl">{projects? projects.length : 0}</p>
                     <p className="text-gray-600">Total Projects</p>
                 </div>
                 <div className="">
@@ -92,7 +116,7 @@ export default function AdminDashboard(status) {
             <div className="bg-orange-100 mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="client" className="flex justify-between items-center w-full">
                 <div>
-                    <p className="text-xxl pb-2 fw-600">23</p>
+                    <p className="text-xxl pb-2 fw-600">{client? client.length : 0}</p>
                     <p className="text-gray-600">Clients</p>
                 </div>
                 <div className="">
@@ -107,7 +131,7 @@ export default function AdminDashboard(status) {
             <div className="bg-blue-100  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="servicepartner" className="flex justify-between items-center w-full">
                 <div>
-                    <p className="fw-600 text-xxl pb-2">35</p>
+                    <p className="fw-600 text-xxl pb-2">{service? service.length : 0}</p>
                     <p className="text-gray-600">Service Partners</p>
                 </div>
                 <div className="relative">
@@ -122,7 +146,7 @@ export default function AdminDashboard(status) {
             <div className="bg-green-100  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="productpartner" className="flex justify-between items-center w-full">
                 <div>
-                    <p className="text-xxl fw-600 pb-2">12</p>
+                    <p className="text-xxl fw-600 pb-2">{vendor? vendor.length : 0}</p>
                     <p className="text-gray-600">Product Partners</p>
                 </div>
                 <div className="">
@@ -159,11 +183,11 @@ export default function AdminDashboard(status) {
                 <div className="mt-4">
                     <div className="bg-light p-4 rounded">
                         <p className="fw-600 text-lg text-primary border-b rounded mb-3">Orders Chart</p>
-                        <ChartLine />
+                        <ChartLine pendingOrder={pendingOrder} completedOrder={completedOrder} ongoingOrder={ongoingOrder} cancelledOrder={cancelledOrder} />
                     </div>
                     <div className="mt-4 bg-light p-4 rounded">
                         <p className="fw-600 text-lg text-primary border-b  rounded mb-3">Projects Chart</p>
-                        <ProjectChart />
+                        <ProjectChart pendingProjects={pendingProjects} completedProjects={completedProjects} ongoingProjects={ongoingProjects} cancelledProjects={cancelledProjects} />
                     </div>
                 </div>
                 <div>

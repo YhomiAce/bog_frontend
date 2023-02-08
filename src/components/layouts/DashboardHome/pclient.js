@@ -1,15 +1,28 @@
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Avatar, Breadcrumbs, CardBody, Progress } from "@material-tailwind/react";
-import ChartLine from "../assets/UsersChart";
 import ProjectChart from "../assets/ProjectChart";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { getUserOrders } from "../../../redux/actions/OrderAction";
+import dayjs from "dayjs";
 
 export default function PclientDashboard() {
+
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.auth.user);
+
+  const order = useSelector((state) => state.orders.userOrders)
+  const project = useSelector((state) => state.projects.projects)
+
+  const pendingOrder = order.filter(where => where.status === "pending")
+  const ongoingProject = project.filter(where => where.status === "ongoing")
+
+  useEffect(() => {
+    dispatch(getUserOrders())
+  }, [dispatch])
   
   return (
     <div className="min-h-screen">
@@ -40,11 +53,11 @@ export default function PclientDashboard() {
       <div className=" p-5">
         <div className="mt-3">
           <div className="lg:grid-4 justify-between fs-500 fw-600">
-            <div className="px-4 py-3 bg-purple-100 rounded flex justify-between items-center shades">
+            <div className="px-4 py-3 bg-purple-50 rounded flex justify-between items-center shades">
               <Link to="orders" className="flex justify-between items-center w-full">
                 <div>
-                  <p className="text-xxl fw-600 pb-2 text-xl">180 </p>
-                  <p className="text-gray-600">Total Order</p>
+                  <p className="text-xxl fw-600 pb-2 text-xl">{order? order.length : 0} </p>
+                  <p className="">Total Orders</p>
                 </div>
                 <div className="">
                   <img
@@ -58,7 +71,7 @@ export default function PclientDashboard() {
             <div className="bg-yellow-100 mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="orders" className="flex justify-between items-center w-full">
                 <div>
-                  <p className="text-xxl pb-2 fw-600">10</p>
+                  <p className="text-xxl pb-2 fw-600">{pendingOrder? pendingOrder.length : 0 }</p>
                   <p className="text-gray-600">Pending Orders</p>
                 </div>
                 <div className="">
@@ -73,7 +86,7 @@ export default function PclientDashboard() {
             <div className="bg-blue-100  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="projects" className="flex justify-between items-center w-full">
                 <div>
-                  <p className="fw-600 text-xxl pb-2">25</p>
+                  <p className="fw-600 text-xxl pb-2">{project? project.length : 0}</p>
                   <p className="text-gray-600">Total Projects</p>
                 </div>
                 <div className="relative">
@@ -88,7 +101,7 @@ export default function PclientDashboard() {
             <div className="bg-green-100  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="projects" className="flex justify-between items-center w-full">
                 <div>
-                  <p className="text-xxl fw-600 pb-2">12</p>
+                  <p className="text-xxl fw-600 pb-2">{ongoingProject? ongoingProject.length : 0}</p>
                   <p className="text-gray-600">Ongoing Projects</p>
                 </div>
                 <div className="">
@@ -110,19 +123,8 @@ export default function PclientDashboard() {
                 <p className="fw-600 text-lg mb-6 lg:mb-0">Recent Orders</p>
               </div>
               <div className="">
-                <div class="mr-6 relative mx-auto text-gray-600">
-                  <input
-                    class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-                    type="search"
-                    name="search order by name"
-                    placeholder="Search"
-                  />
-                  <button
-                    type="submit"
-                    class="absolute border bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
-                  >
-                    <FontAwesomeIcon icon={faSearch} className="text-white" />
-                  </button>
+                <div class="mr-6 relative mx-auto text-black">
+                  <Link to='orders'><button className="border-secondary bg-light px-3 py-1">View All</button></Link>
                 </div>
               </div>
             </div>
@@ -150,75 +152,30 @@ export default function PclientDashboard() {
                       </tr>
                     </thead>
                     <tbody className="fw-400">
-                      <tr>
-                        <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          1
-                        </th>
-                        <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          Granite-VAC-2OE42
-                        </td>
-                        <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          Granite
-                        </td>
-                        <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          10/10/2022
-                        </td>
-                        <td className=" text-green-600 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          Delivered
-                        </td>
-                      </tr>
-                      <tr>
-                        <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          2
-                        </th>
-                        <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          Sand-DCL-20E42
-                        </td>
-                        <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          Sand
-                        </td>
-                        <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          19/10/2022
-                        </td>
-                        <td className=" text-blue-600 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          Awaiting Delivery
-                        </td>
-                      </tr>
-                      <tr>
-                        <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          3
-                        </th>
-                        <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          Cement-PDL-2OE42
-                        </td>
-                        <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          Cement
-                        </td>
-                        <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          23/11/2022
-                        </td>
-                        <td className=" text-red-600 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          Canceled
-                        </td>
-                      </tr>
-                      <tr>
-                        <th className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          4
-                        </th>
-                        <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          Steel-XBL-2OLBB
-                        </td>
-                        <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          Steel
-                        </td>
-                        <td className=" align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          24/11/2022
-                        </td>
-                        <td className=" text-green-600 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                          Delivered
-                        </td>
-                      </tr>
-                    </tbody>
+                      {
+                          order.length > 0 ? order.slice(0, 6).map((item, index) => {
+                              return (
+                                  <tr key={index}>
+                                      <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                          {index + 1}                    
+                                      </td>
+                                      <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                          {item.orderSlug}
+                                      </td>
+                                      <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                          {item.order_items[0].product.name}
+                                      </td>
+                                      <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                          {dayjs(item.createdAt).format('DD-MMM-YYYY')}
+                                      </td>
+                                      <td className="border-b text-blue-600 border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
+                                          {item.status}
+                                      </td>
+                                  </tr>
+                              )
+                          }) : <p className="text-primary text-center fw-500 mt-8">No Order Made</p>
+                      }
+                  </tbody>
                   </table>
                 </div>
               </CardBody>
@@ -232,7 +189,7 @@ export default function PclientDashboard() {
               </select>
             </div>
             <div className="mt-8">
-              <ChartLine />
+              {/* <ChartLine /> */}
             </div>
           </div>
         </div>

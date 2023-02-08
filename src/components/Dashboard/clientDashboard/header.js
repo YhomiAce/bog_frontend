@@ -14,7 +14,7 @@ import { FaBell } from "react-icons/fa";
 export default function Header() {
     const dispatch = useDispatch()
     const auth = useSelector((state) => state.auth);
-    // const [notifyDown, setNotifyDown] = useState(false)
+    const admin = useSelector((state) => state.auth.user);
     const { adminNotifications, userNotifications } = useSelector(state => state.notifications);
 
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function Header() {
     const getUserType = (type) => {
         switch (type) {
             case "admin":
-                return "Super Admin"
+                return adminType()
             case "professional":
                 return "Service Partner"
             case "vendor":
@@ -36,6 +36,25 @@ export default function Header() {
                 return "Corporate Client"
             default: return ""
         }
+    }
+    const adminType = () => {
+
+        let levelAdmin = 'Admin'
+
+        if(admin?.level === 1){
+            levelAdmin = 'Super Admin'
+        }else if(admin?.level === 3){
+            levelAdmin = 'Finance Admin'
+        }else if(admin?.level === 2){
+            levelAdmin = 'Article Admin'
+        }else if(admin?.level === 4){
+            levelAdmin = 'Product Admin'
+        }else if(admin?.level === 5){
+            levelAdmin = 'Project Admin'
+        }
+
+        return levelAdmin
+
     }
 
     let count = 0;
