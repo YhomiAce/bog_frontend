@@ -874,7 +874,7 @@ export default function Service() {
                     <div className="box">
                         <div>
                             <p className="lg:text-4xl text-2xl fw-700 mb-4">
-                                Find Service Partner
+                                Find Service Provider
                             </p>
                             <p className="lg:w-5/12">Thousands of qualified workers avaliable to help you to kick start your project</p>
                         </div>
