@@ -74,7 +74,7 @@ export default function ServiceDashboard() {
               <Link to="projects" className="flex justify-between items-center w-full">
                 <div>
                   <p className="text-xxl pb-2 fw-600">{dispatchedProjects? dispatchedProjects.length : 0}</p>
-                  <p className="text-gray-600">Dispatched Projects</p>
+                  <p className="text-gray-600">Available Projects</p>
                 </div>
                 <div className="">
                   <img
@@ -130,18 +130,19 @@ export default function ServiceDashboard() {
           <div className="bg-white mt-6 rounded-lg ">
             <div className="flex justify-between fw-600 fs-700 bg-primary rounded-t-lg text-white p-4"><p className="fw-600 fs-700">Recent Requests</p> <Link to="projects"><p className="border-secondary text-black bg-light fs-400 rounded fw-500 px-2 py-1">View All</p></Link></div>
 
-            {
-                assignedProjects > 0? assignedProjects.slice(0,4).map(item => (
-                    <div className="flex mt-8 px-4 py-6">
+            {   dispatchedProjects.length > 0 ? 
+                dispatchedProjects.slice(0,4).map((item, index) => {
+                    return (
+                    <div className="flex mt-8 px-4" key={index}>
                         <div className="lg:w-2/12">
                             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" alt="" className="w-12 circle"/>
                         </div>
-                        <div className="lg:w-8/12 fs-500">
-                            <p className="fw-500">{item?.title}</p>
+                        <div className="lg:w-10/12 fs-500">
+                            <p className="fw-500">{item?.project?.title}</p>
                             <p className="text-secondary fs-400 fw-500">{dayjs(item?.createdAt).format('DD-MMM-YYYY')}</p>
                         </div>
                     </div>
-                ))
+                )})
                 :
                 <p className="text-center text-primary mt-8 fw-500">No Dispatched Request</p>
             }
@@ -194,10 +195,10 @@ export default function ServiceDashboard() {
                                                         {index + 1}                    
                                                     </td>
                                                     <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                        {item?.projectSlug}
+                                                        {item?.project?.projectSlug}
                                                     </td>
                                                     <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                        {item?.title}
+                                                        {item?.project?.title}
                                                     </td>
                                                     <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
                                                         {item?.projectData?.projectLocation}
