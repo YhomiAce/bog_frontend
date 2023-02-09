@@ -419,7 +419,7 @@ export const getServicePartnerProjects = (userId) => {
             dispatch(loading());
             const response = await axios.get(`/projects/assigned-projects/${userId}`, config);
             console.log(response);
-            dispatch(fetchDispatchedProjects(response.data))
+            dispatch(fetchAssignedProjects(response.data))
         } catch (error) {
             console.log(error.message);
             dispatch(setError(error.message));

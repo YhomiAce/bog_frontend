@@ -8,12 +8,13 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { getUserOrders } from "../../../redux/actions/OrderAction";
 import dayjs from "dayjs";
+import { UserOrderAnal } from "../assets/UserOrderAnal";
+import { getMyProject } from "../../../redux/actions/ProjectAction";
 
 export default function PclientDashboard() {
 
   const dispatch = useDispatch()
   const user = useSelector((state) => state.auth.user);
-
   const order = useSelector((state) => state.orders.userOrders)
   const project = useSelector((state) => state.projects.projects)
 
@@ -23,6 +24,11 @@ export default function PclientDashboard() {
   useEffect(() => {
     dispatch(getUserOrders())
   }, [dispatch])
+  useEffect(() => {
+    if (user) {
+        dispatch(getMyProject(user.userType));
+    }
+}, [dispatch, user])
   
   return (
     <div className="min-h-screen">
@@ -184,12 +190,13 @@ export default function PclientDashboard() {
           <div className="bg-white mt-6 lg:mt-0 rounded ">
             <div className="flex justify-between border-b-2 items-center py-3 px-4 bg-primary text-white rounded-t-lg">
               <p className="fw-600 text-lg">Order Analysis</p>
-              <select disabled className="bg-white py-1 rounded text-black">
-                <option>weekly</option>
-              </select>
             </div>
             <div className="mt-8">
-              {/* <ChartLine /> */}
+              {order?.length > 0?
+                <UserOrderAnal order={order}/>
+                :
+                <p className="text-center text-primary fw-500">No Order Yet</p>
+              }
             </div>
           </div>
         </div>
@@ -198,9 +205,6 @@ export default function PclientDashboard() {
           <div className="pb-6 bg-white rounded">
             <div className="flex justify-between border-b-2 items-center py-3 px-4 bg-primary text-white rounded-t-lg">
               <p className="text-lg fw-600">Project Analysis</p>
-              <select disabled className="bg-white py-1 rounded text-black">
-                <option>yearly</option>
-              </select>
             </div>
             <div className="mt-4 px-4 ">
               <ProjectChart />
@@ -208,12 +212,29 @@ export default function PclientDashboard() {
           </div>
           {/* ongoing projects */}
           <div className="bg-white mt-6 lg:mt-0 pb-6 rounded">
-            <div  className="border-b-2 items-center py-3 px-4 bg-primary text-white rounded-t-lg">
-              <p className="text-lg fw-600">Ongoing Projects</p>
+            <div  className="border-b-2 flex justify-between items-center py-3 px-4 bg-primary text-white rounded-t-lg">
+              <p className="text-lg fw-600">My Projects</p>
+              <p><Link to='projects'><button className="border-secondary bg-light px-3 fw-500 fs-400 py-1 text-black">View All</button></Link></p>
             </div>
-            <div className="pt-8 text-sm fw-600 px-6">
-              <div className="flex justify-between items-center">
-                <Avatar src={require("../images/profile.png")} />
+            <div className="pt-5 text-sm fw-600 px-6">
+              {
+                project.length > 0? project.slice(0, 5).map(item => (
+                  <div className="flex mt-5 justify-between items-center">
+                    <Avatar src='https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png' />
+                    <div className="lg:w-7/12 xl:w-8/12 w-6/12">
+                      <p className="fs-500 pb-2">{item?.title}</p>
+                      <Progress color={item?.status === "pending"? "yellow" : "blue"} value={item?.status === "pending"? "2" : "20"} />
+                    </div>
+                    <div>
+                      <p className="text-yellow-600 mt-4">{item?.status === "pending"? <span>2% Done</span> : <span className="text-blue-600">20% Done</span>}</p>
+                    </div>
+                  </div>
+                ))
+                :
+                <p className="text-primary text-center">No Project Yet</p>
+              }
+              {/* <div className="flex justify-between items-center">
+                <Avatar src='https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png' />
                 <div className="lg:w-7/12 xl:w-8/12 w-6/12">
                   <p className="fs-500 pb-2">Land Survey</p>
                   <Progress color="yellow" value="20" />
@@ -251,7 +272,7 @@ export default function PclientDashboard() {
                 <div>
                   <p className="text-green-600 mt-4">90% Done</p>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

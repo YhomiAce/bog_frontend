@@ -4,6 +4,7 @@ const initialState = {
     projects: [],
     services: [],
     dispatchedProjects: [],
+    assignedProjects: [],
     isLoading: false,
     error: null,
 }
@@ -13,13 +14,6 @@ const ProjectReducer = (state = initialState, action) => {
     const { type, payload } = action
     switch (type) {
         case ActionType.FETCH_MY_PROJECTS:
-        case ActionType.FETCH_ASSIGNED_PROJECTS:
-            return {
-                ...state,
-                isLoading: false,
-                projects: payload,
-                error: null,
-            }
         case ActionType.FETCH_ALL_SERVICES:
             return {
                 ...state,
@@ -32,6 +26,13 @@ const ProjectReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 dispatchedProjects: payload,
+                error: null,
+            }
+        case ActionType.FETCH_ASSIGNED_PROJECTS:
+            return {
+                ...state,
+                isLoading: false,
+                assignedProjects: payload,
                 error: null,
             }
         case ActionType.CREATE_SERVICE:

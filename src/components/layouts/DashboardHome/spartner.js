@@ -1,15 +1,27 @@
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {FaCheck, FaRegEye, FaTimes} from "react-icons/fa";
 import {  Breadcrumbs, CardBody } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import ProjectChart from "../../Dashboard/assets/ProjectChart";
+import { getDispatchedProjects, getServicePartnerProjects } from "../../../redux/actions/ProjectAction";
 // import ProjectChart from "../assets/ProjectChart";
 
 export default function ServiceDashboard() {
   const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch()
+
+  const dispatchedProjects = useSelector((state) => state.projects.dispatchedProjects)
+  const assignedProjects = useSelector((state) => state.projects.assignedProjects)
+
+  useEffect(() => {
+    if (user) {
+        dispatch(getDispatchedProjects(user.profile.id))
+        dispatch(getServicePartnerProjects(user.profile.id))
+    }
+  }, [dispatch, user])
   
   return (
     <div className="min-h-screen">
@@ -40,11 +52,11 @@ export default function ServiceDashboard() {
       <div className=" p-5">
         <div className="mt-3">
           <div className="lg:grid-4 justify-between fs-500 fw-600">
-            <div className="bg-white px-4 py-3 rounded flex justify-between items-center shades">
+            <div className="px-4 bg-purple-50 py-3 rounded flex justify-between items-center shades">
               <Link to="projects" className="flex justify-between items-center w-full">
                 <div>
-                  <p className="text-xxl fw-600 pb-2 text-xl">180 </p>
-                  <p className="text-gray-600">Total Customers</p>
+                  <p className="text-xxl fw-600 pb-2 text-xl">{assignedProjects? assignedProjects.length : 0} </p>
+                  <p className="text-gray-600">Assigned Projects</p>
                 </div>
                 <div className="">
                   <img
@@ -55,11 +67,11 @@ export default function ServiceDashboard() {
                 </div>
               </Link>
             </div>
-            <div className="bg-white mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
+            <div className="bg-yellow-50 mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="projects" className="flex justify-between items-center w-full">
                 <div>
-                  <p className="text-xxl pb-2 fw-600">23</p>
-                  <p className="text-gray-600">Pending Requests</p>
+                  <p className="text-xxl pb-2 fw-600">{dispatchedProjects? dispatchedProjects.length : 0}</p>
+                  <p className="text-gray-600">Dispatched Projects</p>
                 </div>
                 <div className="">
                   <img
@@ -70,11 +82,11 @@ export default function ServiceDashboard() {
                 </div>
               </Link>
             </div>
-            <div className="bg-white  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
+            <div className="bg-blue-50 mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="projects" className="flex justify-between items-center w-full">
                 <div>
                   <p className="fw-600 text-xxl pb-2">25</p>
-                  <p className="text-gray-600">Total Projects</p>
+                  <p className="text-gray-600">Ongoing Projects</p>
                 </div>
                 <div className="relative">
                   <img
@@ -85,11 +97,11 @@ export default function ServiceDashboard() {
                 </div>
               </Link>
             </div>
-            <div className="bg-white  mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
+            <div className="bg-green-50 mt-4 lg:mt-0 px-4 py-3 rounded flex justify-between items-center shades">
               <Link to="projects" className="flex justify-between items-center w-full">
                 <div>
                   <p className="text-xxl fw-600 pb-2">12</p>
-                  <p className="text-gray-600">Ongoing Projects</p>
+                  <p className="text-gray-600">Completed Projects</p>
                 </div>
                 <div className="">
                   <img
