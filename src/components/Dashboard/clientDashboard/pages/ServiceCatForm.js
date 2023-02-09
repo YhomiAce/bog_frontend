@@ -4,7 +4,7 @@ import { Button } from '@material-tailwind/react'
 import React, { useState, useRef } from "react";
 import { Breadcrumbs } from "@material-tailwind/react";
 import { Link, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+//import { useDispatch, useSelector } from "react-redux";
 import { MdOutlineEngineering } from "react-icons/md";
 import { useEffect } from "react";
 import Spinner from '../../../layouts/Spinner';
@@ -17,7 +17,9 @@ require("formBuilder");// For FormBuilder
 
 export default function ServiceCategory() {
    // const dispatch = useDispatch();
-    let { id, name } = useParams();
+    // let { id, name } = useParams();
+     let { name } = useParams();
+
     const fb = useRef(null);
     let editor = null;
 
