@@ -4,6 +4,7 @@ const initialState = {
     projects: [],
     services: [],
     dispatchedProjects: [],
+    assignedProjects: [],
     isLoading: false,
     error: null,
 }
