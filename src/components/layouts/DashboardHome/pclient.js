@@ -201,7 +201,7 @@ export default function PclientDashboard() {
           </div>
         </div>
         {/* project analysis and ongoing project*/}
-        <div className="mt-7 lg:grid-74 justify-between">
+        <div className="mt-7 lg:grid-83 justify-between">
           <div className="pb-6 bg-white rounded">
             <div className="flex justify-between border-b-2 items-center py-3 px-4 bg-primary text-white rounded-t-lg">
               <p className="text-lg fw-600">Project Analysis</p>
@@ -233,46 +233,6 @@ export default function PclientDashboard() {
                 :
                 <p className="text-primary text-center">No Project Yet</p>
               }
-              {/* <div className="flex justify-between items-center">
-                <Avatar src='https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png' />
-                <div className="lg:w-7/12 xl:w-8/12 w-6/12">
-                  <p className="fs-500 pb-2">Land Survey</p>
-                  <Progress color="yellow" value="20" />
-                </div>
-                <div>
-                  <p className="text-yellow-600 mt-4">20% Done</p>
-                </div>
-              </div>
-              <div className="flex mt-4 justify-between items-center">
-                <Avatar src={require("../images/profile.png")} />
-                <div className="lg:w-7/12 xl:w-8/12 w-6/12">
-                  <p className="fs-500 pb-2">Electric Drawing</p>
-                  <Progress color="blue" value="70" />
-                </div>
-                <div>
-                  <p className="text-blue-600 mt-4">70% Done</p>
-                </div>
-              </div>
-              <div className="flex mt-4 justify-between items-center">
-                <Avatar src={require("../images/profile.png")} />
-                <div className="lg:w-7/12 xl:w-8/12 w-6/12">
-                  <p className="fs-500 pb-2">Building Drawing</p>
-                  <Progress color="purple" value="40" />
-                </div>
-                <div>
-                  <p className="text-purple-600 mt-4">40% Done</p>
-                </div>
-              </div>
-              <div className="flex mt-4 justify-between items-center">
-                <Avatar src={require("../images/profile.png")} />
-                <div className="lg:w-7/12 xl:w-8/12 w-6/12">
-                  <p className="fs-500 pb-2">Soil Test</p>
-                  <Progress color="green" value="90" />
-                </div>
-                <div>
-                  <p className="text-green-600 mt-4">90% Done</p>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>

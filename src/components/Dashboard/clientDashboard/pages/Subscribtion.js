@@ -17,9 +17,9 @@ export function Subscription() {
 
     useEffect(() => {
         if (user) {
-            if(!user.profile.isVerified){
-                setGetKyc(true)
-            }
+            // if(!user.profile.isVerified){
+            //     setGetKyc(true)
+            // }
             dispatch(getAllSubscriptionPlans());
         }
     }, [dispatch, user])
