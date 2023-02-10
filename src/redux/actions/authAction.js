@@ -56,14 +56,6 @@ export const getMe = () => {
             dispatch(setUser(response))
         } catch (error) {
             console.log(error.message);
-            // dispatch(setError(error.message));
-            // toaster.notify(
-            //     error.message,
-            //     {
-            //         duration: "4000",
-            //         position: "bottom",
-            //     }
-            // );
         }
 
     }
