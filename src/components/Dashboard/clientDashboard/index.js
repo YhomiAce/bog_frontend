@@ -58,6 +58,7 @@ import { TransactionDetails } from "./pages/Transaction/TransactionItem";
 import ServiceCategory from "./pages/ServiceCat";
 import { ServiceRequest } from "./pages/ServiceRequest";
 import AdminSub from "./pages/AdminSub";
+import ServicePartnerMeeting from "./pages/ServicePartnerMeeting";
 
 export default function ClientDashboard() {
 
@@ -119,6 +120,7 @@ export default function ClientDashboard() {
                         <Route path="projectfile" element={<ProjectFile />} />
                         <Route path="servicecategory" element={<ProjectCategory />} />
                         <Route path="meetings" element={<Meetings />} />
+                        <Route path="service-meetings" element={<ServicePartnerMeeting />} />
                         <Route path="admin-meetings" element={<AdminMeeting />} />
                         <Route path="transact" element={<Transactions />} />
                         <Route path="transact-details" element={<TransactionDetails />} />

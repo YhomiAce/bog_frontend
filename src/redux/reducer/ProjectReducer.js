@@ -14,6 +14,12 @@ const ProjectReducer = (state = initialState, action) => {
     const { type, payload } = action
     switch (type) {
         case ActionType.FETCH_MY_PROJECTS:
+            return {
+                ...state,
+                isLoading: false,
+                projects: payload,
+                error: null,
+            }
         case ActionType.FETCH_ALL_SERVICES:
             return {
                 ...state,
