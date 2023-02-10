@@ -48,7 +48,14 @@ export const fetchMeetings = async (setLoading, setMeeting, user, isAdmin) => {
             }
         }
         let url;
-        isAdmin ? url = "/meeting/all" : url = "/meeting/my-meeting?userType="+user.userType
+        if(isAdmin){
+            url = "/meeting/all"
+        }else if(user.userType === "professional"){
+            url = `/meeting/service-meeting?userType=${user.userType}`
+        }else {
+            url = `/meeting/my-meeting?userType=${user.userType}`
+        }
+        
         const res = await Axios.get(url, config);
         const results = res.data;
         console.log(results)

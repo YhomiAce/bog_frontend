@@ -121,7 +121,7 @@ const ServiceSidebar = () => {
                             <p className="pl-3">Messages</p>
                         </NavLink>
                         <NavLink
-                            to="meetings"
+                            to="service-meetings"
                             onClick={unShow}
                             className="w-full flex items-center pl-2 py-2 fw-600 my-4"
                             style={({ isActive }) => (isActive ? activeStyle : undefined)}
