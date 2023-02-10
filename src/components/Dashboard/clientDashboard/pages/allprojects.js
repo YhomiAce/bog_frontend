@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { FaCheck, FaRegEye, FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getDispatchedProjects } from "../../../../redux/actions/ProjectAction";
 import { getProjectCategory } from "../../../../services/helper";
 import Spinner from "../../../layouts/Spinner";
@@ -21,6 +22,7 @@ export function AllProject() {
         }
     }, [dispatch, user])
 
+    const navigate = useNavigate()
 
     const [qoute, setQoute] = useState(false)
     const [decline, setDecline] = useState(false)
@@ -37,6 +39,9 @@ export function AllProject() {
         setQoute(false)
         setDecline(false)
     }
+    const gotoForm = (id) => {
+        navigate(`/dashboard/projectfile?projectId=${id}`)
+      }
 
     if (isLoading) {
         return <center><Spinner /> </center>
@@ -48,7 +53,7 @@ export function AllProject() {
                 {/* header */}
                 <div className="w-full py-8 bg-white px-4">
                     <p className="text-2xl fw-600">All Projects</p>
-                    <p className="fs-400 text-gray-600 mt-2">Projects available on BOG</p>
+                    <p className="fs-400 text-gray-600 mt-2">Projects available on BOG for service partners.</p>
                 </div>
                 {/* content */}
                 <div className="lg:p-5 px-3 py-5 mt-6">
@@ -112,7 +117,7 @@ export function AllProject() {
                                                         </td>
                                                         <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                                             <div className="flex text-xl">
-                                                                <p className="text-secondary cursor-pointer"><FaRegEye /></p>
+                                                                <p className="text-secondary cursor-pointer" onClick={() => gotoForm(item.projectId)}><FaRegEye /></p>
                                                                 <p className="text-primary px-3 cursor-pointer" onClick={() =>OpenQoute(item)}><FaCheck /></p>
                                                                 <p className="text-red-600 cursor-pointer" onClick={OpenDecline}><FaTimes /></p>
                                                             </div>

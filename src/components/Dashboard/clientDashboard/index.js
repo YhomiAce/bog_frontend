@@ -56,6 +56,7 @@ import AdminInbox from "./pages/Admins/InboxAdmin";
 import UserInbox from "./pages/Users/InboxUser";
 import { TransactionDetails } from "./pages/Transaction/TransactionItem";
 import ServiceCategory from "./pages/ServiceCat";
+import ServiceCategoryForm from "./pages/ServiceCatForm";
 import { ServiceRequest } from "./pages/ServiceRequest";
 import AdminSub from "./pages/AdminSub";
 import ServicePartnerMeeting from "./pages/ServicePartnerMeeting";
@@ -112,6 +113,7 @@ export default function ClientDashboard() {
                         <Route path="projectrequest" element={<ProjectRequest />} />
                         <Route path="service-request/:projectId" element={<ServiceRequest />} />
                         <Route path="service-category" element={<ServiceCategory />} />
+                        <Route path="service-category/buildForm/:id/:name" element={<ServiceCategoryForm />} />
                         <Route path="productpartner" element={<Ppartners />} />
                         <Route path="servicepartner" element={<Spartners />} />
                         <Route path="sub-admin" element={<Sadmins />} />

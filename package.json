@@ -19,10 +19,13 @@
     "chart.js": "^3.9.1",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.6",
+    "formBuilder": "3.0.2",
     "formik": "^2.2.9",
     "google-map-react": "^2.2.0",
     "gsap": "^3.11.3",
     "javascript-time-ago": "^2.5.9",
+    "jquery": "^3.6.3",
+    "jquery-ui-sortable": "1.0.0",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.28",
     "moment": "^2.29.4",
@@ -34,6 +37,7 @@
     "react-cookie-consent": "^8.0.1",
     "react-dom": "^18.2.0",
     "react-export-table-to-excel": "^1.0.6",
+    "react-form-builder2": "^0.14.2",
     "react-google-recaptcha": "^2.1.0",
     "react-icons": "^4.6.0",
     "react-loader-spinner": "^5.3.4",
@@ -91,6 +95,7 @@
     ]
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.16",
     "autoprefixer": "^10.4.8",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8"
