@@ -137,7 +137,6 @@ export const fetchServiceCategories = () => {
                 }
             }
             const response = await axios.get('/service/type', config);
-            console.log(response);
             dispatch(fetchServices(response.data))
         } catch (error) {
             console.log(error.message);

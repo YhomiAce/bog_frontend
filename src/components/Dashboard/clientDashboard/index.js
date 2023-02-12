@@ -112,7 +112,6 @@ export default function ClientDashboard() {
                         <Route path="projectrequest" element={<ProjectRequest />} />
                         <Route path="service-request/:projectId" element={<ServiceRequest />} />
                         <Route path="service-category" element={<ServiceCategory />} />
-                        <Route path="service-category/buildForm/:id/:name" element={<ServiceCategoryForm />} />
                         <Route path="productpartner" element={<Ppartners />} />
                         <Route path="servicepartner" element={<Spartners />} />
                         <Route path="sub-admin" element={<Sadmins />} />
@@ -120,6 +119,7 @@ export default function ClientDashboard() {
                         <Route path="allprojects" element={<AllProject />} />
                         <Route path="projectfile" element={<ProjectFile />} />
                         <Route path="servicecategory" element={<ProjectCategory />} />
+                        <Route path="servicecategory/buildForm/:id/:name" element={<ServiceCategoryForm />} />
                         <Route path="meetings" element={<Meetings />} />
                         <Route path="admin-meetings" element={<AdminMeeting />} />
                         <Route path="transact" element={<Transactions />} />
