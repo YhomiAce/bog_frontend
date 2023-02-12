@@ -12,7 +12,7 @@ export default ProtectedRoute
 
 export const Protected = ({children}) => {
 
-    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+    const isLoggedIn = useSelector((state) => state.auth.isAuthenticated)
 
     if(!isLoggedIn){
         return <Navigate to="/login" replace />
