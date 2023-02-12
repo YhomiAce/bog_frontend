@@ -40,6 +40,7 @@
     "react-form-builder2": "^0.14.2",
     "react-google-recaptcha": "^2.1.0",
     "react-icons": "^4.6.0",
+    "react-is": "^18.2.0",
     "react-loader-spinner": "^5.3.4",
     "react-paginate": "^8.1.4",
     "react-paystack": "^4.0.1",

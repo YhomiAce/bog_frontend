@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from 'react-router-dom';
+import Axios from '../../../config/config';
 
 export const KycText = () => {
   const { user } = useSelector((state) => state.auth);
@@ -21,11 +22,37 @@ export const KycText = () => {
 }
 
 export const KycModal = () => {
+  
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate()
   const [modal, setModal] = useState(true)
+  const [kyc, setKyc] = useState(false)
 
   const location = useLocation()
+
+  const fetchKycDetails = async () => {
+    try {
+        const url = `/kyc/user-kyc/?userId=${user.id}?userType=${user.userType}`
+        const authToken = localStorage.getItem("auth_token");
+        const config = {
+            headers:
+            {
+                "Content-Type": "application/json",
+                'Authorization': authToken
+            }
+
+        }
+        const res = await Axios.get(url, config);
+        const kycs = res.data
+        setKyc(kycs)
+        console.log(kycs)
+    } catch (error) {
+        console(error)
+    }
+}
+  useEffect(() => {
+    fetchKycDetails() // eslint-disable-next-line
+  }, [])
 
   useEffect(() => {
     console.log(location)
@@ -47,7 +74,7 @@ export const KycModal = () => {
     setModal(true)
   }
 
-  if(!user?.profile?.isVerified){
+  if(!kyc.isKycCompleted){
       return (
          modal && (
           <div className="fixed font-primary left-0 top-0 w-full h-screen bg-op center-item z-40">
