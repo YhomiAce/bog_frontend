@@ -17,6 +17,13 @@ const ServiceCategory = (state = initialState, action) => {
                 services: payload,
                 error: null,
             }
+        case ActionType.FETCH_SERVICE_FORMS:
+            return {
+                ...state,
+                isLoading: false,
+                formData: payload,
+                error: null,
+            }
         case ActionType.CREATE_SERVICE_CATEGORY:
             return {
                 ...state,
