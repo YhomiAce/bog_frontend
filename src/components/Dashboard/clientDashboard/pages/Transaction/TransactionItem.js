@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import Axios from '../../../../../config/config';
 import { formatNumber } from '../../../../../services/helper';
-import Spinner from '../../../../layouts/Spinner';
+import { Spinner2 } from '../../../../layouts/Spinner';
 
 export const TransactionDetails = () => {
 
@@ -18,8 +18,16 @@ export const TransactionDetails = () => {
         try {
             setLoading(true);
             const url = `/transaction/${transactId}`
-            await Axios.get(url)
-            const res = await Axios.get(url);
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    "Content-Type": "application/json",
+                    'Authorization': authToken
+                }
+
+            }
+            const res = await Axios.get(url, config) ;
             const datas = res.data
             console.log(datas)
             setItem(res.data.transaction);
@@ -38,7 +46,7 @@ export const TransactionDetails = () => {
 
 
   if (loading){
-    return <center><Spinner /></center>
+    return <center><Spinner2 /></center>
   }   
 
   return (
@@ -80,7 +88,7 @@ export const TransactionDetails = () => {
                             <div className='mt-6'>
                                 <div className='border-b py-2 flex'>
                                     <p className='fw-500 w-4/12'>User Name:</p>
-                                    <p className='w-8/12'>{`${item?.user?.fname} ${item?.user?.lname}`}</p>
+                                    <p className='w-8/12'>{item?.user?.fname? `${item?.user?.fname} ${item?.user?.lname}` : details?.user.service_user? details?.user.service_user.name : ''}</p>
                                 </div>
                                 <div className='border-b py-2 flex'>
                                     <p className='fw-500 w-4/12'>Order/Project ID:</p>
@@ -88,7 +96,7 @@ export const TransactionDetails = () => {
                                 </div>
                                 <div className='border-b py-2 flex'>
                                     <p className='fw-500 w-4/12'>User Email:</p>
-                                    <p className='w-8/12'>{item?.user?.email}</p>
+                                    <p className='w-8/12'>{item?.user?.email? item?.user?.email : details?.user.service_user? details?.user.service_user.email : ''}</p>
                                 </div>
                                 <div className='border-b py-2 flex'>
                                     <p className='fw-500 w-4/12'>Transaction Type:</p>

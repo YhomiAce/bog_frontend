@@ -104,8 +104,8 @@ export function UsersTable({ status, userType }) {
     users = users.filter(users => users.isActive === status)
   }
   const navigate = useNavigate()
-  const gotoDetailsPage = (id) => {
-    navigate(`/dashboard/userdetails?userId=${id}`)
+  const gotoDetailsPage = (item) => {
+    navigate(`/dashboard/userdetails?userId=${item.id}?userType=${item.userType}`)
   }
 
   const formatType = (userType) => {
@@ -169,7 +169,7 @@ export function UsersTable({ status, userType }) {
             <Button className="border-none bg-transparent shadow-none hover:shadow-none text-black"><p className="lg:text-xl"><BsThreeDotsVertical /></p></Button>
           </MenuHandler>
           <MenuList className="w-16 bg-gray-100 fw-600 text-black">
-            <MenuItem onClick={() => gotoDetailsPage(row.value)}>View Details</MenuItem>
+            <MenuItem onClick={() => gotoDetailsPage(row.row.original)}>View Details</MenuItem>
           </MenuList>
         </Menu>,
       },

@@ -4,8 +4,12 @@ import { Link } from "react-router-dom";
 import { UsersTable } from "../../assets/Tables/UserTable";
 import { Breadcrumbs } from "@material-tailwind/react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { useSelector } from "react-redux";
+import { Spinner2 } from "../../../layouts/Spinner";
 
 export default function Spartners() {
+
+    const isLoading = useSelector((state) => state.users.isLoading)
 
 
     return (
@@ -45,7 +49,7 @@ export default function Spartners() {
                             <Tab>Inactive</Tab>
                         </TabList>
                         <TabPanel>
-                            <UsersTable userType={"professional"}/>
+                            {isLoading === false? <UsersTable userType={"professional"}/> : <Spinner2/>}
                         </TabPanel>
                         <TabPanel>
                             <UsersTable userType={"professional"} status={true}/>
