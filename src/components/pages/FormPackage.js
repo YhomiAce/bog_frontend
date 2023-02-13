@@ -4,11 +4,25 @@ import Swal from "sweetalert2";
 export default function FormPackage({ formPayload }) {
     const responseArray = [];
 
-    const handleInputChange = (e, data) => {
-        const objIndex = responseArray.findIndex((obj => obj._id === data.id));
+    const handleInputChange = (e, data, options) => {
+        const objIndex = responseArray.findIndex((obj => obj.name === data.name));
 
         if (objIndex === -1) {
-            responseArray.push({ _id: data.id, value: e.target.value });
+            if (options) {
+                if (options.length > 0) {
+                    options.forEach((option) => {
+                        if (option.value === e.target.value) {
+                            responseArray.push({ _id: option.id, name: data.name, value: e.target.value });
+                        }
+                    })
+                }
+                else {
+                    responseArray.push({ _id: options ? options.id : data.id, name: data.name, value: e.target.value });
+                }
+            }
+            else {
+                responseArray.push({ _id: data.id, name: data.name, value: e.target.value });
+            }
         }
         else {
             responseArray[objIndex].value = e.target.value;
@@ -29,10 +43,10 @@ export default function FormPackage({ formPayload }) {
         xhr.onload = () => {
             const fileResponse = JSON.parse(xhr.response);
             fileResponse.forEach((response) => {
-                const objIndex = responseArray.findIndex((obj => obj._id === data.id));
+                const objIndex = responseArray.findIndex((obj => obj.name === data.name));
 
                 if (objIndex === -1) {
-                    responseArray.push({ _id: data.id, value: response });
+                    responseArray.push({ _id: data.id, name: data.name, value: response });
                 }
                 else {
                     responseArray[objIndex].value = response;
@@ -56,7 +70,7 @@ export default function FormPackage({ formPayload }) {
                     required={data.required}
                     name={data.name}
                     value={data._values[0]}
-                    onChange={(e) => handleInputChange(e, data)}
+                    onChange={(e) => handleInputChange(e, data, null)}
                 />);
 
             case 'select':
@@ -68,7 +82,7 @@ export default function FormPackage({ formPayload }) {
                         required={data.required}
                         name={data.name}
                         multiple={data.multiple}
-                        onChange={(e) => handleInputChange(e, data)}
+                        onChange={(e) => handleInputChange(e, data, data._values)}
                     >
                         {data._values.map((options, index) => (
                             <option value={options.value} key={index}>{options.label}</option>
@@ -85,7 +99,7 @@ export default function FormPackage({ formPayload }) {
                         required={data.required}
                         name={data.name}
                         multiple={data.multiple}
-                        onChange={(e) => handleInputChange(e, data)}
+                        onChange={(e) => handleInputChange(e, data, data._values)}
                     >
                         {data._values.map((options, index) => (
                             <option value={options.value} key={index}>{options.label}</option>
@@ -102,7 +116,7 @@ export default function FormPackage({ formPayload }) {
                                 type="checkbox"
                                 name={data.name}
                                 value={options.value}
-                                onChange={(e) => handleInputChange(e, data)}
+                                onChange={(e) => handleInputChange(e, data, options)}
                             />
                             <label className="pl-1">{options.label}</label>
                         </div>
@@ -118,7 +132,7 @@ export default function FormPackage({ formPayload }) {
                         required={data.required}
                         name={data.name}
                         value={data._values[0].value}
-                        onChange={(e) => handleInputChange(e, data)}
+                        onChange={(e) => handleInputChange(e, data, data._values[0])}
                         multiple={data.multiple}
                     />
                 );
@@ -132,7 +146,7 @@ export default function FormPackage({ formPayload }) {
                         required={data.required}
                         name={data.name}
                         value={data._values[0]}
-                        onChange={(e) => handleFileChange(e, data)}
+                        onChange={(e) => handleFileChange(e, data, null)}
                         multiple={data.multiple}
                     />
                 );
@@ -141,7 +155,7 @@ export default function FormPackage({ formPayload }) {
                 return (
                     data._values.map((options, index) => (
                         <div className="py-1" key={index}>
-                            <input type="radio" onChange={(e) => handleInputChange(e, data)} required={data.required} name={data.name} value={options.value} />
+                            <input type="radio" onChange={(e) => handleInputChange(e, data, options)} required={data.required} name={data.name} value={options.value} />
                             <label className="pl-1">{options.label}</label>
                         </div>
                     ))
@@ -153,15 +167,23 @@ export default function FormPackage({ formPayload }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const newResponseArray = responseArray.map(({ name, ...rest }) => ({
+            ...rest,
+        }));
+
+        const payload = { form: newResponseArray };
+
         var requestData = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'authorization': localStorage.getItem("auth_token")
             },
-            body: JSON.stringify(responseArray),
+            body: JSON.stringify(payload),
         };
 
-        fetch("https://bog-application.herokuapp.com/api/projects/request", requestData)
+        fetch("https://bog.greenmouseproperties.com/api/projects/request", requestData)
             .then(response => response.text())
             .then(result => 
                 Swal.fire({

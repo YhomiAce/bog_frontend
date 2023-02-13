@@ -1,3 +1,4 @@
+import $ from "jquery";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
@@ -18,6 +19,13 @@ import { WarningAlert } from '../../../src/services/endpoint';
 import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
 import Spinner from '../layouts/Spinner';*/
+
+window.jQuery = $; //JQuery alias
+window.$ = $; //JQuery alias
+
+require("jquery-ui-sortable"); //For FormBuilder Element Drag and Drop
+require("formBuilder");// For FormBuilder
+
 
 export default function Service() {
     const navigate = useNavigate();
