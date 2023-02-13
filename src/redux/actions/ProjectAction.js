@@ -94,6 +94,13 @@ export const assignProject = (payload) => {
     }
 }
 
+export const removeProject = (payload) => {
+    return {
+        type: ActionType.DELETE_PROJECT,
+        payload
+    }
+}
+
 export const getMyProject = (userType) => {
     return async (dispatch) => {
         try {
@@ -435,7 +442,7 @@ export const getServicePartnerProjects = (userId) => {
     }
 }
 
-export const DispatchProject = (projectId) => {
+export const DispatchProject = ({projectId, score}) => {
     return async (dispatch) => {
         try {
             const authToken = localStorage.getItem("auth_token");
@@ -449,8 +456,9 @@ export const DispatchProject = (projectId) => {
             // dispatch(loading());
             const body = {
                 projectId,
-                status: "dispatched"
-            }
+                status: "dispatched",
+                score
+            };
             const response = await axios.patch('/projects/dispatch-project/'+projectId, body, config);
             console.log(response);
             Swal.fire({
@@ -537,6 +545,42 @@ export const assignProjectToPartner = (payload, saveLoading) => {
             let errorMsg = error?.response?.data?.message || error.message
             dispatch(setError(errorMsg));
             saveLoading()
+            toaster.notify(
+                errorMsg,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+
+    }
+}
+
+export const deleteUserProject = (id) => {
+    return async (dispatch) => {
+        try {
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                }
+            }
+            // dispatch(loading());
+            const response = await axios.delete(`/projects/delete/${id}`, config);
+            console.log(response);
+            dispatch(removeProject(id));
+            Swal.fire({
+                title: "Done",
+                text: "Project Deleted Successfully!",
+                icon: "success"
+            })
+        } catch (error) {
+            console.log(error);
+            let errorMsg = error?.response?.data?.message || error.message
+            dispatch(setError(errorMsg));
             toaster.notify(
                 errorMsg,
                 {

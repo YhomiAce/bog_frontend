@@ -199,7 +199,6 @@ export default function SubAdminDetails() {
         });
     }
 
-
     if (loading) {
         return <center><Spinner /></center>
     }

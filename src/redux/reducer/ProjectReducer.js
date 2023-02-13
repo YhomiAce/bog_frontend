@@ -78,6 +78,13 @@ const ProjectReducer = (state = initialState, action) => {
                 services: state.services.filter(where => where.id !== payload),
                 error: null,
             }
+        case ActionType.DELETE_PROJECT:
+            return {
+                ...state,
+                isLoading: false,
+                projects: state.projects.filter(where => where.id !== payload),
+                error: null,
+            }
         case ActionType.PROJECT_ERROR:
             return {
                 ...state,

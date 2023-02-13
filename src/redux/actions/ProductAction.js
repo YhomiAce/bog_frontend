@@ -283,7 +283,7 @@ export const removeProduct = (productId, saveLoading, isAdmin) => {
             console.log(response);
             if (isAdmin) {
                 dispatch(DeleteProductAdmin(productId));
-            }else{
+            } else {
                 dispatch(DeleteProduct(productId));
             }
 
