@@ -245,7 +245,7 @@ export default function UserDetails() {
         <div>
             <div className="min-h-screen fs-500 relative">
                 <div className="w-full py-8 bg-white px-4">
-                    <p className="fs-700 lg:text-2xl fw-600 flex items-top">View {formatName(client?.profile?.userType? client?.profile?.userType : client?.userType)}: <span className="text-primary lg:fs px-3 lg:w-auto w-6/12">{client?.name}</span></p>
+                    <p className="fs-700 lg:text-2xl fw-600 flex items-top">View {formatName(client?.profile?.userType ? client?.profile?.userType : client?.userType)}: <span className="text-primary lg:fs px-3 lg:w-auto w-6/12">{client?.name}</span></p>
                     <p className="fs-400 text-gray-600 mt-2">Manage and review all clients</p>
                     <Breadcrumbs className="bg-white pl-0 mt-4">
                         <Link to="/" className="opacity-60">
@@ -316,7 +316,7 @@ export default function UserDetails() {
                                                                 className="bg-orange-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-2 py-1 ml-5 text-white"
                                                                 onClick={() => unsuspendUserACtion(client.id)}
                                                             >
-                                                               UnSuspend
+                                                                UnSuspend
                                                             </button> :
                                                             <button
                                                                 className="bg-orange-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-2 py-1 ml-5 text-white"
