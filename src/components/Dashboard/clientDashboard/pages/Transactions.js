@@ -3,9 +3,14 @@ import { Breadcrumbs } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import useFetchHook from "../../../../hooks/useFetchHook";
 import { AdminTransactTable } from "../../assets/Tables/AdminTransaction";
+import { Spinner2 } from "../../../layouts/Spinner";
 
 export default function Transactions() {
     const { loading, data: transactions } = useFetchHook("/transactions/user");    
+
+    if (loading){
+        return <center><Spinner2 /></center>
+      }   
 
     return (
         <div>

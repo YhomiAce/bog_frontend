@@ -3,10 +3,15 @@ import { Breadcrumbs } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import useFetchHook from "../../../../hooks/useFetchHook";
 import { AdminTransactTable } from "../../assets/Tables/AdminTransaction";
+import { Spinner2 } from "../../../layouts/Spinner";
 
 export default function AdminTransactions() {
     const { loading, data: transactions } = useFetchHook("/transactions");    
     console.log(transactions)
+
+    if (loading){
+        return <center><Spinner2 /></center>
+      }   
 
     return (
         <div>
@@ -40,7 +45,7 @@ export default function AdminTransactions() {
                     <div className="bg-white lg:p-5 lg:mt-6 mt-6 rounded-lg">
                         {
                             !loading && transactions !== null ? 
-                            <AdminTransactTable item={transactions} /> : null
+                            <AdminTransactTable item={transactions} /> : <Spinner2/>
                         }
                     </div>
                 </div>

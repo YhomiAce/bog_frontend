@@ -1,5 +1,5 @@
 import axios from "axios";
-// import handleResponseError from "./handleResponseError";
+import handleResponseError from "./handleResponseError";
 
 const requestHeaders = { "Content-Type": "application/json" };
 const authToken = localStorage.getItem("auth_token");
@@ -41,7 +41,7 @@ Axios.interceptors.response.use(
     // if (parseInt(error?.response?.status) === 401) {
     //   window.location.href = "/login";
     // }
-    // handleResponseError(error.response);
+    handleResponseError(error.response);
     return Promise.reject(error);
   }
 );

@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import {  UsersTable } from "../../assets/Tables/UserTable";
 import { Breadcrumbs } from "@material-tailwind/react";
 import { ClientTable } from "../../assets/Tables/clientTable";
+import { Spinner2 } from "../../../layouts/Spinner";
+import { useSelector } from "react-redux";
 
 export default function Clients() {
 
+    const isLoading = useSelector((state) => state.users.isLoading)
 
     return (
         <div>
@@ -45,7 +48,7 @@ export default function Clients() {
                             <Tab>Corporate</Tab>
                         </TabList>
                         <TabPanel>
-                            <ClientTable />
+                            {isLoading === false? <ClientTable /> : <Spinner2/>}
                         </TabPanel>
                         <TabPanel>
                             <UsersTable userType={"private_client"}/>

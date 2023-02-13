@@ -4,9 +4,12 @@ import { Breadcrumbs } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 // import { BsThreeDotsVertical } from "react-icons/bs";
 import { UsersTable } from "../../assets/Tables/UserTable";
+import { useSelector } from "react-redux";
+import { Spinner2 } from "../../../layouts/Spinner";
 
 export default function Ppartners() {
-    
+
+    const isLoading = useSelector((state) => state.users.isLoading)
 
     return (
         <div>
@@ -45,7 +48,7 @@ export default function Ppartners() {
                             <Tab>Inactive</Tab>
                         </TabList>
                         <TabPanel>
-                            <UsersTable userType={"vendor"}/>
+                            {isLoading === false? <UsersTable userType={"vendor"}/> : <Spinner2/>}
                         </TabPanel>
                         <TabPanel>
                             <UsersTable userType={"vendor"} status={true}/>

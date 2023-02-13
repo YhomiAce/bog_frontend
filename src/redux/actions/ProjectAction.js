@@ -106,7 +106,8 @@ export const getMyProject = (userType) => {
                     'Authorization': authToken
                 }
             }
-            const response = await axios.get('/projects/my-request?userType=' + userType, config);
+            const url  = userType === "professional" ? `/projects/service-request?userType=${userType}` : `/projects/my-request?userType=${userType}`
+            const response = await axios.get(url, config);
             console.log(response);
             dispatch(fetchMyProject(response.data))
         } catch (error) {

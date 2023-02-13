@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getMe } from "../../../../redux/actions/authAction";
 import Axios from "../../../../config/config";
 import { AccountType } from "./AccountType";
-import Spinner from "../../../layouts/Spinner";
+import { Spinner2 } from "../../../layouts/Spinner";
 
 
 export const SwitchAccount = () => {
@@ -59,7 +59,7 @@ export const SwitchAccount = () => {
 
     if (loading) {
         return <center>
-            <Spinner />
+            <Spinner2 />
         </center>
     }
 
@@ -73,13 +73,13 @@ export const SwitchAccount = () => {
             case "admin":
                 return "Super Admin"
             case "professional":
-                return "https://res.cloudinary.com/greenmouse-tech/image/upload/v1675036906/BOG/Service_Partner_2_x8hdqh.png"
+                return "https://res.cloudinary.com/greenmouse-tech/image/upload/v1675950904/BOG/ServicePartner_ygiptu.png"
             case "vendor":
-                return "https://res.cloudinary.com/greenmouse-tech/image/upload/v1675035671/BOG/Product_partner_2_h5imvx.png"
+                return "https://res.cloudinary.com/greenmouse-tech/image/upload/v1675950904/BOG/ProductPartner_vb38la.png"
             case "private_client":
-                return "https://res.cloudinary.com/greenmouse-tech/image/upload/v1675035671/BOG/Private_client_2_ghidej.png"
+                return "https://res.cloudinary.com/greenmouse-tech/image/upload/v1675950904/BOG/PrivateClient_y7iuaq.png"
             case "corporate_client":
-                return "https://res.cloudinary.com/greenmouse-tech/image/upload/v1675036828/BOG/Corporate_client_2_bskzcq.png"
+                return "https://res.cloudinary.com/greenmouse-tech/image/upload/v1675950904/BOG/CorporateClient_p3gss9.png"
             default: return ""
         }
     }

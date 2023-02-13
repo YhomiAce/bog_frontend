@@ -40,7 +40,7 @@ import OrderDetailsClient from "./pages/OrderDetails Client";
 import ProjectDetailsClient from "./pages/ProjectDetailsClient";
 import OrderRequest from "./pages/OrderRequest";
 import UserOrderDetail from "./pages/UserOrderDetail";
-import KycAlert from "../assets/KycAlert";
+import KycAlert, { KycModals } from "../assets/KycAlert";
 import { Subscription } from "./pages/Subscribtion";
 import ProjectFile from "./pages/projects/ProjectFile";
 import ProjectCategory from "./pages/ProjectCat";
@@ -59,6 +59,7 @@ import ServiceCategory from "./pages/ServiceCat";
 import ServiceCategoryForm from "./pages/ServiceCatForm";
 import { ServiceRequest } from "./pages/ServiceRequest";
 import AdminSub from "./pages/AdminSub";
+import ServicePartnerMeeting from "./pages/ServicePartnerMeeting";
 
 export default function ClientDashboard() {
 
@@ -76,7 +77,7 @@ export default function ClientDashboard() {
                 <div className="fixed top-0 hidden lg:block sub-menu z-50">
                     <FontAwesomeIcon icon={faBarsStaggered} size="2x" className="text-2xl lg:ml-4 cursor-pointer" onClick={() => setSidebarReduce(!sidebarReduce)} />
                 </div>
-                {/* <KycModals/> */}
+                <KycModals/>
                 <div
                     style={{
                         width: sidebarReduce ? "calc(100% - 45px)" : "",
@@ -121,6 +122,7 @@ export default function ClientDashboard() {
                         <Route path="servicecategory" element={<ProjectCategory />} />
                         <Route path="servicecategory/buildForm/:id/:name" element={<ServiceCategoryForm />} />
                         <Route path="meetings" element={<Meetings />} />
+                        <Route path="service-meetings" element={<ServicePartnerMeeting />} />
                         <Route path="admin-meetings" element={<AdminMeeting />} />
                         <Route path="transact" element={<Transactions />} />
                         <Route path="transact-details" element={<TransactionDetails />} />

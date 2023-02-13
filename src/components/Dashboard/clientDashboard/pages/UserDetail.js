@@ -26,6 +26,7 @@ export default function UserDetails() {
     const navigate = useNavigate()
     const { search } = useLocation();
     const userId = new URLSearchParams(search).get("userId");
+    // const userType = new URLSearchParams(search).get("userType");
     const [client, setClient] = useState(null);
     const [accounts, setAccounts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -38,7 +39,6 @@ export default function UserDetails() {
         try {
             setLoading(true);
             const url = `/users/get-user/${userId}`
-            await Axios.get(url)
             const res = await Axios.get(url);
             const datas = res.data
             console.log(datas)
@@ -51,11 +51,19 @@ export default function UserDetails() {
             setLoading(false);
         }
     };
-    const fetchKycDetails = async (userId, userType) => {
+    const fetchKycDetails = async (userId) => {
         try {
-            const url = `/kyc/user-kyc/${userId}?userType=${userType}`
-            await Axios.get(url)
-            const res = await Axios.get(url);
+            const url = `/kyc/user-kyc/${userId}`
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    "Content-Type": "application/json",
+                    'Authorization': authToken
+                }
+
+            }
+            const res = await Axios.get(url, config);
             const kycs = res.data
             setKyc(kycs)
             console.log(kycs)
@@ -63,6 +71,7 @@ export default function UserDetails() {
             console(error)
         }
     }
+
     const Reload = () => {
         setTimeout(() => {
             fetchUserDetails(userId)
@@ -72,11 +81,13 @@ export default function UserDetails() {
     useEffect(() => {
         fetchUserDetails(userId)
     }, []);
+
     useEffect(() => {
         if (client && (client.userType === "vendor" || client.userType === "professional")) {
             fetchKycDetails(userId, client.userType)
         }
     }, [client])
+
     useEffect(() => {
         if (kyc) {
             disableButton()
@@ -120,12 +131,7 @@ export default function UserDetails() {
 
     const disableButton = () => {
         if (
-            kyc.kycDocuments.length === 0 ||
-            !kyc.kycFinancialData ||
-            !kyc.kycGeneralInfo ||
-            !kyc.kycOrganisationInfo ||
-            !kyc.kycTaxPermits ||
-            kyc.kycWorkExperience.length === 0) {
+            kyc.isKycCompleted === false) {
             setDisable(true)
         }
     }
@@ -239,7 +245,7 @@ export default function UserDetails() {
         <div>
             <div className="min-h-screen fs-500 relative">
                 <div className="w-full py-8 bg-white px-4">
-                    <p className="fs-700 lg:text-2xl fw-600 flex items-top">View {formatName(client?.userType)}: <span className="text-primary lg:fs px-3 lg:w-auto w-6/12">{client?.name}</span></p>
+                    <p className="fs-700 lg:text-2xl fw-600 flex items-top">View {formatName(client?.profile?.userType? client?.profile?.userType : client?.userType)}: <span className="text-primary lg:fs px-3 lg:w-auto w-6/12">{client?.name}</span></p>
                     <p className="fs-400 text-gray-600 mt-2">Manage and review all clients</p>
                     <Breadcrumbs className="bg-white pl-0 mt-4">
                         <Link to="/" className="opacity-60">
@@ -294,7 +300,7 @@ export default function UserDetails() {
 
                                                 <div className="flex mt-3">
                                                     {
-                                                        client?.profile.isVerified ?
+                                                        client?.profile?.isVerified ?
                                                             <button className="bg-green-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-4 py-1 text-white">Verified</button>
                                                             : client.userType === "vendor" || client.userType === "professional" ?
                                                                 <button
@@ -323,7 +329,7 @@ export default function UserDetails() {
                                                 </div>
                                             </div>
                                             {
-                                                client?.profile.isVerified ?
+                                                client?.profile?.isVerified ?
                                                     <div className="absolute top-5 right-5 flex items-center">
                                                         <MdVerified className="text-3xl text-secondary" />
                                                         <p className="fw-600 text-primary">{client?.profile.kycPoint}</p>
