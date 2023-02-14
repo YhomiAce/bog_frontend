@@ -91,7 +91,7 @@ export const loginUser = (apiData, navigate, stopLoading) => {
                 errors,
                 {
                     duration: "4000",
-                    position: "bottom",
+                    position: "top",
                 }
             );
         }
@@ -129,7 +129,7 @@ export const loginAdmin = (apiData, navigate, stopLoading) => {
                 errors,
                 {
                     duration: "4000",
-                    position: "bottom",
+                    position: "top",
                 }
             );
         }
@@ -164,7 +164,7 @@ export const register = (apiData, navigate, stopLoading) => {
                 errors,
                 {
                     duration: "4000",
-                    position: "bottom",
+                    position: "top",
                 }
             );
         }

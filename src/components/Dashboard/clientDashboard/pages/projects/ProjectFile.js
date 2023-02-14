@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 import { FormTypes } from "./FormTypes";
 
 export default function ProjectFile() {
-    const { search } = useLocation();
+   const { search } = useLocation();
     const projectId = new URLSearchParams(search).get("projectId");
     const [project, setProjects] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -20,7 +20,7 @@ export default function ProjectFile() {
                 },
             };
             setLoading(true);
-            const url = `/projects/view-project/${projectId}`
+            const url = `projects/v2/view-project/${projectId}`
             const response = await Axios.get(url, config);
             const { data } = response;
             setProjects(data)
