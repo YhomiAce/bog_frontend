@@ -61,7 +61,7 @@ export const getUsers = () => {
                 error.message,
                 {
                     duration: "4000",
-                    position: "bottom",
+                    position: "top",
                 }
             );
         }

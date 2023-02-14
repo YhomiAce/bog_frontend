@@ -30,7 +30,9 @@ const CategoryItem = ({ item, sn, handleViewOpen, openEdit }) => {
                 dispatch(deleteServiceCategory(id))
             }
         });
-    }
+  }
+  
+  console.log(item);
 
   return (
 
@@ -42,7 +44,7 @@ const CategoryItem = ({ item, sn, handleViewOpen, openEdit }) => {
         {item.title}
       </td>
       <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
-        {item.service.name}
+        {item.service ? item.service.name : ''}
       </td>
       <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
         {item.slug}

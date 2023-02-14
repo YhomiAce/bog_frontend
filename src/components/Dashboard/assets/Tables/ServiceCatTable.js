@@ -171,6 +171,7 @@ function GlobalFilter({
 }
 
 const Table = ({ columns, data }) => {
+  console.log(data);
 
   const { getTableProps, getTableBodyProps, headerGroups, prepareRow, state, preGlobalFilteredRows, setGlobalFilter, page, canPreviousPage,
     canNextPage,
