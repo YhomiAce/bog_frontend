@@ -32,7 +32,6 @@ const CategoryItem = ({ item, sn, handleViewOpen, openEdit }) => {
         });
   }
   
-  console.log(item);
 
   return (
 
