@@ -4,10 +4,10 @@ import { Button } from '@material-tailwind/react'
 import React, { useState, useRef } from "react";
 import { Breadcrumbs } from "@material-tailwind/react";
 import { Link, useParams } from "react-router-dom";
-//import { useDispatch, useSelector } from "react-redux";
-import { MdOutlineEngineering } from "react-icons/md";
+import { useDispatch} from "react-redux";
 import { useEffect } from "react";
 import Spinner from '../../../layouts/Spinner';
+import { createServiceForm } from "../../../../redux/actions/ServiceCategoryAction";
 
 window.jQuery = $; //JQuery alias
 window.$ = $; //JQuery alias
@@ -16,9 +16,12 @@ require("jquery-ui-sortable"); //For FormBuilder Element Drag and Drop
 require("formBuilder");// For FormBuilder
 
 export default function ServiceCategory() {
-   // const dispatch = useDispatch();
-    // let { id, name } = useParams();
-     let { name } = useParams();
+     const dispatch = useDispatch();
+     let { id, name } = useParams();
+
+    const stopLoading = () => {
+        setLoading(false);
+    }
 
     const fb = useRef(null);
     let editor = null;
@@ -37,9 +40,14 @@ export default function ServiceCategory() {
         let formPayload;
 
         const result = editor.actions.save();
-        formPayload = { "formData": JSON.stringify(result) };
 
-        console.log(formPayload);
+        formPayload = {
+            serviceType: id,
+            serviceName: name,
+            "formData": result
+        };
+
+        dispatch(createServiceForm(formPayload, stopLoading));
     }
 
     return (
@@ -51,7 +59,7 @@ export default function ServiceCategory() {
                         <p className="fs-400 text-gray-600 mt-2">Create Form for 
                             <b style={{ color: '#3F79AD', marginLeft: '4px' }}>
                                 {name}
-                        </b> Category</p>
+                        </b></p>
                         <Breadcrumbs className="bg-white pl-0 mt-4">
                             <Link to="/" className="opacity-60">
                                 <svg
@@ -66,16 +74,13 @@ export default function ServiceCategory() {
                             <Link to="/dashboard" className="opacity-60">
                                 <span>Dashboard</span>
                             </Link>
-                            <Link to="/dashboard/service-category" className="opacity-60">
+                            <Link to="/dashboard/servicecategory" className="opacity-60">
                                 <span> Service Category</span>
                             </Link>
                             <Link to="" className="">
                                 <span>Form Builder</span>
                             </Link>
                         </Breadcrumbs>
-                    </div>
-                    <div className="mt-4 lg:mt-0">
-                        <button className="px-4 lg:py-2 py-1 rounded bg-primary text-white fw-600 flex items-center"><span className="pr-1"><MdOutlineEngineering /></span>Add New Category</button>
                     </div>
                 </div>
                 {/* product contents */}

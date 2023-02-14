@@ -11,7 +11,6 @@ import Spinner from "../layouts/Spinner";
 export default function AdminLogin() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const error = useSelector((state) => state.auth.error);
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const [loading, setLoading] = useState(false);
     const stopLoading = () => setLoading(false);
@@ -86,9 +85,7 @@ export default function AdminLogin() {
                                         onBlur={formik.handleBlur}
                                     />
                                 </div>
-                                {
-                                    error ? <p className="text-lg text-center mt-3 fw-700 text-red-600">{error}</p> : null
-                                }
+                                
                                 <div className="mt-8 w-full text-center">
                                     {
                                         loading ? <Spinner /> : <button type="submit" className="w-full bg-primary py-3 rounded text-xl text-white fw-600">

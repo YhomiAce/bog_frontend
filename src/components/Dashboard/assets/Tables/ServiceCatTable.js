@@ -21,7 +21,6 @@ import * as XLSX from 'xlsx'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteServiceCategories } from '../../../../redux/actions/ServiceCategoryAction';
 import Swal from 'sweetalert2';
-import { NavLink } from 'react-router-dom';
 
 // export table files
 
@@ -123,7 +122,6 @@ export function ServiceCategoryTable({ adminEdit }) {
           </MenuHandler>
           <MenuList className="w-16 bg-gray-100 fw-600 text-black">
             <MenuItem onClick={() => adminEdit(row.row.original)}>View</MenuItem>
-            <MenuItem><NavLink to={`buildForm/${row.row.original.id}/${row.row.original.name}`}>Create Form</NavLink></MenuItem>
             <MenuItem className='bg-red-600 hover:bg-red-500 text-white' onClick={() => adminDelete(row.value)}>Delete</MenuItem>
           </MenuList>
         </Menu>,

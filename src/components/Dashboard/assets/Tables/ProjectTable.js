@@ -8,11 +8,7 @@ import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, usePagination 
 import { useNavigate } from "react-router-dom";
 // import { BsThreeDotsVertical } from "react-icons/bs";
 import { useMemo } from "react";
-import * as moment from 'moment'
-import { SuccessAlert } from "../../../../../src/services/endpoint";
-import toaster from "toasted-notes";
-import "toasted-notes/src/styles.css";
-import Axios from "../../../../../src/config/config";
+import * as moment from 'moment';
 import {
   Menu,
   MenuHandler,
@@ -25,7 +21,7 @@ import "jspdf-autotable";
 import { useExportData } from "react-table-plugins";
 import Papa from "papaparse";
 import * as XLSX from 'xlsx'
-import { commenceProject, getMyProject } from '../../../../redux/actions/ProjectAction';
+import { commenceProject, deleteUserProject } from '../../../../redux/actions/ProjectAction';
 import Swal from "sweetalert2";
 
 
@@ -98,47 +94,21 @@ export default function ProjectTable({ status }) {
   if (status) {
     myProjects = myProjects.filter(where => where.status === status)
   }
-  //   const formatNumber = (number) => {
-  //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  // }
 
   const navigate = useNavigate()
   const gotoDetailsPage = (id) => {
     navigate(`/dashboard/myprojectdetails?projectId=${id}`)
   }
+
   const gotoProjectFile = (id) => {
     navigate(`/dashboard/projectfile?projectId=${id}`)
   }
+
   const deleteProject = async (id) => {
-    try {
-      setLoading(true);
-      const config = {
-        headers: {
-          "Content-Type": "Application/json",
-          authorization: localStorage.getItem("auth_token"),
-        },
-      };
-      await Axios.delete(`/projects/delete/${id}`, config).then((response) => {
-        // console.log(response)
-      });
-      setLoading(false);
-      SuccessAlert("Project Deleted Successfully!");
-      dispatch(getMyProject());
-    } catch (error) {
-      setLoading(false);
-      if (error.response.data.message) {
-        toaster.notify(error.response.data.message, {
-          duration: "4000",
-          position: "bottom",
-        });
-        return;
-      }
-      toaster.notify(error.message, {
-        duration: "4000",
-        position: "bottom",
-      });
-    }
+    setLoading(true);
+    dispatch(deleteUserProject(id))
   }
+
   const formatStatus = (status) => {
     switch (status) {
       case "in_review":
@@ -157,6 +127,7 @@ export default function ProjectTable({ status }) {
     }
 
   }
+
   const formatProductType = (projectTypes) => {
     switch (projectTypes) {
       case "land_survey":
@@ -233,8 +204,8 @@ export default function ProjectTable({ status }) {
             {
               row.cell.row.original.approvalStatus !== "in_review" &&
               <MenuItem onClick={() => gotoDetailsPage(row.value)}>
-              View Details
-            </MenuItem>
+                View Details
+              </MenuItem>
             }
             <MenuItem onClick={() => gotoProjectFile(row.value)}>
               View Form

@@ -7,7 +7,6 @@ const FetchMe = () => {
     const auth = useSelector(state => state.auth.user);
     useEffect(() => {
         if (!auth) {
-            console.log("FETCHME");
             dispatch(getMe());            
         }
     }, [dispatch, auth])

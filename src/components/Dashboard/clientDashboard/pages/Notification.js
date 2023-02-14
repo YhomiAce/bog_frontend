@@ -13,7 +13,7 @@ export default function Notification() {
     const notifications = useSelector(state => state.notifications.userNotifications);
     const user = useSelector(state => state.auth.user);
     const dispatch = useDispatch();
-    // const {data: userNotifications } = useFetchHook(`/notifications/user/${user?.id}`);
+    console.log({notifications});
     useEffect(() => {
         if(user){
             dispatch(fetchAllUserNotifications(user.profile.id))

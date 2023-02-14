@@ -28,6 +28,7 @@ import * as XLSX from 'xlsx'
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Swal from "sweetalert2";
 import { approveProjectToStart, DispatchProject } from "../../../../redux/actions/ProjectAction";
+import DispatchProjectModal from "../../clientDashboard/pages/Modals/DispatchProject";
 
 // export table files
 
@@ -91,10 +92,20 @@ function getExportFileBlob({ columns, data, fileType, fileName }) {
 export default function ProjectsTable({ status }) {
   // let   allProjects = useSelector((state) => state.orders.  allProjects);
   let allProjects = useSelector((state) => state.allprojects.projects);
-  
+  const [open, setOpen] = useState(false);
+  const [projectId, setProjectId] = useState('');
+
+  const openModal = (id) => {
+    setProjectId(id)
+    setOpen(true)
+  }
+  const closeModal = () => {
+    setOpen(false)
+  }
+
   if (status) {
 
-    if (status === "pending") {
+    if (status === "in_review") {
       allProjects = allProjects.filter(where => where.approvalStatus === status)
       console.log({ allProjects });
     } else {
@@ -181,22 +192,12 @@ export default function ProjectsTable({ status }) {
     });
   }
 
-  const dispatchProjectToPartners = (id) => {
-    Swal.fire({
-      title: "Post Project",
-      text: 'Do you want to send project out to service partners',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#4BB543',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Yes Send',
-      cancelButtonText: "Cancel",
-    }).then((result) => {
-      if (result.value) {
-
-        dispatch(DispatchProject(id))
-      }
-    });
+  const dispatchProjectToPartners = (score) => {
+    const payload = {
+      score,
+      projectId
+    }
+    dispatch(DispatchProject(payload))
   }
 
 
@@ -244,7 +245,7 @@ export default function ProjectsTable({ status }) {
               </MenuItem>
             }
             {
-              row.cell.row.original.status === "ongoing" && 
+              row.cell.row.original.status === "ongoing" &&
               <MenuItem onClick={() => gotoDetailsPage(row.value)}>
                 View Details
               </MenuItem>
@@ -257,7 +258,7 @@ export default function ProjectsTable({ status }) {
             }
             {
               row.cell.row.original.approvalStatus === "approved" && row.cell.row.original.status !== "ongoing" &&
-              <MenuItem onClick={() => dispatchProjectToPartners(row.value)}>
+              <MenuItem onClick={() => openModal(row.value)}>
                 Post Project
               </MenuItem>
             }
@@ -295,6 +296,13 @@ export default function ProjectsTable({ status }) {
 
   return (
     <>
+      {
+        open &&
+        <DispatchProjectModal
+          closeModal={closeModal}
+          dispatchProject={dispatchProjectToPartners}
+        />
+      }
       <div className="overflow-hidden px-4 bg-white py-8 rounded-md">
         <Table columns={columns} data={data} className="" />
       </div>

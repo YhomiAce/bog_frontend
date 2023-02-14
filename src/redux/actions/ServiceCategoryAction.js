@@ -25,6 +25,13 @@ export const fetchCategory = (payload) => {
     }
 }
 
+export const fetchServiceForm = (payload) => {
+    return {
+        type: ActionType.FETCH_SERVICE_FORMS,
+        payload
+    }
+}
+
 export const removeCategory = (payload) => {
     return {
         type: ActionType.DELETE_SERVICE_CATEGORY,
@@ -58,7 +65,6 @@ export const getAllServiceCategories = () => {
                 },
             }
             const response = await axios.get('/services/all', config);
-            console.log(response);
             dispatch(fetchCategory(response.data))
         } catch (error) {
             console.log(error.message);
@@ -181,4 +187,67 @@ export const updateServiceCategory = (payload, saveLoading) => {
     }
 }
 
+
+export const createServiceForm = (payload, saveLoading) => {
+    return async (dispatch) => {
+        try {
+            dispatch(loading());
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': localStorage.getItem("auth_token")
+                },
+            }
+            const url = `/service/form-builder/create`
+            const response = await axios.post(url, payload, config);
+            console.log(response);
+            dispatch(addCategory(response.data));
+            saveLoading();
+            Swal.fire({
+                title: "Service Form Created",
+                text: "Service Form Built successfully",
+                icon: "success"
+            })
+        } catch (error) {
+            console.log(error.message);
+            dispatch(setError(error.message));
+            saveLoading();
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+
+    }
+}
+
  
+export const getServiceFormBuilder = (id) => {
+    return async (dispatch) => {
+        try {
+            dispatch(loading());
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    'authorization': localStorage.getItem("auth_token")
+                },
+            }
+            const response = await axios.get(`/service/form-builder/${id}`, config);
+            dispatch(fetchServiceForm(response.data))
+        } catch (error) {
+            console.log(error.message);
+            dispatch(setError(error.message));
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+
+    }
+}

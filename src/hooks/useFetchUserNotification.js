@@ -16,8 +16,8 @@ const FetchUserNotification = () => {
                 }
             });
             socket.on("getUserNotifications", (payload) => {
-                console.log(payload);
-                dispatch(fetchUserNotifications(payload))
+                const result = [...payload]
+                dispatch(fetchUserNotifications(result))
             })
         }
     }, [dispatch, auth])

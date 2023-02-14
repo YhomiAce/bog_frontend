@@ -11,7 +11,7 @@ import { FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
 export default function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const error = useSelector((state) => state.auth.error);
+    // const error = useSelector((state) => state.auth.error);
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const [loading, setLoading] = useState(false);
     const stopLoading = () => setLoading(false);
@@ -121,9 +121,7 @@ export default function Login() {
 
 
                                 </div>
-                                {
-                                    error ? <p className="text-lg text-center mt-3 fw-700 text-red-600">{error}</p> : null
-                                }
+                               
                             </form>
                             <div className="mt-8 text-center">
                                 Don't have an account yet? <span className="text-secondary fs-500 fw-600"><Link to="/signup">Sign Up</Link></span>

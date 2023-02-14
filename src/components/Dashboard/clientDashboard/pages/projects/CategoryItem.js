@@ -1,9 +1,16 @@
 import React from 'react'
-import { BsEye } from 'react-icons/bs'
-import { BiEdit, BiTrash } from 'react-icons/bi';
+import {
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Button,
+} from "@material-tailwind/react";
+import { BsThreeDotsVertical } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import { deleteServiceCategory } from '../../../../../redux/actions/ProjectAction';
+import { Link } from 'react-router-dom';
 
 const CategoryItem = ({ item, sn, handleViewOpen, openEdit }) => {
   const dispatch = useDispatch();
@@ -44,17 +51,17 @@ const CategoryItem = ({ item, sn, handleViewOpen, openEdit }) => {
       <td className="border-b border-gray-200 align-middle  text-sm whitespace-nowrap px-2 py-4 text-left">
         <div className="flex text-xl">
 
-          <span className='fw-600 pr-3 text-xl text-primary cursor-pointer hover:scale-110'>
-            <BsEye onClick={() =>handleViewOpen(item)} />
-          </span>
-          <span className='fw-600 px-3 text-xl text-secondary cursor-pointer hover:scale-110'>
-            <BiEdit onClick={() =>openEdit(item)} />
-          </span>
-          <span className='fw-600 px-3 text-xl text-red-700 cursor-pointer hover:scale-110'>
-            <BiTrash onClick={() => deleteService(item.id)} />
-          </span>
-
-
+          <Menu placement="left-start" className="w-16">
+            <MenuHandler>
+              <Button className="border-none bg-transparent shadow-none hover:shadow-none text-black"><button className="lg:text-xl"><BsThreeDotsVertical /></button></Button>
+            </MenuHandler>
+            <MenuList className="w-16 bg-gray-100 fw-600 text-black">
+              <MenuItem onClick={() => handleViewOpen(item)}>View</MenuItem>
+              <MenuItem onClick={() => openEdit(item)}>Edit</MenuItem>
+              <MenuItem><Link to={`buildForm/${item.id}/${item.title}`}>Create Form</Link></MenuItem>
+              <MenuItem onClick={() => deleteService(item.id)}>Delete</MenuItem>
+            </MenuList>
+          </Menu>
         </div>
       </td>
     </tr>

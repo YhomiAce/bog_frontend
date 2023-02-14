@@ -67,7 +67,7 @@ export default function Settings() {
                 <div className="flex py-6">
                   <p className="px-4 py-2 bg-green-500 fw-600 fs-400 text-white rounded-lg">Email Verified</p>
                   <p className="px-4 py-2 bg-orange-500 fw-600 fs-400 text-white rounded-lg ml-5"> {auth?.user?.profile?.isVerified ? `KYC Point: ${auth?.user?.profile?.kycPoint}`: 'KYC Pending'} </p>
-                  <p className="px-4 py-2 bg-green-500 fw-600 fs-400 text-white rounded-lg">{auth?.user?.profile?.hasActiveSubscription ? `Active Subscription`: 'Subscribe to our plans'}</p>
+                  <p className="px-4 py-2 ml-3 bg-blue-500 fw-500 fs-200 text-white rounded-lg">{auth?.user?.profile?.hasActiveSubscription ? `Subscribed`: 'Subscription Pending'}</p>
                 </div>
               </div>
               {
