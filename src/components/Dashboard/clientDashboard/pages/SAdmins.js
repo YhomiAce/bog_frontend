@@ -6,13 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAdmins } from "../../../../redux/actions/UserAction";
 import AddAdminModal from "./Admins/Modals/AddAdminModal";
 import { SubAdminTable } from "../../assets/Tables/SubAdminTable";
+import { Spinner2 } from "../../../layouts/Spinner";
+import { AiOutlineAppstoreAdd } from "react-icons/ai";
 
 export default function Sadmins() {
     const dispatch = useDispatch();
     const { admins } = useSelector((state) => state.users);
-    // God'sWill to continue integration
-    // Create the table for admin listing
-    // add the three icons for view, edit and delete
+    const isLoading = useSelector((state) => state.users.isLoading)
     console.log(admins);
 
     const [adminAdd, setAdminAdd] = useState(false);
@@ -53,8 +53,8 @@ export default function Sadmins() {
                             </Link>
                         </Breadcrumbs>
                     </div>
-                    <div className="mt-4 lg:mt-0 lg:w-2/12 lg:text-end">
-                        <button className="px-4 lg:py-2 py-1 bg-primary rounded border-pri text-white" onClick={() => setAdminAdd(!adminAdd)}>Add Admin</button>
+                    <div className="mt-4 lg:mt-0 lg:w-2/12 lg:text-end flex justify-end">
+                        <button className="px-4 lg:py-2 py-1 bg-primary rounded border-pri text-white flex justify-end" onClick={() => setAdminAdd(!adminAdd)}><span className="pr-2 text-xl"><AiOutlineAppstoreAdd/></span>Add Admin</button>
                     </div>
                 </div>
                 {/* content */}
@@ -64,17 +64,9 @@ export default function Sadmins() {
                         <Tabs className="px-2 lg:px-0 py-5 lg:py-0">
                             <TabList className="">
                                 <Tab>All Sub-Admins</Tab>
-                                <Tab>Active</Tab>
-                                <Tab>Inactive</Tab>
                             </TabList>
                             <TabPanel>
-                                <SubAdminTable/>
-                            </TabPanel>
-                            <TabPanel>
-                                <SubAdminTable status={"isActive"} />
-                            </TabPanel>
-                            <TabPanel>
-                                <SubAdminTable status={""} />
+                                {isLoading === true? <Spinner2/> : <SubAdminTable/>}
                             </TabPanel>
                         </Tabs>
                     </div>
