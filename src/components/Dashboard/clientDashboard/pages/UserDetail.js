@@ -214,6 +214,8 @@ export default function UserDetails() {
                 Swal.fire({
                     title: 'Success',
                     text: 'User suspendend'
+                }).then(() => {
+                    fetchUserDetails(userId);
                 });
             }
         });
@@ -235,6 +237,8 @@ export default function UserDetails() {
                 Swal.fire({
                     title: 'Success',
                     text: 'User unsuspendend'
+                }).then(() => {
+                    fetchUserDetails(userId);
                 });
             }
         });
