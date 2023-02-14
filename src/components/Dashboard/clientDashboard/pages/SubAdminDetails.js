@@ -198,6 +198,23 @@ export default function SubAdminDetails() {
             }
         });
     }
+    const formatLevel = (level) => {
+        switch (level) {
+            case 1:
+              return <p className=''>Super Admin</p>
+            case 2:
+                return <p className=''>Article Admin</p>
+            case 3:
+              return <p className=''>Finance Admin</p>
+            case 4:
+              return <p className=''>Product Admin</p>
+            case 5:
+              return <p className=''>Project Admin</p>
+    
+            default: return <p className=''>Waiting...</p>
+        }
+    
+    }
 
     if (loading) {
         return <center><Spinner /></center>
@@ -274,8 +291,8 @@ export default function SubAdminDetails() {
                                         <p className="pl-3">{admin?.phone}</p>
                                     </div> */}
                                     <div className="flex mt-2">
-                                        <p className="text-gray-600">Level:</p>
-                                        <p className="pl-3">{admin?.level ? admin.level : "null"}</p>
+                                        <p className="text-gray-600">Admin Role:</p>
+                                        <p className="pl-3">{admin?.level ? formatLevel(admin.level) : "null"}</p>
                                     </div>
                                     {/* <div className="flex mt-2">
                                         <p className="text-gray-600">Password:</p>
