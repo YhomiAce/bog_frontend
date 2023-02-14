@@ -302,7 +302,7 @@ export default function UserDetails() {
                                                     {
                                                         client?.profile?.isVerified ?
                                                             <button className="bg-green-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-4 py-1 text-white">Verified</button>
-                                                            : client.userType === "vendor" || client.userType === "professional" ?
+                                                            : client?.profile?.userType === "vendor" || client?.profile?.userType === "professional" ?
                                                                 <button
                                                                     className="bg-green-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-4 py-1 text-white"
                                                                     disabled={disable} onClick={() => setVerify(true)}
@@ -490,7 +490,7 @@ export default function UserDetails() {
                                 </div>
                             </div>
                             {
-                                client.userType === "vendor" || client.userType === "professional" ?
+                                client?.profile?.userType === "vendor" || client?.profile?.userType === "professional" ?
                                     <div className="bg-white lg:p-8 px-3 py-4 rounded mt-8 shadow-lg">
                                         <Tabs>
                                             <TabList className='flex lg:overflow-hidden overflow-scroll w-full'>

@@ -22,7 +22,7 @@ export const KycText = () => {
 }
 
 export const KycModal = () => {
-  
+
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate()
   const [modal, setModal] = useState(true)
@@ -32,7 +32,7 @@ export const KycModal = () => {
 
   const fetchKycDetails = async () => {
     try {
-        const url = `/kyc/user-kyc/?userId=${user.id}?userType=${user.userType}`
+        const url = `/kyc/user-kyc/${user.id}?userType=${user.userType}`
         const authToken = localStorage.getItem("auth_token");
         const config = {
             headers:
