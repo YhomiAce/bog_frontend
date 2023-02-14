@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import ProjectTable from "../../assets/Tables/ProjectTable";
 import { getMyProject } from '../../../../redux/actions/ProjectAction';
 import { useDispatch } from "react-redux";
+import { getProjectCategory } from "../../../../services/helper";
+import dayjs from "dayjs";
 
 export default function Projects() {
     const auth = useSelector((state) => state.auth);
@@ -113,6 +115,7 @@ export function ClientProject() {
 }
 
 export function ServiceProject() {
+    const { projects } = useSelector((state) => state.projects);
 
     return (
         <div>
@@ -179,39 +182,44 @@ export function ServiceProject() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    1
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    DRAW-VAC-20E42
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Construction Drawing
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Ogba, Lagos
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    20-04-2022
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    Ongoing
-                                                </td>
-                                                <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                                    <div className="flex text-xl">
-                                                        <Menu>
-                                                            <MenuHandler>
-                                                               <Button></Button>
-                                                            </MenuHandler>
-                                                            <MenuList>
-                                                                <MenuItem>View Details</MenuItem>
-                                                                <MenuItem>Update Details</MenuItem>
-                                                            </MenuList>
-                                                        </Menu>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            {
+                                                projects.length > 0 && projects.filter(where => where.status === "ongoing").map((item, index) => (
+                                                    <tr>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {index +1 }
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {item.projectSlug}
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {getProjectCategory(item.projectTypes)}
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {item.projectData?.propertyLocation}
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {dayjs(item.createdAt).format("YYYY-MM-DD")}
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            {item.status.toUpperCase()}
+                                                        </td>
+                                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                                            <div className="flex text-xl">
+                                                                <Menu>
+                                                                    <MenuHandler>
+                                                                        <Button>View</Button>
+                                                                    </MenuHandler>
+                                                                    <MenuList>
+                                                                        <MenuItem>View Details</MenuItem>
+                                                                        <MenuItem>Update Details</MenuItem>
+                                                                    </MenuList>
+                                                                </Menu>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                            }
+
 
                                         </tbody>
                                     </table>
