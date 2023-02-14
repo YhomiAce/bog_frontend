@@ -83,8 +83,8 @@ export default function UserDetails() {
     }, []);
 
     useEffect(() => {
-        if (client && (client.userType === "vendor" || client.userType === "professional")) {
-            fetchKycDetails(userId, client.userType)
+        if (client && (client.profile.userType === "vendor" || client.profile.userType === "professional")) {
+            fetchKycDetails(userId, client.profile.userType)
         }
     }, [client])
 
