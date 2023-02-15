@@ -118,9 +118,11 @@ export default function ProjectTable({ status }) {
       case "disapproved":
         return <p className="px-2 py-1 text-red-700 bg-red-100 w-28 rounded-md fw-600">Cancelled</p>
       case "pending":
-        return <p className="px-2 py-1    w-24 rounded-md fw-600">Pending</p>
+        return <p className="px-2 py-1 w-24 rounded-md fw-600">Pending</p>
       case "completed":
-        return <p className="px-2 py-1    w-24 rounded-md fw-600">Completed</p>
+        return <p className="px-2 py-1 w-24 rounded-md fw-600">Completed</p>
+      case "ongoing":
+        return <p className="px-2 py-1 w-24 text-blue-700 rounded-md fw-600">Ongoing</p>
       case "draft":
         return "Draft"
       default: return status
