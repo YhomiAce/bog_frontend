@@ -105,7 +105,7 @@ export function UsersTable({ status, userType }) {
   }
   const navigate = useNavigate()
   const gotoDetailsPage = (item) => {
-    navigate(`/dashboard/userdetails?userId=${item.id}?userType=${item.userType}`)
+    navigate(`/dashboard/userdetails?userId=${item.id}&userType=${item.userType}`)
   }
 
   const formatType = (userType) => {
