@@ -11,7 +11,7 @@ import { HiIdentification } from "react-icons/hi";
 import { MdMarkEmailUnread, MdProductionQuantityLimits, MdVerified } from "react-icons/md";
 import { RiAccountPinCircleFill, RiBaseStationLine } from "react-icons/ri";
 import { VscReferences } from "react-icons/vsc";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Swal from "sweetalert2";
 import toaster from "toasted-notes";
@@ -25,8 +25,9 @@ import { VerifyModal } from "./Modals/VerifyModal";
 export default function UserDetails() {
     const navigate = useNavigate()
     const { search } = useLocation();
+    const [searchParams, setSearchParams] = useSearchParams();
     const userId = new URLSearchParams(search).get("userId");
-    // const userType = new URLSearchParams(search).get("userType");
+    const userType = new URLSearchParams(search).get("userType");
     const [client, setClient] = useState(null);
     const [accounts, setAccounts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -35,10 +36,11 @@ export default function UserDetails() {
     const [disable, setDisable] = useState(false);
     const [kyc, setKyc] = useState(null);
 
-    const fetchUserDetails = async (userId) => {
+
+    const fetchUserDetails = async (userId, userType) => {
         try {
             setLoading(true);
-            const url = `/users/get-user/${userId}`
+            const url = `/users/get-user/${userId}?userType=${userType}`
             const res = await Axios.get(url);
             const datas = res.data
             console.log(datas)
@@ -51,9 +53,9 @@ export default function UserDetails() {
             setLoading(false);
         }
     };
-    const fetchKycDetails = async (userId) => {
+    const fetchKycDetails = async (userId, userType) => {
         try {
-            const url = `/kyc/user-kyc/${userId}`
+            const url = `/kyc/user-kyc/${userId}?userType=${userType}`
             const authToken = localStorage.getItem("auth_token");
             const config = {
                 headers:
@@ -79,7 +81,7 @@ export default function UserDetails() {
     }
 
     useEffect(() => {
-        fetchUserDetails(userId)
+        fetchUserDetails(userId, userType)
     }, []);
 
     useEffect(() => {
@@ -214,6 +216,8 @@ export default function UserDetails() {
                 Swal.fire({
                     title: 'Success',
                     text: 'User suspendend'
+                }).then(() => {
+                    fetchUserDetails(userId, userType);
                 });
             }
         });
@@ -235,6 +239,8 @@ export default function UserDetails() {
                 Swal.fire({
                     title: 'Success',
                     text: 'User unsuspendend'
+                }).then(() => {
+                    fetchUserDetails(userId, userType);
                 });
             }
         });
@@ -316,7 +322,7 @@ export default function UserDetails() {
                                                                 className="bg-orange-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-2 py-1 ml-5 text-white"
                                                                 onClick={() => unsuspendUserACtion(client.id)}
                                                             >
-                                                                UnSuspend
+                                                                Unsuspend
                                                             </button> :
                                                             <button
                                                                 className="bg-orange-500 lg:fs-600 fw-600 px-4 lg:px-8 lg:py-2 py-1 ml-5 text-white"

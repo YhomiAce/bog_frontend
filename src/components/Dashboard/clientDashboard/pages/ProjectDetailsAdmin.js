@@ -1,16 +1,29 @@
 import { Avatar, Breadcrumbs } from "@material-tailwind/react";
+import dayjs from "dayjs";
 import React from "react";
 import { BiEdit } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import useFetchHook from "../../../../hooks/useFetchHook";
+import { formatNumber, getProjectCategory, getUserType } from "../../../../services/helper";
+import Spinner from "../../../layouts/Spinner";
 
 export default function ProjectDetails() {
+    const { search } = useLocation();
+    const projectId = new URLSearchParams(search).get("projectId");
+    const { loading, data: project} = useFetchHook(`/projects/view-project/${projectId}`)
     
+    if (loading) {
+        return (
+            <center><Spinner /></center>
+        )
+    }
+    console.log({project});
 
     return (
         <div>
             <div className="min-h-screen fs-500 relative">
                 <div className="w-full py-8 bg-white px-4">
-                    <p className="text-2xl fw-600 lg:flex items-center">Project ID: <span className="text-primary px-3">LAN-234-SUR</span> <span className="text-xs text-blue-500 bg-light px-2">Ongoing</span></p>
+                    <p className="text-2xl fw-600 lg:flex items-center">Project ID: <span className="text-primary px-3">{project?.projectSlug}</span> <span className="text-xs text-blue-500 bg-light px-2">{project?.status.toUpperCase()}</span></p>
                     <p className="fs-400 text-gray-600 mt-2">View project details</p>
                     <Breadcrumbs className="bg-white pl-0 mt-4">
                         <Link to="/" className="opacity-60">
@@ -50,14 +63,14 @@ export default function ProjectDetails() {
                                                 <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667899753/BOG/sands_cy9q3x.png" alt="order" className="w-16 h-16 lg:h-20 lg:w-20 rounded-lg" />
                                             </div>
                                             <div className="grid content-between  pl-4 fw-500">
-                                                <p><span className="text-gray-600 fs-400">Project Name:</span> My Land Survey</p>
-                                                <p><span className="text-gray-600 fs-400">Service Required:</span> Land Survey</p>
-                                                <p><span className="text-gray-600 fs-400">Start Date:</span> 18-11-22</p>
+                                                <p><span className="text-gray-600 fs-400">Project Name:</span> {project?.title}</p>
+                                                <p><span className="text-gray-600 fs-400">Service Required:</span>  {getProjectCategory(project?.projectTypes)} </p>
+                                                <p><span className="text-gray-600 fs-400">Start Date:</span> {dayjs(project?.createdAt).format("YYYY-MM-DD")} </p>
                                             </div>
                                         </div>
                                         <div className="fw-500 mt-2 lg:mt-0 lg:text-end">
-                                            <p><span className="text-gray-600 fs-400">Project Cost:</span> NGN 320,000</p>
-                                            <p><span className="text-gray-600 fs-400">Due Date:</span> 18-11-23</p>
+                                            <p><span className="text-gray-600 fs-400">Project Cost:</span> &#8358;{formatNumber(project?.totalCost || 10000)} </p>
+                                            <p><span className="text-gray-600 fs-400">Due Date:</span> {dayjs(project?.endDate).format("YYYY-MM-DD")}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -135,18 +148,18 @@ export default function ProjectDetails() {
                                         <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" variant="circular" alt="order"  />
                                     </div>
                                     <div className="grid fs-400 content-between pl-4 fw-500">
-                                        <p>Egnr Stephen</p>
+                                        <p>{project?.serviceProvider?.service_user?.name}</p>
                                         <p className="text-gray-600">Service Partner</p>
                                     </div>
                                 </div>
                                 <div className="fs-400 fw-500 mt-4">
                                     <div className="flex">
                                         <p className="text-gray-600">Phone:</p>
-                                        <p className="pl-3">0800 000 0000</p>
+                                        <p className="pl-3">{project?.serviceProvider?.service_user?.phone}</p>
                                     </div>
                                     <div className="flex">
                                         <p className="text-gray-600">Email:</p>
-                                        <p className="pl-3">email@test.com</p>
+                                        <p className="pl-3">{project?.serviceProvider?.service_user?.email}</p>
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +169,7 @@ export default function ProjectDetails() {
                                     <p className="text-primary"><BiEdit/></p>
                                 </div>
                                 <div className="fs-400 fw-500 mt-4">
-                                    <p>No 3, Close road, Estate name, Lagos, Nigeria</p>
+                                    <p>{project?.projectData?.propertyLocation}</p>
                                 </div>
                             </div>
                             <div className="bg-white lg:p-6 p-3 mt-8 rounded-md">
@@ -178,18 +191,18 @@ export default function ProjectDetails() {
                                                 <Avatar src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1667909634/BOG/logobog_rmsxxc.png" variant="circular" alt="order"  />
                                             </div>
                                             <div className="grid fs-400 content-between pl-4 fw-500">
-                                                <p>Chukka Uzo</p>
-                                                <p className="text-gray-600">Private Client</p>
+                                                <p>{project?.projectOwner?.corporate_user?.name || project?.projectOwner?.private_user?.name}</p>
+                                                <p className="text-gray-600">{getUserType(project?.projectOwner?.userType)}</p>
                                             </div>
                                         </div>
                                 <div className="fs-400 fw-500 mt-4">
                                     <div className="flex">
                                         <p className="text-gray-600">Phone:</p>
-                                        <p className="pl-3">0800 000 0000</p>
+                                        <p className="pl-3">{project?.projectOwner?.corporate_user?.phone || project?.projectOwner?.private_user?.phone}</p>
                                     </div>
                                     <div className="flex">
                                         <p className="text-gray-600">Email:</p>
-                                        <p className="pl-3">email@test.com</p>
+                                        <p className="pl-3">{project?.projectOwner?.corporate_user?.email || project?.projectOwner?.private_user?.email}</p>
                                     </div>
                                 </div>
                             </div>

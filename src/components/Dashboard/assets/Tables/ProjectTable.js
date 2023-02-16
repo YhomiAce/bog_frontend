@@ -112,15 +112,17 @@ export default function ProjectTable({ status }) {
   const formatStatus = (status) => {
     switch (status) {
       case "in_review":
-        return <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">Ongoing</p>
+        return <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">Waiting Approval</p>
       case "approved":
-        return <p className="px-2 py-1 text-green-700 bg-green-100 w-24 rounded-md fw-600">Completed</p>
+        return <p className="px-2 py-1 text-green-700 bg-green-100 w-24 rounded-md fw-600">Approved</p>
       case "disapproved":
         return <p className="px-2 py-1 text-red-700 bg-red-100 w-28 rounded-md fw-600">Cancelled</p>
       case "pending":
-        return <p className="px-2 py-1    w-24 rounded-md fw-600">Pending</p>
+        return <p className="px-2 py-1 w-24 rounded-md fw-600">Pending</p>
       case "completed":
-        return <p className="px-2 py-1    w-24 rounded-md fw-600">Completed</p>
+        return <p className="px-2 py-1 w-24 rounded-md fw-600">Completed</p>
+      case "ongoing":
+        return <p className="px-2 py-1 w-24 text-blue-700 rounded-md fw-600">Ongoing</p>
       case "draft":
         return "Draft"
       default: return status
