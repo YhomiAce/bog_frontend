@@ -1,5 +1,5 @@
 import axios from "axios";
-import handleResponseError from "./handleResponseError";
+// import handleResponseError from "./handleResponseError";
 
 const requestHeaders = { "Content-Type": "application/json" };
 const authToken = localStorage.getItem("auth_token");
