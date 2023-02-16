@@ -104,12 +104,11 @@ export default function ProjectsTable({ status }) {
   }
 
   if (status) {
-
     if (status === "in_review") {
       allProjects = allProjects.filter(where => where.approvalStatus === status)
       console.log({ allProjects });
     } else {
-      allProjects = allProjects.filter(where => where.approvalStatus === "approved").filter(where => where.status === status)
+      allProjects = allProjects.filter(where => where.approvalStatus !== status)
     }
   }
   //   const formatNumber = (number) => {
