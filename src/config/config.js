@@ -1,5 +1,5 @@
 import axios from "axios";
-import handleResponseError from "./handleResponseError";
+// import handleResponseError from "./handleResponseError";
 
 const requestHeaders = { "Content-Type": "application/json" };
 const authToken = localStorage.getItem("auth_token");
@@ -7,10 +7,12 @@ const authToken = localStorage.getItem("auth_token");
 if (authToken) {
   requestHeaders.Authorization = `${authToken}`;
 }
+
 // baseURL: "http://localhost:4000/api",
 const Axios = axios.create({
   //you can change this when running locally with your local backend server
   baseURL: process.env.REACT_APP_URL,
+  // baseURL: base_url,
   headers: requestHeaders,
 });
 
@@ -41,7 +43,7 @@ Axios.interceptors.response.use(
     // if (parseInt(error?.response?.status) === 401) {
     //   window.location.href = "/login";
     // }
-    handleResponseError(error.response);
+    // handleResponseError(error.response);
     return Promise.reject(error);
   }
 );
