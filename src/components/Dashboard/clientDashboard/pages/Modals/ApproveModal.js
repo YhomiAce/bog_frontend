@@ -29,6 +29,7 @@ const ApproveModal = ({ CloseDelete, meetingId, setFeetback, updateMeetingStatus
             
             setLoading(false);
             CloseDelete()
+            payload.approvalStatus = 'placed'
             // removeMeeting(meetingId)
             updateMeetingStatus(payload)
             setFeetback({
