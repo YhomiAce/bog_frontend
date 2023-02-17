@@ -37,6 +37,7 @@ const AddressListItem = ({
     setSelectedAddress(address);
   };
 
+
   const filterAddresses = addresses.filter((x) => x.status === filterBy);
 
   const addressesTR =
@@ -101,18 +102,34 @@ const AddressListItem = ({
   return (
     <>
       {addressesTR}
-      {action === 'decline' && <AddressDeleteModal addressId={selectedAddress.id} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeAddress={removeAddress} updateAddressStatus={updateAddressStatus} />}
-        {/* {action === 'approve' && <ApproveModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeAddress={removeAddress}  updateAddressStatus={updateAddressStatus}/>}
+      {action === "decline" && (
+        <AddressDeleteModal
+          addressId={selectedAddress.id}
+          CloseDelete={() => setAction("")}
+          setFeetback={setFeetback}
+          removeAddress={removeAddress}
+          updateAddressStatus={updateAddressStatus}
+        />
+      )}
+      {/* {action === 'approve' && <ApproveModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeAddress={removeAddress}  updateAddressStatus={updateAddressStatus}/>}
         {action === 'cancel' && <CancelModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeAddress={removeAddress} />} */}
-        {action === 'view' && <AddressInfoModal CloseModal={()=>setAction('')} address={selectedAddress} updateAddressStatus={updateAddressStatus} />}
-        {feedback && 
-            <ActionFeedBack
-                closeFeedBack={()=>setFeetback()}
-                title={feedback.title}
-                icon={feedback.icon}
-                info={feedback.info}
-                status={feedback.status}
-            />}
+      {action === "view" && (
+        <AddressInfoModal
+          CloseModal={() => setAction("")}
+          setFeetback={setFeetback}
+          address={selectedAddress}
+          updateAddressStatus={updateAddressStatus}
+        />
+      )}
+      {feedback && (
+        <ActionFeedBack
+          closeFeedBack={() => setFeetback()}
+          title={feedback.title}
+          icon={feedback.icon}
+          info={feedback.info}
+          status={feedback.status}
+        />
+      )}
     </>
   );
 };

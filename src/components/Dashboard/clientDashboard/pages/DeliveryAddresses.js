@@ -37,7 +37,7 @@ const DeliveryAddresses = () => {
   }
 
   useEffect(() => {
-    if (user && addresses.length === 0) {
+    if (user) {
       fetchAddresses(setLoading, setAddresses, user);
     }
   }, [user]);
@@ -59,13 +59,17 @@ const DeliveryAddresses = () => {
   };
 
   const updateAddressStatus = (param, id) => {
-    let _address = addresses.filter((x) => x.id !== id);
-    if (_address.length > 0) {
-      _address = { ...address[0], ...param };
-      setAddresses([...addresses, _address]);
-    }
+    let updatedAddresses = addresses.map(_address => {
+      let updated = _address
+      if(_address.id === id){
+        updated = {...updated, param}
+      }
+      return updated
+    })
+    console.log(updatedAddresses)
+    setAddresses(updatedAddresses)
+    
   };
-
 
   const authToken = localStorage.getItem("auth_token");
   const config = {
@@ -164,164 +168,82 @@ const DeliveryAddresses = () => {
                          <ProductTable/>
                     </div> */}
           <div className="bg-white lg:p-5  mt-6 rounded-lg">
-            <Tabs className="px-2 lg:px-0 py-5 lg:py-0">
-              <TabList className="flex fs-400">
-                <Tab>Active</Tab>
-                <Tab>Inactive</Tab>
-              </TabList>
-              <TabPanel>
-                <div className="mt-10 flex justify-between">
-                  <div class="flex text-gray-600">
-                    <input
-                      class="border-2 border-gray-300 bg-white h-10 px-5 pr-4 rounded-l-lg text-sm focus:outline-none"
-                      type="search"
-                      name="search order by name"
-                      placeholder="Search"
-                    />
-                    <button
-                      type="submit"
-                      class=" bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
-                    >
-                      <FontAwesomeIcon icon={faSearch} className="text-white" />
-                    </button>
-                  </div>
-                  <Menu>
-                    <MenuHandler>
-                      <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none flex items-center">
-                        {" "}
-                        Export <FaFileDownload className="text-2xl" />
-                      </Button>
-                    </MenuHandler>
-                    <MenuList>
-                      <MenuItem>Export as CSV</MenuItem>
-                      <MenuItem>Export as Excel</MenuItem>
-                      <MenuItem>Export as PDF</MenuItem>
-                    </MenuList>
-                  </Menu>
-                </div>
-                <CardBody>
-                  <div className="overflow-x-auto">
-                    <table className="items-center w-full bg-transparent border-collapse">
-                      <thead className="thead-light bg-light">
-                        <tr>
-                          <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            S/N
-                          </th>
-                          <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            Title
-                          </th>
-                          <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            Address
-                          </th>
-                          <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            State
-                          </th>
-                          <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            Country
-                          </th>
-                          <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            Status
-                          </th>
-                          <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            Charge
-                          </th>
-                          <th className="px-2 fw-600 text-primary align-middle text-center border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap w-56">
-                            Action
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {
-                          <AddressListItem
-                            filterBy={true}
-                            addresses={addresses}
-                            removeAddress={removeFromAddress}
-                            updateAddressStatus={updateAddressStatus}
-                            // activateAddress={activateAddress}
-                            // deactivateAddress={deactivateAddress}
-                          />
-                        }
-                      </tbody>
-                    </table>
-                    {/* {meetings.length > 0? <MeetingTable filterBy="attended" status={'attended'} meet={meetings} removeMeet={removeFromMeeting} /> : ''} */}
-                  </div>
-                </CardBody>
-              </TabPanel>
-              {/* <TabPanel>
-                <div className="mt-10 flex justify-between">
-                  <div class="flex text-gray-600">
-                    <input
-                      class="border-2 border-gray-300 bg-white h-10 px-5 pr-4 rounded-l-lg text-sm focus:outline-none"
-                      type="search"
-                      name="search order by name"
-                      placeholder="Search"
-                    />
-                    <button
-                      type="submit"
-                      class=" bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
-                    >
-                      <FontAwesomeIcon icon={faSearch} className="text-white" />
-                    </button>
-                  </div>
-                  <Menu>
-                    <MenuHandler>
-                      <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none flex items-center">
-                        {" "}
-                        Export <FaFileDownload className="text-2xl" />
-                      </Button>
-                    </MenuHandler>
-                    <MenuList>
-                      <MenuItem>Export as CSV</MenuItem>
-                      <MenuItem>Export as Excel</MenuItem>
-                      <MenuItem>Export as PDF</MenuItem>
-                    </MenuList>
-                  </Menu>
-                </div>
-                <CardBody>
-                  <div className="overflow-x-auto">
-                    <table className="items-center w-full bg-transparent border-collapse">
-                      <thead className="thead-light bg-light">
-                        <tr>
-                          <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            S/N
-                          </th>
-                          <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            Title
-                          </th>
-                          <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            Address
-                          </th>
-                          <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            State
-                          </th>
-                          <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            Country
-                          </th>
-                          <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            Status
-                          </th>
-                          <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
-                            Charge
-                          </th>
-                          <th className="px-2 fw-600 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left w-56">
-                            Action
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {
-                          <AddressListItem
-                            filterBy={false}
-                            addresses={addresses}
-                            removeAddress={removeFromAddress}
-                          />
-                        }
-                      </tbody>
-                    </table>
-                  </div>
-                </CardBody>
-              </TabPanel> */}
-            </Tabs>
+            <div className="mt-10 flex justify-between">
+              <div class="flex text-gray-600">
+                <input
+                  class="border-2 border-gray-300 bg-white h-10 px-5 pr-4 rounded-l-lg text-sm focus:outline-none"
+                  type="search"
+                  name="search order by name"
+                  placeholder="Search"
+                />
+                <button
+                  type="submit"
+                  class=" bg-primary right-0 top-0 py-2 px-4 rounded-r-lg"
+                >
+                  <FontAwesomeIcon icon={faSearch} className="text-white" />
+                </button>
+              </div>
+              <Menu>
+                <MenuHandler>
+                  <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none flex items-center">
+                    {" "}
+                    Export <FaFileDownload className="text-2xl" />
+                  </Button>
+                </MenuHandler>
+                <MenuList>
+                  <MenuItem>Export as CSV</MenuItem>
+                  <MenuItem>Export as Excel</MenuItem>
+                  <MenuItem>Export as PDF</MenuItem>
+                </MenuList>
+              </Menu>
+            </div>
+            <CardBody>
+              <div className="overflow-x-auto">
+                <table className="items-center w-full bg-transparent border-collapse">
+                  <thead className="thead-light bg-light">
+                    <tr>
+                      <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                        S/N
+                      </th>
+                      <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                        Title
+                      </th>
+                      <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                        Address
+                      </th>
+                      <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                        State
+                      </th>
+                      <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                        Country
+                      </th>
+                      <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                        Status
+                      </th>
+                      <th className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left">
+                        Charge
+                      </th>
+                      <th className="px-2 fw-600 text-primary align-middle text-center border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap w-56">
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      <AddressListItem
+                        filterBy={true}
+                        addresses={addresses}
+                        removeAddress={removeFromAddress}
+                        updateAddressStatus={updateAddressStatus}
+                        // activateAddress={activateAddress}
+                        // deactivateAddress={deactivateAddress}
+                      />
+                    }
+                  </tbody>
+                </table>
+                {/* {meetings.length > 0? <MeetingTable filterBy="attended" status={'attended'} meet={meetings} removeMeet={removeFromMeeting} /> : ''} */}
+              </div>
+            </CardBody>
           </div>
         </div>
         {deliveryAddress && (
