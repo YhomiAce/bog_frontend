@@ -78,6 +78,7 @@ const AdminMeeting = () => {
         const oldMeeting = [...meetings];
         const index = meetings.findIndex(where => where.id === payload.meetingId);
         oldMeeting[index].approval_status = payload.status;
+        oldMeeting[index].status = payload.approvalStatus;
         setMeeting(oldMeeting);
     }
     

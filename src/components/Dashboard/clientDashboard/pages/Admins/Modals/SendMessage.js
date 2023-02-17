@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { createAnnouncement } from '../../../../../../redux/actions/AnnouncementAction';
 import { announcementSchema } from '../../../../../../services/validation';
 import Spinner from '../../../../../layouts/Spinner';
-
+import { FaTimes } from "react-icons/fa"
 
 export const SendMessage = ({closeModal}) => {
     const dispatch = useDispatch();
@@ -53,6 +53,7 @@ export const SendMessage = ({closeModal}) => {
 
     return (
         <div>
+            <FaTimes style={{ cursor: "pointer" }} className="absolute right-6 top-6 text-red-500" onClick={closeModal} />
             <form onSubmit={formik.handleSubmit}>
                 <div>
                     <label>Title of Message</label>

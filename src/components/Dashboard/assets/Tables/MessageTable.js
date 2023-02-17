@@ -86,7 +86,6 @@ export function MessageTable({openModal, deleteMsg}) {
   let msg = useSelector((state) => state.announcements.announcements);
    
 
-
     const columns = useMemo(
         () => [
           {

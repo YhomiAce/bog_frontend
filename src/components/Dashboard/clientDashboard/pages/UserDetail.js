@@ -140,7 +140,7 @@ export default function UserDetails() {
 
     const suspendUser = async (userId) => {
         try {
-            setLoading(true);
+            //setLoading(true);
             const authToken = localStorage.getItem("auth_token");
             console.log(authToken);
             const config = {
@@ -156,9 +156,9 @@ export default function UserDetails() {
             }
             const response = await Axios.post(url, body, config);
             console.log(response);
-            setLoading(false);
+            //setLoading(false);
         } catch (error) {
-            setLoading(false);
+           // setLoading(false);
             toaster.notify(
                 error.message,
                 {
@@ -171,7 +171,7 @@ export default function UserDetails() {
 
     const unsuspendUser = async (userId) => {
         try {
-            setLoading(true);
+           // setLoading(true);
             const authToken = localStorage.getItem("auth_token");
             console.log(authToken);
             const config = {
@@ -187,9 +187,9 @@ export default function UserDetails() {
             }
             const response = await Axios.post(url, body, config);
             console.log(response);
-            setLoading(false);
+           // setLoading(false);
         } catch (error) {
-            setLoading(false);
+           // setLoading(false);
             toaster.notify(
                 error.message,
                 {
@@ -217,7 +217,8 @@ export default function UserDetails() {
                     title: 'Success',
                     text: 'User suspendend'
                 }).then(() => {
-                    fetchUserDetails(userId, userType);
+                    //fetchUserDetails(userId, userType);
+                    navigate('/dashboard/servicepartner')
                 });
             }
         });
@@ -240,7 +241,8 @@ export default function UserDetails() {
                     title: 'Success',
                     text: 'User unsuspendend'
                 }).then(() => {
-                    fetchUserDetails(userId, userType);
+                    //fetchUserDetails(userId, userType);
+                    navigate('/dashboard/servicepartner')
                 });
             }
         });
