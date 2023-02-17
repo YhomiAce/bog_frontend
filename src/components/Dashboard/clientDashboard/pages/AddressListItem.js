@@ -7,11 +7,11 @@ import {
   MenuList,
 } from "@material-tailwind/react";
 import React, { useState } from "react";
-import { BsCameraVideo, BsLink, BsThreeDotsVertical } from "react-icons/bs";
+import { BsThreeDotsVertical } from "react-icons/bs";
 // import Spinner from '../../../layouts/Spinner';
 import ActionFeedBack from "./Modals/ActionFeedBack";
-import ApproveModal from "./Modals/ApproveModal";
-import CancelModal from "./Modals/CancelModal";
+// import ApproveModal from "./Modals/ApproveModal";
+// import CancelModal from "./Modals/CancelModal";
 import AddressDeleteModal from "./Modals/AddressDeleteModal";
 import AddressInfoModal from "./Modals/AddressInfoModal";
 
@@ -23,14 +23,14 @@ const AddressListItem = ({
   updateAddressStatus,
 }) => {
   const [action, setAction] = useState("");
-  const [selectedId, setId] = useState();
+  // const [selectedId, setId] = useState();
   const [feedback, setFeetback] = useState();
   const [selectedAddress, setSelectedAddress] = useState();
 
-  const myAction = (actType, id) => {
-    setAction(actType);
-    setId(id);
-  };
+  // const myAction = (actType, id) => {
+  //   setAction(actType);
+  //   setId(id);
+  // };
 
   const openViewModal = (actType, address) => {
     setAction(actType);
@@ -102,8 +102,8 @@ const AddressListItem = ({
     <>
       {addressesTR}
       {action === 'decline' && <AddressDeleteModal addressId={selectedAddress.id} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeAddress={removeAddress} updateAddressStatus={updateAddressStatus} />}
-        {action === 'approve' && <ApproveModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeAddress={removeAddress}  updateAddressStatus={updateAddressStatus}/>}
-        {action === 'cancel' && <CancelModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeAddress={removeAddress} />}
+        {/* {action === 'approve' && <ApproveModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeAddress={removeAddress}  updateAddressStatus={updateAddressStatus}/>}
+        {action === 'cancel' && <CancelModal meetingId={selectedId} CloseDelete={()=>setAction('')} setFeetback={setFeetback} removeAddress={removeAddress} />} */}
         {action === 'view' && <AddressInfoModal CloseModal={()=>setAction('')} address={selectedAddress} updateAddressStatus={updateAddressStatus} />}
         {feedback && 
             <ActionFeedBack

@@ -15,27 +15,22 @@ import {
   MenuItem,
   Button,
 } from "@material-tailwind/react";
-import SelectableItem from "../../../widgets/SelectableItem";
 import Axios from "../../../../config/config";
 import toaster from "toasted-notes";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import Spinner from "../../../layouts/Spinner";
 import AddressListItem from "./AddressListItem";
 import ActionFeedBack from "./Modals/ActionFeedBack";
 import { BsCheck } from "react-icons/bs";
-import { fetchMeetings } from "../../../../redux/actions/meetingAction";
-import { getMyProject } from "../../../../redux/actions/ProjectAction";
 import { fetchAddresses } from "../../../../redux/actions/addressAction";
 
 const DeliveryAddresses = () => {
   const [deliveryAddress, setDeliveryAddress] = useState(false);
-  const [selectedProject, setSelectedProject] = useState();
   const [loading, setLoading] = useState(false);
   const [feedback, setFeetback] = useState(false);
   const [addresses, setAddresses] = useState([]);
   const user = useSelector((state) => state.auth.user);
-  const dispatch = useDispatch();
 
   function CloseDelete() {
     setDeliveryAddress(false);
