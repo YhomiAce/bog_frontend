@@ -87,7 +87,7 @@ export default function ServiceCategory() {
                 <div className="lg:p-5 px-2 py-4">
                     <div className="bg-white lg:p-5 lg:mt-6 mt-6 rounded-lg">
                         <div>
-                            <div id="fb-editor" style={{ height: "600px" }} ref={fb}></div>
+                            <div id="fb-editor" style={{ minHeight: "600px" }} ref={fb}></div>
                         </div>
                         {
                             loading ? <Spinner /> :

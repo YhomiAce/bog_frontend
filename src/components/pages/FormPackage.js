@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 export default function FormPackage({ formPayload }) {
     const responseArray = [];
 
+    console.log(formPayload)
+
     const handleInputChange = (e, data, options) => {
         const objIndex = responseArray.findIndex((obj => obj.name === data.name));
 
@@ -73,6 +75,28 @@ export default function FormPackage({ formPayload }) {
                     onChange={(e) => handleInputChange(e, data, null)}
                 />);
 
+            case 'number':
+                return (<input
+                    type="number"
+                    placeholder={data.placeholder}
+                    className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
+                    required={data.required}
+                    name={data.name}
+                    value={data._values[0].value}
+                    onChange={(e) => handleInputChange(e, data, data._values)}
+                />);
+
+            case 'textarea':
+                return (<textarea
+                    type="text"
+                    placeholder={data.placeholder}
+                    className="w-full mt-2 py-2 px-2 border-gray-400 rounded border fs-400"
+                    required={data.required}
+                    name={data.name}
+                    value={data._values[0]}
+                    onChange={(e) => handleInputChange(e, data, null)}
+                />);
+            
             case 'select':
                 return (
                     <select
