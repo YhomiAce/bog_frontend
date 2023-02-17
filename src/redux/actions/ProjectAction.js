@@ -101,6 +101,37 @@ export const removeProject = (payload) => {
     }
 }
 
+export const getDeliveryAddresses = () => {
+    return async (dispatch) => {
+        try {
+            dispatch(loading());
+            const authToken = localStorage.getItem("auth_token");
+            const config = {
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                }
+            }
+            const url  = `/address/view/all`
+            const response = await axios.get(url, config);
+            console.log(response);
+            dispatch(fetchMyProject(response.data))
+        } catch (error) {
+            console.log(error.message);
+            dispatch(setError(error.message));
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
+
+    }
+}
+
 export const getMyProject = (userType) => {
     return async (dispatch) => {
         try {
