@@ -4,6 +4,7 @@ import ProtectedRoute from "../../Routes/ProtectedRoute";
 import Header from "./header";
 import Dashboard from "./pages/Dasboard";
 import Meetings from "./pages/Meetings";
+import DeliveryAddresses from "./pages/DeliveryAddresses";
 import Notify from "./pages/Notify";
 import Orders from "./pages/Orders";
 import Products from "./pages/Products";
@@ -122,11 +123,13 @@ export default function ClientDashboard() {
                         <Route path="servicecategory" element={<ProjectCategory />} />
                         <Route path="servicecategory/buildForm/:id/:name" element={<ServiceCategoryForm />} />
                         <Route path="meetings" element={<Meetings />} />
+                        <Route path="delivery" element={<DeliveryAddresses />} />
                         <Route path="service-meetings" element={<ServicePartnerMeeting />} />
                         <Route path="admin-meetings" element={<AdminMeeting />} />
                         <Route path="transact" element={<Transactions />} />
                         <Route path="transact-details" element={<TransactionDetails />} />
                         <Route path="transactions" element={<AdminTransactions />} />
+                        <Route path="delivery" element={<address />} />
                         <Route path="notification" element={<Notify />} />
                         <Route path="notify" element={<Notification />} />
                         <Route path="switch" element={<SwitchAccount />} />
