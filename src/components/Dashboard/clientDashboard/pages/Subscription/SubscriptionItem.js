@@ -36,6 +36,7 @@ const SubscriptionItem = ({ item, user }) => {
             const response = await Axios.post('/subscription/subscribe', data, config);
             console.log(response);
             setLoading(false);
+            
         } catch (error) {
             setLoading(false);
             console.log(error);
