@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 export default function Settings() {
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate()
+  // console.log(auth)  
 
   return (
     <div className="p-5">

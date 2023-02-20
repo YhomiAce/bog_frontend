@@ -29,6 +29,7 @@ const PersonalData = () => {
             })
         }
     },[user]);
+    console.log(user)
 
     const handleFileChange = (e) => {
         console.log(e.target.files[0]);
@@ -93,6 +94,12 @@ const PersonalData = () => {
                               file:bg-violet-50 file:text-violet-700
                               hover:file:bg-violet-100
                             " />
+                        </div>
+                        <div>
+                            {typeof user.profile.service_category !== 'undefined' && user.profile.service_category !== null ?
+                                <label className="block mb-1 border-black p-2">{user.profile.service_category.title}</label>
+                            : ''   
+                        }
                         </div>
                         
                     </div>
