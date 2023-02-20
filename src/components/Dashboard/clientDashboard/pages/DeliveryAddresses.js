@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 // import ProductTable from "../../assets/Tables/ProductTable";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+// import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Breadcrumbs, CardBody } from "@material-tailwind/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -27,7 +27,7 @@ import { fetchAddresses } from "../../../../redux/actions/addressAction";
 
 const DeliveryAddresses = () => {
   const [deliveryAddress, setDeliveryAddress] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [feedback, setFeetback] = useState(false);
   const [addresses, setAddresses] = useState([]);
   const user = useSelector((state) => state.auth.user);
@@ -37,10 +37,15 @@ const DeliveryAddresses = () => {
   }
 
   useEffect(() => {
-    if (user) {
-      fetchAddresses(setLoading, setAddresses, user);
+    const handlefetch = () => {
+      setLoading(true)
+      if (user && loading) {
+        fetchAddresses(setLoading, setAddresses, user);
+      }
+      setLoading(false)
     }
-  }, [user]);
+    handlefetch()
+  }, [user, loading]);
 
   // const handleProjectChange = (val) => {
   //     const value = val.value;
@@ -54,11 +59,11 @@ const DeliveryAddresses = () => {
 
   const removeFromAddress = (id) => {
     const newAddress = addresses.filter((x) => x.id !== id);
-    console.log(newAddress, id);
     setAddresses(newAddress);
   };
 
   const updateAddressStatus = (param, id) => {
+    
     let updatedAddresses = addresses.map(_address => {
       let updated = _address
       if(_address.id === id){
@@ -66,8 +71,8 @@ const DeliveryAddresses = () => {
       }
       return updated
     })
-    console.log(updatedAddresses)
     setAddresses(updatedAddresses)
+    setLoading(true)
     
   };
 

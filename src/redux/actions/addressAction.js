@@ -51,7 +51,7 @@ export const fetchAddresses = async (setLoading, setAddresses, user) => {
         
         const res = await Axios.get(url, config);
         const results = res.data;
-        console.log(results)
+        // console.log(results)
         setAddresses(results);
         setLoading(false);
     } catch (error) {

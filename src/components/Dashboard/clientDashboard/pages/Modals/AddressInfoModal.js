@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@material-tailwind/react";
 // import { useFormik } from "formik";
-import { BsCheck, BsExclamationCircleFill } from "react-icons/bs";
-import Spinner from "../../../../layouts/Spinner";
+import { BsCheck } from "react-icons/bs";
 import Axios from "../../../../../config/config";
 import { FaTimes } from "react-icons/fa";
 
@@ -12,7 +11,7 @@ const AddressInfoModal = ({
   address,
   updateAddressStatus,
 }) => {
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
 
   const updateAddress = async (e) => {
     e.preventDefault()
@@ -32,7 +31,6 @@ const AddressInfoModal = ({
       await Axios.put(url, addressInfo, config);
       setLoading(false);
       CloseModal();
-      console.log(address)
       updateAddressStatus(addressInfo, address.id);
       setFeetback({
         info: "Address updated!",
