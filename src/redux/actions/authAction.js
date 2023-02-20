@@ -91,7 +91,7 @@ export const loginUser = (apiData, navigate, stopLoading) => {
                 errors,
                 {
                     duration: "4000",
-                    position: "bottom",
+                    position: "top",
                 }
             );
         }

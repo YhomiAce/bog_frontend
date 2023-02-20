@@ -1,27 +1,49 @@
 import { Button } from '@material-tailwind/react';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from 'react-router-dom';
 import Axios from '../../../config/config';
+import { getMe } from '../../../redux/actions/authAction';
 
 export const KycText = () => {
   const { user } = useSelector((state) => state.auth);
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const [verified, setVerified] = useState('true');
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  const checkSubscribe = (e) => {
+    e.preventDefault();
+    if (!user?.profile?.isVerified) {
+      setVerified('false');
+    }
+    else {
+      navigate("/dashboard/subscription");
+    }
+  }
 
   return (
     <div className='items-center justify-between text-white bg-secondary fw-600 py-3 px-2 lg:px-4'>
       {!user?.profile?.hasActiveSubscription && (
+        <>
         <div>
-          Subscribe to one of our amazing plans to render services to clients. <button className='bg-primary rounded-lg px-2 py-1 ml-3' onClick={() => navigate("/dashboard/subscription")}>Subscribe</button>
+          Subscribe to one of our amazing plans to render services to clients. <button className='bg-primary rounded-lg px-2 py-1 ml-3' onClick={(e) => checkSubscribe(e)}>Subscribe</button>
         </div>
+          <KycModal params={verified} />
+          </>
       )}
     </div>
 
   )
 }
 
-export const KycModal = () => {
+export const KycModal = ({ params }) => {
 
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate()
@@ -70,18 +92,19 @@ export const KycModal = () => {
   const CloseModal= () => {
     setModal(false)
   }
+
   const OpenModal= () => {
     setModal(true)
   }
 
-  if(!kyc.isKycCompleted){
+  if ((kyc) && (!kyc.isKycCompleted)) {
       return (
          modal && (
           <div className="fixed font-primary left-0 top-0 w-full h-screen bg-op center-item z-40">
               <div className="bg-white lg:w-5/12 rounded-md  overscroll-none  w-11/12 pt-8 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
                   <div className="lg:px-6 px-5">
                      <p className='text-3xl fw-600 text-secondary mb-4'>Welcome to BOG !</p>
-                      <p>Please complete your kyc to gain access to BOG services</p>
+                <p style={{ color: 'black' }}>Please complete your kyc to gain access to BOG services</p>
                   </div>
                   <div className="bg-light rounded-b-md  py-4 mt-5 text-end px-5">
                       <Button className='bg-primary ml-4' onClick={() => navigate("/dashboard/kyc")}>Verify</Button>
@@ -90,6 +113,21 @@ export const KycModal = () => {
           </div>
           )
         
+      )
+  }
+
+  if ((params === 'false')) {
+    return (
+        <div className="fixed font-primary left-0 top-0 w-full h-screen bg-op center-item z-40">
+          <div className="bg-white lg:w-5/12 rounded-md  overscroll-none  w-11/12 pt-8 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
+            <div className="lg:px-6 px-5">
+              <p className='text-3xl fw-600 text-secondary mb-4'>Welcome to BOG !</p>
+              <p style={{color : 'black'}}>Sorry your KYC is not yet Verified, try Subscribing later</p>
+            </div>
+            <div className="bg-light rounded-b-md  py-4 mt-5 text-end px-5">
+            </div>
+          </div>
+        </div>
       )
   }
 }
