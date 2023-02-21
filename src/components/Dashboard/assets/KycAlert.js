@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Axios from '../../../config/config';
 import { getMe } from '../../../redux/actions/authAction';
 
-export const KycText = () => {
+export const KycText = ({reload}) => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -17,6 +17,10 @@ export const KycText = () => {
   useEffect(() => {
     dispatch(getMe());
   }, [dispatch]);
+
+  if (reload) {
+    dispatch(getMe());
+  }
 
   const checkSubscribe = (e) => {
     e.preventDefault();
@@ -33,17 +37,16 @@ export const KycText = () => {
   }
 
   return (
-    <div className='items-center justify-between text-white bg-secondary fw-600 py-3 px-2 lg:px-4'>
+    <>
       {!user?.profile?.hasActiveSubscription && (
-        <>
-        <div>
-          Subscribe to one of our amazing plans to render services to clients. <button className='bg-primary rounded-lg px-2 py-1 ml-3' onClick={(e) => checkSubscribe(e)}>Subscribe</button>
-        </div>
+        <div className='items-center justify-between text-white bg-secondary fw-600 py-3 px-2 lg:px-4'>
+          <div>
+            Subscribe to one of our amazing plans to render services to clients. <button className='bg-primary rounded-lg px-2 py-1 ml-3' onClick={(e) => checkSubscribe(e)}>Subscribe</button>
+          </div>
           {verified === 'false' && (<KycModal params={verified} resetVerified={reset} />)}
-          </>
+        </div>
       )}
-    </div>
-
+    </>
   )
 }
 
@@ -58,46 +61,46 @@ export const KycModal = ({ params, resetVerified }) => {
 
   const fetchKycDetails = async () => {
     try {
-        const url = `/kyc/user-kyc/${user.id}?userType=${user.userType}`
-        const authToken = localStorage.getItem("auth_token");
-        const config = {
-            headers:
-            {
-                "Content-Type": "application/json",
-                'Authorization': authToken
-            }
-
+      const url = `/kyc/user-kyc/${user.id}?userType=${user.userType}`
+      const authToken = localStorage.getItem("auth_token");
+      const config = {
+        headers:
+        {
+          "Content-Type": "application/json",
+          'Authorization': authToken
         }
-        const res = await Axios.get(url, config);
-        const kycs = res.data
-        setKyc(kycs)
-        console.log(kycs)
+
+      }
+      const res = await Axios.get(url, config);
+      const kycs = res.data
+      setKyc(kycs)
+      console.log(kycs)
     } catch (error) {
-        console(error)
+      console(error)
     }
-}
+  }
   useEffect(() => {
     fetchKycDetails() // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
     console.log(location)
-    if(location.pathname === '/dashboard/kyc') {
+    if (location.pathname === '/dashboard/kyc') {
       CloseModal()
-    }else if(location.pathname === '/dashboard/switch'){
+    } else if (location.pathname === '/dashboard/switch') {
       CloseModal()
     }
-    else{
+    else {
       OpenModal()
     }
 
   })
 
-  const CloseModal= () => {
+  const CloseModal = () => {
     setModal(false)
   }
 
-  const OpenModal= () => {
+  const OpenModal = () => {
     setModal(true)
   }
 
@@ -107,38 +110,38 @@ export const KycModal = ({ params, resetVerified }) => {
   }
 
   if ((kyc) && (!kyc.isKycCompleted)) {
-      return (
-         modal && (
-          <div className="fixed font-primary left-0 top-0 w-full h-screen bg-op center-item z-40">
-              <div className="bg-white lg:w-5/12 rounded-md  overscroll-none  w-11/12 pt-8 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
-                  <div className="lg:px-6 px-5">
-                     <p className='text-3xl fw-600 text-secondary mb-4'>Welcome to BOG !</p>
-                <p style={{ color: 'black' }}>Please complete your kyc to gain access to BOG services</p>
-                  </div>
-                  <div className="bg-light rounded-b-md  py-4 mt-5 text-end px-5">
-                      <Button className='bg-primary ml-4' onClick={() => navigate("/dashboard/kyc")}>Verify</Button>
-                  </div>
-              </div>
+    return (
+      modal && (
+        <div className="fixed font-primary left-0 top-0 w-full h-screen bg-op center-item z-40">
+          <div className="bg-white lg:w-5/12 rounded-md  overscroll-none  w-11/12 pt-8 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
+            <div className="lg:px-6 px-5">
+              <p className='text-3xl fw-600 text-secondary mb-4'>Welcome to BOG !</p>
+              <p style={{ color: 'black' }}>Please complete your kyc to gain access to BOG services</p>
+            </div>
+            <div className="bg-light rounded-b-md  py-4 mt-5 text-end px-5">
+              <Button className='bg-primary ml-4' onClick={() => navigate("/dashboard/kyc")}>Verify</Button>
+            </div>
           </div>
-          )
-        
+        </div>
       )
+
+    )
   }
 
   if ((params === 'false')) {
     return (
-        subModal && (<div className="fixed font-primary left-0 top-0 w-full h-screen bg-op center-item z-40">
-          <div className="bg-white lg:w-5/12 rounded-md  overscroll-none  w-11/12 pt-8 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
-            <div className="lg:px-6 px-5">
-              <p className='text-3xl fw-600 text-secondary mb-4'>Welcome to BOG !</p>
-              <p style={{color : 'black'}}>Sorry your KYC is not yet Verified, try Subscribing later</p>
-            </div>
+      subModal && (<div className="fixed font-primary left-0 top-0 w-full h-screen bg-op center-item z-40">
+        <div className="bg-white lg:w-5/12 rounded-md  overscroll-none  w-11/12 pt-8 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
+          <div className="lg:px-6 px-5">
+            <p className='text-3xl fw-600 text-secondary mb-4'>Welcome to BOG !</p>
+            <p style={{ color: 'black' }}>Sorry your KYC is not yet Verified, try Subscribing later</p>
+          </div>
           <div className="bg-light rounded-b-md  py-4 mt-5 text-end px-5">
             <Button className='bg-primary ml-4' onClick={() => resetParams()}>OK</Button>
           </div>
-          </div>
-        </div>)
-      )
+        </div>
+      </div>)
+    )
   }
 }
 
@@ -149,9 +152,9 @@ export default function KycAlert() {
   if (user?.profile?.isVerified && user?.profile?.hasActiveSubscription) {
     alert = null;
   } else if (user?.userType === "vendor") {
-    alert = <KycText />
+    alert = <KycText reload={false} />
   } else if (user?.userType === "professional") {
-    alert = <KycText />
+    alert = <KycText reload={false} />
   }
   return alert;
 }

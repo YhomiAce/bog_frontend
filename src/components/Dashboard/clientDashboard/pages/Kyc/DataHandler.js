@@ -30,11 +30,20 @@ export const saveData = async ({url, setLoading, formData, user, setFormData, se
             });
         }
         setLoading(false);
-        setFeetback({
-            info: "Saved",
-            status: "success",
-            icon: <BsCheck />
-        })
+        if (!hasFile) {
+            setFeetback({
+                info: "Saved",
+                status: "success",
+                icon: <BsCheck />
+            })
+        }
+        else {
+            setFeetback({
+                info: "Your KYC has been submitted and will be verified by Admin soon, keep checking your status on Settings",
+                status: "success",
+                icon: <BsCheck />
+            })
+        }
     } catch (error) {
         setLoading(false);
         setFeetback({

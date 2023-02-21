@@ -68,6 +68,7 @@ export default function SignProfession() {
   const options = categories.length > 0 ? categories.map(category => {
     return <option value={category.id}>{category.title}</option>
   }) : []
+
   return (
     <div className="bg-login bg-fixed bg-cover text-black font-primary">
       <Link to="/">

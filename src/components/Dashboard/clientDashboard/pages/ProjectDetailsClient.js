@@ -19,7 +19,7 @@ export default function ProjectDetailsClient() {
                 },
             };
             setLoading(true);
-            const url = `https://bog.greenmouse.com/projects/view-project/${projectId}`
+            const url = `https://bog.greenmouseproperties.com/api/projects/v2/view-project/${projectId}`
             const response = await Axios.get(url, config);
             const { data } = response;
             setProjects(data)
