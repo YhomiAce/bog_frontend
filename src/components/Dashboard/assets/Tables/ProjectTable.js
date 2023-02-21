@@ -188,7 +188,7 @@ export default function ProjectTable({ status }) {
         accessor: "status",
         Cell: (props) => {
           console.log(props)
-          const {status, approvalStatus} = props.cell.row.original;
+          const {approvalStatus} = props.cell.row.original;
           // console.log(approvalStatus)
           return formatStatus(approvalStatus)
         }
