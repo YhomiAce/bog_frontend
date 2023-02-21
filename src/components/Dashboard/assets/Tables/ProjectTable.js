@@ -92,7 +92,8 @@ export default function ProjectTable({ status }) {
   let myProjects = useSelector((state) => state.projects.projects);
   // console.log(myProjects);
   if (status) {
-    myProjects = myProjects.filter(where => where.status === status)
+    myProjects = myProjects.filter(where => where.approvalStatus === status)
+    console.log(myProjects)
   }
 
   const navigate = useNavigate()
@@ -112,7 +113,7 @@ export default function ProjectTable({ status }) {
   const formatStatus = (status) => {
     switch (status) {
       case "in_review":
-        return <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">Waiting Approval</p>
+        return <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">In review</p>
       case "approved":
         return <p className="px-2 py-1 text-green-700 bg-green-100 w-24 rounded-md fw-600">Approved</p>
       case "disapproved":
@@ -185,7 +186,12 @@ export default function ProjectTable({ status }) {
       {
         Header: "Project Status	",
         accessor: "status",
-        Cell: (props) => formatStatus(props.value)
+        Cell: (props) => {
+          console.log(props)
+          const {approvalStatus} = props.cell.row.original;
+          // console.log(approvalStatus)
+          return formatStatus(approvalStatus)
+        }
       },
       {
         Header: "Due Date",
