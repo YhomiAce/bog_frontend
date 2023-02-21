@@ -1,10 +1,8 @@
 import { Button } from '@material-tailwind/react'
 import Swal from "sweetalert2";
 
-export default function FormPackage({ formPayload }) {
+export default function FormPackage({ formPayload, formClose }) {
     const responseArray = [];
-
-    console.log(formPayload)
 
     const handleInputChange = (e, data, options) => {
         const objIndex = responseArray.findIndex((obj => obj.name === data.name));
@@ -96,7 +94,7 @@ export default function FormPackage({ formPayload }) {
                     value={data._values[0]}
                     onChange={(e) => handleInputChange(e, data, null)}
                 />);
-            
+
             case 'select':
                 return (
                     <select
@@ -209,13 +207,14 @@ export default function FormPackage({ formPayload }) {
 
         fetch("https://bog.greenmouseproperties.com/api/projects/request", requestData)
             .then(response => response.text())
-            .then(result => 
+            .then(result =>
                 Swal.fire({
                     title: " ",
                     imageUrl: "https://uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/green-checkmark-line-icon.svg",
                     imageWidth: "75px",
                     text: 'Request Submitted Successfully',
-                })
+                }),
+                formClose(true)
             )
             .catch(error => console.log('error', error));
     }
@@ -237,7 +236,7 @@ export default function FormPackage({ formPayload }) {
                 ))}
                 <div className="mt-3 lg:mt-6 w-full">
                     <Button type='submit' className="bg-primary">Submit</Button>
-                    </div>
+                </div>
             </form>
         </>
     );

@@ -28,6 +28,10 @@ export const KycText = () => {
     }
   }
 
+  const reset = (value) => {
+    setVerified('true');
+  }
+
   return (
     <div className='items-center justify-between text-white bg-secondary fw-600 py-3 px-2 lg:px-4'>
       {!user?.profile?.hasActiveSubscription && (
@@ -35,7 +39,7 @@ export const KycText = () => {
         <div>
           Subscribe to one of our amazing plans to render services to clients. <button className='bg-primary rounded-lg px-2 py-1 ml-3' onClick={(e) => checkSubscribe(e)}>Subscribe</button>
         </div>
-          <KycModal params={verified} />
+          {verified === 'false' && (<KycModal params={verified} resetVerified={reset} />)}
           </>
       )}
     </div>
@@ -43,11 +47,11 @@ export const KycText = () => {
   )
 }
 
-export const KycModal = ({ params }) => {
-
+export const KycModal = ({ params, resetVerified }) => {
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate()
   const [modal, setModal] = useState(true)
+  const [subModal, setSubModal] = useState(true);
   const [kyc, setKyc] = useState(false)
 
   const location = useLocation()
@@ -97,6 +101,11 @@ export const KycModal = ({ params }) => {
     setModal(true)
   }
 
+  const resetParams = () => {
+    setSubModal(false)
+    resetVerified('true');
+  }
+
   if ((kyc) && (!kyc.isKycCompleted)) {
       return (
          modal && (
@@ -118,16 +127,17 @@ export const KycModal = ({ params }) => {
 
   if ((params === 'false')) {
     return (
-        <div className="fixed font-primary left-0 top-0 w-full h-screen bg-op center-item z-40">
+        subModal && (<div className="fixed font-primary left-0 top-0 w-full h-screen bg-op center-item z-40">
           <div className="bg-white lg:w-5/12 rounded-md  overscroll-none  w-11/12 pt-8 shadow fw-500 scale-ani" onClick={e => e.stopPropagation()}>
             <div className="lg:px-6 px-5">
               <p className='text-3xl fw-600 text-secondary mb-4'>Welcome to BOG !</p>
               <p style={{color : 'black'}}>Sorry your KYC is not yet Verified, try Subscribing later</p>
             </div>
-            <div className="bg-light rounded-b-md  py-4 mt-5 text-end px-5">
-            </div>
+          <div className="bg-light rounded-b-md  py-4 mt-5 text-end px-5">
+            <Button className='bg-primary ml-4' onClick={() => resetParams()}>OK</Button>
           </div>
-        </div>
+          </div>
+        </div>)
       )
   }
 }

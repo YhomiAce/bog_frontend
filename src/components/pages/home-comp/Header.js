@@ -9,6 +9,7 @@ import { HiMenuAlt3, HiOutlineShoppingBag } from "react-icons/hi";
 import { MdOutlineCancel } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
+import Swal from "sweetalert2";
 
 export default function Header() {
 
@@ -31,6 +32,14 @@ export default function Header() {
         setHomeMenu(false);
     }
 
+    const errorRequest = () => {
+        Swal.fire({
+            icon: "error",
+            text: "Kindly sign up as a client to request for a service provider",
+            confirmButton: 'OK',
+        });
+    }
+
     return (
         <div className="relative z-10 bg-white">
             <div className="box">
@@ -39,7 +48,11 @@ export default function Header() {
                         <ul className="flex xl:font-600 fw-600 fw-600 w-full justify-between">
                             <li><BsList className="xl:text-3xl text-2xl cursor-pointer transition hover:scale-110" onClick={() => setHomeMenu(true)} /></li>
                             <li><Link to="/shop">Products</Link></li>
-                            <li><Link to="/services">Request for Service Provider</Link></li>
+                            {((auth?.user?.userType !== 'professional') && (auth?.user?.userType !== 'admin')) ? (
+                                <li><Link to="/services">Request for Service Provider</Link></li>
+                            )
+                                : (<li className='cursor-pointer' onClick={errorRequest}>Request for Service Provider</li>)
+                            }
                         </ul>
                     </div>
                     <div className="w-4/12 flex justify-center">
