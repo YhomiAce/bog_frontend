@@ -2,13 +2,25 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import React from 'react'
 import React, { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight, FaFileDownload } from "react-icons/fa";
-import { useTable, useGlobalFilter, useAsyncDebounce, useFilters, usePagination } from "react-table";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  FaAngleDoubleLeft,
+  FaAngleDoubleRight,
+  FaAngleLeft,
+  FaAngleRight,
+  FaFileDownload,
+} from "react-icons/fa";
+import {
+  useTable,
+  useGlobalFilter,
+  useAsyncDebounce,
+  useFilters,
+  usePagination,
+} from "react-table";
 import { useNavigate } from "react-router-dom";
 // import { BsThreeDotsVertical } from "react-icons/bs";
 import { useMemo } from "react";
-import * as moment from 'moment'
+import * as moment from "moment";
 // import { SuccessAlert } from "../../../../services/endpoint";
 // import toaster from "toasted-notes";
 // import "toasted-notes/src/styles.css";
@@ -24,10 +36,13 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { useExportData } from "react-table-plugins";
 import Papa from "papaparse";
-import * as XLSX from 'xlsx'
+import * as XLSX from "xlsx";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Swal from "sweetalert2";
-import { approveProjectToStart, DispatchProject } from "../../../../redux/actions/ProjectAction";
+import {
+  approveProjectToStart,
+  DispatchProject,
+} from "../../../../redux/actions/ProjectAction";
 import DispatchProjectModal from "../../clientDashboard/pages/Modals/DispatchProject";
 
 // export table files
@@ -56,7 +71,7 @@ function getExportFileBlob({ columns, data, fileType, fileName }) {
 
     let wb = XLSX.utils.book_new();
     let ws1 = XLSX.utils.json_to_sheet(compatibleData, {
-      header
+      header,
     });
     XLSX.utils.book_append_sheet(wb, ws1, "React Table Data");
     XLSX.writeFile(wb, `${fileName}.xlsx`);
@@ -77,8 +92,8 @@ function getExportFileBlob({ columns, data, fileType, fileName }) {
         minCellHeight: 9,
         halign: "left",
         valign: "center",
-        fontSize: 11
-      }
+        fontSize: 11,
+      },
     });
     doc.save(`${fileName}.pdf`);
 
@@ -93,120 +108,163 @@ export default function ProjectsTable({ status }) {
   // let   allProjects = useSelector((state) => state.orders.  allProjects);
   let allProjects = useSelector((state) => state.allprojects.projects);
   const [open, setOpen] = useState(false);
-  const [projectId, setProjectId] = useState('');
+  const [projectId, setProjectId] = useState("");
 
   const openModal = (id) => {
-    setProjectId(id)
-    setOpen(true)
-  }
+    setProjectId(id);
+    setOpen(true);
+  };
   const closeModal = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   if (status) {
-    if (status === "in_review") {
-      allProjects = allProjects.filter(where => where.approvalStatus === status)
-      console.log({ allProjects });
-    } else {
-      allProjects = allProjects.filter(where => where.approvalStatus !== status)
-    }
+    // console.log(status)
+    allProjects = allProjects.filter(project => project.status === status);
+    // console.log(allProjects)
+    // if (status === "in_review") {
+    //   allProjects = allProjects.filter(
+    //     (where) => where.approvalStatus === status
+    //   );
+    //   console.log({ allProjects });
+    // } else {
+    //   allProjects = allProjects.filter(
+    //     (where) => where.approvalStatus !== status
+    //   );
+    // }
   }
+  else{
+    allProjects = allProjects.filter(project => project.approvalStatus === 'pending')
+  }
+  
   //   const formatNumber = (number) => {
   //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   // }
   // const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const gotoDetailsPage = (id) => {
-    navigate(`/dashboard/projectadmindetails?projectId=${id}`)
-  }
+    navigate(`/dashboard/projectadmindetails?projectId=${id}`);
+  };
   const gotoProjectFile = (id) => {
-    navigate(`/dashboard/projectfile?projectId=${id}`)
-  }
+    navigate(`/dashboard/projectfile?projectId=${id}`);
+  };
 
   const gotoServiceRequest = (id) => {
-    navigate(`/dashboard/service-request/${id}`)
-  }
-
+    navigate(`/dashboard/service-request/${id}`);
+  };
 
   const formatStatus = (status) => {
     switch (status) {
       case "in_review":
-        return <p className="px-2 py-1 text-yellow-700 bg-yellow-100 w-24 rounded-md fw-600">Awaiting Approval</p>
+        return (
+          <p className="px-2 py-1 text-yellow-700 bg-yellow-100 w-24 rounded-md fw-600">
+            Awaiting Approval
+          </p>
+        );
       case "dispatched":
-        return <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">Dispatched</p>
+        return (
+          <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">
+            Dispatched
+          </p>
+        );
       case "approved":
-        return <p className="px-2 py-1 text-green-700 bg-green-100 w-24 rounded-md fw-600">Approved</p>
+        return (
+          <p className="px-2 py-1 text-green-700 bg-green-100 w-24 rounded-md fw-600">
+            Approved
+          </p>
+        );
       case "disapproved":
       case "cancel":
-        return <p className="px-2 py-1 text-red-700 bg-red-100 w-28 rounded-md fw-600">Cancelled</p>
+        return (
+          <p className="px-2 py-1 text-red-700 bg-red-100 w-28 rounded-md fw-600">
+            Cancelled
+          </p>
+        );
       case "close":
-        return <p className="px-2 py-1 text-red-700 bg-red-100 w-28 rounded-md fw-600">Closed</p>
+        return (
+          <p className="px-2 py-1 text-red-700 bg-red-100 w-28 rounded-md fw-600">
+            Closed
+          </p>
+        );
       case "pending":
-        return <p className="px-2 py-1 text-blue-700 bg-green-100 w-24 rounded-md fw-600">Pending</p>
+        return (
+          <p className="px-2 py-1 text-blue-700 bg-green-100 w-24 rounded-md fw-600">
+            Pending
+          </p>
+        );
       case "completed":
-        return <p className="px-2 py-1 text-green-700 bg-green-100 w-24 rounded-md fw-600">Completed</p>
+        return (
+          <p className="px-2 py-1 text-green-700 bg-green-100 w-24 rounded-md fw-600">
+            Completed
+          </p>
+        );
       case "ongoing":
-        return <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">Ongoing</p>
+        return (
+          <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600">
+            Ongoing
+          </p>
+        );
       case "draft":
-        return "Draft"
-      default: return status
+        return "Draft";
+      default:
+        return status;
     }
-
-  }
+  };
   const formatProductType = (projectTypes) => {
     switch (projectTypes) {
       case "land_survey":
-        return <p className="">Land Survey</p>
+        return <p className="">Land Survey</p>;
       case "building_approval":
-        return <p className=" ">Building Approval</p>
+        return <p className=" ">Building Approval</p>;
       case "contractor":
-        return <p className="">Contractor</p>
+        return <p className="">Contractor</p>;
       case "construction_drawing":
-        return <p className="">Construction Drawing</p>
+        return <p className="">Construction Drawing</p>;
       case "geotechnical_investigation":
-        return <p className="">Geotechnical Investigation</p>
-      default: return status
+        return <p className="">Geotechnical Investigation</p>;
+      default:
+        return status;
     }
-
-  }
+  };
 
   const approveProjectForCommencement = (id, hasApproved) => {
     Swal.fire({
       title: hasApproved ? "Approve Project" : "Disapprove Project",
-      text: hasApproved ? 'Approve Project to commence?' : 'Disapprove Project?',
-      icon: 'warning',
+      text: hasApproved
+        ? "Approve Project to commence?"
+        : "Disapprove Project?",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#4BB543',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: hasApproved ? 'Yes Commence' : 'Yes Disapprove',
+      confirmButtonColor: "#4BB543",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: hasApproved ? "Yes Commence" : "Yes Disapprove",
       cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.value) {
         const payload = {
           projectId: id,
-          isApproved: hasApproved
-        }
-        dispatch(approveProjectToStart(payload))
+          isApproved: hasApproved,
+        };
+        dispatch(approveProjectToStart(payload));
       }
     });
-  }
+  };
 
   const dispatchProjectToPartners = (score) => {
     const payload = {
       score,
-      projectId
-    }
-    dispatch(DispatchProject(payload))
-  }
-
+      projectId,
+    };
+    dispatch(DispatchProject(payload));
+  };
 
   const columns = useMemo(
     () => [
       {
-        Header: 'S/N',
-        accessor: (row, index) => index + 1  //RDT provides index by default
+        Header: "S/N",
+        accessor: (row, index) => index + 1, //RDT provides index by default
       },
       {
         Header: "Project ID		",
@@ -217,99 +275,109 @@ export default function ProjectsTable({ status }) {
         accessor: "projectTypes",
         Cell: (props) => formatProductType(props.value),
         Filter: SelectColumnFilter,
-        filter: 'includes',
-
+        filter: "includes",
       },
       {
         Header: "Project Status	",
         accessor: "status",
-        Cell: (props) => formatStatus(props.value)
+        Cell: (props) => formatStatus(props.value),
       },
       {
         Header: "Due Date",
         accessor: "createdAt",
         Cell: (props) => moment(props.value).format("MM /D /YYYY "),
-
       },
       {
-        Header: 'Action',
-        accessor: 'id',
-        Cell: (row) => <Menu placement="left-start" className="w-16">
-          <MenuHandler>
-            <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none"><BsThreeDotsVertical className="text-2xl" /></Button>
-          </MenuHandler>
-          <MenuList>
-            {
-              row.cell.row.original.approvalStatus === "in_review" &&
-              <MenuItem onClick={() => gotoDetailsPage(row.value)}>
-                View Details
-              </MenuItem>
-            }
-            {
-              row.cell.row.original.status === "ongoing" &&
-              <MenuItem onClick={() => gotoDetailsPage(row.value)}>
-                View Details
-              </MenuItem>
-            }
-            {
-              row.cell.row.original.approvalStatus === "pending" &&
-              <MenuItem onClick={() => gotoProjectFile(row.value)}>
-                View Submission
-              </MenuItem>
-            }
-            {
-              row.cell.row.original.approvalStatus === "approved" && row.cell.row.original.status !== "ongoing" &&
-              <MenuItem onClick={() => openModal(row.value)}>
-                Post Project
-              </MenuItem>
-            }
-            {
-              row.cell.row.original.approvalStatus === "in_review" && row.cell.row.original.status !== "ongoing" &&
-              <MenuItem onClick={() => approveProjectForCommencement(row.value, true)}>
-                Approve Project
-              </MenuItem>
-            }
+        Header: "Action",
+        accessor: "id",
+        Cell: (row) => (
+          <Menu placement="left-start" className="w-16">
+            <MenuHandler>
+              <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none">
+                <BsThreeDotsVertical className="text-2xl" />
+              </Button>
+            </MenuHandler>
+            <MenuList>
+              {row.cell.row.original.approvalStatus === "in_review" && (
+                <MenuItem onClick={() => gotoDetailsPage(row.value)}>
+                  View Details
+                </MenuItem>
+              )}
+              {row.cell.row.original.status === "ongoing" && (
+                <MenuItem onClick={() => gotoDetailsPage(row.value)}>
+                  View Details
+                </MenuItem>
+              )}
+              {row.cell.row.original.approvalStatus === "pending" && (
+                <>
+                  <MenuItem onClick={() => gotoProjectFile(row.value)}>
+                    View Submission
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() =>
+                      approveProjectForCommencement(row.value, true)
+                    }
+                  >
+                    Approve Project
+                  </MenuItem>
+                </>
+              )}
+              {row.cell.row.original.approvalStatus === "approved" &&
+                row.cell.row.original.status !== "ongoing" && (
+                  <MenuItem onClick={() => openModal(row.value)}>
+                    Post Project
+                  </MenuItem>
+                )}
+              {row.cell.row.original.approvalStatus === "in_review" &&
+                row.cell.row.original.status !== "ongoing" && (
+                  <MenuItem
+                    onClick={() =>
+                      approveProjectForCommencement(row.value, true)
+                    }
+                  >
+                    Approve Project
+                  </MenuItem>
+                )}
 
-            {
-              row.cell.row.original.status === "dispatched" &&
-              <MenuItem onClick={() => gotoServiceRequest(row.value)}>
-                View Request
-              </MenuItem>
-            }
-            {
-              row.cell.row.original.status !== "ongoing" && row.cell.row.original.status !== "dispatched" &&
-              <MenuItem
-                className="bg-red-600 text-white hover:text-white hover:bg-red-500"
-                onClick={() => approveProjectForCommencement(row.value, false)}>
-                Decline Project
-              </MenuItem>
-            }
-
-          </MenuList>
-        </Menu>,
+              {row.cell.row.original.status === "dispatched" && (
+                <MenuItem onClick={() => gotoServiceRequest(row.value)}>
+                  View Request
+                </MenuItem>
+              )}
+              {row.cell.row.original.status !== "ongoing" &&
+                row.cell.row.original.status !== "dispatched" && (
+                  <MenuItem
+                    className="bg-red-600 text-white hover:text-white hover:bg-red-500"
+                    onClick={() =>
+                      approveProjectForCommencement(row.value, false)
+                    }
+                  >
+                    Decline Project
+                  </MenuItem>
+                )}
+            </MenuList>
+          </Menu>
+        ),
       },
     ],
     [] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
-
   const data = useMemo(() => allProjects, [allProjects]);
 
   return (
     <>
-      {
-        open &&
+      {open && (
         <DispatchProjectModal
           closeModal={closeModal}
           dispatchProject={dispatchProjectToPartners}
         />
-      }
+      )}
       <div className="overflow-hidden px-4 bg-white py-8 rounded-md">
         <Table columns={columns} data={data} className="" />
       </div>
     </>
   );
-
 }
 
 function GlobalFilter({
@@ -317,47 +385,63 @@ function GlobalFilter({
   globalFilter,
   setGlobalFilter,
 }) {
-  const count = preGlobalFilteredRows.length
-  const [value, setValue] = useState(globalFilter)
-  const onChange = useAsyncDebounce(value => {
-    setGlobalFilter(value || undefined)
-  }, 200)
+  const count = preGlobalFilteredRows.length;
+  const [value, setValue] = useState(globalFilter);
+  const onChange = useAsyncDebounce((value) => {
+    setGlobalFilter(value || undefined);
+  }, 200);
 
   return (
     <div className="flex items-center h-9 overflow-hidden  lg:w-64  rounded-md">
       <input
         value={value || ""}
-        onChange={e => {
+        onChange={(e) => {
           setValue(e.target.value);
           onChange(e.target.value);
         }}
         placeholder={`${count} records...`}
         className="px-2 py-1 h-full border-2 border-gray-400 rounded-l-md w-10/12  outline-none"
       />
-      <p className="w-2/12 h-full center-item rounded-r-md bg-primary "><FontAwesomeIcon icon={faSearch} className="text-xl py-1 rounded-r-md bg-primary text-white text-center" /></p>
+      <p className="w-2/12 h-full center-item rounded-r-md bg-primary ">
+        <FontAwesomeIcon
+          icon={faSearch}
+          className="text-xl py-1 rounded-r-md bg-primary text-white text-center"
+        />
+      </p>
     </div>
-  )
+  );
 }
 
 const Table = ({ columns, data }) => {
-
-  const { getTableProps, getTableBodyProps, headerGroups, prepareRow, state, preGlobalFilteredRows, setGlobalFilter, page, canPreviousPage,
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    prepareRow,
+    state,
+    preGlobalFilteredRows,
+    setGlobalFilter,
+    page,
+    canPreviousPage,
     canNextPage,
     pageOptions,
     pageCount,
     gotoPage,
     nextPage,
     previousPage,
-    setPageSize, exportData } =
-    useTable({
+    setPageSize,
+    exportData,
+  } = useTable(
+    {
       columns,
       data,
-      getExportFileBlob
+      getExportFileBlob,
     },
-      useFilters,
-      useGlobalFilter, usePagination, useExportData);
-
-
+    useFilters,
+    useGlobalFilter,
+    usePagination,
+    useExportData
+  );
 
   return (
     <>
@@ -370,24 +454,30 @@ const Table = ({ columns, data }) => {
         <div className="flex mt-5 lg:mt-0">
           <Menu>
             <MenuHandler>
-              <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none flex items-center">Export <FaFileDownload className="text-2xl" /></Button>
+              <Button className="p-0 m-0 bg-transparent shadow-none text-blue-800 hover:shadow-none flex items-center">
+                Export <FaFileDownload className="text-2xl" />
+              </Button>
             </MenuHandler>
             <MenuList>
-              <MenuItem onClick={() => {
-                exportData("csv", true);
-              }}>
+              <MenuItem
+                onClick={() => {
+                  exportData("csv", true);
+                }}
+              >
                 Export as CSV
               </MenuItem>
               <MenuItem
                 onClick={() => {
                   exportData("xlsx", true);
-                }}>
+                }}
+              >
                 Export as Excel
               </MenuItem>
               <MenuItem
                 onClick={() => {
                   exportData("pdf", true);
-                }}>
+                }}
+              >
                 Export as PDF
               </MenuItem>
             </MenuList>
@@ -395,7 +485,10 @@ const Table = ({ columns, data }) => {
           {headerGroups.map((headerGroup) =>
             headerGroup.headers.map((column) =>
               column.Filter ? (
-                <div className="fs-300 px-3 flex py-2 rounded-md bg-light" key={column.id}>
+                <div
+                  className="fs-300 px-3 flex py-2 rounded-md bg-light"
+                  key={column.id}
+                >
                   {/* <label for={column.id} className="fw-600 flex ">{column.render("Header")}: </label> */}
                   {column.render("Filter")}
                 </div>
@@ -403,13 +496,15 @@ const Table = ({ columns, data }) => {
             )
           )}
         </div>
-
       </div>
       <div className="mt-2 flex flex-col">
         <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div className="overflow-hidden border-gray-200 sm:rounded-lg">
-              <table {...getTableProps()} className="items-center w-full bg-transparent border-collapse">
+              <table
+                {...getTableProps()}
+                className="items-center w-full bg-transparent border-collapse"
+              >
                 <thead className="thead-light bg-light">
                   {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
@@ -417,21 +512,28 @@ const Table = ({ columns, data }) => {
                         <th
                           scope="col"
                           className="px-2 text-primary align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap text-left"
-                          {...column.getHeaderProps()}>{column.render("Header")}</th>
+                          {...column.getHeaderProps()}
+                        >
+                          {column.render("Header")}
+                        </th>
                       ))}
                     </tr>
                   ))}
                 </thead>
-                <tbody
-                  className="bg-white"
-                  {...getTableBodyProps()}>
+                <tbody className="bg-white" {...getTableBodyProps()}>
                   {page.map((row, i) => {
                     prepareRow(row);
                     return (
-                      <tr
-                        {...row.getRowProps()}>
+                      <tr {...row.getRowProps()}>
                         {row.cells.map((cell) => {
-                          return <td className="border-b border-gray-200 align-middle fs-500 whitespace-nowrap px-2 py-4 text-left" {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                          return (
+                            <td
+                              className="border-b border-gray-200 align-middle fs-500 whitespace-nowrap px-2 py-4 text-left"
+                              {...cell.getCellProps()}
+                            >
+                              {cell.render("Cell")}
+                            </td>
+                          );
                         })}
                       </tr>
                     );
@@ -445,18 +547,18 @@ const Table = ({ columns, data }) => {
       <div className="pagination mt-8 flex justify-between items-center">
         <div>
           <span>
-            Page{' '}
+            Page{" "}
             <strong>
               {state.pageIndex + 1} of {pageOptions.length}
-            </strong>{' '}
+            </strong>{" "}
           </span>
           <select
             value={state.pageSize}
-            onChange={e => {
-              setPageSize(Number(e.target.value))
+            onChange={(e) => {
+              setPageSize(Number(e.target.value));
             }}
           >
-            {[5, 10, 20].map(pageSize => (
+            {[5, 10, 20].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
                 Show {pageSize}
               </option>
@@ -464,23 +566,39 @@ const Table = ({ columns, data }) => {
           </select>
         </div>
         <div>
-          <button className="border border-gray-400 px-2 p-1 fs-400 lg:text-xl" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          <button
+            className="border border-gray-400 px-2 p-1 fs-400 lg:text-xl"
+            onClick={() => gotoPage(0)}
+            disabled={!canPreviousPage}
+          >
             <FaAngleDoubleLeft />
-          </button>{' '}
-          <button className="border border-gray-400 px-2 p-1 fs-400 lg:text-xl" onClick={() => previousPage()} disabled={!canPreviousPage}>
+          </button>{" "}
+          <button
+            className="border border-gray-400 px-2 p-1 fs-400 lg:text-xl"
+            onClick={() => previousPage()}
+            disabled={!canPreviousPage}
+          >
             <FaAngleLeft />
-          </button>{' '}
-          <button className="border border-gray-400 px-2 p-1 fs-400 lg:text-xl" onClick={() => nextPage()} disabled={!canNextPage}>
+          </button>{" "}
+          <button
+            className="border border-gray-400 px-2 p-1 fs-400 lg:text-xl"
+            onClick={() => nextPage()}
+            disabled={!canNextPage}
+          >
             <FaAngleRight />
-          </button>{' '}
-          <button className="border border-gray-400 px-2 p-1 fs-400 lg:text-xl" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          </button>{" "}
+          <button
+            className="border border-gray-400 px-2 p-1 fs-400 lg:text-xl"
+            onClick={() => gotoPage(pageCount - 1)}
+            disabled={!canNextPage}
+          >
             <FaAngleDoubleRight />
           </button>
         </div>
       </div>
     </>
   );
-}
+};
 
 // dropdown filter for table
 

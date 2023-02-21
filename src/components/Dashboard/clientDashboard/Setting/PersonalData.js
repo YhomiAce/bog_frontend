@@ -94,6 +94,15 @@ const PersonalData = () => {
                               hover:file:bg-violet-100
                             " />
                         </div>
+                        <div>
+                            {typeof user.profile.service_category !== 'undefined' && user.profile.service_category !== null ?
+                                <label className="block mb-1 border-black">
+                                    <small><b>Service Title:</b></small><br/>
+                                    {user.profile.service_category.title}
+                                </label>
+                            : ''   
+                        }
+                        </div>
                         
                     </div>
                     <div className="lg:grid-2 justify-between">
