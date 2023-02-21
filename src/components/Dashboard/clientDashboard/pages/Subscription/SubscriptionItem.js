@@ -8,14 +8,16 @@ import Axios from '../../../../../config/config';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../../../layouts/Spinner';
+import KycAlert from '../../../assets/KycAlert';
 
 const SubscriptionItem = ({ item, user }) => {
     const [loading, setLoading] = useState(false);
+    const [subscribed, setSubscribed] = useState(false);
     const navigate = useNavigate();
     const config = {
         reference: "TR-" + new Date().getTime().toString(),
         email: `${user.email}`,
-        amount: item.amount, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+        amount: (item.amount * 100), //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
         publicKey: 'pk_test_0c79398dba746ce329d163885dd3fe5bc7e1f243',
     };
 
@@ -35,6 +37,7 @@ const SubscriptionItem = ({ item, user }) => {
             }
             const response = await Axios.post('/subscription/subscribe', data, config);
             console.log(response);
+            setSubscribed(true);
             setLoading(false);
             
         } catch (error) {
@@ -89,6 +92,10 @@ const SubscriptionItem = ({ item, user }) => {
         </center>
     }
     return (
+        <>
+            {subscribed && (
+                <KycAlert reload={true} />
+            )}
         <div className='w-11/12 mb-7 lg:mb-0 mx-auto '>
             <div className='hover:scale-110 hover:bg-black hover:text-white transition duration-300 lg:p-10 p-6 rounded-md bg-white shades'>
                 <div className='flex pb-5'>
@@ -117,7 +124,8 @@ const SubscriptionItem = ({ item, user }) => {
                     }}>Choose Plan <span className='pl-2'><BsArrowRightCircleFill /></span></button>
                 </div>
             </div>
-        </div>
+            </div>
+            </>
     )
 }
 

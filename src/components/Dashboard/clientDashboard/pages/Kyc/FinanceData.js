@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import Spinner from '../../../../layouts/Spinner';
@@ -25,6 +26,16 @@ export const FinanceData = ({ handleOpen, tab }) => {
     useEffect(() => {
         !isLoaded && dataLoader()
         setDataLoaded(true);
+        fetch(`https://api.sandbox.youverify.co/v2/api/identity/ng/bank-account-number/bank-list`, {
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            mode: '*cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: '*same-origin', // include, *same-origin, omit
+            headers: {
+                'Content-Type': 'application/json',
+                'token': 'l4Tdbpfm.TvTcG5VJXhgQvnyUc9O5R1WFVXSCAPpydNz8'
+            },
+        })
     }, [])
 
     const dataLoader = () => {
@@ -55,6 +66,15 @@ export const FinanceData = ({ handleOpen, tab }) => {
             ...formData,
             ...newValue,
         });
+
+        if (variable === 'account_number') {
+            const payload = {
+                accountNumber: `${newVal}`,
+                isSubjectConsent: true
+            }
+            axios.post(`https://api.sandbox.youverify.co/v2/api/identity/ng/bank-account-number/resolve`, payload);
+        }
+
         setIsSaving(true)
     };
 
