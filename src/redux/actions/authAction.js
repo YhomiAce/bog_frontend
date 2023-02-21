@@ -56,6 +56,7 @@ export const getMe = () => {
             dispatch(setUser(response))
         } catch (error) {
             console.log(error.message);
+            logout()
         }
 
     }

@@ -21,7 +21,7 @@ const ReviewItem = ({ item, addReviewToHompage, removeReview }) => {
             cancelButtonText: "Cancel",
         }).then((result) => {
             if (result.value) {
-                addReviewToHompage(id)
+                addReviewToHompage(id, item.isHomepage)
 
             }
         });

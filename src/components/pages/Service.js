@@ -38,7 +38,7 @@ export default function Service() {
 
 
     const auth = useSelector((state) => state.auth);
-    // const user = useSelector((state) => state.auth.user);
+    //const user = useSelector((state) => state.auth.user);
 
 
     const [servicesType, setServicesType] = useState([]);
@@ -82,12 +82,22 @@ export default function Service() {
 
 
     const setServiceCategory = (serviceId) => {
-
-        productServices.forEach((serviceType) => {
-            if (serviceType.serviceId === serviceId) {
-                setServicesType(servicesType => [...servicesType, { id: serviceType.id, name: serviceType.title }])
+        const data = productServices.find((where) => where.serviceId === serviceId);
+            if (data) {
+                setServicesType(servicesType => [...servicesType, { id: data.id, name: data.title }]);
             }
-        })
+            else {
+                Swal.fire({
+                    title: " ",
+                    imageUrl: "https://uxwing.com/wp-content/themes/uxwing/download/crime-security-military-law/authentication-icon.png",
+                    imageWidth: "75px",
+                    text: 'No Service Provider available for this service',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        navigate("/services");
+                    }
+                });
+            }
     }
 
     const CloseTypeModal = () => {
@@ -123,6 +133,7 @@ export default function Service() {
         setSelectedService(name);
     }
 
+    console.log(auth);
 
     return (
         <div>
@@ -283,7 +294,7 @@ export default function Service() {
 
                             </div>
                             <div className="mt-5">
-                                <FormPackage formPayload={serviceForm} />
+                                <FormPackage formPayload={serviceForm} formClose={CloseFormModal} />
                             </div>
                         </div>
                     </div>
