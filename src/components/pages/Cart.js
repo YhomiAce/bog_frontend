@@ -91,8 +91,10 @@ export const Cart = () => {
     prodInfo.quantity = option.quantity;
     return prodInfo;
   });
+
   useEffect(() => {
     setProducts(productsArray);
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -329,7 +331,7 @@ export const Cart = () => {
             <div className="bg-op fixed z-50 top-0 h-screen w-full flex justify-center items-center"  onClick={CloseModal}>
                 <div className="max-h-103 p-5 lg:p-10 bg-white w-11/12 lg:w-6/12 relative overflow-y-scroll " onClick={(e) => e.stopPropagation()}>
                   <FontAwesomeIcon icon={faTimes} className="text-2xl cursor-pointer absolute top-5 right-5" onClick={CloseModal} />
-                  <CartModal CloseModal={CloseModal}/>
+                  <CartModal CloseModal={CloseModal} />
                 </div>
             </div>
           )

@@ -134,7 +134,7 @@ export default function ProjectsTable({ status }) {
     // }
   }
   else{
-    allProjects = allProjects.filter(project => project.approvalStatus === 'pending')
+    allProjects = allProjects.filter(project => project.approvalStatus === 'pending' || project.approvalStatus === 'in review')
   }
   
   //   const formatNumber = (number) => {
