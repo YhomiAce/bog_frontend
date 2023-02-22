@@ -4,7 +4,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Avatar, Breadcrumbs, CardBody, Progress } from "@material-tailwind/react";
 import ProjectChart from "../assets/ProjectChart";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { getUserOrders } from "../../../redux/actions/OrderAction";
 import dayjs from "dayjs";
@@ -13,7 +13,8 @@ import { getMyProject } from "../../../redux/actions/ProjectAction";
 
 export default function PclientDashboard() {
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
   const order = useSelector((state) => state.orders.userOrders)
   const project = useSelector((state) => state.projects.projects)
@@ -26,9 +27,9 @@ export default function PclientDashboard() {
   }, [dispatch])
   useEffect(() => {
     if (user) {
-        dispatch(getMyProject(user.userType));
+        dispatch(getMyProject(user.userType, navigate));
     }
-}, [dispatch, user])
+}, [dispatch, user, navigate])
   
   return (
     <div className="min-h-screen">

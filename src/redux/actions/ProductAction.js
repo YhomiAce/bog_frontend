@@ -134,14 +134,19 @@ export const getProducts = () => {
             dispatch(fetchProducts(response.data))
         } catch (error) {
             console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -165,14 +170,19 @@ export const getCategories = () => {
             dispatch(fetchCategory(response.data))
         } catch (error) {
             console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -197,14 +207,19 @@ export const getSimilarProduct = (category) => {
             dispatch(fetchSimilarProduct(response.data))
         } catch (error) {
             console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -229,14 +244,19 @@ export const getUserProducts = (category) => {
             dispatch(fetchUserProduct(response.data))
         } catch (error) {
             console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -260,14 +280,19 @@ export const getAdminProducts = (category) => {
             dispatch(fetchAdminProduct(response.data))
         } catch (error) {
             console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -299,15 +324,20 @@ export const removeProduct = (productId, saveLoading, isAdmin) => {
             })
         } catch (error) {
             console.log(error?.response?.data?.message);
-            dispatch(setError(error.message));
-            saveLoading();
-            toaster.notify(
-                error?.response?.data?.message || error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                saveLoading();
+                toaster.notify(
+                    error?.response?.data?.message || error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -340,15 +370,19 @@ export const createProduct = (payload, saveLoading) => {
         } catch (error) {
             saveLoading();
             console.log(error?.response?.data?.message);
-            dispatch(setError(error.message));
-
-            toaster.notify(
-                error?.response?.data?.message || error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error?.response?.data?.message || error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -373,17 +407,21 @@ export const removeCategory = (categoryId, saveLoading) => {
             })
         } catch (error) {
             console.log(error?.response?.data?.message);
-            dispatch(setError(error.message));
-            saveLoading();
-            toaster.notify(
-                error?.response?.data?.message || error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                saveLoading();
+                toaster.notify(
+                    error?.response?.data?.message || error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
-
     }
 }
 
@@ -411,17 +449,21 @@ export const updateCategory = (payload, saveLoading, categoryId) => {
             })
         } catch (error) {
             console.log(error?.response?.data?.message);
-            dispatch(setError(error.message));
-            saveLoading();
-            toaster.notify(
-                error?.response?.data?.message || error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                saveLoading();
+                toaster.notify(
+                    error?.response?.data?.message || error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
-
     }
 }
 
@@ -446,17 +488,21 @@ export const createCategory = (payload, saveLoading) => {
             })
         } catch (error) {
             console.log(error?.response?.data?.message);
-            dispatch(setError(error.message));
-            saveLoading();
-            toaster.notify(
-                error?.response?.data?.message || error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                saveLoading();
+                toaster.notify(
+                    error?.response?.data?.message || error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
-
     }
 }
 
@@ -485,15 +531,20 @@ export const updateProduct = (payload, productId, saveLoading) => {
             })
         } catch (error) {
             console.log(error?.response?.data?.message);
-            dispatch(setError(error.message));
-            saveLoading();
-            toaster.notify(
-                error?.response?.data?.message || error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                saveLoading();
+                toaster.notify(
+                    error?.response?.data?.message || error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -523,14 +574,19 @@ export const addProductToStore = (productId, saveLoading) => {
             });
         } catch (error) {
             saveLoading();
-            dispatch(setError(error.message));
-            toaster.notify(
-                error?.response?.data?.message || error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error?.response?.data?.message || error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
     }
 }
@@ -555,14 +611,19 @@ export const ApproveProduct = (payload, saveLoading) => {
             });
         } catch (error) {
             saveLoading();
-            dispatch(setError(error.message));
-            toaster.notify(
-                error?.response?.data?.message || error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error?.response?.data?.message || error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
     }
 }

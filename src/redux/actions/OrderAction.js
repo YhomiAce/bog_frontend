@@ -58,15 +58,19 @@ export const getAdminOrders = () => {
             const response = await axios.get('/orders/all', config);
             dispatch(fetchAdminOrder(response.data))
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -88,15 +92,19 @@ export const getUserOrders = () => {
             const response = await axios.get('/orders/my-orders', config);
             dispatch(fetchUserOrder(response.data))
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -118,15 +126,19 @@ export const getProductOwnerOrders = () => {
             const response = await axios.get('/orders/order-request', config);
             dispatch(fetchOrderRequest(response.data))
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }

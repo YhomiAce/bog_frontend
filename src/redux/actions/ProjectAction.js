@@ -118,21 +118,25 @@ export const getDeliveryAddresses = () => {
             console.log(response);
             dispatch(fetchMyProject(response.data))
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
 }
 
-export const getMyProject = (userType) => {
+export const getMyProject = (userType, navigate) => {
     return async (dispatch) => {
         try {
             dispatch(loading());
@@ -150,14 +154,19 @@ export const getMyProject = (userType) => {
             dispatch(fetchMyProject(response.data))
         } catch (error) {
             console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                navigate("/");
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -178,15 +187,19 @@ export const fetchServiceCategories = () => {
             const response = await axios.get('/service/type', config);
             dispatch(fetchServices(response.data))
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -214,15 +227,19 @@ export const deleteServiceCategory = (id) => {
                 icon: "success"
             })
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -248,16 +265,20 @@ export const createServiceCategory = (payload, saveLoading) => {
                 icon: "success"
             })
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            saveLoading();
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                saveLoading();
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -286,16 +307,20 @@ export const updateServiceCategory = (payload, saveLoading) => {
                 icon: "success"
             })
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            saveLoading();
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                saveLoading();
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -317,15 +342,19 @@ export const getProjects = () => {
             console.log(response);
             dispatch(fetchProjects(response.data))
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -358,15 +387,19 @@ export const commenceProject = (projectId) => {
                 icon: "success"
             })
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -399,15 +432,19 @@ export const approveProjectToStart = (payload) => {
                 icon: "success"
             })
         } catch (error) {
-            console.log(error);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -429,15 +466,19 @@ export const getDispatchedProjects = (userId) => {
             console.log(response);
             dispatch(fetchDispatchedProjects(response.data))
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -459,15 +500,19 @@ export const getServicePartnerProjects = (userId) => {
             console.log(response);
             dispatch(fetchAssignedProjects(response.data))
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -498,16 +543,20 @@ export const DispatchProject = ({projectId, score}) => {
                 icon: "success"
             })
         } catch (error) {
-            console.log(error);
             let errorMsg = error?.response?.data?.message || error.message
-            dispatch(setError(errorMsg));
-            toaster.notify(
-                errorMsg,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (errorMsg === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(errorMsg));
+                toaster.notify(
+                    errorMsg,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -536,15 +585,20 @@ export const bidForProject = (payload, saveLoading) => {
         } catch (error) {
             console.log(error);
             let errorMsg = error?.response?.data?.message || error.message
-            dispatch(setError(errorMsg));
-            saveLoading()
-            toaster.notify(
-                errorMsg,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (errorMsg === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(errorMsg));
+                saveLoading()
+                toaster.notify(
+                    errorMsg,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -574,15 +628,20 @@ export const assignProjectToPartner = (payload, saveLoading) => {
         } catch (error) {
             console.log(error);
             let errorMsg = error?.response?.data?.message || error.message
-            dispatch(setError(errorMsg));
-            saveLoading()
-            toaster.notify(
-                errorMsg,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (errorMsg === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(errorMsg));
+                saveLoading()
+                toaster.notify(
+                    errorMsg,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -611,14 +670,19 @@ export const deleteUserProject = (id) => {
         } catch (error) {
             console.log(error);
             let errorMsg = error?.response?.data?.message || error.message
-            dispatch(setError(errorMsg));
-            toaster.notify(
-                errorMsg,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (errorMsg === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(errorMsg));
+                toaster.notify(
+                    errorMsg,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }

@@ -61,15 +61,19 @@ export const fetchAllUserNotifications = (userId) => {
             console.log(response);
             dispatch(fetchUserNotifications(response.data))
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -91,15 +95,19 @@ export const fetchAllAdminNotifications = () => {
             console.log(response);
             dispatch(fetchAdminNotifications(response.data))
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -121,15 +129,19 @@ export const deleteAdminNotification = (id) => {
             console.log(response);
             dispatch(removeAdminNotifications(id))
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -151,15 +163,19 @@ export const deleteUserNotification = (id) => {
             console.log(response);
             dispatch(removeUserNotifications(id))
         } catch (error) {
-            console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }

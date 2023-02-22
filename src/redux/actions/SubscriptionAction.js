@@ -62,14 +62,19 @@ export const getAllSubscriptionPlans = () => {
             dispatch(fetchAllPlans(response.data))
         } catch (error) {
             console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -96,14 +101,19 @@ export const deleteSubscriptionPlan = (id) => {
             })
         } catch (error) {
             console.log(error.message);
-            dispatch(setError(error.message));
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -131,15 +141,20 @@ export const createSubscriptionPlan = (payload, saveLoading) => {
             })
         } catch (error) {
             console.log(error.message);
-            dispatch(setError(error.message));
-            saveLoading();
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                saveLoading();
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
@@ -171,15 +186,20 @@ export const updateSubscriptionPlan = (payload, saveLoading) => {
             })
         } catch (error) {
             console.log(error.message);
-            dispatch(setError(error.message));
-            saveLoading();
-            toaster.notify(
-                error.message,
-                {
-                    duration: "4000",
-                    position: "bottom",
-                }
-            );
+            if (error.message === 'Request failed with status code 401') {
+                window.location.href = '/';
+            }
+            else {
+                dispatch(setError(error.message));
+                saveLoading();
+                toaster.notify(
+                    error.message,
+                    {
+                        duration: "4000",
+                        position: "bottom",
+                    }
+                );
+            }
         }
 
     }
