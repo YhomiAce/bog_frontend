@@ -83,12 +83,7 @@ export default function Review() {
             setLoading(true);
             const authToken = localStorage.getItem("auth_token");
             const config = {
-                headers:
-                {
-                    "Content-Type": "application/json",
-                    'Authorization': authToken
-                }
-
+                'Authorization': authToken
             }
             const res = await Axios.delete(`/testimony/delete/${id}`, config);
             setLoading(false);
