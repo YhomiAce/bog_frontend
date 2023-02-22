@@ -44,17 +44,12 @@ export default function Review() {
         }
     }
 
-    const addReviewToHompage = async (id) => {
+    const addReviewToHompage = async (id, isHomepage) => {
         try {
             setLoading(true);
             const authToken = localStorage.getItem("auth_token");
             const config = {
-                headers:
-                {
-                    "Content-Type": "application/json",
                     'Authorization': authToken
-                }
-
             }
             const res = await Axios.patch(`/testimony/homepage/${id}`, config);
             setLoading(false);
@@ -63,7 +58,12 @@ export default function Review() {
                 const oldReview = [...reviews];
                 oldReview[index].isHomepage = !oldReview[index].isHomepage;
                 setReviews(oldReview);
-                SuccessAlert("Review Added to hompage")
+                if (!isHomepage) {
+                    SuccessAlert("Review Added to hompage")
+                }
+                else {
+                    SuccessAlert("Review Removed from homepage");
+                }
             }
 
         } catch (error) {

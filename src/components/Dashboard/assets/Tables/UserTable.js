@@ -101,7 +101,7 @@ export function UsersTable({ status, userType }) {
     users = users.filter(where => where.userType === userType)
   }
   if (status !== undefined) {
-    users = users.filter(users => users.isActive === status)
+    users = users.filter(users => users.isActive === status && !users.isSuspended)
   }
   const navigate = useNavigate()
   const gotoDetailsPage = (item) => {
@@ -165,7 +165,7 @@ export function UsersTable({ status, userType }) {
       {
         Header: "Status",
         accessor: "isActive",
-        Cell: (props) => props.cell.row.original.isActive ?
+        Cell: (props) => (props.cell.row.original.isActive && !props.cell.row.original.isSuspended) ?
           <p className="px-2 py-1 text-blue-700 bg-blue-100 w-24 rounded-md fw-600 text-center">Active</p> :
            props.cell.row.original.isSuspended ?
            <p className="px-2 py-1 text-red-700 bg-orange-100 w-24 rounded-md fw-600">Suspended</p> : 

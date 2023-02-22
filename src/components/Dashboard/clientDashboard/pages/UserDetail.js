@@ -75,9 +75,15 @@ export default function UserDetails() {
     }
 
     const Reload = () => {
-        setTimeout(() => {
+       /* setTimeout(() => {
             fetchUserDetails(userId)
-        }, 3000);
+        }, 3000); */
+        if (client && (client.profile.userType === "vendor")) {
+            navigate('/dashboard/productpartner')
+        }
+        else if (client && (client.profile.userType === "professional")) {
+            navigate('/dashboard/servicepartner')
+        }
     }
 
     useEffect(() => {
