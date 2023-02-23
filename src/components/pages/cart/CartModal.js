@@ -66,17 +66,17 @@ export const CartModal = ({ CloseModal }) => {
       contact_phone: "",
     },
   }); // eslint-disable-next-line
-  const {
-    city,
-    state,
-    country,
-    postal_code,
-    address,
-    contact_name,
-    contact_email,
-    contact_phone,
-  } = form.values;
-  const orderFormvalue = form.values;
+  // const {
+  //   city,
+  //   state,
+  //   country,
+  //   postal_code,
+  //   address,
+  //   contact_name,
+  //   contact_email,
+  //   contact_phone,
+  // } = form.values;
+  // const orderFormvalue = form.values;
   const [orderForm, setOrderForm] = useState({
     city: null,
     state: null,
