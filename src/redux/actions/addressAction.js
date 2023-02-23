@@ -2,11 +2,9 @@ import toaster from "toasted-notes";
 import "toasted-notes/src/styles.css";
 import Axios from '../../config/config';
 
-
-export const fetchProjects = async (setprojects, setLoading) => {
+export const fetchAddresses = async (setLoading, setAddresses, user) => {
     try {
         setLoading(true);
-        const url = "/projects/all";
         const authToken = localStorage.getItem("auth_token");
         const config = {
             headers:
@@ -15,14 +13,12 @@ export const fetchProjects = async (setprojects, setLoading) => {
                 'Authorization': authToken
             }
         }
+        let url = `/address/view/all`;
+        
         const res = await Axios.get(url, config);
         const results = res.data;
-        const data = results.map(result => {
-            return {
-                projectSlug: result.projectSlug,
-            }
-        });
-        setprojects(data);
+        // console.log(results)
+        setAddresses(results);
         setLoading(false);
     } catch (error) {
         setLoading(false);
@@ -41,9 +37,8 @@ export const fetchProjects = async (setprojects, setLoading) => {
     }
 }
 
-export const fetchAddresses = async (setLoading, setAddresses, user) => {
+export const fetchStateAddresses = async (setAddresses, user, state) => {
     try {
-        setLoading(true);
         const authToken = localStorage.getItem("auth_token");
         const config = {
             headers:
@@ -52,13 +47,14 @@ export const fetchAddresses = async (setLoading, setAddresses, user) => {
                 'Authorization': authToken
             }
         }
-        let url = '/address/view/all';
+
+        let _state = state === undefined ? '' : `?q=${state}`;
+        let url = `/address/view/all${_state}`;
         
         const res = await Axios.get(url, config);
         const results = res.data;
         // console.log(results)
         setAddresses(results);
-        setLoading(false);
     } catch (error) {
         setLoading(false);
         if (error.message === 'Request failed with status code 401') {
