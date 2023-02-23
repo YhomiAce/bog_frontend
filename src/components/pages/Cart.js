@@ -83,7 +83,7 @@ export const Cart = () => {
       contact_phone: "",
     },
   });// eslint-disable-next-line
-  const { city, state, country, postal_code, address, contact_name, contact_email, contact_phone } = form.values;
+  // const { city, state, country, postal_code, address, contact_name, contact_email, contact_phone } = form.values;
   const value = form.values;
   let productsArray = carts.map((option) => {
     let prodInfo = {};
