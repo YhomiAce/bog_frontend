@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { FaFileDownload, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
     Menu,
     MenuHandler,
@@ -38,10 +38,11 @@ const Meetings = () => {
     const user = useSelector((state) => state.auth.user);
     const projects = useSelector((state) => state.projects.projects);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (user) {
-            dispatch(getMyProject(user.userType));
+            dispatch(getMyProject(user.userType, navigate));
         }
 
     }, [dispatch, user]);

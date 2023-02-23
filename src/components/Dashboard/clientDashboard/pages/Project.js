@@ -4,7 +4,7 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { Breadcrumbs, Button, Menu, MenuHandler, MenuItem, MenuList } from "@material-tailwind/react";
 import ProjectChart from "../../assets/ProjectChart";
 import { useSelector } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProjectTable from "../../assets/Tables/ProjectTable";
 import { getMyProject } from '../../../../redux/actions/ProjectAction';
 import { useDispatch } from "react-redux";
@@ -14,11 +14,13 @@ import dayjs from "dayjs";
 export default function Projects() {
     const auth = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     useEffect(() => {
         if (auth.user) {
-            dispatch(getMyProject(auth.user.userType));
+            dispatch(getMyProject(auth.user.userType, navigate));
         }
-    }, [dispatch, auth])
+    }, [dispatch, auth, navigate])
     let projects = null;
 
     if (auth?.user?.userType === "private_client") {

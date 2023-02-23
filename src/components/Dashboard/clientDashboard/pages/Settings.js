@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 export default function Settings() {
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate()
-  // console.log(auth)  
+  console.log(auth);
 
   return (
     <div className="p-5">
@@ -80,11 +80,28 @@ export default function Settings() {
                 <button className="btn-primary" onClick={() => {navigate("/dashboard/kyc")}}>Click to Proceed</button>
                 <p className="mt-7 text-red-600">* KYC verification required for verification badge</p>
               </div>
-              }
+                }
+                {
+                  auth?.user?.userType === "admin" || auth?.user?.userType === "private_client" || auth?.user?.userType === "corporate_client" ?
+                    ""
+                    :
+                    <div>
+                      <div className="bg-white w-full py-6 lg:px-6 px-3 rounded-lg mt-6">
+                        <div className="flex py-6">
+                          <div className="flex flex-grow justify-center">
+                            <button className="px-4 py-2 btn bg-orange-500 text-white" onClick={() => { navigate("/dashboard/kyc") }}>Update KYC</button>
+                          </div>
+                          <div className="flex flex-grow justify-center">
+                            <button className="px-4 py-2 btn-primary ml-10" disabled={auth.user.profile.hasActiveSubscription ? true : false} onClick={() => { navigate("/dashboard/subscription") }}>Update Subscription</button>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                }
             </div>
           }
-        </div>
       </div>
-    </div>
+      </div>
+      </div>
   );
 }

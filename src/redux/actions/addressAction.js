@@ -22,13 +22,18 @@ export const fetchAddresses = async (setLoading, setAddresses, user) => {
         setLoading(false);
     } catch (error) {
         setLoading(false);
-        toaster.notify(
-            error.message,
-            {
-                duration: "4000",
-                position: "bottom",
-            }
-        );
+        if (error.message === 'Request failed with status code 401') {
+            window.location.href = '/';
+        }
+        else {
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
     }
 }
 
@@ -51,13 +56,18 @@ export const fetchStateAddresses = async (setAddresses, user, state) => {
         // console.log(results)
         setAddresses(results);
     } catch (error) {
-       
-        toaster.notify(
-            error.message,
-            {
-                duration: "4000",
-                position: "bottom",
-            }
-        );
+        setLoading(false);
+        if (error.message === 'Request failed with status code 401') {
+            window.location.href = '/';
+        }
+        else {
+            toaster.notify(
+                error.message,
+                {
+                    duration: "4000",
+                    position: "bottom",
+                }
+            );
+        }
     }
 }
