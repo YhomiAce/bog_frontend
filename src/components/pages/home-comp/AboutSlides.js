@@ -12,7 +12,7 @@ import img2 from "../../assets/images/img4.png";
 import img3 from "../../assets/images/img3.png";
 import img4 from "../../assets/images/image1.png";
 import { getUserType } from "../../../services/helper";
-import { Avatar } from "@material-tailwind/react";
+import Avatar from 'react-avatar';
 
 export const Reviews = [
     {
@@ -276,7 +276,7 @@ export function  ReviewSlide({reviews}) {
                         return (
                             <div className="py-4 mr-10 w-96 hover:bg-primary hover:text-white border border-pri px-5 mx-auto bg-white rounded">
                                 <div className="flex items-center">
-                                    <Avatar variant="circular" src={item.image} alt="img1" className=""/>
+                                    <Avatar round src={item.image} name={item.name} size="50" alt="img1" className=""/>
                                     <div className="pl-4">
                                         <p className="fw-600">{item.name}</p>
                                         <p className="fs-300">{getUserType(item.user.userType)}</p>

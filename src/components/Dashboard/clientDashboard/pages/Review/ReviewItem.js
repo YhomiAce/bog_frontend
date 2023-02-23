@@ -49,7 +49,7 @@ const ReviewItem = ({ item, addReviewToHompage, removeReview }) => {
         <div className="lg:flex lg:w-11/12 mx-auto py-6 px-4 bg-white shadow rounded-lg mt-6 items-center justify-between">
             <div className="flex items-center">
                 <div>
-                    <Avatar variant="circular" src={item.image} alt="review" className="w-24 h-24" />
+                    <Avatar variant="circular" src={item.user.photo} alt="review" className="w-24 h-24" />
                 </div>
                 <div className="pl-4">
                     <p className="fw-500">{item.name}</p>
