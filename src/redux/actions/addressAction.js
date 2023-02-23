@@ -56,7 +56,6 @@ export const fetchStateAddresses = async (setAddresses, user, state) => {
         // console.log(results)
         setAddresses(results);
     } catch (error) {
-        setLoading(false);
         if (error.message === 'Request failed with status code 401') {
             window.location.href = '/';
         }

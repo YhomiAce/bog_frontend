@@ -64,8 +64,9 @@ export default function OrderDetails() {
           orderId: order.id,
           status: _status,
         };
-        const response = await Axios.patch(url, bodyParam, config);
-        const { data } = response;
+        
+        await Axios.patch(url, bodyParam, config);
+       
         //   setOrder(data);
         Swal.fire({
           title: "Success",
